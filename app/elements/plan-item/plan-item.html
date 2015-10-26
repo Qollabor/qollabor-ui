@@ -1,0 +1,113 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<dom-module id="plan-item">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      paper-card {
+        width: 100%
+      }
+
+      paper-fab {
+        margin: 0 5px 0 5px;
+      }
+      paper-fab.green {
+      --paper-fab-background: var(--paper-green-500);
+      --paper-fab-keyboard-focus-background: var(--paper-green-900);
+    }
+    paper-fab.orange {
+      --paper-fab-background: var(--paper-orange-500);
+      --paper-fab-keyboard-focus-background: var(--paper-orange-900);
+    }
+
+    span.state {
+      box-sizing: border-box;
+      font-weight: 400;
+      background-color: var(--paper-green-500);
+      position: absolute;
+      right: 15px;
+      text-align: center;
+      text-transform: lowercase;
+      border-radius: 2px;
+      padding: 2px 6px;
+      color: #fff;
+    }
+
+    </style>
+    <iron-ajax id="getPlanItem"
+      handle-as="json"
+      on-response="printResponse"></iron-ajax>
+
+    <iron-ajax id="transitionPlanItem"
+      handle-as="json"
+      method="POST"
+      on-response="printResponse"></iron-ajax>
+
+      <paper-card heading="{{planitem.name}}" elevation="2">
+        <div class="card-content">
+          <span class="state">{{planitem.currentState}}</span>
+          <ul>
+            <li>type: <span>{{planitem.type}}</span></li>
+            <li>caseDefinition: <span>{{planitem.caseDefinition}}</span></li>
+            <li>caseInstanceId: <span>{{planitem.caseInstanceId}}</span></li>
+            <li>lastModified: <span>{{planitem.lastModified}}</span></li>
+          </ul>
+        </div>
+        <div class="card-actions layout horizontal-reverse">
+          <paper-fab id="complete" mini icon="done" title="done" class="green"
+            on-click="transitionPlanitem" data-transition="complete"></paper-fab>
+          <paper-fab id="cancel" mini icon="reply" title="cancel" class="orange"></paper-fab>
+        </div>
+      </paper-card>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'plan-item',
+
+      properties: {
+        planitemid: {
+          type: String,
+          observer: '_planItemReceived'
+        },
+        caseinstanceid: {
+          type: String
+        },
+        planitem: {
+          type: Object,
+          notify: true
+        }
+
+      },
+
+      _planItemReceived: function() {
+        this.$.getPlanItem.url = 'http://localhost:18082/cases/' + this.caseinstanceid + '/planitems/' + this.planitemid;
+        this.$.getPlanItem.generateRequest();
+      },
+
+      printResponse: function() {
+        this.planitem = this.$.getPlanItem.lastResponse._2[0];
+      },
+
+      transitionPlanitem: function(e) {
+        var transition = e.target.dataHost.getAttribute('data-transition');
+        console.log(transition + ' for planitem ' + this.planitem.name);
+        this.$.transitionPlanItem.url = 'http://localhost:18082/cases/' + this.caseinstanceid + '/planitems/' + this.planitemid + '/' + transition;
+        this.$.transitionPlanItem.generateRequest();
+      }
+    });
+  })();
+  </script>
+</dom-module>

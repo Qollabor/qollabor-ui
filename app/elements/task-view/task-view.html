@@ -1,0 +1,113 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="task-view">
+  <template>
+    <style>
+      :host {
+        display: block;
+        --paper-tabs-selection-bar-color: var(--accent-color);
+        --paper-tab-ink: var(--primary-background-color);
+        --paper-input-container-label: {
+          color: var(--dark-primary-color);
+         }
+      }
+
+
+
+      #taskview {
+        width: 100%;
+      }
+
+      .tabcontent {
+        margin: 25px;
+      }
+
+
+    </style>
+
+    <iron-ajax id="getCaseForTask"
+               handleAs="json"
+               on-response="_setCaseData"></iron-ajax>
+
+    <paper-card id="taskview" elevation="2">
+      <paper-tabs selected="{{selectedTab}}">
+        <paper-tab>TASK</paper-tab>
+        <paper-tab>CASE</paper-tab>
+        <paper-tab>CASE FILE</paper-tab>
+        <paper-tab>PLANNING</paper-tab>
+      </paper-tabs>
+
+      <iron-pages selected="{{selectedTab}}">
+        <div id="task" class="tabcontent" content>
+            <task-info task="{{task}}"></task-info>
+        </div>
+        <div id="case" class="tabcontent" content>
+          <case-info case="{{case}}" plan="{{plan}}"></case-info>
+        </div>
+        <div id="casefile" class="tabcontent" content>
+          <case-file casefile="{{casefile}}"></case-file>
+        </div>
+        <div id="discretionary" class="tabcontent" content>
+          <discretionary-items></discretionary-items>
+        </div>
+      </iron-pages>
+    </paper-card>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'task-view',
+
+      properties: {
+        case: {
+          type: Object,
+          notify: true
+        },
+        plan: {
+          type: Array,
+          notify: true
+        },
+        casefile: {
+          type: Object,
+          notify: true
+        },
+        task: {
+          type: Object,
+          notify: true,
+          observer: '_taskReceived'
+        }
+      },
+
+      ready: function() {
+        return this.selectedTab === 0;
+      },
+
+      _taskReceived: function() {
+        this.$.getCaseForTask.url = 'http://localhost:18082/cases/' + this.task.caseId;
+        this.$.getCaseForTask.generateRequest();
+      },
+
+      _setCaseData: function() {
+        var resp = this.$.getCaseForTask.lastResponse._2;
+        var casePlan = resp.plan.items.filter(function(i) {if (i.type === 'CasePlan') {return i;}});
+        this.case = {caseInstanceId: resp.id, caseDefinition: resp.definition, rootCaseInstanceId: resp.rootCaseId, parentCaseInstanceId: resp.parentCaseId, currentState: casePlan[0].currentState, lastModified: casePlan[0].lastModified};
+        this.casefile = resp.file;
+        this.plan = resp.plan.items;
+      }
+
+    });
+  })();
+  </script>
+</dom-module>

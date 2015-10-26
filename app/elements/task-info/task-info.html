@@ -1,0 +1,52 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="task-info">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+
+    </style>
+    <div id="taskinfo">
+      <mat-subheader label="General info"></mat-subheader>
+      <paper-input label="Task name" value="{{task.taskName}}" readonly always-float-label></paper-input>
+      <paper-input label="Task InstanceId" value="{{task.id}}" readonly always-float-label></paper-input>
+      <paper-input label="Case" value="{{task.caseDefinition}}" readonly always-float-label></paper-input>
+      <paper-input label="User" value="{{task.user}}" readonly always-float-label></paper-input>
+      <paper-input label="Role" value="{{task.role}}" readonly always-float-label></paper-input>
+    </div>
+    <template is="dom-if" if="{{task.parameters.keys.length}}">
+      <div id="taskparams">
+        <mat-divider></mat-divider>
+        <mat-subheader label="Task parameters"></mat-subheader>
+      </div>
+    </template>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'task-info',
+
+      properties: {
+        task: {
+          type: Object,
+          notify: true
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>

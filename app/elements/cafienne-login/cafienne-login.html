@@ -1,0 +1,110 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="cafienne-login">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      .loginbox {
+        padding: 50px;
+      }
+
+      paper-material {
+        width: 400px;
+        height: 400px;
+      }
+
+      .colorful {
+        background-color: var(--dark-primary-color);
+        color: white;
+        font-weight: bold;
+      }
+
+     img {
+       margin: 20px 20px 0px 20px;
+     }
+
+    </style>
+
+    <iron-ajax id="login"
+               url="http://localhost:18082/identity/login"
+               method = "POST"
+               handleAs = "json"
+               content-type="application/json"
+               on-response="getCafienneAuthToken"
+               on-error="getCafienneAuthToken"></iron-ajax>
+
+    <div class="layout vertical center">
+      <paper-material elevation="2" class="layout vertical">
+        <div class="vertical layout center-justified center">
+          <img src="../../images/login-avatar.png">
+        </div>
+        <div class="loginbox">
+          <form is="iron-form" id="loginform">
+            <paper-input label="username" name="username"></paper-input>
+            <paper-input label="password" type="password" name="password"></paper-input>
+          </form>
+        </div>
+        <div class="layout horizontal center-justified">
+          <paper-button raised class="colorful" on-click="loginSubmit">sign in</paper-button>
+        </div>
+      </paper-material>
+    </div>
+    <paper-toast id="loginfailed" text="Login failed!"></paper-toast>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'cafienne-login',
+
+      listeners: {
+        'iron-form-submit' : 'processLogin'
+      },
+
+      loginSubmit: function() {
+        document.getElementById('loginform').submit();
+      },
+
+      processLogin: function(e) {
+
+        var i = JSON.stringify(e.detail);
+        this.$.login.body = i;
+        this.$.login.generateRequest();
+      },
+
+      getCafienneAuthToken: function(e, request) {
+
+        switch (e.type) {
+          case 'error':
+                console.log('login failed');
+                this.$.loginfailed.show();
+                break;
+          case 'response':
+                if (request.xhr.status === 204) {
+                  sessionStorage.setItem('X-AUTH-CAFIENNE', request.xhr.getResponseHeader('X-AUTH-CAFIENNE'));
+                  page.redirect('/tasks');
+                }
+                else {
+                  console.log('Login failed');
+                  this.$.loginfailed.show();
+                }
+                break;
+        }
+      }
+    });
+  })();
+  </script>
+</dom-module>
