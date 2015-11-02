@@ -10,6 +10,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+<link rel="import" href="../../bower_components/mat-divider/mat-divider.html">
+<link rel="import" href="../../bower_components/mat-subheader/mat-subheader.html">
+<link rel="import" href="../../bower_components/mat-table/mat-table.html"/>
+
+
 <dom-module id="case-info">
   <template>
     <style>
@@ -64,8 +71,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--paper-orange-300);
       }
 
-
-
     </style>
     <div id="caseinfo">
       <mat-subheader label="General info"></mat-subheader>
@@ -93,7 +98,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <mat-td>{{planitem.name}}</mat-td>
                 <mat-td>{{planitem.type}}</mat-td>
                 <mat-td><span class$="{{_computedStateClass(planitem.currentState)}}">{{planitem.currentState}}</span></mat-td>
-                <mat-td>{{_formatLastModified(case.lastModified)}}</mat-td>
+                <mat-td>{{_formatLastModified(planitem.lastModified)}}</mat-td>
               </mat-tr>
           </template>
         </mat-tbody>

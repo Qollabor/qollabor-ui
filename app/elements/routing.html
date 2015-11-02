@@ -28,6 +28,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if(isLoggedIn()) {
         app.route = 'main';
         app.childRoute = 'tasks';
+
       }
       else {
         page.redirect('/login');
@@ -40,6 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if(isLoggedIn()) {
         app.route = 'main';
         app.childRoute = 'tasks';
+        document.getElementById('getTaskList').generateRequest();
       }
       else {
         page.redirect('/login');

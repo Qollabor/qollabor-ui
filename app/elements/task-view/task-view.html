@@ -9,6 +9,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html"/>
+
+<link rel="import" href="../../elements/task-info/task-info.html">
+<link rel="import" href="../../elements/case-info/case-info.html">
+<link rel="import" href="../../elements/case-file/case-file.html">
+<link rel="import" href="../../elements/discretionary-items/discretionary-items.html">
 
 <dom-module id="task-view">
   <template>
@@ -21,8 +30,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           color: var(--dark-primary-color);
          }
       }
-
-
 
       #taskview {
         width: 100%;
@@ -40,25 +47,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                on-response="_setCaseData"></iron-ajax>
 
     <paper-card id="taskview" elevation="2">
-      <paper-tabs selected="{{selectedTab}}">
-        <paper-tab>TASK</paper-tab>
-        <paper-tab>CASE</paper-tab>
-        <paper-tab>CASE FILE</paper-tab>
-        <paper-tab>PLANNING</paper-tab>
+      <paper-tabs id="tasktabs" selected="{{selectedTab}}" attr-for-selected="tabname">
+        <paper-tab tabname="task">TASK</paper-tab>
+        <paper-tab tabname="case">CASE</paper-tab>
+        <paper-tab tabname="casefile">CASE FILE</paper-tab>
+        <paper-tab tabname="planning">PLANNING</paper-tab>
       </paper-tabs>
 
-      <iron-pages selected="{{selectedTab}}">
-        <div id="task" class="tabcontent" content>
-            <task-info task="{{task}}"></task-info>
+      <iron-pages selected="{{selectedTab}}" attr-for-selected="tabname">
+        <div tabname="task" class="tabcontent" content>
+            <task-info task="{{task}}" caseinstanceid="{{caseinstanceid}}"></task-info>
         </div>
-        <div id="case" class="tabcontent" content>
+        <div tabname="case" class="tabcontent" content>
           <case-info case="{{case}}" plan="{{plan}}"></case-info>
         </div>
-        <div id="casefile" class="tabcontent" content>
+        <div tabname="casefile" class="tabcontent" content>
           <case-file casefile="{{casefile}}"></case-file>
         </div>
-        <div id="discretionary" class="tabcontent" content>
-          <discretionary-items></discretionary-items>
+        <div tabname="planning" class="tabcontent" content>
+          <discretionary-items caseinstanceid="{{caseinstanceid}}"></discretionary-items>
         </div>
       </iron-pages>
     </paper-card>
@@ -85,18 +92,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         task: {
           type: Object,
-          notify: true,
-          observer: '_taskReceived'
+          observer: '_taskChanged'
+
+        },
+        caseinstanceid: {
+          type: String,
+          notify: true
         }
       },
 
       ready: function() {
         return this.selectedTab === 0;
-      },
-
-      _taskReceived: function() {
-        this.$.getCaseForTask.url = 'http://localhost:18082/cases/' + this.task.caseId;
-        this.$.getCaseForTask.generateRequest();
       },
 
       _setCaseData: function() {
@@ -105,6 +111,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.case = {caseInstanceId: resp.id, caseDefinition: resp.definition, rootCaseInstanceId: resp.rootCaseId, parentCaseInstanceId: resp.parentCaseId, currentState: casePlan[0].currentState, lastModified: casePlan[0].lastModified};
         this.casefile = resp.file;
         this.plan = resp.plan.items;
+        this.caseinstanceid = resp.id;
+      },
+
+      _taskChanged: function(newTask, oldTask) {
+        this._getTaskRelatedData(newTask.caseId);
+
+        /*
+        if (oldTask === undefined) {
+          this._getTaskRelatedData(newTask.caseId);
+          console.log('old: ' + newTask.id);
+        } else {
+          this._getTaskRelatedData(newTask.caseId);
+          console.log('old: ' + oldTask.id);
+          console.log('new: ' + newTask.id);
+        }
+
+        */
+      },
+
+
+      _getTaskRelatedData: function(caseid) {
+          console.log('get case for task ' + caseid);
+          this.$.getCaseForTask.url = 'http://localhost:18082/cases/' + caseid;
+          this.$.getCaseForTask.generateRequest();
       }
 
     });

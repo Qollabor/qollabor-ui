@@ -9,6 +9,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/iron-input/iron-input.html">
+
+<link rel="import" href="../../bower_components/paper-material/paper-material.html"/>
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input-container.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
 
 <dom-module id="cafienne-login">
   <template>
@@ -23,12 +33,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       paper-material {
         width: 400px;
         height: 400px;
+        background: white;
+      }
+
+      paper-material[back] {
+        background-color: var(--dark-primary-color);
+        width: 100%;
+        height: 100%;
       }
 
       .colorful {
         background-color: var(--dark-primary-color);
         color: white;
         font-weight: bold;
+      }
+
+      .logo {
+        margin: 40px 20px 0px 20px;
+        font-size: 48px;
+        font-weight: bold;
+        font-style: italic;
+        color: var(--dark-primary-color);
+      }
+      .tagline {
+        font-style: italic;
+        color: var(--secondary-text-color);
+        padding-top: 10px;
       }
 
      img {
@@ -47,8 +77,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="layout vertical center">
       <paper-material elevation="2" class="layout vertical">
-        <div class="vertical layout center-justified center">
-          <img src="../../images/login-avatar.png">
+        <div class="vertical layout center-center">
+          <span class="logo">Cafienne</span>
+          <span class="tagline">case file engine</span>
         </div>
         <div class="loginbox">
           <form is="iron-form" id="loginform">
@@ -57,7 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </form>
         </div>
         <div class="layout horizontal center-justified">
-          <paper-button raised class="colorful" on-click="loginSubmit">sign in</paper-button>
+          <paper-button raised class="colorful" on-tap="loginSubmit">sign in</paper-button>
         </div>
       </paper-material>
     </div>

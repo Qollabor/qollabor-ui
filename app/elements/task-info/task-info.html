@@ -9,12 +9,45 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="../../bower_components/paper-fab-transitions/paper-fab-transitions.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+
+<link rel="import" href="../../bower_components/mat-divider/mat-divider.html">
+<link rel="import" href="../../bower_components/mat-subheader/mat-subheader.html">
+
 
 <dom-module id="task-info">
   <template>
+    <!-- ajax calls -->
+    <iron-ajax id="makePlanItemTransition"
+               method="POST"
+               content-type="application/json"
+               handle-as="json"
+               last-response="{{transitionresult}}"
+               on-error="_handleTransitionResponse"
+               on-response="_handleTransitionResponse"></iron-ajax>
+
     <style>
       :host {
         display: block;
+      }
+
+      .bottom-right {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+      }
+
+      paper-input {
+        max-width: 90%;
+      }
+
+      paper-toast {
+        z-index: 1000;
       }
 
     </style>
@@ -32,6 +65,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <mat-subheader label="Task parameters"></mat-subheader>
       </div>
     </template>
+    <!-- action buttons -->
+    <paper-fab-speed-dial id="taskactions" class="bottom-right" direction="top" onmouseover="this.open()">
+      <paper-fab icon="more-vert" class="dropdown-trigger"></paper-fab>
+      <div class="dropdown-content">
+        <paper-fab id="resume" mini icon="av:play-arrow" on-tap="_handleTaskAction" data-value="resume"></paper-fab>
+        <paper-tooltip for="resume" position="left">resume</paper-tooltip>
+        <paper-fab id="suspend" mini icon="av:pause" on-tap="_handleTaskAction" data-value="suspend"></paper-fab>
+        <paper-tooltip for="suspend" position="left">suspend</paper-tooltip>
+        <paper-fab id="terminate" mini icon="clear" on-tap="_handleTaskAction" data-value="terminate"></paper-fab>
+        <paper-tooltip for="terminate" position="left">terminate</paper-tooltip>
+        <paper-fab id="complete" mini icon="check" on-tap="_handleTaskAction" data-value="complete"></paper-fab>
+        <paper-tooltip for="complete" position="left">complete</paper-tooltip>
+      </div>
+    </paper-fab-speed-dial>
+    <paper-toast id="transitionerror" text="foo"><span role="button" tabindex="0" style="color: #eeff41;margin: 10px" onclick="console.log('CLOSE')">CLOSE</span></paper-toast>
+    <paper-toast id="transitionsuccess" text="foo"><span role="button" tabindex="0" style="color: #eeff41;margin: 10px" onclick="console.log('OK')">OK</span></paper-toast>
+
   </template>
   <script>
   (function() {
@@ -44,7 +94,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         task: {
           type: Object,
           notify: true
+        },
+        caseinstanceid: {
+          type: String
         }
+      },
+
+      _handleTaskAction: function(e) {
+        var transition = e.target.dataHost.getAttribute('data-value');
+        console.log('Transition: ' + transition + ' for ' + this.task.id +  ' case: ' + this.caseinstanceid);
+        this.$.makePlanItemTransition.headers = {'X-AUTH-CAFIENNE': sessionStorage.getItem('X-AUTH-CAFIENNE')};
+        this.$.makePlanItemTransition.url = ['http://localhost:18082/cases', this.caseinstanceid, 'planitems', this.task.id, transition].join('/');
+        this.$.makePlanItemTransition.generateRequest();
+      },
+
+      _handleTransitionResponse: function(e, request) {
+
+        console.log(e);
+        console.log(request);
+        switch (e.type) {
+          case 'error':
+            this.$.transitionerror.text = 'Transition failed!';
+            this.$.transitionerror.show();
+            break;
+          case 'response':
+            console.log(this.transitionresult);
+            this.$.transitionsuccess.text = 'Transition successful!';
+            this.$.transitionsuccess.show();
+            break;
+        }
+
       }
     });
   })();

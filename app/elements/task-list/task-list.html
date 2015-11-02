@@ -8,6 +8,15 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<link rel="import" href="../../elements/task-view/task-view.html">
+
 
 <dom-module id="task-list">
   <template>
@@ -27,6 +36,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-left-color: var(--accent-color);
       }
 
+      paper-item[focused] {
+        border-left: solid 3px;
+        border-left-color: var(--dark-primary-color);
+      }
+
       .title {
         font-weight: bold;
       }
@@ -37,6 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .tasklist {
         width: 300px;
+        margin-left: 10px;
       }
 
       .taskdetails {
@@ -56,33 +71,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 10px;
       }
 
-      .item:focus,
-      .item.selected:focus {
-        border-left: 3px solid;
-        border-left-color: var(--accent-color);
-      }
-
-      .item.selected:not(:focus) {
-        border-right: 3px solid;
-        border-right-color: var(--primary-color);
-      }
-
     </style>
 
     <iron-ajax id="getTaskList"
-      url="http://localhost:18082/tasks"
-      handle-as="json"
-      last-response="{{tasksdata}}"
-      on-response="handleResponse"></iron-ajax>
+      handle-as = "json"
+      last-response = "{{tasksdata}}"
+      on-response = "handleResponse"></iron-ajax>
 
       <div class="taskcontainer layout horizontal">
         <div class="tasklist flex">
-            <div style="height: 15px"></div>
-            <iron-list id="tasks" items=[[tasksdata._2]] as="task" selectionEnabled on-selected-item-changed="itemChanged">
+            <div style="height: 15px;"></div>
+            <iron-list id="tasks" items=[[tasksdata._2]] as="task" selectionEnabled on-selected-item-changed="_itemChanged">
               <template>
-                <paper-item on-click="selectTask" class$="{{_computedClass(selected)}}">
+                <paper-item on-tap="selectTask">
                   <paper-item-body two-line>
-                    <div><span class="title">{{task.taskName}}</span> <span>{{task.lastModified}}</span></div>
+                    <div><span class="title">{{task.taskName}}</span> <span>{{task.id}}</span></div>
                     <div secondary>Case: <span>{{task.caseDefinition}}</span><br>CaseInstanceId: <span>{{task.caseId}}</span></div>
                   </paper-item-body>
                 </paper-item>
@@ -103,21 +106,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       properties: {
         selectedTask: {
-          type: Object,
-          notify: true
+          type: Object
         }
       },
 
       ready: function() {
-        this.$.getTaskList.generateRequest();
+        this.$.getTaskList.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+        this.$.getTaskList.url = "http://localhost:18082/tasks";
       },
 
       handleResponse: function() {
-        var task = this.$.getTaskList.lastResponse._2[0];
+        var task = this.tasksdata._2[0];
         this.selectedTask = task;
       },
 
-      itemChanged: function() {
+      _itemChanged: function() {
         if (this.$.tasks.task === null) {
           this.async(function(){
             if (this.$.tasks.task === null) {
@@ -129,20 +132,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
 
-      _computedClass: function(isSelected) {
-        var classes = 'item';
-        if (isSelected) {
-          classes += ' selected';
-        }
-        return classes;
-      },
-
       selectTask: function(e) {
         this.selectedTask = e.model.task;
-      },
-
-      computeDate: function(date) {
-        return date.format('yyyy-MM-dd hh:mm');
+        document.getElementById('tasktabs').select('task');
       }
     });
   })();

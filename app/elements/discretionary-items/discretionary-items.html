@@ -9,6 +9,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+
+<link rel="import" href="../../bower_components/iron-icons/av-icons.html">
+
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+
+<link rel="import" href="../../bower_components/mat-subheader/mat-subheader.html">
 
 <dom-module id="discretionary-items">
   <template>
@@ -16,8 +25,53 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
+      .title {
+        font-weight: bold;
+      }
+
+      .planitem {
+        margin-left: 20px;
+        padding-top: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+        font-size: 0.8em;
+      }
+
+      paper-toast {
+        z-index: 1000;
+      }
     </style>
-    <div>Hello from <span>{{foo}}</span></div>
+
+    <iron-ajax id="getDiscretionaryItemsForCase"
+               last-response = "{{discretionaryitems}}"
+               handle-as = "json"
+      ></iron-ajax>
+    <iron-ajax id="planDiscretionaryItem"
+               method = "POST"
+               content-type = "application/json"
+               handle-as = "json"
+               last-response="{{planresult}}"
+               on-response="_handlePlanResult"
+               on-error="_handlePlanResult"></iron-ajax>
+
+
+      <div id="discretionaryitems">
+        <mat-subheader label="Currently valid discretionary items"></mat-subheader>
+        <iron-list id="list" items="{{discretionaryitems.discretionaryItems}}" selection-enabled>
+          <template>
+            <div class="layout inline wrap center">
+              <paper-fab mini icon="av:play-arrow" on-tap="_planItem"></paper-fab>
+              <paper-icon-item class="planitem flex">
+                <paper-item-body two-line class="layout vertical">
+                  <div><span class="title">{{item.name}}</span></div>
+                  <div secondary>Type: <span>{{item.type}}</span><br>Parent: <span>{{item.parent}}</span></div>
+                </paper-item-body>
+              </paper-icon-item>
+            </div>
+          </template>
+        </iron-list>
+        <paper-toast id="planerror" text="Planning of item failed"></paper-toast>
+        <paper-toast id="plansuccess" text="foo"></paper-toast>
+      </div>
   </template>
   <script>
   (function() {
@@ -27,12 +81,50 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'discretionary-items',
 
       properties: {
-        foo: {
+        caseinstanceid: {
           type: String,
-          value: 'discretionary-items',
+          observer: '_caseInstanceIdReceived'
+        },
+        discretionaryitems: {
+          type: Object,
           notify: true
         }
+
+      },
+
+      _caseInstanceIdReceived: function() {
+        this.$.getDiscretionaryItemsForCase.url = ['http://localhost:18082/cases', this.caseinstanceid, 'discretionaryitems'].join('/');
+        this.$.getDiscretionaryItemsForCase.generateRequest();
+
+      },
+
+      _planItem: function(e) {
+        console.log(e.model.item);
+        var itemName = e.model.item.name;
+        var url = ['http://localhost:18082/cases', this.caseinstanceid, 'discretionaryitems', 'plan'].join('/');
+        this.$.planDiscretionaryItem.headers = {'X-AUTH-CAFIENNE': sessionStorage.getItem('X-AUTH-CAFIENNE')};
+        this.$.planDiscretionaryItem.body = {'name': itemName};
+        this.$.planDiscretionaryItem.url = url;
+        this.$.planDiscretionaryItem.generateRequest();
+      },
+
+      _handlePlanResult: function(e) {
+
+        switch (e.type) {
+          case 'error':
+                this.$.planerror.show();
+                break;
+          case 'response':
+                this.$.plansuccess.text = 'Item planned succesfully ' + this.planresult.planItemId;
+                this.$.plansuccess.show();
+                document.getElementById('tasks').fire('iron-resize');
+                break;
+        }
+
       }
+
+
+
     });
   })();
   </script>
