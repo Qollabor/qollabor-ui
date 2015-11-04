@@ -114,20 +114,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.caseinstanceid = resp.id;
       },
 
-      _taskChanged: function(newTask, oldTask) {
+      _taskChanged: function(newTask) {
         this._getTaskRelatedData(newTask.caseId);
-
-        /*
-        if (oldTask === undefined) {
-          this._getTaskRelatedData(newTask.caseId);
-          console.log('old: ' + newTask.id);
-        } else {
-          this._getTaskRelatedData(newTask.caseId);
-          console.log('old: ' + oldTask.id);
-          console.log('new: ' + newTask.id);
-        }
-
-        */
       },
 
 

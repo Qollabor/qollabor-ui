@@ -112,7 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       ready: function() {
         this.$.getTaskList.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
-        this.$.getTaskList.url = "http://localhost:18082/tasks";
+        this.$.getTaskList.url = 'http://localhost:18082/tasks';
       },
 
       handleResponse: function() {
