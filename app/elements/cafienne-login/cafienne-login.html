@@ -112,7 +112,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _processLogin: function(e) {
-        console.log(e);
         var data = {username : this.username, password: this.password};
         e.target.request.body = JSON.stringify(data);
         e.target.request.contentType = 'application/json';

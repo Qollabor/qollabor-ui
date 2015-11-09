@@ -10,7 +10,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 
-<link rel="import" href="../../bower_components/x-json/dist/x-json.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html"/>
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input-container.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 
 <dom-module id="case-file">
   <template>
@@ -20,7 +24,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div>
-      <x-json data="{{casefile}}"></x-json>
+      <!-- x-json data="{{casefile}}"></x-json -->
+      <div id="metawidget"></div>
     </div>
   </template>
   <script>
@@ -33,9 +38,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       properties: {
         casefile: {
           type: Object,
-          notify: true
+          notify: true,
+          observer: '_caseFileReceived'
         }
+      },
+
+      _caseFileReceived: function() {
+        console.log('Case File received');
+        var config = {
+          layout: new metawidget.layout.TableLayout()
+        };
+
+        var mw = new metawidget.Metawidget(this.$.metawidget, config);
+        mw.toInspect = this.casefile;
+        mw.buildWidgets();
+        //console.log(mw);
+
       }
+
+
     });
   })();
   </script>

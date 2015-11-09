@@ -10,7 +10,8 @@
     "page": "visionmedia/page.js#~1.6.3",
     "mat-elements": "ExpandJS/mat-elements#~0.9.11",
     "x-json": "~0.2.3",
-    "paper-fab-transitions": "GabiAxel/paper-fab-transitions#~0.1.0"
+    "paper-fab-transitions": "GabiAxel/paper-fab-transitions#~0.1.0",
+    "metawidget": "~4.1.0"
   },
   "devDependencies": {
     "web-component-tester": "*",

@@ -94,6 +94,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _caseInstanceIdReceived: function() {
         this.$.getDiscretionaryItemsForCase.url = ['http://localhost:18082/cases', this.caseinstanceid, 'discretionaryitems'].join('/');
+        this.$.getDiscretionaryItemsForCase.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
         this.$.getDiscretionaryItemsForCase.generateRequest();
 
       },
@@ -117,6 +118,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           case 'response':
                 this.$.plansuccess.text = 'Item planned succesfully ' + this.planresult.planItemId;
                 this.$.plansuccess.show();
+                var clm = e.detail.xhr.getResponseHeader('Case-Last-Modified');
+                console.log('Case-Last-Modified: ' + clm);
+                document.getElementById('getTaskList').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE'), 'Case-Last-Modified': clm};
+                document.getElementById('getTaskList').generateRequest();
                 document.getElementById('tasks').fire('iron-resize');
                 break;
         }
