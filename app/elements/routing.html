@@ -58,6 +58,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     });
 
+    page('/definitions', function() {
+      if(isLoggedIn()) {
+        app.route= 'main';
+        app.childRoute = 'definitions';
+        document.getElementById('getDefinitionsList').generateRequest();
+      }
+      else {
+        page.redirect('/login');
+      }
+    });
+
     page('/login', function() {
       app.route = 'login';
     });

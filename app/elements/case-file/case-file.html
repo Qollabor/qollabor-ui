@@ -14,7 +14,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input-container.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+
+<link rel="import" href="../../bower_components/juicy-jsoneditor/src/juicy-jsoneditor.html">
 
 <dom-module id="case-file">
   <template>
@@ -25,7 +28,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
     <div>
       <!-- x-json data="{{casefile}}"></x-json -->
-      <div id="metawidget"></div>
+      <!--<div id="metawidget"></div>-->
+      <juicy-jsoneditor json="{{casefile}}" name="Case File" history="true" on-change="_caseFileChanged" on-click="_caseFileChanged"></juicy-jsoneditor>
     </div>
   </template>
   <script>
@@ -45,15 +49,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _caseFileReceived: function() {
         console.log('Case File received');
-        var config = {
-          layout: new metawidget.layout.TableLayout()
-        };
+      },
 
-        var mw = new metawidget.Metawidget(this.$.metawidget, config);
-        mw.toInspect = this.casefile;
-        mw.buildWidgets();
-        //console.log(mw);
-
+      _caseFileChanged: function(e) {
+        console.log(e);
       }
 
 

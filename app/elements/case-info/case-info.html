@@ -12,13 +12,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 
-<link rel="import" href="../../bower_components/mat-divider/mat-divider.html">
+<link rel="import" href="../../bower_components/paper-divider/paper-divider.html">
+<link rel="import" href="../../bower_components/sweet-material-table/sweet-material-table.html">
 <link rel="import" href="../../bower_components/mat-subheader/mat-subheader.html">
-<link rel="import" href="../../bower_components/mat-table/mat-table.html"/>
+<link rel="import" href="../../bower_components/sweet-material-table/sweet-material-table-styles.html"/>
 
 
 <dom-module id="case-info">
   <template>
+    <style include="sweet-material-table-styles"></style>
     <style>
       :host {
         display: block;
@@ -71,6 +73,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: var(--paper-orange-300);
       }
 
+      #table .thead .tr .th {
+        font-weight: bold;
+        color: var(--dark-primary-color);
+      }
+
     </style>
     <div id="caseinfo">
       <mat-subheader label="General info"></mat-subheader>
@@ -81,28 +88,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-input label="Current State" value="{{case.currentState}}" readonly always-float-label></paper-input>
       <paper-input label="Last Modified" value$="{{_formatLastModified(case.lastModified)}}" readonly always-float-label></paper-input>
     </div>
-    <mat-divider></mat-divider>
+    <paper-divider margin></paper-divider>
     <div id="planitems">
-      <mat-subheader label="Planitems"></mat-subheader>
-      <mat-table items="[[plan]]" as="planitem">
-        <mat-thead>
-          <!--mat-th>ID</mat-th-->
-          <mat-th>Name</mat-th>
-          <mat-th>Type</mat-th>
-          <mat-th>Current State</mat-th>
-          <mat-th>Last Modified</mat-th>
-        </mat-thead>
-          <template is="dom-repeat" items="[[plan]]" as="planitem">
-              <mat-tr>
-                <!--mat-td>{{planitem.id}}</mat-td -->
-                <mat-td>{{planitem.name}}</mat-td>
-                <mat-td>{{planitem.type}}</mat-td>
-                <mat-td><span class$="{{_computedStateClass(planitem.currentState)}}">{{planitem.currentState}}</span></mat-td>
-                <mat-td>{{_formatLastModified(planitem.lastModified)}}</mat-td>
-              </mat-tr>
-          </template>
-        </mat-tbody>
-      </mat-table>
+      <sweet-material-table id="planitemstable" start="0" perPage="10" total="50"
+        title="Plan items" data="[[plan]]" columns="[[columns]]" available-columns="[[availableColumns]]">
+      </sweet-material-table>
+
     </div>
     <!--div>
       <span class="state available">available</span>
@@ -133,6 +124,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Array,
           notify: true
         }
+      },
+
+      ready: function () {
+        this.columns = [
+          {key: 'name', title: 'Name'},
+          {key: 'type', title: 'Type'},
+          {key: 'currentState', title: 'Current State'},
+          {key: 'lastModified', title: 'Last Modified'}
+        ];
+
+        this.availableColumns = [
+          {key: 'id', title: 'ID'},
+          {key: 'name', title: 'Name'},
+          {key: 'type', title: 'Type'},
+          {key: 'currentState', title: 'Current State'},
+          {key: 'lastModified', title: 'Last Modified'}
+        ];
+        this.start = 0;
+        this.perPage = 5;
+        //this.total = plan.length;
       },
 
       _computedStateClass: function(currentState) {

@@ -49,8 +49,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <!-- endbuild -->
 
-  <script src="bower_components/metawidget/metawidget-core.min.js"></script>
-
   <!-- will be replaced with elements/elements.vulcanized.html -->
   <link rel="import" href="elements/elements.html">
   <!-- endreplace-->
@@ -85,7 +83,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </a>
               <a data-route="cases" href="/cases" on-tap="onDataRouteClick">
                 <iron-icon icon="folder-open"></iron-icon>
-                <span>Cases</span>
+                <span>Active cases</span>
+              </a>
+              <a data-route="definitions" href="/definitions" on-tap="onDataRouteClick">
+                <iron-icon icon="folder"></iron-icon>
+                <span>Available definitions</span>
               </a>
             </paper-menu>
           </div>
@@ -114,6 +116,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             <section data-route="cases" class="fit">
                 <case-list></case-list>
+            </section>
+
+            <section data-route="definitions" class="fit">
+              <cafienne-definitions></cafienne-definitions>
             </section>
           </iron-pages>
           <!-- main content end here -->
