@@ -60,7 +60,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </style>
 
     <iron-ajax id="getDefinitionXML"
-      handle-as="xml"
+      handle-as="document"
       on-response="_getDefinitionInfo"></iron-ajax>
     <iron-ajax id="startCase"
                method = "POST"
@@ -76,8 +76,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-input label="Case name" value="{{definitioninfo.caseName}}" readonly always-float-label></paper-input>
         <paper-input label="Case Description" value="{{definitioninfo.caseDescription}}" readonly always-float-label></paper-input>
 
-        <paper-divider margin></paper-divider>
-        <paper-textarea id="inputparams" label="Case Input Parameters" rows="10" max-rows="20" always-float-label value="{{inputs}}"></paper-textarea>
+        <template is="dom-if" if="{{caseparams.length}}">
+          <paper-divider margin></paper-divider>
+          <mat-subheader label="Case Input Parameters"></mat-subheader>
+          <template is="dom-repeat" items="{{caseparams}}">
+            <paper-input label="{{item.name}}" value="{{item.value}}" always-float-label></paper-input>
+          </template>
+        </template>
         <paper-fab id="start" class="bottom-right" icon="av:play-arrow" on-tap="_startCase"></paper-fab>
         <paper-tooltip for="start" position="top">start case</paper-tooltip>
       </div>
@@ -100,21 +105,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         definitioninfo: {
           type: Object,
           notify: true,
-          default: {}
+          value: {}
         },
         startcase: {
           type: Object,
-          default: {}
+          value: {}
         },
-        inputs: {
-          type: String,
-          notify: true,
-          default: ''
+        caseparams: {
+          type: Array,
+          notify: true
         }
-
       },
 
       _definitionReceived: function() {
+        this.caseparams = [];
         var definitionFile = this.definition.definitions.substr(0, this.definition.definitions.indexOf('.'));
         this.$.getDefinitionXML.url = ['http://localhost:18082/repository/load', definitionFile].join('/');
         this.$.getDefinitionXML.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
@@ -122,22 +126,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _getDefinitionInfo: function() {
-        var definitionDoc = this.$.getDefinitionXML.lastResponse;
-        var caseName = definitionDoc.getElementsByTagName('case')[0].getAttribute('name');
-        var caseDescription = definitionDoc.getElementsByTagName('case')[0].getAttribute('description');
+        var mainCase = this.$.getDefinitionXML.lastResponse.getElementsByTagName('case')[0];
+        var caseName = mainCase.getAttribute('name');
+        var caseDescription = mainCase.getAttribute('description');
         this.definitioninfo = {caseName: caseName, caseDescription: caseDescription};
-        //console.log(caseName);
+        var params = [];
+        // proces case input params
+        var caseInputParams = mainCase.getElementsByTagName('input');
+
+        if (caseInputParams.length > 0) {
+          for (var i = 0; i < caseInputParams.length; i++) {
+            var input = {};
+            input.name = caseInputParams[i].getAttribute('name');
+            input.value = '';
+            params.push(input);
+            //console.log(input);
+          }
+          this.caseparams = params;
+        }
       },
 
       _startCase: function() {
-        if(typeof this.inputs === 'undefined') {
-          this.startcase = {definition: this.definition.definitions, name: this.definitioninfo.caseName};
+        this.startcase = {definition: this.definition.definitions, name: this.definitioninfo.caseName};
+        var inputObj = {};
+        if(this.caseparams.length > 0) {
+          for (var i = 0; i < this.caseparams.length; i++) {
+            if (this.caseparams[i].value.length > 0) {
+              inputObj[this.caseparams[i].name] = this.caseparams[i].value;
+            }
+          }
+          if(Object.getOwnPropertyNames(inputObj).length > 0) {
+            this.startcase.inputs = inputObj;
+          }
         }
-        else {
-          var inputObj = JSON.parse(this.inputs);
-          this.startcase = {definition: this.definition.definitions, name: this.definitioninfo.caseName, inputs: inputObj};
-        }
-        console.log(this.startcase);
 
         var url = 'http://localhost:18082/cases';
         this.$.startCase.headers = {'X-AUTH-CAFIENNE': sessionStorage.getItem('X-AUTH-CAFIENNE')};

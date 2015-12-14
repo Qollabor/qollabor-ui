@@ -75,13 +75,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <iron-ajax id="getTaskList"
       handle-as = "json"
-      last-response = "{{tasksdata}}"
+      last-response = "{{tasklist}}"
       on-response = "handleResponse"></iron-ajax>
 
       <div class="taskcontainer layout horizontal">
         <div class="tasklist flex">
             <div style="height: 15px;"></div>
-            <iron-list id="tasks" items=[[tasksdata._2]] as="task" selectionEnabled on-selected-item-changed="_itemChanged">
+            <iron-list id="tasks" items=[[tasklist._2]] as="task" selection-enabled selected-item="{{selectedTask}}">
               <template>
                 <paper-item on-tap="selectTask">
                   <paper-item-body two-line>
@@ -93,7 +93,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </iron-list>
           </div>
         <div class="taskdetails flex-3">
-            <task-view id="tv" task="{{selectedTask}}"></task-view>
+            <task-view id="tv" task="{{taskinstance}}"></task-view>
         </div>
       </div>
   </template>
@@ -105,6 +105,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'task-list',
 
       properties: {
+        taskinstance: {
+          type: Object,
+          notify: true
+        },
         selectedTask: {
           type: Object
         }
@@ -116,24 +120,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       handleResponse: function() {
-        var task = this.tasksdata._2[0];
-        this.selectedTask = task;
+        this.selectedTask = this.tasklist._2[0];
       },
 
-      _itemChanged: function() {
-        if (this.$.tasks.task === null) {
-          this.async(function(){
-            if (this.$.tasks.task === null) {
-              this.$.tasks.selectItem(this.selectedTask);
-            }
-          }.bind(this));
-        } else {
-          this.selectedTask = this.$.tasks.task;
-        }
-      },
-
-      selectTask: function(e) {
-        this.selectedTask = e.model.task;
+      selectTask: function() {
+        this.taskinstance = this.selectedTask;
         document.getElementById('tasktabs').select('task');
       }
     });

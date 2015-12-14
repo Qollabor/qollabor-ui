@@ -37,11 +37,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   app.onLogout = function() {
     sessionStorage.clear();
-    page.redirect('/');
+    page.redirect('/login');
   };
 
   app.pageSelected = function(e) {
-    console.log(e);
+    console.log(e.target);
+    console.log('Selected child route: ' + e.target.selected);
   };
 
   app.toggleLeft = function() {
@@ -53,6 +54,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     else {
       drawerPanel.openDrawer();
     }
+  };
+
+  app.showToast = function(type, message, duration, log) {
+    if (log) {
+      console.log(message);
+    }
+    var selector = '#toasts #' + type;
+    var toast = document.querySelector(selector);
+
+    toast.text = message;
+    toast.duration = duration;
+    toast.show();
+
   };
 
 })(document);

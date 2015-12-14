@@ -28,10 +28,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if(isLoggedIn()) {
         app.route = 'main';
         app.childRoute = 'tasks';
-
       }
       else {
-        page.redirect('/login');
+        app.route = 'login';
       }
 
     });
@@ -44,7 +43,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         document.getElementById('getTaskList').generateRequest();
       }
       else {
-        page.redirect('/login');
+        app.route = 'login';
+      }
+    });
+
+    page('/tasklist', function() {
+      if(isLoggedIn()) {
+        app.route = 'main';
+        app.childRoute = 'tasklist';
+        document.getElementById('getAllTasks').generateRequest();
+      }
+      else {
+        app.route = 'login';
       }
     });
 
@@ -52,9 +62,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if(isLoggedIn()) {
         app.route = 'main';
         app.childRoute = 'cases';
+        document.getElementById('getCaseList').generateRequest();
       }
       else {
-        page.redirect('/login');
+        app.route = 'login';
       }
     });
 
@@ -65,7 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         document.getElementById('getDefinitionsList').generateRequest();
       }
       else {
-        page.redirect('/login');
+        app.route = 'login';
       }
     });
 

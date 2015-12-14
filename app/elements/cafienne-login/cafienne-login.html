@@ -13,10 +13,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../../bower_components/iron-input/iron-input.html">
 
-<link rel="import" href="../../bower_components/paper-material/paper-material.html"/>
+<link rel="import" href="../../bower_components/paper-card/paper-card.html"/>
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input-container.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-styles/paper-styles.html"/>
 
 
 <dom-module id="cafienne-login">
@@ -24,22 +25,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
-      }
-      .loginbox {
-        padding: 50px;
-      }
-
-      paper-material {
-        width: 400px;
-        height: 400px;
-        background: white;
-      }
-
-      paper-material[back] {
-        background-color: var(--dark-primary-color);
+        height: 100vh;
         width: 100%;
-        height: 100%;
       }
+
+      #cards {
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+
+      paper-card {
+        width: 100%;
+        margin-bottom: 16px;
+        --paper-card-header: {
+          @apply(--layout-vertical);
+          @apply(--center-justified);
+        };
+        --paper-card-header-image-text: {
+          font-weight: bold;
+          color: white;
+          font-size: 48px;
+          font-style: italic;
+        };
+        --paper-card-actions: {
+          @apply(--layout-vertical);
+          @apply(--center-justified);
+        }
+      }
+
+      .loginbox {
+        padding: 30px;
+      }
+
 
       .colorful {
         background-color: var(--dark-primary-color);
@@ -48,43 +67,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .logo {
-        margin: 40px 20px 0px 20px;
-        font-size: 48px;
-        font-weight: bold;
-        font-style: italic;
-        color: var(--dark-primary-color);
+
       }
       .tagline {
         font-style: italic;
-        color: var(--secondary-text-color);
+        font-weight: bold;
+        color: var(--dark-primary-color);
         padding-top: 10px;
       }
 
-     img {
-       margin: 20px 20px 0px 20px;
-     }
 
     </style>
 
-    <div class="layout vertical center">
-      <paper-material elevation="2" class="layout vertical">
-        <div class="vertical layout center-center">
-          <span class="logo">Cafienne</span>
+    <div id="cards">
+      <paper-card heading="Cafienne" image="images/login_back.png">
+        <div class="card-content">
           <span class="tagline">case file engine</span>
+          <div class="loginbox">
+            <form is="iron-form" id="loginform" method="post">
+              <paper-input label="username" name="username" value="{{username}}"></paper-input>
+              <paper-input label="password" type="password" name="password" value="{{password}}"></paper-input>
+            </form>
+          </div>
         </div>
-        <div class="loginbox">
-          <form is="iron-form" id="loginform" method="post">
-            <paper-input label="username" name="username" value="{{username}}"></paper-input>
-            <paper-input label="password" type="password" name="password" value="{{password}}"></paper-input>
-          </form>
-        </div>
-        <div class="layout horizontal center-justified">
+        <div class="card-actions">
           <paper-button raised class="colorful" on-tap="loginSubmit">sign in</paper-button>
         </div>
-      </paper-material>
+      </paper-card>
     </div>
-    <paper-toast id="loginfailed" text="Login failed!"></paper-toast>
+    <!--paper-toast id="loginfailed" text="Login failed!"></paper-toast-->
   </template>
+
   <script>
   (function() {
     'use strict';
@@ -123,16 +136,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         switch (e.type) {
           case 'iron-form-error':
                 console.log('login failed');
-                this.$.loginfailed.show();
+                app.showToast('error', 'Login failed!', 3000, true);
                 break;
           case 'iron-form-response':
                 if (e.detail.xhr.status === 204) {
                   sessionStorage.setItem('X-AUTH-CAFIENNE', e.detail.xhr.getResponseHeader('X-AUTH-CAFIENNE'));
-                  page.redirect('/tasks');
+                  app.route = 'main';
+                  app.childRoute = 'tasks';
+                  //page.redirect('/tasks');
                 }
                 else {
                   console.log('Login failed');
-                  this.$.loginfailed.show();
+                  app.showToast('error', 'Login failed!', 3000, true);
                 }
                 break;
         }

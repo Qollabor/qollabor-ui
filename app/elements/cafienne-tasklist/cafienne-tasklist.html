@@ -1,0 +1,197 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+
+<link rel="import" href="../../bower_components/mat-subheader/mat-subheader.html">
+
+<link rel="import" href="../../elements/cafienne-taskactions/cafienne-taskactions.html">
+<link rel="import" href="../../elements/task-view/task-view.html">
+
+
+<dom-module id="cafienne-tasklist">
+  <template>
+    <style>
+      :host {
+        display: block;
+        height: 100vh;
+      }
+
+      #tasklist {
+        height: 100%;
+      }
+
+      paper-material {
+        background-color: white;
+        max-width: calc(97.33% - 32px);
+      }
+
+      iron-list {
+        padding-top: 1px;
+        padding-bottom: 0px;
+        -webkit-flex: 1 1;
+        flex: 1 1;
+        --iron-list-items-container: {
+          margin: auto;
+          margin-top: 20px;
+        };
+      }
+
+      .task {
+        @apply(--layout-horizontal);
+        padding: 10px;
+        background-color: inherit;
+        border-bottom: 1px solid #fafafa;
+        cursor: pointer;
+      }
+      .task:focus {
+        outline: 0;
+        border-left: solid 3px;
+        border-left-color: var(--accent-color);
+      }
+      .task:hover {
+        outline: 0;
+        border-left: solid 3px;
+        border-left-color: var(--dark-primary-color);
+      }
+      .pad {
+        padding: 0 16px;
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+      }
+      .primary {
+        @apply(--layout-horizontal);
+        font-size: 0.8em;
+        font-weight: bold;
+      }
+      .shortText, .longText {
+        font-size: 0.8em;
+      }
+      .longText {
+        color: gray;
+        display: none;
+      }
+      .task:hover .shortText::after {
+        content: ' [+]';
+        color: gray;
+      }
+      .task.expanded .longText {
+        display: block;
+      }
+      .spacer {
+        @apply(--layout-flex);
+      }
+
+      .actions {
+        @apply(--layout-horizontal);
+      }
+    </style>
+
+    <iron-ajax id="getAllTasks"
+               handle-as = "json"
+               last-response = "{{taskresponse}}" on-response="handleResponse"></iron-ajax>
+
+    <div class="taskcontainer">
+      <mat-subheader label="Tasks"></mat-subheader>
+      <paper-material elevation="1">
+        <iron-list id="tasklist" items={{tasks}} as="task">
+          <template>
+            <div id="[[task.id]]">
+              <div class$="task [[_getClassForTask(task, task.expanded)]]" tabindex="0">
+                <div class="pad">
+                  <div class="primary" on-tap="_collapseExpand"><span class="flex">[[task.taskName]]</span>
+                    <span class="flex-2">[[task.caseDefinition]] - [[task.id]]</span>
+                    <span class="flex">
+                      <cafienne-taskactions task-state="Active" task-id="{{task.id}}" case-instance-id="{{task.caseId}}"></cafienne-taskactions>
+                    </span>
+                  </div>
+                  <!--div class="shortText">[[task.id]]</div-->
+                  <div class="longText">
+                    <task-info task="[[currentExpandedTask]]" caseinstanceid="[[currentExpandedTask.caseId]]"></task-info>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </iron-list>
+      </paper-material>
+    </div>
+
+  </template>
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'cafienne-tasklist',
+
+        properties: {
+          tasks: {
+            type: Array,
+            notify: true
+          },
+          previousExpandedTask: {
+            type: Object,
+            value: {}
+          },
+          currentExpandedTask: {
+            type: Object
+          }
+        },
+
+        ready: function() {
+          this.$.getAllTasks.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+          this.$.getAllTasks.url = 'http://localhost:18082/tasks';
+        },
+
+        handleResponse: function() {
+          //this.selectedTask = this.taskresponse._2[0];
+          this.tasks = this.taskresponse._2;
+        },
+
+        _collapseExpand: function(e) {
+
+          var tasklist = this.$.tasklist;
+          var index = e.model.index;
+          var isExpanded = tasklist.items[index].expanded;
+
+          //collapse the previous expanded task
+          if (this.previousExpandedTask.hasOwnProperty('expanded')) {
+            if (this.previousExpandedTask.expanded) {
+              tasklist.set('items.' + this.previousExpandedTask.index + '.expanded', false);
+              tasklist.updateSizeForItem(this.previousExpandedTask.index);
+            }
+          }
+
+          // expand current selected item
+          tasklist.set('items.' + index + '.expanded', !isExpanded);
+          tasklist.updateSizeForItem(e.model.index);
+          this.currentExpandedTask = tasklist.items[index];
+          this.previousExpandedTask = tasklist.items[index];
+          this.previousExpandedTask.index = index;
+          tasklist.notifyResize();
+        },
+
+        _getClassForTask: function(task, expanded) {
+          return expanded ? 'expanded' : '';
+        }
+
+        });
+      })
+    ();
+  </script>
+</dom-module>

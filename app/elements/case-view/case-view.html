@@ -18,9 +18,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../elements/case-info/case-info.html">
 <link rel="import" href="../../elements/case-file/case-file.html">
 <link rel="import" href="../../elements/discretionary-items/discretionary-items.html">
-<link rel="import" href="../../elements/cafienne-taskactions/cafienne-taskactions.html">
 
-<dom-module id="task-view">
+<dom-module id="case-view">
   <template>
     <style>
       :host {
@@ -29,10 +28,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-tab-ink: var(--primary-background-color);
         --paper-input-container-label: {
           color: var(--dark-primary-color);
-         }
+        }
       }
 
-      #taskview {
+      #caseview {
         width: 100%;
       }
 
@@ -40,32 +39,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 25px;
       }
 
-      cafienne-taskactions {
-        border-top: 1px solid;
-        margin-top: 10px;
-      }
-
 
     </style>
 
-    <iron-ajax id="getCaseForTask"
+    <iron-ajax id="getCase"
                handleAs="json"
                on-response="_setCaseData"></iron-ajax>
 
-    <paper-card id="taskview" elevation="2">
-
-      <paper-tabs id="tasktabs" selected="{{selectedTab}}" attr-for-selected="tabname">
-        <paper-tab tabname="task">TASK</paper-tab>
+    <paper-card id="caseview" elevation="2">
+      <paper-tabs id="casetabs" selected="{{selectedCase}}" attr-for-selected="tabname">
         <paper-tab tabname="case">CASE</paper-tab>
         <paper-tab tabname="casefile">CASE FILE</paper-tab>
         <paper-tab tabname="planning">PLANNING</paper-tab>
       </paper-tabs>
 
-      <iron-pages selected="{{selectedTab}}" attr-for-selected="tabname">
-        <div tabname="task" class="tabcontent" content>
-            <task-info task="{{task}}" caseinstanceid="{{caseinstanceid}}"></task-info>
-            <cafienne-taskactions task-state="Active" task-id="{{task.id}}" case-instance-id="{{caseinstanceid}}"></cafienne-taskactions>
-        </div>
+      <iron-pages selected="{{selectedCase}}" attr-for-selected="tabname">
         <div tabname="case" class="tabcontent" content>
           <case-info case="{{case}}" plan="{{plan}}"></case-info>
         </div>
@@ -79,66 +67,56 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </paper-card>
   </template>
   <script>
-  (function() {
-    'use strict';
+    (function() {
+      'use strict';
 
-    Polymer({
-      is: 'task-view',
+      Polymer({
+        is: 'case-view',
 
-      properties: {
-        case: {
-          type: Object,
-          notify: true
+        properties: {
+          caseinstance: {
+            type: Object,
+            observer: '_caseChanged'
+          },
+          plan: {
+            type: Array,
+            notify: true
+          },
+          casefile: {
+            type: Object,
+            notify: true
+          },
+          caseinstanceid: {
+            type: String,
+            notify: true
+          }
         },
-        plan: {
-          type: Array,
-          notify: true
-        },
-        casefile: {
-          type: Object,
-          notify: true
-        },
-        task: {
-          type: Object,
-          observer: '_taskChanged'
 
+        ready: function() {
+          return this.selectedTab === 0;
         },
-        caseinstanceid: {
-          type: String,
-          notify: true
+
+        _setCaseData: function() {
+          var resp = this.$.getCase.lastResponse._2;
+          var casePlan = resp.plan.items.filter(function(i) {if (i.type === 'CasePlan') {return i;}});
+          this.case = {caseInstanceId: resp.id, caseDefinition: resp.definition, rootCaseInstanceId: resp.rootCaseId, parentCaseInstanceId: resp.parentCaseId, currentState: casePlan[0].currentState, lastModified: casePlan[0].lastModified};
+          this.casefile = resp.file;
+          this.plan = resp.plan.items;
+          this.caseinstanceid = resp.id;
         },
-        tabname: {
-          type: String,
-          value: 'task'
+
+        _caseChanged: function(newCase) {
+          this._getCaseRelatedData(newCase.id);
+        },
+
+
+        _getCaseRelatedData: function(caseid) {
+          //console.log('get case for task ' + caseid);
+          this.$.getCase.url = 'http://localhost:18082/cases/' + caseid;
+          this.$.getCase.generateRequest();
         }
 
-      },
-
-      ready: function() {
-        return this.selectedTab === 0;
-      },
-
-      _setCaseData: function() {
-        var resp = this.$.getCaseForTask.lastResponse._2;
-        var casePlan = resp.plan.items.filter(function(i) {if (i.type === 'CasePlan') {return i;}});
-        this.case = {caseInstanceId: resp.id, caseDefinition: resp.definition, rootCaseInstanceId: resp.rootCaseId, parentCaseInstanceId: resp.parentCaseId, currentState: casePlan[0].currentState, lastModified: casePlan[0].lastModified};
-        this.casefile = resp.file;
-        this.plan = resp.plan.items;
-        this.caseinstanceid = resp.id;
-      },
-
-      _taskChanged: function(newTask) {
-        this._getTaskRelatedData(newTask.caseId);
-      },
-
-
-      _getTaskRelatedData: function(caseid) {
-          //console.log('get case for task ' + caseid);
-          this.$.getCaseForTask.url = 'http://localhost:18082/cases/' + caseid;
-          this.$.getCaseForTask.generateRequest();
-      }
-
-    });
-  })();
+      });
+    })();
   </script>
 </dom-module>

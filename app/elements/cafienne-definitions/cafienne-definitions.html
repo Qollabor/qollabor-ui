@@ -76,7 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="definitionscontainer layout horizontal">
       <div class="definitionslist flex">
         <div style="height: 15px;"></div>
-        <iron-list id="definitions" items=[[definitionsdata.models]] as="definition" selectionEnabled on-selected-item-changed="_itemChanged">
+        <iron-list id="definitions" items={{definitionsdata.models}} as="definition" selectionEnabled>
           <template>
             <paper-item on-tap="selectDefinition">
               <paper-item-body two-line>
@@ -118,18 +118,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         //console.log(this.$.getDefinitionsList.lastResponse);
         var definition = this.definitionsdata.models[0];
         this.selectedDefinition = definition;
-      },
-
-      _itemChanged: function() {
-        if (this.$.definitions.definition === null) {
-          this.async(function(){
-            if (this.$.definitions.definition === null) {
-              this.$.definitions.selectItem(this.selectedDefinition);
-            }
-          }.bind(this));
-        } else {
-          this.selectedDefinition = this.$.definitions.definition;
-        }
       },
 
       selectDefinition: function(e) {

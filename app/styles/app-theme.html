@@ -36,13 +36,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     /* Components */
 
-    /* paper-drawer-panel */
-    --drawer-menu-color:           #ffffff;
+    /* paper-drawer-panel
+    --drawer-menu-color:           #fafafa;;
     --drawer-border-color:         1px solid #ccc;
     --drawer-toolbar-border-color: 1px solid rgba(0, 0, 0, 0.22);
+    */
+
+  paper-drawer-panel {
+    --paper-drawer-panel-main-container: {
+      background-color: inherit;
+    };
+    --paper-drawer-panel-left-drawer-container: {
+      background-color: inherit;
+    };
+  }
 
     /* paper-menu */
-    --paper-menu-background-color: #fff;
+    --paper-menu-background-color: #fafafa;
     --menu-link-color:             #111111;
 
   }
@@ -74,7 +84,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   }
 
   paper-menu.topmenu {
-    background-color: #fff;
+    background-color: #fafafa;
   }
 
   .paper-menu > .iron-selected {
@@ -117,6 +127,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     /* Required for main area's paper-scroll-header-panel custom condensing transformation */
     -webkit-transform-origin: left center;
     transform-origin: left center;
+  }
+
+  #mainContainer {
+    background-color: #00AA00;
   }
 
   #mainToolbar .middle-container  {
@@ -167,7 +181,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     }
 
     .bg {
-      background: white;
+      background: #fafafa;
     }
 
   }
