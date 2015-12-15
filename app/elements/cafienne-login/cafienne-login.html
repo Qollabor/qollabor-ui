@@ -12,6 +12,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <link rel="import" href="../../bower_components/paper-card/paper-card.html"/>
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
@@ -95,7 +97,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </paper-card>
     </div>
-    <!--paper-toast id="loginfailed" text="Login failed!"></paper-toast-->
+    <iron-a11y-keys id="keys" target="[[target]]" keys="enter" on-keys-pressed="loginSubmit"></iron-a11y-keys>
+    <iron-ajax auto id="cafienneLogin" method="POST" handle-as="json" on-response="_getCafienneAuthToken" on-error="_getCafienneAuthToken"></iron-ajax>
   </template>
 
   <script>
@@ -111,13 +114,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         password: {
           type: String
+        },
+        target: {
+          type: Object,
+          value: function () {
+            return this.$.loginform;
+          }
         }
       },
 
       listeners: {
-        'iron-form-presubmit' : '_processLogin',
-        'iron-form-error' : '_getCafienneAuthToken',
-        'iron-form-response' : '_getCafienneAuthToken'
+        'iron-form-presubmit' : '_processLogin'
       },
 
       loginSubmit: function() {
@@ -125,25 +132,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _processLogin: function(e) {
+        e.preventDefault();
+
         var data = {username : this.username, password: this.password};
-        e.target.request.body = JSON.stringify(data);
-        e.target.request.contentType = 'application/json';
-        e.target.request.url = 'http://localhost:18082/identity/login';
+        this.$.cafienneLogin.contentType = 'application/json';
+        this.$.cafienneLogin.body = JSON.stringify(data);
+        this.$.cafienneLogin.url = 'http://localhost:18082/identity/login';
       },
 
       _getCafienneAuthToken: function(e) {
 
         switch (e.type) {
-          case 'iron-form-error':
+          case 'error':
                 console.log('login failed');
                 app.showToast('error', 'Login failed!', 3000, true);
                 break;
-          case 'iron-form-response':
+          case 'response':
                 if (e.detail.xhr.status === 204) {
                   sessionStorage.setItem('X-AUTH-CAFIENNE', e.detail.xhr.getResponseHeader('X-AUTH-CAFIENNE'));
-                  app.route = 'main';
-                  app.childRoute = 'tasks';
-                  //page.redirect('/tasks');
+                  //app.route = 'main';
+                  //app.childRoute = 'tasks';
+                  page.redirect('/tasks');
                 }
                 else {
                   console.log('Login failed');
