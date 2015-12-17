@@ -8,11 +8,11 @@
     "platinum-elements": "PolymerElements/platinum-elements#^1.2.0",
     "neon-elements": "PolymerElements/neon-elements#^1.0.0",
     "page": "visionmedia/page.js#~1.6.4",
-    "mat-elements": "ExpandJS/mat-elements#~0.9.11",
     "paper-fab-transitions": "GabiAxel/paper-fab-transitions#~0.1.0",
     "juicy-jsoneditor": "~1.0.4",
     "paper-divider": "wincinderith/paper-divider#~1.0.2",
-    "sweet-material-table": "pdelanauze/sweet-material-table#~1.2.0"
+    "sweet-material-table": "pdelanauze/sweet-material-table#~1.2.0",
+    "time-element": "~1.0.1"
   },
   "devDependencies": {
     "web-component-tester": "*",

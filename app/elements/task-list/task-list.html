@@ -45,6 +45,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-weight: bold;
       }
 
+      .lastModified {
+        font-size: 0.8em;
+        font-style: italic;
+      }
+
       .taskcontainer {
         width: 100%;
       }
@@ -85,15 +90,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <template>
                 <paper-item on-tap="selectTask">
                   <paper-item-body two-line>
-                    <div><span class="title">{{task.taskName}}</span> <span>{{task.id}}</span></div>
-                    <div secondary>Case: <span>{{task.caseDefinition}}</span><br>CaseInstanceId: <span>{{task.caseId}}</span></div>
+                    <div class="horizontal layout">
+                      <div class="title">[[task.taskName]]</div>
+                      <div>&nbsp;&nbsp;</div>
+                      <div class="lastModified">
+                        <time-ago datetime="[[task.lastModified]]"></time-ago>
+                      </div>
+                    </div>
+                    <div secondary>Case: <span>[[task.caseDefinition]]</span></div>
                   </paper-item-body>
                 </paper-item>
               </template>
             </iron-list>
           </div>
         <div class="taskdetails flex-3">
-            <task-view id="tv" task="{{taskinstance}}"></task-view>
+            <task-view id="tv" task="[[taskinstance]]"></task-view>
         </div>
       </div>
   </template>

@@ -26,6 +26,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/', function() {
 
       if(isLoggedIn()) {
+        document.getElementById('getTaskList').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+        document.getElementById('getTaskList').generateRequest();
         app.route = 'main';
         app.childRoute = 'tasks';
       }
@@ -38,9 +40,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/tasks', function() {
 
       if(isLoggedIn()) {
+        document.getElementById('getTaskList').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+        document.getElementById('getTaskList').generateRequest();
         app.route = 'main';
         app.childRoute = 'tasks';
-        document.getElementById('getTaskList').generateRequest();
       }
       else {
         app.route = 'login';
@@ -49,9 +52,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     page('/tasklist', function() {
       if(isLoggedIn()) {
+        document.getElementById('getAllTasks').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+        document.getElementById('getAllTasks').generateRequest();
         app.route = 'main';
         app.childRoute = 'tasklist';
-        document.getElementById('getAllTasks').generateRequest();
       }
       else {
         app.route = 'login';
@@ -60,9 +64,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     page('/cases', function() {
       if(isLoggedIn()) {
+        document.getElementById('getCaseList').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+        document.getElementById('getCaseList').generateRequest();
         app.route = 'main';
         app.childRoute = 'cases';
-        document.getElementById('getCaseList').generateRequest();
       }
       else {
         app.route = 'login';
@@ -71,9 +76,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     page('/definitions', function() {
       if(isLoggedIn()) {
+        document.getElementById('getDefinitionsList').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+        document.getElementById('getDefinitionsList').generateRequest();
         app.route= 'main';
         app.childRoute = 'definitions';
-        document.getElementById('getDefinitionsList').generateRequest();
+
       }
       else {
         app.route = 'login';

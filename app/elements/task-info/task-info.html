@@ -13,9 +13,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 
 <link rel="import" href="../../bower_components/paper-divider/paper-divider.html">
-<link rel="import" href="../../bower_components/mat-subheader/mat-subheader.html">
+<link rel="import" href="../../bower_components/paper-styles/paper-styles.html">
 
 <link rel="import" href="../../elements/cafienne-taskactions/cafienne-taskactions.html">
+
+<style is="custom-style" include="../../styles/shared-styles.html"></style>
 
 <dom-module id="task-info">
   <template>
@@ -39,24 +41,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         z-index: 1000;
       }
 
+
     </style>
     <div id="taskinfo">
-      <mat-subheader label="General info"></mat-subheader>
-      <paper-input label="Task name" value="{{task.taskName}}" readonly always-float-label></paper-input>
-      <paper-input label="Task InstanceId" value="{{task.id}}" readonly always-float-label></paper-input>
-      <paper-input label="Case" value="{{task.caseDefinition}}" readonly always-float-label></paper-input>
-      <paper-input label="User" value="{{task.user}}" readonly always-float-label></paper-input>
-      <paper-input label="Role" value="{{task.role}}" readonly always-float-label></paper-input>
+      <div class="subhead">General info</div>
+      <paper-input label="Task name" value="[[task.taskName]]" readonly always-float-label></paper-input>
+      <paper-input label="Task InstanceId" value="[[task.id]]" readonly always-float-label></paper-input>
+      <paper-input label="Task Last Modified" value="[[_formatLastModified(task.lastModified)]]" readonly always-float-label></paper-input>
+      <paper-input label="Case" value="[[task.caseDefinition]]" readonly always-float-label></paper-input>
+      <paper-input label="User" value="[[task.user]]" readonly always-float-label></paper-input>
+      <paper-input label="Role" value="[[task.role]]" readonly always-float-label></paper-input>
     </div>
-    <template is="dom-if" if="{{task.parameters.keys.length}}">
+    <template is="dom-if" if="[[task.parameters.keys.length]]">
       <div id="taskparams">
         <paper-divider></paper-divider>
-        <mat-subheader label="Task parameters"></mat-subheader>
+        <div class="subhead">Task parameters</div>
       </div>
     </template>
-    <!--paper-divider></paper-divider>
-    <mat-subheader label="Task actions"></mat-subheader>
-    <cafienne-taskactions task-state="Active" task-id="{{task.id}}" case-instance-id="{{caseinstanceid}}"></cafienne-taskactions-->
 
 
   </template>
@@ -80,7 +81,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _taskReceived: function(task) {
-        console.log(task.parameters);
+        this.task = task;
+      },
+
+      _formatLastModified: function(dateString) {
+        var locale = navigator.language || navigator.userLanguage;
+        return new Date(dateString).toLocaleString(locale);
       }
     });
   })();

@@ -14,7 +14,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/paper-divider/paper-divider.html">
 <link rel="import" href="../../bower_components/sweet-material-table/sweet-material-table.html">
-<link rel="import" href="../../bower_components/mat-subheader/mat-subheader.html">
 <link rel="import" href="../../bower_components/sweet-material-table/sweet-material-table-styles.html"/>
 
 
@@ -80,7 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
     <div id="caseinfo">
-      <mat-subheader label="General info"></mat-subheader>
+      <div class="subhead">General info</div>
       <paper-input label="Case" value="{{case.caseDefinition}}" readonly always-float-label></paper-input>
       <paper-input label="Case InstanceId" value="{{case.caseInstanceId}}" readonly always-float-label></paper-input>
       <paper-input label="Root InstanceId" value="{{case.rootCaseInstanceId}}" readonly always-float-label></paper-input>
@@ -151,7 +150,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _formatLastModified: function(dateString) {
-        return new Date(dateString).toLocaleString('nl-NL');
+        var locale = navigator.language || navigator.userLanguage;
+        return new Date(dateString).toLocaleString(locale);
       }
 
     });

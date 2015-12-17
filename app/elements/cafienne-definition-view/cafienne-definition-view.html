@@ -21,7 +21,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 
 <link rel="import" href="../../bower_components/paper-divider/paper-divider.html">
-<link rel="import" href="../../bower_components/mat-subheader/mat-subheader.html">
 
 <dom-module id="cafienne-definition-view">
   <template>
@@ -72,13 +71,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <paper-card id="definitionview" elevation="2">
       <div id="definitioninfo">
-        <mat-subheader label="General info"></mat-subheader>
+        <div class="subhead">General info</div>
         <paper-input label="Case name" value="{{definitioninfo.caseName}}" readonly always-float-label></paper-input>
         <paper-input label="Case Description" value="{{definitioninfo.caseDescription}}" readonly always-float-label></paper-input>
 
         <template is="dom-if" if="{{caseparams.length}}">
           <paper-divider margin></paper-divider>
-          <mat-subheader label="Case Input Parameters"></mat-subheader>
+          <div class="subhead">Case Input Parameters</div>
           <template is="dom-repeat" items="{{caseparams}}">
             <paper-input label="{{item.name}}" value="{{item.value}}" always-float-label></paper-input>
           </template>

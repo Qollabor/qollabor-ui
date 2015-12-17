@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div>
       <!-- x-json data="{{casefile}}"></x-json -->
       <!--<div id="metawidget"></div>-->
-      <juicy-jsoneditor json="{{casefile}}" name="Case File" history="true" on-change="_caseFileChanged" on-click="_caseFileChanged"></juicy-jsoneditor>
+      <juicy-jsoneditor json="{{casefile}}" name="Case File" history="true" on-change="_caseFileChanged" on-tap="_caseFileChanged"></juicy-jsoneditor>
     </div>
   </template>
   <script>
@@ -48,7 +48,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _caseFileReceived: function() {
-        console.log('Case File received');
+        //console.log('Case File received');
       },
 
       _caseFileChanged: function(e) {

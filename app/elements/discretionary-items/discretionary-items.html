@@ -17,8 +17,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
 
-<link rel="import" href="../../bower_components/mat-subheader/mat-subheader.html">
-
 <dom-module id="discretionary-items">
   <template>
     <style>
@@ -41,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <iron-ajax id="getDiscretionaryItemsForCase"
+    <iron-ajax id="getDiscretionaryItemsForCase" auto
                last-response = "{{discretionaryitems}}"
                handle-as = "json"
       ></iron-ajax>
@@ -55,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 
       <div id="discretionaryitems">
-        <mat-subheader label="Currently valid discretionary items"></mat-subheader>
+        <div class="subhead">Available items</div>
         <iron-list id="list" items="{{discretionaryitems.discretionaryItems}}" selection-enabled>
           <template>
             <div class="layout inline wrap center">

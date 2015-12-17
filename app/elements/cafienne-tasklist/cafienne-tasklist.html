@@ -17,7 +17,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 
-<link rel="import" href="../../bower_components/mat-subheader/mat-subheader.html">
+<link rel="import" href="../../bower_components/time-element/time-ago.html">
+<link rel="import" href="../../bower_components/time-element/time-format.html">
 
 <link rel="import" href="../../elements/cafienne-taskactions/cafienne-taskactions.html">
 <link rel="import" href="../../elements/task-view/task-view.html">
@@ -85,12 +86,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: gray;
         display: none;
       }
+      .lastModified {
+        font-size: 0.7em;
+        font-style: italic;
+        font-weight: normal;
+      }
       .task:hover .shortText::after {
         content: ' [+]';
         color: gray;
       }
       .task.expanded .longText {
         display: block;
+      }
+      cafienne-taskactions {
+        padding-left:20px;
       }
       .spacer {
         @apply(--layout-flex);
@@ -101,12 +110,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <iron-ajax id="getAllTasks"
+    <iron-ajax id="getAllTasks" auto
                handle-as = "json"
                last-response = "{{taskresponse}}" on-response="handleResponse"></iron-ajax>
 
     <div class="taskcontainer">
-      <mat-subheader label="Tasks"></mat-subheader>
+      <div class="subhead">Tasks</div>
       <paper-material elevation="1">
         <iron-list id="tasklist" items={{tasks}} as="task">
           <template>
@@ -114,10 +123,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <div class$="task [[_getClassForTask(task, task.expanded)]]" tabindex="0">
                 <div class="pad">
                   <div class="primary" on-tap="_collapseExpand"><span class="flex">[[task.taskName]]</span>
-                    <span class="flex-2">[[task.caseDefinition]] - [[task.id]]</span>
-                    <span class="flex">
-                      <cafienne-taskactions task-state="Active" task-id="{{task.id}}" case-instance-id="{{task.caseId}}"></cafienne-taskactions>
-                    </span>
+                    <span class="flex-2">[[task.caseDefinition]]</span>
+                    <span class="lastModified"><time-ago datetime="[[task.lastModified]]"></time-ago></span>
+                    <cafienne-taskactions task-state="Active" task-id="{{task.id}}" case-instance-id="{{task.caseId}}"></cafienne-taskactions>
                   </div>
                   <!--div class="shortText">[[task.id]]</div-->
                   <div class="longText">
