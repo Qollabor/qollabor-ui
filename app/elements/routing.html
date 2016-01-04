@@ -8,7 +8,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<script src="../bower_components/page/page.js"></script>
+<script src="/bower_components/page/page.js"></script>
 <script>
   window.addEventListener('WebComponentsReady', function() {
 
@@ -26,74 +26,82 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     page('/', function() {
 
       if(isLoggedIn()) {
-        document.getElementById('getTaskList').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
-        document.getElementById('getTaskList').generateRequest();
-        app.route = 'main';
-        app.childRoute = 'tasks';
+        cafienne.mainSection = 'app';
+        page.redirect('/tasks');
       }
       else {
-        app.route = 'login';
+        page.redirect('/login');
       }
 
     });
 
     page('/tasks', function() {
-
       if(isLoggedIn()) {
-        document.getElementById('getTaskList').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
-        document.getElementById('getTaskList').generateRequest();
-        app.route = 'main';
-        app.childRoute = 'tasks';
+        cafienne.mainSection = 'app';
+        app.section = 'tasks';
+        setData('getAllTasks', 'http://localhost:18082/tasks');
       }
       else {
-        app.route = 'login';
+        page.redirect('/login');
       }
     });
 
-    page('/tasklist', function() {
-      if(isLoggedIn()) {
-        document.getElementById('getAllTasks').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
-        document.getElementById('getAllTasks').generateRequest();
-        app.route = 'main';
-        app.childRoute = 'tasklist';
-      }
-      else {
-        app.route = 'login';
-      }
+    page('/tasks/:id', function(ctx) {
+      var id = ctx.params.id;
+      cafienne.mainSection = 'app';
+      app.selectedTaskId = id;
+      app.section = 'taskdetails';
     });
 
     page('/cases', function() {
       if(isLoggedIn()) {
-        document.getElementById('getCaseList').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
-        document.getElementById('getCaseList').generateRequest();
-        app.route = 'main';
-        app.childRoute = 'cases';
+        cafienne.mainSection = 'app';
+        app.section = 'cases';
+        setData('getAllCases', 'http://localhost:18082/cases');
       }
       else {
-        app.route = 'login';
+        page.redirect('/login');
       }
+    });
+
+    page('/cases/:id', function(ctx) {
+      var id = ctx.params.id;
+      cafienne.mainSection = 'app';
+      app.selectedCaseId = id;
+      app.section = 'casedetails';
     });
 
     page('/definitions', function() {
       if(isLoggedIn()) {
-        document.getElementById('getDefinitionsList').headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
-        document.getElementById('getDefinitionsList').generateRequest();
-        app.route= 'main';
-        app.childRoute = 'definitions';
-
+        cafienne.mainSection = 'app';
+        app.section= 'definitions';
+        setData('getDefinitionsList', 'http://localhost:18082/repository/list');
       }
       else {
-        app.route = 'login';
+        page.redirect('/login');
       }
+    });
+
+    page('/definitions/:definition', function(ctx) {
+      var definition = ctx.params.definition;
+      cafienne.mainSection = 'app';
+      app.selectedDefinition = definition;
+      app.section = 'definitiondetails';
     });
 
     page('/login', function() {
-      app.route = 'login';
+      cafienne.mainSection = 'login';
     });
 
     function isLoggedIn() {
-      //console.log(sessionStorage.getItem('X-AUTH-CAFIENNE'));
       return (sessionStorage.getItem('X-AUTH-CAFIENNE') !== null);
+    }
+
+    function setData(elemId, url) {
+      var elem = document.getElementById(elemId);
+      elem.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+      elem.url = url;
+      elem.generateRequest();
     }
 
     // add #! before urls

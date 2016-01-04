@@ -8,49 +8,83 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/iron-list/iron-list.html">
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
 
-<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="/bower_components/paper-styles/color.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-material/paper-material.html">
+<link rel="import" href="/bower_components/paper-listbox/paper-listbox.html"/>
 
-<link rel="import" href="../../elements/cafienne-definition-view/cafienne-definition-view.html">
+<link rel="import" href="../../styles/shared-styles.html">
 
 <dom-module id="cafienne-definitions">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
         display: block;
         height: 100vh;
       }
 
-      paper-item {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-        font-size: 0.8em;
+      #definitionslist {
+        height: 100%;
       }
 
-      paper-item:hover {
-        border-left: solid 3px;
-        border-left-color: var(--accent-color);
+      paper-material {
+        background-color: white;
+        max-width: calc(97.33% - 32px);
       }
 
-      paper-item[focused] {
-        border-left: solid 3px;
-        border-left-color: var(--dark-primary-color);
-      }
-
-      .title {
-        font-weight: bold;
+      iron-list {
+        padding-top: 1px;
+        padding-bottom: 0px;
+        -webkit-flex: 1 1;
+        flex: 1 1;
+        --iron-list-items-container: {
+          margin: auto;
+        };
       }
 
       .definitionscontainer {
-        width: 100%;
+        @apply(--layout-horizontal);
+        height: 100vh;
       }
 
-      .definitionslist {
-        width: 300px;
-        margin-left: 10px;
+      .definitioninfo {
+        @apply(--layout-horizontal);
+      }
+
+      .definition {
+        @apply(--layout-horizontal);
+        @apply(--layout-center);
+        background-color: white;
+        margin-bottom: 8px;
+        cursor: pointer;
+        height: 48px;
+      }
+
+      .definition:focus {
+        outline: 0;
+        border-left: solid 2px;
+        border-left-color: var(--accent-color);
+      }
+
+      .definition:hover {
+        outline: 0;
+        border-left: solid 2px;
+        border-left-color: var(--dark-primary-color);
+      }
+
+      .spacer {
+        @apply(--layout-flex);
+      }
+
+      .buttons {
+        @apply(--layout-horizontal);
+        max-width: calc(97.33% - 32px);
       }
 
       paper-toolbar {
@@ -68,28 +102,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
     </style>
-    <iron-ajax id="getDefinitionsList" auto
+    <iron-ajax id="getDefinitionsList"
                handle-as = "json"
                last-response = "{{definitionsdata}}"
                on-response = "handleResponse"></iron-ajax>
 
-    <div class="definitionscontainer layout horizontal">
-      <div class="definitionslist flex">
-        <div style="height: 15px;"></div>
-        <iron-list id="definitions" items={{definitionsdata.models}} as="definition" selectionEnabled>
-          <template>
-            <paper-item on-tap="selectDefinition">
-              <paper-item-body two-line>
-                <div><span class="title">{{definition.definitions}}</span></div>
-              </paper-item-body>
-            </paper-item>
-          </template>
-        </iron-list>
-      </div>
-      <div class="definitiondetails flex-3">
-        <cafienne-definition-view id="definition-view" definition="{{selectedDefinition}}"></cafienne-definition-view>
-      </div>
+   <div class="buttons">
+     <span class="spacer"></span>
+     <paper-icon-button id="refresh" icon="refresh"></paper-icon-button>
+     <paper-icon-button id="previous" icon="chevron-left"></paper-icon-button>
+     <paper-icon-button id="next" icon="chevron-right"></paper-icon-button>
+   </div>
+
+    <div class="definitionscontainer">
+      <iron-list id="definitionslist" items={{definitionsdata.models}} as="definition">
+        <template>
+          <div>
+          <paper-material class="definition" elevation="1">
+            <div class="definitioninfo" id="definition.definitions" on-tap="_selectDefinitionDetails">
+              <span class="pad">[[definition.definitions]]</span>
+            </div>
+            <span class="spacer"></span>
+              <!--cafienne-taskactions class="pad" task-state="Active" task-id="{{task.id}}" case-instance-id="{{task.caseId}}"></cafienne-taskactions-->
+          </paper-material>
+          </div>
+        </template>
+      </iron-list>
     </div>
+
   </template>
   <script>
   (function() {
@@ -105,13 +145,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         },
         definitionsdata: {
           type: Object,
-          notify: true
+          notify: true,
+          value: {}
         }
       },
 
+      listeners: {
+        'refresh.tap': '_buttonPressed',
+        'previous.tap': '_buttonPressed',
+        'next.tap': '_buttonPressed'
+      },
+
       ready: function() {
-        this.$.getDefinitionsList.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
-        this.$.getDefinitionsList.url = 'http://localhost:18082/repository/list';
+
       },
 
       handleResponse: function() {
@@ -120,10 +166,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.selectedDefinition = definition;
       },
 
-      selectDefinition: function(e) {
-        this.selectedDefinition = e.model.definition;
-        //document.getElementById('tasktabs').select('task');
+      _selectDefinitionDetails: function(e) {
+        app.section = 'definitiondetails';
+        app.selectedDefinitionName = e.model.definition.definitions;
+        page.redirect('/definitions/' + e.model.definition.definitions);
+      },
+
+      _getDefinitionsList: function() {
+        this.$.getDefinitionsList.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+        this.$.getDefinitionsList.url = 'http://localhost:18082/repository/list';
+        this.$.getDefinitionsList.generateRequest();
+      },
+
+      _buttonPressed: function(e) {
+        switch (e.target.parentElement.id) {
+          case 'refresh':
+            this._getDefinitionsList();
+            break;
+          case 'previous':
+            break;
+          case 'next':
+            break;
+          default:
+            console.log('Oops, something went wrong');
+        }
       }
+
     });
   })();
   </script>

@@ -47,6 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .casecontainer {
         width: 100%;
+        padding-top: 16px;
       }
 
       .caselist {
@@ -80,7 +81,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="casecontainer layout horizontal">
       <div class="caselist flex">
-        <div style="height: 15px;"></div>
         <iron-list id="cases" items=[[caselist._2]] selection-enabled selected-item="{{selectedCase}}">
           <template>
             <paper-item on-tap="selectCase">

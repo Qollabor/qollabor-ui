@@ -42,15 +42,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
 
   <!-- build:css styles/main.css -->
-  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="/styles/main.css">
   <!-- endbuild-->
 
   <!-- build:js bower_components/webcomponentsjs/webcomponents-lite.min.js -->
-  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="/bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <!-- endbuild -->
 
   <!-- will be replaced with elements/elements.vulcanized.html -->
-  <link rel="import" href="elements/elements.html">
+  <link rel="import" href="/elements/elements.html">
+  <link rel="import" href="/elements/cafienne-app.html">
+  <link rel="import" href="/elements/cafienne-login/cafienne-login.html">
   <!-- endreplace-->
 
   <!-- For shared styles, shared-styles.html import in elements.html -->
@@ -58,95 +60,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 </head>
 
-<body class="fullbleed layout vertical unresolved">
+<body class="fullbleed layout vertical" unresolved>
 <span id="browser-sync-binding"></span>
 
-<template is="dom-bind" id="app">
-
-  <iron-pages attr-for-selected="data-route" selected="[[route]]">
-
-    <section data-route="login">
-      <cafienne-login></cafienne-login>
+<template is="dom-bind" id="cafienne">
+  <iron-pages attr-for-selected="data-page" selected={{mainSection}}>
+    <section data-page="login">
+      <cafienne-login id="login"></cafienne-login>
     </section>
-
-    <section data-route="main">
-      <paper-drawer-panel id="paperDrawerPanel">
-        <paper-header-panel drawer>
-          <paper-toolbar id="sideleft">
-            <div class="title">CAFIENNE</div>
-          </paper-toolbar>
-          <div>
-            <paper-menu class="list" attr-for-selected="menu-route" selected="[[childRoute]]">
-              <a menu-route="tasks" href="/tasks" on-tap="onDataRouteClick">
-                <iron-icon icon="inbox"></iron-icon>
-                <span>Tasks</span>
-              </a>
-              <a menu-route="cases" href="/cases" on-tap="onDataRouteClick">
-                <iron-icon icon="folder-open"></iron-icon>
-                <span>Active cases</span>
-              </a>
-              <a menu-route="definitions" href="/definitions" on-tap="onDataRouteClick">
-                <iron-icon icon="folder"></iron-icon>
-                <span>Available definitions</span>
-              </a>
-              <a menu-route="tasklist" href="/tasklist" on-tap="onDataRouteClick">
-                <iron-icon icon="inbox"></iron-icon>
-                <span>Task list</span>
-              </a>
-            </paper-menu>
-          </div>
-        </paper-header-panel>
-
-        <paper-header-panel main>
-          <paper-toolbar id="main">
-            <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-            <div class="title"><span>[[childRoute]]</span></div>
-            <paper-menu-button horizontal-align="right" vertical-offset="40">
-              <paper-icon-button icon="more-vert" class="dropdown-trigger"></paper-icon-button>
-              <paper-menu class="dropdown-content topmenu">
-                <paper-item on-tap="onLogout">Logout</paper-item>
-                <paper-item>About</paper-item>
-                <paper-item>Help</paper-item>
-              </paper-menu>
-            </paper-menu-button>
-          </paper-toolbar>
-
-          <!-- main content starts here -->
-          <iron-pages attr-for-selected="data-route" selected="{{childRoute}}">
-
-            <section data-route="tasks" class="fit">
-              <task-list></task-list>
-            </section>
-
-            <section data-route="cases" class="fit">
-                <case-list></case-list>
-            </section>
-
-            <section data-route="definitions" class="fit">
-              <cafienne-definitions></cafienne-definitions>
-            </section>
-
-            <section data-route="tasklist" class="fit">
-              <cafienne-tasklist></cafienne-tasklist>
-            </section>
-          </iron-pages>
-          <!-- main content end here -->
-
-        </paper-header-panel>
-      </paper-drawer-panel>
+    <section data-page="app">
+      <cafienne-app id="app"></cafienne-app>
     </section>
   </iron-pages>
-
-  <div id="toasts">
-    <paper-toast id="notification" text="notification"></paper-toast>
-    <paper-toast id="success" text="success"></paper-toast>
-    <paper-toast id="warn" text="warn"></paper-toast>
-    <paper-toast id="error" text="error"></paper-toast>
-  </div>
 </template>
 
 <!-- build:js scripts/app.js -->
-<script src="scripts/app.js"></script>
+<script src="/scripts/app.js"></script>
 <!-- endbuild-->
 </body>
 

@@ -8,23 +8,26 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/iron-icons/av-icons.html">
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="/bower_components/iron-icons/av-icons.html">
 
-<link rel="import" href="../../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
-<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
-<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
-<link rel="import" href="../../bower_components/paper-fab-transitions/paper-fab-transitions.html">
-<link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
 
-<link rel="import" href="../../bower_components/paper-divider/paper-divider.html">
+<link rel="import" href="/bower_components/paper-card/paper-card.html">
+<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="/bower_components/paper-toast/paper-toast.html">
+
+<link rel="import" href="/bower_components/paper-divider/paper-divider.html">
+
+<link rel="import" href="../../styles/shared-styles.html">
 
 <dom-module id="cafienne-definition-view">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
         display: block;
         --paper-input-container-label: {
@@ -34,12 +37,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       #definitionview {
         width: 100%;
+        padding-top: 16px;
       }
 
-      .bottom-right {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
+      paper-icon-button.blue {
+        color: var(--paper-light-blue-500);
+        --paper-button-flat-focus-color: var(--paper-light-blue-50);
+      }
+      paper-icon-button.blue:hover {
+        background: var(--paper-light-blue-50);
       }
 
       paper-input {
@@ -53,8 +59,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: rgba(0, 0, 0, 0.05);
       }
 
-      paper-toast {
-        z-index: 1000;
+      .buttons {
+        @apply(--layout-horizontal);
+        max-width: calc(97.33% - 32px);
+      }
+      .spacer {
+        @apply(--layout-flex);
+      }
+      .definitionview {
+        @apply(--layout-horizontal);
+        max-width: calc(97.33% - 32px);
+      }
+      .leftcolumn {
+        @apply(--layout-flex-3);
+        @apply(--layout-vertical);
+      }
+      .rightcolumn {
+        @apply(--layout-flex);
+        @apply(--layout-vertical);
+      }
+      .definitioninfo {
+        margin: 10px;
+      }
+      .casefile {
+        margin: 10px;
+      }
+      .plan {
+        margin: 10px;
+      }
+      .card-actions {
+        @apply(--layout-horizontal);
       }
     </style>
 
@@ -69,25 +103,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                on-response="_handleStartCaseResult"
                on-error="_handleStartCaseResult"></iron-ajax>
 
-    <paper-card id="definitionview" elevation="2">
-      <div id="definitioninfo">
-        <div class="subhead">General info</div>
-        <paper-input label="Case name" value="{{definitioninfo.caseName}}" readonly always-float-label></paper-input>
-        <paper-input label="Case Description" value="{{definitioninfo.caseDescription}}" readonly always-float-label></paper-input>
+     <div class="buttons">
+       <paper-icon-button id="back" icon="arrow-back" alt="back to definitions list"></paper-icon-button>
+       <paper-icon-button id="refresh" icon="refresh" alt="refresh definition info"></paper-icon-button>
+       <span class="spacer"></span>
+     </div>
 
-        <template is="dom-if" if="{{caseparams.length}}">
-          <paper-divider margin></paper-divider>
-          <div class="subhead">Case Input Parameters</div>
-          <template is="dom-repeat" items="{{caseparams}}">
-            <paper-input label="{{item.name}}" value="{{item.value}}" always-float-label></paper-input>
-          </template>
-        </template>
-        <paper-fab id="start" class="bottom-right" icon="av:play-arrow" on-tap="_startCase"></paper-fab>
-        <paper-tooltip for="start" position="top">start case</paper-tooltip>
-      </div>
-    </paper-card>
-    <paper-toast id="error" text="Starting the case failed"></paper-toast>
-    <paper-toast id="success" text="foo"></paper-toast>
+     <div class="definitionview">
+       <div class="leftcolumn">
+         <paper-card class="definitioninfo" heading="[[definitioninfo.caseName]]">
+           <div class="card-content">
+             <paper-input label="Case name" value="{{definitioninfo.caseName}}" readonly always-float-label></paper-input>
+             <paper-input label="Case Description" value="{{definitioninfo.caseDescription}}" readonly always-float-label></paper-input>
+             <template is="dom-if" if="{{caseparams.length}}">
+               <paper-divider margin></paper-divider>
+               <div class="subhead">Case Input Parameters</div>
+               <template is="dom-repeat" items="{{caseparams}}">
+                 <paper-input label="{{item.name}}" value="{{item.value}}" always-float-label></paper-input>
+               </template>
+             </template>
+           </div>
+           <div class="card-actions">
+             <span class="spacer"></span>
+             <paper-icon-button id="startcase" class="blue" icon="av:play-arrow" on-tap="_startCase"></paper-icon-button>
+             <paper-tooltip for="startcase">start case instance</paper-tooltip>
+           </div>
+         </paper-card>
+       </div>
+     </div>
   </template>
   <script>
   (function() {
@@ -99,6 +142,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       properties: {
         definition: {
           type: Object,
+          value: {}
+        },
+        definitionName: {
+          type: String,
+          value: '',
           observer: '_definitionReceived'
         },
         definitioninfo: {
@@ -116,12 +164,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       },
 
+      listeners: {
+        'back.tap': '_buttonPressed',
+        'refresh.tap': '_buttonPressed'
+      },
+
       _definitionReceived: function() {
-        this.caseparams = [];
-        var definitionFile = this.definition.definitions.substr(0, this.definition.definitions.indexOf('.'));
-        this.$.getDefinitionXML.url = ['http://localhost:18082/repository/load', definitionFile].join('/');
-        this.$.getDefinitionXML.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
-        this.$.getDefinitionXML.generateRequest();
+        if(this.definitionName !== '') {
+          this.caseparams = [];
+          var definitionFile = this.definitionName.substr(0, this.definitionName.indexOf('.'));
+          this.$.getDefinitionXML.url = ['http://localhost:18082/repository/load', definitionFile].join('/');
+          this.$.getDefinitionXML.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+          this.$.getDefinitionXML.generateRequest();
+        }
       },
 
       _getDefinitionInfo: function() {
@@ -146,7 +201,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _startCase: function() {
-        this.startcase = {definition: this.definition.definitions, name: this.definitioninfo.caseName};
+        this.startcase = {definition: this.definitionName, name: this.definitioninfo.caseName};
         var inputObj = {};
         if(this.caseparams.length > 0) {
           for (var i = 0; i < this.caseparams.length; i++) {
@@ -169,14 +224,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _handleStartCaseResult: function(e) {
         switch (e.type) {
           case 'error':
-            this.$.error.show();
+            app.showToast('error', 'Unable to start case instance', 3000, true);
             break;
           case 'response':
-            this.$.success.text = 'Case started successfully ' + this.startresult.caseInstanceId;
-            this.$.success.show();
+            var message = 'Case started successfully ' + this.startresult.caseInstanceId;
+            app.showToast('success', message, 3000, false);
+            break;
+        }
+      },
+
+      _buttonPressed: function(e) {
+        switch (e.target.parentElement.id) {
+          case 'back':
+            page.redirect('/definitions');
+            break;
+          case 'refresh':
+            this._definitionReceived();
             break;
         }
       }
+
     });
   })();
   </script>

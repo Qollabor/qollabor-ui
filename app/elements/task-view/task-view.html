@@ -8,11 +8,11 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
 
-<link rel="import" href="../../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../../bower_components/paper-tabs/paper-tabs.html"/>
+<link rel="import" href="/bower_components/paper-card/paper-card.html">
+<link rel="import" href="/bower_components/paper-tabs/paper-tabs.html"/>
 
 <link rel="import" href="../../elements/task-info/task-info.html">
 <link rel="import" href="../../elements/case-info/case-info.html">
@@ -25,6 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
+        height: 100vh;
         --paper-tabs-selection-bar-color: var(--accent-color);
         --paper-tab-ink: var(--primary-background-color);
         --paper-input-container-label: {
@@ -52,7 +53,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                handleAs="json"
                on-response="_setCaseData"></iron-ajax>
 
-    <paper-card id="taskview" elevation="2">
+    <div id="taskview">
+    <paper-card elevation="1">
 
       <paper-tabs id="tasktabs" selected="{{selectedTab}}" attr-for-selected="tabname">
         <paper-tab tabname="task">TASK</paper-tab>
@@ -77,6 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </div>
       </iron-pages>
     </paper-card>
+    <div>
   </template>
   <script>
   (function() {
@@ -128,7 +131,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _taskChanged: function(newTask) {
-        this._getTaskRelatedData(newTask.caseId);
+        console.log('Task changed');
+        //this._getTaskRelatedData(newTask.caseId);
       },
 
 

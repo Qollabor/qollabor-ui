@@ -8,18 +8,18 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
-<link rel="import" href="../../bower_components/iron-form/iron-form.html">
-<link rel="import" href="../../bower_components/iron-input/iron-input.html">
-<link rel="import" href="../../bower_components/iron-a11y-keys/iron-a11y-keys.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-flex-layout/classes/iron-flex-layout.html">
+<link rel="import" href="/bower_components/iron-form/iron-form.html">
+<link rel="import" href="/bower_components/iron-input/iron-input.html">
+<link rel="import" href="/bower_components/iron-a11y-keys/iron-a11y-keys.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
 
-<link rel="import" href="../../bower_components/paper-card/paper-card.html"/>
-<link rel="import" href="../../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../../bower_components/paper-input/paper-input-container.html">
-<link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/paper-styles/paper-styles.html"/>
+<link rel="import" href="/bower_components/paper-card/paper-card.html"/>
+<link rel="import" href="/bower_components/paper-input/paper-input.html">
+<link rel="import" href="/bower_components/paper-input/paper-input-container.html">
+<link rel="import" href="/bower_components/paper-button/paper-button.html">
+<link rel="import" href="/bower_components/paper-styles/paper-styles.html"/>
 
 
 <dom-module id="cafienne-login">
@@ -27,14 +27,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
-        height: 100vh;
+        height: 100%;
         width: 100%;
       }
 
       #cards {
+        @apply(--layout-vertical);
+        @apply(--layout-center-center);
         max-width: 400px;
         margin-left: auto;
         margin-right: auto;
+        height: 100vh;
       }
 
 
@@ -150,8 +153,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           case 'response':
                 if (e.detail.xhr.status === 204) {
                   sessionStorage.setItem('X-AUTH-CAFIENNE', e.detail.xhr.getResponseHeader('X-AUTH-CAFIENNE'));
-                  //app.route = 'main';
-                  //app.childRoute = 'tasks';
                   page.redirect('/tasks');
                 }
                 else {
@@ -159,6 +160,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
                 break;
         }
+      },
+
+      showToast: function(type, message, duration, log) {
+        if (log) {
+          console.log(message);
+        }
+        var selector = '#toasts #' + type;
+        var toast = document.querySelector(selector);
+
+        toast.text = message;
+        toast.duration = duration;
+        toast.show();
       }
     });
   })();

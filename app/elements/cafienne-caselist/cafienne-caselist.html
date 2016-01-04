@@ -1,0 +1,233 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/iron-list/iron-list.html">
+
+<link rel="import" href="/bower_components/paper-styles/color.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-material/paper-material.html">
+<link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html"/>
+
+<link rel="import" href="/bower_components/time-element/time-ago.html">
+<link rel="import" href="/bower_components/time-element/time-format.html">
+
+<link rel="import" href="../../styles/shared-styles.html">
+
+<dom-module id="cafienne-caselist">
+  <template>
+  <style include="shared-styles">
+    :host {
+      display: block;
+      height: 100vh;
+    }
+
+    #caselist {
+      height: 100%;
+    }
+
+    paper-material {
+      background-color: white;
+      max-width: calc(97.33% - 32px);
+    }
+
+    iron-list {
+      padding-top: 1px;
+      padding-bottom: 0px;
+      -webkit-flex: 1 1;
+      flex: 1 1;
+      --iron-list-items-container: {
+        margin: auto;
+      };
+    }
+
+    .case {
+      @apply(--layout-horizontal);
+      @apply(--layout-center);
+      background-color: white;
+      margin-bottom: 8px;
+      cursor: pointer;
+      height: 48px;
+    }
+    .case:focus {
+      outline: 0;
+      border-left: solid 2px;
+      border-left-color: var(--accent-color);
+    }
+    .case:hover {
+      outline: 0;
+      border-left: solid 2px;
+      border-left-color: var(--dark-primary-color);
+    }
+    .pad {
+      padding: 0 16px 0 16px;
+      margin: 0 4px 0 4px;
+    }
+    .primary {
+      @apply(--layout-horizontal);
+    }
+
+    .lastModified {
+      font-size: 0.7em;
+      font-style: italic;
+      font-weight: normal;
+    }
+
+    .spacer {
+      @apply(--layout-flex);
+    }
+
+    .actions {
+      @apply(--layout-horizontal);
+    }
+
+    .tag {
+      display: block;
+      box-sizing: border-box;
+      text-align: center;
+      text-transform: lowercase;
+      font-size: 0.7em;
+      border-radius: 2px;
+      padding: 2px 6px;
+      color: var(--paper-grey-600);
+      background-color: var(--paper-grey-200);
+    }
+
+    .actions {
+      @apply(--layout-vertical);
+      width: 256px;
+      margin-right: 12px;
+    }
+
+    .buttons {
+      @apply(--layout-horizontal);
+      max-width: calc(97.33% - 32px);
+    }
+
+    .casecontainer {
+      @apply(--layout-horizontal);
+      height: 100vh;
+    }
+
+    .caseinfo {
+      @apply(--layout-horizontal);
+    }
+  </style>
+  <iron-ajax id="getAllCases"
+             handle-as = "json"
+             last-response = "{{caseresponse}}" on-response="handleResponse"></iron-ajax>
+
+  <div class="buttons">
+    <span class="spacer"></span>
+    <paper-icon-button id="sort" icon="sort"></paper-icon-button>
+    <paper-icon-button id="refresh" icon="refresh"></paper-icon-button>
+    <paper-icon-button id="previous" icon="chevron-left"></paper-icon-button>
+    <paper-icon-button id="next" icon="chevron-right"></paper-icon-button>
+  </div>
+   <div class="casecontainer">
+     <iron-list id="caselist" items={{cases}} as="case">
+       <template>
+         <div>
+         <paper-material class="case" elevation="1">
+           <div class="caseinfo" id="[[case.id]]" on-tap="_selectCaseDetails">
+             <span class="pad">[[_getCasePlanState(cases.*, index, 'name')]]</span>
+             <span class="pad tag">[[case.definition]]</span>
+             <span class$="pad state [[_getCasePlanState(cases.*, index, 'currentState')]]">[[_getCasePlanState(cases.*, index, 'currentState')]]</span>
+             <span class="pad lastModified"><time-ago datetime="[[_getCasePlanState(cases.*, index, 'lastModified')]]"></time-ago></span>
+           </div>
+           <span class="spacer"></span>
+           <!--cafienne-taskactions class="pad" task-state="Active" task-id="{{task.id}}" case-instance-id="{{task.caseId}}"></cafienne-taskactions-->
+         </paper-material>
+         </div>
+       </template>
+     </iron-list>
+   </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'cafienne-caselist',
+
+      properties: {
+        cases: {
+          type: Array,
+          notify: true
+        },
+        caseresponse: {
+          type: Object,
+          value: {}
+        }
+      },
+
+      listeners: {
+        'refresh.tap': '_buttonPressed',
+        'previous.tap': '_buttonPressed',
+        'next.tap': '_buttonPressed',
+        'sort.tap': '_buttonPressed'
+      },
+
+      ready: function() {
+        //this._getCaseList();
+      },
+
+      _casesChanged: function() {
+        console.log('cases changed')
+      },
+
+      handleResponse: function() {
+        var resp = this.caseresponse._2.sort(function(a, b) {
+          return new Date(b.plan.items[0].lastModified) - new Date(a.plan.items[0].lastModified);
+        });
+        this.cases = resp;
+      },
+
+      _selectCaseDetails: function(e) {
+        app.section = 'casedetails';
+        app.selectedCase = e.model.case;
+        page.redirect('/cases/' + e.model.case.id);
+      },
+
+      _getCaseList: function() {
+        this.$.getAllCases.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+        this.$.getAllCases.url = 'http://localhost:18082/cases';
+        this.$.getAllCases.generateRequest();
+      },
+
+      _buttonPressed: function(e) {
+        switch (e.target.parentElement.id) {
+          case 'refresh':
+            this._getCaseList();
+            break;
+          case 'previous':
+            break;
+          case 'next':
+            break;
+          case 'sort':
+            //this.cases.reverse();
+            //this.$.caselist.notifyResize();
+            break;
+          default:
+            console.log('Oops, something went wrong');
+        }
+      },
+
+      _getCasePlanState: function(change, index, item) {
+        var caseInstance = change.base[index];
+        var casePlan = caseInstance.plan.items.filter(function(i) {if (i.type === 'CasePlan') {return i;}})[0];
+        return casePlan[item];
+      }
+    });
+  })();
+  </script>
+</dom-module>

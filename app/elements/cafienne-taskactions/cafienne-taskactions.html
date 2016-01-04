@@ -8,10 +8,11 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html">
+<link rel="import" href="/bower_components/iron-icons/av-icons.html">
 
 <dom-module id="cafienne-taskactions">
   <template>
@@ -28,7 +29,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
       }
-
 
       paper-icon-button.blue {
         color: var(--paper-light-blue-500);
@@ -64,10 +64,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-icon-button id="terminate" on-tap="_handleTapAction" class="red" icon="clear"></paper-icon-button>
       <paper-icon-button id="suspend" on-tap="_handleTapAction" class="orange" icon="av:pause"></paper-icon-button>
       <paper-icon-button id="resume" on-tap="_handleTapAction" class="blue" icon="av:play-arrow"></paper-icon-button>
-      <paper-tooltip for="complete" offset="-5">complete</paper-tooltip>
-      <paper-tooltip for="terminate" offset="-5">terminate</paper-tooltip>
-      <paper-tooltip for="suspend" offset="-5">suspend</paper-tooltip>
-      <paper-tooltip for="resume" offset="-5">resume</paper-tooltip>
+      <paper-tooltip for="complete" position="left" fit-to-visible-bounds>complete</paper-tooltip>
+      <paper-tooltip for="terminate" position="left" fit-to-visible-bounds>terminate</paper-tooltip>
+      <paper-tooltip for="suspend" position="left" fit-to-visible-bounds>suspend</paper-tooltip>
+      <paper-tooltip for="resume" position="left" fit-to-visible-bounds>resume</paper-tooltip>
     </div>
 
   </template>
@@ -89,6 +89,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         caseInstanceId: {
           type: String,
           reflectToAttribute: true
+        },
+        transitionresult: {
+          type: Object,
+          value: {}
         }
       },
 

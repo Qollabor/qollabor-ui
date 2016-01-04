@@ -1,0 +1,163 @@
+<!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="../../styles/shared-styles.html">
+
+<link rel="import" href="/bower_components/time-element/time-ago.html">
+<link rel="import" href="/bower_components/time-element/time-format.html">
+
+<dom-module id="cafienne-timeline">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+      }
+      .streamline {
+        position: relative;
+        font-size: 12px;
+      }
+      .streamline .sl-item:after, .streamline:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 11px;
+        height: 11px;
+        margin-left: -8px;
+        background: #fff;
+        border-color: #dddee0;
+        border-style: solid;
+        border-width: 2px;
+        border-radius: 50%;
+        content: '';
+      }
+      .sl-item {
+        position: relative;
+        padding-bottom: 1px;
+        border-color: #dddee0;
+      }
+      .sl-item:before, .sl-item:after {
+        display: table;
+        content: " ";
+      }
+      .sl-item:after {
+        top: 0;
+        bottom: auto;
+      }
+      .sl-item:after {
+        clear: both;
+      }
+      .sl-item.b-l {
+        margin-left: -1px;
+      }
+      .sl-content {
+        padding-bottom: 10px;
+        margin-top: -6px;
+        margin-left: 24px;
+      }
+      .b-l {
+        border-left: 1px solid #dddee0;
+      }
+      .m-b {
+        margin-bottom: 16px;
+      }
+      .b-accent {
+        border-color: #7e57c2;
+      }
+      .text-muted-dk {
+        color: inherit;
+        opacity: .5;
+      }
+      p {
+        margin: 0 0 10px;
+      }
+
+      .state.Active {
+        background-color: var(--paper-green-500);
+      }
+
+      .state.Available {
+         background-color: var(--paper-blue-200);
+      }
+
+      .state.Completed {
+         background-color: var(--paper-grey-400);
+      }
+
+      .state.Closed {
+        background-color: var(--paper-grey-500);
+      }
+
+      .state.Terminated {
+        background-color: var(--paper-grey-300);
+      }
+
+      .state.Failed {
+        background-color: var(--paper-red-500);
+      }
+
+      .state.Enabled {
+         background-color: var(--paper-purple-400);
+      }
+
+      .state.Disabled {
+        background-color: var(--paper-purple-200);
+      }
+
+      .state.Suspended {
+        background-color: var(--paper-orange-300);
+      }
+
+    </style>
+    <div class="streamline b-l m-b">
+      <template is="dom-repeat" items="{{planitems}}">
+            <div class="sl-item">
+              <div class="sl-content">
+                <div class="text-muted-dk"><time-format datetime="[[item.lastModified]]" format="YYYY-MM-DD HH:mm:ss"></div>
+                <p>[[item.name]]
+                  <span class="pad tag">[[item.type]]</span>
+                  <span class$="pad state [[_computedStateClass(item)]]">[[item.currentState]]</span>
+                </p>
+              </div>
+            </div>
+      </template>
+    </div>
+  </template>
+  <script>
+  (function() {
+    'use strict';
+
+    Polymer({
+      is: 'cafienne-timeline',
+
+      properties: {
+        planitems: {
+          type: Array,
+          notify: true,
+          observer: '_itemsReceived'
+        }
+      },
+
+      _computedStateClass: function(item) {
+        return item.currentState;
+      },
+
+      _itemsReceived: function() {
+        console.log(this.planitems);
+        var resp = this.planitems;
+        resp.sort(function(a, b) {
+          return new Date(b.lastModified) - new Date (a.lastModified);
+        });
+        this.planitems = resp;
+      }
+    });
+  })();
+  </script>
+</dom-module>

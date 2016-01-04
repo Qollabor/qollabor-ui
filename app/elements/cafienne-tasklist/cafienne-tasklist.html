@@ -8,25 +8,27 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="../../bower_components/iron-flex-layout/classes/iron-flex-layout.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/iron-list/iron-list.html">
+<link rel="import" href="/bower_components/polymer/polymer.html">
+<link rel="import" href="/bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/iron-list/iron-list.html">
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
 
-<link rel="import" href="../../bower_components/paper-styles/color.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="/bower_components/paper-styles/color.html">
+<link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="/bower_components/paper-material/paper-material.html">
+<link rel="import" href="/bower_components/paper-tooltip/paper-tooltip.html">
 
-<link rel="import" href="../../bower_components/time-element/time-ago.html">
-<link rel="import" href="../../bower_components/time-element/time-format.html">
+<link rel="import" href="/bower_components/time-element/time-ago.html">
+<link rel="import" href="/bower_components/time-element/time-format.html">
 
 <link rel="import" href="../../elements/cafienne-taskactions/cafienne-taskactions.html">
-<link rel="import" href="../../elements/task-view/task-view.html">
 
+<link rel="import" href="../../styles/shared-styles.html">
 
 <dom-module id="cafienne-tasklist">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
         display: block;
         height: 100vh;
@@ -34,6 +36,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       #tasklist {
         height: 100%;
+      }
+
+      paper-tooltip {
+        z-index: 9999;
       }
 
       paper-material {
@@ -48,59 +54,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         flex: 1 1;
         --iron-list-items-container: {
           margin: auto;
-          margin-top: 20px;
         };
       }
 
       .task {
         @apply(--layout-horizontal);
-        padding: 10px;
-        background-color: inherit;
-        border-bottom: 1px solid #fafafa;
+        @apply(--layout-center);
+        background-color: white;
+        margin-bottom: 8px;
         cursor: pointer;
+        height: 48px;
       }
       .task:focus {
         outline: 0;
-        border-left: solid 3px;
+        border-left: solid 2px;
         border-left-color: var(--accent-color);
       }
       .task:hover {
         outline: 0;
-        border-left: solid 3px;
+        border-left: solid 2px;
         border-left-color: var(--dark-primary-color);
       }
       .pad {
-        padding: 0 16px;
-        @apply(--layout-flex);
-        @apply(--layout-vertical);
+        padding: 0 16px 0 16px;
+        margin: 0 4px 0 4px;
       }
-      .primary {
-        @apply(--layout-horizontal);
-        font-size: 0.8em;
-        font-weight: bold;
-      }
-      .shortText, .longText {
-        font-size: 0.8em;
-      }
-      .longText {
-        color: gray;
-        display: none;
-      }
+
       .lastModified {
         font-size: 0.7em;
         font-style: italic;
         font-weight: normal;
       }
-      .task:hover .shortText::after {
-        content: ' [+]';
-        color: gray;
-      }
-      .task.expanded .longText {
-        display: block;
-      }
-      cafienne-taskactions {
-        padding-left:20px;
-      }
+
       .spacer {
         @apply(--layout-flex);
       }
@@ -108,37 +93,69 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .actions {
         @apply(--layout-horizontal);
       }
+
+      .tag {
+        display: block;
+        box-sizing: border-box;
+        text-align: center;
+        text-transform: lowercase;
+        font-size: 0.7em;
+        border-radius: 2px;
+        padding: 2px 6px;
+        color: var(--paper-grey-600);
+        background-color: var(--paper-grey-200);
+      }
+
+      .actions {
+        @apply(--layout-vertical);
+        width: 256px;
+        margin-right: 12px;
+      }
+
+      .buttons {
+        @apply(--layout-horizontal);
+        max-width: calc(97.33% - 32px);
+      }
+
+      .taskcontainer {
+        @apply(--layout-horizontal);
+        height: 100vh;
+      }
+
+      .taskinfo {
+        @apply(--layout-horizontal);
+      }
     </style>
 
-    <iron-ajax id="getAllTasks" auto
+    <iron-ajax id="getAllTasks"
                handle-as = "json"
                last-response = "{{taskresponse}}" on-response="handleResponse"></iron-ajax>
 
-    <div class="taskcontainer">
-      <div class="subhead">Tasks</div>
-      <paper-material elevation="1">
-        <iron-list id="tasklist" items={{tasks}} as="task">
-          <template>
-            <div id="[[task.id]]">
-              <div class$="task [[_getClassForTask(task, task.expanded)]]" tabindex="0">
-                <div class="pad">
-                  <div class="primary" on-tap="_collapseExpand"><span class="flex">[[task.taskName]]</span>
-                    <span class="flex-2">[[task.caseDefinition]]</span>
-                    <span class="lastModified"><time-ago datetime="[[task.lastModified]]"></time-ago></span>
-                    <cafienne-taskactions task-state="Active" task-id="{{task.id}}" case-instance-id="{{task.caseId}}"></cafienne-taskactions>
-                  </div>
-                  <!--div class="shortText">[[task.id]]</div-->
-                  <div class="longText">
-                    <task-info task="[[currentExpandedTask]]" caseinstanceid="[[currentExpandedTask.caseId]]"></task-info>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </template>
-        </iron-list>
-      </paper-material>
+    <div class="buttons">
+      <span class="spacer"></span>
+      <paper-icon-button id="sort" icon="sort"></paper-icon-button>
+      <paper-icon-button id="refresh" icon="refresh"></paper-icon-button>
+      <paper-icon-button id="previous" icon="chevron-left"></paper-icon-button>
+      <paper-icon-button id="next" icon="chevron-right"></paper-icon-button>
     </div>
-
+     <div class="taskcontainer">
+       <iron-list id="tasklist" items={{tasks}} as="task">
+         <template>
+           <div>
+           <paper-material class="task" elevation="1">
+             <div class="taskinfo" id="[[task.id]]" on-tap="_selectTaskDetails">
+               <span class="pad">[[task.taskName]]</span>
+               <span class="pad tag">[[task.caseDefinition]]</span>
+               <span class="pad lastModified"><time-ago datetime="[[task.lastModified]]"></time-ago></span>
+               <paper-tooltip position="right">[[_formatDate(task.lastModified, 'en-GB')]]</paper-tooltip>
+             </div>
+             <span class="spacer"></span>
+               <cafienne-taskactions class="pad" task-state="Active" task-id="{{task.id}}" case-instance-id="{{task.caseId}}"></cafienne-taskactions>
+           </paper-material>
+           </div>
+         </template>
+       </iron-list>
+     </div>
   </template>
   <script>
     (function() {
@@ -152,50 +169,63 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             type: Array,
             notify: true
           },
-          previousExpandedTask: {
+          taskresponse: {
             type: Object,
             value: {}
-          },
-          currentExpandedTask: {
-            type: Object
           }
+        },
+
+        listeners: {
+          'refresh.tap': '_buttonPressed',
+          'previous.tap': '_buttonPressed',
+          'next.tap': '_buttonPressed',
+          'sort.tap': '_buttonPressed'
         },
 
         ready: function() {
-          this.$.getAllTasks.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
-          this.$.getAllTasks.url = 'http://localhost:18082/tasks';
+
         },
 
         handleResponse: function() {
-          //this.selectedTask = this.taskresponse._2[0];
-          this.tasks = this.taskresponse._2;
+          var resp = this.taskresponse._2;
+          resp.sort(function(a, b) {
+            return new Date(b.lastModified) - new Date (a.lastModified);
+          });
+          this.tasks = resp;
         },
 
-        _collapseExpand: function(e) {
+        _selectTaskDetails: function(e) {
+          app.section = 'taskdetails';
+          app.selectedTask = e.model.task;
+          page.redirect('/tasks/' + e.model.task.id);
+        },
 
-          var tasklist = this.$.tasklist;
-          var index = e.model.index;
-          var isExpanded = tasklist.items[index].expanded;
+        _getTaskList: function() {
+          this.$.getAllTasks.headers = {'X-AUTH-CAFIENNE' : sessionStorage.getItem('X-AUTH-CAFIENNE')};
+          this.$.getAllTasks.url = 'http://localhost:18082/tasks';
+          this.$.getAllTasks.generateRequest();
+        },
 
-          //collapse the previous expanded task
-          if (this.previousExpandedTask.hasOwnProperty('expanded')) {
-            if (this.previousExpandedTask.expanded) {
-              tasklist.set('items.' + this.previousExpandedTask.index + '.expanded', false);
-              tasklist.updateSizeForItem(this.previousExpandedTask.index);
-            }
+        _buttonPressed: function(e) {
+          switch (e.target.parentElement.id) {
+            case 'refresh':
+              this._getTaskList();
+              break;
+            case 'previous':
+              break;
+            case 'next':
+              break;
+            case 'sort':
+              this.tasks.reverse();
+              this.$.tasklist.notifyResize();
+              break;
+            default:
+              console.log('Oops, something went wrong');
           }
-
-          // expand current selected item
-          tasklist.set('items.' + index + '.expanded', !isExpanded);
-          tasklist.updateSizeForItem(e.model.index);
-          this.currentExpandedTask = tasklist.items[index];
-          this.previousExpandedTask = tasklist.items[index];
-          this.previousExpandedTask.index = index;
-          tasklist.notifyResize();
         },
 
-        _getClassForTask: function(task, expanded) {
-          return expanded ? 'expanded' : '';
+        _formatDate: function(dateString, locale) {
+          return new Date(dateString).toLocaleString(locale);
         }
 
         });

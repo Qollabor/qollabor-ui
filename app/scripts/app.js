@@ -13,60 +13,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   // Grab a reference to our auto-binding template
   // and give it some initial binding values
   // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
+  var cafienne = document.querySelector('#cafienne');
   var app = document.querySelector('#app');
 
   // Listen for template bound event to know when bindings
   // have resolved and content has been stamped to the page
+  /*
   app.addEventListener('dom-change', function() {
     console.log('Cafienne-UI is ready to rock!');
   });
+  */
 
   // See https://github.com/Polymer/polymer/issues/1381
   window.addEventListener('WebComponentsReady', function() {
     // imports are loaded and elements have been registered
   });
 
-
-  // Close drawer after menu item is selected if drawerPanel is narrow
-  app.onDataRouteClick = function() {
-    var drawerPanel = document.querySelector('#paperDrawerPanel');
-    if (drawerPanel.narrow) {
-      drawerPanel.closeDrawer();
-    }
-  };
-
-  app.onLogout = function() {
-    sessionStorage.clear();
-    page.redirect('/login');
-  };
-
-  app.pageSelected = function(e) {
-    console.log(e.target);
-    console.log('Selected child route: ' + e.target.selected);
-  };
-
-  app.toggleLeft = function() {
-    console.log('panel toggled');
-    var drawerPanel = document.querySelector('#paperDrawerPanel');
-    if (!drawerPanel.narrow) {
-      drawerPanel.closeDrawer();
-    }
-    else {
-      drawerPanel.openDrawer();
-    }
-  };
-
-  app.showToast = function(type, message, duration, log) {
-    if (log) {
-      console.log(message);
-    }
-    var selector = '#toasts #' + type;
-    var toast = document.querySelector(selector);
-
-    toast.text = message;
-    toast.duration = duration;
-    toast.show();
-
-  };
 
 })(document);
