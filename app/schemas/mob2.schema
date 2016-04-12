@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Melding Openbare Buitenruimte",
+  "type": "object",
+  "properties": {
+    "contact": {
+      "title": "Wilt u contact",
+      "type": "object",
+      "properties": {
+        "contact": {"title": "Wilt u op de hoogte gehouden worden, ja of nee", "enum": ["ja", "nee"]},
+        "wijze": {"title": "Via email of sms", "enum": ["email", "sms"]},
+        "adres": {"title": "Email adres of telefoonnummer", "type": "string"},
+        "naam": {"title": " Eventueel uw naam", "type": "string"}
+      }
+    },
+    "ernst": {
+      "title": "Hoe erg, wat moet er gebeuren",
+      "type": "object",
+      "properties": {
+        "schaal": {"title": "Aanduiding schaal 1-10 (heel erg)?", "type": "number"},
+        "herstel": {"title": "Wat zou er moeten gebeuren?", "type": "string"}
+      }
+    },
+    "plek": {
+      "title": "Locatie van het euvel",
+      "type": "object",
+      "properties": {
+        "pc_hn": {
+          "title": "Postcode/Huisnummer",
+          "type": "object",
+          "properties": {
+            "postcode": {"title": "Postcode", "type": "string"},
+            "huisnummer": {"title": "Huisnummer", "type": "string"}
+          }
+        },
+        "adres": {
+          "title": "Adres",
+          "type": "object",
+          "properties": {
+            "straatnaam": {"title": "straatnaam", "type": "string"},
+            "plaatsnaam": {"title": "plaatsnaam", "type": "string"}
+          }
+        },
+        "geo": {
+          "title": "Geo locatie",
+          "type": "object",
+          "properties": {
+            "latitude": {"title": "Latitude", "type": "string"},
+            "longitude": {"title": "Longitude", "type": "string"}
+          }
+        },
+        "omschrijving": {"title": "Omschrijving van de locatie", "type": "string"}
+      }
+    },
+    "rubriek": {
+      "title": "Rubriek",
+      "type": "object",
+      "properties": {
+        "categorie": {"title": "categorie", "type": "string"},
+        "onderwerp": {"title": "onderwerp", "type": "string"},
+        "schade": {"title": "schade", "type": "string"}
+      }
+    },
+    "veroorzaker": {
+      "title": "Veroorzaker",
+      "type": "object",
+      "properties": {
+        "bekend": {"title": "Is de veroorzaker bekend, ja of nee", "enum": ["ja", "nee"]},
+        "naam": {"title": "Naam van de veroorzaker", "type": "string"}
+      }
+    }
+  }
+}

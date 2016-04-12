@@ -22,6 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/paper-toast/paper-toast.html">
 
 <link rel="import" href="/bower_components/paper-divider/paper-divider.html">
+<link rel="import" href="../../elements/cafienne-ui-form/cafienne-ui-form.html">
 
 <link rel="import" href="../../styles/shared-styles.html">
 
@@ -57,6 +58,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         max-width: 90%;
         margin: 25px;
         background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      cafienne-ui-form {
+        max-width: 90%;
+        margin: 25px;
       }
 
       .buttons {
@@ -111,16 +117,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
      <div class="definitionview">
        <div class="leftcolumn">
-         <paper-card class="definitioninfo" heading="[[definitioninfo.caseName]]">
+         <paper-card class="definitioninfo" heading="[[definitioninfo.caseDescription]]">
            <div class="card-content">
              <paper-input label="Case name" value="{{definitioninfo.caseName}}" readonly always-float-label></paper-input>
-             <paper-input label="Case Description" value="{{definitioninfo.caseDescription}}" readonly always-float-label></paper-input>
-             <template is="dom-if" if="{{caseparams.length}}">
+             <!--paper-input label="Case Description" value="{{definitioninfo.caseDescription}}" readonly always-float-label></paper-input-->
+             <template is="dom-if" if="[[_caseHasInputParams]]">
+               <!--
                <paper-divider margin></paper-divider>
                <div class="subhead">Case Input Parameters</div>
                <template is="dom-repeat" items="{{caseparams}}">
                  <paper-input label="{{item.name}}" value="{{item.value}}" always-float-label></paper-input>
                </template>
+               -->
+               <paper-divider margin></paper-divider>
+               <cafienne-ui-form id="caseinput" form="[[_form]]" formdata="{{inputparams}}"></cafienne-ui-form>
+               <!--eco-json-schema-object label="Test Task Input form" schema="[[caseinputschema]]" value="{{inputparams}}"></eco-json-schema-object-->
              </template>
            </div>
            <div class="card-actions">
@@ -158,8 +169,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Object,
           value: {}
         },
+        _caseHasInputParams: {
+          type: Boolean,
+          value: false
+        },
         caseparams: {
           type: Array,
+          notify: true
+        },
+        _form: {
+          type: String,
+          value: '',
           notify: true
         }
       },
@@ -187,6 +207,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var params = [];
         // proces case input params
         var caseInputParams = mainCase.getElementsByTagName('input');
+        if(caseInputParams.length > 0) {
+          this._caseHasInputParams = true;
+          this._form = this.definitionName.substr(0, this.definitionName.indexOf('.'));
+        }
 
         if (caseInputParams.length > 0) {
           for (var i = 0; i < caseInputParams.length; i++) {
@@ -197,12 +221,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             //console.log(input);
           }
           this.caseparams = params;
+          //console.log(this.caseparams);
         }
+      },
+
+      _getSchema: function() {
+        var schema = this.definitionName.substr(0, this.definitionName.indexOf('.xml'));
+        var url = ['schemas', schema + '.schema'].join('/');
+        this.$.getCaseInputSchema.url = url;
+      },
+
+      _getSchemaResponse: function() {
+        this.caseinputschema = this.$.getCaseInputSchema.lastResponse;
       },
 
       _startCase: function() {
         this.startcase = {definition: this.definitionName, name: this.definitioninfo.caseName};
-        var inputObj = {};
+        console.log(this.inputparams);
+
+        /* var inputObj = {};
         if(this.caseparams.length > 0) {
           for (var i = 0; i < this.caseparams.length; i++) {
             if (this.caseparams[i].value.length > 0) {
@@ -212,6 +249,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           if(Object.getOwnPropertyNames(inputObj).length > 0) {
             this.startcase.inputs = inputObj;
           }
+        }
+        */
+        // TODO: Map input object from from to flattened inputs structure for startcase.
+
+        if(Object.keys(this.inputparams).length !== 0 && JSON.stringify(this.inputparams) !== JSON.stringify({})) {
+          this.startcase.inputs = this.inputparams;
         }
 
         var url = 'http://localhost:18082/cases';

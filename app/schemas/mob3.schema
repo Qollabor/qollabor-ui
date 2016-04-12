@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "MOB",
+  "type": "object",
+  "properties": {
+    "plek": {
+      "title": "Waar is het?",
+      "type": "object",
+      "properties": {
+        "pc_hn": {
+          "title": "Wat is postcode, huisnummer?",
+          "type": "object",
+          "properties": {
+            "postcode": {
+              "title": "Wat is de postcode?",
+              "type": "string"
+            },
+            "huisnummer": {
+              "title": "Wat is het huisnummer?",
+              "type": "string"
+            }
+          }
+        },
+        "straat": {
+          "title": "Kent u de naam van de straat?",
+          "type": "object",
+          "properties": {
+            "straatnaam": {
+              "title": "Wat is de naam van de straat?",
+              "type": "string"
+            },
+            "huisnummer": {
+              "title": "Wat is het huisnummer?",
+              "type": "string"
+            },
+            "plaatsnaam": {
+              "title": "Welke plaats?",
+              "type": "string"
+            }
+          }
+        },
+        "geo": {
+          "title": "Dit weet uw smartphone misschien",
+          "type": "object",
+          "properties": {
+            "latitude": {
+              "title": "De breedtegraad?",
+              "type": "string"
+            },
+            "longitude": {
+              "title": "De lengtegraad?",
+              "type": "string"
+            }
+          }
+        },
+        "anders": {
+          "title": "Anders, beschrijf maar",
+          "type": "object",
+          "properties": {
+            "omschrijvinglocatie": {
+              "title": "Kunt u beschrijven waar het is?",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "rubriek": {
+      "title": "Rubriek",
+      "type": "object",
+      "properties": {
+        "categorie": {
+          "title": "Hoe categoriseert u het euvel?",
+          "type": "object",
+          "properties": {
+            "categorie": {
+              "title": "Kies een waarde",
+              "type": "string"
+            },
+            "onderwerp": {
+              "title": "Kies een onderwerp",
+              "type": "string"
+            },
+            "schade": {
+              "title": "Kies of vul zelf in",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "veroorzaker": {
+      "title": "Veroorzaker",
+      "type": "object",
+      "properties": {
+        "dader": {
+          "title": "Kent u de veroorzaker?",
+          "type": "object",
+          "properties": {
+            "bekend": {
+              "title": "ja of nee",
+              "enum": [
+                "ja",
+                "nee"
+              ]
+            },
+            "veroorzakernaam": {
+              "title": "wie is het dan?",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "ernst": {
+      "title": "De ernst van de melding",
+      "type": "object",
+      "properties": {
+        "ernst": {
+          "title": "Hoe erg, wat moet er gebeuren?",
+          "type": "object",
+          "properties": {
+            "schaal": {
+              "title": "Aanduiding schaal 1-10 (heel erg)?",
+              "type": "number"
+            },
+            "herstel": {
+              "title": "Wat zou er moeten gebeuren?",
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "contact": {
+      "title": "Wilt u contact",
+      "type": "object",
+      "properties": {
+        "contact": {
+          "title": "Wilt u contact?",
+          "type": "object",
+          "properties": {
+            "contact": {
+              "title": "Wilt u op de hoogte gehouden worden?",
+              "enum": [
+                "ja",
+                "nee"
+              ]
+            },
+            "contactwijze": {
+              "title": "Via mail of sms?",
+              "enum": [
+                "email",
+                "sms"
+              ]
+            },
+            "contactadres": {
+              "title": "Kunt u mailadres of telefoonnr invullen?",
+              "type": "string"
+            },
+            "naam": {
+              "title": "Eventueel uw naam?",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

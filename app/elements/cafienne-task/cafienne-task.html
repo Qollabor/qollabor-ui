@@ -21,6 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../elements/cafienne-taskactions/cafienne-taskactions.html">
 <link rel="import" href="../../elements/case-file/case-file.html">
+<link rel="import" href="../../elements/cafienne-ui-form/cafienne-ui-form.html">
 <link rel="import" href="../../elements/cafienne-timeline/cafienne-timeline.html">
 
 <link rel="import" href="../../styles/shared-styles.html">
@@ -54,6 +55,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .taskinfo {
         margin: 10px;
       }
+      .taskform {
+        max-width: 90%;
+        margin: 25px;
+      }
       .casefile {
         margin: 10px;
       }
@@ -62,6 +67,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .card-actions {
         @apply(--layout-horizontal);
+      }
+
+      #savecasefile {
+        --paper-icon-button: {
+          color: var(--paper-light-blue-500);
+        }
       }
     </style>
 
@@ -85,6 +96,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <div class="leftcolumn">
           <paper-card class="taskinfo" heading="[[task.taskName]]">
             <div class="card-content">
+              <cafienne-ui-form class="taskform" form="[[taskform]]" formdata={{taskdata}}></cafienne-ui-form>
+            </div>
+            <div class="card-actions">
+              <span class="spacer"></span>
+              <cafienne-taskactions task-state="Active" task-id="[[task.id]]" case-instance-id="[[task.caseId]]"></cafienne-taskactions>
+            </div>
+          </paper-card>
+        </div>
+        <div class="rightcolumn">
+          <paper-card class="taskinfo" heading="Task information">
+            <div class="card-content">
               <paper-input label="Task name" value="[[task.taskName]]" readonly always-float-label></paper-input>
               <paper-input label="Task InstanceId" value="[[task.id]]" readonly always-float-label></paper-input>
               <paper-input label="Task Last Modified" value="[[_formatLastModified(task.lastModified)]]" readonly always-float-label></paper-input>
@@ -92,22 +114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <paper-input label="User" value="[[task.user]]" readonly always-float-label></paper-input>
               <paper-input label="Role" value="[[task.role]]" readonly always-float-label></paper-input>
             </div>
-            <div class="card-actions">
-              <span class="spacer"></span>
-              <cafienne-taskactions task-state="Active" task-id="[[task.id]]" case-instance-id="[[task.caseId]]"></cafienne-taskactions>
-            </div>
           </paper-card>
-          <paper-card class="casefile" heading="Case file">
-            <div class="card-content">
-              <case-file casefile="[[caseInfo.file]]"></case-file>
-            </div>
-            <div class="card-actions">
-              <span class="spacer"></span>
-              <paper-icon-button id="save-casefile" icon="save" alt="save changes to casefile"></paper-icon-button>
-            </div>
-          </paper-card>
-        </div>
-        <div class="rightcolumn">
           <paper-card class="plan" heading="Activities">
             <div class="card-content">
               <cafienne-timeline planitems="[[caseInfo.plan.items]]"></cafienne-timeline>
@@ -139,6 +146,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Object,
           value: {},
           notify: true
+        },
+        currentChange: {
+          type: Object,
+          value: {}
+        },
+        taskform: {
+          type: String,
+          value: '',
+          notify: true
+        },
+        taskdata: {
+          type: Object,
+          value: {},
+          notify: true
         }
       },
 
@@ -164,6 +185,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             this.task = this.$.getTaskDetails.lastResponse._2;
             this.$.getCaseInfo.url = ['http://localhost:18082/cases', this.task.caseId].join('/');
             app.showToast('success', 'Task data retreived', 1500, false);
+            this.taskform = this.task.taskName.toLowerCase().replace(' ', '_');
             break;
           }
         },
@@ -194,7 +216,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         _formatLastModified: function(dateString) {
           var locale = navigator.language || navigator.userLanguage;
-          return new Date(dateString).toLocaleString('en-GB');
+          return new Date(dateString).toLocaleString('nl-NL');
         }
 
     });

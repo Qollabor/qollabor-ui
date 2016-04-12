@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "TestTask Case File",
+  "type": "object",
+  "properties": {
+    "request": {
+      "title": "Request",
+      "type": "object",
+      "properties": {
+        "firstname": {
+          "type": "string",
+          "title": "First name",
+          "minLength": 1
+        },
+        "lastname": {
+          "type": "string",
+          "title": "Last name",
+          "minLength": 2
+        },
+        "children": {
+          "title": "Children",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "child": {
+                "title": "Child",
+                "type": "object",
+                "properties": {
+                  "firstname": {
+                    "type": "string",
+                    "title": "Firstname child"
+                  },
+                  "age": {
+                    "type": "integer",
+                    "title": "Age child",
+                    "minimum": 0,
+                    "maximum": 150
+                  }
+                }
+              }
+            }
+          }
+        },
+        "address": {
+          "type": "object",
+          "title": "Address of requestor",
+          "properties": {
+            "street": {
+              "type": "string",
+              "title": "Street address",
+              "minLength": 3
+            },
+            "zipcode": {
+              "type": "string",
+              "title": "Zip code"
+            },
+            "city": {
+              "type": "string",
+              "title": "City",
+              "minLength": 3
+            }
+          }
+        },
+        "requeststatus": {
+          "title": "Request status",
+          "type": "object",
+          "properties": {
+            "approved": {
+              "type": "boolean",
+              "title": "Approved"
+            },
+            "reason": {
+              "type": "string",
+              "title": "Reason of approval of disapproval"
+            }
+          }
+        }
+
+      }
+    }
+  }
+}

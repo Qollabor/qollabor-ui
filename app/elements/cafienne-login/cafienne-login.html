@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/iron-input/iron-input.html">
 <link rel="import" href="/bower_components/iron-a11y-keys/iron-a11y-keys.html">
 <link rel="import" href="/bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="/bower_components/iron-icons/iron-icons.html">
 
 <link rel="import" href="/bower_components/paper-card/paper-card.html"/>
 <link rel="import" href="/bower_components/paper-input/paper-input.html">
@@ -81,6 +82,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding-top: 10px;
       }
 
+      .user {
+        --paper-input-prefix: {
+          margin-right: 8px;
+          color: var(--dark-primary-color);
+        }
+      }
+
 
     </style>
 
@@ -90,8 +98,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <span class="tagline">case file engine</span>
           <div class="loginbox">
             <form is="iron-form" id="loginform" method="post">
-              <paper-input label="username" name="username" value="{{username}}"></paper-input>
-              <paper-input label="password" type="password" name="password" value="{{password}}"></paper-input>
+              <paper-input class="user" label="username" name="username" value="{{username}}">
+                <iron-icon icon="perm-identity" prefix></iron-icon>
+              </paper-input>
+              <paper-input class="user" label="password" type="password" name="password" value="{{password}}">
+                <iron-icon icon="lock-outline" prefix></iron-icon>
+              </paper-input>
             </form>
           </div>
         </div>
@@ -160,6 +172,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 }
                 break;
         }
+      },
+
+      resetForm: function() {
+        this.$.loginform.reset();
       },
 
       showToast: function(type, message, duration, log) {

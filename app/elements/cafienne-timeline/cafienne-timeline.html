@@ -150,7 +150,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _itemsReceived: function() {
-        console.log(this.planitems);
         var resp = this.planitems;
         resp.sort(function(a, b) {
           return new Date(b.lastModified) - new Date (a.lastModified);

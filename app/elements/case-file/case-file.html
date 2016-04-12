@@ -16,8 +16,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="/bower_components/paper-button/paper-button.html">
 <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="/bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="/bower_components/paper-divider/paper-divider.html">
+<link rel="import" href="../../elements/cafienne-ui-form/cafienne-ui-form.html">
 
-<link rel="import" href="/bower_components/juicy-jsoneditor/src/juicy-jsoneditor.html">
+<!--link rel="import" href="/bower_components/juicy-jsoneditor/src/juicy-jsoneditor.html"-->
 
 <dom-module id="case-file">
   <template>
@@ -27,9 +29,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
     <div>
-      <!-- x-json data="{{casefile}}"></x-json -->
-      <!--<div id="metawidget"></div>-->
-      <juicy-jsoneditor json="{{casefile}}" name="Case File" history="true" on-change="_caseFileChanged" on-tap="_caseFileChanged"></juicy-jsoneditor>
+      <cafienne-ui-form id="cfform" form="tasktest_casefile" formdata="{{newdata}}"></cafienne-ui-form>
+      <!--paper-divider margin></paper-divider-->
+      <!--juicy-jsoneditor json="{{casefile}}" name="Case File Source" history="true"></juicy-jsoneditor-->
     </div>
   </template>
   <script>
@@ -44,15 +46,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Object,
           notify: true,
           observer: '_caseFileReceived'
+        },
+        newdata: {
+          type: Object,
+          notify: true,
+          value: {}
         }
       },
 
       _caseFileReceived: function() {
         //console.log('Case File received');
+        //console.log(this.casefile);
+        return;
       },
 
-      _caseFileChanged: function(e) {
-        //console.log(e);
+      _formUpdated: function() {
+        return;
       }
 
 

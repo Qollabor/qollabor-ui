@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "Melding Openbare Buitenruimte",
+  "type": "object",
+  "properties": {
+    "title": "Contact",
+    "type": "object",
+    "properties": {
+      "title": "Wilt u contact?",
+      "type": "object",
+      "properties": {
+        "contact": {"title": "ja of nee?", "type": "string"},
+        "wijze": {"title": "Mail, sms?", "type": "string"},
+        "contactadres": {"title": "kunt u mailadres of telefoonnr invullen?", "type": "string"},
+        "naam": {"title": "eventueel uw naam?", "type": "string"},
+    "title": "Hoe erg",
+    "type": "object",
+    "properties": {
+      "title": "Hoe erg, wat moet er gebeuren?",
+      "type": "object",
+      "properties": {
+        "aanduiding schaal 1-10 (heel erg)?": {"title": "aanduiding schaal 1-10 (heel erg)?", "type": "string"},
+        "wat zou er moeten gebeuren?": {"title": "wat zou er moeten gebeuren?", "type": "string"},
+    "title": "Plek",
+    "type": "object",
+    "properties": {
+      "title": "pc/hn",
+      "type": "object",
+      "properties": {
+        "postcode": {"title": "postcode", "type": "string"},
+        "huisnummer": {"title": "huisnummer", "type": "string"},
+      "title": "naam",
+      "type": "object",
+      "properties": {
+        "straatnaam": {"title": "straatnaam", "type": "string"},
+        "huisnummer": {"title": "huisnummer", "type": "string"},
+        "plaatsnaam": {"title": "plaatsnaam", "type": "string"},
+      "title": "geo",
+      "type": "object",
+      "properties": {
+        "latitude": {"title": "latitude", "type": "string"},
+        "longitude": {"title": "longitude", "type": "string"},
+      "title": "vrij",
+      "type": "object",
+      "properties": {
+        "omschrijving locatie": {"title": "omschrijving locatie", "type": "string"},
+    "title": "Rubriek",
+    "type": "object",
+    "properties": {
+      "title": "Hoe categoriseert u het euvel?",
+      "type": "object",
+      "properties": {
+        "categorie": {"title": "categorie", "type": "string"},
+        "onderwerp": {"title": "onderwerp", "type": "string"},
+        "schade": {"title": "schade", "type": "string"},
+    "title": "Veroorzaker",
+    "type": "object",
+    "properties": {
+      "title": "Kent u de veroorzaker?",
+      "type": "object",
+      "properties": {
+        "ja of nee": {"title": "ja of nee", "type": "string"},
+        "wie is het dan?": {"title": "wie is het dan?", "type": "string"}
+        }
+      }
+    }
+  }
+}

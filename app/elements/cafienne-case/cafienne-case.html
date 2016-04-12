@@ -119,7 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <paper-input label="Root InstanceId" value="[[case.rootCaseId]]" readonly always-float-label></paper-input>
             <paper-input label="Parent InstanceId" value="[[case.parentId]]" readonly always-float-label></paper-input>
             <paper-input label="Current State" value="[[casePlan.currentState]]" readonly always-float-label></paper-input>
-            <paper-input label="Last Modified" value$="[[_formatDate(casePlan.lastModified, 'en-GB')]]" readonly always-float-label></paper-input>
+            <paper-input label="Last Modified" value$="[[_formatDate(casePlan.lastModified, 'nl-NL')]]" readonly always-float-label></paper-input>
           </div>
           <div class="card-actions">
             <span class="spacer"></span>
@@ -132,10 +132,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-card class="casefile" heading="Case file">
           <div class="card-content">
             <case-file casefile="[[case.file]]"></case-file>
-          </div>
-          <div class="card-actions">
-            <span class="spacer"></span>
-            <paper-icon-button id="save-casefile" icon="save" alt="save changes to casefile"></paper-icon-button>
           </div>
         </paper-card>
         <paper-card class="discretionaryitems" heading="Discretionary items">
@@ -193,7 +189,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         'refresh.tap': '_buttonPressed',
         'complete.tap': '_buttonPressed',
         'terminate.tap': '_buttonPressed'
-
       },
 
       _caseIdChanged: function() {

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "title": "TestTask Request",
+  "type": "object",
+  "required": ["firstname", "lastname"],
+  "properties": {
+    "firstname": {
+      "type": "string",
+      "title": "First name",
+      "minLength": 1
+    },
+    "lastname": {
+      "type": "string",
+      "title": "Last name",
+      "minLength": 2
+    }
+  }
+}

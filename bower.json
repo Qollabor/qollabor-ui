@@ -12,7 +12,8 @@
     "juicy-jsoneditor": "~1.0.4",
     "paper-divider": "wincinderith/paper-divider#~1.0.2",
     "sweet-material-table": "pdelanauze/sweet-material-table#~1.2.0",
-    "time-element": "~1.0.1"
+    "time-element": "~1.0.1",
+    "eco-json-schema-form": "https://github.com/ecoutu/eco-json-schema-form.git#^0.4.0"
   },
   "devDependencies": {
     "web-component-tester": "*",
