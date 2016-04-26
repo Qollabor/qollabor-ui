@@ -1,0 +1,48 @@
+{
+  "presets": [
+    "es2015",
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    "transform-runtime",
+    "transform-es2015-block-scoping",
+    [
+      "transform-es2015-classes",
+      {
+        "loose": true
+      }
+    ],
+    "transform-proto-to-assign"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        [
+          "react-transform",
+          {
+            "transforms": [
+              {
+                "transform": "react-transform-hmr",
+                // if you use React Native, pass "react-native" instead:
+                "imports": [
+                  "react"
+                ],
+                // this is important for Webpack HMR:
+                "locals": [
+                  "module"
+                ]
+              }
+            ]
+            // note: you can put more transforms into array
+            // this is just one of them!
+          }
+        ]
+      ]
+    },
+    "production": {
+    },
+    "test": {
+    }
+  }
+}
