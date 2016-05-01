@@ -31,7 +31,7 @@ module.exports = (gulp) => {
       .on('end', done)
       .on('error', err => {
         console.log(err);
-        done();
+        done(err);
       });
   }
 };

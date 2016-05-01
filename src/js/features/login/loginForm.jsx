@@ -40,7 +40,6 @@ class LoginForm extends React.Component {
   }
 
   handleChange(type, event) {
-
     const newState = { [type]: event.target.value, changed: this.state.changed };
     newState.changed[type] = true;
     this.setState(newState);
@@ -109,17 +108,13 @@ class LoginForm extends React.Component {
   }
 }
 
-LoginForm
-  .displayName = 'LoginForm';
+LoginForm.displayName = 'LoginForm';
 
-LoginForm
-  .propTypes = {
+LoginForm.propTypes = {
   errors: React.PropTypes.Object,
   isLoggingIn: React.PropTypes.bool,
   onLogin: React.PropTypes.func.isRequired,
   onCancel: React.PropTypes.func.isRequired
 };
 
-export
-default
-LoginForm;
+export default LoginForm;
