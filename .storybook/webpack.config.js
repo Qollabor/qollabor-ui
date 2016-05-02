@@ -22,6 +22,11 @@ module.exports = {
       {
         test: /\.less$/,
         loader: 'style!css!less'
+      },
+      {
+        test: /\.json?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'json-loader'
       }
     ]
   }

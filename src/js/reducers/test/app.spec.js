@@ -13,16 +13,16 @@ describe('reducers/app', () => {
 
   it('should return the default state', () => {
     expect(
-      appReducer(undefined, {})
-    ).to.equal(defaultState);
+      appReducer(undefined, {}).toJSON()
+    ).to.eql(defaultState.toJSON());
   });
 
   it('should return the same state', () => {
     const startState = defaultState.set('anotherValue', 'someValue');
     const expectedState = startState;
     expect(
-      appReducer(startState, {})
-    ).to.equal(expectedState);
+      appReducer(startState, {}).toJSON()
+    ).to.eql(expectedState.toJSON());
   });
 
   it('The init start should set true the oninit value', () => {
@@ -30,7 +30,7 @@ describe('reducers/app', () => {
     const expectedState = defaultState.set('isOnInit', true);
 
     expect(
-      appReducer(startState, { type: 'APP:INIT' })
-    ).to.equal(expectedState);
+      appReducer(startState, { type: 'APP:INIT' }).toJSON()
+    ).to.eql(expectedState.toJSON());
   });
 });

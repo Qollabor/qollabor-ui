@@ -1,5 +1,4 @@
-import chai from 'chai';
-import chaiImmutable from 'chai-immutable';
-import './browser';
-
-chai.use(chaiImmutable);
+// import chai from 'chai';
+// import chaiImmutable from 'chai-immutable';
+//
+// chai.use(chaiImmutable);

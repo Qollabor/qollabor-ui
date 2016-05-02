@@ -16,7 +16,7 @@ module.exports = (gulp) => {
     const mocha = require('gulp-mocha-co');
     const babel = require('babel-register');
 
-    gulp.src(['./tests/helpers/plugins.js',
+    return gulp.src(['./tests/helpers/plugins.js',
         './src/js/**/test/*.spec.js*',
         './tests/**/*.spec.js'
       ], { read: false })
@@ -28,7 +28,7 @@ module.exports = (gulp) => {
           }
         })
       )
-      .on('end', done)
+      // .on('end', done)
       .on('error', err => {
         console.log(err);
         done(err);

@@ -1,4 +1,4 @@
-definitions>
+<definitions>
     <caseFileItemDefinition id="cfidef_string" name="string"/>
     <caseFileItemDefinition id="cfidef_boolean" name="boolean"/>
     <caseFileItemDefinition id="cfidef_integer" name="integer"/>

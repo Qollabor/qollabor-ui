@@ -40,6 +40,9 @@ module.exports = {
       refresh: {
         url: `${baseApiUrl}identity/refresh`
       }
+    },
+    tasks: {
+      url: `${baseApiUrl}tasks`
     }
   }
 };

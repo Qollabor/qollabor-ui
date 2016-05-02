@@ -54,6 +54,7 @@
     "gulp-sass": "^2.3.1",
     "gulp-util": "^3.0.7",
     "guppy-pre-commit": "^0.3.0",
+    "json-loader": "^0.5.4",
     "node-sass": "^3.6.0",
     "raw-loader": "^0.5.1",
     "react-transform-hmr": "^1.0.4",
@@ -66,6 +67,7 @@
   },
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/gulp/bin/gulp.js mocha",
+    "test-watch": "NODE_ENV=test ./node_modules/gulp/bin/gulp.js watchTest",
     "serve": "NODE_ENV=development ./node_modules/gulp/bin/gulp.js serve",
     "storybook": "start-storybook -p 9001",
     "build-production": "NODE_ENV=production gulp build"
