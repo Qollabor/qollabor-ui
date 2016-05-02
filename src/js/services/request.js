@@ -24,20 +24,28 @@ const defaultDeleteHeaders = {
 function transformResponse(fetchResponse) {
   return new Promise(resolve => {
     fetchResponse
-      .json()
+      .text()
       .then(result => {
+        let body;
+        try {
+          body = JSON.parse(result);
+        } catch (e) {
+          console.log(e);
+          body = { content: result };
+        }
         resolve({
           headers: fetchResponse.headers,
           status: fetchResponse.status,
-          body: result,
-          type: fetchResponse.type
+          type: fetchResponse.type,
+          body
         });
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(e);
         resolve({
           headers: fetchResponse.headers,
           status: fetchResponse.status,
-          body: {},
+          body: { content: e },
           type: fetchResponse.type
         });
       });
@@ -45,7 +53,7 @@ function transformResponse(fetchResponse) {
 }
 
 /**
- * Methods for wrapping the requests methods of the `qwest` module.
+ * Methods for wrapping the requests methods of the `fetch` module.
  */
 function getMethod(url, query, options) {
   return new Promise((resolve, reject) => {

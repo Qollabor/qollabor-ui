@@ -7,7 +7,7 @@
   "env": {
     "browser": true,
     "node": true,
-    "jasmine": true,
+    "mocha": true,
     "phantomjs": true,
     "es6": true
   },

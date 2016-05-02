@@ -11,25 +11,23 @@ import { Router } from 'react-router';
 import { store, history } from './store';
 import routes from './routes';
 
-import registry from './services/registry';
+import registry from 'app-registry';
 import request from './services/request';
+import storage from './services/storage';
 
 registry.register('request', request);
+registry.register('storage', storage);
+registry.register('config', {
+  login: {
+    returnURL: '/profile'
+  }
+});
 
-// request
-//   .post('http://localhost:18082/identity/login', { username: 'admin', password: 'admin' })
-//   .then(response => {
-//     console.log(response);
-//   });
-
-// Needed before react 1.0 release
 // Check if is still required
 injectTapEventPlugin();
 
-// ReactDOM.render(
-//   <div>test</div>
-//   , document.getElementById('app')
-// );
+store.dispatch({ type: 'APP:INIT' });
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
@@ -38,5 +36,3 @@ ReactDOM.render(
   </Provider>
   , document.getElementById('app')
 );
-
-store.dispatch({ type: 'APP:INIT' });

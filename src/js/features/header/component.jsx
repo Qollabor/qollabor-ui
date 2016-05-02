@@ -4,7 +4,8 @@ import { Toolbar, ToolbarGroup, ToolbarTitle, IconButton } from 'material-ui';
 import { ThemeManager } from 'material-ui/lib/styles';
 
 import MenuIcon from 'material-ui/lib/svg-icons/navigation/menu';
-import AccountCircleIcon from 'material-ui/lib/svg-icons/action/account-circle';
+
+import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 
 import styles from './styles';
 
@@ -38,14 +39,7 @@ class Header extends React.Component {
           />
         </ToolbarGroup>
         <ToolbarGroup firstChild={false} lastChild={false} float="right">
-          <IconButton
-            tooltip="Account info"
-            iconStyle={styles.menuIcon}
-          >
-            <AccountCircleIcon
-              color={theme.appBar.textColor}
-            />
-          </IconButton>
+          <AppBarUserMenu />
         </ToolbarGroup>
       </Toolbar>
     );
