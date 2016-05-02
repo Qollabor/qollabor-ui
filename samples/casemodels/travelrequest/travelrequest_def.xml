@@ -1,0 +1,95 @@
+definitions>
+    <caseFileItemDefinition id="cfidef_string" name="string"/>
+    <caseFileItemDefinition id="cfidef_boolean" name="boolean"/>
+    <caseFileItemDefinition id="cfidef_integer" name="integer"/>
+    <caseFileItemDefinition id="cfidef_float" name="float"/>
+    <caseFileItemDefinition id="cfidef_time" name="time"/>
+    <caseFileItemDefinition id="cfidef_date" name="date"/>
+    <caseFileItemDefinition id="cfidef_dateTime" name="dateTime"/>
+    <caseFileItemDefinition id="cfidef_anyURI" name="anyURI"/>
+    <case id="travelrequest.case_TravelRequest" name="TravelRequest" description="Approve travel requests">
+        <caseFileModel>
+            <caseFileItem id="cfi_csTMq_0" name="travelrequest" multiplicity="ExactlyOne" definitionRef="string">
+                <children>
+                    <caseFileItem id="cfi_csTMq_1" name="firstname" multiplicity="ExactlyOne" definitionRef="string"/>
+                    <caseFileItem id="cfi_csTMq_2" name="lastname" multiplicity="ExactlyOne" definitionRef="string"/>
+                    <caseFileItem id="cfi_csTMq_3" name="period" multiplicity="ExactlyOne" definitionRef="string">
+                        <children>
+                            <caseFileItem id="cfi_csTMq_4" name="from" multiplicity="ExactlyOne" definitionRef="string"/>
+                            <caseFileItem id="cfi_csTMq_5" name="until" multiplicity="ExactlyOne" definitionRef="string"/>
+                        </children>
+                    </caseFileItem>
+                    <caseFileItem id="cfi_csTMq_6" name="type" multiplicity="ExactlyOne" definitionRef="string"/>
+                    <caseFileItem id="cfi_csTMq_7" name="reason" multiplicity="ExactlyOne" definitionRef="string"/>
+                    <caseFileItem id="cfi_csTMq_8" name="approval" multiplicity="ZeroOrOne" definitionRef="string">
+                        <children>
+                            <caseFileItem id="cfi_csTMq_10" name="approved" multiplicity="ExactlyOne" definitionRef="boolean"/>
+                            <caseFileItem id="cfi_csTMq_11" name="reason" multiplicity="ZeroOrOne" definitionRef="string"/>
+                        </children>
+                    </caseFileItem>
+                </children>
+            </caseFileItem>
+        </caseFileModel>
+        <casePlanModel id="cm_TravelRequest.case_TravelRequest_0" name="TravelRequest" autocomplete="true">
+            <planItem id="cm_cs1Sp_14" name="Request" definitionRef="pid_cm_cs1Sp_14" exitCriteriaRefs="cm_cslBz_177"/>
+            <sentry id="cm_cslBz_177">
+                <planItemOnPart sourceRef="cm_cs1Sp_16" id="ref_id_cm_cs1Sp_16">
+                    <standardEvent>exit</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <stage id="pid_cm_cs1Sp_14" name="Request" autoComplete="false">
+                <planItem id="cm_csWkD_76" name="Request Travel" definitionRef="pid_cm_csWkD_76"/>
+            </stage>
+            <humanTask id="pid_cm_csWkD_76" name="Request Travel" isBlocking="true"/>
+            <planItem id="cm_cs1Sp_16" name="Approve" definitionRef="pid_cm_cs1Sp_16" entryCriteriaRefs="cm_cslBz_165" exitCriteriaRefs="cm_cslBz_175 cm_cslBz_183"/>
+            <sentry id="cm_cslBz_183">
+                <planItemOnPart sourceRef="cm_csWkD_78" id="ref_id_cm_csWkD_78">
+                    <standardEvent>exit</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <sentry id="cm_cslBz_175">
+                <planItemOnPart sourceRef="cm_csWkD_78" id="ref_id_cm_csWkD_78">
+                    <standardEvent>complete</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <sentry id="cm_cslBz_165">
+                <planItemOnPart sourceRef="cm_csWkD_76" id="ref_id_cm_csWkD_76">
+                    <standardEvent>parentSuspend</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <stage id="pid_cm_cs1Sp_16" name="Approve" autoComplete="false">
+                <planItem id="cm_csWkD_78" name="Approve Request" definitionRef="pid_cm_csWkD_78"/>
+                <planItem id="cm_cslBz_156" name="Add Information" definitionRef="pid_cm_cslBz_156"/>
+            </stage>
+            <humanTask id="pid_cm_csWkD_78" name="Approve Request" isBlocking="true"/>
+            <humanTask id="pid_cm_cslBz_156" name="Add Information" isBlocking="true"/>
+            <planItem id="cm_cs1Sp_18" name="Book" definitionRef="pid_cm_cs1Sp_18" entryCriteriaRefs="cm_cslBz_178"/>
+            <sentry id="cm_cslBz_178">
+                <planItemOnPart sourceRef="cm_csWkD_78" id="ref_id_cm_csWkD_78">
+                    <standardEvent>complete</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <stage id="pid_cm_cs1Sp_18" name="Book" autoComplete="true">
+                <planItem id="cm_cslBz_158" name="Book Travel" definitionRef="pid_cm_cslBz_158"/>
+            </stage>
+            <humanTask id="pid_cm_cslBz_158" name="Book Travel" isBlocking="true"/>
+            <planItem id="cm_csWkD_74" name="Invoice" definitionRef="pid_cm_csWkD_74" entryCriteriaRefs="cm_cslBz_179"/>
+            <sentry id="cm_cslBz_179">
+                <planItemOnPart sourceRef="cm_cslBz_158" id="ref_id_cm_cslBz_158">
+                    <standardEvent>complete</standardEvent>
+                </planItemOnPart>
+            </sentry>
+            <stage id="pid_cm_csWkD_74" name="Invoice" autoComplete="true">
+                <planItem id="cm_cslBz_160" name="Pay Invoices" definitionRef="pid_cm_cslBz_160"/>
+                <planItem id="cm_cslBz_162" name="Add Invoice" definitionRef="pid_cm_cslBz_162"/>
+            </stage>
+            <humanTask id="pid_cm_cslBz_160" name="Pay Invoices" isBlocking="true"/>
+            <humanTask id="pid_cm_cslBz_162" name="Add Invoice" isBlocking="true"/>
+        </casePlanModel>
+        <input id="cs2p3_inCPs_0" name="travelrequest" bindingRef="cfi_csTMq_0"/>
+    </case>
+    <case id="travelrequest.case_TravelRequest" name="TravelRequest" description="Travelrequest">
+        <caseFileModel/>
+        <casePlanModel/>
+    </case>
+</definitions>

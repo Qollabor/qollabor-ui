@@ -1,0 +1,24 @@
+<dimensions>
+    <caseplanmodel id="cm_TravelRequest.case_TravelRequest_0" name="TravelRequest" pid_id="pid_cm_TravelRequest.case_TravelRequest_0" x="263" y="13" width="1091" height="851"/>
+    <task id="cm_cslBz_184" name="Optional Task" pid_id="pid_cm_cslBz_184" x="319" y="777" width="100" height="60"/>
+    <expandedstage id="cm_cs1Sp_14" name="Request" pid_id="pid_cm_cs1Sp_14" x="286" y="100" width="500" height="300"/>
+    <task id="cm_csWkD_76" name="Request Travel" pid_id="pid_cm_csWkD_76" x="506" y="214" width="100" height="60"/>
+    <expandedstage id="cm_cs1Sp_16" name="Approve" pid_id="pid_cm_cs1Sp_16" x="824" y="96" width="500" height="300"/>
+    <task id="cm_csWkD_78" name="Approve Request" pid_id="pid_cm_csWkD_78" x="912" y="198" width="100" height="60"/>
+    <task id="cm_cslBz_156" name="Add Information" pid_id="pid_cm_cslBz_156" x="1088" y="198" width="100" height="60"/>
+    <expandedstage id="cm_cs1Sp_18" name="Book" pid_id="pid_cm_cs1Sp_18" x="286" y="458" width="500" height="300"/>
+    <task id="cm_cslBz_158" name="Book Travel" pid_id="pid_cm_cslBz_158" x="522" y="541" width="100" height="60"/>
+    <expandedstage id="cm_csWkD_74" name="Invoice" pid_id="pid_cm_csWkD_74" x="827" y="454" width="500" height="300"/>
+    <task id="cm_cslBz_160" name="Pay Invoices" pid_id="pid_cm_cslBz_160" x="953" y="541" width="100" height="60"/>
+    <task id="cm_cslBz_162" name="Add Invoice" pid_id="pid_cm_cslBz_162" x="1125" y="543" width="100" height="60"/>
+    <exitsentry id="cm_cslBz_177" pid_id="pid_cm_cslBz_177" x="689" y="390" width="12" height="20"/>
+    <exitsentry id="cm_cslBz_183" pid_id="pid_cm_cslBz_183" x="1168" y="386" width="12" height="20"/>
+    <exitsentry id="cm_cslBz_175" pid_id="pid_cm_cslBz_175" x="1196" y="386" width="12" height="20"/>
+    <entrysentry id="cm_cslBz_165" pid_id="pid_cm_cslBz_165" x="818" y="218" width="12" height="20"/>
+    <entrysentry id="cm_cslBz_178" pid_id="pid_cm_cslBz_178" x="339" y="448" width="12" height="20"/>
+    <entrysentry id="cm_cslBz_179" pid_id="pid_cm_cslBz_179" x="904" y="444" width="12" height="20"/>
+    <validation>
+        <hiddennotices/>
+        <hiddenproblems/>
+    </validation>
+</dimensions>
