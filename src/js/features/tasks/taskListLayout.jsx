@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ThemeManager } from 'material-ui/lib/styles';
 import LeftNav from 'material-ui/lib/left-nav';
-
+import { TasksFilter } from '../tasks-filter';
 import styles from './styles';
 
 export class TaskListLayout extends React.Component {
@@ -22,7 +22,7 @@ export class TaskListLayout extends React.Component {
           docked={true}
           width={leftNavWidth}
         >
-          Left Nav Bar Content
+          <TasksFilter />
         </LeftNav>
         <div style={divContainerStyle}>
           Task List Content
