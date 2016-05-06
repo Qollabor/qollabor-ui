@@ -19,7 +19,7 @@ registry.register('request', request);
 registry.register('storage', storage);
 registry.register('config', {
   login: {
-    returnURL: '/profile'
+    returnURL: '/tasks'
   }
 });
 

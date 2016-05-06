@@ -9,7 +9,9 @@ class MainLayout extends React.Component {
       <div>
         <AuthVerify>
           <Header />
-          {this.props.children}
+          <div style={{ marginTop: '7px' }}>
+            {this.props.children}
+          </div>
         </AuthVerify>
       </div>
     );

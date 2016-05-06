@@ -9,7 +9,13 @@ import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 
 import styles from './styles';
 
-class Header extends React.Component {
+export class Header extends React.Component {
+  handleLeftNavToggle() {
+    if (this.props.onLeftNavToggle) {
+      this.props.onLeftNavToggle();
+    }
+  }
+
   render() {
     const theme = ThemeManager.getMuiTheme();
 
@@ -26,6 +32,7 @@ class Header extends React.Component {
           <IconButton
             tooltip="Open menu"
             iconStyle={styles.menuIcon}
+            onClick={this.handleLeftNavToggle.bind(this)}
           >
             <MenuIcon
               color={theme.appBar.textColor}
