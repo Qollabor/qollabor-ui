@@ -1,5 +1,6 @@
 import Immutable from 'immutable';
-export const defaultState = Immutable.fromJS({
+
+const defaultState = Immutable.fromJS({
   currentTasksFilter: 'myTasks',
   tasksFilterTypes: [
     {
@@ -31,7 +32,7 @@ export const defaultState = Immutable.fromJS({
 
 export const reducers = (state = defaultState, action) => {
   switch (action.type) {
-    case 'TASKS_FILTER:CHANGE':
+    case 'TASKS:FILTERS:CHANGE':
       return state.set('currentTasksFilter', action.tasksFilterName);
     default:
       return state;

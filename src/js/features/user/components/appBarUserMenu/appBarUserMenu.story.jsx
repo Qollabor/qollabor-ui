@@ -3,7 +3,7 @@ import { storiesOf, action } from '@kadira/storybook';
 
 import { AppBarUserMenu } from './appBarUserMenu.jsx';
 
-storiesOf('Header Menu', module)
+storiesOf('User/AppBarUserMenu', module)
   .add('Should show the menu icon', () => (
     <div
       className="center-component"

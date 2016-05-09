@@ -2,16 +2,43 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import TasksFilter from '../component';
-import { defaultState as tasksFilterTypes } from '../reducers';
 
 describe('features/taskfilter', () => {
   describe('<TasksFilter />', () => {
+    const types = [
+      {
+        id: 'myTasks',
+        icon: 'view_list',
+        label: 'My Tasks',
+        color: '#FFEB3B'
+      },
+      {
+        id: 'dueDate',
+        icon: 'query_builder',
+        label: 'Due Date',
+        color: '#FFEB3B'
+      },
+      {
+        id: 'completed',
+        icon: 'check',
+        label: 'Completed',
+        color: '#004D40'
+      },
+      {
+        id: 'terminated',
+        icon: 'clear',
+        label: 'Terminated',
+        color: '#E53935'
+      }
+    ];
+
+
     const currentTasksFilterLabel = 'My Tasks';
     const currentTasksFilterId = 'myTasks';
     const tasksFilterElement = shallow(
       <TasksFilter
         currentTasksFilter={currentTasksFilterId}
-        tasksFilterTypes={tasksFilterTypes.get('tasksFilterTypes')}
+        tasksFilterTypes={types}
       />
     );
     const foundTasksFilterElements = tasksFilterElement.find('MenuItem');

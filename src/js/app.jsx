@@ -17,6 +17,7 @@ import storage from './services/storage';
 
 registry.register('request', request);
 registry.register('storage', storage);
+registry.register('store', store);
 
 /* eslint-disable no-undef */
 if (typeof appConfig !== 'undefined') {

@@ -2,24 +2,22 @@ import { connect } from 'react-redux';
 
 import { TaskList as TaskListComponent } from './components/taskList';
 
-export { reducers } from './reducers';
-
 function mapStateToProps(state) {
   return {
-    tasks: state.taskList.get('tasks').toJS(),
-    columns: state.taskList.get('columns').toJS(),
-    isFetching: state.taskList.get('isFetching'),
-    error: state.taskList.get('error').toJS()
+    tasks: state.tasks.list.get('items').toJS(),
+    columns: state.tasks.columns.toJS(),
+    isFetching: state.tasks.list.get('isFetching'),
+    error: state.tasks.list.get('error').toJS()
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     onRowClick: (id) => {
-      dispatch({ type: 'TASK_LIST:TASK_ROW_CLICKED', id });
+      dispatch({ type: 'TASKS:LIST:TASK_ROW_CLICKED', id });
     },
     onMount: () => {
-      dispatch({ type: 'TASK_LIST:REQUEST_INIT' });
+      dispatch({ type: 'TASKS:LIST:REQUEST_INIT' });
     }
   };
 }

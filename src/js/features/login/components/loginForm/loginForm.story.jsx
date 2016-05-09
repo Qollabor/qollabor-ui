@@ -12,7 +12,7 @@ const loginCallback = {
   }
 };
 
-storiesOf('Login Form', module)
+storiesOf('Login/Form', module)
   .add('The login form with empty fields ', () => (
     <div className="center-component">
       <LoginForm {...loginCallback} />

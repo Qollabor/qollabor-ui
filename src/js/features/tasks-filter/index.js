@@ -1,11 +1,10 @@
 import component from './component';
 import { connect } from 'react-redux';
-export { reducers } from './reducers';
 
 function mapStateToProps(state) {
   return {
-    currentTasksFilter: state.tasksFilter.get('currentTasksFilter'),
-    tasksFilterTypes: state.tasksFilter.get('tasksFilterTypes').toJS()
+    currentTasksFilter: state.tasks.filters.get('currentTasksFilter'),
+    tasksFilterTypes: state.tasks.filters.get('tasksFilterTypes').toJS()
   };
 }
 
@@ -13,7 +12,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onChangeTasksFilter: (tasksFilterName) => {
       dispatch({
-        type: 'TASKS_FILTER:CHANGE',
+        type: 'TASKS:FILTERS:CHANGE',
         tasksFilterName
       });
     }

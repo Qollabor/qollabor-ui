@@ -24,7 +24,7 @@ const columns = [
   }
 ];
 
-storiesOf('Task List', module)
+storiesOf('Tasks/List', module)
   .add('With some item to display auto body height', () =>
     (<div className="center-component">
       <TaskList

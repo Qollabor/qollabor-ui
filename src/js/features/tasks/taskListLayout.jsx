@@ -3,7 +3,7 @@ import React from 'react';
 import { ThemeManager } from 'material-ui/lib/styles';
 import LeftNav from 'material-ui/lib/left-nav';
 
-import { TaskList } from '../task-list';
+import { TaskList } from '../tasks-list';
 import { TasksFilter } from '../tasks-filter';
 
 import styles from './styles';

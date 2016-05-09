@@ -10,3 +10,4 @@ function mapStateToProps(state) {
 }
 
 export const Tasks = connect(mapStateToProps, null)(TaskListLayout);
+export { reducers } from './reducers';

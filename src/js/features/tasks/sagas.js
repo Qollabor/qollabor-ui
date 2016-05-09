@@ -2,13 +2,12 @@ import { takeEvery } from 'redux-saga';
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 
-import { store } from '../../store';
-
-function* fetchTasks() {
+export function* fetchTasks() {
+  const store = registry.get('store');
   const dataKey = '_2';
   const config = registry.get('config');
 
-  yield put({ type: 'TASK_LIST:FETCH' });
+  yield put({ type: 'TASKS:LIST:FETCH' });
 
   try {
     const response = yield registry.get('request')
@@ -18,16 +17,16 @@ function* fetchTasks() {
         }
       });
 
-    yield put({ type: 'TASK_LIST:FETCH:SUCCESS', tasks: response.body[dataKey] });
+    yield put({ type: 'TASKS:LIST:FETCH:SUCCESS', tasks: response.body[dataKey] });
   } catch (err) {
     console.log(err);
-    yield put({ type: 'TASK_LIST:FETCH:FAIL', error: err.message });
+    yield put({ type: 'TASKS:LIST:FETCH:FAIL', error: err.message });
   }
 }
 
 export const sagas = [
   function*() {
-    yield takeEvery('TASK_LIST:REQUEST_INIT', fetchTasks);
+    yield takeEvery('TASKS:LIST:REQUEST_INIT', fetchTasks);
   }
 ];
 

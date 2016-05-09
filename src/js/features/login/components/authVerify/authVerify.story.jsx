@@ -3,7 +3,7 @@ import { storiesOf } from '@kadira/storybook';
 
 import AuthVerify from './authVerify.jsx';
 
-storiesOf('Auth Verify', module)
+storiesOf('Login/AuthVerify', module)
   .add('Should show the progress icon', () => (
     <div className="center-component">
       <AuthVerify isVerifyAuth={true}>

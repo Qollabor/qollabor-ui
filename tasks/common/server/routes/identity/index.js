@@ -15,6 +15,7 @@ router.post('/login', (req, res) => {
 
 router.get('/refresh', (req, res) => {
   if (req.headers['x-auth-cafienne'] === constant.VALID_TOKEN_1) {
+    res.append('x-auth-cafienne', constant.VALID_TOKEN_1);
     res.status(204).send();
   } else {
     res.status(401).send();
