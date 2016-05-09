@@ -3,6 +3,7 @@ import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 import generateFilter from './helpers/generateFilter';
 import calcTaskStatus from './helpers/calcTaskStatus';
+import { push as pushRouter } from 'react-router-redux';
 
 export function* fetchTasks() {
   const store = registry.get('store');
@@ -48,12 +49,20 @@ export function* fetchTasks() {
   }
 }
 
+function* viewTasks(action) {
+  const store = registry.get('store');
+  store.dispatch(pushRouter(`/tasks/${action.id}`));
+}
+
 export const sagas = [
   function*() {
     yield takeEvery('TASKS:LIST:REQUEST_INIT', fetchTasks);
   },
   function*() {
     yield takeEvery('TASKS:FILTERS:CHANGE', fetchTasks);
+  },
+  function*() {
+    yield takeEvery('TASKS:LIST:TASK_ROW_CLICKED', viewTasks);
   }
 ];
 

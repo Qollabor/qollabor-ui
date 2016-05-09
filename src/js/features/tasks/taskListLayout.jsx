@@ -35,6 +35,6 @@ export class TaskListLayout extends React.Component {
   }
 }
 
-TaskListLayout.displayName = 'TaskListLayout`';
+TaskListLayout.displayName = 'TaskListLayout';
 
 export default TaskListLayout;

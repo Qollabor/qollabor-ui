@@ -6,6 +6,7 @@ import MainLayout from './layouts/mainLayout';
 import NoHeaderLayout from './layouts/noHeaderLayout.jsx';
 import InfoPage from './pages/info';
 import TasksPage from './pages/tasks';
+import TaskPage from './pages/task';
 import LoginPage from './pages/login';
 
 function getValuesFromRoutes(routes, attribute) {
@@ -41,6 +42,7 @@ export default (
         <Route path="/" component={TasksPage} {...hooks} />
         <Route path="/info" component={InfoPage} {...hooks} />
         <Route path="/tasks" component={TasksPage} {...hooks} />
+        <Route path="/tasks/:taskId" component={TaskPage} {...hooks} />
       </Route>
     </Route>
   </Route>

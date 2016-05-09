@@ -34,8 +34,7 @@ export function* setLoggedUserFlow(action) {
   refreshTokenTimeout = setTimeout(refreshTokenCallback, config.login.token.expire);
 }
 
-export function* unsetLoggedUserFlow(action) {
-  console.log(action);
+export function* unsetLoggedUserFlow() {
   yield put({ type: 'USER:SET_LOGGED_USER', user: null });
 }
 
