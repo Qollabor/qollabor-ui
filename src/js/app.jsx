@@ -17,11 +17,14 @@ import storage from './services/storage';
 
 registry.register('request', request);
 registry.register('storage', storage);
-registry.register('config', {
-  login: {
-    returnURL: '/tasks'
-  }
-});
+
+/* eslint-disable no-undef */
+if (typeof appConfig !== 'undefined') {
+  registry.register('config', appConfig || {});
+} else {
+  console.log('WARNING: the config is not defined');
+}
+/* eslint-enable no-undef */
 
 // Check if is still required
 injectTapEventPlugin();

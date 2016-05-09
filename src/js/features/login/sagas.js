@@ -3,7 +3,6 @@ import { takeEvery } from 'redux-saga';
 import { put } from 'redux-saga/effects';
 import { store } from '../../store';
 import { replace as replaceRouter } from 'react-router-redux';
-import { config } from './config';
 
 function isPresent(value) {
   return value !== null && value !== undefined && value !== '';
@@ -33,6 +32,7 @@ function getFormErrors(username, password) {
 }
 
 export function* loginFlow(action) {
+  const config = registry.get('config');
   const errors = getFormErrors(action.username, action.password);
   if (errors) {
     yield put({
@@ -45,12 +45,13 @@ export function* loginFlow(action) {
 
   try {
     const response = yield registry.get('request')
-      .post(config.api.login.url, {
+      .post(config.login.login.url, {
         username: action.username, password: action.password
       });
     if (response.status === 204) {
-      const userData = { username: action.username, token: response.headers.get(config.api.token.httpHeader) };
-      registry.get('storage').setItem(config.api.token.storage.key, response.headers.get(config.api.token.httpHeader));
+      const userData = { username: action.username, token: response.headers.get(config.login.token.httpHeader) };
+      registry.get('storage')
+        .setItem(config.login.token.storage.key, response.headers.get(config.login.token.httpHeader));
       yield put({ type: 'LOGIN:DO_LOGIN:SUCCESS', user: userData });
 
       const redirectAfterLogin = store.getState().login.get('redirectAfterLogin');
@@ -58,7 +59,7 @@ export function* loginFlow(action) {
         yield put({ type: 'LOGIN:LOGIN_REDIRECT_USE' });
         store.dispatch(replaceRouter(redirectAfterLogin));
       } else {
-        store.dispatch(replaceRouter(registry.get('config').login.returnURL, {}));
+        store.dispatch(replaceRouter(registry.get('config').login.redirectUrl.defaultSuccess, {}));
       }
     } else {
       yield put({ type: 'LOGIN:DO_LOGIN:FAIL', username: response.body.content });
@@ -69,29 +70,30 @@ export function* loginFlow(action) {
 }
 
 export function* refreshFlow(action) {
+  const config = registry.get('config');
   try {
     const redirectAfterLogin = store.getState().login.get('redirectAfterLogin');
     yield put({ type: 'LOGIN:LOGIN_REDIRECT_USE' });
     const response = yield registry.get('request')
-      .get(config.api.refresh.url, null, {
+      .get(config.login.refresh.url, null, {
         headers: {
-          [config.api.token.httpHeader]: action.authToken
+          [config.login.token.httpHeader]: action.authToken
         }
       });
     if (response.status === 204 || response.status === 200) {
-      const userData = { token: response.headers.get(config.api.token.httpHeader) };
+      const userData = { token: response.headers.get(config.login.token.httpHeader) };
       registry.get('storage')
-        .setItem(config.api.token.storage.key, response.headers.get(config.api.token.httpHeader));
+        .setItem(config.login.token.storage.key, response.headers.get(config.login.token.httpHeader));
       yield put({ type: 'LOGIN:VERIFY:SUCCESS', user: userData });
     } else {
       registry.get('storage')
-        .removeItem(config.api.token.storage.key, response.headers.get(config.api.token.httpHeader));
+        .removeItem(config.login.token.storage.key, response.headers.get(config.login.token.httpHeader));
       yield put({ type: 'LOGIN:VERIFY:FAIL', username: response.body.content });
     }
     if (redirectAfterLogin) {
       store.dispatch(replaceRouter(redirectAfterLogin));
     } else {
-      store.dispatch(replaceRouter(registry.get('config').login.returnURL, {}));
+      store.dispatch(replaceRouter(registry.get('config').login.redirectUrl.defaultSuccess, {}));
     }
   } catch (err) {
     console.log(err);

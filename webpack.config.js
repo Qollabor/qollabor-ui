@@ -30,7 +30,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
-      ENV: config.webpack
+      ENV: config.webpack,
+      appConfig: JSON.stringify(config.clientConfig)
     }),
     new webpack.optimize.UglifyJsPlugin(config.uglify)
   ]
