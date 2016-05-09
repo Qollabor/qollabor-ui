@@ -1,15 +1,22 @@
 import Immutable from 'immutable';
 const defaultState = Immutable.Map(
   {
-    user: null,
-    isLoggingIn: false
+    loggedUser: null
   }
 );
 
-export default (state = defaultState, action) => {
+export const reducers = (state = defaultState, action) => {
   switch (action.type) {
-    case 'USER:LOGIN':
-      return state.set('isLoggingIn', true);
+    case 'LOGIN:VERIFY:SUCCESS':
+    case 'LOGIN:DO_LOGIN:SUCCESS':
+      return state.set('loggedUser', action.user);
+
+    case 'LOGIN:VERIFY:FAIL':
+    case 'LOGIN:DO_LOGIN:FAIL':
+      return state.set('loggedUser', null);
+
+    case 'USER:SET_LOGGED_USER':
+      return state.set('loggedUser', action.user);
 
     default :
       return state;

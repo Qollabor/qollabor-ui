@@ -15,8 +15,9 @@ module.exports = (gulp) => {
 
   function eslintTask() {
     const eslint = require('gulp-eslint');
-    return gulp.src(['src/**/*.js', 'tasks/**/*.js', 'tests/**/*.js', 'server/**/*.js'])
+    return gulp.src(['src/**/*.js', 'src/**/*.jsx', 'tasks/**/*.js', 'tests/**/*.js', 'server/**/*.js'])
       .pipe(eslint())
-      .pipe(eslint.format());
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError());
   }
 };

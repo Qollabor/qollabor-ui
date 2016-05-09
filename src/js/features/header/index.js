@@ -1,4 +1,4 @@
-import _component from './component';
+import { Header as HeaderComponent } from './header';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
@@ -7,4 +7,12 @@ function mapStateToProps(state) {
   };
 }
 
-export const Header = connect(mapStateToProps, null)(_component);
+function mapDispatchToProps(dispatch) {
+  return {
+    onLeftNavToggle: () => {
+      dispatch({ type: 'APP:LEFT_NAV:TOGGLE' });
+    }
+  };
+}
+
+export const Header = connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);

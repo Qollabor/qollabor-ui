@@ -6,7 +6,8 @@ describe('reducers/app', () => {
   const defaultState = Immutable.Map(
     {
       menuItemCategory: null,
-      isOnInit: false
+      isOnInit: false,
+      showLeftNav: true
     }
   );
 

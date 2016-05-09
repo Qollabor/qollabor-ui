@@ -1,7 +1,14 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-  plugins: [],
+  plugins: [
+    new webpack.DefinePlugin({
+      ENV: {
+        logDispatcher: true
+      }
+    })
+  ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
