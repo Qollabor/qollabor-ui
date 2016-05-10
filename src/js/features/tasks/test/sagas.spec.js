@@ -23,11 +23,23 @@ describe('features/tasks/sagas', () => {
       const fakeStore = {
         getState () {
           return {
-            user: Immutable.fromJS({
-              loggedUser: {
-                token: fakeToken
+            user: Immutable.fromJS(
+              {
+                loggedUser: {
+                  token: fakeToken,
+                  username: 'admin'
+                }
               }
-            })
+            ),
+            tasks: {
+              filters: Immutable.fromJS({
+                currentTasksFilter: {
+                  id: 'myTasks',
+                  label: 'My Tasks',
+                  filter: ['myTasks']
+                }
+              })
+            }
           };
         }
       };
@@ -44,7 +56,8 @@ describe('features/tasks/sagas', () => {
           }
         },
         tasks: {
-          url: fakeURL
+          url: fakeURL,
+          version: 2
         }
       });
 
@@ -61,7 +74,7 @@ describe('features/tasks/sagas', () => {
         generator.next();
         generator.next();
 
-        expect(requestSpy.calledWith(fakeURL, null, {
+        expect(requestSpy.calledWith(fakeURL, { assignee: 'admin' }, {
           headers: {
             [fakeTokenPropertyName]: fakeToken
           }
@@ -71,7 +84,7 @@ describe('features/tasks/sagas', () => {
 
     describe('When the request is successful', () => {
       it('should signal TASKS:LIST:FETCH:SUCCESS', () => {
-        const dataKey = '_2';
+        const dataKey = 'tasks';
         const fakeData = [{ a: 1, b: 2, c: 3 }];
 
         generator.next();

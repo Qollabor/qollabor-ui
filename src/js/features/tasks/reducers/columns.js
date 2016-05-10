@@ -2,8 +2,8 @@ import Immutable from 'immutable';
 
 const defaultState = Immutable.fromJS([
   {
-    label: 'My tasks',
-    key: 'taskAssignedTo'
+    label: 'Assigned to',
+    key: 'assignee'
   },
   {
     label: 'Name',
@@ -15,7 +15,7 @@ const defaultState = Immutable.fromJS([
   },
   {
     label: 'Due date',
-    key: 'taskDueDate'
+    key: 'dueBefore'
   }
 ]);
 

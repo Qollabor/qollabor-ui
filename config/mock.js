@@ -24,7 +24,8 @@ module.exports = {
       }
     },
     tasks: {
-      url: `${baseApiUrl}tasks`
+      url: `${baseApiUrl}tasks`,
+      version: 2
     }
   }
 };

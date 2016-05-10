@@ -4,7 +4,6 @@ import { store } from './store';
 import { onEnterRouterHook as loginOnEnterHook, onChangeRouterHook as loginOnChangeHook } from './features/login';
 import MainLayout from './layouts/mainLayout';
 import NoHeaderLayout from './layouts/noHeaderLayout.jsx';
-import HomePage from './pages/home';
 import InfoPage from './pages/info';
 import TasksPage from './pages/tasks';
 import LoginPage from './pages/login';
@@ -39,7 +38,7 @@ export default (
 
     <Route component={MainLayout}>
       <Route requireAuth={true}>
-        <Route path="/" component={HomePage} {...hooks} />
+        <Route path="/" component={TasksPage} {...hooks} />
         <Route path="/info" component={InfoPage} {...hooks} />
         <Route path="/tasks" component={TasksPage} {...hooks} />
       </Route>

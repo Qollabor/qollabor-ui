@@ -1,12 +1,12 @@
 import Immutable from 'immutable';
 
-const defaultState = Immutable.Map({
+const defaultState = Immutable.fromJS({
   isFetching: false,
-  items: Immutable.fromJS([]),
-  error: Immutable.Map({
+  items: [],
+  error: {
     message: '',
     isError: false
-  })
+  }
 });
 
 export const reducers = (state = defaultState, action) => {

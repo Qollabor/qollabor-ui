@@ -9,7 +9,7 @@ export default {
     color: 'black'
   },
   tasksFilterTypeActive: {
-    backgroundColor: '#ECEFF1'
+    backgroundColor: '#F6F6F6'
   },
   tasksFilterName: {
     textAlign: 'right'

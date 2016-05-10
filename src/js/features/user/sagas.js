@@ -17,6 +17,7 @@ function refreshTokenCallback() {
 export function* logoutFlow() {
   const config = registry.get('config');
   registry.get('storage').removeItem(config.login.token.storage.key);
+  registry.get('storage').removeItem(config.login.user.storage.key);
   yield put({ type: 'USER:SET_LOGGED_USER', user: null });
   store.dispatch(replaceRouter('/', {}));
   if (refreshTokenTimeout) {

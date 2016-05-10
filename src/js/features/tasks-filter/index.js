@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
   return {
-    currentTasksFilter: state.tasks.filters.get('currentTasksFilter'),
-    tasksFilterTypes: state.tasks.filters.get('tasksFilterTypes').toJS()
+    currentTasksFilter: state.tasks.filters.getIn(['currentTasksFilter', 'id']),
+    tasksFilterTypes: state.tasks.filters.get('tasksFilterTypes').toJS(),
+    isFetchingTasksList: state.tasks.list.get('isFetching')
   };
 }
 

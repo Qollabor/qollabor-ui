@@ -10,25 +10,36 @@ const types = [
     id: 'myTasks',
     icon: 'view_list',
     label: 'My Tasks',
-    color: '#FFEB3B'
+    color: '#388AC3',
+    filter: ['assignee']
   },
   {
     id: 'dueDate',
     icon: 'query_builder',
     label: 'Due Date',
-    color: '#FFEB3B'
+    color: '#F3974F',
+    filter: ['due']
   },
   {
     id: 'completed',
-    icon: 'check',
+    icon: 'done_all',
     label: 'Completed',
-    color: '#004D40'
+    color: '#82B75A',
+    filter: ['completed']
   },
   {
     id: 'terminated',
     icon: 'clear',
     label: 'Terminated',
-    color: '#E53935'
+    color: '#919191',
+    filter: ['terminated']
+  },
+  {
+    id: 'groupTasks',
+    icon: 'group',
+    label: 'Group Tasks',
+    color: '#ACCFEB',
+    filter: []
   }
 ];
 
@@ -36,30 +47,36 @@ storiesOf('Tasks/Filter', module)
   .add('Default filter presentation', () => {
     currentTasksFilterId = 'myTasks';
     return (
-      <TasksFilter
-        currentTasksFilter={currentTasksFilterId}
-        tasksFilterTypes={types}
-        onChangeTasksFilter={onChangeTasksFilter}
-      />
+      <div style={{ width: '300px', marginLeft: '100px' }}>
+        <TasksFilter
+          currentTasksFilter={currentTasksFilterId}
+          tasksFilterTypes={types}
+          onChangeTasksFilter={onChangeTasksFilter}
+        />
+      </div>
     );
   })
   .add('Terminated filter selection', () => {
     currentTasksFilterId = 'terminated';
     return (
-      <TasksFilter
-        currentTasksFilter={currentTasksFilterId}
-        tasksFilterTypes={types}
-        onChangeTasksFilter={onChangeTasksFilter}
-      />
+      <div style={{ width: '300px', marginLeft: '100px' }}>
+        <TasksFilter
+          currentTasksFilter={currentTasksFilterId}
+          tasksFilterTypes={types}
+          onChangeTasksFilter={onChangeTasksFilter}
+        />
+      </div>
     );
   })
   .add('Completed filter selection', () => {
     currentTasksFilterId = 'completed';
     return (
-      <TasksFilter
-        currentTasksFilter={currentTasksFilterId}
-        tasksFilterTypes={types}
-        onChangeTasksFilter={onChangeTasksFilter}
-      />
+      <div style={{ width: '300px', marginLeft: '100px' }}>
+        <TasksFilter
+          currentTasksFilter={currentTasksFilterId}
+          tasksFilterTypes={types}
+          onChangeTasksFilter={onChangeTasksFilter}
+        />
+      </div>
     );
   });

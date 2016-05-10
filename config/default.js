@@ -38,6 +38,11 @@ module.exports = {
         },
         expire: 1000 * 60 * 59// in milliseconds, 59 minutes
       },
+      user: {
+        storage: {
+          key: 'user-cafienne'
+        }
+      },
       login: {
         url: `${baseApiUrl}identity/login`
       },
@@ -46,7 +51,8 @@ module.exports = {
       }
     },
     tasks: {
-      url: `${baseApiUrl}tasks`
+      url: `${baseApiUrl}tasks`,
+      version: 1
     }
   }
 };

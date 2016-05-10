@@ -52,6 +52,8 @@ export function* loginFlow(action) {
       const userData = { username: action.username, token: response.headers.get(config.login.token.httpHeader) };
       registry.get('storage')
         .setItem(config.login.token.storage.key, response.headers.get(config.login.token.httpHeader));
+      registry.get('storage')
+        .setItem(config.login.user.storage.key, action.username);
       yield put({ type: 'LOGIN:DO_LOGIN:SUCCESS', user: userData });
 
       const redirectAfterLogin = store.getState().login.get('redirectAfterLogin');
@@ -81,13 +83,16 @@ export function* refreshFlow(action) {
         }
       });
     if (response.status === 204 || response.status === 200) {
-      const userData = { token: response.headers.get(config.login.token.httpHeader) };
+      const userData = {
+        token: response.headers.get(config.login.token.httpHeader),
+        username: registry.get('storage').getItem(config.login.user.storage.key)
+      };
       registry.get('storage')
         .setItem(config.login.token.storage.key, response.headers.get(config.login.token.httpHeader));
       yield put({ type: 'LOGIN:VERIFY:SUCCESS', user: userData });
     } else {
-      registry.get('storage')
-        .removeItem(config.login.token.storage.key, response.headers.get(config.login.token.httpHeader));
+      registry.get('storage').removeItem(config.login.token.storage.key);
+      registry.get('storage').removeItem(config.login.user.storage.key);
       yield put({ type: 'LOGIN:VERIFY:FAIL', username: response.body.content });
     }
     if (redirectAfterLogin) {

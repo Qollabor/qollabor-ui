@@ -1,6 +1,5 @@
 import React from 'react';
-import FontIcon from 'material-ui/lib/font-icon';
-import MenuItem from 'material-ui/lib/menus/menu-item';
+import { FontIcon, MenuItem } from 'material-ui';
 
 import styles from './styles';
 
@@ -27,7 +26,7 @@ class TasksFilter extends React.Component {
                 styles.tasksFilterType
               }
               primaryText={tasksFilterType.label}
-              onClick={this.handleChangeTasksFilter.bind(this, tasksFilterType.id)}
+              onTouchTap={this.handleChangeTasksFilter.bind(this, tasksFilterType.id)}
               leftIcon={
                 <span>
                   <FontIcon
@@ -38,6 +37,7 @@ class TasksFilter extends React.Component {
                   </FontIcon>
                 </span>
               }
+              disabled={this.props.isFetchingTasksList}
             />
           </div>
         )
