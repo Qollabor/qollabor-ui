@@ -1,30 +1,8 @@
 'use strict';
 
-const path = require('path');
-
-const baseApiUrl = 'http://localhost:18082/';
+const baseApiUrl = 'http://localhost:8081/';
 
 module.exports = {
-  folders: {
-    build: path.join(__dirname, '../dist')
-  },
-  server: {
-    port: 8080
-  },
-  webpack: {
-    logDispatcher: true
-  },
-  uglify: {
-    beautify: true,
-    global: false,
-    sourcemap: true,
-    mangle: false,
-    compress: false
-  },
-  mockServer: {
-    name: 'CafienneUi Mock',
-    port: 8081
-  },
   clientConfig: {
     login: {
       redirectUrl: {
@@ -32,7 +10,7 @@ module.exports = {
         defaultCancel: '/'
       },
       token: {
-        httpHeader: 'X-AUTH-CAFIENNE',
+        httpHeader: 'x-auth-cafienne',
         storage: {
           key: 'auth-cafienne'
         },

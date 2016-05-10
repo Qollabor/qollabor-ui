@@ -1,0 +1,54 @@
+{
+  "_1": {
+    "intValue": 200,
+    "reason": "OK",
+    "defaultMessage": "OK",
+    "allowsEntity": true
+  },
+  "_2": [
+    {
+      "role": "",
+      "lastModified": "2016-04-25T11:40:47.900533191Z",
+      "caseId": "0f21a33b_26d3_4dbd_8d45_ffa93e795b16",
+      "id": "6544a110_1c63_4ae3_88db_bbe3b785fc54",
+      "caseDefinition": "testcase",
+      "parentCase": null,
+      "taskName": "FirstCaseTask",
+      "rootCase": "0f21a33b_26d3_4dbd_8d45_ffa93e795b16",
+      "parameters": "{}"
+    },
+    {
+      "role": "",
+      "lastModified": "2016-05-09T12:29:22.100508881Z",
+      "caseId": "f2e3706e_f295_4fbe_ba25_36b03f42360a",
+      "id": "ef99062f_9e91_485b_9867_a9a83f449496",
+      "caseDefinition": "TravelRequest",
+      "parentCase": null,
+      "taskName": "Request Travel",
+      "rootCase": "f2e3706e_f295_4fbe_ba25_36b03f42360a",
+      "parameters": "{}"
+    },
+    {
+      "role": "",
+      "lastModified": "2016-04-25T11:44:11.943073914Z",
+      "caseId": "a17dfad6_ac89_4083_8ab3_7ae112d7eff4",
+      "id": "1833123f_6277_48b7_a8e8_8985cc6adc14",
+      "caseDefinition": "testcase",
+      "parentCase": null,
+      "taskName": "FirstCaseTask",
+      "rootCase": "a17dfad6_ac89_4083_8ab3_7ae112d7eff4",
+      "parameters": "{}"
+    },
+    {
+      "role": "",
+      "lastModified": "2016-04-25T11:41:37.054312578Z",
+      "caseId": "808cae5f_8c83_4293_94ef_9d1d658ea54e",
+      "id": "3519174b_d316_4dd9_809a_0e3351c82d8c",
+      "caseDefinition": "testcase",
+      "parentCase": null,
+      "taskName": "FirstCaseTask",
+      "rootCase": "808cae5f_8c83_4293_94ef_9d1d658ea54e",
+      "parameters": "{}"
+    }
+  ]
+}

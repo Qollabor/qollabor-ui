@@ -40,6 +40,8 @@ To develop/run the ui locally execute the following steps:
  * eslint      : Check the JS syntax using eslint
  * mocha       : Run the unit test
  * serve       : Serve the development app on port 8080
+ * serve-mock  : Serve the development app on port 8080 connected to the mocked API
+ * serve-mock-api  : Serve a mocked API on port 8081
 
 
 ### Test
@@ -82,6 +84,21 @@ to run the server:
 
 ```
 npm run serve
+```
+
+### Mock API server
+A mocked version of the API is provided. The API mock server is locaten in the folder `tasks/common/server`.
+
+to run the mock server:
+
+```
+npm run serve-mock-api
+```
+
+and connect the client running with:
+
+```
+npm run serve-mock
 ```
  
 ### Storybook
