@@ -1,5 +1,4 @@
 import registry from 'app-registry';
-import { takeEvery } from 'redux-saga';
 import { put } from 'redux-saga/effects';
 import { store } from '../../store';
 import { replace as replaceRouter } from 'react-router-redux';
@@ -106,14 +105,3 @@ export function* refreshFlow(action) {
   }
 }
 
-export const sagas =
-  [
-    function*() {
-      yield takeEvery('LOGIN:DO_LOGIN', loginFlow);
-    },
-    function*() {
-      yield takeEvery('LOGIN:VERIFY', refreshFlow);
-    }
-  ];
-
-export default sagas;

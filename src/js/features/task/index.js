@@ -8,5 +8,5 @@ function mapStateToProps(state) {
 }
 
 export const Task = connect(mapStateToProps, null)(TaskLayout);
-export { sagas } from './sagas';
 export { reducers } from './reducers';
+export * from './sagas';

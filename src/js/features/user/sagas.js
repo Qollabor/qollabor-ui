@@ -1,5 +1,4 @@
 import registry from 'app-registry';
-import { takeEvery } from 'redux-saga';
 import { put } from 'redux-saga/effects';
 import { store } from '../../store';
 import { replace as replaceRouter } from 'react-router-redux';
@@ -37,18 +36,3 @@ export function* setLoggedUserFlow(action) {
 export function* unsetLoggedUserFlow() {
   yield put({ type: 'USER:SET_LOGGED_USER', user: null });
 }
-
-export const sagas =
-  [
-    function*() {
-      yield takeEvery('USER:DO_LOGOUT', logoutFlow);
-    },
-    function*() {
-      yield takeEvery(['LOGIN:VERIFY:SUCCESS', 'LOGIN:DO_LOGIN:SUCCESS'], setLoggedUserFlow);
-    },
-    function*() {
-      yield takeEvery(['LOGIN:VERIFY:FAIL', 'LOGIN:DO_LOGIN:FAIL'], unsetLoggedUserFlow);
-    }
-  ];
-
-export default sagas;

@@ -1,4 +1,4 @@
-export { sagas } from './sagas';
+export * from './sagas';
 
 import { TaskListLayout } from './taskListLayout.jsx';
 import { connect } from 'react-redux';

@@ -1,8 +1,7 @@
-import { takeEvery } from 'redux-saga';
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 
-function* fetchTaskDetails(action) {
+export function* fetchTaskDetails(action) {
   const store = registry.get('store');
   const dataKey = '_2';
   const config = registry.get('config');
@@ -32,11 +31,3 @@ function* fetchTaskDetails(action) {
     yield put({ type: 'TASK:FETCH:FAIL', error: err.message });
   }
 }
-
-export const sagas = [
-  function*() {
-    yield takeEvery('TASK:REQUEST_INIT', fetchTaskDetails);
-  }
-];
-
-export default sagas;
