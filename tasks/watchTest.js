@@ -12,7 +12,7 @@ module.exports = (gulp) => {
 
   function watchClient() {
     gulp
-      .watch('src/**/*.js*', ['mocha'])
+      .watch(['src/**/*.js', 'src/**/*.jsx'], ['mocha'])
       .on('error', error => {
         console.error(error);
       });

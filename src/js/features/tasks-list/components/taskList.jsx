@@ -53,7 +53,10 @@ export class TaskList extends React.Component {
         <div>
           <table style={styles.table}>
             <thead>
-              <TaskListHeader columns={this.props.columns}/>
+              <TaskListHeader
+                columns={this.props.columns}
+                onColumnVisibilityToggle={this.props.onColumnVisibilityToggle}
+              />
             </thead>
           </table>
         </div>
@@ -78,7 +81,8 @@ TaskList.propTypes = {
   bodyHeight: React.PropTypes.number,
   isFetching: React.PropTypes.bool.isRequired,
   error: React.PropTypes.object,
-  onMount: React.PropTypes.func
+  onMount: React.PropTypes.func,
+  onColumnVisibilityToggle: React.PropTypes.func.isRequired
 };
 
 export default TaskList;

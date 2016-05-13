@@ -18,6 +18,9 @@ function mapDispatchToProps(dispatch) {
     },
     onMount: () => {
       dispatch({ type: 'TASKS:LIST:REQUEST_INIT' });
+    },
+    onColumnVisibilityToggle: (column) => {
+      dispatch({ type: 'TASKS:COLUMNS:TOGGLE_VISIBILITY', columnName: column.key });
     }
   };
 }

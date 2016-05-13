@@ -4,23 +4,28 @@ import { storiesOf, action } from '@kadira/storybook';
 import fakeData from './data.json';
 import TaskList from './../components/taskList';
 import TaskStatus from './../components/taskStatus';
+import ColumnPicker from './../components/columnPicker';
 
 const columns = [
   {
     label: 'My tasks',
-    key: 'taskAssignedTo'
+    key: 'taskAssignedTo',
+    visible: true
   },
   {
     label: 'Name',
-    key: 'taskName'
+    key: 'taskName',
+    visible: true
   },
   {
     label: 'Case',
-    key: 'taskCase'
+    key: 'taskCase',
+    visible: true
   },
   {
     label: 'Due date',
-    key: 'taskDueDate'
+    key: 'taskDueDate',
+    visible: true
   }
 ];
 
@@ -33,6 +38,7 @@ storiesOf('Tasks/List', module)
         columns={columns}
         tasks={fakeData}
         onRowClick={action('row-click')}
+        onColumnVisibilityToggle={action('toggle-column-visibility')}
       />
     </div>)
   )
@@ -44,6 +50,7 @@ storiesOf('Tasks/List', module)
         columns={columns}
         tasks={fakeData}
         onRowClick={action('row-click')}
+        onColumnVisibilityToggle={action('toggle-column-visibility')}
         bodyHeight={300}
       />
     </div>)
@@ -115,4 +122,8 @@ storiesOf('Tasks/List', module)
         </tbody>
       </table>
     </div>
-  );
+  )
+  .add('Column Picker', () =>
+    (<div className="center-component">
+      <ColumnPicker columns={columns} onMenuItemClicked={action('toggle-column-visibility')}/>
+    </div>));

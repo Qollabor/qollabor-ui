@@ -33,15 +33,17 @@ class TaskRow extends React.Component {
         onClick={this.handleRowClick.bind(this, this.props.rowData.id)}
       >
         <td key="statusColumn" style={statusColumnStyle}>
-          <TaskStatus status={this.props.rowData.status} />
+          <TaskStatus status={this.props.rowData.status}/>
         </td>
 
-        {this.props.columns.map((columnDefinition) =>
-          <td
-            style={styles.tableRowColumn}
-            key={columnDefinition.key}
-          >{this.props.rowData[columnDefinition.key]}</td>
-        )}
+        {this.props.columns
+          .filter((columnDefinition) => columnDefinition.visible)
+          .map((columnDefinition) =>
+            <td
+              style={styles.tableRowColumn}
+              key={columnDefinition.key}
+            >{this.props.rowData[columnDefinition.key]}</td>
+          )}
 
         <td
           key="action"

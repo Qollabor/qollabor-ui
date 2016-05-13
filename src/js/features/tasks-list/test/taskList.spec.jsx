@@ -19,19 +19,23 @@ describe('features/taskList', () => {
     const columns = [
       {
         label: 'Field 1',
-        key: 'field1'
+        key: 'field1',
+        visible: true
       },
       {
         label: 'Field 2',
-        key: 'field2'
+        key: 'field2',
+        visible: true
       }
     ];
+
+    const callback = () => 1;
 
     let result;
     let header;
 
     before(() => {
-      result = shallow(<TaskList columns={columns}/>);
+      result = shallow(<TaskList columns={columns} onColumnVisibilityToggle={callback} />);
       header = result.find(TaskListHeader);
     });
 
@@ -42,7 +46,7 @@ describe('features/taskList', () => {
 
     it('should pass the columns object to the header as props', () => {
       expect(header.props())
-        .to.be.eql({ columns });
+        .to.be.eql({ columns, onColumnVisibilityToggle: callback });
     });
 
     it('should not render any loader row', () => {
@@ -65,11 +69,13 @@ describe('features/taskList', () => {
     const columns = [
       {
         label: 'Field 1',
-        key: 'field1'
+        key: 'field1',
+        visible: true
       },
       {
         label: 'Field 2',
-        key: 'field2'
+        key: 'field2',
+        visible: true
       }
     ];
 
@@ -94,11 +100,13 @@ describe('features/taskList', () => {
     const columns = [
       {
         label: 'Field 1',
-        key: 'field1'
+        key: 'field1',
+        visible: true
       },
       {
         label: 'Field 2',
-        key: 'field2'
+        key: 'field2',
+        visible: true
       }
     ];
 

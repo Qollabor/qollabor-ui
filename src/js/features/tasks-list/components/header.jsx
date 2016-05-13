@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { IconButton, FontIcon } from 'material-ui';
+import { ColumnPicker } from './columnPicker';
 
 import styles from './../styles';
 
@@ -20,16 +20,16 @@ export class TaskListHeader extends React.Component {
 
         </th>
 
-        {this.props.columns.map((columnDefinition) =>
-          <th key={columnDefinition.key} style={styles.tableHeaderColumn}>
-            {columnDefinition.label}
-          </th>
-        )}
+        {this.props.columns
+          .filter((columnDefinition) => columnDefinition.visible)
+          .map((columnDefinition) =>
+            <th key={columnDefinition.key} style={styles.tableHeaderColumn}>
+              {columnDefinition.label}
+            </th>
+          )}
 
         <th key="action" style={actionColumnStyle}>
-          <IconButton>
-            <FontIcon className="material-icons">settings</FontIcon>
-          </IconButton>
+          <ColumnPicker columns={this.props.columns} onMenuItemClicked={this.props.onColumnVisibilityToggle}/>
         </th>
       </tr>
     );
@@ -38,7 +38,8 @@ export class TaskListHeader extends React.Component {
 
 TaskListHeader.displayName = 'TaskListHeader';
 TaskListHeader.propTypes = {
-  columns: React.PropTypes.array.isRequired
+  columns: React.PropTypes.array.isRequired,
+  onColumnVisibilityToggle: React.PropTypes.func.isRequired
 };
 
 export default TaskListHeader;

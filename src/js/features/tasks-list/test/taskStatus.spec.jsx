@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import TaskStatus from '../components/taskStatus';
 import { FontIcon } from 'material-ui';
 
-describe('features/taskStatus', () => {
+describe('features/taskList/taskStatus', () => {
   describe('<TaskStatus />', () => {
     it('should render an empty component', () => {
       const result = shallow(<TaskStatus />);
