@@ -11,7 +11,8 @@ export class TaskListHeader extends React.Component {
     });
 
     const statusColumnStyle = Object.assign({}, styles.tableHeaderColumn, {
-      width: '50px'
+      width: '25px',
+      padding: '0 2px'
     });
 
     return (

@@ -23,7 +23,8 @@ class TaskRow extends React.Component {
     });
 
     const statusColumnStyle = Object.assign({}, styles.tableHeaderColumn, {
-      width: '50px'
+      width: '25px',
+      padding: '3px 2px 0 6px'
     });
 
     return (
