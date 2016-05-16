@@ -1,19 +1,10 @@
 {
   "presets": [
     "es2015",
-    "react",
-    "stage-0"
+    "react"
   ],
   "plugins": [
-    "transform-runtime",
-    "transform-es2015-block-scoping",
-    [
-      "transform-es2015-classes",
-      {
-        "loose": true
-      }
-    ],
-    "transform-proto-to-assign"
+    "transform-runtime"
   ],
   "env": {
     "development": {

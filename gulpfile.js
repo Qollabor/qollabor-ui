@@ -1,13 +1,13 @@
 'use strict';
 
+const gulpRequireTasks = require('gulp-require-tasks');
 const config = require('config');
-
 const gulp = require('gulp');
 const guppy = require('git-guppy')(gulp);
-const taskLoader = require('gulp-commonjs-tasks/task-loader');
 
-// load tasks
-const tasksContext = taskLoader.load('./tasks', gulp, config);
-
-// Add the gulp help task
-tasksContext.addHelpTask();
+gulpRequireTasks({
+  path: __dirname + '/tasks',
+  passGulp: true,
+  passCallback: true,
+  arguments: [config]
+});
