@@ -28,5 +28,6 @@ module.exports = (app) => {
   app.use(cors(corsOptions));
   app.use('/identity', cacheControlMiddleware, require('./identity'));
   app.use('/tasks', cacheControlMiddleware, accessTokenMiddleware, require('./tasks'));
+  app.use('/cases', cacheControlMiddleware, accessTokenMiddleware, require('./cases'));
 };
 

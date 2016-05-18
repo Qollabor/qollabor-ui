@@ -26,6 +26,10 @@ module.exports = {
     tasks: {
       url: `${baseApiUrl}tasks`,
       version: 2
+    },
+    cases: {
+      url: `${baseApiUrl}cases`,
+      version: 2
     }
   }
 };

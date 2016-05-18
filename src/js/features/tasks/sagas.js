@@ -53,5 +53,5 @@ export function* fetchTasks() {
 
 export function* viewTasks(action) {
   const store = registry.get('store');
-  store.dispatch(pushRouter(`/tasks/${action.id}`));
+  store.dispatch(pushRouter(`/tasks/${action.id}?caseId=${action.caseId}`));
 }

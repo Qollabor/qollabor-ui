@@ -4,8 +4,15 @@ import Paper from 'material-ui/lib/paper';
 import { ThemeManager } from 'material-ui/lib/styles';
 import styles from './styles';
 import { TaskDetails } from '../task-details';
+import { CaseInformation, CaseAttachments } from '../case';
 
 export class TaskLayout extends React.Component {
+  componentDidMount() {
+    if (this.props.onMount) {
+      this.props.onMount(this.props.caseId);
+    }
+  }
+
   render() {
     const theme = ThemeManager.getMuiTheme();
     const leftNavWidth = theme.leftNav.width;
@@ -27,7 +34,7 @@ export class TaskLayout extends React.Component {
           <Paper style={{ padding: '10px' }}>
             <div style={{ minHeight: '500px' }}>
 
-              <TaskDetails taskId={this.props.taskId}/>
+              <TaskDetails taskId={this.props.taskId} />
             </div>
           </Paper>
         </div>
@@ -36,14 +43,20 @@ export class TaskLayout extends React.Component {
           docked={true}
           style={styles.leftNav}
           openRight={true}
-        >right nav</LeftNav>
+        >
+          <CaseInformation caseId={this.props.caseId} />
+
+          <CaseAttachments caseId={this.props.caseId} />
+        </LeftNav>
       </div>
     );
   }
 }
 
 TaskLayout.propTypes = {
+  onMount: React.PropTypes.func,
   taskId: React.PropTypes.string.isRequired,
+  caseId: React.PropTypes.string.isRequired,
   showLeftNav: React.PropTypes.bool
 };
 

@@ -7,13 +7,13 @@ import { TaskStatus } from './taskStatus';
 import styles from './../styles';
 
 class TaskRow extends React.Component {
-  handleRowClick(id, event) {
+  handleRowClick(id, caseId, event) {
     if (event) {
       event.stopPropagation();
     }
 
     if (this.props.onRowClick) {
-      this.props.onRowClick(id);
+      this.props.onRowClick(id, caseId);
     }
   }
 
@@ -31,7 +31,7 @@ class TaskRow extends React.Component {
       <tr
         style={styles.tableRow}
         key={this.props.rowData.id}
-        onClick={this.handleRowClick.bind(this, this.props.rowData.id)}
+        onClick={this.handleRowClick.bind(this, this.props.rowData.id, this.props.rowData.caseInstanceId)}
       >
         <td key="statusColumn" style={statusColumnStyle}>
           <TaskStatus status={this.props.rowData.status}/>

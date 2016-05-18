@@ -13,8 +13,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onRowClick: (id) => {
-      dispatch({ type: 'TASKS:LIST:TASK_ROW_CLICKED', id });
+    onRowClick: (id, caseId) => {
+      dispatch({ type: 'TASKS:LIST:TASK_ROW_CLICKED', id, caseId });
     },
     onMount: () => {
       dispatch({ type: 'TASKS:LIST:REQUEST_INIT' });

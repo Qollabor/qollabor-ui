@@ -17,7 +17,7 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0001',
     taskName: 'Review documents',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
@@ -35,11 +35,11 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0002',
     taskName: 'Switch Off',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    rootCaseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     planState: constant.PLAN_STATES_TERMINATED,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
@@ -53,11 +53,11 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0003',
     taskName: 'Switch on',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    rootCaseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     planState: constant.PLAN_STATES_COMPLETED,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userTwo,
@@ -71,7 +71,7 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0004',
     taskName: 'Open door',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
@@ -89,7 +89,7 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0005',
     taskName: 'Close door',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
@@ -107,7 +107,7 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0006',
     taskName: 'Jump',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
@@ -125,7 +125,7 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0007',
     taskName: 'Twist',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
@@ -143,7 +143,7 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0008',
     taskName: 'Run, run ,run',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
@@ -161,7 +161,7 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0009',
     taskName: 'Change direction',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
@@ -179,7 +179,7 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0010',
     taskName: 'Fly above',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
@@ -197,7 +197,7 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0011',
     taskName: 'Fly below',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
@@ -215,7 +215,7 @@ module.exports = [
   {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0012',
     taskName: 'Dance',
-    caseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
