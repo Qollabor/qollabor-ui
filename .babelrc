@@ -6,7 +6,7 @@
   ],
   "plugins": [
     "transform-runtime",
-    "transform-es2015-block-scoping",
+    // Required to work with IE10
     [
       "transform-es2015-classes",
       {

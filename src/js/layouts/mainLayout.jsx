@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Header } from '../features/header';
 import { AuthVerify } from '../features/login';
+import { Notifier } from '../features/notifier';
 
 class MainLayout extends React.Component {
   render() {
@@ -13,6 +14,7 @@ class MainLayout extends React.Component {
             {this.props.children}
           </div>
         </AuthVerify>
+        <Notifier />
       </div>
     );
   }

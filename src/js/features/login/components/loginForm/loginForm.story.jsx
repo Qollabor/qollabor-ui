@@ -1,15 +1,11 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf, action } from '@kadira/storybook';
 
 import LoginForm from './loginForm.jsx';
 
 const loginCallback = {
-  onLogin: (username, password) => {
-    console.log('Log in: ', username, password);
-  },
-  onCancel: () => {
-    console.log('Cancel');
-  }
+  onLogin: action('Login'),
+  onCancel: action('Cancel')
 };
 
 storiesOf('Login/Form', module)
@@ -20,7 +16,7 @@ storiesOf('Login/Form', module)
   ))
   .add('The login form centered in the page', () => (
     <div>
-      <LoginForm {...loginCallback} alignCenter={true} />
+      <LoginForm {...loginCallback} alignCenter={true}/>
     </div>
   ))
   .add('The login form with username error message ', () => (

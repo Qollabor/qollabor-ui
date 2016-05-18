@@ -186,3 +186,30 @@ src/js/
 ├── services                      // The common services
 └── store.js                      // The store init file
 ```
+
+
+
+### Notifier
+The system provide a way to notify the user using a toaster.
+
+There are 4 types of notifies:
+ * notifyInfo
+ * notifySuccess
+ * notifyDanger
+ * notifyWarning
+
+The method take 2 params:
+ * message
+ * dismissAfter (in milliseconds, default 3000)
+
+```javascript
+import { notifyInfo, notifySuccess, notifyDanger, notifyWarning } from 'path-to/notifier';
+
+
+dispatch(notifyInfo('Hey Ho!!'));
+dispatch(notifySuccess('And the winner is?', 5000));
+dispatch(notifyWarning('Attention please!'));
+dispatch(notifyDanger('Something went wrong.'));
+```
+
+
