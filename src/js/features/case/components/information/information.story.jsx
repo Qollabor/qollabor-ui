@@ -1,0 +1,62 @@
+import React from 'react';
+import { storiesOf, action } from '@kadira/storybook';
+
+import { Paper } from 'material-ui';
+import { CaseInformation } from './index';
+
+const paperStyle = { padding: '5px', width: '300px' };
+
+const baseProps = {
+  error: {},
+  isFetching: false,
+  onMount: action('mount')
+};
+
+storiesOf('Case/Information', module)
+  .add('loading', () => (
+    <div className="center-component">
+      <Paper style={paperStyle}>
+        <CaseInformation {...baseProps} caseId="should go there" isFetching={true}/>
+      </Paper>
+    </div>
+  ))
+  .add('very long title', () => {
+    const theCase = {
+      definition: 'Social benefits application with a very long title with an qwertyuioplkjhgfdsammnbvcxz` word'
+    };
+
+    return (
+      <div className="center-component">
+        <Paper style={paperStyle}>
+          <CaseInformation case={theCase} {...baseProps} />
+        </Paper>
+      </div>
+    );
+  })
+  .add('short title', () => {
+    const theCase = {
+      definition: 'Social benefits application'
+    };
+
+    return (
+      <div className="center-component">
+        <Paper style={paperStyle}>
+          <CaseInformation case={theCase} {...baseProps} />
+        </Paper>
+      </div>
+    );
+  })
+  .add('error', () => {
+    const error = {
+      isError: true,
+      message: 'error message very long and dirty so ugly that I never seen it before'
+    };
+
+    return (
+      <div className="center-component">
+        <Paper style={paperStyle}>
+          <CaseInformation isFetching={false} error={error}/>
+        </Paper>
+      </div>
+    );
+  });

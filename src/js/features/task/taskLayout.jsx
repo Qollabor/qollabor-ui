@@ -4,8 +4,15 @@ import Paper from 'material-ui/lib/paper';
 import { ThemeManager } from 'material-ui/lib/styles';
 import styles from './styles';
 import { TaskDetails } from '../task-details';
+import { CaseInformation, CaseAttachments, CaseFileViewer } from '../case';
 
 export class TaskLayout extends React.Component {
+  componentDidMount() {
+    if (this.props.onMount) {
+      this.props.onMount(this.props.caseId);
+    }
+  }
+
   render() {
     const theme = ThemeManager.getMuiTheme();
     const leftNavWidth = theme.leftNav.width;
@@ -14,6 +21,10 @@ export class TaskLayout extends React.Component {
       marginLeft: this.props.showLeftNav ? `${leftNavWidth + 10}px` : '10px',
       marginRight: `${leftNavWidth + 10}px`,
       transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
+    };
+
+    const spacerStyle = {
+      height: '20px'
     };
 
     return (
@@ -36,14 +47,28 @@ export class TaskLayout extends React.Component {
           docked={true}
           style={styles.leftNav}
           openRight={true}
-        >right nav</LeftNav>
+        >
+          <div style={{ padding: '5px' }}>
+            <CaseInformation caseId={this.props.caseId}/>
+
+            <div style={spacerStyle}/>
+
+            <CaseFileViewer />
+
+            <div style={spacerStyle}/>
+
+            <CaseAttachments caseId={this.props.caseId}/>
+          </div>
+        </LeftNav>
       </div>
     );
   }
 }
 
 TaskLayout.propTypes = {
+  onMount: React.PropTypes.func,
   taskId: React.PropTypes.string.isRequired,
+  caseId: React.PropTypes.string.isRequired,
   showLeftNav: React.PropTypes.bool
 };
 

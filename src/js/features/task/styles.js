@@ -2,7 +2,8 @@ const headerHeight = '47px';
 
 export default {
   leftNav: {
-    marginTop: headerHeight
+    marginTop: headerHeight,
+    paddingBottom: headerHeight
   },
   detailsContainer: {
     paddingLeft: '25px',

@@ -6,31 +6,31 @@ function setLevel(newLevel) {
 
 function emerg(...chunks) {
   if (level >= 0) {
-    console.log('%c [EMERG] ', 'color: #FF0DFF', ...chunks);
+    console.log('%c [EMERG] ', 'color: #FF0DFF', ...chunks, new Error().stack);
   }
 }
 
 function alert(...chunks) {
   if (level >= 1) {
-    console.log('%c [ALERT] ', 'color: #E80C7A', ...chunks);
+    console.log('%c [ALERT] ', 'color: #E80C7A', ...chunks, new Error().stack);
   }
 }
 
 function crit(...chunks) {
   if (level >= 2) {
-    console.log('%c [CRIT]  ', 'color: #FF0000', ...chunks);
+    console.log('%c [CRIT]  ', 'color: #FF0000', ...chunks, new Error().stack);
   }
 }
 
 function error(...chunks) {
   if (level >= 3) {
-    console.log('%c [ERROR] ', 'color: #E82C0C', ...chunks);
+    console.log('%c [ERROR] ', 'color: #E82C0C', ...chunks, new Error().stack);
   }
 }
 
 function warning(...chunks) {
   if (level >= 4) {
-    console.log('%c [WARN]  ', 'color: #D9C613', ...chunks);
+    console.log('%c [WARN]  ', 'color: #D9C613', ...chunks, new Error().stack);
   }
 }
 

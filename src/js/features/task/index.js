@@ -7,6 +7,14 @@ function mapStateToProps(state) {
   };
 }
 
-export const Task = connect(mapStateToProps, null)(TaskLayout);
+function mapDispatchToProps(dispatch) {
+  return {
+    onMount: (caseId) => {
+      dispatch({ type: 'CASE:REQUEST_INIT', caseId });
+    }
+  };
+}
+
+export const Task = connect(mapStateToProps, mapDispatchToProps)(TaskLayout);
 export { reducers } from './reducers';
 export * from './sagas';
