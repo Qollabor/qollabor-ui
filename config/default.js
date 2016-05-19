@@ -26,6 +26,9 @@ module.exports = {
     port: 8081
   },
   clientConfig: {
+    logger: {
+      level: 6 // LEVEL_INFO
+    },
     login: {
       redirectUrl: {
         defaultSuccess: '/tasks',

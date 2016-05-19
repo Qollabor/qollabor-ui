@@ -100,7 +100,7 @@ export function* refreshFlow(action) {
       store.dispatch(replaceRouter(registry.get('config').login.redirectUrl.defaultSuccess, {}));
     }
   } catch (err) {
-    console.log(err);
+    registry.get('logger').error(err);
     yield put({ type: 'LOGIN:VERIFY:FAIL', error: err });
   }
 }

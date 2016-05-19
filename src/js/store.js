@@ -21,7 +21,6 @@ const middlewares = [];
 
 /* eslint-disable no-undef */
 if (ENV.logDispatcher) {
-  console.log('Set log middleware');
   middlewares.push(logMiddleware());
 }
 /* eslint-enable no-undef */

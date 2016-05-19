@@ -16,6 +16,7 @@ describe('features/tasks/sagas', () => {
     const fakeToken = 'winter is coming';
     let requestSpy;
     let generator;
+    let loggerErrorSpy;
 
     beforeEach(() => {
       registry.reset();
@@ -60,6 +61,8 @@ describe('features/tasks/sagas', () => {
           version: 2
         }
       });
+      loggerErrorSpy = sinon.spy();
+      registry.register('logger', { error: loggerErrorSpy });
 
       generator = fetchTasks();
     });
@@ -112,6 +115,7 @@ describe('features/tasks/sagas', () => {
 
         expect(response.value)
           .to.be.eql(put({ type: 'TASKS:LIST:FETCH:FAIL', error: fakeError.message }));
+        expect(loggerErrorSpy.calledOnce).to.be.true;
       });
     });
   });

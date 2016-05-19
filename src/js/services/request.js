@@ -1,4 +1,6 @@
 import 'whatwg-fetch';
+import registry from 'app-registry';
+
 import queryString from 'query-string';
 
 const defaultGetHeaders = {
@@ -30,7 +32,7 @@ function transformResponse(fetchResponse) {
         try {
           body = JSON.parse(result);
         } catch (e) {
-          console.log(e);
+          registry.get('logger').info(e);
           body = { content: result };
         }
         resolve({
@@ -41,7 +43,7 @@ function transformResponse(fetchResponse) {
         });
       })
       .catch((e) => {
-        console.log(e);
+        registry.get('logger').error(e);
         resolve({
           headers: fetchResponse.headers,
           status: fetchResponse.status,
@@ -77,7 +79,7 @@ function getMethod(url, query, options) {
         resolve(response);
       })
       .catch(err => {
-        console.log(err);
+        registry.get('logger').error(err);
         reject(err);
       });
   });
@@ -102,7 +104,7 @@ function postMethod(url, data, options) {
         resolve(response);
       })
       .catch(err => {
-        console.log(err);
+        registry.get('logger').error(err);
         reject(err);
       });
   });
@@ -126,7 +128,7 @@ function putMethod(url, options) {
         resolve(response);
       })
       .catch(err => {
-        console.log(err);
+        registry.get('logger').error(err);
         reject(err);
       });
   });
@@ -150,7 +152,7 @@ function deleteMethod(url, options) {
         resolve(response);
       })
       .catch(err => {
-        console.log(err);
+        registry.get('logger').error(err);
         reject(err);
       });
   });

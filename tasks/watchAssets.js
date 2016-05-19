@@ -14,12 +14,14 @@ module.exports = (gulp) => {
     gulp
       .watch('src/**/*.html', ['copy-html'])
       .on('error', error => {
+        /* eslint-disable no-console */
         console.error(error);
       });
 
     gulp
       .watch(['src/**/*.css', 'src/**/*.scss'], ['css'])
       .on('error', error => {
+        /* eslint-disable no-console */
         console.error(error);
       });
   }

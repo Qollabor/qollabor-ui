@@ -46,7 +46,7 @@ export function* fetchTasks() {
 
     yield put({ type: 'TASKS:LIST:FETCH:SUCCESS', tasks });
   } catch (err) {
-    console.log(err);
+    registry.get('logger').error(err);
     yield put({ type: 'TASKS:LIST:FETCH:FAIL', error: err.message });
   }
 }

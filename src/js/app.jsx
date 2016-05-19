@@ -14,16 +14,22 @@ import routes from './routes';
 import registry from 'app-registry';
 import request from './services/request';
 import storage from './services/storage';
+import logger from './services/logger';
 
 registry.register('request', request);
 registry.register('storage', storage);
+registry.register('logger', logger);
 registry.register('store', store);
 
 /* eslint-disable no-undef */
 if (typeof appConfig !== 'undefined') {
-  registry.register('config', appConfig || {});
+  const config = appConfig || {};
+  registry.register('config', config);
+  if (config.logger && config.logger.level) {
+    logger.setLevel(config.logger.level);
+  }
 } else {
-  console.log('WARNING: the config is not defined');
+  registry.get('logger').warning('WARNING: the config is not defined');
 }
 /* eslint-enable no-undef */
 

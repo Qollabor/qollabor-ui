@@ -1,7 +1,5 @@
 'use strict';
 
-const path = require('path');
-
 module.exports = {
   webpack: {
     logDispatcher: false
@@ -11,5 +9,10 @@ module.exports = {
     sourcemap: false,
     mangle: true,
     compress: true
+  },
+  clientConfig: {
+    logger: {
+      level: 3 // LEVEL_ERROR
+    }
   }
 };

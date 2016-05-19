@@ -8,7 +8,6 @@ const cacheControlMiddleware = (req, res, next) => {
 };
 
 const accessTokenMiddleware = (req, res, next) => {
-  console.log(req.headers);
   if (req.headers['x-auth-cafienne'] === constant.VALID_TOKEN_1) {
     next();
   } else {

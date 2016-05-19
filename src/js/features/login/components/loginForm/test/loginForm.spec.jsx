@@ -10,12 +10,8 @@ import { TextField, RaisedButton, RefreshIndicator } from 'material-ui';
 describe('features/login', () => {
   describe('<LoginForm />', () => {
     const loginCallback = {
-      onLogin: (username, password) => {
-        console.log('Log in: ', username, password);
-      },
-      onCancel: () => {
-        console.log('Cancel');
-      }
+      onLogin: () => {},
+      onCancel: () => {}
     };
 
     describe('When redered with default props', () => {

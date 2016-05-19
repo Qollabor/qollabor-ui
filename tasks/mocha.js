@@ -30,6 +30,7 @@ module.exports = (gulp) => {
       )
       // .on('end', done)
       .on('error', err => {
+        /* eslint-disable no-console */
         console.log(err);
         done(err);
       });

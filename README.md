@@ -187,7 +187,44 @@ src/js/
 └── store.js                      // The store init file
 ```
 
+### Logger
+To log use the logger service provided instead of calling directly.
+Calling the console log directly from the code is forbidden by a rule in eslint. 
+Is possible to use it in the development process but all the `console.log` should be removed before the commit.
 
+The logger is initialized in the `app.jsx` and registered in the registry.
+
+```
+import logger from './services/logger';
+...
+logger.setLevel(6); // the log level is taken from the config file
+registry.register('logger', logger);
+
+```
+
+The log levels are the following:
+
+ * emerg: 0
+ * alert: 1 
+ * crit: 2 
+ * error: 3
+ * warning: 4
+ * notice: 5 
+ * info: 6 // The default value
+ * debug: 7
+
+Tu use the logger in the code get it from the registry:
+
+```
+registry.get('logger').emerg('Some emerg message');
+registry.get('logger').alert('Some alert message');
+registry.get('logger').crit('Some crit message');
+registry.get('logger').error('Some error message');
+registry.get('logger').warning('Some warning message');
+registry.get('logger').notice('Some notice message');
+registry.get('logger').info('Some info message');
+registry.get('logger').debug('Some debug message');
+```
 
 ### Notifier
 The system provide a way to notify the user using a toaster.
