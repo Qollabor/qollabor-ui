@@ -1,5 +1,11 @@
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
+import { push as pushRouter } from 'react-router-redux';
+
+export function* viewTask(action) {
+  const store = registry.get('store');
+  store.dispatch(pushRouter(`/tasks/${action.taskId}?caseId=${action.caseId}`));
+}
 
 export function* fetchTaskDetails(action) {
   const store = registry.get('store');

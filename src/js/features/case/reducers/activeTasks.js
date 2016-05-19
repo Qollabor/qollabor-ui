@@ -24,10 +24,10 @@ export const reducers = (state = defaultState, action) => {
     case 'CASE:ACTIVE_TASKS:FETCH:FAIL':
       return state
         .set('isFetching', false)
-        .set('error', Immutable.Map({
+        .set('error', {
           isError: true,
           message: action.error
-        }));
+        });
 
     default:
       return state;

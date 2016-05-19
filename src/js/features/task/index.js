@@ -11,6 +11,12 @@ function mapDispatchToProps(dispatch) {
   return {
     onMount: (caseId) => {
       dispatch({ type: 'CASE:REQUEST_INIT', caseId });
+    },
+    onTaskChanged: (taskId) => {
+      dispatch({ type: 'TASK:REQUEST_INIT', taskId });
+    },
+    onCaseChanged: (caseId) => {
+      dispatch({ type: 'CASE:REQUEST_INIT', caseId });
     }
   };
 }
