@@ -1,5 +1,5 @@
 const moment = require('moment');
-const constant = require('./const');
+const constant = require('./../const');
 
 const yesterday = moment().subtract(1, 'day');
 
@@ -11,6 +11,19 @@ module.exports = [
     definition: 'TravelRequest',
     rootCaseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     id: 'd62dea32_62b8_4206_b12e_029436d75001',
+    file: {},
+
+    attachments: [
+      {
+        title: 'Copy of passport'
+      },
+      {
+        title: 'Resume'
+      },
+      {
+        title: 'Tax income report'
+      }
+    ],
     plan: {
       items: [
         {
@@ -101,4 +114,3 @@ module.exports = [
     }
   }
 ];
-
