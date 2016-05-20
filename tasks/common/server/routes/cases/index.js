@@ -1,8 +1,13 @@
 const express = require('express');
 
 const router = express.Router();
+
+const tasks = require('../tasks/tasks');
+const cases = require('./cases');
+const discretionary = require('./discretionary');
+
 router.get('/', (req, res) => {
-  const values = require('./fullData');
+  const values = cases.getCases();
 
   const retValue = {
     cases: values,
@@ -19,13 +24,38 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:caseId', (req, res) => {
-  const ret = require('./fullData')
+  const ret = cases.getCases()
     .find(item => item.id === req.params.caseId);
   if (ret) {
-    Object.assign(ret, require('./caseFile'));
-    ret.plan.items = require('../tasks/fullData');
+    ret.plan.items = tasks.getTasks();
     setTimeout(() => {
       res.status(200).json(ret);
+    }, 200);
+  } else {
+    res.status(404).send();
+  }
+});
+
+router.get('/:caseId/discretionaryitems', (req, res) => {
+  const ret = discretionary.getDiscretionaryItems();
+  if (ret) {
+    setTimeout(() => {
+      res.status(200).json(ret);
+    }, 200);
+  } else {
+    res.status(404).send();
+  }
+});
+
+
+router.post('/:caseId/discretionaryitems/plan', (req, res) => {
+  const item = discretionary.getItem(req.body.planItemId);
+
+  if (item) {
+    discretionary.removeItem(req.body.planItemId);
+    tasks.addTask(item);
+    setTimeout(() => {
+      res.status(200).json(item);
     }, 200);
   } else {
     res.status(404).send();

@@ -1,5 +1,5 @@
 const moment = require('moment');
-const constant = require('./const');
+const constant = require('./../const');
 
 const today = moment();
 
@@ -98,7 +98,7 @@ module.exports = [
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
-    dueDate: future,
+    dueDate: oneWeekAgo,
     lastModified: new Date('2016-03-08T09:44:32.345Z'),
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
@@ -231,4 +231,3 @@ module.exports = [
     createdBy: 'creationuser'
   }
 ];
-
