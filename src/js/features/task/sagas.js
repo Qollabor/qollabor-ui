@@ -17,10 +17,11 @@ export function* fetchTaskDetails(action) {
   yield put({ type: 'TASK:FETCH' });
 
   try {
+    const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
+      { caseLastModified: action.caseLastModified });
+
     const response = yield registry.get('request')
-      .get(`${config.tasks.url}/${action.taskId}`, null,
-        helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'], { caseLastModified: action.caseLastModified })
-      );
+      .get(`${config.tasks.url}/${action.taskId}`, null, headers);
 
     let taskDetails = [];
 
@@ -46,10 +47,11 @@ export function* transitionToState(action) {
   yield put({ type: 'TASK:TRANSITION:START', taskId: action.taskId });
 
   try {
+    // TODO check if the caseLastModified should be put for the post
+    const headers = helpers.addHeadersByName(['cafienneAuth']);
+
     yield registry.get('request')
-      .post(`${config.tasks.url}/${action.taskId}/${action.transition}`, null,
-        helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'], { caseLastModified: action.caseLastModified })
-      );
+      .post(`${config.tasks.url}/${action.taskId}/${action.transition}`, null, headers);
 
     notifySuccess('The transition has been accepted');
     yield put({ type: 'TASK:TRANSITION:SUCCESS', taskId: action.taskId });
