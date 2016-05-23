@@ -36,7 +36,7 @@ router.get('/:caseId', (req, res) => {
   }
 });
 
-router.get('/:caseId/discretionaryitems', (req, res) => {
+router.get('/:caseId/discrectionaryitems', (req, res) => {
   const ret = discretionary.getDiscretionaryItems();
   if (ret) {
     setTimeout(() => {

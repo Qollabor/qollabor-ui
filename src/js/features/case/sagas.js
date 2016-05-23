@@ -58,3 +58,40 @@ export function* fetchCase(action) {
     yield* errorFunc(err.message);
   }
 }
+
+export function* fetchDiscrectionaryItems(action) {
+  if (!action || !action.caseId) {
+    yield put({
+      type: 'CASE:DISCRECTIONARY_ITEMS:FETCH:FAIL',
+      error: 'Must specify a caseId for the discrectionary items to fetch'
+    });
+  }
+
+  try {
+    const config = registry.get('config');
+    const store = registry.get('store');
+    const dataKey = 'discrectionaryItems';
+
+    yield put({ type: 'CASE:DISCRECTIONARY_ITEMS:FETCH' });
+
+    const response = yield registry.get('request')
+      .get(`${config.cases.url}/${action.caseId}/discrectionaryitems`, null, {
+        headers: {
+          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
+        }
+      });
+
+    let discrectionaryItems = [];
+    if (config.cases.version === 1) {
+      if (response.body[dataKey]) {
+        discrectionaryItems = response.body[dataKey];
+      }
+    } else if (response.body) {
+      discrectionaryItems = response.body;
+    }
+
+    yield put({ type: 'CASE:DISCRECTIONARY_ITEMS:FETCH:SUCCESS', discrectionaryItems });
+  } catch (err) {
+    yield put({ type: 'CASE:DISCRECTIONARY_ITEMS:FETCH:FAIL', error: err.message });
+  }
+}
