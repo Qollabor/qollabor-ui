@@ -1,3 +1,5 @@
+'use strict';
+
 const originalData = require('./data/cases');
 
 let currentData = originalData.map(caseItem => Object.assign({}, caseItem));
