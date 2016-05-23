@@ -1,4 +1,7 @@
 import { connect } from 'react-redux';
+
+import { getAvailableTransitions } from './helpers/availableTransitions';
+import { TaskTransitions as TaskTransitionsComponent } from './components/task-transition';
 import TaskLayout from './taskLayout';
 
 function mapStateToProps(state) {
@@ -21,6 +24,22 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export const Task = connect(mapStateToProps, mapDispatchToProps)(TaskLayout);
+function mapTransitionsStateToProps(state) {
+  return {
+    availableTransitions: getAvailableTransitions(state.task.get('taskDetails').toJS())
+  };
+}
+
+function mapTransitionsDispatchToProps(dispatch) {
+  return {
+    onButtonClick: (taskId, transition) => {
+      dispatch({ type: 'TASK:REQUEST_TRANSITION', taskId, transition });
+    }
+  };
+}
+
 export { reducers } from './reducers';
 export * from './sagas';
+
+export const Task = connect(mapStateToProps, mapDispatchToProps)(TaskLayout);
+export const TaskTransitions = connect(mapTransitionsStateToProps, mapTransitionsDispatchToProps)(TaskTransitionsComponent);

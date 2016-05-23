@@ -59,7 +59,8 @@ module.exports = {
     },
     cases: {
       url: `${baseApiUrl}cases`,
-      version: 1
+      version: 1,
+      lastModifiedHttpHeader: 'Case-Last-Modified'
     }
   }
 };

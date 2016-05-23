@@ -4,9 +4,10 @@ import Paper from 'material-ui/lib/paper';
 import { ThemeManager } from 'material-ui/lib/styles';
 import styles from './styles';
 import { TaskDetails } from '../task-details';
-import { CaseInformation, CaseAttachments } from '../case';
 import { ActiveTasks } from './components/tasklist-active';
 import { CompletedTasks } from './components/tasklist-completed';
+import { TaskTransitions } from './index';
+import { CaseInformation, CaseAttachments } from '../case';
 
 export class TaskLayout extends React.Component {
   componentDidMount() {
@@ -49,6 +50,8 @@ export class TaskLayout extends React.Component {
           <Paper style={{ padding: '10px' }}>
             <div style={{ minHeight: '500px' }}>
               <TaskDetails taskId={this.props.taskId}/>
+
+              <TaskTransitions taskId={this.props.taskId}/>
             </div>
           </Paper>
         </div>

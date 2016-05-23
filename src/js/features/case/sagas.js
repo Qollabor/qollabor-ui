@@ -32,17 +32,17 @@ export function* fetchCase(action) {
 
   try {
     const config = registry.get('config');
-    const store = registry.get('store');
+    const helpers = registry.get('helpers');
     const dataKey = '_2';
 
     yield* progressFunc();
 
+    const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'], {
+      caseLastModified: action.caseLastModified
+    });
+
     const response = yield registry.get('request')
-      .get(`${config.cases.url}/${action.caseId}`, null, {
-        headers: {
-          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
-        }
-      });
+      .get(`${config.cases.url}/${action.caseId}`, null, headers);
 
     let theCase = {};
     if (config.cases.version === 1) {

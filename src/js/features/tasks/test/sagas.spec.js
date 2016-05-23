@@ -8,6 +8,7 @@ import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 
 import { fetchTasks } from '../sagas';
+import helpers from '../../../services/helpers';
 
 describe('features/tasks/sagas', () => {
   describe('fetchTasks', () => {
@@ -50,6 +51,7 @@ describe('features/tasks/sagas', () => {
         get: requestSpy
       });
       registry.register('store', fakeStore);
+      registry.register('helpers', helpers);
       registry.register('config', {
         login: {
           token: {

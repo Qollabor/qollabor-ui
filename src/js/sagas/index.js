@@ -3,7 +3,7 @@ import { takeEvery, takeLatest } from 'redux-saga';
 import { loginFlow, refreshFlow } from '../features/login';
 import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow } from '../features/user';
 import { fetchTasks, viewTasks } from '../features/tasks';
-import { fetchTaskDetails, viewTask } from '../features/task';
+import { fetchTaskDetails, viewTask, transitionToState } from '../features/task';
 import { fetchCase } from '../features/case';
 
 const sagas = [
@@ -21,6 +21,7 @@ const sagas = [
   // task
   [takeEvery, 'TASK:REQUEST_INIT', fetchTaskDetails],
   [takeEvery, 'TASK:TASKLIST:VIEW_TASK', viewTask],
+  [takeEvery, 'TASK:REQUEST_TRANSITION', transitionToState],
   // case
   [takeLatest, 'CASE:REQUEST_INIT', fetchCase]
 ];

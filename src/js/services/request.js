@@ -96,7 +96,7 @@ function postMethod(url, data, options) {
       {
         method: 'POST',
         headers,
-        body: JSON.stringify(data)
+        body: JSON.stringify(data || {})
       }
     )
       .then(transformResponse)

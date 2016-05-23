@@ -7,20 +7,20 @@ export function* viewTask(action) {
   store.dispatch(pushRouter(`/tasks/${action.taskId}?caseId=${action.caseId}`));
 }
 
+import { notifySuccess, notifyDanger } from '../notifier';
+
 export function* fetchTaskDetails(action) {
-  const store = registry.get('store');
   const dataKey = '_2';
   const config = registry.get('config');
+  const helpers = registry.get('helpers');
 
   yield put({ type: 'TASK:FETCH' });
 
   try {
     const response = yield registry.get('request')
-      .get(`${config.tasks.url}/${action.taskId}`, null, {
-        headers: {
-          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
-        }
-      });
+      .get(`${config.tasks.url}/${action.taskId}`, null,
+        helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'], { caseLastModified: action.caseLastModified })
+      );
 
     let taskDetails = [];
 
@@ -35,5 +35,27 @@ export function* fetchTaskDetails(action) {
   } catch (err) {
     registry.get('logger').error(err);
     yield put({ type: 'TASK:FETCH:FAIL', error: err.message });
+  }
+}
+
+export function* transitionToState(action) {
+  // const dataKey = '_2';
+  const config = registry.get('config');
+  const helpers = registry.get('helpers');
+
+  yield put({ type: 'TASK:TRANSITION:START', taskId: action.taskId });
+
+  try {
+    yield registry.get('request')
+      .post(`${config.tasks.url}/${action.taskId}/${action.transition}`, null,
+        helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'], { caseLastModified: action.caseLastModified })
+      );
+
+    notifySuccess('The transition has been accepted');
+    yield put({ type: 'TASK:TRANSITION:SUCCESS', taskId: action.taskId });
+  } catch (err) {
+    registry.get('logger').error(err);
+    notifyDanger('Unable to apply transition');
+    yield put({ type: 'TASK:TRANSITION:FAIL', error: err.message });
   }
 }

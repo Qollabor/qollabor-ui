@@ -8,6 +8,7 @@ import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 
 import { fetchCase } from '../sagas';
+import helpers from '../../../services/helpers';
 
 describe('features/case/sagas', () => {
   describe('fetchCase', () => {
@@ -15,6 +16,7 @@ describe('features/case/sagas', () => {
     const fakeTokenPropertyName = 'famousQuote';
     const fakeToken = 'winter is coming';
     const caseId = 'x-files';
+    const caseLastModified = 42;
 
     let requestSpy;
     let generator;
@@ -41,6 +43,7 @@ describe('features/case/sagas', () => {
         get: requestSpy
       });
       registry.register('store', fakeStore);
+      registry.register('helpers', helpers);
       registry.register('config', {
         login: {
           token: {
@@ -49,7 +52,8 @@ describe('features/case/sagas', () => {
         },
         cases: {
           url: fakeURL,
-          version: 2
+          version: 2,
+          lastModifiedHttpHeader: 'something'
         }
       });
     });
@@ -103,6 +107,41 @@ describe('features/case/sagas', () => {
         expect(requestSpy.calledWith(`${fakeURL}/${caseId}`, null, {
           headers: {
             [fakeTokenPropertyName]: fakeToken
+          }
+        })).to.be.true;
+      });
+    });
+
+    describe('when is invoked with a caseId and with the caseLastModified parameter', () => {
+      beforeEach(() => {
+        generator = fetchCase({ caseId, caseLastModified });
+      });
+
+      it('should signal CASE:FETCH:* after it is invoked', () => {
+        expect(generator.next().value)
+          .to.be.eql(put({ type: 'CASE:ITEM:FETCH' }));
+
+        expect(generator.next().value)
+          .to.be.eql(put({ type: 'CASE:ACTIVE_TASKS:FETCH' }));
+
+        expect(generator.next().value)
+          .to.be.eql(put({ type: 'CASE:COMPLETED_TASKS:FETCH' }));
+
+        expect(generator.next().value)
+          .to.be.eql(put({ type: 'CASE:ATTACHMENTS:FETCH' }));
+      });
+
+      it('should invoke request.get with the right parameters', () => {
+        generator.next();
+        generator.next();
+        generator.next();
+        generator.next();
+        generator.next();
+
+        expect(requestSpy.calledWith(`${fakeURL}/${caseId}`, null, {
+          headers: {
+            [fakeTokenPropertyName]: fakeToken,
+            something: caseLastModified
           }
         })).to.be.true;
       });

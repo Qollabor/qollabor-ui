@@ -9,6 +9,7 @@ export function* fetchTasks() {
   const store = registry.get('store');
   const dataKey = '_2';
   const config = registry.get('config');
+  const helpers = registry.get('helpers');
 
   yield put({ type: 'TASKS:LIST:FETCH' });
 
@@ -19,13 +20,10 @@ export function* fetchTasks() {
     };
     const filters = generateFilter(
       store.getState().tasks.filters.getIn(['currentTasksFilter', 'filter']), filterParams);
+    const headers = helpers.addHeadersByName(['cafienneAuth']);
 
     const response = yield registry.get('request')
-      .get(config.tasks.url, filters, {
-        headers: {
-          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
-        }
-      });
+      .get(config.tasks.url, filters, headers);
 
     let tasks = [];
 
