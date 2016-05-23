@@ -1,29 +1,18 @@
 import React from 'react';
-import { TaskList } from '../tasklist';
+import { TitledListBox } from '../../../../components/titled-list-box';
 
 class TaskListActive extends React.Component {
 
   render() {
     const TaskListTitle = 'Active tasks';
-    let bodyContent = null;
-
-    if (this.props.isFetching) {
-      bodyContent = 'Show <TaskListActiveLoader/>';
-    } else if (this.props.error && this.props.error.isError) {
-      bodyContent = `Show <TaskListActiveError/> with msg:${this.props.error.message}`;
-    } else {
-      bodyContent = (
-        <TaskList
-          title={TaskListTitle}
-          taskList={this.props.activeTasks}
-        />
-      );
-    }
-
     return (
-      <div>
-        {bodyContent}
-      </div>
+      <TitledListBox
+        title={TaskListTitle}
+        items={this.props.activeTasks}
+        isFetching={this.props.isFetching}
+        error={this.props.error}
+        labelField="taskName"
+      />
     );
   }
 }

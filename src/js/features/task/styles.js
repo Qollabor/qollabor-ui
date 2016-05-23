@@ -3,7 +3,7 @@ const headerHeight = '47px';
 export default {
   leftNav: {
     marginTop: headerHeight,
-    paddingBottom: headerHeight
+    padding: `5px 5px ${headerHeight} 5px`
   },
   detailsContainer: {
     paddingLeft: '25px',

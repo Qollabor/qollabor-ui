@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 
-const defaultState = Immutable.Map({
+const defaultState = Immutable.fromJS({
   isFetching: false,
   items: [],
   error: {
@@ -19,7 +19,7 @@ export const reducers = (state = defaultState, action) => {
     case 'CASE:COMPLETED_TASKS:FETCH:SUCCESS':
       return state
         .set('isFetching', false)
-        .set('items', action.tasks);
+        .set('items', Immutable.fromJS(action.completedTasks));
 
     case 'CASE:COMPLETED_TASKS:FETCH:FAIL':
       return state

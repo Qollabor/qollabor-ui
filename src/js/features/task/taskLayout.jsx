@@ -41,8 +41,8 @@ export class TaskLayout extends React.Component {
           docked={true}
           style={styles.leftNav}
         >
-          <ActiveTasks />
-          <CompletedTasks />
+          <ActiveTasks taskId={this.props.taskId}/>
+          <CompletedTasks taskId={this.props.taskId}/>
 
         </LeftNav>
         <div style={divContainerStyle}>
@@ -59,6 +59,7 @@ export class TaskLayout extends React.Component {
           openRight={true}
         >
           <CaseInformation caseId={this.props.caseId}/>
+
           <CaseAttachments caseId={this.props.caseId}/>
         </LeftNav>
       </div>

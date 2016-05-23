@@ -2,16 +2,19 @@ import { connect } from 'react-redux';
 
 import ActiveTasksComponent from './component';
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
   return {
     isFetching: state.case.activeTasks.get('isFetching'),
-    activeTasks: state.case.activeTasks.get('items') ? state.case.activeTasks.get('items').map(
-      (activeTask) => Object.assign({}, activeTask, {
-        color: '#388AC3',
-        icon: 'view_list'
-      })
-    ) : [],
-    error: state.case.activeTasks.get('error')
+    activeTasks: state.case.activeTasks.get('items')
+      .filter(activeTask => activeTask.get('id') !== props.taskId)
+      .map(
+        (activeTask) => Object.assign({}, activeTask.toJS(), {
+          color: '#388AC3',
+          icon: 'view_list',
+          url: `/#/tasks/${activeTask.get('id')}?caseId=${activeTask.get('caseInstanceId')}`
+        })
+      ).toJS(),
+    error: state.case.activeTasks.get('error').toJS()
   };
 }
 
