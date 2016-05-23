@@ -1,5 +1,5 @@
 const moment = require('moment');
-const constant = require('./../const');
+const taskConstant = require('./../../tasks/const');
 
 const tomorrow = moment().add(1, 'day');
 
@@ -14,8 +14,8 @@ module.exports = [
     role: 'reviewers',
     parentCaseInstanceId: null,
     rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_ACTIVE,
-    taskState: constant.TASK_STATES_ASSIGNED,
+    planState: taskConstant.PLAN_STATES_ACTIVE,
+    taskState: taskConstant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
     dueDate: tomorrow,
@@ -32,8 +32,8 @@ module.exports = [
     role: 'reviewers',
     parentCaseInstanceId: null,
     rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_ACTIVE,
-    taskState: constant.TASK_STATES_ASSIGNED,
+    planState: taskConstant.PLAN_STATES_ACTIVE,
+    taskState: taskConstant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
     dueDate: tomorrow,
@@ -50,8 +50,8 @@ module.exports = [
     role: 'reviewers',
     parentCaseInstanceId: null,
     rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_ACTIVE,
-    taskState: constant.TASK_STATES_ASSIGNED,
+    planState: taskConstant.PLAN_STATES_ACTIVE,
+    taskState: taskConstant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
     dueDate: tomorrow,
@@ -68,8 +68,8 @@ module.exports = [
     role: 'reviewers',
     parentCaseInstanceId: null,
     rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_ACTIVE,
-    taskState: constant.TASK_STATES_ASSIGNED,
+    planState: taskConstant.PLAN_STATES_ACTIVE,
+    taskState: taskConstant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
     dueDate: tomorrow,

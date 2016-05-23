@@ -223,7 +223,13 @@ describe('feature/task/sagas', () => {
         generator.next();
         generator.next();
 
-        expect(generator.next().value)
+        const response = {
+          headers: {
+            get: () => ({})
+          }
+        };
+
+        expect(generator.next(response).value)
           .to.be.eql(put({
             type: 'NOTIFIER:NOTIFY',
             dismissAfter: 3000,

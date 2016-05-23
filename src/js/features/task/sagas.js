@@ -53,15 +53,17 @@ export function* transitionToState(action) {
     const response = yield registry.get('request')
       .post(`${config.tasks.url}/${action.taskId}/${action.transition}`, null, headers);
 
+    const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+
     yield put(notifySuccess('The transition has been accepted'));
     yield put({
       type: 'TASK:TRANSITION:SUCCESS',
       taskId: action.taskId,
-      caseLastModified: response.headers.get(config.cases.lastModifiedHttpHeader)
+      caseLastModified
     });
 
-    yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId });
-    yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId });
+    yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId, caseLastModified });
+    yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId, caseLastModified });
   } catch (err) {
     registry.get('logger').error(err);
     notifyDanger('Unable to apply transition');

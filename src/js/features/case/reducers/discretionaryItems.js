@@ -1,27 +1,27 @@
 import Immutable from 'immutable';
 
-const defaultState = Immutable.Map({
+const defaultState = Immutable.fromJS({
   isFetching: false,
-  items: [],
-  error: {
+  items: Immutable.fromJS([]),
+  error: Immutable.Map({
     isError: false,
     message: ''
-  }
+  })
 });
 
 export const reducers = (state = defaultState, action) => {
   switch (action.type) {
-    case 'CASE:DISCRECTIONARY_ITEMS:FETCH':
+    case 'CASE:DISCRETIONARY_ITEMS:FETCH':
       return state
         .set('isFetching', true)
         .set('error', defaultState.get('error'));
 
-    case 'CASE:DISCRECTIONARY_ITEMS:FETCH:SUCCESS':
+    case 'CASE:DISCRETIONARY_ITEMS:FETCH:SUCCESS':
       return state
         .set('isFetching', false)
-        .set('item', action.discretionaryItems);
+        .set('items', Immutable.fromJS(action.discretionaryItems));
 
-    case 'CASE:DISCRECTIONARY_ITEMS:FETCH:FAIL':
+    case 'CASE:DISCRETIONARY_ITEMS:FETCH:FAIL':
       return state
         .set('isFetching', false)
         .set('error', Immutable.Map({

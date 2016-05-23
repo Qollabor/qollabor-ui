@@ -1,4 +1,5 @@
 const express = require('express');
+const moment = require('moment');
 
 const router = express.Router();
 
@@ -36,7 +37,7 @@ router.get('/:caseId', (req, res) => {
   }
 });
 
-router.get('/:caseId/discrectionaryitems', (req, res) => {
+router.get('/:caseId/discretionaryitems', (req, res) => {
   const ret = discretionary.getDiscretionaryItems();
   if (ret) {
     setTimeout(() => {
@@ -55,7 +56,7 @@ router.post('/:caseId/discretionaryitems/plan', (req, res) => {
     discretionary.removeItem(req.body.planItemId);
     tasks.addTask(item);
     setTimeout(() => {
-      res.status(200).json(item);
+      res.header('Case-Last-Modified', moment()).status(200).json(item);
     }, 200);
   } else {
     res.status(404).send();

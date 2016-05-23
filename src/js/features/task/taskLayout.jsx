@@ -6,6 +6,7 @@ import styles from './styles';
 import { TaskDetails } from '../task-details';
 import { ActiveTasks } from './components/tasklist-active';
 import { CompletedTasks } from './components/tasklist-completed';
+import { DiscretionaryItems } from './components/discretionary-items';
 import { TaskTransitions } from './index';
 import { CaseInformation, CaseAttachments } from '../case';
 
@@ -43,6 +44,7 @@ export class TaskLayout extends React.Component {
           style={styles.leftNav}
         >
           <ActiveTasks taskId={this.props.taskId}/>
+          <DiscretionaryItems taskId={this.props.taskId} emptyListMessage="No items"/>
           <CompletedTasks taskId={this.props.taskId}/>
 
         </LeftNav>

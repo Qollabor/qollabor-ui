@@ -1,6 +1,8 @@
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 
+import { notifySuccess, notifyDanger } from '../notifier';
+
 import { activeTasksFilter, completedTasksFilter } from './helpers/tasksFilters';
 
 const progressFunc = () => [
@@ -59,39 +61,75 @@ export function* fetchCase(action) {
   }
 }
 
-export function* fetchDiscrectionaryItems(action) {
+export function* fetchDiscretionaryItems(action) {
   if (!action || !action.caseId) {
     yield put({
-      type: 'CASE:DISCRECTIONARY_ITEMS:FETCH:FAIL',
-      error: 'Must specify a caseId for the discrectionary items to fetch'
+      type: 'CASE:DISCRETIONARY_ITEMS:FETCH:FAIL',
+      error: 'Must specify a caseId for the discretionary items to fetch'
     });
+    return;
   }
 
   try {
     const config = registry.get('config');
     const store = registry.get('store');
-    const dataKey = 'discrectionaryItems';
+    const dataKey = 'discretionaryItems';
 
-    yield put({ type: 'CASE:DISCRECTIONARY_ITEMS:FETCH' });
+    yield put({ type: 'CASE:DISCRETIONARY_ITEMS:FETCH' });
 
     const response = yield registry.get('request')
-      .get(`${config.cases.url}/${action.caseId}/discrectionaryitems`, null, {
+      .get(`${config.cases.url}/${action.caseId}/discretionaryitems`, null, {
         headers: {
           [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
         }
       });
 
-    let discrectionaryItems = [];
+    let discretionaryItems = [];
     if (config.cases.version === 1) {
       if (response.body[dataKey]) {
-        discrectionaryItems = response.body[dataKey];
+        discretionaryItems = response.body[dataKey];
       }
     } else if (response.body) {
-      discrectionaryItems = response.body;
+      discretionaryItems = response.body;
     }
 
-    yield put({ type: 'CASE:DISCRECTIONARY_ITEMS:FETCH:SUCCESS', discrectionaryItems });
+    yield put({ type: 'CASE:DISCRETIONARY_ITEMS:FETCH:SUCCESS', discretionaryItems });
   } catch (err) {
-    yield put({ type: 'CASE:DISCRECTIONARY_ITEMS:FETCH:FAIL', error: err.message });
+    yield put({ type: 'CASE:DISCRETIONARY_ITEMS:FETCH:FAIL', error: err.message });
+  }
+}
+
+export function* planDiscretionaryItem(action) {
+  if (!action || !action.planItemId) {
+    yield put({
+      type: 'CASE:DISCRETIONARY_ITEMS:PLAN:FAIL',
+      error: 'Must specify a plan item id for the discretionary item to plan'
+    });
+    return;
+  }
+
+  try {
+    const config = registry.get('config');
+    const store = registry.get('store');
+
+    yield put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN' });
+
+    const response = yield registry.get('request')
+      .post(`${config.cases.url}/${action.caseId}/discretionaryitems/plan`, {
+        planItemId: action.planItemId
+      }, {
+        headers: {
+          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
+        }
+      });
+
+    const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+
+    yield put(notifySuccess(`Discretionary item ['${action.planItemName}'] has been planned`));
+    yield put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN:SUCCESS' });
+    yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId, caseLastModified });
+  } catch (err) {
+    yield put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN:FAIL', error: err.message });
+    yield put(notifyDanger(`Error while planning discretionary item ['${action.planItemName}']`));
   }
 }

@@ -1,10 +1,10 @@
-import { takeEvery, takeLatest } from 'redux-saga';
+import { takeEvery } from 'redux-saga';
 
 import { loginFlow, refreshFlow } from '../features/login';
 import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow } from '../features/user';
 import { fetchTasks, viewTasks } from '../features/tasks';
 import { fetchTaskDetails, viewTask, transitionToState } from '../features/task';
-import { fetchCase, fetchDiscrectionaryItems } from '../features/case';
+import { fetchCase, fetchDiscretionaryItems, planDiscretionaryItem } from '../features/case';
 
 const sagas = [
   // Login
@@ -23,8 +23,9 @@ const sagas = [
   [takeEvery, 'TASK:TASKLIST:VIEW_TASK', viewTask],
   [takeEvery, 'TASK:REQUEST_TRANSITION', transitionToState],
   // case
-  [takeLatest, 'CASE:REQUEST_INIT', fetchCase],
-  [takeLatest, 'CASE:REQUEST_INIT', fetchDiscrectionaryItems]
+  [takeEvery, 'CASE:REQUEST_INIT', fetchCase],
+  [takeEvery, 'CASE:REQUEST_INIT', fetchDiscretionaryItems],
+  [takeEvery, 'CASE:DISCRETIONARY_ITEMS:REQUEST_PLAN', planDiscretionaryItem]
 ];
 
 function* rootSaga() {
