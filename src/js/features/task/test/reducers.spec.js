@@ -9,6 +9,14 @@ const defaultState = Immutable.fromJS(
     error: {
       message: '',
       isError: false
+    },
+
+    transition: {
+      onGoing: false,
+      error: {
+        message: '',
+        isError: false
+      }
     }
   }
 );

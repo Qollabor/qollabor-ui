@@ -7,13 +7,15 @@ const buttonStyle = {
 };
 
 export class TaskTransitions extends React.Component {
-  handleButtonClick(taskId, transition) {
+  handleButtonClick(taskId, caseId, transition) {
     if (this.props.onButtonClick) {
-      this.props.onButtonClick(taskId, transition);
+      this.props.onButtonClick(taskId, caseId, transition);
     }
   }
 
   render() {
+    const disabled = ! this.props.buttonsDisabled ? false : this.props.buttonsDisabled;
+
     const content = (
       <section>
           {this.props.availableTransitions.map((transition) => (
@@ -23,7 +25,8 @@ export class TaskTransitions extends React.Component {
               labelColor="white"
               key={transition.action}
               label={transition.label}
-              onTouchTap={this.handleButtonClick.bind(this, this.props.taskId, transition.action)}
+              disabled={disabled}
+              onTouchTap={this.handleButtonClick.bind(this, this.props.taskId, this.props.caseId, transition.action)}
             />
           ))}
       </section>
@@ -34,8 +37,10 @@ export class TaskTransitions extends React.Component {
 }
 
 TaskTransitions.propTypes = {
+  buttonsDisabled: React.PropTypes.bool,
   availableTransitions: React.PropTypes.array.isRequired,
   taskId: React.PropTypes.string.isRequired,
+  caseId: React.PropTypes.string.isRequired,
   onButtonClick: React.PropTypes.func
 };
 

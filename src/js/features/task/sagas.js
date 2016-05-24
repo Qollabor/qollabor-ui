@@ -44,7 +44,7 @@ export function* transitionToState(action) {
   const config = registry.get('config');
   const helpers = registry.get('helpers');
 
-  yield put({ type: 'TASK:TRANSITION:START', taskId: action.taskId });
+  yield put({ type: 'TASK:TRANSITION', taskId: action.taskId });
 
   try {
     // TODO check if the caseLastModified should be put for the post
@@ -59,6 +59,9 @@ export function* transitionToState(action) {
       taskId: action.taskId,
       caseLastModified: response.headers.get(config.cases.lastModifiedHttpHeader)
     });
+
+    yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId });
+    yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId });
   } catch (err) {
     registry.get('logger').error(err);
     notifyDanger('Unable to apply transition');

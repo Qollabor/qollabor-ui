@@ -51,7 +51,7 @@ export class TaskLayout extends React.Component {
             <div style={{ minHeight: '500px' }}>
               <TaskDetails taskId={this.props.taskId}/>
 
-              <TaskTransitions taskId={this.props.taskId}/>
+              <TaskTransitions taskId={this.props.taskId} caseId={this.props.caseId}/>
             </div>
           </Paper>
         </div>

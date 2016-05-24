@@ -26,14 +26,15 @@ function mapDispatchToProps(dispatch) {
 
 function mapTransitionsStateToProps(state) {
   return {
+    buttonsDisabled: state.task.getIn(['transition', 'onGoing']),
     availableTransitions: getAvailableTransitions(state.task.get('taskDetails').toJS())
   };
 }
 
 function mapTransitionsDispatchToProps(dispatch) {
   return {
-    onButtonClick: (taskId, transition) => {
-      dispatch({ type: 'TASK:REQUEST_TRANSITION', taskId, transition });
+    onButtonClick: (taskId, caseId, transition) => {
+      dispatch({ type: 'TASK:REQUEST_TRANSITION', taskId, caseId, transition });
     }
   };
 }
@@ -42,4 +43,5 @@ export { reducers } from './reducers';
 export * from './sagas';
 
 export const Task = connect(mapStateToProps, mapDispatchToProps)(TaskLayout);
-export const TaskTransitions = connect(mapTransitionsStateToProps, mapTransitionsDispatchToProps)(TaskTransitionsComponent);
+export const TaskTransitions =
+  connect(mapTransitionsStateToProps, mapTransitionsDispatchToProps)(TaskTransitionsComponent);
