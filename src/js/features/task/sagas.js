@@ -50,11 +50,15 @@ export function* transitionToState(action) {
     // TODO check if the caseLastModified should be put for the post
     const headers = helpers.addHeadersByName(['cafienneAuth']);
 
-    yield registry.get('request')
+    const response = yield registry.get('request')
       .post(`${config.tasks.url}/${action.taskId}/${action.transition}`, null, headers);
 
-    notifySuccess('The transition has been accepted');
-    yield put({ type: 'TASK:TRANSITION:SUCCESS', taskId: action.taskId });
+    yield put(notifySuccess('The transition has been accepted'));
+    yield put({
+      type: 'TASK:TRANSITION:SUCCESS',
+      taskId: action.taskId,
+      caseLastModified: response.headers.get(config.cases.lastModifiedHttpHeader)
+    });
   } catch (err) {
     registry.get('logger').error(err);
     notifyDanger('Unable to apply transition');

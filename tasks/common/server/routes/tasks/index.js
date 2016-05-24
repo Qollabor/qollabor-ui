@@ -51,7 +51,7 @@ router.post('/:taskId/complete', (req, res) => {
   if (task) {
     tasks.doComplete(req.params.taskId);
     setTimeout(() => {
-      res.status(204).send();
+      res.header('Case-Last-Modified', moment()).status(204).send();
     }, 200);
   } else {
     res.status(404).send();
@@ -63,7 +63,7 @@ router.post('/:taskId/terminate', (req, res) => {
   if (task) {
     tasks.doTerminate(req.params.taskId);
     setTimeout(() => {
-      res.status(204).send();
+      res.header('Case-Last-Modified', moment()).status(204).send();
     }, 200);
   } else {
     res.status(404).send();
@@ -75,7 +75,7 @@ router.post('/:taskId/suspend', (req, res) => {
   if (task) {
     tasks.doSuspend(req.params.taskId);
     setTimeout(() => {
-      res.status(204).send();
+      res.header('Case-Last-Modified', moment()).status(204).send();
     }, 200);
   } else {
     res.status(404).send();
@@ -87,7 +87,7 @@ router.post('/:taskId/resume', (req, res) => {
   if (task) {
     tasks.doResume(req.params.taskId);
     setTimeout(() => {
-      res.status(204).send();
+      res.header('Case-Last-Modified', moment()).status(204).send();
     }, 200);
   } else {
     res.status(404).send();

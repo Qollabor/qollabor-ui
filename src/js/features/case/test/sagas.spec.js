@@ -53,7 +53,7 @@ describe('features/case/sagas', () => {
         cases: {
           url: fakeURL,
           version: 2,
-          lastModifiedHttpHeader: 'something'
+          lastModifiedHttpHeader: 'caseLastModified'
         }
       });
     });
@@ -141,7 +141,7 @@ describe('features/case/sagas', () => {
         expect(requestSpy.calledWith(`${fakeURL}/${caseId}`, null, {
           headers: {
             [fakeTokenPropertyName]: fakeToken,
-            something: caseLastModified
+            caseLastModified
           }
         })).to.be.true;
       });
