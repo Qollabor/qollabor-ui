@@ -6,6 +6,8 @@ import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 import Immutable from 'immutable';
 
+import helpers from '../../../services/helpers';
+
 describe('feature/task/sagas', () => {
   describe('fetchTaskDetails saga', () => {
     let generator;
@@ -49,6 +51,10 @@ describe('feature/task/sagas', () => {
           version: 1
         }
       });
+    });
+
+    beforeEach(() => {
+      registry.register('helpers', helpers);
     });
 
     beforeEach(() => {
