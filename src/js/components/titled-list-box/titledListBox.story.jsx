@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import TitledListBox from './index';
+import { TitledListBox } from './index';
 
 const sampleItemList = [
   {

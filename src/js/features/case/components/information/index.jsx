@@ -1,17 +1,13 @@
 import React from 'react';
 import { TitledBox } from '../../../../components/titled-box';
-import { CaseFileViewer } from '../../../case';
+import { CaseFileViewer } from '../case-file-viewer';
 
 import styles from '../styles';
 
-export class CaseInformation extends React.Component {
+class CaseInformationComponent extends React.Component {
   render() {
     return (
-      <TitledBox
-        title="Case Information"
-        isFetching={this.props.isFetching || false}
-        error={this.props.error || {}}
-      >
+      <div>
         <section style={styles.section}>
           <div style={styles.title}>
             <em>Definition</em>
@@ -21,16 +17,17 @@ export class CaseInformation extends React.Component {
           </div>
         </section>
 
-        <CaseFileViewer caseId={this.props.caseId}/>
-      </TitledBox>
+        <CaseFileViewer case={this.props.case}/>
+      </div>
     );
   }
 }
 
-CaseInformation.propTypes = {
-  case: React.PropTypes.object,
-  isFetching: React.PropTypes.bool.isRequired,
-  error: React.PropTypes.object.isRequired
+CaseInformationComponent.propTypes = {
+  case: React.PropTypes.object
 };
+
+export const CaseInformation = TitledBox(CaseInformationComponent);
+CaseInformation.displayName = 'CaseInformation';
 
 export default CaseInformation;

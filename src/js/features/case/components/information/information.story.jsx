@@ -7,6 +7,7 @@ import { CaseInformation } from './index';
 const paperStyle = { padding: '5px', width: '300px' };
 
 const baseProps = {
+  title: 'Case information',
   error: {},
   isFetching: false,
   onMount: action('mount')
@@ -55,7 +56,7 @@ storiesOf('Case/Information', module)
     return (
       <div className="center-component">
         <Paper style={paperStyle}>
-          <CaseInformation isFetching={false} error={error}/>
+          <CaseInformation title="Case information" error={error}/>
         </Paper>
       </div>
     );

@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 
 import {
   CaseInformation as CaseInformationComponent,
-  CaseAttachments as CaseAttachmentsComponent,
-  CaseFileViewer as CaseFileViewerComponent
+  CaseAttachments as CaseAttachmentsComponent
 } from './components';
 
 function mapCaseStateToProps(state) {
@@ -25,12 +24,5 @@ function mapAttachmentsStateToProps(state) {
   };
 }
 
-function mapCaseFileViewerStateToProps(state) {
-  return {
-    case: state.case.case.get('item')
-  };
-}
-
 export const CaseInformation = connect(mapCaseStateToProps, null)(CaseInformationComponent);
 export const CaseAttachments = connect(mapAttachmentsStateToProps, null)(CaseAttachmentsComponent);
-export const CaseFileViewer = connect(mapCaseFileViewerStateToProps, null)(CaseFileViewerComponent);

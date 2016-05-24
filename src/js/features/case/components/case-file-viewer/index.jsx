@@ -12,12 +12,6 @@ export class CaseFileViewer extends React.Component {
     };
   }
 
-  componentDidMount() {
-    if (this.props.onMount) {
-      this.props.onMount(this.props.caseId);
-    }
-  }
-
   handleOpen() {
     this.setState({ open: true });
   }
@@ -60,8 +54,7 @@ export class CaseFileViewer extends React.Component {
 }
 
 CaseFileViewer.propTypes = {
-  case: React.PropTypes.object.isRequired,
-  onMount: React.PropTypes.func
+  case: React.PropTypes.object.isRequired
 };
 
 export default CaseFileViewer;

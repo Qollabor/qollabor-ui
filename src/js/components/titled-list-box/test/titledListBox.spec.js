@@ -2,8 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import TitledListBox from '../index';
-import TitledBox from '../../titled-box';
+import { TitledListBoxComponent } from '../index';
 import ActionRow from '../actionRow';
 import LinkRow from '../linkRow';
 
@@ -43,18 +42,18 @@ describe('components/titled-list-box', () => {
     after(() => console.error.restore());
 
     it('should send a warning if title is not set', () => {
-      expect(() => shallow.bind(<TitledListBox />))
-        .to.Throw('Warning: Failed propType: Required prop `title` was not specified in `TitledListBox`');
+      expect(() => shallow.bind(<TitledListBoxComponent items={[]} labelField="name"/>))
+        .to.Throw('Warning: Failed propType: Required prop `title` was not specified in `TitledListBoxComponent`');
     });
 
     it('should send a warning if items is not set', () => {
-      expect(() => shallow.bind(<TitledListBox title="Some title"/>))
-        .to.Throw('Warning: Failed propType: Required prop `items` was not specified in `TitledListBox`');
+      expect(() => shallow.bind(<TitledListBoxComponent title="Some title" labelField="name"/>))
+        .to.Throw('Warning: Failed propType: Required prop `items` was not specified in `TitledListBoxComponent`');
     });
 
     it('should send a warning id labelField is not set', () => {
-      expect(() => shallow.bind(<TitledListBox title="Some title" items={[]}/>))
-        .to.Throw('Warning: Failed propType: Required prop `labelField` was not specified in `TitledListBox`');
+      expect(() => shallow.bind(<TitledListBoxComponent title="Some title" items={[]}/>))
+        .to.Throw('Warning: Failed propType: Required prop `labelField` was not specified in `TitledListBoxComponent`');
     });
   });
 
@@ -67,16 +66,11 @@ describe('components/titled-list-box', () => {
         return item;
       });
       titledListBoxWidget = shallow(
-        <TitledListBox
+        <TitledListBoxComponent
           title={boxTitle}
           items={items}
           labelField="taskName"
         />);
-    });
-
-    it('should set the right title in titleBox', () => {
-      const titledBox = titledListBoxWidget.find(TitledBox);
-      expect(titledBox.props().title).to.equal(boxTitle);
     });
 
     it('should display the right list of items', () => {
@@ -93,16 +87,11 @@ describe('components/titled-list-box', () => {
         return item;
       });
       titledListBoxWidget = shallow(
-        <TitledListBox
+        <TitledListBoxComponent
           title={boxTitle}
           items={items}
           labelField="taskName"
         />);
-    });
-
-    it('should set the right title in titleBox', () => {
-      const titledBox = titledListBoxWidget.find(TitledBox);
-      expect(titledBox.props().title).to.equal(boxTitle);
     });
 
     it('should display the right list of items', () => {
@@ -116,17 +105,12 @@ describe('components/titled-list-box', () => {
     before(() => {
       items = [];
       titledListBoxWidget = shallow(
-        <TitledListBox
+        <TitledListBoxComponent
           title={boxTitle}
           items={items}
           emptyListMessage="No items"
           labelField="taskName"
         />);
-    });
-
-    it('should set the right title in titleBox', () => {
-      const titledBox = titledListBoxWidget.find(TitledBox);
-      expect(titledBox.props().title).to.equal(boxTitle);
     });
 
     it('should display the right list of items', () => {

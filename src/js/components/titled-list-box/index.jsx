@@ -6,42 +6,32 @@ import { ActionRow } from './actionRow';
 
 import styles from './styles';
 
-export class TitledListBox extends React.Component {
-
+export class TitledListBoxComponent extends React.Component {
   render() {
-    let content = false;
     if (this.props.items && this.props.items.length) {
-      content = this.props.items.map((item, index) => {
-        if (item.url) {
-          return <LinkRow key={index} item={item} labelField={this.props.labelField}/>;
-        }
-        return <ActionRow key={index} item={item} labelField={this.props.labelField}/>;
-      });
-    } else {
-      content = <span style={styles.noTask}>{this.props.emptyListMessage || ''}</span>;
+      return (
+        <div>
+          {this.props.items.map((taskListItem, index) => {
+            if (taskListItem.url) {
+              return <LinkRow key={index} item={taskListItem} labelField={this.props.labelField}/>;
+            }
+            return <ActionRow key={index} item={taskListItem} labelField={this.props.labelField}/>;
+          })}
+        </div>
+      );
     }
-
-    return (
-      <TitledBox
-        title={this.props.title}
-        isFetching={this.props.isFetching || false}
-        error={this.props.error || {}}
-      >
-        {content}
-      </TitledBox>
-    );
+    return <span style={styles.noTask}>{this.props.emptyListMessage || ''}</span>;
   }
 }
 
-TitledListBox.propTypes = {
-  title: React.PropTypes.string.isRequired,
+TitledListBoxComponent.propTypes = {
   emptyListMessage: React.PropTypes.string,
   items: React.PropTypes.array.isRequired,
-  error: React.PropTypes.object,
-  isFetching: React.PropTypes.bool,
-  labelField: React.PropTypes.string.isRequired
+  labelField: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string.isRequired
 };
 
+export const TitledListBox = TitledBox(TitledListBoxComponent);
 TitledListBox.displayName = 'TitledListBox';
 
 export default TitledListBox;
