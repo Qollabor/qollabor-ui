@@ -1,5 +1,4 @@
 import React from 'react';
-import { RefreshIndicator } from 'material-ui';
 
 import styles from './styles';
 
@@ -21,12 +20,7 @@ export const TitledBox = (WrappedComponent) => {
       if (this.props.isFetching) {
         content = (
           <div style={styles.refreshContainer}>
-            <RefreshIndicator
-              size={30}
-              left={5}
-              top={5}
-              status="loading"
-            />
+            <div>Loading...</div>
           </div>
         );
       } else if (this.props.error && this.props.error.isError) {
