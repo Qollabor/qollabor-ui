@@ -6,7 +6,7 @@ import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 import Immutable from 'immutable';
 
-import helpers from '../../../services/helpers';
+import helpers from '../../../helpers';
 
 describe('feature/task/sagas', () => {
   describe('fetchTaskDetails saga', () => {

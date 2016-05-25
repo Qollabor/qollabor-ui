@@ -47,11 +47,14 @@ export function* fetchCase(action) {
       .get(`${config.cases.url}/${action.caseId}`, null, headers);
 
     let theCase = {};
+
     if (config.cases.version === 1) {
       if (response.body[dataKey]) {
         theCase = response.body[dataKey];
       }
     } else if (response.body) {
+      const sanitizeAfterLoad = registry.get('helpers').task.sanitizeAfterLoad;
+      response.body.plan.items = response.body.plan.items.map(sanitizeAfterLoad);
       theCase = response.body;
     }
 

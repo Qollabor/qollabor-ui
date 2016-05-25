@@ -1,8 +1,5 @@
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
-import moment from 'moment';
-import generateFilter from './helpers/generateFilter';
-import calcTaskStatus from './helpers/calcTaskStatus';
 import { push as pushRouter } from 'react-router-redux';
 
 export function* fetchTasks() {
@@ -18,7 +15,7 @@ export function* fetchTasks() {
       userId: store.getState().user.getIn(['loggedUser', 'username']),
       today: (new Date()).toISOString().substring(0, 10)
     };
-    const filters = generateFilter(
+    const filters = registry.get('helpers').task.generateRequestFilters(
       store.getState().tasks.filters.getIn(['currentTasksFilter', 'filter']), filterParams);
     const headers = helpers.addHeadersByName(['cafienneAuth']);
 
@@ -32,14 +29,8 @@ export function* fetchTasks() {
         tasks = response.body[dataKey];
       }
     } else if (response.body.tasks) {
-      tasks = response.body.tasks.map(
-        task => {
-          task.status = calcTaskStatus(task);
-          task.dueDate = moment(task.dueDate, moment.ISO_8601).format('ddd, MMMM Do YYYY');
-          task.createdOn = moment(task.createdOn, moment.ISO_8601).format('ddd, MMMM Do YYYY');
-          return task;
-        }
-      );
+      const sanitizeAfterLoad = registry.get('helpers').task.sanitizeAfterLoad;
+      tasks = response.body.tasks.map(sanitizeAfterLoad);
     }
 
     yield put({ type: 'TASKS:LIST:FETCH:SUCCESS', tasks });

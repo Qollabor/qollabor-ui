@@ -9,8 +9,8 @@ function mapStateToProps(state, props) {
       .filter(activeTask => activeTask.get('id') !== props.taskId)
       .map(
         (activeTask) => Object.assign({}, activeTask.toJS(), {
-          color: '#388AC3',
-          icon: 'view_list',
+          color: activeTask.getIn(['viewInternalData', 'iconStyle', 'color']),
+          icon: activeTask.getIn(['viewInternalData', 'icon']),
           url: `/#/tasks/${activeTask.get('id')}?caseId=${activeTask.get('caseInstanceId')}`
         })
       ).toJS(),

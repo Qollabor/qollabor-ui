@@ -9,7 +9,7 @@ import registry from 'app-registry';
 
 import { fetchDiscretionaryItems } from '../sagas';
 
-import helpers from '../../../services/helpers';
+import helpers from '../../../helpers';
 
 describe('features/case/sagas', () => {
   describe('fetchDiscretionaryItems', () => {

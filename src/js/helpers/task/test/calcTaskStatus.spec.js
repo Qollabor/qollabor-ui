@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import calcTaskStatus from '../calcTaskStatus';
+import { calcTaskStatus } from '../calcTaskStatus';
 
 describe('features/tasks/helpers/calcTaskStatus', () => {
   describe('When the planState is Completed', () => {

@@ -15,7 +15,7 @@ import registry from 'app-registry';
 import request from './services/request';
 import storage from './services/storage';
 import logger from './services/logger';
-import helpers from './services/helpers';
+import helpers from './helpers';
 
 registry.register('request', request);
 registry.register('storage', storage);

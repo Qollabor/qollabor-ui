@@ -10,7 +10,7 @@ import registry from 'app-registry';
 import { planDiscretionaryItem } from '../sagas';
 import { notifySuccess, notifyDanger } from '../../notifier';
 
-import helpers from '../../../services/helpers';
+import helpers from '../../../helpers';
 
 describe('features/case/sagas', () => {
   describe('planDiscretionaryItem', () => {

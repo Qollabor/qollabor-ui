@@ -2,8 +2,6 @@ import React from 'react';
 
 import { IconButton, FontIcon } from 'material-ui';
 
-import { TaskStatus } from './taskStatus';
-
 import styles from './../styles';
 
 class TaskRow extends React.Component {
@@ -34,7 +32,10 @@ class TaskRow extends React.Component {
         onClick={this.handleRowClick.bind(this, this.props.rowData.id, this.props.rowData.caseInstanceId)}
       >
         <td key="statusColumn" style={statusColumnStyle}>
-          <TaskStatus status={this.props.rowData.status}/>
+          <FontIcon
+            className="material-icons"
+            style={this.props.rowData.viewInternalData.iconStyle}
+          >{this.props.rowData.viewInternalData.icon}</FontIcon>
         </td>
 
         {this.props.columns

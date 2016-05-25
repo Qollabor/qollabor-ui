@@ -3,7 +3,6 @@ import { storiesOf, action } from '@kadira/storybook';
 
 import fakeData from './data.json';
 import TaskList from './../components/taskList';
-import TaskStatus from './../components/taskStatus';
 import ColumnPicker from './../components/columnPicker';
 
 const columns = [
@@ -87,40 +86,6 @@ storiesOf('Tasks/List', module)
   .add('Is fetching something', () =>
     <div className="center-component">
       <TaskList columns={columns} isFetching={true}/>
-    </div>
-  )
-  .add('Status icons', () =>
-    <div className="center-component">
-      <table>
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Icon</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Completed</td>
-            <td><TaskStatus status="COMPLETED"/></td>
-          </tr>
-          <tr>
-            <td>Due</td>
-            <td><TaskStatus status="DUE"/></td>
-          </tr>
-          <tr>
-            <td>Terminated</td>
-            <td><TaskStatus status="TERMINATED"/></td>
-          </tr>
-          <tr>
-            <td>Empty</td>
-            <td><TaskStatus status=""/></td>
-          </tr>
-          <tr>
-            <td>Not set</td>
-            <td><TaskStatus /></td>
-          </tr>
-        </tbody>
-      </table>
     </div>
   )
   .add('Column Picker', () =>

@@ -1,4 +1,4 @@
-const generateFn = (filters, args) =>
+export const generateRequestFilters = (filters, args) =>
   filters.map((filter) => {
     switch (filter) {
       case 'myTasks':
@@ -13,5 +13,3 @@ const generateFn = (filters, args) =>
         throw new Error(`Unsupported filter ${filter}`);
     }
   }).reduce((accumulator, value) => Object.assign(accumulator, value), {});
-
-export default generateFn;

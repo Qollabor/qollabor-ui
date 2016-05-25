@@ -63,7 +63,7 @@ export class TaskLayout extends React.Component {
           style={styles.leftNav}
           openRight={true}
         >
-          <CaseInformation caseId={this.props.caseId}/>
+          <CaseInformation caseId={this.props.caseId} title="Case information"/>
 
           <CaseAttachments caseId={this.props.caseId}/>
         </LeftNav>

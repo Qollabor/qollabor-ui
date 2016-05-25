@@ -1,4 +1,4 @@
-function calcTaskStatus(task) {
+export const calcTaskStatus = (task) => {
   if (task.planState === 'Completed') {
     return 'COMPLETED';
   }
@@ -9,6 +9,4 @@ function calcTaskStatus(task) {
     return 'DUE';
   }
   return 'ACTIVE';
-}
-
-export default calcTaskStatus;
+};
