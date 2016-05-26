@@ -1,4 +1,6 @@
 import React from 'react';
+import TaskInfo from '../task/components/taskinfo/component';
+import { TaskBreadCrumb } from '../task/components/task-breadcrumb';
 
 export class TaskDetails extends React.Component {
   componentDidMount() {
@@ -8,19 +10,16 @@ export class TaskDetails extends React.Component {
   }
 
   render() {
-    let bodyContent = null;
-    if (this.props.isFetching) {
-      bodyContent = 'Show <TaskDetailsLoader/>';
-    } else if (this.props.error && this.props.error.isError) {
-      bodyContent = `Show <ErrorMessage/> with msg:${this.props.error.message}`;
-    } else {
-      bodyContent =
-        <pre>{JSON.stringify(this.props.taskDetails, null, 4)}</pre>;
-    }
-
     return (
       <div>
-        {bodyContent}
+        <TaskBreadCrumb />
+        <div style={{ height: '400px' }}></div>
+        <TaskInfo
+          taskDetails={this.props.taskDetails}
+          isFetching={this.props.isFetching}
+          error={this.props.error}
+          title={'Task information'}
+        />
       </div>
     );
   }
