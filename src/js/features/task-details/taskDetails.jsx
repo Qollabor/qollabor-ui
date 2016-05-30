@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskInfo from '../task/components/taskinfo/component';
+import TaskInfo from '../task/components/taskinfo';
 import { TaskBreadCrumb } from '../task/components/task-breadcrumb';
 
 export class TaskDetails extends React.Component {

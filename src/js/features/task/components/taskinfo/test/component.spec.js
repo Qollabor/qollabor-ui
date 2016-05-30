@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import { TaskInfo } from '../component';
+import { TaskInfo } from '../index';
 import TaskInfoItem from '../components/item';
 
 describe('features/task/taskInfo', () => {
