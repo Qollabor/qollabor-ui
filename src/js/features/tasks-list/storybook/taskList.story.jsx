@@ -3,7 +3,7 @@ import { storiesOf, action } from '@kadira/storybook';
 
 import fakeData from './data.json';
 import TaskList from './../components/taskList';
-import ColumnPicker from './../components/columnPicker';
+import ColumnPicker from '../../../components/column-picker/columnPicker';
 
 const columns = [
   {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import ActiveTasksComponent from './component';
+import ActiveItemsComponent from './component';
 
 function mapStateToProps(state, props) {
   return {
@@ -26,4 +26,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export const ActiveTasks = connect(mapStateToProps, mapDispatchToProps)(ActiveTasksComponent);
+export const ActiveItems = connect(mapStateToProps, mapDispatchToProps)(ActiveItemsComponent);

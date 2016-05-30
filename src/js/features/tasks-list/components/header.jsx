@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ColumnPicker } from './columnPicker';
+import { ColumnPicker } from '../../../components/column-picker/columnPicker';
 
 import styles from './../styles';
 

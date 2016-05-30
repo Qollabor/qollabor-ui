@@ -18,4 +18,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export const TaskDetails = connect(mapStateToProps, mapDispatchToProps)(TaskDetailsComponent);
+export const Details = connect(mapStateToProps, mapDispatchToProps)(TaskDetailsComponent);

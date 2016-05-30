@@ -1,16 +1,20 @@
 import React from 'react';
 import LeftNav from 'material-ui/lib/left-nav';
 import Paper from 'material-ui/lib/paper';
+
 import { ThemeManager } from 'material-ui/lib/styles';
-import styles from './styles';
-import { TaskDetails } from '../task-details';
-import { ActiveTasks } from './components/tasklist-active';
-import { CompletedTasks } from './components/tasklist-completed';
+import { Details } from './components/details';
+import { TransitionButtons } from './components/transition-buttons';
+
+import { ActiveItems } from './components/active-items';
+import { CompletedItems } from './components/completed-items';
 import { DiscretionaryItems } from './components/discretionary-items';
-import { TaskTransitions } from './index';
+
 import { CaseInformation, CaseAttachments } from '../case';
 
-export class TaskLayout extends React.Component {
+import styles from './styles';
+
+export class Task extends React.Component {
   componentDidMount() {
     if (this.props.onMount) {
       this.props.onMount(this.props.caseId);
@@ -43,17 +47,17 @@ export class TaskLayout extends React.Component {
           docked={true}
           style={styles.leftNav}
         >
-          <ActiveTasks taskId={this.props.taskId}/>
+          <ActiveItems taskId={this.props.taskId}/>
           <DiscretionaryItems taskId={this.props.taskId} emptyListMessage="No items"/>
-          <CompletedTasks taskId={this.props.taskId}/>
+          <CompletedItems taskId={this.props.taskId}/>
 
         </LeftNav>
         <div style={divContainerStyle}>
           <Paper style={{ padding: '10px' }}>
             <div style={{ minHeight: '500px' }}>
-              <TaskDetails taskId={this.props.taskId}/>
+              <Details taskId={this.props.taskId}/>
 
-              <TaskTransitions taskId={this.props.taskId} caseId={this.props.caseId}/>
+              <TransitionButtons taskId={this.props.taskId} caseId={this.props.caseId}/>
             </div>
           </Paper>
         </div>
@@ -72,7 +76,7 @@ export class TaskLayout extends React.Component {
   }
 }
 
-TaskLayout.propTypes = {
+Task.propTypes = {
   onMount: React.PropTypes.func,
   onTaskChanged: React.PropTypes.func,
   onCaseChanged: React.PropTypes.func,
@@ -81,6 +85,6 @@ TaskLayout.propTypes = {
   showLeftNav: React.PropTypes.bool
 };
 
-TaskLayout.displayName = 'TaskLayout';
+Task.displayName = 'Task';
 
-export default TaskLayout;
+export default Task;

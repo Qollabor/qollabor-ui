@@ -1,8 +1,7 @@
 import React from 'react';
 import { TitledListBox } from '../../../../components/titled-list-box';
 
-class TaskListActive extends React.Component {
-
+class ActiveItems extends React.Component {
   render() {
     const TaskListTitle = 'Active tasks';
     return (
@@ -17,12 +16,12 @@ class TaskListActive extends React.Component {
   }
 }
 
-TaskListActive.displayName = 'TaskListActive';
+ActiveItems.displayName = 'ActiveItems';
 
-TaskListActive.propTypes = {
+ActiveItems.propTypes = {
   isFetching: React.PropTypes.bool.isRequired,
   activeTasks: React.PropTypes.array.isRequired,
   error: React.PropTypes.object
 };
 
-export default TaskListActive;
+export default ActiveItems;

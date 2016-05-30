@@ -1,7 +1,7 @@
 import React from 'react';
 import { TitledListBox } from '../../../../components/titled-list-box';
 
-class TaskListCompleted extends React.Component {
+class CompletedItems extends React.Component {
 
   render() {
     const TaskListTitle = 'Completed tasks';
@@ -18,12 +18,12 @@ class TaskListCompleted extends React.Component {
   }
 }
 
-TaskListCompleted.displayName = 'TaskListCompleted';
+CompletedItems.displayName = 'CompletedItems';
 
-TaskListCompleted.propTypes = {
+CompletedItems.propTypes = {
   isFetching: React.PropTypes.bool.isRequired,
   completedTasks: React.PropTypes.array.isRequired,
   error: React.PropTypes.object
 };
 
-export default TaskListCompleted;
+export default CompletedItems;

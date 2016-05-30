@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import { TaskInfo } from './component';
+import { TaskInfo } from './index';
 
 const taskDetails = {
   modifiedBy: 'moduser',

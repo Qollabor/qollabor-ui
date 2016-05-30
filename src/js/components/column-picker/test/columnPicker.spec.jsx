@@ -6,7 +6,7 @@ import { shallow } from 'enzyme';
 
 import { IconButton, Popover, Menu, MenuItem } from 'material-ui';
 
-import { ColumnPicker } from '../components/columnPicker';
+import { ColumnPicker } from '../columnPicker';
 
 describe('features/taskList/columnPicker', () => {
   describe('<ColumnPicker />', () => {

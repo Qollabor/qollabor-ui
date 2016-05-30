@@ -6,7 +6,7 @@ const buttonStyle = {
   margin: '3px'
 };
 
-export class TaskTransitions extends React.Component {
+export class TransitionButtons extends React.Component {
   handleButtonClick(taskId, caseId, transition) {
     if (this.props.onButtonClick) {
       this.props.onButtonClick(taskId, caseId, transition);
@@ -36,7 +36,7 @@ export class TaskTransitions extends React.Component {
   }
 }
 
-TaskTransitions.propTypes = {
+TransitionButtons.propTypes = {
   buttonsDisabled: React.PropTypes.bool,
   availableTransitions: React.PropTypes.array.isRequired,
   taskId: React.PropTypes.string.isRequired,
@@ -44,4 +44,4 @@ TaskTransitions.propTypes = {
   onButtonClick: React.PropTypes.func
 };
 
-export default TaskTransitions;
+export default TransitionButtons;

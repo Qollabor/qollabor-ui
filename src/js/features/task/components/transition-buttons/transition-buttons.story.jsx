@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 
 import { Paper } from 'material-ui';
-import { TaskTransitions } from './index';
+import { TransitionButtons } from './transition-buttons';
 
 const paperStyle = { padding: '5px', width: '250px' };
 
@@ -33,7 +33,7 @@ storiesOf('Task/TaskTransitions', module)
     return (
       <div className="center-component">
         <Paper style={paperStyle}>
-          <TaskTransitions {...props} />
+          <TransitionButtons {...props} />
         </Paper>
       </div>
     );
@@ -79,7 +79,7 @@ storiesOf('Task/TaskTransitions', module)
     return (
       <div className="center-component">
         <Paper style={paperStyle}>
-          <TaskTransitions {...props} />
+          <TransitionButtons {...props} />
         </Paper>
       </div>
     );
@@ -111,7 +111,7 @@ storiesOf('Task/TaskTransitions', module)
     return (
       <div className="center-component">
         <Paper style={paperStyle}>
-          <TaskTransitions {...props} />
+          <TransitionButtons {...props} />
         </Paper>
       </div>
     );
