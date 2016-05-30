@@ -3,7 +3,6 @@ import { storiesOf, action } from '@kadira/storybook';
 
 import fakeData from './data.json';
 import TaskList from './../components/taskList';
-import ColumnPicker from '../../../components/column-picker/columnPicker';
 
 const columns = [
   {
@@ -87,8 +86,4 @@ storiesOf('Tasks/List', module)
     <div className="center-component">
       <TaskList columns={columns} isFetching={true}/>
     </div>
-  )
-  .add('Column Picker', () =>
-    (<div className="center-component">
-      <ColumnPicker columns={columns} onMenuItemClicked={action('toggle-column-visibility')}/>
-    </div>));
+  );

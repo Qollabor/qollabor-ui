@@ -1,6 +1,6 @@
 import React from 'react';
 import { TitledBox } from '../../../../components/titled-box';
-import { CaseFileViewer } from '../case-file-viewer';
+import { JsonObjectViewer } from '../../../../components/json-object-viewer';
 
 import styles from '../styles';
 
@@ -17,7 +17,13 @@ class CaseInformationComponent extends React.Component {
           </div>
         </section>
 
-        <CaseFileViewer case={this.props.case}/>
+        <JsonObjectViewer
+          buttonTitle="Open case"
+          buttonIsPrimary={true}
+          buttonStyle={{ float: 'right' }}
+          modalTitle="Case details"
+          object={this.props.case}
+        />
       </div>
     );
   }

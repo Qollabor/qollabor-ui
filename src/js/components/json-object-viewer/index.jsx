@@ -3,7 +3,7 @@ import { FlatButton, Dialog } from 'material-ui';
 
 import { JsonPrinter } from './jsonPrinter';
 
-export class CaseFileViewer extends React.Component {
+export class JsonObjectViewer extends React.Component {
   constructor(props) {
     super(props);
 
@@ -28,16 +28,16 @@ export class CaseFileViewer extends React.Component {
     return (
       <div>
         <FlatButton
-          style={{ float: 'right' }}
-          label="Open case"
-          primary={true}
+          style={this.props.buttonStyle || {}}
+          label={this.props.buttonTitle}
+          primary={this.props.buttonIsPrimary || false}
           onTouchTap={this.handleOpen.bind(this)}
         />
 
         <div style={{ clear: 'both' }}/>
 
         <Dialog
-          title="Case details"
+          title={this.props.modalTitle}
           modal={true}
           open={this.state.open}
           actions={actions}
@@ -45,7 +45,7 @@ export class CaseFileViewer extends React.Component {
           bodyStyle={{ paddingTop: '10px', paddingBottom: '10px' }}
         >
           <div style={{ maxHeight: '280px', overflow: 'auto', outline: '1px solid #ccc' }}>
-            <JsonPrinter object={this.props.case}/>
+            <JsonPrinter object={this.props.object}/>
           </div>
         </Dialog>
       </div>
@@ -53,8 +53,12 @@ export class CaseFileViewer extends React.Component {
   }
 }
 
-CaseFileViewer.propTypes = {
-  case: React.PropTypes.object.isRequired
+JsonObjectViewer.propTypes = {
+  modalTitle: React.PropTypes.string.isRequired,
+  buttonTitle: React.PropTypes.string.isRequired,
+  buttonStyle: React.PropTypes.object,
+  buttonIsPrimary: React.PropTypes.boolean,
+  object: React.PropTypes.object.isRequired
 };
 
-export default CaseFileViewer;
+export default JsonObjectViewer;
