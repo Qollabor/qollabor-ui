@@ -7,6 +7,9 @@ import { ThemeManager } from 'material-ui/lib/styles';
 const theme = ThemeManager.getMuiTheme();
 
 export default {
+  cell: {
+    cursor: 'pointer'
+  },
   table: {
     padding: '0 24px',
     width: '100%',

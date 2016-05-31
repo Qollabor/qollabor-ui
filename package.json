@@ -3,6 +3,7 @@
   "dependencies": {
     "app-registry": "^1.0.1",
     "babel-polyfill": "^6.7.4",
+    "fixed-data-table": "^0.6.0",
     "history": "^2.1.0",
     "immutable": "^3.8.1",
     "material-ui": "^0.14.4",
@@ -10,6 +11,7 @@
     "query-string": "^4.1.0",
     "radium": "^0.17.1",
     "react": "^15.0.1",
+    "react-dimensions": "^1.2.0",
     "react-dom": "^15.0.1",
     "react-immutable-proptypes": "^1.7.1",
     "react-notification": "^5.0.4",

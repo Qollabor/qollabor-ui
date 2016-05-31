@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-
-import { TaskList as TaskListComponent } from './components/taskList';
+import TaskListFixed from './components/fixedTaskList';
 
 function mapStateToProps(state) {
   return {
+    showLeftNav: state.app.get('showLeftNav'),
     tasks: state.tasks.list.get('items').toJS(),
     columns: state.tasks.columns.toJS(),
     isFetching: state.tasks.list.get('isFetching'),
@@ -25,4 +25,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export const TaskList = connect(mapStateToProps, mapDispatchToProps)(TaskListComponent);
+export const TaskList = connect(mapStateToProps, mapDispatchToProps)(TaskListFixed);

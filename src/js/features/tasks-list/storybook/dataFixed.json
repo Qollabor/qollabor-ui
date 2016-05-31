@@ -1,0 +1,152 @@
+[
+  {
+    "id": "0",
+    "assignee": "Danny Kruitbosch",
+    "taskName": "Review application",
+    "caseDefinition": "Social benefits application",
+    "caseInstanceId": "d62dea32_62b8_4206_b12e_029436d75001",
+    "dueDate": "2016-03-22",
+    "createdOn": "Sat, March 5th 2016",
+    "viewInternalData": {
+      "iconStyle": {
+        "color": "green"
+      },
+      "icon": "done_all"
+    }
+  },
+  {
+    "id": "1",
+    "assignee": "Danny Kruitbosch",
+    "taskName": "Review application with a lot of other interesting stuff to describe",
+    "caseDefinition": "Social benefits application",
+    "caseInstanceId": "d62dea32_62b8_4206_b12e_029436d75001",
+    "dueDate": "2016-03-22",
+    "createdOn": "Sat, March 6th 2016",
+    "viewInternalData": {
+      "iconStyle": {
+        "color": "green"
+      },
+      "icon": "done_all"
+    }
+  },
+  {
+    "id": "2",
+    "assignee": "Danny Kruitbosch",
+    "taskName": "Review application for a long long time, come on you are a highly paid professional, do this!",
+    "caseDefinition": "Social benefits application",
+    "caseInstanceId": "d62dea32_62b8_4206_b12e_029436d75001",
+    "dueDate": "2016-03-22",
+    "createdOn": "Sat, March 7th 2016",
+    "viewInternalData": {
+      "iconStyle": {
+        "color": "black"
+      },
+      "icon": "done_all"
+    }
+  },
+  {
+    "id": "3",
+    "assignee": "Danny Kruitbosch",
+    "taskName": "Review application",
+    "caseDefinition": "Social benefits application with lots lots and lots of benefits",
+    "caseInstanceId": "d62dea32_62b8_4206_b12e_029436d75001",
+    "dueDate": "2016-03-22",
+    "createdOn": "Sat, March 8th 2016",
+    "viewInternalData": {
+      "iconStyle": {
+        "color": "green"
+      },
+      "icon": "done_all"
+    }
+  },
+  {
+    "id": "4",
+    "assignee": "Danny Kruitbosch",
+    "taskName": "Review application",
+    "caseDefinition": "Social benefits application",
+    "caseInstanceId": "d62dea32_62b8_4206_b12e_029436d75001",
+    "dueDate": "2016-03-22",
+    "createdOn": "Sat, March 8th 2016",
+    "viewInternalData": {
+      "iconStyle": {
+        "color": "orange"
+      },
+      "icon": "history"
+    }
+  },
+  {
+    "id": "5",
+    "assignee": "Danny Kruitbosch",
+    "taskName": "Review application",
+    "caseDefinition": "Social benefits application",
+    "caseInstanceId": "d62dea32_62b8_4206_b12e_029436d75001",
+    "dueDate": "2016-03-22",
+    "createdOn": "Sat, March 8th 2016",
+    "viewInternalData": {
+      "iconStyle": {
+        "color": "yellow"
+      },
+      "icon": "view_list"
+    }
+  },
+  {
+    "id": "6",
+    "assignee": "Danny Kruitbosch",
+    "taskName": "Review application with a lot of other interesting stuff to describe",
+    "caseDefinition": "Social benefits application",
+    "caseInstanceId": "d62dea32_62b8_4206_b12e_029436d75001",
+    "dueDate": "2016-03-22",
+    "createdOn": "Sat, March 9th 2016",
+    "viewInternalData": {
+      "iconStyle": {
+        "color": "black"
+      },
+      "icon": "done_all"
+    }
+  },
+  {
+    "id": "7",
+    "assignee": "Danny Kruitbosch",
+    "taskName": "Review application for a long long time, come on you are a highly paid professional, do this!",
+    "caseDefinition": "Social benefits application",
+    "caseInstanceId": "d62dea32_62b8_4206_b12e_029436d75001",
+    "dueDate": "2016-03-22",
+    "createdOn": "Sat, March 9th 2016",
+    "viewInternalData": {
+      "iconStyle": {
+        "color": "green"
+      },
+      "icon": "close"
+    }
+  },
+  {
+    "id": "8",
+    "assignee": "Danny Kruitbosch",
+    "taskName": "Review application",
+    "caseDefinition": "Social benefits application with lots lots and lots of benefits",
+    "caseInstanceId": "d62dea32_62b8_4206_b12e_029436d75001",
+    "dueDate": "2016-03-22",
+    "createdOn": "Sat, March 5th 2016",
+    "viewInternalData": {
+      "iconStyle": {
+        "color": "yellow"
+      },
+      "icon": "done_all"
+    }
+  },
+  {
+    "id": "9",
+    "assignee": "Danny Kruitbosch",
+    "taskName": "Review application",
+    "caseDefinition": "Social benefits application",
+    "caseInstanceId": "d62dea32_62b8_4206_b12e_029436d75001",
+    "dueDate": "2016-03-22",
+    "createdOn": "Sat, March 5th 2016",
+    "viewInternalData": {
+      "iconStyle": {
+        "color": "blue"
+      },
+      "icon": "done_all"
+    }
+  }
+]
