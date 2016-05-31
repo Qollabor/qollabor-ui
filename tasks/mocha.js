@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 /**
  * Run the unit test
  */
@@ -14,12 +15,24 @@ module.exports = (gulp) => {
 
   function mochaTask(done) {
     const mocha = require('gulp-mocha-co');
-    const babel = require('babel-register');
+    const babel = require('babel-register')({
+      ignore: (filename) => {
+        const elementFolder = 'cafienne-ui-elements';
+        const startPath = path.join(__dirname, '..', 'node_modules');
+        if (filename.substr(0, startPath.length) === startPath) {
+          if (filename.substr(startPath.length + 1, elementFolder.length) === elementFolder) {
+            return false;
+          }
+          return true;
+        }
+        return false;
+      }
+    });
 
     return gulp.src(['./tests/helpers/plugins.js',
-        './src/js/**/test/*.spec.js*',
-        './tests/**/*.spec.js'
-      ], { read: false })
+      './src/js/**/test/*.spec.js*',
+      './tests/**/*.spec.js'
+    ], { read: false })
       .pipe(
         mocha({
           reporter: 'spec',

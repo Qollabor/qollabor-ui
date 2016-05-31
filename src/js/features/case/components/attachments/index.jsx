@@ -1,5 +1,5 @@
 import React from 'react';
-import { TitledListBox } from '../../../../components/titled-list-box';
+import { TitledListBox } from 'cafienne-ui-elements';
 
 export class CaseAttachments extends React.Component {
   render() {

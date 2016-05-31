@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ColumnPicker } from '../../../components/column-picker/columnPicker';
+import { ColumnPicker } from 'cafienne-ui-elements';
 
 import styles from './../styles';
 

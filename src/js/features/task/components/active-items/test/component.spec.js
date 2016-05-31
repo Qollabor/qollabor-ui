@@ -1,8 +1,10 @@
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import React from 'react';
+import { TitledListBox } from 'cafienne-ui-elements';
+
 import TaskListActive from '../component';
-import TitledListBox from '../../../../../components/titled-list-box';
+
 describe('features/task/tasklist-active', () => {
   const activeTasksList = [];
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles';
 import { Paper } from 'material-ui';
 import moment from 'moment';
-import { TitledBox } from '../../../../components/titled-box';
+import { TitledBox } from 'cafienne-ui-elements';
 import TaskInfoItem from './components/item';
 
 export class TaskInfo extends React.Component {

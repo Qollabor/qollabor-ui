@@ -16,12 +16,12 @@ module.exports = {
     loaders: [
       {
         test: /\.js?$/,
-        exclude: /(node_modules|bower_components)/,
+        include: /(src\/js|node_modules\/cafienne-ui-elements)/,
         loader: 'babel'
       },
       {
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        include: /(src\/js|node_modules\/cafienne-ui-elements)/,
         loader: 'babel'
       }
     ]

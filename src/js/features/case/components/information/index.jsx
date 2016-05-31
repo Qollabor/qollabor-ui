@@ -1,6 +1,5 @@
 import React from 'react';
-import { TitledBox } from '../../../../components/titled-box';
-import { JsonObjectViewer } from '../../../../components/json-object-viewer';
+import { TitledBox, JsonObjectViewer } from 'cafienne-ui-elements';
 
 import styles from '../styles';
 

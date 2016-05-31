@@ -27,6 +27,16 @@ module.exports = {
         test: /\.json?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'json-loader'
+      },
+      {
+        test: /\.js?$/,
+        include: /(src\/js|node_modules\/cafienne-ui-elements)/,
+        loader: 'babel'
+      },
+      {
+        test: /\.jsx?$/,
+        include: /(src\/js|node_modules\/cafienne-ui-elements)/,
+        loader: 'babel'
       }
     ]
   }

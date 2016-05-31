@@ -1,6 +1,6 @@
 import React from 'react';
 import TaskInfo from '../info';
-import { TaskBreadCrumb } from '../breadcrumb';
+import { TaskBreadcrumb } from '../breadcrumb';
 
 export class TaskDetails extends React.Component {
   componentDidMount() {
@@ -12,7 +12,7 @@ export class TaskDetails extends React.Component {
   render() {
     return (
       <div>
-        <TaskBreadCrumb />
+        <TaskBreadcrumb />
         <div style={{ height: '400px' }}></div>
         <TaskInfo
           taskDetails={this.props.taskDetails}

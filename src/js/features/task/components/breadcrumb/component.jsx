@@ -1,16 +1,16 @@
 import React from 'react';
-import BreadCrumb from '../../../../components/breadcrumb';
+import { Breadcrumb } from 'cafienne-ui-elements';
 
-export class TaskBreadCrumbComponent extends React.Component {
+export class TaskBreadcrumbComponent extends React.Component {
   render() {
     return (
-      <BreadCrumb items={this.props.items} separator={'/'} />
+      <Breadcrumb items={this.props.items} separator={'/'} />
     );
   }
 }
 
-TaskBreadCrumbComponent.propTypes = {
+TaskBreadcrumbComponent.propTypes = {
   items: React.PropTypes.array.isRequired
 };
 
-export default TaskBreadCrumbComponent;
+export default TaskBreadcrumbComponent;

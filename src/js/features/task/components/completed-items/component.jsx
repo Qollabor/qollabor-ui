@@ -1,8 +1,7 @@
 import React from 'react';
-import { TitledListBox } from '../../../../components/titled-list-box';
+import { TitledListBox } from 'cafienne-ui-elements';
 
 class CompletedItems extends React.Component {
-
   render() {
     const TaskListTitle = 'Completed tasks';
 
