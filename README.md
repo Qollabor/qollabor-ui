@@ -39,9 +39,9 @@ To develop/run the ui locally execute the following steps:
  * css         : Bundle and copy the css/scss files in the dist folder
  * eslint      : Check the JS syntax using eslint
  * mocha       : Run the unit test
- * serve       : Serve the development app on port 8080
- * serve-mock  : Serve the development app on port 8080 connected to the mocked API
- * serve-mock-api  : Serve a mocked API on port 8081
+ * serve       : Serve the development app on port 8080 (Set in the config server.port)
+ * serve-mock  : Serve the development app on port 8080 (Set in the config server.port) connected to the mocked API
+ * serve-mock-api  : Serve a mocked API on port 8081 (Set in the config mockServer.port)
 
 
 ### Test

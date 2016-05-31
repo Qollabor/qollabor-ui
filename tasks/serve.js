@@ -18,7 +18,7 @@ module.exports = (gulp, config) => {
 
           const myConfig = Object.create(require('../webpack.config.js'));
           myConfig.entry.unshift('webpack/hot/only-dev-server');
-          myConfig.entry.unshift('webpack-dev-server/client?http://localhost:8080/');
+          myConfig.entry.unshift(`webpack-dev-server/client?http://localhost:${config.server.port}/`);
           myConfig.devtool = 'eval';
           myConfig.debug = true;
 
