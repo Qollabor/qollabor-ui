@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import TasksFilter from './component';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 let currentTasksFilterId;
 const onChangeTasksFilter = function() {};
@@ -44,6 +46,7 @@ const types = [
 ];
 
 storiesOf('Tasks/Filter', module)
+  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('Default filter presentation', () => {
     currentTasksFilterId = 'myTasks';
     return (

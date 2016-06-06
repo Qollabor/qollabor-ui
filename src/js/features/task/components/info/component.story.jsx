@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import { TaskInfo } from './index';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const taskDetails = {
   modifiedBy: 'moduser',
@@ -24,6 +26,7 @@ const taskDetails = {
 const taskDetailsEmpty = {};
 
 storiesOf('Task/TaskInfo', module)
+  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('TaskInfo with data', () => (
     <div style={{ width: '300px', marginLeft: '100px' }}>
       <TaskInfo

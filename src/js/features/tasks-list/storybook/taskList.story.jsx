@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import fakeData from './data.json';
 import TaskList from './../components/taskList';
@@ -28,6 +30,7 @@ const columns = [
 ];
 
 storiesOf('Tasks/List', module)
+  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('With some item to display auto body height', () =>
     (<div className="center-component">
       <TaskList

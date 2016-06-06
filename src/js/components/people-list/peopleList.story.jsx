@@ -2,6 +2,8 @@ import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import PeopleList from './index';
 import PeoplePopupList from './components/popupList';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const samplePeople = [
   {
@@ -42,6 +44,7 @@ const samplePeople = [
 ];
 
 storiesOf('PeopleList', module)
+  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('Show list with people avatars with 150 with limit', () => (
     <div className="center-component">
       <PeopleList

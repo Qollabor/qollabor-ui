@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import { Paper } from 'material-ui';
 import { TransitionButtons } from './transition-buttons';
@@ -7,6 +9,7 @@ import { TransitionButtons } from './transition-buttons';
 const paperStyle = { padding: '5px', width: '250px' };
 
 storiesOf('Task/TaskTransitions', module)
+  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('short list', () => {
     const props = {
       taskId: 'dummy',

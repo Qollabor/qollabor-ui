@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import { Paper } from 'material-ui';
 
@@ -25,6 +27,7 @@ const sampleItemList = [
 ];
 
 storiesOf('Task/DiscretionaryItems', module)
+  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('some items to show', () => {
     const title = 'Active tasks';
     return (

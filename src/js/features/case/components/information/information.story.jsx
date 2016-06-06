@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import { Paper } from 'material-ui';
 import { CaseInformation } from './index';
@@ -14,6 +16,7 @@ const baseProps = {
 };
 
 storiesOf('Case/Information', module)
+  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('loading', () => (
     <div className="center-component">
       <Paper style={paperStyle}>

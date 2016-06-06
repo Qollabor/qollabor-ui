@@ -1,5 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import LoginForm from './loginForm.jsx';
 
@@ -9,6 +11,7 @@ const loginCallback = {
 };
 
 storiesOf('Login/Form', module)
+  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('The login form with empty fields ', () => (
     <div className="center-component">
       <LoginForm {...loginCallback} />

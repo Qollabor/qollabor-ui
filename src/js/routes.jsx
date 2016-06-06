@@ -11,6 +11,8 @@ import LoginPage from './pages/login';
 import CaseModelsPage from './pages/caseModels';
 import CaseModelDetailPage from './pages/caseModelDetail';
 
+import SampleFormPage from './pages/sampleForm';
+
 function getValuesFromRoutes(routes, attribute) {
   for (let i = routes.length - 1; i >= 0; i--) {
     if (routes[i][attribute] !== undefined) {
@@ -45,6 +47,7 @@ export default (
 
     <Route component={MainLayout}>
       <Route requireAuth={true}>
+        <Route path="/sample" component={SampleFormPage} {...hooks} />
         <Route path="/" component={TasksPage} {...hooks} />
         <Route path="/info" component={InfoPage} {...hooks} />
         <Route path="/tasks" component={TasksPage} {...hooks} />
