@@ -61,6 +61,11 @@ module.exports = {
       url: `${baseApiUrl}cases`,
       version: 1,
       lastModifiedHttpHeader: 'Case-Last-Modified'
+    },
+    case: {
+      peopleInvolved: {
+        maxPeopleInList: 4
+      }
     }
   }
 };

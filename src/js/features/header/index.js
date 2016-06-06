@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
   return {
-    menuItemCategory: state.app.get('menuItemCategory')
+    menuItemCategory: state.app.get('menuItemCategory'),
+    showCaseUsers: state.app.get('showCaseUsers'),
+    peopleInvolved: state.case.case.get('item').peopleInvolved
   };
 }
 

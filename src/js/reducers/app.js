@@ -3,7 +3,8 @@ const defaultState = Immutable.Map(
   {
     menuItemCategory: null,
     isOnInit: false,
-    showLeftNav: true
+    showLeftNav: true,
+    showCaseUsers: false
   }
 );
 
@@ -29,6 +30,9 @@ export default (state = defaultState, action) => {
 
     case 'APP:LEFT_NAV:CLOSE':
       return state.set('showLeftNav', false);
+
+    case 'APP:CASE_USERS:SHOW':
+      return state.set('showCaseUsers', action.showCaseUsers);
 
     default :
       return state;

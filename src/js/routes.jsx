@@ -20,10 +20,14 @@ function getValuesFromRoutes(routes, attribute) {
 
 function enterRouteHook(nextState, replace) {
   loginOnEnterHook(nextState, replace, store, getValuesFromRoutes(nextState.routes, 'requireAuth'));
+  const showCaseUsers = getValuesFromRoutes(nextState.routes, 'showCaseUsers') || false;
+  store.dispatch({ type: 'APP:CASE_USERS:SHOW', showCaseUsers });
 }
 
 function changeRouteHook(prevState, nextState, replace) {
   loginOnChangeHook(prevState, nextState, replace, store, getValuesFromRoutes(nextState.routes, 'requireAuth'));
+  const showCaseUsers = getValuesFromRoutes(nextState.routes, 'showCaseUsers') || false;
+  store.dispatch({ type: 'APP:CASE_USERS:SHOW', showCaseUsers });
 }
 
 const hooks = {
@@ -42,7 +46,7 @@ export default (
         <Route path="/" component={TasksPage} {...hooks} />
         <Route path="/info" component={InfoPage} {...hooks} />
         <Route path="/tasks" component={TasksPage} {...hooks} />
-        <Route path="/tasks/:taskId" component={TaskPage} {...hooks} />
+        <Route path="/tasks/:taskId" component={TaskPage} {...hooks} showCaseUsers={true}/>
       </Route>
     </Route>
   </Route>

@@ -11,7 +11,7 @@ describe('feature/case/component/PeopleInvolvedRow', () => {
     }];
 
     const PeopleInvolvedRowElement = shallow(
-      <PeopleInvolvedRow people={involvedPerson} />
+      <PeopleInvolvedRow maxPeopleInList={5} people={involvedPerson} />
     );
 
     it('should show a none clickable avatar with the initals of the person', () => {
@@ -28,7 +28,7 @@ describe('feature/case/component/PeopleInvolvedRow', () => {
     }];
 
     const PeopleInvolvedRowElement = shallow(
-      <PeopleInvolvedRow people={involvedPerson} />
+      <PeopleInvolvedRow maxPeopleInList={5} people={involvedPerson} />
     );
 
     it('should show a none clickable avatar with image of the person', () => {
@@ -46,7 +46,7 @@ describe('feature/case/component/PeopleInvolvedRow', () => {
     }];
 
     const PeopleInvolvedRowElement = shallow(
-      <PeopleInvolvedRow people={involvedPerson} />
+      <PeopleInvolvedRow maxPeopleInList={5} people={involvedPerson} />
     );
 
     it('should show a clickable avatar with image of the person', () => {
@@ -64,7 +64,7 @@ describe('feature/case/component/PeopleInvolvedRow', () => {
     }];
 
     const PeopleInvolvedRowElement = shallow(
-      <PeopleInvolvedRow people={involvedPerson} />
+      <PeopleInvolvedRow maxPeopleInList={5} people={involvedPerson} />
     );
 
     it('should show a clickable avatar with initials of the person', () => {
@@ -79,7 +79,7 @@ describe('feature/case/component/PeopleInvolvedRow', () => {
     }];
 
     const PeopleInvolvedRowElement = shallow(
-      <PeopleInvolvedRow people={involvedPerson} />
+      <PeopleInvolvedRow maxPeopleInList={5} people={involvedPerson} />
     );
 
     it('should show an avatar with a default initial value', () => {
@@ -92,7 +92,7 @@ describe('feature/case/component/PeopleInvolvedRow', () => {
     const involvedPerson = [];
 
     const PeopleInvolvedRowElement = shallow(
-      <PeopleInvolvedRow people={involvedPerson} />
+      <PeopleInvolvedRow maxPeopleInList={5} people={involvedPerson} />
     );
 
     expect(PeopleInvolvedRowElement.html()).to.be.equal('<div></div>');

@@ -1,13 +1,11 @@
 import React from 'react';
-
 import { Toolbar, ToolbarGroup, ToolbarTitle, IconButton } from 'material-ui';
 import { ThemeManager } from 'material-ui/lib/styles';
-
 import MenuIcon from 'material-ui/lib/svg-icons/navigation/menu';
-
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
-
 import styles from './styles';
+import PeopleInvolvedRow from '../case/components/people-involved-row';
+import registry from 'app-registry';
 
 export class Header extends React.Component {
   handleLeftNavToggle() {
@@ -24,6 +22,17 @@ export class Header extends React.Component {
       color: theme.appBar.textColor
     };
 
+    const config = registry.get('config');
+    let caseUserList = false;
+    if (this.props.showCaseUsers) {
+      caseUserList = (
+        <div style={{ marginTop: '3px', width: '450px' }}>
+          <PeopleInvolvedRow
+            maxPeopleInList={config.case.peopleInvolved.maxPeopleInList}
+            people={this.props.peopleInvolved}
+          />
+        </div>);
+    }
     return (
       <Toolbar
         style={Object.assign({}, styles.appBar, themeColorStyles)}
@@ -46,7 +55,8 @@ export class Header extends React.Component {
           />
         </ToolbarGroup>
         <ToolbarGroup firstChild={false} lastChild={false} float="right">
-          <AppBarUserMenu />
+          {caseUserList}
+          <div style={{ display: 'inline-block', marginLeft: '200px' }}><AppBarUserMenu /></div>
         </ToolbarGroup>
       </Toolbar>
     );

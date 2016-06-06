@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import PeopleInvolvedRow from './index';
+import PeopleInvolvedList from './index';
 
 const samplePeopleInvolved = [
   {
@@ -39,19 +39,16 @@ const samplePeopleInvolved = [
   }
 ];
 
-storiesOf('Case/PeopleInvolvedRow', module)
+storiesOf('Case/PeopleInvolvedList', module)
   .add('Show list with people avatars with', () => (
     <div className="center-component">
-      <PeopleInvolvedRow
-        maxPeopleInList={4}
-        people={samplePeopleInvolved}
-      />
+      <PeopleInvolvedList people={samplePeopleInvolved} />
     </div>
   ))
   .add('When no list is provided show nothing', () => {
     const empty = [];
     return (
       <div className="center-component">
-        <PeopleInvolvedRow maxPeopleInList={4} people={empty} />
+        <PeopleInvolvedList people={empty} />
       </div>);
   });
