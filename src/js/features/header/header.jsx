@@ -4,7 +4,7 @@ import { ThemeManager } from 'material-ui/lib/styles';
 import MenuIcon from 'material-ui/lib/svg-icons/navigation/menu';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import styles from './styles';
-import PeopleInvolvedRow from '../case/components/people-involved-row';
+import PeopleList from '../../components/people-list';
 import registry from 'app-registry';
 
 export class Header extends React.Component {
@@ -26,12 +26,14 @@ export class Header extends React.Component {
     let caseUserList = false;
     if (this.props.showCaseUsers) {
       caseUserList = (
-        <div style={{ marginTop: '3px', width: '450px' }}>
-          <PeopleInvolvedRow
-            maxPeopleInList={config.case.peopleInvolved.maxPeopleInList}
-            people={this.props.peopleInvolved}
-          />
-        </div>);
+        <ToolbarGroup firstChild={false} lastChild={false} float="right">
+          <div style={{ marginTop: '7px' }}>
+            <PeopleList
+              maxPeopleInList={config.case.peopleInvolved.maxPeopleInList}
+              people={this.props.peopleInvolved}
+            />
+          </div>
+        </ToolbarGroup>);
     }
     return (
       <Toolbar
@@ -54,10 +56,10 @@ export class Header extends React.Component {
             text="Cafienne"
           />
         </ToolbarGroup>
-        <ToolbarGroup firstChild={false} lastChild={false} float="right">
-          {caseUserList}
-          <div style={{ display: 'inline-block', marginLeft: '200px' }}><AppBarUserMenu /></div>
+        <ToolbarGroup firstChild={false} lastChild={true} float="right">
+          <div style={{ display: 'inline-block' }}><AppBarUserMenu /></div>
         </ToolbarGroup>
+        {caseUserList}
       </Toolbar>
     );
   }

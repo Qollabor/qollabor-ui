@@ -1,6 +1,7 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
-import PeopleInvolvedRow from './index';
+import { storiesOf, action } from '@kadira/storybook';
+import PeopleList from './index';
+import PeoplePopupList from './components/popupList';
 
 const samplePeopleInvolved = [
   {
@@ -12,7 +13,8 @@ const samplePeopleInvolved = [
   {
     userName: 'martijnvdp',
     fullName: 'Martijn van der Plaat',
-    avatarUrl: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAOQAAAAJDg1NTc2OWUxLTY3YzAtNGQ0OS05NTUzLThmOWE2ODkzYTk4NQ.jpg',
+    avatarUrl: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/' +
+    'AAEAAQAAAAAAAAOQAAAAJDg1NTc2OWUxLTY3YzAtNGQ0OS05NTUzLThmOWE2ODkzYTk4NQ.jpg',
     actionUrl: '#/profile/martijnvdp'
   },
   {
@@ -39,12 +41,24 @@ const samplePeopleInvolved = [
   }
 ];
 
-storiesOf('Case/PeopleInvolvedRow', module)
-  .add('Show list with people avatars with', () => (
+storiesOf('PeopleList', module)
+  .add('Show list with people avatars with 150 with limit', () => (
     <div className="center-component">
-      <PeopleInvolvedRow
+      <PeopleList
         maxPeopleInList={4}
         people={samplePeopleInvolved}
+        maxLength={100}
+        onClick={action('Click on avatar')}
+      />
+    </div>
+  ))
+  .add('Show list with people avatars with 200 with limit', () => (
+    <div className="center-component">
+      <PeopleList
+        maxPeopleInList={4}
+        people={samplePeopleInvolved}
+        maxLength={200}
+        onClick={action('Click on avatar')}
       />
     </div>
   ))
@@ -52,6 +66,18 @@ storiesOf('Case/PeopleInvolvedRow', module)
     const empty = [];
     return (
       <div className="center-component">
-        <PeopleInvolvedRow maxPeopleInList={4} people={empty} />
+        <PeopleList maxPeopleInList={4} people={empty} onClick={action('Click on avatar')}/>
+      </div>);
+  })
+  .add('Show list with people avatars with', () => (
+    <div className="center-component">
+      <PeoplePopupList people={samplePeopleInvolved}/>
+    </div>
+  ))
+  .add('When no list is provided show nothing', () => {
+    const empty = [];
+    return (
+      <div className="center-component">
+        <PeoplePopupList people={empty}/>
       </div>);
   });

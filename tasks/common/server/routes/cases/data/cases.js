@@ -27,13 +27,15 @@ module.exports = [
       {
         userName: 'dannyk',
         fullName: 'Danny Kruitbosch',
-        avatarUrl: 'https://lh6.googleusercontent.com/-wmA9kgZUUwo/AAAAAAAAAAI/AAAAAAAAABU/nPYkBB_N5x4/photo.jpg?sz=328',
+        avatarUrl: 'https://lh6.googleusercontent.com/' +
+        '-wmA9kgZUUwo/AAAAAAAAAAI/AAAAAAAAABU/nPYkBB_N5x4/photo.jpg?sz=328',
         actionUrl: '#/profile/dannyk'
       },
       {
         userName: 'martijnvdp',
         fullName: 'Martijn van der Plaat',
-        avatarUrl: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAOQAAAAJDg1NTc2OWUxLTY3YzAtNGQ0OS05NTUzLThmOWE2ODkzYTk4NQ.jpg',
+        avatarUrl: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/' +
+        'AAEAAQAAAAAAAAOQAAAAJDg1NTc2OWUxLTY3YzAtNGQ0OS05NTUzLThmOWE2ODkzYTk4NQ.jpg',
         actionUrl: '#/profile/martijnvdp'
       },
       {
