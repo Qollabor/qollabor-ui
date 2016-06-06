@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar } from 'material-ui';
+import { Avatar, List, ListItem } from 'material-ui';
 import { calcInitials } from '../helpers/calcInitials';
 
 class PeoplePopupList extends React.Component {
@@ -10,7 +10,7 @@ class PeoplePopupList extends React.Component {
 
   render() {
     return (
-      <div>
+      <List>
         {this.props.people && this.props.people.length > 0 ?
           this.props.people.map((person) => {
             const avatarSrc = {};
@@ -29,20 +29,16 @@ class PeoplePopupList extends React.Component {
             const avatarSize = this.props.avatarSize || 40;
 
             return (
-              <div
+              <ListItem
+                innerDivStyle={{ paddingTop: '15px', fontSize: '13px' }}
                 key={person.userName}
-                style={{ overflow: 'hidden' }}
                 {...actions}
-              >
-                <div style={{ marginTop: '2px', marginLeft: '5px', float: 'left' }}>
-                  <Avatar {...avatarSrc} size={avatarSize}>{initial}</Avatar>
-                </div>
-                <div style={{ fontSize: '12px', marginTop: '15px', marginLeft: '50px' }}>
-                  {person.fullName} ({person.userName})
-                </div>
-              </div>);
+                primaryText={`${person.fullName} (${person.userName})`}
+                leftAvatar={<Avatar {...avatarSrc} size={avatarSize}>{initial}</Avatar>}
+              />
+            );
           }) : ''}
-      </div>
+      </List>
     );
   }
 }
