@@ -103,8 +103,9 @@ class PeopleList extends React.Component {
 
 PeopleList.propTypes = {
   people: React.PropTypes.array.isRequired,
-  showMoreOpen: React.PropTypes.bool,
-  maxPeopleInList: React.PropTypes.number
+  maxPeopleInList: React.PropTypes.number.isRequired,
+  maxLength: React.PropTypes.number,
+  avatarSize: React.PropTypes.number
 };
 
 PeopleList.displayName = 'PeopleList';
