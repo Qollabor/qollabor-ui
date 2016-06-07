@@ -8,6 +8,12 @@ describe('function/calcInitials', () => {
     });
   });
 
+  describe('Given only a name', () => {
+    it('Should return the correct initial', () => {
+      expect(calcInitials('Martijn')).to.be.equal('M');
+    });
+  });
+
   describe('When no fullname exist', () => {
     it('Should return a default value', () => {
       expect(calcInitials('')).to.be.equal('XX');
