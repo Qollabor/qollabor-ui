@@ -28,7 +28,7 @@ router.get('/:caseId', (req, res) => {
   const ret = cases.getCases()
     .find(item => item.id === req.params.caseId);
   if (ret) {
-    ret.plan.items = tasks.getTasks();
+    ret.planitems = tasks.getTasks();
     setTimeout(() => {
       res.status(200).json(ret);
     }, 200);

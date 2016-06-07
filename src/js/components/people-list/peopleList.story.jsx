@@ -3,7 +3,7 @@ import { storiesOf, action } from '@kadira/storybook';
 import PeopleList from './index';
 import PeoplePopupList from './components/popupList';
 
-const samplePeopleInvolved = [
+const samplePeople = [
   {
     userName: 'dannyk',
     fullName: 'Danny Kruitbosch',
@@ -46,7 +46,7 @@ storiesOf('PeopleList', module)
     <div className="center-component">
       <PeopleList
         maxPeopleInList={4}
-        people={samplePeopleInvolved}
+        people={samplePeople}
         maxLength={100}
         onClick={action('Click on avatar')}
       />
@@ -56,7 +56,7 @@ storiesOf('PeopleList', module)
     <div className="center-component">
       <PeopleList
         maxPeopleInList={4}
-        people={samplePeopleInvolved}
+        people={samplePeople}
         maxLength={200}
         onClick={action('Click on avatar')}
       />
@@ -71,7 +71,7 @@ storiesOf('PeopleList', module)
   })
   .add('Show list with people avatars with', () => (
     <div className="center-component">
-      <PeoplePopupList people={samplePeopleInvolved}/>
+      <PeoplePopupList people={samplePeople}/>
     </div>
   ))
   .add('When no list is provided show nothing', () => {

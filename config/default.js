@@ -63,7 +63,7 @@ module.exports = {
       lastModifiedHttpHeader: 'Case-Last-Modified'
     },
     case: {
-      peopleInvolved: {
+      caseTeam: {
         maxPeopleInList: 4
       }
     }

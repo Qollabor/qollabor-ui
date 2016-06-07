@@ -21,8 +21,8 @@ const errorFunc = (error) => [
 
 const successFunc = (theCase) => [
   put({ type: 'CASE:ITEM:FETCH:SUCCESS', case: theCase }),
-  put({ type: 'CASE:ACTIVE_TASKS:FETCH:SUCCESS', activeTasks: theCase.plan.items.filter(activeTasksFilter) }),
-  put({ type: 'CASE:COMPLETED_TASKS:FETCH:SUCCESS', completedTasks: theCase.plan.items.filter(completedTasksFilter) }),
+  put({ type: 'CASE:ACTIVE_TASKS:FETCH:SUCCESS', activeTasks: theCase.planitems.filter(activeTasksFilter) }),
+  put({ type: 'CASE:COMPLETED_TASKS:FETCH:SUCCESS', completedTasks: theCase.planitems.filter(completedTasksFilter) }),
   put({ type: 'CASE:ATTACHMENTS:FETCH:SUCCESS', attachments: theCase.attachments })
 ];
 
@@ -54,7 +54,7 @@ export function* fetchCase(action) {
       }
     } else if (response.body) {
       const sanitizeAfterLoad = registry.get('helpers').task.sanitizeAfterLoad;
-      response.body.plan.items = response.body.plan.items.map(sanitizeAfterLoad);
+      response.body.planitems = response.body.planitems.map(sanitizeAfterLoad);
       theCase = response.body;
     }
 

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import React from 'react';
 
 describe('component/avatar', () => {
-  const samplePeopleInvolved = [
+  const samplePeople = [
     {
       userName: 'dannyk',
       fullName: 'Danny Kruitbosch',
@@ -43,7 +43,7 @@ describe('component/avatar', () => {
   ];
 
   const avatarElement = shallow(<Avatar
-    person={samplePeopleInvolved[0]}
+    person={samplePeople[0]}
     padding={1}
     size={30}
   />);
@@ -63,7 +63,7 @@ describe('component/avatar', () => {
 
   describe('Avatar does not have an avatarUrl', () => {
     const avatarNoUrl = shallow(<Avatar
-      person={samplePeopleInvolved[3]}
+      person={samplePeople[3]}
       padding={1}
       size={30}
     />);

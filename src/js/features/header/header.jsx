@@ -29,8 +29,8 @@ export class Header extends React.Component {
         <ToolbarGroup firstChild={false} lastChild={false} float="right">
           <div style={{ marginTop: '7px' }}>
             <PeopleList
-              maxPeopleInList={config.case.peopleInvolved.maxPeopleInList}
-              people={this.props.peopleInvolved}
+              maxPeopleInList={config.case.caseTeam.maxPeopleInList}
+              people={this.props.caseTeam}
             />
           </div>
         </ToolbarGroup>);
