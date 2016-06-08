@@ -8,6 +8,8 @@ import InfoPage from './pages/info';
 import TasksPage from './pages/tasks';
 import TaskPage from './pages/task';
 import LoginPage from './pages/login';
+import CaseModelsPage from './pages/caseModels';
+import CaseModelDetailPage from './pages/caseModelDetail';
 
 function getValuesFromRoutes(routes, attribute) {
   for (let i = routes.length - 1; i >= 0; i--) {
@@ -47,6 +49,8 @@ export default (
         <Route path="/info" component={InfoPage} {...hooks} />
         <Route path="/tasks" component={TasksPage} {...hooks} />
         <Route path="/tasks/:taskId" component={TaskPage} {...hooks} showCaseUsers={true}/>
+        <Route path="/casemodels" component={CaseModelsPage} {...hooks} />
+        <Route path="/casemodel/:id" component={CaseModelDetailPage} {...hooks} />
       </Route>
     </Route>
   </Route>

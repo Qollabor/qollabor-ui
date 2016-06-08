@@ -3,7 +3,7 @@
   "dependencies": {
     "app-registry": "^1.0.1",
     "babel-polyfill": "^6.7.4",
-    "cafienne-ui-elements": "github:cafienne/cafienne-ui-elements",
+    "cafienne-ui-elements": "github:cafienne/cafienne-ui-elements", 
     "history": "^2.1.0",
     "immutable": "^3.8.1",
     "material-ui": "^0.14.4",
@@ -21,7 +21,8 @@
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-saga": "^0.10.0",
-    "whatwg-fetch": "^1.0.0"
+    "whatwg-fetch": "^1.0.0",
+    "xml-parser": "^1.2.1"
   },
   "devDependencies": {
     "@kadira/storybook": "^1.19.0",

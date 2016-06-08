@@ -66,6 +66,14 @@ module.exports = {
       caseTeam: {
         maxPeopleInList: 4
       }
+    },
+    casemodels: {
+      url: `${baseApiUrl}repository/list`,
+      version: 1
+    },
+    casemodeldetail: {
+      url: `${baseApiUrl}repository/load`,
+      version: 1
     }
   }
 };

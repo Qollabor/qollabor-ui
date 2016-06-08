@@ -5,6 +5,7 @@ import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow } from '../features/
 import { fetchTasks, viewTasks } from '../features/tasks';
 import { fetchTaskDetails, viewTask, transitionToState } from '../features/task';
 import { fetchCase, fetchDiscretionaryItems, planDiscretionaryItem } from '../features/case';
+import { resetAndfetchCaseModels, fetchCaseModelDetails, startCaseModel } from '../features/case-models';
 
 const sagas = [
   // Login
@@ -25,7 +26,13 @@ const sagas = [
   // case
   [takeEvery, 'CASE:REQUEST_INIT', fetchCase],
   [takeEvery, 'CASE:REQUEST_INIT', fetchDiscretionaryItems],
-  [takeEvery, 'CASE:DISCRETIONARY_ITEMS:REQUEST_PLAN', planDiscretionaryItem]
+  [takeEvery, 'CASE:DISCRETIONARY_ITEMS:REQUEST_PLAN', planDiscretionaryItem],
+  // case model
+  [takeEvery, 'CASEMODEL:LIST:INIT', resetAndfetchCaseModels],
+  [takeEvery, 'CASEMODEL:DETAIL:INIT', fetchCaseModelDetails],
+  [takeEvery, 'CASEMODEL:START', startCaseModel]
+
+
 ];
 
 function* rootSaga() {

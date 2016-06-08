@@ -6,6 +6,7 @@ import { reducers as tasks } from '../features/tasks';
 import { reducers as task } from '../features/task';
 import { reducers as notifier } from '../features/notifier';
 import { reducers as caseReducers } from '../features/case';
+import { reducers as caseModelReducers } from '../features/case-models';
 
 export default {
   app: appReducer,
@@ -14,5 +15,6 @@ export default {
   login,
   tasks,
   task,
-  case: caseReducers
+  case: caseReducers,
+  casemodel: caseModelReducers
 };

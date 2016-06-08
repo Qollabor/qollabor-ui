@@ -6,7 +6,7 @@ module.exports = {
     './src/js/app.jsx'
   ],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx', '.css']
   },
   output: {
     path: __dirname + '/dist',
@@ -23,6 +23,10 @@ module.exports = {
         test: /\.jsx?$/,
         include: /(src\/js|node_modules\/cafienne-ui-elements)/,
         loader: 'babel'
+      },
+      {
+        test: /\.css?$/,
+        loaders:['style', 'raw']
       }
     ]
   },
