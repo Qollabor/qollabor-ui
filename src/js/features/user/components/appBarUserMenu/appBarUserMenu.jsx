@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { ThemeManager } from 'material-ui/lib/styles';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { IconButton, Popover, Menu, MenuItem } from 'material-ui';
-import { ActionAccountCircle, ActionPowerSettingsNew } from 'material-ui/lib/svg-icons';
-import PopoverAnimationFromTop from 'material-ui/lib/popover/popover-animation-from-top';
+import { ActionAccountCircle, ActionPowerSettingsNew } from 'material-ui/svg-icons';
+import { PopoverAnimationVertical } from 'material-ui/Popover';
+
 import styles from './styles';
 
 export class AppBarUserMenu extends React.Component {
@@ -33,7 +34,7 @@ export class AppBarUserMenu extends React.Component {
   }
 
   render() {
-    const theme = ThemeManager.getMuiTheme();
+    const theme = getMuiTheme();
     return (
       <div>
         <IconButton
@@ -50,7 +51,7 @@ export class AppBarUserMenu extends React.Component {
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'left', vertical: 'top' }}
           onRequestClose={this.handleRequestClose.bind(this)}
-          animation={PopoverAnimationFromTop}
+          animation={PopoverAnimationVertical}
         >
           <Menu style={styles.menu}>
             <MenuItem

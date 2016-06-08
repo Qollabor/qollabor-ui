@@ -7,7 +7,7 @@ describe('reducers/app', () => {
     {
       menuItemCategory: null,
       isOnInit: false,
-      showLeftNav: true,
+      showDrawer: true,
       showCaseUsers: false
     }
   );

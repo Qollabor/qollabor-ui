@@ -2,8 +2,6 @@ const barHeight = '47px';
 
 export default {
   appBar: {
-    position: 'fixed',
-    top: 0,
     height: barHeight
   },
   title: {
