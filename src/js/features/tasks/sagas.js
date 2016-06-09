@@ -24,12 +24,12 @@ export function* fetchTasks() {
 
     let tasks = [];
 
+    const sanitizeAfterLoad = registry.get('helpers').task.sanitizeAfterLoad;
     if (config.tasks.version === 1) {
       if (response.body[dataKey]) {
-        tasks = response.body[dataKey];
+        tasks = response.body[dataKey].map(sanitizeAfterLoad);
       }
     } else if (response.body.tasks) {
-      const sanitizeAfterLoad = registry.get('helpers').task.sanitizeAfterLoad;
       tasks = response.body.tasks.map(sanitizeAfterLoad);
     }
 
