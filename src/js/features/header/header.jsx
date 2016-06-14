@@ -1,7 +1,8 @@
 import React from 'react';
-import { Toolbar, ToolbarGroup, ToolbarTitle, IconButton } from 'material-ui';
-import { ThemeManager } from 'material-ui/lib/styles';
-import MenuIcon from 'material-ui/lib/svg-icons/navigation/menu';
+import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
+import IconButton from 'material-ui/IconButton';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import styles from './styles';
 import PeopleList from '../../components/people-list';
@@ -15,7 +16,7 @@ export class Header extends React.Component {
   }
 
   render() {
-    const theme = ThemeManager.getMuiTheme();
+    const theme = getMuiTheme();
 
     const themeColorStyles = {
       backgroundColor: theme.appBar.color,
@@ -50,16 +51,17 @@ export class Header extends React.Component {
             />
           </IconButton>
         </ToolbarGroup>
-        <ToolbarGroup firstChild={false} lastChild={false} float="left">
+        <ToolbarGroup style={{ flexGrow: '4' }} firstChild={false} lastChild={false} float="left">
           <ToolbarTitle
             style={Object.assign({}, styles.title, themeColorStyles)}
             text="Cafienne"
           />
         </ToolbarGroup>
+        {caseUserList}
         <ToolbarGroup firstChild={false} lastChild={true} float="right">
           <div style={{ display: 'inline-block' }}><AppBarUserMenu /></div>
         </ToolbarGroup>
-        {caseUserList}
+
       </Toolbar>
     );
   }

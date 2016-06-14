@@ -2,9 +2,8 @@
  * Created by andreasoldino on 5/4/16.
  */
 
-import { ThemeManager } from 'material-ui/lib/styles';
-
-const theme = ThemeManager.getMuiTheme();
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+const theme = getMuiTheme();
 
 export default {
   table: {

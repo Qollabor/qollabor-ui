@@ -1,6 +1,6 @@
-import { ThemeManager } from 'material-ui/lib/styles';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-const theme = ThemeManager.getMuiTheme();
+const theme = getMuiTheme();
 
 const baseTheme = {
   fontFamily: theme.baseTheme.fontFamily,

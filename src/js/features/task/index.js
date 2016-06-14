@@ -4,7 +4,7 @@ import TaskComponent from './task';
 
 function mapStateToProps(state) {
   return {
-    showLeftNav: state.app.get('showLeftNav')
+    showDrawer: state.app.get('showDrawer')
   };
 }
 
