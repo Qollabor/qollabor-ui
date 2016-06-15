@@ -33,6 +33,10 @@ const defaultState = Immutable.fromJS({
   error: {
     message: '',
     isError: false
+  },
+  actionError: {
+    message: '',
+    isError: false
   }
 });
 
@@ -41,7 +45,9 @@ export const reducers = (state = defaultState, action) => {
     case 'CASEMODEL:DETAIL:INIT':
       return state.set('showFeedbackForm', false).set('definition', action.definition).set('name', action.name);
     case 'CASEMODEL:DETAIL:FETCH':
-      return state.set('isFetching', true);
+      return state.set('isFetching', true)
+                  .set('error', defaultState.get('error'))
+                  .set('actionError', defaultState.get('actionError'));
     case 'CASEMODEL:DETAIL:FETCH:SUCCESS':
       return state.set('isFetching', false).
         set('data', getCaseModelDetail(action.data));
@@ -51,11 +57,12 @@ export const reducers = (state = defaultState, action) => {
     case 'CASEMODEL:DETAIL:RESET':
       return state.set('showFeedbackForm', false);
     case 'CASEMODEL:START':
-      return state.set('isFetching', true);
+      return state.set('isFetching', true)
+                  .set('actionError', defaultState.get('actionError'));
     case 'CASEMODEL:START:SUCCESS':
       return state.set('isFetching', false).set('showFeedbackForm', true);
     case 'CASEMODEL:START:FAIL':
-      return state.set('isFetching', false).set('error', Immutable.Map({ message: action.error, isError: true }));
+      return state.set('isFetching', false).set('actionError', Immutable.Map({ message: action.error, isError: true }));
     default:
       return state;
   }

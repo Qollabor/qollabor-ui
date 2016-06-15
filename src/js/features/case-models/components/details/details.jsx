@@ -1,5 +1,6 @@
 import React from 'react';
 import { RaisedButton, Paper } from 'material-ui';
+import MessageDiv from '../message-div';
 
 const styles = {
   saveButton: {
@@ -8,6 +9,9 @@ const styles = {
   headerMargin: {
     marginLeft: '5px',
     marginTop: '15px'
+  },
+  errorMessage: {
+    color: 'red'
   },
   buttonMargin: {
     marginLeft: '5px'
@@ -26,12 +30,18 @@ class Details extends React.Component {
   }
 
   render() {
-    const { name, description } = this.props.data;
-    return (
-      <Paper style={{ padding: 30, paddingTop: 15, margin: 20 }}>
+    const { data } = this.props;
+
+    let detailBody;
+    if (this.props.error && this.props.error.isError) {
+      detailBody = <MessageDiv message={this.props.error.message} />;
+    } else if (!data) {
+      detailBody = <MessageDiv message="No Data found ..." />;
+    } else {
+      detailBody = (<div>
         <div style={styles.headerMargin}>
-          <h3>{name}</h3>
-          <div><b>{description}</b></div>
+          <h3>{data.name}</h3>
+          <div><b>{data.description}</b></div>
         </div>
 
         {this.props.showFeedbackForm ?
@@ -44,17 +54,29 @@ class Details extends React.Component {
               />
             </div>
           </div> :
-          <div style={styles.saveButton}>
-            <RaisedButton
-              primary={true} label="RESET" labelStyle={styles.buttonLabel}
-              style={styles.buttonMargin} onClick={this.props.resetDetails}
-            />
-            <RaisedButton
-              secondary={true} label="START CASE" labelStyle={styles.buttonLabel}
-              onClick={this.props.startCaseModel}
-            />
+          <div>
+            {this.props.actionError && this.props.actionError.message !== ''
+            && <div style={Object.assign(styles.errorMessage, styles.headerMargin)}>
+            Error: {this.props.actionError.message}</div>
+            }
+            <div style={styles.saveButton}>
+              <RaisedButton
+                primary={true} label="RESET" labelStyle={styles.buttonLabel}
+                style={styles.buttonMargin} onClick={this.props.resetDetails}
+              />
+              <RaisedButton
+                secondary={true} label="START CASE" labelStyle={styles.buttonLabel}
+                onClick={this.props.startCaseModel}
+              />
+            </div>
           </div>
         }
+      </div>);
+    }
+
+    return (
+      <Paper style={{ padding: 30, paddingTop: 15, margin: 20 }}>
+        {detailBody}
       </Paper>
     );
   }

@@ -1,7 +1,8 @@
 import React from 'react';
 import TextFilter from '../text-filter';
 import { List as DefinitionList, ListItem } from 'material-ui';
-import helpers from '../../../../helpers';
+import registry from 'app-registry';
+import MessageDiv from '../message-div';
 
 class List extends React.Component {
 
@@ -11,21 +12,22 @@ class List extends React.Component {
   }
 
   render () {
-    const { isFetching, filterString } = this.props;
-    const items = helpers.casemodel.filterData(this.props.items, filterString);
+    const helpers = registry.get('helpers');
+    let { filterString, items } = this.props;
+    if (filterString) {
+      items = helpers.casemodel.filterData(this.props.items, filterString);
+    }
 
-    return (
-      <div>
-        <div>
-          <TextFilter
-            {...this.props} activeFilter={filterString}
-            onFilterChange={this.handleFilterStringChange.bind(this)}
-          />
-          {! isFetching && items.length === 0 &&
-            <div style={{ position: 'relative', top: 100, margin: 'auto', width: 200 }}>No Case Models found ...</div>}
-          {isFetching && items.length === 0 &&
-            <div style={{ position: 'relative', top: 100, margin: 'auto', width: 200 }}>Loading ...</div>}
-          <DefinitionList>
+    let listBody;
+
+    if (this.props.isFetching) {
+      listBody = <MessageDiv message="Loading ..." />;
+    } else if (this.props.error && this.props.error.isError) {
+      listBody = <MessageDiv message={this.props.error.message} />;
+    } else if (!items || items.length === 0) {
+      listBody = <MessageDiv message="No Case Models found ..." />;
+    } else {
+      listBody = (<DefinitionList>
             {items
               .map(item =>
                 <ListItem
@@ -35,7 +37,18 @@ class List extends React.Component {
                   onTouchTap={this.props.onTouchTap && this.props.onTouchTap.bind(this, item.definitions)}
                 />
               )}
-          </DefinitionList>
+      </DefinitionList>);
+    }
+
+
+    return (
+      <div>
+        <div>
+          <TextFilter
+            {...this.props} activeFilter={filterString}
+            onFilterChange={this.handleFilterStringChange.bind(this)}
+          />
+          {listBody}
         </div>
       </div>
     );

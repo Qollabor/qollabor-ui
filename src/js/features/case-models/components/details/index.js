@@ -22,7 +22,8 @@ const mapStateToProps = (state) => ({
   isFetching: state.casemodel.details.get('isFetching'),
   definition: state.casemodel.details.get('definition'),
   data: state.casemodel.details.get('data'),
-  error: state.casemodel.details.get('error'),
+  error: state.casemodel.details.get('error').toJS(),
+  actionError: state.casemodel.details.get('actionError').toJS(),
   showFeedbackForm: state.casemodel.details.get('showFeedbackForm')
 });
 

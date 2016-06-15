@@ -12,6 +12,10 @@ describe('features/case-models/details', () => {
     error: {
       message: '',
       isError: false
+    },
+    actionError: {
+      message: '',
+      isError: false
     }
   });
 

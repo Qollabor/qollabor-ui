@@ -29,15 +29,11 @@ class TextFilter extends React.Component {
     });
   }
 
-  handleFilterKeyDown(e) {
-    if (e.keyCode === 13) {
-      this.props.onFilterChange(e, e.target.value);
-    }
-  }
-
   handleFilterKeyUp(e) {
     if (e.target.value === '') {
       this.handleClearFilter(e);
+    } else if (e.target.value.length >= 2) {
+      this.props.onFilterChange(e, e.target.value);
     }
   }
 
@@ -49,7 +45,7 @@ class TextFilter extends React.Component {
         <TextField
           type="text" hintText="Filter"
           style={style} value={this.state.filterText}
-          onKeyUp={this.handleFilterKeyUp.bind(this)} onKeyDown={this.handleFilterKeyDown.bind(this)}
+          onKeyUp={this.handleFilterKeyUp.bind(this)}
           onChange={this.handleFilterChange.bind(this)}
         />
         {activeFilter ?
