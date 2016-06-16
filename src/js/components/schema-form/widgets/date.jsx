@@ -20,11 +20,11 @@ export class DateWidget extends React.Component {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
     /* eslint-enable no-underscore-dangle */
-    errors.errorText = 'test';
     return (
       <DatePicker
+        name={this.props.name}
         value={date}
-        floatingLabelText={this.props.title}
+        floatingLabelText={this.props.schema.title}
         onChange={this.handleOnChange.bind(this)}
         formatDate={this.formatDate}
         {...errors}

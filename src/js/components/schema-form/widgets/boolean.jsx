@@ -15,12 +15,15 @@ export class BooleanWidget extends React.Component {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
     /* eslint-enable no-underscore-dangle */
-    errors.errorText = 'test';
-    return (<Checkbox
-      label={this.props.name}
-      onCheck={this.handleOnCheck.bind(this)}
-      checked={this.props.formData}
-      {...errors}
-    />);
+    return (
+      <div style={{ marginTop: '10px' }}>
+        <Checkbox
+          name={this.props.name}
+          label={this.props.schema.title}
+          onCheck={this.handleOnCheck.bind(this)}
+          checked={this.props.formData}
+          {...errors}
+        />
+      </div>);
   }
 }

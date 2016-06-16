@@ -38,13 +38,18 @@ export class StringWidget extends React.Component {
       multilineProps.multiLine = true;
       multilineProps.rows = this.props.uiSchema['ui:rows'] || 4;
     } else {
-      multilineProps.style = { height: '50px', width: '100%' };
-      multilineProps.floatingLabelStyle = { top: '18px' };
-      multilineProps.inputStyle = { height: '30px', top: '-2px' };
+      if (this.props.schema.title) {
+        multilineProps.style = { height: '50px', width: '100%' };
+        multilineProps.floatingLabelStyle = { top: '18px' };
+        multilineProps.inputStyle = { height: '30px', top: '-2px' };
+      } else {
+        multilineProps.style = { width: '100%' };
+      }
     }
     return (
       <TextField
-        floatingLabelText={this.props.name}
+        name={this.props.name}
+        floatingLabelText={this.props.schema.title}
         value={this.props.formData}
         onChange={this.handleOnChange.bind(this)}
         {...errors}

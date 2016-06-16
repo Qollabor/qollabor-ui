@@ -15,9 +15,9 @@ export class TimeWidget extends React.Component {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
     /* eslint-enable no-underscore-dangle */
-    errors.errorText = 'test';
     return (
       <TimePicker
+        name={this.props.name}
         defaultTime={date}
         format="24hr"
         floatingLabelText={this.props.schema.title}

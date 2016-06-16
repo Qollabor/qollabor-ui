@@ -14,11 +14,11 @@ export class IntegerWidget extends React.Component {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
     /* eslint-enable no-underscore-dangle */
-    errors.errorText = 'test';
     return (
       <TextField
+        name={this.props.name}
         type="number"
-        floatingLabelText={this.props.name}
+        floatingLabelText={this.props.schema.title}
         value={this.props.formData}
         onChange={this.handleOnChange.bind(this)}
         {...errors}

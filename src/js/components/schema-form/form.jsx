@@ -32,8 +32,8 @@ export class Form extends React.Component {
 
   render() {
     const buttonList = [];
-    buttonList.push(<RaisedButton label="Submit" primary={true} type="submit"/>);
-    buttonList.push(<RaisedButton label="Reset" primary={false} secondary={true}/>);
+    buttonList.push(<RaisedButton key="submit" label="Submit" primary={true} type="submit"/>);
+    buttonList.push(<RaisedButton key="reset" label="Reset" primary={false} secondary={true}/>);
     return (
       <div className="cafienne-form">
         <JsonSchemaForm

@@ -5,30 +5,31 @@
   "description": "TDY Request form",
   "type": "object",
   "properties": {
-    "Requestor": {"type": "string"},
-    "PassNo": {"type": "string"},
-    "DepartureDate": {"type": "string", "format": "date"},
-    "DeparturePoint": {"type": "string"},
-    "ReturnDate": {"type": "string", "format": "date"},
+    "Requestor": {"title": "Requestor", "type": "string"},
+    "PassNo": {"title": "Pass no.", "type": "string"},
+    "DepartureDate": {"title": "Departure date", "type": "string", "format": "date"},
+    "DeparturePoint": {"title": "Departure point", "type": "string"},
+    "ReturnDate": {"title": "Return date", "type": "string", "format": "date"},
     "Destination": {
+      "title": "Destination",
       "type": "array",
       "minItems": 1,
-      "items": {"type": "string"},
-      "addLabel": "Add new destination"
+      "items": {"type": "string"}
     },
-    "Purpose": {"type": "string"},
-    "MeetingStartDate": {"type": "string", "format": "date"},
+    "Purpose": {"title": "Purpose", "type": "string"},
+    "MeetingStartDate": {"type": "string", "format": "date", "title": "Meeting start date"},
     "MeetingStartTime": {"type": "string", "format": "time", "title": "Meeting start time"},
-    "MeetingEndDate": {"type": "string", "format": "date"},
-    "MeetingEndTime": {"type": "string", "format": "time"},
-    "DurationIncLeave": {"type": "integer"},
-    "ModeOfTransport": {"type": "string", "enum": ["Air", "Hire car", "Public transport", "Shuttle", "POMV", "Other"]},
-    "IMIS-code": {"type": "string"},
-    "IMIS-activity-code": {"type": "string"},
-    "AdvanceRequired": {"type": "boolean"},
-    "Justification": {"type": "string"},
-    "PointOfContact": {"type": "string"},
-    "RequestDate": {"type": "string", "format": "date"},
+    "MeetingEndDate": {"type": "string", "format": "date", "title": "Meeting end date"},
+    "MeetingEndTime": {"type": "string", "format": "time", "title": "Meeting end time"},
+    "DurationIncLeave": {"type": "integer", "title": "Duration inc leave"},
+    "ModeOfTransport": {"title": "Model of transport", "type": "string", "enum": ["Air", "Hire car", "Public transport", "Shuttle", "POMV", "Other"]},
+    "IMIS-code": {"title": "IMIS Code", "type": "string"},
+    "IMIS-activity-code": {"title": "IMIS Activity code", "type": "string"},
+    "AdvanceRequired": {"title": "Advanced required", "type": "boolean"},
+    "AdvanceRequired2": {"title": "Advanced required 2", "type": "boolean"},
+    "Justification": {"title": "Justification", "type": "string"},
+    "PointOfContact": {"title": "Point of contact", "type": "string"},
+    "RequestDate": {"title": "Request date", "type": "string", "format": "date"},
     "CaseTeam": {
       "title": "Case Team",
       "type": "array",
@@ -42,9 +43,9 @@
       "title": "teammember",
       "type": "object",
       "properties": {
-        "Name": {"type": "string"},
+        "Name": {"title": "Name", "type": "string"},
         "Roles": {"type": "array", "items": {"type": "string"}, "minItems": 1, "addLabel": "Add new role"},
-        "Email": {"type": "string"}
+        "Email": {"title": "Email", "type": "string"}
       }
     }
   }
