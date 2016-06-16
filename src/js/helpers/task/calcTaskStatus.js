@@ -1,8 +1,8 @@
 export const calcTaskStatus = (task) => {
-  if (task.planState === 'Completed') {
+  if (task.currentState === 'Completed') {
     return 'COMPLETED';
   }
-  if (task.planState === 'Terminated') {
+  if (task.currentState === 'Terminated') {
     return 'TERMINATED';
   }
   if (task.dueDate && task.dueDate.substring(0, 10) < (new Date()).toISOString().substring(0, 10)) {

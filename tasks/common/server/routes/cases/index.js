@@ -51,7 +51,6 @@ router.get('/:caseId/discretionaryitems', (req, res) => {
 
 router.post('/:caseId/discretionaryitems/plan', (req, res) => {
   const item = discretionary.getItem(req.body.planItemId);
-
   if (item) {
     discretionary.removeItem(req.body.planItemId);
     tasks.addTask(item);

@@ -116,7 +116,6 @@ export function* planDiscretionaryItem(action) {
     const store = registry.get('store');
 
     yield put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN' });
-
     const response = yield registry.get('request')
       .post(`${config.cases.url}/${action.caseId}/discretionaryitems/plan`, {
         planItemId: action.planItemId

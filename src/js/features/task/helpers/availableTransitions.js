@@ -1,5 +1,5 @@
 export const getAvailableTransitions = (task) => {
-  switch (task.planState) {
+  switch (task.currentState) {
     case 'Suspended':
       return [
         {

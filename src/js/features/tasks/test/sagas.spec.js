@@ -97,7 +97,9 @@ describe('features/tasks/sagas', () => {
         generator.next();
         const response = generator.next({
           body: {
-            [dataKey]: fakeData
+            _2: {
+              [dataKey]: fakeData
+            }
           }
         });
 

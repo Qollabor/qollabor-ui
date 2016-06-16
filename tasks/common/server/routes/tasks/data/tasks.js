@@ -13,34 +13,44 @@ const future = moment().add(100, 'day');
 const userOne = 'admin';
 const userTwo = 'otherUser';
 
-module.exports = [
-  {
-    id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0001',
-    taskName: 'Review documents',
-    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+module.exports = {
+  _1: {
+    allowsEntity: true,
+    defaultMessage: 'OK',
+    intValue: 200,
+    reason: 'OK'
+  },
+  _2: [{
     caseDefinition: 'SomeDefinition',
+    caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0001',
+    lastModified: new Date('2016-03-08T09:44:32.345Z'),
+    parameters: '{leaverequest=leaverequest : null}',
+    parentCase: null,
     role: 'reviewers',
-    parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_ACTIVE,
+    rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    name: 'Review documents',
+    taskName: 'Review documents',
+    currentState: constant.PLAN_STATES_ACTIVE,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
     dueDate: today,
-    lastModified: new Date('2016-03-08T09:44:32.345Z'),
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0002',
+    name: 'Switch Off',
     taskName: 'Switch Off',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
-    planState: constant.PLAN_STATES_TERMINATED,
+    rootCase: 'd62dea32_62b8_4206_b12e_029436d75001',
+    currentState: constant.PLAN_STATES_TERMINATED,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
@@ -49,16 +59,17 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0003',
+    name: 'Switch on',
     taskName: 'Switch on',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
-    planState: constant.PLAN_STATES_COMPLETED,
+    rootCase: 'd62dea32_62b8_4206_b12e_029436d75001',
+    currentState: constant.PLAN_STATES_COMPLETED,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userTwo,
     owner: userTwo,
@@ -67,16 +78,17 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0004',
+    name: 'Open door',
     taskName: 'Open door',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_COMPLETED,
+    rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    currentState: constant.PLAN_STATES_COMPLETED,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userTwo,
     owner: userTwo,
@@ -85,16 +97,17 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0005',
+    name: 'Close door',
     taskName: 'Close door',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_ACTIVE,
+    rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    currentState: constant.PLAN_STATES_ACTIVE,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
@@ -103,16 +116,17 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0006',
+    name: 'Jump',
     taskName: 'Jump',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_ACTIVE,
+    rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    currentState: constant.PLAN_STATES_ACTIVE,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
@@ -121,16 +135,17 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0007',
+    name: 'Twist',
     taskName: 'Twist',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_SUSPENDED,
+    rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    currentState: constant.PLAN_STATES_SUSPENDED,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
@@ -139,16 +154,17 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0008',
+    name: 'Run, run ,run',
     taskName: 'Run, run ,run',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_ACTIVE,
+    rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    currentState: constant.PLAN_STATES_ACTIVE,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
@@ -157,16 +173,17 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0009',
+    name: 'Change direction',
     taskName: 'Change direction',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_SUSPENDED,
+    rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    currentState: constant.PLAN_STATES_SUSPENDED,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
@@ -175,16 +192,17 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0010',
+    name: 'Fly above',
     taskName: 'Fly above',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_TERMINATED,
+    rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    currentState: constant.PLAN_STATES_TERMINATED,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
@@ -193,16 +211,17 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0011',
+    name: 'Fly below',
     taskName: 'Fly below',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_ACTIVE,
+    rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    currentState: constant.PLAN_STATES_ACTIVE,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
@@ -211,16 +230,17 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  },
-  {
+  }, {
     id: '0ff7d6a0_c17f_4e7f_97d4_ff9e996e0012',
+    name: 'Dance',
     taskName: 'Dance',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
+    caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
     caseDefinition: 'SomeDefinition',
     role: 'reviewers',
     parentCaseInstanceId: null,
-    rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
-    planState: constant.PLAN_STATES_ACTIVE,
+    rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+    currentState: constant.PLAN_STATES_ACTIVE,
     taskState: constant.TASK_STATES_ASSIGNED,
     assignee: userOne,
     owner: userOne,
@@ -229,5 +249,5 @@ module.exports = [
     modifiedBy: 'moduser',
     createdOn: new Date('2016-03-05T14:21:28.731Z'),
     createdBy: 'creationuser'
-  }
-];
+  }]
+};

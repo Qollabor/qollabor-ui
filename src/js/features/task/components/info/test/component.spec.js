@@ -29,13 +29,13 @@ describe('features/task/taskInfo', () => {
   describe('<TaskInfo taskDetails={taskDetails} /> with data', () => {
     const taskDetails = {
       modifiedBy: 'moduser',
-      caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
-      rootCaseInstanceId: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
+      caseId: 'd62dea32_62b8_4206_b12e_029436d75001',
+      rootCase: '36d3b02e_ee4a_4fdd_bd1e_379eddd60146',
       dueDate: '2016-05-23T10:00:11.922Z',
       caseDefinition: 'SomeDefinition',
       createdOn: '2016-03-05T14:21:28.731Z',
-      planState: 'Active',
-      parentCaseInstanceId: null,
+      currentState: 'Active',
+      parentCase: null,
       taskState: 'Assigned',
       assignee: 'admin',
       taskName: 'Review documents',

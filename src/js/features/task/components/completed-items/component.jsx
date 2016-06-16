@@ -11,7 +11,7 @@ class CompletedItems extends React.Component {
         items={this.props.completedTasks}
         isFetching={this.props.isFetching}
         error={this.props.error}
-        labelField="taskName"
+        labelField="name"
       />
     );
   }

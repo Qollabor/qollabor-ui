@@ -10,7 +10,7 @@ export class DiscretionaryItems extends React.Component {
         items={this.props.discretionaryItems}
         isFetching={this.props.isFetching}
         error={this.props.error}
-        labelField="taskName"
+        labelField="name"
         emptyListMessage={this.props.emptyListMessage}
       />
     );

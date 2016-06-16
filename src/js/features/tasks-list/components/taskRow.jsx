@@ -75,7 +75,7 @@ class TaskRow extends React.Component {
       <tr
         style={styles.tableRow}
         key={this.props.rowData.id}
-        onClick={this.handleRowClick.bind(this, this.props.rowData.id, this.props.rowData.caseInstanceId)}
+        onClick={this.handleRowClick.bind(this, this.props.rowData.id, this.props.rowData.caseId)}
       >
         <td key="statusColumn" style={statusColumnStyle}>
           <FontIcon

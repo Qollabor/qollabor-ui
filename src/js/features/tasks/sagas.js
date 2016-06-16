@@ -15,6 +15,7 @@ export function* fetchTasks(action) {
       userId: store.getState().user.getIn(['loggedUser', 'username']),
       today: (new Date()).toISOString().substring(0, 10)
     };
+
     const filters = registry.get('helpers').task.generateRequestFilters(
       store.getState().tasks.filters.getIn(['currentTasksFilter', 'filter']), filterParams);
     const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
@@ -24,14 +25,13 @@ export function* fetchTasks(action) {
       .get(config.tasks.url, filters, headers);
 
     let tasks = [];
-
     const sanitizeAfterLoad = registry.get('helpers').task.sanitizeAfterLoad;
     if (config.tasks.version === 1) {
       if (response.body[dataKey]) {
         tasks = response.body[dataKey].map(sanitizeAfterLoad);
       }
-    } else if (response.body.tasks) {
-      tasks = response.body.tasks.map(sanitizeAfterLoad);
+    } else if (response.body[dataKey].tasks) {
+      tasks = response.body[dataKey].tasks.map(sanitizeAfterLoad);
     }
 
     yield put({ type: 'TASKS:LIST:FETCH:SUCCESS', tasks });

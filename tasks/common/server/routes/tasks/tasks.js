@@ -1,14 +1,16 @@
 'use strict';
 
-const originalData = require('./data/tasks');
-const constant = require('./const');
+const tasksData = require('./data/tasks');
 
-let currentData = originalData.map(task => Object.assign({}, task));
+const constant = require('./const');
+const dataKey = '_2';
+
+let curTasksData = tasksData[dataKey].map(task => Object.assign({}, task));
 
 const doComplete = (idTask) => {
-  currentData = currentData.map(task => {
+  curTasksData = curTasksData.map(task => {
     if (task.id === idTask) {
-      task.planState = constant.PLAN_STATES_COMPLETED;
+      task.currentState = constant.PLAN_STATES_COMPLETED;
       return task;
     }
     return task;
@@ -16,9 +18,9 @@ const doComplete = (idTask) => {
 };
 
 const doTerminate = (idTask) => {
-  currentData = currentData.map(task => {
+  curTasksData = curTasksData.map(task => {
     if (task.id === idTask) {
-      task.planState = constant.PLAN_STATES_TERMINATED;
+      task.currentState = constant.PLAN_STATES_TERMINATED;
       return task;
     }
     return task;
@@ -26,9 +28,9 @@ const doTerminate = (idTask) => {
 };
 
 const doSuspend = (idTask) => {
-  currentData = currentData.map(task => {
+  curTasksData = curTasksData.map(task => {
     if (task.id === idTask) {
-      task.planState = constant.PLAN_STATES_SUSPENDED;
+      task.currentState = constant.PLAN_STATES_SUSPENDED;
       return task;
     }
     return task;
@@ -36,9 +38,9 @@ const doSuspend = (idTask) => {
 };
 
 const doResume = (idTask) => {
-  currentData = currentData.map(task => {
+  curTasksData = curTasksData.map(task => {
     if (task.id === idTask) {
-      task.planState = constant.PLAN_STATES_ACTIVE;
+      task.currentState = constant.PLAN_STATES_ACTIVE;
       return task;
     }
     return task;
@@ -46,14 +48,14 @@ const doResume = (idTask) => {
 };
 
 module.exports = {
-  getTasks: () => currentData,
-  getTask: (id) => currentData.find(item => item.id === id),
+  getTasks: () => curTasksData,
+  getTask: (id) => curTasksData.find(item => item.id === id),
   doComplete,
   doTerminate,
   doSuspend,
   doResume,
-  addTask: (item) => currentData.push(item),
+  addTask: (item) => curTasksData.push(item),
   reset: () => {
-    currentData = originalData.map(task => Object.assign({}, task));
+    curTasksData = tasksData[dataKey].map(task => Object.assign({}, task));
   }
 };

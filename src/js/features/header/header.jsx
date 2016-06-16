@@ -24,15 +24,22 @@ export class Header extends React.Component {
       color: theme.appBar.textColor
     };
 
-    const config = registry.get('config');
+    let maxPeopleInList;
+    try {
+      const config = registry.get('config');
+      maxPeopleInList = config.case.caseTeam.maxPeopleInList;
+    } catch (err) {
+      maxPeopleInList = 5;
+    }
+
     let caseUserList = false;
     if (this.props.showCaseUsers) {
       caseUserList = (
         <ToolbarGroup firstChild={false} lastChild={false} float="right">
           <div style={{ marginTop: '7px' }}>
             <PeopleList
-              maxPeopleInList={config.case.caseTeam.maxPeopleInList}
-              people={this.props.caseTeam}
+              maxPeopleInList={maxPeopleInList}
+              people={this.props.caseTeam || []}
             />
           </div>
         </ToolbarGroup>);

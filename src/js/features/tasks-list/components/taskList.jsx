@@ -29,7 +29,6 @@ export class TaskList extends React.Component {
     };
 
     let tableBody;
-
     if (this.props.isFetching) {
       tableBody = <LoaderRow colSpan={this.props.columns.length + 2}/>;
     } else if (this.props.error && this.props.error.isError) {
@@ -47,7 +46,6 @@ export class TaskList extends React.Component {
         ) :
         <MessageRow colSpan={this.props.columns.length + 2} message="No items to show"/>;
     }
-
 
     return (
       <div>

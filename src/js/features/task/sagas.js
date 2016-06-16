@@ -24,13 +24,8 @@ export function* fetchTaskDetails(action) {
       .get(`${config.tasks.url}/${action.taskId}`, null, headers);
 
     let taskDetails = [];
-
-    if (config.tasks.version === 1) {
-      if (response.body[dataKey]) {
-        taskDetails = response.body[dataKey];
-      }
-    } else {
-      taskDetails = response.body;
+    if (response.body[dataKey]) {
+      taskDetails = response.body[dataKey];
     }
     yield put({ type: 'TASK:FETCH:SUCCESS', taskDetails });
   } catch (err) {

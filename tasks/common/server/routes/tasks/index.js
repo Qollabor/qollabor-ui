@@ -7,10 +7,9 @@ const tasks = require('./tasks');
 const router = express.Router();
 router.get('/', (req, res) => {
   const values = tasks.getTasks();
-
   const filter = function (item) {
-    if (req.query.planState) {
-      if (req.query.planState !== item.planState) {
+    if (req.query.currentState) {
+      if (req.query.currentState !== item.currentState) {
         return false;
       }
     }
@@ -20,7 +19,7 @@ router.get('/', (req, res) => {
       }
     }
     if (req.query.dueBefore) {
-      if (item.planState !== constant.PLAN_STATES_ACTIVE) {
+      if (item.currentState !== constant.PLAN_STATES_ACTIVE) {
         return false;
       }
       if (!moment(req.query.dueBefore, 'YYYY-MM-DD').isAfter(item.dueDate)) {
@@ -41,8 +40,16 @@ router.get('/', (req, res) => {
     size: result.length
   };
 
+  const okStruct = {
+    allowsEntity: true,
+    defaultMessage: 'OK',
+    intValue: 200,
+    reason: 'OK'
+  };
+
+  const ret = { _1: okStruct, _2: retValue };
   setTimeout(() => {
-    res.status(200).json(retValue);
+    res.status(200).json(ret);
   }, 200);
 });
 
@@ -95,10 +102,20 @@ router.post('/:taskId/resume', (req, res) => {
 });
 
 router.get('/:taskId', (req, res) => {
-  const task = tasks.getTasks().find(item => item.id === req.params.taskId);
-  if (task) {
+  const task = tasks.getTask(req.params.taskId);
+
+  const okStruct = {
+    allowsEntity: true,
+    defaultMessage: 'OK',
+    intValue: 200,
+    reason: 'OK'
+  };
+
+  const ret = { _1: okStruct, _2: task };
+
+  if (ret) {
     setTimeout(() => {
-      res.status(200).json(task);
+      res.status(200).json(ret);
     }, 200);
   } else {
     res.status(404).send();

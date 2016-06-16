@@ -10,9 +10,9 @@ export class TaskInfo extends React.Component {
     let content;
     if (Object.keys(this.props.taskDetails).length > 0) {
       content = (
-        <div >
-          <TaskInfoItem itemLabel={'Assignee'} itemValue={this.props.taskDetails.assignee} />
-          <TaskInfoItem itemLabel={'Owner'} itemValue={this.props.taskDetails.owner} />
+        <div>
+          <TaskInfoItem itemLabel={'Assignee'} itemValue={this.props.taskDetails.assignee || ''} />
+          <TaskInfoItem itemLabel={'Owner'} itemValue={this.props.taskDetails.owner || ''} />
           <TaskInfoItem
             itemLabel={'Due date'}
             itemValue={moment(this.props.taskDetails.dueDate).format('DD-MM-YYYY')}

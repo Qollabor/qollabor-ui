@@ -10,7 +10,7 @@ class ActiveItems extends React.Component {
         items={this.props.activeTasks}
         isFetching={this.props.isFetching}
         error={this.props.error}
-        labelField="taskName"
+        labelField="name"
       />
     );
   }

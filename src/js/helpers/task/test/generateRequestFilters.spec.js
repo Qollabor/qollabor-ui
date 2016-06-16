@@ -22,16 +22,16 @@ describe('helpers/tasks/generateRequestFilters', () => {
 
   it('should generate the correct "completed" filter', () => {
     expect(generateRequestFilters(['completed'], args))
-      .to.be.eql({ planState: 'Completed' });
+      .to.be.eql({ currentState: 'Completed' });
   });
 
   it('should generate the correct "terminated" filter', () => {
     expect(generateRequestFilters(['terminated'], args))
-      .to.be.eql({ planState: 'Terminated' });
+      .to.be.eql({ currentState: 'Terminated' });
   });
 
   it('should generate the correct ["terminated", "myTasks"] filter', () => {
     expect(generateRequestFilters(['terminated', 'myTasks'], args))
-      .to.be.eql({ planState: 'Terminated', assignee: args.userId });
+      .to.be.eql({ currentState: 'Terminated', assignee: args.userId });
   });
 });

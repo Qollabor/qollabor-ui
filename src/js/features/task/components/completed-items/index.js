@@ -11,7 +11,7 @@ function mapStateToProps(state, props) {
         (completedTask) => Object.assign({}, completedTask.toJS(), {
           color: completedTask.getIn(['viewInternalData', 'iconStyle', 'color']),
           icon: completedTask.getIn(['viewInternalData', 'icon']),
-          url: `/#/tasks/${completedTask.get('id')}?caseId=${completedTask.get('caseInstanceId')}`
+          url: `/#/tasks/${completedTask.get('id')}?caseId=${completedTask.get('caseId')}`
         })
       ).toJS(),
     error: state.case.completedTasks.get('error').toJS()

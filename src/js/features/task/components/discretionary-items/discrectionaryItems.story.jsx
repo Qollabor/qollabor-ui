@@ -12,7 +12,7 @@ const sampleItemList = [
     id: 'myTaskId01',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     icon: 'view_list',
-    taskName: 'First task item with very long sentence which will never end blab blal bal bal bl abal',
+    name: 'First task item with very long sentence which will never end blab blal bal bal bl abal',
     color: '#388AC3',
     action: action('ActionLink')
   },
@@ -20,7 +20,7 @@ const sampleItemList = [
     id: 'myTaskId02',
     caseInstanceId: 'd62dea32_62b8_4206_b12e_029436d75001',
     icon: 'query_builder',
-    taskName: 'Add information to request',
+    name: 'Add information to request',
     color: '#F3974F',
     url: 'some'
   }

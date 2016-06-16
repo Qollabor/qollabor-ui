@@ -6,9 +6,9 @@ export const generateRequestFilters = (filters, args) =>
       case 'due':
         return { dueBefore: args.today };
       case 'completed':
-        return { planState: 'Completed' };
+        return { currentState: 'Completed' };
       case 'terminated':
-        return { planState: 'Terminated' };
+        return { currentState: 'Terminated' };
       default:
         throw new Error(`Unsupported filter ${filter}`);
     }
