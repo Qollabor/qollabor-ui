@@ -7,16 +7,20 @@ import { IntegerWidget } from './widgets/integer';
 import { ArrayField } from './widgets/array';
 
 export const CustomSchemaField = function (props) {
+  let readonly = {};
+  if (props.uiSchema && props.uiSchema['ui:readonly'] === true) {
+    readonly = { readonly: true };
+  }
   switch (props.schema.type) {
     case 'string':
-      return <StringWidget {...props}/>;
+      return <StringWidget {...props} {...readonly}/>;
     case 'integer':
-      return <IntegerWidget {...props}/>;
+      return <IntegerWidget {...props} {...readonly}/>;
     case 'boolean':
-      return <BooleanWidget {...props}/>;
+      return <BooleanWidget {...props} {...readonly}/>;
     case 'array':
-      return <ArrayField {...props}/>;
+      return <ArrayField {...props} {...readonly}/>;
     default:
-      return <SchemaField {...props} />;
+      return <SchemaField {...props} {...readonly}/>;
   }
 };

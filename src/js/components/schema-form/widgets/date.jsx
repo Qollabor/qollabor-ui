@@ -1,5 +1,6 @@
 import React from 'react';
 import { DatePicker } from 'material-ui';
+import { ReadOnlyWidget } from './readonly';
 import moment from 'moment';
 
 export class DateWidget extends React.Component {
@@ -20,6 +21,17 @@ export class DateWidget extends React.Component {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
     /* eslint-enable no-underscore-dangle */
+
+    if (this.props.readonly) {
+      return (
+        <ReadOnlyWidget
+          title={this.props.schema.title}
+          name={this.props.name}
+          value={this.formatDate(this.props.formData)}
+        />
+      );
+    }
+
     return (
       <DatePicker
         name={this.props.name}

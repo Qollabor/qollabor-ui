@@ -94,6 +94,21 @@ export class NormalArray extends Component {
     const { DescriptionField } = fields;
     const itemsSchema = retrieveSchema(schema.items, definitions);
 
+    let addButton = false;
+    if (!this.props.readonly) {
+      addButton = (
+        <div style={styles.addButtonContainer}>
+          <IconButton
+            tooltip={(uiSchema && uiSchema['ui:addLabel'] ? uiSchema['ui:addLabel'] : 'Add')}
+            disabled={disabled || readonly}
+            onClick={this.handleAddClick.bind(this)}
+            style={{ width: '25px', height: '25px', padding: '0px' }}
+          >
+            <FontIcon color="#aaa" hoverColor="#333" className="material-icons">add</FontIcon>
+          </IconButton>
+        </div>
+      );
+    }
     return (
       <Paper
         zDepth={2}
@@ -104,16 +119,7 @@ export class NormalArray extends Component {
             idSchema={idSchema}
             title={title}
           />
-          <div style={styles.addButtonContainer}>
-            <IconButton
-              tooltip={(uiSchema && uiSchema['ui:addLabel'] ? uiSchema['ui:addLabel'] : 'Add')}
-              disabled={disabled || readonly}
-              onClick={this.handleAddClick.bind(this)}
-              style={{ width: '25px', height: '25px', padding: '0px' }}
-            >
-              <FontIcon color="#aaa" hoverColor="#333" className="material-icons">add</FontIcon>
-            </IconButton>
-          </div>
+          {addButton}
         </div>
         {schema.description ?
           <FieldDescription
@@ -136,7 +142,7 @@ export class NormalArray extends Component {
                 itemData={items[index]}
                 itemUiSchema={uiSchema.items}
                 disabled={this.props.disabled}
-                readOnly={this.props.readOnly}
+                readonly={this.props.readonly}
                 required={this.isItemRequired(itemsSchema)}
                 registry={this.props.registry}
                 onDropIndexClick={this.handleDropIndexClick(index)}

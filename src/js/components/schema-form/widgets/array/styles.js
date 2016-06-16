@@ -14,7 +14,8 @@ export const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     marginTop: '4px',
-    marginBottom: '4px'
+    marginBottom: '4px',
+    padding: '1px 5px'
   },
   header: {
     display: 'flex',

@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   plugins: [
+    new webpack.IgnorePlugin(/^(buffertools)$/),
     new webpack.DefinePlugin({
       ENV: {
         logDispatcher: true

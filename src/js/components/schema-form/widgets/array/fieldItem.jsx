@@ -31,7 +31,7 @@ export class FieldItem extends React.Component {
       onChangeForIndex
     } = this.props;
 
-    const removeButton = removable ? (
+    const removeButton = removable && !readonly ? (
       <div style={styles.removeButtonContainer}>
         <IconButton
           tabIndex={-1}

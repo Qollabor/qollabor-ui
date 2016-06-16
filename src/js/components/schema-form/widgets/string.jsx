@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField } from 'material-ui';
 import { DateWidget } from './date';
+import { ReadOnlyWidget } from './readonly';
 import { TimeWidget } from './time';
 import { SelectWidget } from './select';
 
@@ -33,6 +34,16 @@ export class StringWidget extends React.Component {
     }
     /* eslint-enable no-underscore-dangle */
 
+    if (this.props.readonly) {
+      return (
+        <ReadOnlyWidget
+          title={this.props.schema.title}
+          name={this.props.name}
+          value={this.props.formData}
+          multiline={this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'textarea'}
+        />
+      );
+    }
     const multilineProps = {};
     if (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'textarea') {
       multilineProps.multiLine = true;

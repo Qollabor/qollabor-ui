@@ -1,4 +1,5 @@
 import React from 'react';
+import { ReadOnlyWidget } from './readonly';
 import { TextField } from 'material-ui';
 
 export class IntegerWidget extends React.Component {
@@ -14,6 +15,15 @@ export class IntegerWidget extends React.Component {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
     /* eslint-enable no-underscore-dangle */
+    if (this.props.readonly) {
+      return (
+        <ReadOnlyWidget
+          title={this.props.schema.title}
+          name={this.props.name}
+          value={this.props.formData}
+        />
+      );
+    }
     return (
       <TextField
         name={this.props.name}

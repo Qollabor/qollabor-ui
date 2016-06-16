@@ -1,6 +1,6 @@
 import React from 'react';
 import { SelectField, MenuItem } from 'material-ui';
-import styles from '../styles';
+import { ReadOnlyWidget } from './readonly';
 
 export class SelectWidget extends React.Component {
   handleOnChange(event, index, newValue) {
@@ -14,6 +14,17 @@ export class SelectWidget extends React.Component {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
     /* eslint-enable no-underscore-dangle */
+
+    if (this.props.readonly) {
+      return (
+        <ReadOnlyWidget
+          title={this.props.schema.title}
+          name={this.props.name}
+          value={this.props.formData}
+        />
+      );
+    }
+
     return (
       <div>
         <SelectField

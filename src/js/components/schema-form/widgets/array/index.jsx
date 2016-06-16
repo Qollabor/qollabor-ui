@@ -20,6 +20,7 @@ export class ArrayField extends React.Component {
 
   render() {
     const { schema, uiSchema } = this.props;
+
     if (isFilesArray(schema, uiSchema)) {
       return <FilesArray {...this.props}/>;
     }

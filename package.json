@@ -3,7 +3,7 @@
   "dependencies": {
     "app-registry": "^1.0.1",
     "babel-polyfill": "^6.7.4",
-    "cafienne-ui-elements": "github:cafienne/cafienne-ui-elements", 
+    "cafienne-ui-elements": "github:cafienne/cafienne-ui-elements",
     "history": "^2.1.0",
     "immutable": "^3.8.1",
     "material-ui": "^0.15.0",
@@ -13,7 +13,7 @@
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-immutable-proptypes": "^1.7.1",
-    "react-jsonschema-form": "^0.33.1",
+    "react-jsonschema-form": "^0.34.0",
     "react-notification": "^5.0.4",
     "react-redux": "^4.4.5",
     "react-router": "^2.3.0",
