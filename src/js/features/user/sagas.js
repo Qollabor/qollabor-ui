@@ -30,9 +30,22 @@ export function* setLoggedUserFlow(action) {
   if (refreshTokenTimeout) {
     clearTimeout(refreshTokenTimeout);
   }
-  refreshTokenTimeout = setTimeout(refreshTokenCallback, config.login.token.expire);
+  if (action.user) {
+    refreshTokenTimeout = setTimeout(refreshTokenCallback, config.login.token.expire);
+  }
 }
 
 export function* unsetLoggedUserFlow() {
   yield put({ type: 'USER:SET_LOGGED_USER', user: null });
+}
+
+let current = 0;
+export function* tokenNotValidFlow() {
+  const newLocation = store.getState().routing.locationBeforeTransitions;
+  newLocation.query.forceRefresh = current++;
+  yield put({ type: 'LOGIN:LOGIN_REDIRECT_SET', redirect: store.getState().routing.locationBeforeTransitions });
+
+  yield put(replaceRouter({
+    pathname: '/login'
+  }));
 }

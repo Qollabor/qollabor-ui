@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga';
 
-import { loginFlow, refreshFlow } from '../features/login';
-import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow } from '../features/user';
+import { loginFlow, refreshFlow, tokenRefreshFlow } from '../features/login';
+import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow, tokenNotValidFlow } from '../features/user';
 import { fetchTasks, viewTasks } from '../features/tasks';
 import { fetchTaskDetails, viewTask, transitionToState } from '../features/task';
 import { fetchCase, fetchDiscretionaryItems, planDiscretionaryItem } from '../features/case';
@@ -11,10 +11,12 @@ const sagas = [
   // Login
   [takeEvery, 'LOGIN:DO_LOGIN', loginFlow],
   [takeEvery, 'LOGIN:VERIFY', refreshFlow],
+  [takeEvery, 'USER:TOKEN_REFRESH', tokenRefreshFlow],
   // user
   [takeEvery, 'USER:DO_LOGOUT', logoutFlow],
   [takeEvery, ['LOGIN:VERIFY:SUCCESS', 'LOGIN:DO_LOGIN:SUCCESS'], setLoggedUserFlow],
-  [takeEvery, ['LOGIN:VERIFY:FAIL', 'LOGIN:DO_LOGIN:FAIL'], unsetLoggedUserFlow],
+  [takeEvery, ['LOGIN:DO_LOGIN:FAIL', 'LOGIN:VERIFY:FAIL'], unsetLoggedUserFlow],
+  [takeEvery, 'LOGIN:TOKEN_REFRESH:FAIL', tokenNotValidFlow],
   // tasks
   [takeEvery, 'TASKS:LIST:REQUEST_INIT', fetchTasks],
   [takeEvery, 'TASKS:FILTERS:CHANGE', fetchTasks],
@@ -31,8 +33,6 @@ const sagas = [
   [takeEvery, 'CASEMODEL:LIST:INIT', resetAndfetchCaseModels],
   [takeEvery, 'CASEMODEL:DETAIL:INIT', fetchCaseModelDetails],
   [takeEvery, 'CASEMODEL:START', startCaseModel]
-
-
 ];
 
 function* rootSaga() {

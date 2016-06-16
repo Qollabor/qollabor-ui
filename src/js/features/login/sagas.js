@@ -105,3 +105,22 @@ export function* refreshFlow(action) {
   }
 }
 
+export function* tokenRefreshFlow(action) {
+  const config = registry.get('config');
+  try {
+    const response = yield registry.get('request')
+      .get(config.login.refresh.url, null, {
+        headers: {
+          [config.login.token.httpHeader]: action.authToken
+        }
+      });
+    if (!(response.status === 204 || response.status === 200)) {
+      registry.get('storage').removeItem(config.login.token.storage.key);
+      registry.get('storage').removeItem(config.login.user.storage.key);
+      yield put({ type: 'LOGIN:TOKEN_REFRESH:FAIL' });
+    }
+  } catch (err) {
+    registry.get('logger').error(err);
+    yield put({ type: 'LOGIN:TOKEN_REFRESH:FAIL', error: err });
+  }
+}
