@@ -1,6 +1,29 @@
-{  
-   "definitions":"leaverequest.xml",
-   "dimensions":"leaverequest.xml",
-   "name":"leaverequest",
-   "description":"Leave Request"
+{
+    "data": {  
+		"definitions":"leaverequest.xml",
+		"dimensions":"leaverequest.xml",
+		"name":"leaverequest",
+		"description":"Leave Request"
+    },
+    "caseModelSchema": {  
+	    "schema":{  
+	      "$schema":"http://json-schema.org/draft-04/schema#",
+	      "title":"",
+	      "type":"object",
+	      "properties":{  
+	         "Comment":{  
+	            "type":"string"
+	         }
+	      }
+	    },
+	    "uiSchema":{  
+	      "multilineTitle":{  
+	         "ui:widget":"textarea",
+	         "ui:rows":5
+	      },
+	      "destination":{  
+	         "ui:addLabel":"Add new destination"
+	      }
+	    }
+	}
 }

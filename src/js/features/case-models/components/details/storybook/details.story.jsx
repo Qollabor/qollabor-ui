@@ -39,13 +39,13 @@ storiesOf('CaseModels/Detail', module)
   .add('With data', () =>
     (<div className="center-component">
       <Details
-        data={fakeData}
+        data={fakeData.data}
       />
     </div>))
   .add('Show feedback', () =>
     (<div className="center-component">
       <Details
-        data={fakeData}
+        data={fakeData.data}
         showFeedbackForm={true}
       />
     </div>));

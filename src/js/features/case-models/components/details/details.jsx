@@ -1,6 +1,7 @@
 import React from 'react';
 import { RaisedButton, Paper } from 'material-ui';
 import MessageDiv from '../message-div';
+import CaseModelSchemaForm from '../schema-form';
 
 const styles = {
   saveButton: {
@@ -29,8 +30,20 @@ class Details extends React.Component {
     }
   }
 
+  handleOnSubmit(caseData) {
+    if (this.props.startCaseModel) {
+      this.props.startCaseModel(caseData.formData);
+    }
+  }
+
   render() {
+    const buttonList = [<RaisedButton label="START CASE" primary={true} type="submit"/>,
+      <RaisedButton label="RESET" primary={false} secondary={true}/>];
+
     const { data } = this.props;
+    const caseModelSchema = this.props.caseModelSchema ? this.props.caseModelSchema : {};
+    const caseSchema = caseModelSchema.schema || {};
+    const caseUISchema = caseModelSchema.uiSchema || {};
 
     let detailBody;
     if (this.props.error && this.props.error.isError) {
@@ -55,20 +68,16 @@ class Details extends React.Component {
             </div>
           </div> :
           <div>
+            {caseSchema && <CaseModelSchemaForm
+              buttonList={buttonList}
+              schema={caseSchema}
+              uiSchema={caseUISchema}
+              onSubmit={this.handleOnSubmit.bind(this)}
+            />}
             {this.props.actionError && this.props.actionError.message !== ''
             && <div style={Object.assign(styles.errorMessage, styles.headerMargin)}>
             Error: {this.props.actionError.message}</div>
             }
-            <div style={styles.saveButton}>
-              <RaisedButton
-                primary={true} label="RESET" labelStyle={styles.buttonLabel}
-                style={styles.buttonMargin} onClick={this.props.resetDetails}
-              />
-              <RaisedButton
-                secondary={true} label="START CASE" labelStyle={styles.buttonLabel}
-                onClick={this.props.startCaseModel}
-              />
-            </div>
           </div>
         }
       </div>);

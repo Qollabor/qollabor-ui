@@ -10,8 +10,8 @@ const mapDispatchToProps = (dispatch) => ({
     const name = definition.substr(0, definition.lastIndexOf('.'));
     dispatch({ type: 'CASEMODEL:DETAIL:INIT', definition, name });
   },
-  startCaseModel: () => {
-    dispatch({ type: 'CASEMODEL:START' });
+  startCaseModel: (caseData) => {
+    dispatch({ type: 'CASEMODEL:START', caseData });
   },
   resetDetails: () => {
     dispatch({ type: 'CASEMODEL:DETAIL:RESET' });
@@ -22,6 +22,7 @@ const mapStateToProps = (state) => ({
   isFetching: state.casemodel.details.get('isFetching'),
   definition: state.casemodel.details.get('definition'),
   data: state.casemodel.details.get('data'),
+  caseModelSchema: state.casemodel.details.get('caseModelSchema'),
   error: state.casemodel.details.get('error').toJS(),
   actionError: state.casemodel.details.get('actionError').toJS(),
   showFeedbackForm: state.casemodel.details.get('showFeedbackForm')

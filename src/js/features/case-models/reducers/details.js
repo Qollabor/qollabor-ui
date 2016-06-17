@@ -49,8 +49,9 @@ export const reducers = (state = defaultState, action) => {
                   .set('error', defaultState.get('error'))
                   .set('actionError', defaultState.get('actionError'));
     case 'CASEMODEL:DETAIL:FETCH:SUCCESS':
-      return state.set('isFetching', false).
-        set('data', getCaseModelDetail(action.data));
+      return state.set('isFetching', false)
+                  .set('data', getCaseModelDetail(action.data))
+                  .set('caseModelSchema', action.caseModelSchema);
     case 'CASEMODEL:DETAIL:FETCH:FAIL':
       return state.set('isFetching', false)
                   .set('error', Immutable.Map({ message: action.error, isError: true }));
@@ -58,7 +59,8 @@ export const reducers = (state = defaultState, action) => {
       return state.set('showFeedbackForm', false);
     case 'CASEMODEL:START':
       return state.set('isFetching', true)
-                  .set('actionError', defaultState.get('actionError'));
+                  .set('actionError', defaultState.get('actionError'))
+                  .set('caseData', action.caseData);
     case 'CASEMODEL:START:SUCCESS':
       return state.set('isFetching', false).set('showFeedbackForm', true);
     case 'CASEMODEL:START:FAIL':

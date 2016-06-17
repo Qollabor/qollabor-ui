@@ -1,0 +1,34 @@
+{  
+   "schema":{  
+      "$schema":"http://json-schema.org/draft-04/schema#",
+      "title":"TestHumanTask",
+      "type":"object",
+      "properties":{  
+         "TaskInput":{  
+            "title":"TaskInput",
+            "type":"object",
+            "properties":{  
+               "DueDate":{ "type":"string", "format": "date" },
+               "Assignee":{ "type":"string" },
+               "Content":{  
+                  "title":"Content",
+                  "type":"object",
+                  "properties":{  
+                     "Subject":{ "type":"string" },
+                     "Decision":{ "type":"string" }
+                  }
+               }
+            }
+         }
+      }
+   },
+   "uiSchema":{  
+      "multilineTitle":{  
+         "ui:widget":"textarea",
+         "ui:rows":5
+      },
+      "destination":{  
+         "ui:addLabel":"Add new destination"
+      }
+   }
+}

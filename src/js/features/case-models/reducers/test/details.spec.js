@@ -31,6 +31,29 @@ describe('features/case-models/details', () => {
     }
   }];
 
+  const caseModelSchema = {
+    schema: {
+      $schema: 'http://json-schema.org/draft-04/schema#',
+      title: '',
+      type: 'object',
+      properties: {
+        Comment: {
+          type: 'string'
+        }
+      }
+    },
+    uiSchema: {
+      multilineTitle: {
+        'ui:widget': 'textarea',
+        'ui:rows': 5
+      },
+      destination: {
+        'ui:addLabel': 'Add new destination'
+      }
+    }
+  };
+
+
   const item = {
     description: 'Besluiten',
     id: 'besluiten.case_besluiten',
@@ -79,13 +102,15 @@ describe('features/case-models/details', () => {
         isFetching: false,
         data: item,
         definition: 'besluiten.xml',
-        name: 'besluiten'
+        name: 'besluiten',
+        caseModelSchema
       }));
 
     it('should return the case model details', () => {
       actualState = reducers(actualState, {
         type: 'CASEMODEL:DETAIL:FETCH:SUCCESS',
-        data: responseItem
+        data: responseItem,
+        caseModelSchema
       });
       expect(actualState.toJSON()).to.eql(expectedState.toJSON());
     });
