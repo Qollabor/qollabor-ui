@@ -18,6 +18,7 @@ describe('features/tasks/sagas', () => {
     let requestSpy;
     let generator;
     let loggerErrorSpy;
+    const action = {};
 
     beforeEach(() => {
       registry.reset();
@@ -66,7 +67,7 @@ describe('features/tasks/sagas', () => {
       loggerErrorSpy = sinon.spy();
       registry.register('logger', { error: loggerErrorSpy });
 
-      generator = fetchTasks();
+      generator = fetchTasks(action);
     });
 
     describe('When it has not requested anything yet', () => {

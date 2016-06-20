@@ -42,6 +42,7 @@ export class TaskList extends React.Component {
             rowData={item}
             columns={this.props.columns}
             onRowClick={this.props.onRowClick}
+            executeTaskAction={this.props.executeTaskAction}
           />
         ) :
         <MessageRow colSpan={this.props.columns.length + 2} message="No items to show"/>;

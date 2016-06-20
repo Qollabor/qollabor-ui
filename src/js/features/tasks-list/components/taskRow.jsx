@@ -1,9 +1,34 @@
 import React from 'react';
 
-import { IconButton, FontIcon } from 'material-ui';
+import { FontIcon } from 'material-ui';
+import ActionChooser from '../../../components/action-chooser';
 import registry from 'app-registry';
+import { ActionAssignmentReturned, ActionAssignmentInd, ActionAssignmentReturn } from 'material-ui/svg-icons';
 
 import styles from './../styles';
+
+const actionItems = [
+  {
+    action: 'claim',
+    primaryText: 'Claim',
+    leftIcon: <ActionAssignmentReturned/>
+  },
+  {
+    action: 'assign',
+    primaryText: 'Assign',
+    leftIcon: <ActionAssignmentInd/>
+  },
+  {
+    action: 'revoke',
+    primaryText: 'Revoke',
+    leftIcon: <ActionAssignmentReturn/>
+  },
+  {
+    action: 'delegate',
+    primaryText: 'Delegate',
+    leftIcon: <ActionAssignmentInd/>
+  }
+];
 
 class TaskRow extends React.Component {
   handleRowClick(id, caseId, event) {
@@ -24,6 +49,7 @@ class TaskRow extends React.Component {
   isActionDisabled(e, index, taskAction) {
     const store = registry.get('store');
     const loggedInUserId = store.getState().user.getIn(['loggedUser', 'username']);
+
     const { assignee, taskState } = this.props.rowData;
     if ((taskState === 'Unassigned') && (taskAction === 'claim' || taskAction === 'assign')) {
       return false;
@@ -71,9 +97,10 @@ class TaskRow extends React.Component {
           key="action"
           style={actionColumnStyle}
         >
-          <IconButton>
-            <FontIcon className="material-icons">more_vert</FontIcon>
-          </IconButton>
+          <ActionChooser
+            actionItems={actionItems} onActionHandler={this.handleTaskActions.bind(this)}
+            isDisabled={this.isActionDisabled.bind(this)}
+          />
         </td>
       </tr>
     );

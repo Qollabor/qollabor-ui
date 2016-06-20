@@ -2,7 +2,7 @@ import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 import { push as pushRouter } from 'react-router-redux';
 
-export function* fetchTasks() {
+export function* fetchTasks(action) {
   const store = registry.get('store');
   const dataKey = '_2';
   const config = registry.get('config');
@@ -17,7 +17,8 @@ export function* fetchTasks() {
     };
     const filters = registry.get('helpers').task.generateRequestFilters(
       store.getState().tasks.filters.getIn(['currentTasksFilter', 'filter']), filterParams);
-    const headers = helpers.addHeadersByName(['cafienneAuth']);
+    const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
+      { caseLastModified: action.caseLastModified });
 
     const response = yield registry.get('request')
       .get(config.tasks.url, filters, headers);

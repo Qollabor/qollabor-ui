@@ -10,7 +10,14 @@ const defaultState = Immutable.Map({
   error: Immutable.Map({
     message: '',
     isError: false
-  })
+  }),
+  taskAction: {
+    onGoing: false,
+    error: {
+      message: '',
+      isError: false
+    }
+  }
 });
 
 describe('features/tasks/reducers/list', () => {
