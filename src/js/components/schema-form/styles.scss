@@ -6,4 +6,17 @@
   fieldset {
     border: 0;
   }
+  form {
+    min-height: 250px;
+    margin-bottom: 60px;
+    position: relative;
+    .form-buttons {
+      position: absolute;
+      left: 15px;
+      bottom:-45px;
+      width:100%;
+    }
+  }
+
 }
+

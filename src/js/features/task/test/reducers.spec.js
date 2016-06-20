@@ -5,6 +5,13 @@ import { reducers } from '../reducers';
 const defaultState = Immutable.fromJS(
   {
     isFetching: false,
+    save: {
+      error: {
+        isError: false,
+        message: ''
+      },
+      onGoing: false
+    },
     taskDetails: {},
     error: {
       message: '',

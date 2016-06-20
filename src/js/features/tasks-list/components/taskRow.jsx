@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { IconButton, FontIcon } from 'material-ui';
+import registry from 'app-registry';
 
 import styles from './../styles';
 
@@ -13,6 +14,25 @@ class TaskRow extends React.Component {
     if (this.props.onRowClick) {
       this.props.onRowClick(id, caseId);
     }
+  }
+
+  handleTaskActions(e, index, action) {
+    const taskId = this.props.rowData.id;
+    this.props.executeTaskAction(taskId, action);
+  }
+
+  isActionDisabled(e, index, taskAction) {
+    const store = registry.get('store');
+    const loggedInUserId = store.getState().user.getIn(['loggedUser', 'username']);
+    const { assignee, taskState } = this.props.rowData;
+    if ((taskState === 'Unassigned') && (taskAction === 'claim' || taskAction === 'assign')) {
+      return false;
+    } else if (taskState === 'Assigned' && assignee === loggedInUserId
+        && (taskAction === 'revoke' || taskAction === 'delegate')) {
+      return false;
+    }
+
+    return true;
   }
 
   render() {

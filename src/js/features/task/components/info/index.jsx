@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './styles';
-import { Paper } from 'material-ui';
 import moment from 'moment';
 import { TitledBox } from 'cafienne-ui-elements';
 import TaskInfoItem from './components/item';
@@ -11,7 +10,7 @@ export class TaskInfo extends React.Component {
     let content;
     if (Object.keys(this.props.taskDetails).length > 0) {
       content = (
-        <div style={styles.taskInfoGroup}>
+        <div >
           <TaskInfoItem itemLabel={'Assignee'} itemValue={this.props.taskDetails.assignee} />
           <TaskInfoItem itemLabel={'Owner'} itemValue={this.props.taskDetails.owner} />
           <TaskInfoItem
@@ -29,11 +28,9 @@ export class TaskInfo extends React.Component {
     }
 
     return (
-      <Paper>
-        <div style={{ width: '100%' }}>
-          {content}
-        </div>
-      </Paper>
+      <div style={{ width: '100%', marginTop: 15, marginBottom: 15 }}>
+        {content}
+      </div>
     );
   }
 }

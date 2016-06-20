@@ -110,7 +110,7 @@ function postMethod(url, data, options) {
   });
 }
 
-function putMethod(url, options) {
+function putMethod(url, data, options) {
   return new Promise((resolve, reject) => {
     let headers = Object.assign({}, defaultPutHeaders);
     if (options && options.headers) {
@@ -120,7 +120,8 @@ function putMethod(url, options) {
       url,
       {
         method: 'PUT',
-        headers
+        headers,
+        body: JSON.stringify(data || {})
       }
     )
       .then(transformResponse)

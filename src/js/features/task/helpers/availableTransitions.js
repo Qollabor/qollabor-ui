@@ -12,11 +12,6 @@ export const getAvailableTransitions = (task) => {
     case 'Active':
       return [
         {
-          action: 'complete',
-          label: 'complete',
-          backgroundColor: 'olive'
-        },
-        {
           action: 'suspend',
           label: 'suspend',
           backgroundColor: 'orange'

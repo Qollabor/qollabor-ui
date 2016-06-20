@@ -14,7 +14,7 @@ export class TransitionButtons extends React.Component {
   }
 
   render() {
-    const disabled = ! this.props.buttonsDisabled ? false : this.props.buttonsDisabled;
+    const disabled = (this.props.buttonsDisabled || this.props.disabled);
 
     const content = (
       <section>
@@ -38,6 +38,7 @@ export class TransitionButtons extends React.Component {
 
 TransitionButtons.propTypes = {
   buttonsDisabled: React.PropTypes.bool,
+  disabled: React.PropTypes.bool,
   availableTransitions: React.PropTypes.array.isRequired,
   taskId: React.PropTypes.string.isRequired,
   caseId: React.PropTypes.string.isRequired,

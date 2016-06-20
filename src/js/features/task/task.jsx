@@ -4,7 +4,6 @@ import Paper from 'material-ui/Paper';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Details } from './components/details';
-import { TransitionButtons } from './components/transition-buttons';
 
 import { ActiveItems } from './components/active-items';
 import { CompletedItems } from './components/completed-items';
@@ -32,7 +31,7 @@ export class Task extends React.Component {
 
   render() {
     const theme = getMuiTheme();
-    const drawerWidth = theme.navDrawer.width;
+    const drawerWidth = theme.drawer.width;
 
     const divContainerStyle = {
       marginLeft: this.props.showDrawer ? `${drawerWidth + 10}px` : '10px',
@@ -54,10 +53,8 @@ export class Task extends React.Component {
         </Drawer>
         <div style={divContainerStyle}>
           <Paper style={{ padding: '10px' }}>
-            <div style={{ minHeight: '500px' }}>
-              <Details taskId={this.props.taskId}/>
-
-              <TransitionButtons taskId={this.props.taskId} caseId={this.props.caseId}/>
+            <div style={{ margin: 15 }}>
+              <Details taskId={this.props.taskId} caseId={this.props.caseId}/>
             </div>
           </Paper>
         </div>

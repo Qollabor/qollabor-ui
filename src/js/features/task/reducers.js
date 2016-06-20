@@ -14,6 +14,14 @@ const defaultState = Immutable.fromJS(
         message: '',
         isError: false
       }
+    },
+
+    save: {
+      onGoing: false,
+      error: {
+        message: '',
+        isError: false
+      }
     }
   }
 );
@@ -53,6 +61,24 @@ export const reducers = (state = defaultState, action) => {
       return state
         .setIn(['transition', 'onGoing'], false)
         .setIn(['transition', 'error'], Immutable.Map({
+          message: action.error,
+          isError: true
+        }));
+
+    case 'TASK:SAVE':
+      return state
+        .setIn(['save', 'onGoing'], true)
+        .setIn(['save', 'error'], defaultState.getIn(['save', 'error']));
+
+    case 'TASK:SAVE:SUCCESS':
+      return state
+        .setIn(['save', 'onGoing'], false)
+        .setIn(['save', 'error'], defaultState.getIn(['save', 'error']));
+
+    case 'TASK:SAVE:FAIL':
+      return state
+        .setIn(['save', 'onGoing'], false)
+        .setIn(['save', 'error'], Immutable.Map({
           message: action.error,
           isError: true
         }));

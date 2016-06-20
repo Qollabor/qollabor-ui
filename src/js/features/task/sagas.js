@@ -40,7 +40,6 @@ export function* fetchTaskDetails(action) {
 }
 
 export function* transitionToState(action) {
-  // const dataKey = '_2';
   const config = registry.get('config');
   const helpers = registry.get('helpers');
 
@@ -50,8 +49,10 @@ export function* transitionToState(action) {
     // TODO check if the caseLastModified should be put for the post
     const headers = helpers.addHeadersByName(['cafienneAuth']);
 
+    const taskData = action.taskData || null;
+    const transition = action.transition;
     const response = yield registry.get('request')
-      .post(`${config.tasks.url}/${action.taskId}/${action.transition}`, null, headers);
+      .post(`${config.tasks.url}/${action.taskId}/${transition}`, taskData, headers);
 
     const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
 
@@ -62,11 +63,48 @@ export function* transitionToState(action) {
       caseLastModified
     });
 
-    yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId, caseLastModified });
-    yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId, caseLastModified });
+    // Redirect to tasks UI, if task is completed.
+    if (transition === 'complete' || transition === 'terminate') {
+      const store = registry.get('store');
+      store.dispatch(pushRouter('#/'));
+    } else {
+      // FIXME - Removed case last modified for now, need to be added later
+      yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId });
+      yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId });
+    }
   } catch (err) {
     registry.get('logger').error(err);
     notifyDanger('Unable to apply transition');
     yield put({ type: 'TASK:TRANSITION:FAIL', error: err.message });
+  }
+}
+
+export function* saveTaskDetails(action) {
+  const config = registry.get('config');
+  const helpers = registry.get('helpers');
+
+  yield put({ type: 'TASK:SAVE', taskId: action.taskId });
+
+  try {
+    const headers = helpers.addHeadersByName(['cafienneAuth']);
+
+    const response = yield registry.get('request')
+      .put(`${config.tasks.url}/${action.taskId}`, action.taskData, headers);
+
+    const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+
+    yield put(notifySuccess('The task has been saved'));
+    yield put({
+      type: 'TASK:SAVE:SUCCESS',
+      taskId: action.taskId,
+      caseLastModified
+    });
+
+    // FIXME - Removed case last modified for now, need to be added later
+    yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId });
+  } catch (err) {
+    registry.get('logger').error(err);
+    notifyDanger('Unable to save task');
+    yield put({ type: 'TASK:SAVE:FAIL', error: err.message });
   }
 }

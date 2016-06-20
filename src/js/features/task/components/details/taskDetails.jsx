@@ -1,24 +1,85 @@
 import React from 'react';
+import { RaisedButton } from 'material-ui';
 import TaskInfo from '../info';
 import { TaskBreadcrumb } from '../breadcrumb';
+import TaskModelSchemaForm from '../schema-form';
+import { ActionButtons } from '../../components/action-buttons';
+import { TransitionButtons } from '../../components/transition-buttons';
+
 
 export class TaskDetails extends React.Component {
+
   componentDidMount() {
     if (this.props.onMount) {
       this.props.onMount(this.props.taskId);
     }
   }
 
+  handleOnSubmit(taskData) {
+    if (this.currentFormAction === 'complete' && this.props.transitionToState) {
+      this.props.transitionToState(this.props.taskId, this.props.caseId, taskData.formData, this.currentFormAction);
+    } else if (this.currentFormAction === 'save' && this.props.saveTaskDetails) {
+      this.props.saveTaskDetails(this.props.taskId, taskData.formData);
+    }
+  }
+
+  handleButtonClick(formAction) {
+    this.currentFormAction = formAction;
+  }
+
   render() {
+    const taskDetails = this.props.taskDetails;
+
+    const taskModel = taskDetails.taskModel || {};
+    const taskSchema = taskModel.schema || {};
+    const taskUISchema = taskModel.uiSchema || {};
+    const formData = taskDetails.outputParams || {};
+    const disableForm = (taskDetails.taskState === 'Unassigned');
+    const isSuspended = (taskDetails.planState === 'Suspended');
+
+    const buttonStyle = {
+      margin: '3px'
+    };
+
+    const buttonList = [<div>
+      <span>
+        <RaisedButton
+          label="COMPLETE" backgroundColor={'olive'} labelColor="white" disabled={disableForm || isSuspended}
+          type="submit" style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'complete')}
+        />
+        <RaisedButton
+          label="SAVE" primary={true} type="submit" disabled={disableForm || isSuspended}
+          style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'save')}
+        />
+        <RaisedButton
+          label="RESET" primary={false} secondary={true}
+          style={buttonStyle} disabled={disableForm || isSuspended}
+        />
+      </span>
+      <span style={{ position: 'absolute', right: 30 }}>
+        <TransitionButtons taskId={this.props.taskId} caseId={this.props.caseId} disabled={disableForm}/>
+      </span>
+    </div>];
+
+
     return (
       <div>
         <TaskBreadcrumb />
-        <div style={{ height: '400px' }}></div>
+        <span style={{ float: 'right' }}>
+          <ActionButtons taskId={this.props.taskId} caseId={this.props.caseId} disabled={isSuspended}/>
+        </span>
         <TaskInfo
-          taskDetails={this.props.taskDetails}
+          taskDetails={taskDetails}
           isFetching={this.props.isFetching}
           error={this.props.error}
-          title={'Task information'}
+        />
+        <TaskModelSchemaForm
+          schema={taskSchema}
+          uiSchema={taskUISchema}
+          formData={formData}
+          buttonList={buttonList}
+          disabled={disableForm || isSuspended}
+          onSubmit={this.handleOnSubmit.bind(this)}
         />
       </div>
     );

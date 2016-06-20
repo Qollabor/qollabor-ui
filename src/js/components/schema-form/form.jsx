@@ -44,6 +44,7 @@ export class Form extends React.Component {
       uiSchema = Object.assign(uiSchema, { 'ui:disabled': true });
     }
 
+    const buttonWrapper = <div className="form-buttons">{buttonList}</div>;
     return (
       <div className="cafienne-form">
         <JsonSchemaForm
@@ -54,7 +55,7 @@ export class Form extends React.Component {
           onChange={this.handleOnChange.bind(this)}
           onSubmit={this.handleOnSubmit.bind(this)}
           onError={this.handleOnError.bind(this)}
-        >{buttonList}</JsonSchemaForm>
+        >{buttonWrapper}</JsonSchemaForm>
       </div>
     );
   }
