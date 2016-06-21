@@ -23,7 +23,7 @@ deploy:
           rm -rf /usr/share/nginx/html/*
           cp -Rp $WERCKER_SOURCE_DIR/dist/* /usr/share/nginx/html
     - internal/docker-push:
-        tag: testing-cafienne-ui
+        tag: testing-cafienne-ui-test
         username: $DOCKER_HUB_USERNAME
         password: $DOCKER_HUB_PASSWORD
         repository: spronq/test
