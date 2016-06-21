@@ -5,6 +5,7 @@ import { BooleanWidget } from './widgets/boolean';
 import { StringWidget } from './widgets/string';
 import { IntegerWidget } from './widgets/integer';
 import { ArrayField } from './widgets/array';
+import { ObjectField } from './widgets/object';
 
 export const CustomSchemaField = function (props) {
   let readonly = {};
@@ -20,6 +21,8 @@ export const CustomSchemaField = function (props) {
       return <BooleanWidget {...props} {...readonly}/>;
     case 'array':
       return <ArrayField {...props} {...readonly}/>;
+    case 'object':
+      return <ObjectField {...props} {...readonly}/>;
     default:
       return <SchemaField {...props} {...readonly}/>;
   }

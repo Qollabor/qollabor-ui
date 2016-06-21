@@ -4,6 +4,7 @@ import { IconButton, FontIcon, Paper } from 'material-ui';
 import { FieldTitle } from './fieldTitle';
 import { FieldDescription } from './fieldDescription';
 import { FieldItem } from './fieldItem';
+import { HelpWidget } from '../help';
 
 import styles from './styles';
 
@@ -94,6 +95,17 @@ export class NormalArray extends Component {
     const { DescriptionField } = fields;
     const itemsSchema = retrieveSchema(schema.items, definitions);
 
+    let help = null;
+    if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
+      help = this.props.uiSchema['ui:help'];
+    }
+
+    let helpWidget = false;
+    if (help) {
+      helpWidget =
+        <div style={{ zIndex: 100, marginTop: '2px' }}><HelpWidget help={help}/></div>;
+    }
+
     let addButton = false;
     if (!this.props.readonly) {
       addButton = (
@@ -115,11 +127,14 @@ export class NormalArray extends Component {
         style={styles.fixedArrayContainer}
       >
         <div style={styles.header}>
-          <FieldTitle
-            idSchema={idSchema}
-            title={title}
-          />
+          <div style={{ flexGrow: 5 }}>
+            <FieldTitle
+              idSchema={idSchema}
+              title={title}
+            />
+          </div>
           {addButton}
+          {helpWidget}
         </div>
         {schema.description ?
           <FieldDescription

@@ -48,7 +48,6 @@ export default {
       cursor: 'text',
       transform: 'perspective(1px) scale(0.75) translate3d(0px, -28px, 0px)',
       transformOrigin: 'left top 0px',
-      pointerEvents: 'none',
       color: 'rgba(0, 0, 0, 0.498039)'
     },
     content: {

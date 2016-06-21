@@ -30,8 +30,8 @@ const schema = {
     foo: {
       type: 'object',
       properties: {
-        bar: { type: 'string' },
-        baz: { type: 'string' }
+        bar: { type: 'string', title: 'Bar value' },
+        baz: { type: 'string', title: 'BAz value' }
       }
     },
     list: {
@@ -43,51 +43,73 @@ const schema = {
 };
 
 const uiSchema = {
+  title: {
+    'ui:help': 'This is a title'
+  },
   multilineTitle: {
-    'ui:readonly': true,
     'ui:widget': 'textarea',
-    'ui:rows': 5
+    'ui:rows': 5,
+    'ui:help': 'This is a multiline text'
+  },
+
+  done: { 'ui:help': 'This is a checkbox' },
+
+  integer: {
+    'ui:help': 'This is an integer'
   },
   destination: {
-    'ui:addLabel': 'Add new destination'
-  }
+    'ui:addLabel': 'Add new destination',
+    'ui:help': 'This is an string array'
+  },
+  birth: {
+    'ui:help': 'This is an date'
+  },
+  time: {
+    'ui:help': 'This is an time'
+  },
+  foo: {
+    'ui:help': 'This is an object',
+    bar: {
+      'ui:help': 'This is an bar help'
+    }
+  },
+  list: { 'ui:help': 'This is a list' }
 };
 
 const uiSchemaReadonly = {
   title: {
-    'ui:readonly': true
+    'ui:readonly': true,
+    'ui:help': 'This is a title'
   },
   multilineTitle: {
     'ui:readonly': true,
     'ui:widget': 'textarea',
-    'ui:rows': 5
+    'ui:rows': 5,
+    'ui:help': 'This is a multiline text'
   },
 
-  done: { 'ui:readonly': true },
+  done: { 'ui:readonly': true, 'ui:help': 'This is a checkbox' },
 
   integer: {
-    'ui:readonly': true
+    'ui:readonly': true, 'ui:help': 'This is an integer'
   },
   destination: {
     'ui:addLabel': 'Add new destination',
-    'ui:readonly': true
+    'ui:readonly': true, 'ui:help': 'This is an string array'
   },
   birth: {
-    'ui:readonly': true
+    'ui:readonly': true,
+    'ui:help': 'This is an date'
   },
   time: {
-    'ui:readonly': true
+    'ui:readonly': true,
+    'ui:help': 'This is an time'
   },
   foo: {
     'ui:readonly': true,
-    bar: {
-      'ui:readonly': true
-    },
-    baz: {
-      'ui:readonly': true
-    }
+    'ui:help': 'This is an object'
   },
-  list: { 'ui:readonly': true }
+  list: { 'ui:readonly': true, 'ui:help': 'This is a list' }
 };
 
 const formData = {

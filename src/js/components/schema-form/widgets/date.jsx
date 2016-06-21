@@ -1,6 +1,7 @@
 import React from 'react';
 import { DatePicker } from 'material-ui';
 import { ReadOnlyWidget } from './readonly';
+import { HelpWidget } from './help';
 import moment from 'moment';
 
 export class DateWidget extends React.Component {
@@ -22,24 +23,41 @@ export class DateWidget extends React.Component {
     }
     /* eslint-enable no-underscore-dangle */
 
+    let help = null;
+    if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
+      help = this.props.uiSchema['ui:help'];
+    }
+
     if (this.props.readonly) {
       return (
         <ReadOnlyWidget
           title={this.props.schema.title}
           name={this.props.name}
           value={this.formatDate(this.props.formData)}
+          help={help}
         />
       );
     }
 
+    let helpWidget = false;
+    if (help) {
+      helpWidget =
+        <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}><HelpWidget help={help}/></div>;
+    }
+
     return (
-      <DatePicker
-        name={this.props.name}
-        value={date}
-        floatingLabelText={this.props.schema.title}
-        onChange={this.handleOnChange.bind(this)}
-        formatDate={this.formatDate}
-        {...errors}
-      />);
+      <div>
+        {helpWidget}
+        <DatePicker
+          name={this.props.name}
+          value={date}
+          floatingLabelText={this.props.schema.title}
+          onChange={this.handleOnChange.bind(this)}
+          formatDate={this.formatDate}
+          help={help}
+          {...errors}
+        />
+      </div>
+    );
   }
 }

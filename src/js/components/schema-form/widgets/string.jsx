@@ -2,6 +2,7 @@ import React from 'react';
 import { TextField } from 'material-ui';
 import { DateWidget } from './date';
 import { ReadOnlyWidget } from './readonly';
+import { HelpWidget } from './help';
 import { TimeWidget } from './time';
 import { SelectWidget } from './select';
 
@@ -34,6 +35,11 @@ export class StringWidget extends React.Component {
     }
     /* eslint-enable no-underscore-dangle */
 
+    let help = null;
+    if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
+      help = this.props.uiSchema['ui:help'];
+    }
+
     if (this.props.readonly) {
       return (
         <ReadOnlyWidget
@@ -41,6 +47,7 @@ export class StringWidget extends React.Component {
           name={this.props.name}
           value={this.props.formData}
           multiline={this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'textarea'}
+          help={help}
         />
       );
     }
@@ -57,14 +64,25 @@ export class StringWidget extends React.Component {
         multilineProps.style = { width: '100%' };
       }
     }
+
+    let helpWidget = false;
+    if (help) {
+      helpWidget =
+        <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}><HelpWidget help={help}/></div>;
+    }
+
     return (
-      <TextField
-        name={this.props.name}
-        floatingLabelText={this.props.schema.title}
-        value={this.props.formData}
-        onChange={this.handleOnChange.bind(this)}
-        {...errors}
-        {...multilineProps}
-      />);
+      <div>
+        {helpWidget}
+        <TextField
+          name={this.props.name}
+          floatingLabelText={this.props.schema.title}
+          value={this.props.formData}
+          onChange={this.handleOnChange.bind(this)}
+          {...errors}
+          {...multilineProps}
+        />
+      </div>
+    );
   }
 }

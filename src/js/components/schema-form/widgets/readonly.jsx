@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../styles';
+import { HelpWidget } from './help';
 
 export class ReadOnlyWidget extends React.Component {
   render() {
@@ -22,13 +23,19 @@ export class ReadOnlyWidget extends React.Component {
       );
     }
 
+    let help = false;
+    if (this.props.help) {
+      help = <HelpWidget help={this.props.help}/>;
+    }
+
     return (
       <div
         style={styles.readOnly.container}
       >
-        <label
+        <div style={{ zIndex: 100, float: 'right' }}>{help}</div>
+        <div
           style={styles.readOnly.label}
-        >{this.props.title}</label>
+        >{this.props.title}</div>
         {content}
       </div>
     );
