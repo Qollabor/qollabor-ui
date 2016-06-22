@@ -48,6 +48,7 @@ export class IntegerWidget extends React.Component {
           floatingLabelText={this.props.schema.title}
           value={this.props.formData}
           onChange={this.handleOnChange.bind(this)}
+          disabled={this.props.disabled}
           {...errors}
         />
       </div>

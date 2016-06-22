@@ -52,6 +52,7 @@ export class TimeWidget extends React.Component {
           defaultTime={time}
           format="24hr"
           floatingLabelText={this.props.schema.title}
+          disabled={this.props.disabled}
           onChange={this.handleOnChange.bind(this)}
           {...errors}
         />

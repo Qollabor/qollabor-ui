@@ -155,6 +155,20 @@ storiesOf('SchemaForm', module)
       </Paper>
     </div>
   ))
+  .add('Sample Disabled', () => (
+    <div className="center-component">
+      <Paper style={paperStyle}>
+        <Form
+          schema={schema}
+          uiSchema={uiSchema}
+          formData={formData}
+          onSubmit={action('onSubmit')}
+          onError={action('onError')}
+          disabled={true}
+        />
+      </Paper>
+    </div>
+  ))
   .add('Sample NCIA', () => (
     <div className="center-component">
       <Paper style={paperStyle}>

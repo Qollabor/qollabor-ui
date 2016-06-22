@@ -48,6 +48,7 @@ export class SelectWidget extends React.Component {
           name={this.props.name}
           floatingLabelText={this.props.schema.title}
           value={this.props.formData}
+          disabled={this.props.disabled}
           onChange={this.handleOnChange.bind(this)}
           {...errors}
         >

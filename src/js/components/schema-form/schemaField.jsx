@@ -12,18 +12,23 @@ export const CustomSchemaField = function (props) {
   if (props.uiSchema && props.uiSchema['ui:readonly'] === true) {
     readonly = { readonly: true };
   }
+
+  let disabled = {};
+  if (props.uiSchema && props.uiSchema['ui:disabled'] === true) {
+    disabled = { disabled: true };
+  }
   switch (props.schema.type) {
     case 'string':
-      return <StringWidget {...props} {...readonly}/>;
+      return <StringWidget {...props} {...readonly} {...disabled}/>;
     case 'integer':
-      return <IntegerWidget {...props} {...readonly}/>;
+      return <IntegerWidget {...props} {...readonly} {...disabled}/>;
     case 'boolean':
-      return <BooleanWidget {...props} {...readonly}/>;
+      return <BooleanWidget {...props} {...readonly} {...disabled}/>;
     case 'array':
-      return <ArrayField {...props} {...readonly}/>;
+      return <ArrayField {...props} {...readonly} {...disabled}/>;
     case 'object':
-      return <ObjectField {...props} {...readonly}/>;
+      return <ObjectField {...props} {...readonly} {...disabled}/>;
     default:
-      return <SchemaField {...props} {...readonly}/>;
+      return <SchemaField {...props} {...readonly} {...disabled}/>;
   }
 };

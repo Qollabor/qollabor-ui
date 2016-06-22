@@ -16,11 +16,6 @@ export class BooleanWidget extends React.Component {
     }
     /* eslint-enable no-underscore-dangle */
 
-    let disabled = {};
-    if (this.props.readonly) {
-      disabled = { disabled: true };
-    }
-
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
       help = this.props.uiSchema['ui:help'];
@@ -46,7 +41,7 @@ export class BooleanWidget extends React.Component {
           onCheck={this.handleOnCheck.bind(this)}
           checked={this.props.formData}
           {...errors}
-          {...disabled}
+          disabled={this.props.disabled || this.props.readonly}
         />
       </div>);
   }

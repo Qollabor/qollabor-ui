@@ -34,11 +34,21 @@ export class Form extends React.Component {
     const buttonList = [];
     buttonList.push(<RaisedButton key="submit" label="Submit" primary={true} type="submit"/>);
     buttonList.push(<RaisedButton key="reset" label="Reset" primary={false} secondary={true}/>);
+
+    let uiSchema = Object.assign({}, this.props.uiSchema);
+    if (this.props.readonly) {
+      uiSchema = Object.assign(uiSchema, { 'ui:readonly': true });
+    }
+
+    if (this.props.disabled) {
+      uiSchema = Object.assign(uiSchema, { 'ui:disabled': true });
+    }
+
     return (
       <div className="cafienne-form">
         <JsonSchemaForm
           schema={this.props.schema}
-          uiSchema={this.props.uiSchema}
+          uiSchema={uiSchema}
           formData={this.props.formData}
           fields={fields}
           onChange={this.handleOnChange.bind(this)}

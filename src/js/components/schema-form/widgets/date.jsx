@@ -54,6 +54,7 @@ export class DateWidget extends React.Component {
           floatingLabelText={this.props.schema.title}
           onChange={this.handleOnChange.bind(this)}
           formatDate={this.formatDate}
+          disabled={this.props.disabled}
           help={help}
           {...errors}
         />
