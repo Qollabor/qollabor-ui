@@ -1,7 +1,8 @@
 import React from 'react';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
+import { IconButton } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import StartCaseIcon from 'material-ui/svg-icons/av/play-arrow';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import styles from './styles';
@@ -59,9 +60,17 @@ export class Header extends React.Component {
         </ToolbarGroup>
         {caseUserList}
         <ToolbarGroup firstChild={false} lastChild={true} float="right">
+          <IconButton
+            tooltip="Start New Case"
+            label="Start Case"
+            iconStyle={styles.menuIcon}
+            linkButton={true}
+            href="#/casemodels"
+          >
+            <StartCaseIcon color={theme.appBar.textColor} />
+          </IconButton>
           <div style={{ display: 'inline-block' }}><AppBarUserMenu /></div>
         </ToolbarGroup>
-
       </Toolbar>
     );
   }

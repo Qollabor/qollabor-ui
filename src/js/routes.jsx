@@ -53,7 +53,7 @@ export default (
         <Route path="/tasks" component={TasksPage} {...hooks} />
         <Route path="/tasks/:taskId" component={TaskPage} {...hooks} showCaseUsers={true}/>
         <Route path="/casemodels" component={CaseModelsPage} {...hooks} />
-        <Route path="/casemodel/:id" component={CaseModelDetailPage} {...hooks} />
+        <Route path="/casemodels/:id" component={CaseModelDetailPage} {...hooks} />
       </Route>
     </Route>
   </Route>

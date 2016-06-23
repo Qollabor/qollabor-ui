@@ -62,7 +62,7 @@ class Details extends React.Component {
             <div style={styles.headerMargin}>The case was successfully created</div>
             <div style={styles.saveButton}>
               <RaisedButton
-                secondary={true} label="CREATE A NEW CASE" labelStyle={styles.buttonLabel}
+                secondary={true} label="CREATE ANOTHER" labelStyle={styles.buttonLabel}
                 onClick={this.props.resetDetails}
               />
             </div>

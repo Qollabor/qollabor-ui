@@ -15,7 +15,7 @@ export class CaseModels extends React.Component {
 
   handleCaseModelSelect(definition) {
     if (this.context.router) {
-      this.context.router.push(`/casemodel/${definition}`);
+      this.context.router.push(`/casemodels/${definition}`);
     }
   }
 
