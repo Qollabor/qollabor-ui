@@ -101,7 +101,7 @@ export function* saveTaskDetails(action) {
     });
 
     // FIXME - Removed case last modified for now, need to be added later
-    yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId });
+    yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId, caseLastModified });
   } catch (err) {
     registry.get('logger').error(err);
     notifyDanger('Unable to save task');

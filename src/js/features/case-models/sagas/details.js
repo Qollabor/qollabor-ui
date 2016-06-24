@@ -27,10 +27,10 @@ export function* fetchCaseModelDetails() {
       const caseModelItem = jsonObj.find((elmt) => elmt.name === 'case');
       const caseName = caseModelItem ? caseModelItem.attributes.name.toLowerCase() : '';
       // eslint-disable-next-line
-      caseModelSchema = require(`../../../schemas/${caseName}.json`);
+      caseModelSchema = require(`../../../schemas/${caseName}.schema`);
     } catch (err) {
       // eslint-disable-next-line
-      caseModelSchema = require('../../../schemas/default.json');
+      caseModelSchema = require('../../../schemas/default.schema');
     }
 
     yield put({ type: 'CASEMODEL:DETAIL:FETCH:SUCCESS', data: jsonObj, caseModelSchema });
@@ -50,10 +50,11 @@ export function* startCaseModel() {
 
     const caseModelDetails = store.getState().casemodel.details;
 
-    const requestPayload = Object.assign({
+    const requestPayload = {
       definition: caseModelDetails.get('definition'),
-      name: caseModelDetails.get('data').name
-    }, caseModelDetails.get('caseData'));
+      name: caseModelDetails.get('data').name,
+      inputs: caseModelDetails.get('caseData')
+    };
 
     const response = yield registry.get('request')
       .post(`${config.cases.url}`, requestPayload, headers);

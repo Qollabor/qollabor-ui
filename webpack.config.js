@@ -28,7 +28,7 @@ module.exports = {
         test: /\.css?$/,
         loaders: ['style', 'raw']
       },
-      { test: /\.json$/, loader: 'json' }
+      { test: /\.schema$/, loader: 'json' }
     ]
   },
   plugins: [

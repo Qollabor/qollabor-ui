@@ -1,0 +1,32 @@
+{
+  "schema": {
+    "title": "Greeting",
+    "type": "object",
+    "required": [
+      "Greeting"
+    ],
+    "properties": {
+      "Greeting": {
+        "title": "Your greeting",
+        "type": "object",
+        "properties": {
+          "Message": {
+            "type": "string",
+            "title": "Your message"
+          },
+          "To": {
+            "type": "string",
+            "title": "To whom?"
+          }
+        }
+      }
+    }
+  },
+  "uiSchema": {
+    "Greeting": {
+      "Message": {
+        "ui:widget": "textarea"
+      }
+    }
+  }
+}
