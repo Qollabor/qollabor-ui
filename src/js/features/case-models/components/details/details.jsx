@@ -2,6 +2,7 @@ import React from 'react';
 import { RaisedButton, Paper } from 'material-ui';
 import MessageDiv from '../message-div';
 import CaseModelSchemaForm from '../schema-form';
+import { JsonObjectViewer } from 'cafienne-ui-elements';
 
 const styles = {
   saveButton: {
@@ -59,7 +60,12 @@ class Details extends React.Component {
 
         {this.props.showFeedbackForm ?
           <div>
-            <div style={styles.headerMargin}>The case was successfully created</div>
+            <div style={styles.headerMargin}>The case was successfully created.<JsonObjectViewer
+              buttonTitle="Open case"
+              buttonIsPrimary={true}
+              modalTitle="Case details"
+              object={this.props.case}
+            /></div>
             <div style={styles.saveButton}>
               <RaisedButton
                 secondary={true} label="CREATE ANOTHER" labelStyle={styles.buttonLabel}

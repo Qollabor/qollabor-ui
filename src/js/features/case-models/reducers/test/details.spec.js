@@ -8,6 +8,7 @@ describe('features/case-models/details', () => {
     data: {},
     definition: undefined,
     name: undefined,
+    case: undefined,
     showFeedbackForm: false,
     error: {
       message: '',
