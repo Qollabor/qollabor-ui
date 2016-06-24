@@ -1,0 +1,203 @@
+{
+    "schema": {
+        "title": "TDYCase",
+        "description": "TDY Request case",
+        "type": "object",
+        "properties": {"TDYRequest": {"$ref": "#/definitions/TDYRequest"}},
+        "definitions": {
+            "TDYRequest": {
+                "title": "TDY Request",
+                "type": "object",
+                "required": [
+                    "Requestor",
+                    "DepartureDate",
+                    "ReturnDate",
+                    "DeparturePoint",
+                    "ReturnPoint",
+                    "Purpose"
+                ],
+                "properties": {
+                    "Requestor": {
+                        "title": "Requestor",
+                        "type": "string"
+                    },
+                    "PassNo": {
+                        "title": "Pass number",
+                        "type": "string"
+                    },
+                    "DepartureDate": {
+                        "title": "Departure date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "ReturnDate": {
+                        "title": "Return date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "DeparturePoint": {
+                        "title": "Departure point",
+                        "type": "string"
+                    },
+                    "ReturnPoint": {
+                        "title": "Return point",
+                        "type": "string"
+                    },
+                    "Purpose": {
+                        "title": "Purpose",
+                        "type": "string"
+                    },
+                    "Justification": {
+                        "title": "Justification",
+                        "type": "string"
+                    },
+                    "AdvanceRequired": {
+                        "title": "Advance required",
+                        "type": "boolean"
+                    },
+                    "PointOfContact": {
+                        "title": "PointOfContact",
+                        "type": "string"
+                    },
+                    "Comments": {
+                        "title": "Comments",
+                        "type": "string"
+                    },
+                    "RequestDate": {
+                        "title": "Request date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "Traveller": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {"$ref": "#/definitions/Traveller"}
+                    },
+                    "Destination": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {"$ref": "#/definitions/Destination"}
+                    },
+                    "Meeting": {"$ref": "#/definitions/Meeting"},
+                    "Transport": {"$ref": "#/definitions/Transport"},
+                    "Project": {"$ref": "#/definitions/Project"}
+                }
+            },
+            "Traveller": {
+                "title": "Traveller",
+                "type": "object",
+                "required": ["Name"],
+                "properties": {"Name": {
+                    "title": "Name",
+                    "type": "string"
+                }}
+            },
+            "Destination": {
+                "title": "Destination",
+                "type": "object",
+                "required": [
+                    "City",
+                    "Country"
+                ],
+                "properties": {
+                    "City": {
+                        "title": "City",
+                        "type": "string"
+                    },
+                    "Country": {
+                        "title": "Country",
+                        "type": "string"
+                    }
+                }
+            },
+            "Meeting": {
+                "title": "Meeting",
+                "type": "object",
+                "properties": {
+                    "StartDate": {
+                        "title": "Start date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "StartTime": {
+                        "title": "Start time",
+                        "type": "string",
+                        "format": "time"
+                    },
+                    "EndDate": {
+                        "title": "End date",
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "EndTime": {
+                        "title": "End time",
+                        "type": "string",
+                        "format": "time"
+                    },
+                    "DurationIncLeave": {
+                        "title": "Duration incl. leave",
+                        "type": "integer"
+                    }
+                }
+            },
+            "Transport": {
+                "title": "Transport",
+                "type": "object",
+                "required": ["ModeOfTransport"],
+                "properties": {
+                    "ModeOfTransport": {
+                        "title": "Mode of transport",
+                        "type": "string",
+                        "enum": [
+                            "Shuttle",
+                            "Staff car",
+                            "Hire car",
+                            "Train",
+                            "Air",
+                            "POMV"
+                        ]
+                    },
+                    "POMVMake": {
+                        "title": "POMV make",
+                        "type": "string"
+                    },
+                    "POMVLicense": {
+                        "title": "POMV license",
+                        "type": "string"
+                    }
+                }
+            },
+            "Project": {
+                "title": "Project",
+                "type": "object",
+                "required": ["Assistant"],
+                "properties": {
+                    "IMIS-code": {
+                        "title": "IMIS-code",
+                        "type": "string"
+                    },
+                    "IMIS-activity-code": {
+                        "title": "IMIS-activity-code",
+                        "type": "string"
+                    },
+                    "Manager": {
+                        "title": "Project manager",
+                        "type": "string"
+                    },
+                    "ChiefServiceLine": {
+                        "title": "Chief service line",
+                        "type": "string"
+                    },
+                    "Assistant": {
+                        "title": "Project assistant",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "uiSchema": {"TDYRequest": {
+        "Purpose": {"ui:widget": "textarea"},
+        "Justification": {"ui:widget": "textarea"}
+    }}
+}
