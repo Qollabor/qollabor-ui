@@ -11,8 +11,6 @@ import LoginPage from './pages/login';
 import CaseModelsPage from './pages/caseModels';
 import CaseModelDetailPage from './pages/caseModelDetail';
 
-import SampleFormPage from './pages/sampleForm';
-
 function getValuesFromRoutes(routes, attribute) {
   for (let i = routes.length - 1; i >= 0; i--) {
     if (routes[i][attribute] !== undefined) {
@@ -26,6 +24,9 @@ function enterRouteHook(nextState, replace) {
   loginOnEnterHook(nextState, replace, store, getValuesFromRoutes(nextState.routes, 'requireAuth'));
   const showCaseUsers = getValuesFromRoutes(nextState.routes, 'showCaseUsers') || false;
   store.dispatch({ type: 'APP:CASE_USERS:SHOW', showCaseUsers });
+
+  const headerMenu = getValuesFromRoutes(nextState.routes, 'headerMenu') || [];
+  store.dispatch({ type: 'APP:HEADER_MENU:SET', headerMenu });
 }
 
 function changeRouteHook(prevState, nextState, replace) {
@@ -39,6 +40,14 @@ const hooks = {
   onChange: changeRouteHook
 };
 
+const headerMenuTask = [
+  { name: 'New case model', url: '/casemodels' }
+];
+
+const headerMenuCasemodels = [
+  { name: 'Tasks', url: '/' }
+];
+
 export default (
   <Route>
     <Route component={NoHeaderLayout}>
@@ -47,13 +56,12 @@ export default (
 
     <Route component={MainLayout}>
       <Route requireAuth={true}>
-        <Route path="/sample" component={SampleFormPage} {...hooks} />
-        <Route path="/" component={TasksPage} {...hooks} />
+        <Route path="/" component={TasksPage} {...hooks} headerMenu={headerMenuTask}/>
         <Route path="/info" component={InfoPage} {...hooks} />
-        <Route path="/tasks" component={TasksPage} {...hooks} />
-        <Route path="/tasks/:taskId" component={TaskPage} {...hooks} showCaseUsers={true}/>
-        <Route path="/casemodels" component={CaseModelsPage} {...hooks} />
-        <Route path="/casemodels/:id" component={CaseModelDetailPage} {...hooks} />
+        <Route path="/tasks" component={TasksPage} {...hooks} headerMenu={headerMenuTask}/>
+        <Route path="/tasks/:taskId" component={TaskPage} {...hooks} showCaseUsers={true} headerMenu={headerMenuTask}/>
+        <Route path="/casemodels" component={CaseModelsPage} {...hooks} headerMenu={headerMenuCasemodels}/>
+        <Route path="/casemodels/:id" component={CaseModelDetailPage} {...hooks} headerMenu={headerMenuCasemodels}/>
       </Route>
     </Route>
   </Route>

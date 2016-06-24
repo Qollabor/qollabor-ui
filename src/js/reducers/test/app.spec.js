@@ -5,6 +5,7 @@ import appReducer from '../app';
 describe('reducers/app', () => {
   const defaultState = Immutable.Map(
     {
+      headerMenu: [],
       menuItemCategory: null,
       isOnInit: false,
       showDrawer: true,
