@@ -3,7 +3,7 @@ import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import { TextField } from 'material-ui';
 
-export class IntegerWidget extends React.Component {
+export class NumberWidget extends React.Component {
   handleOnChange(event) {
     event.persist();
     this.props.onChange(Number(event.target.value));
@@ -45,6 +45,7 @@ export class IntegerWidget extends React.Component {
         <TextField
           name={this.props.name}
           type="number"
+          step="any"
           floatingLabelText={this.props.schema.title}
           value={this.props.formData}
           onChange={this.handleOnChange.bind(this)}

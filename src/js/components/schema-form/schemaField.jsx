@@ -4,6 +4,7 @@ import SchemaField from 'react-jsonschema-form/lib/components/fields/SchemaField
 import { BooleanWidget } from './widgets/boolean';
 import { StringWidget } from './widgets/string';
 import { IntegerWidget } from './widgets/integer';
+import { NumberWidget } from './widgets/number';
 import { ArrayField } from './widgets/array';
 import { ObjectField } from './widgets/object';
 
@@ -22,6 +23,8 @@ export const CustomSchemaField = function (props) {
       return <StringWidget {...props} {...readonly} {...disabled}/>;
     case 'integer':
       return <IntegerWidget {...props} {...readonly} {...disabled}/>;
+    case 'number':
+      return <NumberWidget {...props} {...readonly} {...disabled}/>;
     case 'boolean':
       return <BooleanWidget {...props} {...readonly} {...disabled}/>;
     case 'array':

@@ -10,11 +10,11 @@ export class TimeWidget extends React.Component {
   }
 
   handleOnChange(event, newDate) {
-    this.props.onChange(moment(newDate).format('HH:mm'));
+    this.props.onChange(moment(newDate).format('HH:mm:ss'));
   }
 
   render() {
-    const time = this.props.formData ? moment(this.props.formData, 'HH:mm').toDate() : null;
+    const time = this.props.formData ? moment(this.props.formData, 'HH:mm:ss').toDate() : null;
     const errors = {};
     /* eslint-disable no-underscore-dangle */
     if (this.props.errorSchema && this.props.errorSchema.__errors) {
