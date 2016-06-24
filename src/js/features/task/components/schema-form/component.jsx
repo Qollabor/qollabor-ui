@@ -12,6 +12,7 @@ export class TaskModelSchemaForm extends React.Component {
           uiSchema={this.props.uiSchema}
           formData={this.props.formData}
           onSubmit={this.props.onSubmit}
+          disabled={this.props.disabled}
         />
       </Paper>
     );
