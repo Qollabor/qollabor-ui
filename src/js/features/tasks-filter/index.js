@@ -1,4 +1,5 @@
 import component from './component';
+import moment from 'moment';
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
@@ -10,11 +11,14 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
+  const timeZoneOffset = moment().format('Z');
   return {
     onChangeTasksFilter: (tasksFilterName) => {
       dispatch({
         type: 'TASKS:FILTERS:CHANGE',
-        tasksFilterName
+        tasksFilterName,
+        timeZone: timeZoneOffset
+
       });
     }
   };

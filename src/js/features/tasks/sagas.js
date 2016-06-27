@@ -17,11 +17,13 @@ export function* fetchTasks(action) {
     };
     const filters = registry.get('helpers').task.generateRequestFilters(
       store.getState().tasks.filters.getIn(['currentTasksFilter', 'filter']), filterParams);
-    const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
+
+    const reqOptions = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
       { caseLastModified: action.caseLastModified });
+    Object.assign(reqOptions.headers, { timeZone: action.timeZone });
 
     const response = yield registry.get('request')
-      .get(config.tasks.url, filters, headers);
+      .get(config.tasks.url, filters, reqOptions);
 
     let tasks = [];
 

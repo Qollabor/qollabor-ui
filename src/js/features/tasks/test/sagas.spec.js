@@ -18,7 +18,9 @@ describe('features/tasks/sagas', () => {
     let requestSpy;
     let generator;
     let loggerErrorSpy;
-    const action = {};
+    const action = {
+      timeZone: '42'
+    };
 
     beforeEach(() => {
       registry.reset();
@@ -82,7 +84,8 @@ describe('features/tasks/sagas', () => {
 
         expect(requestSpy.calledWith(fakeURL, { assignee: 'admin' }, {
           headers: {
-            [fakeTokenPropertyName]: fakeToken
+            [fakeTokenPropertyName]: fakeToken,
+            timeZone: '42'
           }
         })).to.be.true;
       });
