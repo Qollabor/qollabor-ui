@@ -1,6 +1,7 @@
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 import { push as pushRouter } from 'react-router-redux';
+import moment from 'moment';
 
 export function* fetchTasks(action) {
   const store = registry.get('store');
@@ -13,7 +14,7 @@ export function* fetchTasks(action) {
   try {
     const filterParams = {
       userId: store.getState().user.getIn(['loggedUser', 'username']),
-      today: (new Date()).toISOString().substring(0, 10)
+      today: moment().add('days', 1).format('YYYY-MM-DD')
     };
     const filters = registry.get('helpers').task.generateRequestFilters(
       store.getState().tasks.filters.getIn(['currentTasksFilter', 'filter']), filterParams);

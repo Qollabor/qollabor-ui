@@ -17,7 +17,7 @@ const defaultState = Immutable.fromJS({
     {
       id: 'dueDate',
       icon: 'query_builder',
-      label: 'Due Date',
+      label: 'Due Today',
       color: '#F3974F',
       filter: ['due']
     },
@@ -40,7 +40,7 @@ const defaultState = Immutable.fromJS({
       icon: 'group',
       label: 'Group Tasks',
       color: '#ACCFEB',
-      filter: []
+      filter: ['unassigned']
     }
   ]
 });
