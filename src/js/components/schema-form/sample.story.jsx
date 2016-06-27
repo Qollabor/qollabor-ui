@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const schemaNCIA = require('./data/ncia.json');
+const tdyRequestSchema = require('./data/tdyRequest.schema.json');
 
 const paperStyle = { padding: '5px', width: '700px' };
 
@@ -183,6 +184,19 @@ storiesOf('SchemaForm', module)
       <Paper style={paperStyle}>
         <Form
           schema={schemaNCIA}
+          formData={formData}
+          onSubmit={action('onSubmit')}
+          onError={action('onError')}
+        />
+      </Paper>
+    </div>
+  ))
+  .add('TDY Schema form', () => (
+    <div className="center-component">
+      <Paper style={paperStyle}>
+        <Form
+          schema={tdyRequestSchema.schema}
+          uiSchema={tdyRequestSchema.uiSchema}
           formData={formData}
           onSubmit={action('onSubmit')}
           onError={action('onError')}

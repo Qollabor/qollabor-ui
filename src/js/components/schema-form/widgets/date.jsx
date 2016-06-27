@@ -45,13 +45,15 @@ export class DateWidget extends React.Component {
         <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}><HelpWidget help={help}/></div>;
     }
 
+    const title = this.props.schema.title + (this.props.required ? ' *' : '');
+
     return (
       <div>
         {helpWidget}
         <DatePicker
           name={this.props.name}
           value={date}
-          floatingLabelText={this.props.schema.title}
+          floatingLabelText={title}
           onChange={this.handleOnChange.bind(this)}
           formatDate={this.formatDate}
           disabled={this.props.disabled}

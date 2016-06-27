@@ -71,12 +71,13 @@ export class StringWidget extends React.Component {
         <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}><HelpWidget help={help}/></div>;
     }
 
+    const title = this.props.schema.title + (this.props.required ? ' *' : '');
     return (
       <div>
         {helpWidget}
         <TextField
           name={this.props.name}
-          floatingLabelText={this.props.schema.title}
+          floatingLabelText={title}
           value={this.props.formData}
           onChange={this.handleOnChange.bind(this)}
           disabled={this.props.disabled}

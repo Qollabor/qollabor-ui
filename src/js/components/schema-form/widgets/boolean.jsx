@@ -32,12 +32,14 @@ export class BooleanWidget extends React.Component {
       );
     }
 
+    const title = this.props.schema.title + (this.props.required ? ' *' : '');
+
     return (
       <div style={{ marginTop: '10px', marginBottom: '5px' }}>
         {helpWidget}
         <Checkbox
           name={this.props.name}
-          label={this.props.schema.title}
+          label={title}
           onCheck={this.handleOnCheck.bind(this)}
           checked={this.props.formData}
           {...errors}

@@ -83,10 +83,11 @@ export class ObjectField extends Component {
       disabled,
       readonly
     } = this.props;
+
     const { definitions, fields } = this.props.registry;
     const { SchemaField, TitleField, DescriptionField } = fields;
     const schema = retrieveSchema(this.props.schema, definitions);
-    const title = schema.title || name;
+    const title = (schema.title || name) + (required ? ' *' : '');
     let orderedProperties;
     try {
       const properties = Object.keys(schema.properties);

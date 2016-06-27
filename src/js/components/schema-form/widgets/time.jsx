@@ -44,6 +44,8 @@ export class TimeWidget extends React.Component {
         <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}><HelpWidget help={help}/></div>;
     }
 
+    const title = this.props.schema.title + (this.props.required ? ' *' : '');
+
     return (
       <div>
         {helpWidget}
@@ -51,7 +53,7 @@ export class TimeWidget extends React.Component {
           name={this.props.name}
           defaultTime={time}
           format="24hr"
-          floatingLabelText={this.props.schema.title}
+          floatingLabelText={title}
           disabled={this.props.disabled}
           onChange={this.handleOnChange.bind(this)}
           {...errors}

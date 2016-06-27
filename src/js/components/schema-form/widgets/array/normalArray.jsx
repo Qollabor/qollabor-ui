@@ -89,7 +89,7 @@ export class NormalArray extends Component {
       readonly
     } = this.props;
 
-    const title = schema.title || name;
+    const title = (schema.title || name) + (this.props.required ? ' *' : '');
     const { items } = this.state;
     const { definitions, fields } = this.props.registry;
     const { DescriptionField } = fields;
