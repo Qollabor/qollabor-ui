@@ -2,12 +2,12 @@ import React from 'react';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import { IconButton } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import StartCaseIcon from 'material-ui/svg-icons/av/play-arrow';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import styles from './styles';
 import PeopleList from '../../components/people-list';
 import registry from 'app-registry';
+import { Menu } from './menu';
 
 export class Header extends React.Component {
   handleLeftNavToggle() {
@@ -37,6 +37,7 @@ export class Header extends React.Component {
           </div>
         </ToolbarGroup>);
     }
+
     return (
       <Toolbar
         style={Object.assign({}, styles.appBar, themeColorStyles)}
@@ -60,15 +61,7 @@ export class Header extends React.Component {
         </ToolbarGroup>
         {caseUserList}
         <ToolbarGroup firstChild={false} lastChild={true} float="right">
-          <IconButton
-            tooltip="Start New Case"
-            label="Start Case"
-            iconStyle={styles.menuIcon}
-            linkButton={true}
-            href="#/casemodels"
-          >
-            <StartCaseIcon color={theme.appBar.textColor} />
-          </IconButton>
+          <Menu items={this.props.headerMenu} />
           <div style={{ display: 'inline-block' }}><AppBarUserMenu /></div>
         </ToolbarGroup>
       </Toolbar>

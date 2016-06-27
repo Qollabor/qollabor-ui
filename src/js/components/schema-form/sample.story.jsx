@@ -5,6 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const schemaNCIA = require('./data/ncia.json');
+const tdyRequestSchema = require('./data/tdyRequest.schema.json');
 
 const paperStyle = { padding: '5px', width: '700px' };
 
@@ -19,6 +20,7 @@ const schema = {
     multilineTitle: { type: 'string', title: 'Multiline', default: 'A new multiline title' },
     done: { type: 'boolean', title: 'Done?', default: false },
     integer: { type: 'integer', title: 'age' },
+    number: { type: 'number', title: 'Some number' },
     destination: {
       type: 'array',
       minItems: 1,
@@ -57,6 +59,9 @@ const uiSchema = {
   integer: {
     'ui:help': 'This is an integer'
   },
+  number: {
+    'ui:help': 'This is a number'
+  },
   destination: {
     'ui:addLabel': 'Add new destination',
     'ui:help': 'This is an string array'
@@ -93,6 +98,9 @@ const uiSchemaReadonly = {
   integer: {
     'ui:readonly': true, 'ui:help': 'This is an integer'
   },
+  number: {
+    'ui:readonly': true, 'ui:help': 'This is a number'
+  },
   destination: {
     'ui:addLabel': 'Add new destination',
     'ui:readonly': true, 'ui:help': 'This is an string array'
@@ -116,6 +124,8 @@ const formData = {
   title: 'First task',
   multilineTitle: 'Multiline content \n with more line',
   done: true,
+  integer: 200,
+  number: 1.22,
   birth: '2016-10-10',
   time: '12:16:00',
   foo: {
@@ -174,6 +184,19 @@ storiesOf('SchemaForm', module)
       <Paper style={paperStyle}>
         <Form
           schema={schemaNCIA}
+          formData={formData}
+          onSubmit={action('onSubmit')}
+          onError={action('onError')}
+        />
+      </Paper>
+    </div>
+  ))
+  .add('TDY Schema form', () => (
+    <div className="center-component">
+      <Paper style={paperStyle}>
+        <Form
+          schema={tdyRequestSchema.schema}
+          uiSchema={tdyRequestSchema.uiSchema}
           formData={formData}
           onSubmit={action('onSubmit')}
           onError={action('onError')}

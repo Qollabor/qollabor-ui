@@ -1,68 +1,36 @@
 import React from 'react';
-import { TextField } from 'material-ui';
-import { DateWidget } from './date';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
-import { TimeWidget } from './time';
-import { SelectWidget } from './select';
+import { TextField } from 'material-ui';
 
-export class StringWidget extends React.Component {
+export class NumberWidget extends React.Component {
   handleOnChange(event) {
     event.persist();
-    this.props.onChange(event.target.value);
+    this.props.onChange(Number(event.target.value));
   }
 
   render() {
-    if (this.props.schema.format === 'date') {
-      return <DateWidget {...this.props}/>;
-    }
-
-    if (
-      this.props.schema.format === 'time' ||
-      (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'time')
-    ) {
-      return <TimeWidget {...this.props}/>;
-    }
-
-    if (this.props.schema.enum) {
-      return <SelectWidget {...this.props}/>;
-    }
-
     const errors = {};
     /* eslint-disable no-underscore-dangle */
     if (this.props.errorSchema && this.props.errorSchema.__errors) {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
-    /* eslint-enable no-underscore-dangle */
 
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
       help = this.props.uiSchema['ui:help'];
     }
 
+    /* eslint-enable no-underscore-dangle */
     if (this.props.readonly) {
       return (
         <ReadOnlyWidget
           title={this.props.schema.title}
           name={this.props.name}
           value={this.props.formData}
-          multiline={this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'textarea'}
           help={help}
         />
       );
-    }
-    const multilineProps = {};
-    if (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'textarea') {
-      multilineProps.multiLine = true;
-      multilineProps.rows = this.props.uiSchema['ui:rows'] || 4;
-    } else {
-      if (this.props.schema.title) {
-        multilineProps.style = { height: '50px', width: '100%' };
-        multilineProps.floatingLabelStyle = { top: '18px' };
-        multilineProps.inputStyle = { height: '30px', top: '-2px' };
-      } else {
-        multilineProps.style = { width: '100%' };
-      }
     }
 
     let helpWidget = false;
@@ -77,12 +45,13 @@ export class StringWidget extends React.Component {
         {helpWidget}
         <TextField
           name={this.props.name}
+          type="number"
+          step="any"
           floatingLabelText={title}
           value={this.props.formData}
           onChange={this.handleOnChange.bind(this)}
           disabled={this.props.disabled}
           {...errors}
-          {...multilineProps}
         />
       </div>
     );

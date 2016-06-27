@@ -11,5 +11,10 @@ export default {
   },
   menuIcon: {
     marginTop: '-1px'
+  },
+  menu: {
+    float: 'left',
+    position: 'relative',
+    zIndex: 0
   }
 };

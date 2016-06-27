@@ -4,7 +4,8 @@ const defaultState = Immutable.Map(
     menuItemCategory: null,
     isOnInit: false,
     showDrawer: true,
-    showCaseUsers: false
+    showCaseUsers: false,
+    headerMenu: []
   }
 );
 
@@ -33,6 +34,9 @@ export default (state = defaultState, action) => {
 
     case 'APP:CASE_USERS:SHOW':
       return state.set('showCaseUsers', action.showCaseUsers);
+
+    case 'APP:HEADER_MENU:SET':
+      return state.set('headerMenu', action.headerMenu);
 
     default :
       return state;

@@ -41,12 +41,13 @@ export class SelectWidget extends React.Component {
       );
     }
 
+    const title = this.props.schema.title + (this.props.required ? ' *' : '');
     return (
       <div>
         {helpWidget}
         <SelectField
           name={this.props.name}
-          floatingLabelText={this.props.schema.title}
+          floatingLabelText={title}
           value={this.props.formData}
           disabled={this.props.disabled}
           onChange={this.handleOnChange.bind(this)}
