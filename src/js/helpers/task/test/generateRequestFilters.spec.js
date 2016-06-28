@@ -12,12 +12,12 @@ describe('helpers/tasks/generateRequestFilters', () => {
 
   it('should generate the correct "myTasks" filter', () => {
     expect(generateRequestFilters(['myTasks'], args))
-      .to.be.eql({ assignee: args.userId });
+      .to.be.eql({ assignee: args.userId, planState: 'Active' });
   });
 
   it('should generate the correct "dueDate" filter', () => {
     expect(generateRequestFilters(['due'], args))
-      .to.be.eql({ dueBefore: args.today });
+      .to.be.eql({ dueBefore: args.today, planState: 'Active' });
   });
 
   it('should generate the correct "completed" filter', () => {
@@ -30,8 +30,8 @@ describe('helpers/tasks/generateRequestFilters', () => {
       .to.be.eql({ planState: 'Terminated' });
   });
 
-  it('should generate the correct ["terminated", "myTasks"] filter', () => {
-    expect(generateRequestFilters(['terminated', 'myTasks'], args))
-      .to.be.eql({ planState: 'Terminated', assignee: args.userId });
+  it('should generate the correct ["unassigned", "myTasks"] filter', () => {
+    expect(generateRequestFilters(['unassigned', 'myTasks'], args))
+      .to.be.eql({ planState: 'Active', assignee: args.userId, taskState: 'Unassigned' });
   });
 });

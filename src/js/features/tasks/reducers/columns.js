@@ -22,7 +22,7 @@ const defaultState = Immutable.fromJS([
     visible: false
   },
   {
-    label: 'Due date',
+    label: 'Time Remaining',
     key: 'dueDate',
     visible: true
   },

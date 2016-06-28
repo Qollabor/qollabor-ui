@@ -41,7 +41,7 @@ const hooks = {
 };
 
 const headerMenuTask = [
-  { name: 'New case model', url: '/casemodels' }
+  { name: 'Start Case', url: '/casemodels' }
 ];
 
 const headerMenuCasemodels = [

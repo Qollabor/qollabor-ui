@@ -33,7 +33,7 @@ export class TaskDetails extends React.Component {
     const taskModel = taskDetails.taskModel || {};
     const taskSchema = taskModel.schema || {};
     const taskUISchema = taskModel.uiSchema || {};
-    const formData = taskDetails.outputParams || taskDetails.inputParams || {};
+    const formData = taskDetails.rawOutput || taskDetails.mappedInput || {};
     const disableForm = (taskDetails.taskState === 'Unassigned');
     const isSuspended = (taskDetails.planState === 'Suspended');
 
