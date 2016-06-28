@@ -3,7 +3,7 @@ import React from 'react';
 import { FontIcon } from 'material-ui';
 import ActionChooser from '../../../components/action-chooser';
 import registry from 'app-registry';
-import { ActionAssignmentReturned, ActionAssignmentInd, ActionAssignmentReturn } from 'material-ui/svg-icons';
+import { ActionAssignmentReturned, /* ActionAssignmentInd, */ ActionAssignmentReturn } from 'material-ui/svg-icons';
 
 import styles from './../styles';
 
@@ -13,21 +13,21 @@ const actionItems = [
     primaryText: 'Claim',
     leftIcon: <ActionAssignmentReturned/>
   },
-  {
+  /* {
     action: 'assign',
     primaryText: 'Assign',
     leftIcon: <ActionAssignmentInd/>
-  },
+  },*/
   {
     action: 'revoke',
     primaryText: 'Revoke',
     leftIcon: <ActionAssignmentReturn/>
-  },
+  }/* ,
   {
     action: 'delegate',
     primaryText: 'Delegate',
     leftIcon: <ActionAssignmentInd/>
-  }
+  }*/
 ];
 
 class TaskRow extends React.Component {

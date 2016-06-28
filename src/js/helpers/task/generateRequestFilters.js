@@ -2,9 +2,9 @@ export const generateRequestFilters = (filters, args) =>
   filters.map((filter) => {
     switch (filter) {
       case 'myTasks':
-        return { assignee: args.userId };
+        return { assignee: args.userId, planState: 'Active' };
       case 'due':
-        return { dueBefore: args.today };
+        return { dueBefore: args.today, planState: 'Active' };
       case 'completed':
         return { planState: 'Completed' };
       case 'terminated':

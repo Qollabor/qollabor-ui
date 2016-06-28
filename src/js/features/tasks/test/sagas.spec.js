@@ -82,7 +82,7 @@ describe('features/tasks/sagas', () => {
         generator.next();
         generator.next();
 
-        expect(requestSpy.calledWith(fakeURL, { assignee: 'admin' }, {
+        expect(requestSpy.calledWith(fakeURL, { assignee: 'admin', planState: 'Active' }, {
           headers: {
             [fakeTokenPropertyName]: fakeToken,
             timeZone: '42'

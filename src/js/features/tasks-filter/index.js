@@ -18,7 +18,6 @@ function mapDispatchToProps(dispatch) {
         type: 'TASKS:FILTERS:CHANGE',
         tasksFilterName,
         timeZone: timeZoneOffset
-
       });
     }
   };
