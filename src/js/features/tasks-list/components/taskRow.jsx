@@ -87,12 +87,16 @@ class TaskRow extends React.Component {
         {this.props.columns
           .filter((columnDefinition) => columnDefinition.visible)
           .map((columnDefinition) =>
-            <td
+            ((columnDefinition.key === 'dueDate' || columnDefinition.key === 'createdOn') ? (<td
               style={styles.tableRowColumn}
               key={columnDefinition.key}
-            >{this.props.rowData[columnDefinition.key]}</td>
+              title={this.props.rowData[columnDefinition.key].title}
+            >{this.props.rowData[columnDefinition.key].value}</td>) :
+            (<td
+              style={styles.tableRowColumn}
+              key={columnDefinition.key}
+            >{this.props.rowData[columnDefinition.key]}</td>))
           )}
-
         <td
           key="action"
           style={actionColumnStyle}

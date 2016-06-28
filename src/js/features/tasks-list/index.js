@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-
+import moment from 'moment';
 import { TaskList as TaskListComponent } from './components/taskList';
 
 function mapStateToProps(state) {
@@ -12,12 +12,13 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
+  const timeZoneOffset = moment().format('Z');
   return {
     onRowClick: (id, caseId) => {
       dispatch({ type: 'TASKS:LIST:TASK_ROW_CLICKED', id, caseId });
     },
     onMount: () => {
-      dispatch({ type: 'TASKS:LIST:REQUEST_INIT' });
+      dispatch({ type: 'TASKS:LIST:REQUEST_INIT', timeZone: timeZoneOffset });
     },
     onColumnVisibilityToggle: (column) => {
       dispatch({ type: 'TASKS:COLUMNS:TOGGLE_VISIBILITY', columnName: column.key });
