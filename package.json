@@ -49,6 +49,8 @@
     "config": "^1.20.1",
     "cookie-parser": "^1.4.1",
     "cors": "^2.7.1",
+    "counterpart": "^0.17.2",
+    "damals": "^0.9.4",
     "del": "^2.2.0",
     "enzyme": "^2.2.0",
     "eslint-config-airbnb": "^8.0.0",

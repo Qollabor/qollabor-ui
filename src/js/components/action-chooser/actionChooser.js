@@ -50,7 +50,7 @@ export class ActionChooser extends React.Component {
             let menuItemClass = (disabled === true) ? 'menuItemDisabled' : '';
             return (
               <MenuItem
-                className={menuItemClass} disabled={disabled} primaryText={actionitem.primaryText}
+                className={menuItemClass} key={actionitem.action} disabled={disabled} primaryText={actionitem.primaryText}
                 leftIcon={actionitem.leftIcon} onTouchTap={this.handleMenuItemTouchTap.bind(this, actionitem.action)}
               />
             );
