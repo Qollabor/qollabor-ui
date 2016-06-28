@@ -32,21 +32,29 @@ export class LoginForm extends React.Component {
   }
 
   handleOnLogIn(event) {
-    if (event && event.preventDefault) {
+    try {
       event.preventDefault();
+    } catch (e) {
+      event.returnValue = false;
     }
     this.props.onLogin(this.state.username, this.state.password);
   }
 
   handleOnCancel(event) {
-    if (event && event.preventDefault) {
+    try {
       event.preventDefault();
+    } catch (e) {
+      event.returnValue = false;
     }
     this.props.onCancel();
   }
 
   handleChange(type, event) {
-    event.preventDefault();
+    try {
+      event.preventDefault();
+    } catch (e) {
+      event.returnValue = false;
+    }
     const newState = { [type]: event.target.value, changed: this.state.changed };
     newState.changed[type] = true;
     this.setState(newState);

@@ -66,6 +66,7 @@ export function* loginFlow(action) {
       yield put({ type: 'LOGIN:DO_LOGIN:FAIL', username: response.body.content });
     }
   } catch (err) {
+    registry.get('logger').error(err);
     yield put({ type: 'LOGIN:DO_LOGIN:FAIL', error: err });
   }
 }

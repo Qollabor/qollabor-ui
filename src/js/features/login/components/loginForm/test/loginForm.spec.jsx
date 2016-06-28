@@ -4,7 +4,6 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import LoginForm from '../loginForm.jsx';
-import sinon from 'sinon';
 import { TextField, RaisedButton, RefreshIndicator } from 'material-ui';
 
 describe('features/login', () => {
@@ -97,34 +96,6 @@ describe('features/login', () => {
       it('should not have the RefreshIndicator', () => {
         expect(result.find(RefreshIndicator).length)
           .to.be.equal(0);
-      });
-    });
-
-    describe('When click on buttons', () => {
-      let result;
-      let onLogin;
-      let onCancel;
-      before(() => {
-        onLogin = sinon.spy();
-        onCancel = sinon.spy();
-
-        result = shallow(
-          <LoginForm
-            onLogin={onLogin}
-            onCancel={onCancel}
-          />
-        );
-      });
-      it('the cancel callback should be clicked', () => {
-        const buttons = result.find(RaisedButton);
-        buttons.at(0).simulate('click');
-        expect(onCancel.calledOnce).to.equal(true);
-      });
-      it.skip('the login callback should be clicked', () => {
-        // FIXME Change the rendering using mount instead of shallow
-        const buttons = result.find('form');
-        buttons.at(1).simulate('submit');
-        expect(onLogin.calledOnce).to.equal(true);
       });
     });
   });

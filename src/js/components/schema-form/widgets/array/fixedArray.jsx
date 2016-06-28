@@ -50,7 +50,11 @@ export class FixedArray extends React.Component {
   }
 
   handleAddClick(event) {
-    event.preventDefault();
+    try {
+      event.preventDefault();
+    } catch (e) {
+      event.returnValue = false;
+    }
     const { items } = this.state;
     const { schema, registry } = this.props;
     const { definitions } = registry;
@@ -67,7 +71,11 @@ export class FixedArray extends React.Component {
 
   handleDropIndexClick(index) {
     return (event) => {
-      event.preventDefault();
+      try {
+        event.preventDefault();
+      } catch (e) {
+        event.returnValue = false;
+      }
       this.asyncSetState({
         items: this.state.items.filter((_, i) => i !== index)
       }, { validate: true }); // refs #195

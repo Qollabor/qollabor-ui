@@ -20,7 +20,11 @@ class PeopleList extends React.Component {
   }
 
   handleShowMoreAction(event) {
-    event.preventDefault();
+    try {
+      event.preventDefault();
+    } catch (e) {
+      event.returnValue = false;
+    }
     this.setState({
       showMoreOpen: true,
       showMoreEvent: event.currentTarget

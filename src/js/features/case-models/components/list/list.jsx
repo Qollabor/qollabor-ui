@@ -6,8 +6,12 @@ import MessageDiv from '../message-div';
 
 class List extends React.Component {
 
-  handleFilterStringChange (e, filterValue) {
-    e.preventDefault();
+  handleFilterStringChange (event, filterValue) {
+    try {
+      event.preventDefault();
+    } catch (e) {
+      event.returnValue = false;
+    }
     this.props.filterData(filterValue);
   }
 
