@@ -10,7 +10,8 @@ module.exports = () => {
         'clean',
         'css',
         'build-src',
-        'copy-html'
+        'copy-html',
+        'copy-assets'
       ]
     }
   };
