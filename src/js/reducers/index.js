@@ -8,6 +8,7 @@ import { reducers as notifier } from '../features/notifier';
 import { reducers as caseReducers } from '../features/case';
 import { reducers as caseModelReducers } from '../features/case-models';
 import { reducers as schemaForm } from '../components/schema-form/reducers';
+import { reducer as formReducer } from 'redux-form';
 
 export default {
   app: appReducer,
@@ -18,5 +19,6 @@ export default {
   task,
   case: caseReducers,
   casemodel: caseModelReducers,
-  schemaForm
+  schemaForm,
+  form: formReducer
 };

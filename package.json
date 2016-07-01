@@ -22,10 +22,13 @@
     "react-tap-event-plugin": "^1.0.0",
     "react-tooltip": "^3.0.5",
     "redux": "^3.5.2",
+    "redux-form": "6.0.0-alpha.8",
     "redux-logger": "^2.6.1",
     "redux-saga": "^0.10.0",
+    "validator": "^5.2.0",
     "whatwg-fetch": "^1.0.0",
-    "xml-parser": "^1.2.1"
+    "xml-parser": "^1.2.1",
+    "zxcvbn": "^4.3.0"
   },
   "devDependencies": {
     "@kadira/storybook": "^1.19.0",

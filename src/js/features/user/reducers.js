@@ -1,7 +1,12 @@
 import Immutable from 'immutable';
-const defaultState = Immutable.Map(
+const defaultState = Immutable.fromJS(
   {
-    loggedUser: null
+    loggedUser: null,
+    hidePasswordForm: false,
+    error: {
+      message: '',
+      isError: false
+    }
   }
 );
 
@@ -17,6 +22,21 @@ export const reducers = (state = defaultState, action) => {
 
     case 'USER:SET_LOGGED_USER':
       return state.set('loggedUser', Immutable.fromJS(action.user));
+
+    case 'USER:CHANGE_PASSWORD:INIT':
+      return state.set('hidePasswordForm', false)
+                  .set('error', Immutable.fromJS(defaultState.get('error')));
+
+    case 'USER:CHANGE_PASSWORD':
+      return state.set('oldPassword', action.oldPassword)
+                  .set('newPassword', action.newPassword)
+                  .set('error', Immutable.fromJS(defaultState.get('error')));
+
+    case 'USER:CHANGE_PASSWORD:SUCCESS':
+      return state.set('hidePasswordForm', true);
+
+    case 'USER:CHANGE_PASSWORD:FAIL':
+      return state.set('error', Immutable.fromJS({ message: action.error, isError: true }));
 
     default :
       return state;

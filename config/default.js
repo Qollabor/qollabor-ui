@@ -74,6 +74,7 @@ module.exports = {
     casemodeldetail: {
       url: `${baseApiUrl}repository/load`,
       version: 1
-    }
+    },
+    baseApiUrl:baseApiUrl
   }
 };

@@ -1,7 +1,8 @@
 import { takeEvery } from 'redux-saga';
 
 import { loginFlow, refreshFlow, tokenRefreshFlow } from '../features/login';
-import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow, tokenNotValidFlow } from '../features/user';
+import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow,
+         tokenNotValidFlow, changePassword } from '../features/user';
 import { fetchTasks, viewTasks, executeTaskAction } from '../features/tasks';
 
 import { fetchTaskDetails, viewTask, transitionToState, saveTaskDetails } from '../features/task';
@@ -18,6 +19,7 @@ const sagas = [
   [takeEvery, ['LOGIN:VERIFY:SUCCESS', 'LOGIN:DO_LOGIN:SUCCESS'], setLoggedUserFlow],
   [takeEvery, ['LOGIN:DO_LOGIN:FAIL', 'LOGIN:VERIFY:FAIL'], unsetLoggedUserFlow],
   [takeEvery, 'LOGIN:TOKEN_REFRESH:FAIL', tokenNotValidFlow],
+  [takeEvery, 'USER:CHANGE_PASSWORD', changePassword],
   // tasks
   [takeEvery, 'TASKS:LIST:REQUEST_INIT', fetchTasks],
   [takeEvery, 'TASKS:FILTERS:CHANGE', fetchTasks],
