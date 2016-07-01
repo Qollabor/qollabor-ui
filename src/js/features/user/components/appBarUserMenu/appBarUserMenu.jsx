@@ -2,8 +2,9 @@ import React from 'react';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { IconButton, Popover, Menu, MenuItem } from 'material-ui';
-import { ActionAccountCircle, ActionPowerSettingsNew } from 'material-ui/svg-icons';
+import { ActionAccountCircle, ActionPowerSettingsNew, ActionLockOpen } from 'material-ui/svg-icons';
 import { PopoverAnimationVertical } from 'material-ui/Popover';
+import { PasswordChanger } from '../../components/password-changer';
 
 import styles from './styles';
 
@@ -12,7 +13,8 @@ export class AppBarUserMenu extends React.Component {
     super(props);
 
     this.state = {
-      open: false
+      open: false,
+      openPasswordDialog: false
     };
   }
 
@@ -32,6 +34,21 @@ export class AppBarUserMenu extends React.Component {
   handleLogout() {
     this.props.onLogout();
   }
+
+  /* Change Password Actions */
+  handleChangePassword() {
+    this.setState({
+      open: false,
+      openPasswordDialog: true
+    });
+  }
+
+  handlePasswordChangeClose() {
+    this.setState({
+      openPasswordDialog: false
+    });
+  }
+  /* Change Password Actions Ends */
 
   render() {
     const theme = getMuiTheme();
@@ -59,8 +76,18 @@ export class AppBarUserMenu extends React.Component {
               leftIcon={<ActionPowerSettingsNew />}
               onClick={this.handleLogout.bind(this)}
             />
+
+            <MenuItem
+              primaryText="Change Password"
+              leftIcon={<ActionLockOpen />}
+              onClick={this.handleChangePassword.bind(this)}
+            />
           </Menu>
         </Popover>
+        <PasswordChanger
+          open={this.state.openPasswordDialog}
+          onRequestClose={this.handlePasswordChangeClose.bind(this)}
+        />
       </div>
     );
   }

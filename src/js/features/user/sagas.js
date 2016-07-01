@@ -2,6 +2,7 @@ import registry from 'app-registry';
 import { put } from 'redux-saga/effects';
 import { store } from '../../store';
 import { replace as replaceRouter } from 'react-router-redux';
+import { notifySuccess, notifyDanger } from '../notifier';
 
 let refreshTokenTimeout;
 function refreshTokenCallback() {
@@ -49,3 +50,36 @@ export function* tokenNotValidFlow() {
     pathname: '/login'
   }));
 }
+
+export function* changePassword(action) {
+  const config = registry.get('config');
+  const dataKey = '_2';
+  const userData = {
+    oldPassword: action.oldPassword,
+    newPassword: action.newPassword
+  };
+  try {
+    const userId = store.getState().user.getIn(['loggedUser', 'username']);
+    const response = yield registry.get('request')
+      .put(`${config.baseApiUrl}users/${userId}/changepassword`, userData, {
+        headers: {
+          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
+        }
+      });
+
+    switch (response.status) {
+      case 204: {
+        yield put(notifySuccess('Password successfully changed'));
+        yield put({ type: 'USER:CHANGE_PASSWORD:SUCCESS', data: response.body[dataKey] });
+        break;
+      }
+      default:
+        yield put(notifyDanger(response.body));
+        yield put({ type: 'USER:CHANGE_PASSWORD:FAIL', error: response.body });
+        break;
+    }
+  } catch (err) {
+    yield put({ type: 'USER:CHANGE_PASSWORD:FAIL', error: err.message });
+  }
+}
+
