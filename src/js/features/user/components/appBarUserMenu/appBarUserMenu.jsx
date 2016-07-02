@@ -84,10 +84,10 @@ export class AppBarUserMenu extends React.Component {
             />
           </Menu>
         </Popover>
-        <PasswordChanger
+        {this.state.openPasswordDialog && <PasswordChanger
           open={this.state.openPasswordDialog}
           onRequestClose={this.handlePasswordChangeClose.bind(this)}
-        />
+        />}
       </div>
     );
   }

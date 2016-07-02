@@ -8,6 +8,19 @@ const customContentStyle = {
 };
 
 export class PasswordChanger extends React.Component {
+
+  componentWillMount() {
+    if (this.props.init) {
+      this.props.init();
+    }
+  }
+
+  componentWillReceiveProps(props) {
+    if (props.hidePasswordForm && props.onRequestClose) {
+      props.onRequestClose();
+    }
+  }
+
   handleOnSubmit(paswordData) {
     if (this.props.changePassword) {
       this.props.changePassword(paswordData);
