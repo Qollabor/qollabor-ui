@@ -43,7 +43,10 @@ export class PasswordChanger extends React.Component {
         onRequestClose={this.requestClose.bind(this)}
         bodyStyle={{ paddingTop: '10px', paddingBottom: '30px' }}
       >
-        <PasswordForm onSave={this.handleOnSubmit.bind(this)} onCancel={this.requestClose.bind(this)}/>
+        <PasswordForm
+          onSave={this.handleOnSubmit.bind(this)} onCancel={this.requestClose.bind(this)}
+          saveError={this.props.error}
+        />
       </Dialog>
     );
   }

@@ -17,6 +17,13 @@ const styles = {
   },
   formMargin: {
     marginLeft: '10px'
+  },
+  headerMargin: {
+    marginLeft: '5px',
+    marginTop: '15px'
+  },
+  errorMessage: {
+    color: 'red'
   }
 };
 

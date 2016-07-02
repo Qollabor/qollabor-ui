@@ -66,6 +66,10 @@ class PasswordForm extends React.Component {
             />
           </div>
         </div>
+        {this.props.saveError && this.props.saveError.message !== ''
+        && <div style={Object.assign(styles.errorMessage, styles.headerMargin)}>
+        Error: {this.props.saveError.message}</div>
+        }
         <div style={styles.saveButton}>
           <RaisedButton
             primary={true} label="Save" labelStyle={styles.buttonLabel}
@@ -85,6 +89,11 @@ PasswordForm = reduxForm({
   form: 'PasswordForm',  // a unique identifier for this form
   validate
 })(PasswordForm);
+
+PasswordForm.propTypes = {
+  onSave: React.PropTypes.func.isRequired,
+  onCancel: React.PropTypes.func.isRequired
+};
 
 export default PasswordForm;
 

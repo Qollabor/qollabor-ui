@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 import { PasswordChanger as PasswordChangerComponent } from './passwordChanger.jsx';
 
 const mapStateToProps = (state) => ({
-  hidePasswordForm: state.user.get('hidePasswordForm')
+  hidePasswordForm: state.user.get('hidePasswordForm'),
+  error: state.user.get('error').toJS()
 });
 
 
