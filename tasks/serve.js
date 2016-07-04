@@ -31,7 +31,7 @@ module.exports = (gulp, config) => {
             stats: {
               colors: true
             }
-          }).listen(config.server.port, 'localhost', (err) => {
+          }).listen(config.server.port, '0.0.0.0', (err) => {
             if (err) {
               throw new gutil.PluginError('webpack-dev-server', err);
             }

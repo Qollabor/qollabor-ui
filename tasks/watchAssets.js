@@ -24,5 +24,12 @@ module.exports = (gulp) => {
         /* eslint-disable no-console */
         console.error(error);
       });
+
+    gulp
+      .watch(['assets/**'], ['copy-assets'])
+      .on('error', error => {
+        /* eslint-disable no-console */
+        console.error(error);
+      });
   }
 };

@@ -28,7 +28,14 @@ module.exports = {
         test: /\.css?$/,
         loaders: ['style', 'raw']
       },
-      { test: /\.schema$/, loader: 'json' }
+      {
+        test: /\.schema$/,
+        loader: 'json'
+      },
+      {
+        test: /\.(png|ico|gif)?$/,
+        loader: 'file'
+      }
     ]
   },
   plugins: [
