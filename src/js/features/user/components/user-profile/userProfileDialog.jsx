@@ -16,14 +16,14 @@ export class UserProfileDialog extends React.Component {
   }
 
   componentWillReceiveProps(props) {
-    if (props.hidePasswordForm && props.onRequestClose) {
+    if (props.hideProfileForm && props.onRequestClose) {
       props.onRequestClose();
     }
   }
 
-  handleOnSubmit(paswordData) {
-    if (this.props.changePassword) {
-      this.props.changePassword(paswordData);
+  handleOnSubmit(userData) {
+    if (this.props.saveData) {
+      this.props.saveData(userData);
     }
   }
 

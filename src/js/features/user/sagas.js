@@ -3,6 +3,7 @@ import { put } from 'redux-saga/effects';
 import { store } from '../../store';
 import { replace as replaceRouter } from 'react-router-redux';
 import { notifySuccess, notifyDanger } from '../notifier';
+import { initialize } from 'redux-form';
 
 let refreshTokenTimeout;
 function refreshTokenCallback() {
@@ -101,5 +102,32 @@ export function* fetchProfile() {
   } catch (err) {
     registry.get('logger').error(err);
     yield put({ type: 'USER:PROFILE:FETCH:FAIL', error: err.message });
+  }
+}
+
+export function* updateProfile() {
+  const config = registry.get('config');
+  const options = {};
+  let { data } = store.getState().user.toJS();
+  const request = registry.get('request');
+  options.headers = { [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token']) };
+
+  try {
+    const response = yield request.put(`${config.baseApiUrl}user`, data, options);
+    data = { uniqueId: data.uniqueId, name: data.name, roles: data.roles };
+
+    yield response;
+
+    switch (response.status) {
+      case 201:
+      case 204: yield put(notifySuccess('User profile updated successfully'));
+        yield put({ type: 'USER:PROFILE:UPDATE:SUCCESS', data });
+        yield put(initialize('UserProfile', data));
+        break;
+      default: yield put(notifyDanger(response.body));
+        break;
+    }
+  } catch (err) {
+    yield put({ type: 'USER:PROFILE:UPDATE:FAIL', error: err.message });
   }
 }

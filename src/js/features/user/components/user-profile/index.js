@@ -7,8 +7,8 @@ function mapDispatchToProps(dispatch) {
     init: () => {
       dispatch({ type: 'USER:PROFILE:INIT' });
     },
-    saveData: (data, buttonAction) => {
-      dispatch({ type: 'USER:PROFILE:UPSERT', data, buttonAction });
+    saveData: (data) => {
+      dispatch({ type: 'USER:PROFILE:UPDATE', data });
     }
   };
 }
