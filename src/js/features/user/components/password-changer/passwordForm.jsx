@@ -63,7 +63,7 @@ class PasswordForm extends React.Component {
   }
 
   render() {
-    const { handleSubmit, onSave } = this.props;
+    const { handleSubmit, onSave, pristine, submitting } = this.props;
     const { resultScore, resultStrength } = this.state;
     return (
       <form style={styles.formMargin} onChange={this.handlePasswordChange.bind(this)}>
@@ -120,7 +120,7 @@ class PasswordForm extends React.Component {
         }
         <div style={styles.saveButton}>
           <RaisedButton
-            primary={true} label="Save" labelStyle={styles.buttonLabel}
+            primary={true} disabled={pristine || submitting} label="Save" labelStyle={styles.buttonLabel}
             type="submit" onClick={handleSubmit((userData) => onSave(userData))}
           />
           <RaisedButton

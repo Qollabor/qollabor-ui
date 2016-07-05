@@ -6,10 +6,13 @@ const defaultState = Immutable.fromJS(
   {
     loggedUser: null,
     hidePasswordForm: false,
+    hideProfileForm: false,
     error: {
       message: '',
       isError: false
-    }
+    },
+    profile: null,
+    avatar: null
   }
 );
 

@@ -2,9 +2,11 @@ import React from 'react';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { IconButton, Popover, Menu, MenuItem } from 'material-ui';
-import { ActionAccountCircle, ActionPowerSettingsNew, ActionLockOpen } from 'material-ui/svg-icons';
+import { ActionAccountCircle, ActionPowerSettingsNew, ActionLockOpen, ActionFace } from 'material-ui/svg-icons';
 import { PopoverAnimationVertical } from 'material-ui/Popover';
-import { PasswordChanger } from '../../components/password-changer';
+import { PasswordChanger } from '../password-changer';
+import { UserProfileDialog } from '../../../user';
+
 
 import styles from './styles';
 
@@ -14,7 +16,8 @@ export class AppBarUserMenu extends React.Component {
 
     this.state = {
       open: false,
-      openPasswordDialog: false
+      openPasswordDialog: false,
+      openProfileDialog: false
     };
   }
 
@@ -43,12 +46,25 @@ export class AppBarUserMenu extends React.Component {
     });
   }
 
-  handlePasswordChangeClose() {
+  handleChangePasswordClose() {
     this.setState({
       openPasswordDialog: false
     });
   }
   /* Change Password Actions Ends */
+
+  handleChangeProfile() {
+    this.setState({
+      open: false,
+      openProfileDialog: true
+    });
+  }
+
+  handleChangeProfileClose() {
+    this.setState({
+      openProfileDialog: false
+    });
+  }
 
   render() {
     const theme = getMuiTheme();
@@ -82,12 +98,27 @@ export class AppBarUserMenu extends React.Component {
               leftIcon={<ActionLockOpen />}
               onClick={this.handleChangePassword.bind(this)}
             />
+            <MenuItem
+              primaryText="Change Profile"
+              leftIcon={<ActionFace />}
+              onClick={this.handleChangeProfile.bind(this)}
+            />
           </Menu>
         </Popover>
-        {this.state.openPasswordDialog && <PasswordChanger
-          open={this.state.openPasswordDialog}
-          onRequestClose={this.handlePasswordChangeClose.bind(this)}
-        />}
+        <span>
+          {this.state.openPasswordDialog && <PasswordChanger
+            open={this.state.openPasswordDialog}
+            onRequestClose={this.handleChangePasswordClose.bind(this)}
+          />
+          }
+        </span>
+        <span>
+          {this.state.openProfileDialog && <UserProfileDialog
+            open={this.state.openProfileDialog}
+            onRequestClose={this.handleChangeProfileClose.bind(this)}
+          />
+          }
+        </span>
       </div>
     );
   }
