@@ -83,3 +83,23 @@ export function* changePassword(action) {
   }
 }
 
+
+export function* fetchProfile() {
+  const config = registry.get('config');
+
+  yield put({ type: 'USER:PROFILE:FETCH' });
+
+  try {
+    const response = yield registry.get('request')
+      .get(`${config.baseApiUrl}user`, null, {
+        headers: {
+          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
+        }
+      });
+
+    yield put({ type: 'USER:PROFILE:FETCH:SUCCESS', data: response.body });
+  } catch (err) {
+    registry.get('logger').error(err);
+    yield put({ type: 'USER:PROFILE:FETCH:FAIL', error: err.message });
+  }
+}

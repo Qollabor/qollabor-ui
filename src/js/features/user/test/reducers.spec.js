@@ -9,7 +9,8 @@ const defaultState = Immutable.fromJS(
     error: {
       message: '',
       isError: false
-    }
+    },
+    profile: null
   }
 );
 

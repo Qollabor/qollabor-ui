@@ -6,7 +6,8 @@ const defaultState = Immutable.fromJS(
     error: {
       message: '',
       isError: false
-    }
+    },
+    profile: null
   }
 );
 
@@ -38,6 +39,11 @@ export const reducers = (state = defaultState, action) => {
     case 'USER:CHANGE_PASSWORD:FAIL':
       return state.set('error', Immutable.fromJS({ message: action.error, isError: true }));
 
+    case 'USER:PROFILE:FETCH':
+      return state.set('isFetching', true);
+    case 'USER:PROFILE:FETCH:SUCCESS':
+      return state.set('isFetching', false).
+        set('profile', action.data);
     default :
       return state;
   }
