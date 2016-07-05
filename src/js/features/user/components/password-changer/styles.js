@@ -24,6 +24,12 @@ const styles = {
   },
   errorMessage: {
     color: 'red'
+  },
+  strengthLangStyle: {
+    marginLeft: '5px',
+    fontSize: 12,
+    position: 'relative',
+    top: 2
   }
 };
 
