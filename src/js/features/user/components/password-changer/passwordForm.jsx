@@ -2,8 +2,8 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { TextField, RaisedButton } from 'material-ui';
 import validator from 'validator';
-
 import styles from './styles';
+import zxcvbn from 'zxcvbn';
 
 const validate = values => {
   const errors = {};
@@ -21,10 +21,52 @@ const validate = values => {
 
 class PasswordForm extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      resultScore: '',
+      resultStrength: ''
+    };
+  }
+
+  handlePasswordChange(event) {
+    if (event.target.name === 'newPassword') {
+      event.preventDefault();
+      const strength = {
+        0: 'Worst',
+        1: 'Bad',
+        2: 'Weak',
+        3: 'Good',
+        4: 'Strong'
+      };
+
+      const val = event.target.value;
+      const result = zxcvbn(val);
+
+      // Update the text indicator
+      if (val !== '') {
+        this.setState({
+          resultScore: result.score,
+          resultStrength: strength[result.score]
+        });
+      } else {
+        this.setState({
+          resultScore: '',
+          resultStrength: ''
+        });
+      }
+
+      if (typeof this.props.onChange === 'function') {
+        this.props.onChange(event);
+      }
+    }
+  }
+
   render() {
     const { handleSubmit, onSave } = this.props;
+    const { resultScore, resultStrength } = this.state;
     return (
-      <form style={styles.formMargin}>
+      <form style={styles.formMargin} onChange={this.handlePasswordChange.bind(this)}>
         <div>
           <div>
             <Field
@@ -51,6 +93,12 @@ class PasswordForm extends React.Component {
                 />
               }
             />
+            <section>
+              <meter max="4" value={resultScore}></meter>
+              <span style={styles.strengthLangStyle}>
+                {resultStrength}
+              </span>
+            </section>
           </div>
           <div>
             <Field
