@@ -38,6 +38,10 @@ module.exports = {
         test: /\.jsx?$/,
         include: /(src\/js|node_modules\/cafienne-ui-elements)/,
         loader: 'babel'
+      },
+      {
+        test: /\.schema$/,
+        loader: 'json'
       }
     ]
   }
