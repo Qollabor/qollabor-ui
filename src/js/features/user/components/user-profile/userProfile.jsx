@@ -107,7 +107,7 @@ class UserProfile extends React.Component {
         </div>
         <div style={styles.saveButton}>
           <RaisedButton
-            secondary={true} disabled={pristine || submitting} label="Save" labelStyle={styles.buttonLabel}
+            primary={true} disabled={pristine || submitting} label="Save" labelStyle={styles.buttonLabel}
             type="submit" onClick={handleSubmit((userData) => onSave(userData))}
           />
           <RaisedButton
