@@ -60,9 +60,8 @@ export function* changePassword(action) {
     newPassword: action.newPassword
   };
   try {
-    const userId = store.getState().user.getIn(['loggedUser', 'username']);
     const response = yield registry.get('request')
-      .put(`${config.baseApiUrl}users/${userId}/changepassword`, userData, {
+      .put(`${config.baseApiUrl}user/changepassword`, userData, {
         headers: {
           [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
         }

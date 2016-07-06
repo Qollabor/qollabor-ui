@@ -1,6 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { TextField, RaisedButton, Avatar } from 'material-ui';
+import { TextField, RaisedButton } from 'material-ui';
+import { ImageUpload } from '../../../../components/image-upload';
 
 const validate = values => {
   const errors = {};
@@ -54,15 +55,7 @@ class UserProfile extends React.Component {
           <Field
             name="uniqueId" component={uniqueId =>
               <span style={{ float: 'right', textAlign: 'center' }}>
-                <div>
-                  <Avatar
-                    errorText={uniqueId.touched && uniqueId.error}
-                    src={`/users/${uniqueId.value}/avatar`}
-                    size={120}
-                    alt="Avatar"
-                  />
-                </div>
-                <a href="#" style={{ float: 'bottom' }}>Change</a>
+                <ImageUpload imageId={uniqueId} onUploadHandler={function() {}}/>
               </span>
           }
           />
