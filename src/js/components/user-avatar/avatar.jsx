@@ -14,11 +14,8 @@ export class UserAvatar extends React.Component {
 
   componentDidMount() {
     fetchAvatar(this.props.userId).then(response => {
-      response.text()
-      .then(result => {
-        this.setState({
-          avatar: JSON.parse(result).avatar
-        });
+      this.setState({
+        avatar: response.body.avatar
       });
     });
   }
