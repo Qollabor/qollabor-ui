@@ -8,7 +8,8 @@ const defaultState = Immutable.fromJS(
       message: '',
       isError: false
     },
-    profile: null
+    profile: null,
+    avatar: null
   }
 );
 
@@ -36,6 +37,18 @@ export const reducers = (state = defaultState, action) => {
     case 'USER:CHANGE_PASSWORD:FAIL':
       return state.set('error', Immutable.fromJS({ message: action.error, isError: true }));
 
+    case 'USER:AVATAR:FETCH':
+      return state.set('isFetching', true);
+    case 'USER:AVATAR:FETCH:SUCCESS':
+      return state.set('isFetching', false).
+        set('avatar', action.avatar);
+
+    case 'USER:AVATAR:UPDATE':
+      return state.set('avatar', action.avatar);
+    case 'USER:AVATAR:UPDATE:SUCCESS':
+      return state.set('avatar', action.avatar);
+    case 'USER:AVATAR:UPDATE:FAIL':
+      return state.set('error', Immutable.Map({ message: action.error, isError: true }));
 
     case 'USER:PROFILE:INIT':
       return state.set('hideProfileForm', false)

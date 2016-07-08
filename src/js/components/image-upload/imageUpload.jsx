@@ -1,15 +1,15 @@
 import React from 'react';
-import { Avatar } from 'material-ui';
+import UserAvatar from '../user-avatar';
 
 export class ImageUpload extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { file: '', imageUrl: 'Avatar', showSaveBtn: false };
+    this.state = { file: '', dataUrl: 'Avatar', showSaveBtn: false };
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    // this.props.onUploadHandler();
+    this.props.onUploadHandler(this.state.dataUrl);
   }
 
   handleImageChange(e) {
@@ -21,7 +21,7 @@ export class ImageUpload extends React.Component {
     reader.onloadend = () => {
       this.setState({
         file,
-        imageUrl: reader.result,
+        dataUrl: reader.result,
         showSaveBtn: true
       });
     };
@@ -30,15 +30,12 @@ export class ImageUpload extends React.Component {
   }
 
   render() {
-    const { imageUrl, showSaveBtn } = this.state;
+    const { userId } = this.props;
+    const { dataUrl, showSaveBtn } = this.state;
     return (
       <div className="previewComponent">
         <div>
-          <Avatar
-            src={imageUrl}
-            size={100}
-            alt="Avatar"
-          />
+          {userId && <UserAvatar userId={userId} avatar={dataUrl}/>}
         </div>
         <label htmlFor="userFile"><u style={{ cursor: 'pointer', fontSize: '13px' }}>Change</u></label>
         <label htmlFor="submitButton" style={{ marginLeft: '20px', display: (showSaveBtn === true) ? '' : 'none' }}>
@@ -55,6 +52,7 @@ export class ImageUpload extends React.Component {
 ImageUpload.displayName = 'ImageUpload';
 
 ImageUpload.propTypes = {
+  userId: React.PropTypes.string.isRequired,
   onUploadHandler: React.PropTypes.func.isRequired
 };
 

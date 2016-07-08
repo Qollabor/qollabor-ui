@@ -83,6 +83,35 @@ export function* changePassword(action) {
   }
 }
 
+export function* updateAvatar(action) {
+  const config = registry.get('config');
+  const dataKey = '_2';
+  const avatarData = {
+    avatar: action.avatar
+  };
+  try {
+    const response = yield registry.get('request')
+      .post(`${config.baseApiUrl}user/avatar`, avatarData, {
+        headers: {
+          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
+        }
+      });
+
+    switch (response.status) {
+      case 204: {
+        yield put(notifySuccess('Image successfully changed'));
+        yield put({ type: 'USER:AVATAR:UPDATE:SUCCESS', data: response.body[dataKey] });
+        break;
+      }
+      default:
+        yield put(notifyDanger(response.body));
+        yield put({ type: 'USER:AVATAR:UPDATE:FAIL', error: response.body });
+        break;
+    }
+  } catch (err) {
+    yield put({ type: 'USER:AVATAR:UPDATE:FAIL', error: err.message });
+  }
+}
 
 export function* fetchProfile() {
   const config = registry.get('config');

@@ -11,7 +11,8 @@ const defaultState = Immutable.fromJS(
       message: '',
       isError: false
     },
-    profile: null
+    profile: null,
+    avatar: null
   }
 );
 

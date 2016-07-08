@@ -45,7 +45,7 @@ export class UserProfileDialog extends React.Component {
       >
         <UserProfile
           onSave={this.handleOnSubmit.bind(this)} onCancel={this.requestClose.bind(this)}
-          saveError={this.props.error} initialValues={this.props.profile}
+          onAvatarUpdate={this.props.updateAvatar} saveError={this.props.error} initialValues={this.props.profile}
         />
       </Dialog>
     );

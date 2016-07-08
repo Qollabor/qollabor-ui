@@ -9,6 +9,9 @@ function mapDispatchToProps(dispatch) {
     },
     saveData: (data) => {
       dispatch({ type: 'USER:PROFILE:UPDATE', data });
+    },
+    updateAvatar: (avatar) => {
+      dispatch({ type: 'USER:AVATAR:UPDATE', avatar });
     }
   };
 }
