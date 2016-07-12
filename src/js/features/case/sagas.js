@@ -23,7 +23,8 @@ const successFunc = (theCase) => [
   put({ type: 'CASE:ITEM:FETCH:SUCCESS', case: theCase }),
   put({ type: 'CASE:ACTIVE_TASKS:FETCH:SUCCESS', activeTasks: theCase.planitems.filter(activeTasksFilter) }),
   put({ type: 'CASE:COMPLETED_TASKS:FETCH:SUCCESS', completedTasks: theCase.planitems.filter(completedTasksFilter) }),
-  put({ type: 'CASE:ATTACHMENTS:FETCH:SUCCESS', attachments: theCase.attachments })
+  put({ type: 'CASE:ATTACHMENTS:FETCH:SUCCESS', attachments: theCase.attachments }),
+  put({ type: 'CASE:TEAM:REQUEST_INIT', caseTeam: theCase.team })
 ];
 
 export function* fetchCase(action) {
@@ -134,5 +135,44 @@ export function* planDiscretionaryItem(action) {
   } catch (err) {
     yield put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN:FAIL', error: err.message });
     yield put(notifyDanger(`Error while planning discretionary item ['${action.planItemName}']`));
+  }
+}
+
+export function* fetchCaseTeam(action) {
+  if (!action || !action.caseTeam) {
+    yield put({
+      type: 'CASE:TEAM:FETCH:FAIL',
+      error: 'Must specify a caseTeam for the caseTeam items to fetch'
+    });
+    return;
+  }
+
+  try {
+    const config = registry.get('config');
+    const store = registry.get('store');
+    const dataKey = '_2';
+
+    yield put({ type: 'CASE:TEAM:FETCH' });
+
+    const userIds = action.caseTeam.map((person) => person.user).join(',');
+    const response = yield registry.get('request')
+      .get(`${config.baseApiUrl}users?ids=${userIds}`, null, {
+        headers: {
+          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
+        }
+      });
+
+    let caseteamItems = [];
+    if (config.cases.version === 1) {
+      if (response.body[dataKey]) {
+        caseteamItems = response.body[dataKey];
+      }
+    } else if (response.body) {
+      caseteamItems = response.body;
+    }
+
+    yield put({ type: 'CASE:TEAM:FETCH:SUCCESS', caseTeam: caseteamItems });
+  } catch (err) {
+    yield put({ type: 'CASE:TEAM:FETCH:FAIL', error: err.message });
   }
 }

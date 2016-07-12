@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 
 import {
   CaseInformation as CaseInformationComponent,
-  CaseAttachments as CaseAttachmentsComponent
+  CaseAttachments as CaseAttachmentsComponent,
+  CaseTeam as CaseTeamComponent
 } from './components';
 
 function mapCaseStateToProps(state) {
@@ -24,5 +25,14 @@ function mapAttachmentsStateToProps(state) {
   };
 }
 
+function mapCaseTeamStateToProps(state) {
+  return {
+    isFetching: state.case.caseTeam.get('isFetching'),
+    caseTeam: state.case.caseTeam.get('items').toJS(),
+    error: state.case.caseTeam.get('error').toJS()
+  };
+}
+
 export const CaseInformation = connect(mapCaseStateToProps, null)(CaseInformationComponent);
 export const CaseAttachments = connect(mapAttachmentsStateToProps, null)(CaseAttachmentsComponent);
+export const CaseTeam = connect(mapCaseTeamStateToProps, null)(CaseTeamComponent);

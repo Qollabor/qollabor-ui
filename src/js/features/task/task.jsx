@@ -9,7 +9,7 @@ import { ActiveItems } from './components/active-items';
 import { CompletedItems } from './components/completed-items';
 import { DiscretionaryItems } from './components/discretionary-items';
 
-import { CaseInformation, CaseAttachments } from '../case';
+import { CaseInformation, CaseAttachments, CaseTeam } from '../case';
 
 import styles from './styles';
 
@@ -64,6 +64,8 @@ export class Task extends React.Component {
           containerStyle={styles.leftNav}
           openSecondary={true}
         >
+          <CaseTeam caseId={this.props.caseId} title="Case team"/>
+
           <CaseInformation caseId={this.props.caseId} title="Case information"/>
 
           <CaseAttachments caseId={this.props.caseId}/>

@@ -1,8 +1,6 @@
 import React from 'react';
-import { Avatar as MaterialAvatar, Popover } from 'material-ui';
-import styles from './styles';
 import PeoplePopupList from './components/popupList';
-import { Avatar } from './components/avatar';
+import AvatarList from './components/avatarList';
 
 class PeopleList extends React.Component {
   constructor(props) {
@@ -40,66 +38,27 @@ class PeopleList extends React.Component {
 
   render() {
     const avatarSize = this.props.avatarSize || 30;
-    const maxLength = this.props.maxLength || 200;
-    const paddingBetweenAvatar = 1;
-
-    let maxPeopleInList = this.props.maxPeopleInList;
-    if (Math.floor(maxLength / (avatarSize + paddingBetweenAvatar)) + 1) {
-      maxPeopleInList =
-        Math.min(this.props.maxPeopleInList, Math.floor(maxLength / (avatarSize + paddingBetweenAvatar)));
-    }
+    const maxPeopleInList = this.props.maxPeopleInList || 4;
 
     return (
       <div>
-        {this.props.people && this.props.people.length > 0 ?
-          this.props.people.map((person, index) => {
-            let mainBody;
+        <AvatarList
+          people={this.props.people}
+          avatarSize={avatarSize}
+          maxLength={this.props.maxLength}
+          maxPeopleInList={maxPeopleInList}
+          onClick={this.handleOnClickAvatarAction.bind(this)}
+          onShowMoreAction={this.handleShowMoreAction.bind(this)}
+        />
 
-            if (index <= (maxPeopleInList - 1)) {
-              mainBody = (
-                <Avatar
-                  key={person.userName}
-                  person={person}
-                  size={avatarSize}
-                  onClick={this.handleOnClickAvatarAction.bind(this)}
-                  padding={paddingBetweenAvatar}
-                />
-              );
-            } else {
-              if (index === maxPeopleInList) {
-                mainBody = ([
-                  mainBody,
-                  <MaterialAvatar
-                    onClick={this.handleShowMoreAction.bind(this)}
-                    style={styles.showMore}
-                    key={person.userName + this.props.people.length}
-                    size={avatarSize}
-                  >
-                    ...
-                  </MaterialAvatar>
-                ]);
-              }
-            }
-
-            return (
-              mainBody
-            );
-          }) : ''}
-        <Popover
+        <PeoplePopupList
+          people={this.props.people}
+          onClick={this.handleOnClickAvatarAction.bind(this)}
+          avatarSize={avatarSize}
           open={this.state.showMoreOpen}
-          anchorEl={this.state.showMoreEvent}
-          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-          targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+          showMoreEvent={this.state.showMoreEvent}
           onRequestClose={this.handleShowMoreClose.bind(this)}
-        >
-          <div>
-            <PeoplePopupList
-              people={this.props.people}
-              onClick={this.handleOnClickAvatarAction.bind(this)}
-              avatarSize={avatarSize}
-            />
-          </div>
-        </Popover>
+        />
       </div>
     );
   }

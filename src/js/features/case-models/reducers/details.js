@@ -20,8 +20,16 @@ case model details reducer sample =>
 // Get Case Model Detail
 const getCaseModelDetail = (responseData) => {
   const caseModelItem = responseData.find((elmt) => elmt.name === 'case');
-
-  return caseModelItem ? caseModelItem.attributes : {};
+  if (caseModelItem && caseModelItem.attributes) {
+    if (caseModelItem.children) {
+      const caseRoles = caseModelItem.children.find((elmt) => elmt.name === 'caseRoles');
+      if (caseRoles && caseRoles.children) {
+        caseModelItem.attributes.roles = caseRoles.children.reduce((arr, role) => arr.concat(role.attributes.name), []);
+      }
+    }
+    return caseModelItem.attributes;
+  }
+  return {};
 };
 
 const defaultState = Immutable.fromJS({
@@ -48,6 +56,7 @@ export const reducers = (state = defaultState, action) => {
     case 'CASEMODEL:DETAIL:FETCH':
       return state.set('isFetching', true)
                   .set('error', defaultState.get('error'))
+                  .set('data', defaultState.get('data'))
                   .set('actionError', defaultState.get('actionError'));
     case 'CASEMODEL:DETAIL:FETCH:SUCCESS':
       return state.set('isFetching', false)

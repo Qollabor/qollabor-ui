@@ -5,8 +5,6 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import styles from './styles';
-import PeopleList from '../../components/people-list';
-import registry from 'app-registry';
 import { Menu } from './menu';
 
 export class Header extends React.Component {
@@ -23,20 +21,6 @@ export class Header extends React.Component {
       backgroundColor: theme.appBar.color,
       color: theme.appBar.textColor
     };
-
-    const config = registry.get('config');
-    let caseUserList = false;
-    if (this.props.showCaseUsers) {
-      caseUserList = (
-        <ToolbarGroup firstChild={false} lastChild={false} float="right">
-          <div style={{ marginTop: '7px' }}>
-            <PeopleList
-              maxPeopleInList={config.case.caseTeam.maxPeopleInList}
-              people={this.props.caseTeam}
-            />
-          </div>
-        </ToolbarGroup>);
-    }
 
     return (
       <Toolbar
@@ -59,7 +43,6 @@ export class Header extends React.Component {
             text="Cafienne"
           />
         </ToolbarGroup>
-        {caseUserList}
         <ToolbarGroup firstChild={false} lastChild={true} float="right">
           <Menu items={this.props.headerMenu} />
           <div style={{ display: 'inline-block' }}><AppBarUserMenu /></div>

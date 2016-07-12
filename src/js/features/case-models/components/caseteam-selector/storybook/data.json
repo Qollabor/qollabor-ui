@@ -1,0 +1,34 @@
+{
+   "members": [
+     {
+       "user": "dannyk",
+       "roles": [
+         "Reviewer", "Approver"
+       ]
+     },
+     {
+       "user": "martijnvdp",
+       "roles": [
+         "Reviewer", "Approver"
+       ]
+     },
+     {
+       "user": "thijsp",
+       "roles": [
+         "Reviewer", "Approver"
+       ]
+     },
+     {
+       "user": "hansvb",
+       "roles": [
+         "Reviewer", "Approver"
+       ]
+     },
+     {
+       "user": "davidef",
+       "roles": [
+         "Reviewer", "Approver"
+       ]
+     }
+   ]
+ }
