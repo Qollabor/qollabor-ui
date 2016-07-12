@@ -52,7 +52,8 @@ export const reducers = (state = defaultState, action) => {
 
     case 'USER:PROFILE:INIT':
       return state.set('hideProfileForm', false)
-                  .set('error', Immutable.fromJS(defaultState.get('error')));
+                  .set('error', Immutable.fromJS(defaultState.get('error')))
+                  .set('profile', defaultState.get('profile'));
     case 'USER:PROFILE:FETCH':
       return state.set('isFetching', true);
     case 'USER:PROFILE:FETCH:SUCCESS':

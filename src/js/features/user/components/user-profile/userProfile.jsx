@@ -41,12 +41,6 @@ const styles = {
 };
 
 class UserProfile extends React.Component {
-  componentWillMount() {
-    if (this.props.init) {
-      this.props.init();
-    }
-  }
-
   render() {
     const { handleSubmit, onSave, pristine, onCancel, submitting, onAvatarUpdate, initialValues } = this.props;
     return (

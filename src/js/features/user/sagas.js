@@ -127,6 +127,7 @@ export function* fetchProfile() {
         }
       });
 
+    yield put(initialize('UserProfile', response.body));
     yield put({ type: 'USER:PROFILE:FETCH:SUCCESS', data: response.body });
   } catch (err) {
     registry.get('logger').error(err);
