@@ -101,6 +101,7 @@ export function* updateAvatar(action) {
       case 204: {
         yield put(notifySuccess('Image successfully changed'));
         yield put({ type: 'USER:AVATAR:UPDATE:SUCCESS', data: response.body[dataKey] });
+        yield put({ type: 'USER:PROFILE:INIT' });
         break;
       }
       default:

@@ -43,10 +43,12 @@ export class UserProfileDialog extends React.Component {
         onRequestClose={this.requestClose.bind(this)}
         bodyStyle={{ paddingTop: '10px', paddingBottom: '30px' }}
       >
-        <UserProfile
-          onSave={this.handleOnSubmit.bind(this)} onCancel={this.requestClose.bind(this)}
-          onAvatarUpdate={this.props.updateAvatar} saveError={this.props.error} initialValues={this.props.profile}
-        />
+        {this.props.profile &&
+          <UserProfile
+            onSave={this.handleOnSubmit.bind(this)} onCancel={this.requestClose.bind(this)}
+            onAvatarUpdate={this.props.updateAvatar} saveError={this.props.error} initialValues={this.props.profile}
+          />
+        }
       </Dialog>
     );
   }

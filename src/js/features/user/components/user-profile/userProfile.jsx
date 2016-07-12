@@ -48,15 +48,14 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    const { handleSubmit, onSave, pristine, onCancel, submitting, onAvatarUpdate } = this.props;
-
+    const { handleSubmit, onSave, pristine, onCancel, submitting, onAvatarUpdate, initialValues } = this.props;
     return (
       <form style={styles.formMargin}>
         <div>
           <Field
             name="uniqueId" component={uniqueId =>
-              <span style={{ float: 'right', textAlign: 'center' }}>
-                <ImageUpload userId={uniqueId.value} onUploadHandler={onAvatarUpdate}/>
+              <span style={{ float: 'right', textAlign: 'center' }} userId={uniqueId}>
+                {initialValues && <ImageUpload user={initialValues} onUploadHandler={onAvatarUpdate}/>}
               </span>
           }
           />

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Avatar } from 'material-ui';
 import { fetchAvatar } from './helpers';
+import { calcInitials } from '../people-list/helpers/calcInitials';
 
 export class UserAvatar extends React.Component {
 
@@ -8,16 +9,22 @@ export class UserAvatar extends React.Component {
     super(props);
 
     this.state = {
-      avatar: this.props.avatar
+      avatar: this.props.user.avatar,
+      uniqueId: this.props.uniqueId,
+      userName: this.props.user.name,
+      avatarLastModified: this.props.user.avatarLastModified
     };
   }
 
-  componentDidMount() {
-    fetchAvatar(this.props.userId).then(response => {
-      this.setState({
-        avatar: response.body.avatar
+  componentWillMount() {
+    const lastModified = this.props.user.avatarLastModified;
+    if (lastModified && this.props.user.uniqueId) {
+      fetchAvatar(this.props.user.uniqueId, lastModified).then(response => {
+        this.setState({
+          avatar: response.body.avatar
+        });
       });
-    });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -27,14 +34,20 @@ export class UserAvatar extends React.Component {
   }
 
   render() {
-    const avatar = this.state.avatar;
+    const { avatar, userName } = this.state;
+    let textAvatar = null;
+    if (! avatar) {
+      textAvatar = calcInitials(userName);
+    }
     return (
-      <div className="previewComponent">
+      <div className="previewComponent" title={userName}>
         <Avatar
           src={avatar}
           size={100}
           alt="Avatar"
-        />
+        >
+        {textAvatar}
+        </Avatar>
       </div>
     );
   }
@@ -43,7 +56,7 @@ export class UserAvatar extends React.Component {
 UserAvatar.displayName = 'UserAvatar';
 
 UserAvatar.propTypes = {
-  userId: React.PropTypes.string.isRequired
+  user: React.PropTypes.object.isRequired
 };
 
 export default UserAvatar;
