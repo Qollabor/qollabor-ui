@@ -9,7 +9,27 @@ export class ImageUpload extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.onUploadHandler(this.state.dataUrl);
+    this.resizeAndSaveImage(this.state.dataUrl, 100, 100);
+  }
+
+  resizeAndSaveImage(dataURL, width, height) {
+    const sourceImage = new Image();
+    const self = this;
+
+    sourceImage.onload = function() {
+      // Create a canvas with the desired dimensions
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+
+      // Scale and draw the source image to the canvas
+      canvas.getContext('2d').drawImage(sourceImage, 0, 0, width, height);
+
+      // Convert the canvas to a data URL in JPG format
+      self.props.onUploadHandler(canvas.toDataURL('image/png', 1.0));
+    };
+
+    sourceImage.src = dataURL;
   }
 
   handleImageChange(e) {
