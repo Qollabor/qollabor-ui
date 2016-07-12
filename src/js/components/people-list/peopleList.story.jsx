@@ -74,13 +74,13 @@ storiesOf('PeopleList', module)
   })
   .add('Show list with people avatars with', () => (
     <div className="center-component">
-      <PeoplePopupList people={samplePeople}/>
+      <PeoplePopupList people={samplePeople} open={true}/>
     </div>
   ))
   .add('When no list is provided show nothing', () => {
     const empty = [];
     return (
       <div className="center-component">
-        <PeoplePopupList people={empty}/>
+        <PeoplePopupList people={empty} open={true}/>
       </div>);
   });
