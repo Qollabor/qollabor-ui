@@ -7,6 +7,14 @@ import { Provider } from 'react-redux';
 import { store } from '../../../store.js';
 import { ImageUpload } from '../index';
 
+const user = {
+  userName: 'dannyk',
+  fullName: 'Danny Kruitbosch',
+  avatarUrl: 'https://lh6.googleusercontent.com/-wmA9kgZUUwo/AAAAAAAAAAI/AAAAAAAAABU/nPYkBB_N5x4/photo.jpg?sz=328',
+  actionUrl: '#/profile/dannyk'
+};
+
+
 storiesOf('User/ImageUpload', module).addDecorator((story) => (
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme()}>{story()}</MuiThemeProvider>
@@ -14,6 +22,6 @@ storiesOf('User/ImageUpload', module).addDecorator((story) => (
   ))
   .add('Should show the image uploader', () => (
     <div className="center-component">
-      <ImageUpload onUpload={action('onUpload')}/>
+      <ImageUpload user={user} onUpload={action('onUpload')}/>
     </div>
   ));
