@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar as MaterialAvatar } from 'material-ui';
-import { Avatar } from './avatar';
+import Avatar from '../../user-avatar';
 import styles from '../styles';
 
 class AvatarList extends React.Component {

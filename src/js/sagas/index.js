@@ -6,7 +6,7 @@ import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow,
 import { fetchTasks, viewTasks, executeTaskAction } from '../features/tasks';
 
 import { fetchTaskDetails, viewTask, transitionToState, saveTaskDetails } from '../features/task';
-import { fetchCase, fetchDiscretionaryItems, planDiscretionaryItem } from '../features/case';
+import { fetchCase, fetchCaseTeam, fetchDiscretionaryItems, planDiscretionaryItem } from '../features/case';
 import { resetAndfetchCaseModels, fetchCaseModelDetails, startCaseModel } from '../features/case-models';
 
 const sagas = [
@@ -36,6 +36,7 @@ const sagas = [
   // case
   [takeEvery, 'CASE:REQUEST_INIT', fetchCase],
   [takeEvery, 'CASE:REQUEST_INIT', fetchDiscretionaryItems],
+  [takeEvery, 'CASE:TEAM:REQUEST_INIT', fetchCaseTeam],
   [takeEvery, 'CASE:DISCRETIONARY_ITEMS:REQUEST_PLAN', planDiscretionaryItem],
   // case model
   [takeEvery, 'CASEMODEL:LIST:INIT', resetAndfetchCaseModels],
