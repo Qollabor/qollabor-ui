@@ -6,17 +6,9 @@ const style = { height: '30px' };
 
 class CaseTeamComponent extends React.Component {
   render() {
-    let peopleList = {};
-    if (this.props.case && this.props.case.team) {
-      peopleList = this.props.case.team.map((person) => ({
-        userName: person.user,
-        fullName: person.user
-      }));
-    }
-
     return (
       <div style={style}>
-        <PeopleList maxPeopleInList={4} people={peopleList} />
+        <PeopleList maxPeopleInList={4} people={this.props.caseTeam} />
       </div>
     );
   }

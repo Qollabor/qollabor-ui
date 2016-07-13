@@ -1,5 +1,6 @@
 import React from 'react';
-import { Avatar, List, ListItem } from 'material-ui';
+import Avatar from '../../user-avatar';
+import { List, ListItem } from 'material-ui';
 import { calcInitials } from '../helpers/calcInitials';
 
 class UserList extends React.Component {
@@ -18,7 +19,7 @@ class UserList extends React.Component {
             if (person.avatarUrl && person.avatarUrl.length) {
               avatarSrc.src = person.avatarUrl;
             } else {
-              initial = calcInitials(person.fullName);
+              initial = calcInitials(person.name);
             }
 
             const actions = {};
@@ -30,11 +31,11 @@ class UserList extends React.Component {
 
             return (
               <ListItem
-                innerDivStyle={{ paddingTop: '15px', fontSize: '13px' }}
-                key={person.userName}
+                innerDivStyle={{ paddingTop: '15px', paddingLeft: '15px', fontSize: '13px' }}
+                key={person.uniqueId}
                 {...actions}
-                primaryText={`${person.fullName} (${person.userName})`}
-                leftAvatar={<Avatar {...avatarSrc} size={avatarSize}>{initial}</Avatar>}
+                primaryText={`${person.name} (${person.uniqueId})`}
+                leftAvatar={<Avatar user={person} size={avatarSize}>{initial}</Avatar>}
               />
             );
           }) : ''}

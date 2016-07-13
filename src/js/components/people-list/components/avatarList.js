@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar as MaterialAvatar } from 'material-ui';
-import { Avatar } from './avatar';
+import Avatar from '../../user-avatar';
 import styles from '../styles';
 
 class AvatarList extends React.Component {
@@ -37,8 +37,8 @@ class AvatarList extends React.Component {
             if (index <= (maxPeopleInList - 1)) {
               mainBody = (
                 <Avatar
-                  key={person.userName}
-                  person={person}
+                  key={person.name}
+                  user={person}
                   size={avatarSize}
                   onClick={this.handleOnClickAvatarAction.bind(this)}
                   padding={paddingBetweenAvatar}
