@@ -31,10 +31,10 @@ class UserList extends React.Component {
 
             return (
               <ListItem
-                innerDivStyle={{ paddingTop: '15px', paddingLeft: '15px', fontSize: '13px' }}
+                innerDivStyle={{ paddingTop: 4, paddingLeft: 15, fontSize: 13 }}
                 key={person.uniqueId}
                 {...actions}
-                primaryText={`${person.name} (${person.uniqueId})`}
+                primaryText={<div style={{ marginLeft: 50, paddingTop: 12 }}>{person.name} ({person.uniqueId})</div>}
                 leftAvatar={<Avatar user={person} size={avatarSize}>{initial}</Avatar>}
               />
             );

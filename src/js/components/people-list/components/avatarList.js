@@ -34,8 +34,8 @@ class AvatarList extends React.Component {
       const person = people[index];
       avatarList.push(
         <Avatar
-          key={person.userName}
-          person={person}
+          key={person.name}
+          user={person}
           size={avatarSize}
           onClick={this.handleOnClickAvatarAction.bind(this)}
           padding={paddingBetweenAvatar}
