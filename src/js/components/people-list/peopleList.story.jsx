@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import PeopleList from './index';
-import PeoplePopupList from './components/popupList';
+import UserList from './components/userList';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
@@ -74,13 +74,13 @@ storiesOf('PeopleList', module)
   })
   .add('Show list with people avatars with', () => (
     <div className="center-component">
-      <PeoplePopupList people={samplePeople} open={true}/>
+      <UserList people={samplePeople}/>
     </div>
   ))
   .add('When no list is provided show nothing', () => {
     const empty = [];
     return (
       <div className="center-component">
-        <PeoplePopupList people={empty} open={true}/>
+        <UserList people={empty}/>
       </div>);
   });
