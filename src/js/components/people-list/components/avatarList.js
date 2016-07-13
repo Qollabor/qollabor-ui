@@ -28,42 +28,35 @@ class AvatarList extends React.Component {
         Math.min(this.props.maxPeopleInList, Math.floor(maxLength / (avatarSize + paddingBetweenAvatar)));
     }
 
+    const avatarList = [];
+    const people = this.props.people || [];
+    for (let index = 0; (index <= (maxPeopleInList - 1) && (index <= people.length - 1)); index++) {
+      const person = people[index];
+      avatarList.push(
+        <Avatar
+          key={person.userName}
+          person={person}
+          size={avatarSize}
+          onClick={this.handleOnClickAvatarAction.bind(this)}
+          padding={paddingBetweenAvatar}
+        />
+      );
+    }
+
+    avatarList.push(
+      <MaterialAvatar
+        onClick={this.handleShowMoreAction.bind(this)}
+        style={styles.showMore}
+        key="avatarActionHandler"
+        size={avatarSize}
+      >
+        ...
+      </MaterialAvatar>
+    );
+
     return (
       <div>
-       {this.props.people && this.props.people.length > 0 ?
-          this.props.people.map((person, index) => {
-            let mainBody;
-
-            if (index <= (maxPeopleInList - 1)) {
-              mainBody = (
-                <Avatar
-                  key={person.userName}
-                  person={person}
-                  size={avatarSize}
-                  onClick={this.handleOnClickAvatarAction.bind(this)}
-                  padding={paddingBetweenAvatar}
-                />
-              );
-            } else {
-              if (index === maxPeopleInList) {
-                mainBody = ([
-                  mainBody,
-                  <MaterialAvatar
-                    onClick={this.handleShowMoreAction.bind(this)}
-                    style={styles.showMore}
-                    key={person.userName + this.props.people.length}
-                    size={avatarSize}
-                  >
-                    ...
-                  </MaterialAvatar>
-                ]);
-              }
-            }
-
-            return (
-              mainBody
-            );
-          }) : ''}
+        {avatarList}
       </div>
     );
   }
