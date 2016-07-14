@@ -3,7 +3,8 @@ import { Paper, Subheader } from 'material-ui';
 
 import AvatarList from '../../../../components/people-list/components/avatarList';
 import UserList from '../../../../components/people-list/components/userList';
-import TextFilter from '../../../../components/text-filter/textFilter';
+import UserSelector from '../../../../components/user-selector';
+
 
 class CaseTeamSelector extends React.Component {
   render() {
@@ -74,16 +75,7 @@ class CaseTeamSelector extends React.Component {
                 />
               </Paper>
             </div>
-            <div style={{ height: 190 }}>
-              <Paper>
-                <div style={{ height: 30 }}>
-                  <TextFilter hintText="Search to select Users"/>
-                </div>
-                <div style={{ height: 158, overflowY: 'auto', display: 'inline-block', width: '100%' }}>
-                  <UserList people={samplePeople} />
-                </div>
-              </Paper>
-            </div>
+            <UserSelector users={samplePeople} />
           </Paper>
         </div>
       </div>
