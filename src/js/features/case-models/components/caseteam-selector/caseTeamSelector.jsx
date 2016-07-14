@@ -2,8 +2,7 @@ import React from 'react';
 import { Paper, Subheader } from 'material-ui';
 
 import AvatarList from '../../../../components/people-list/components/avatarList';
-import UserList from '../../../../components/people-list/components/userList';
-import UserSelector from '../../../../components/user-selector';
+import UserSelector from '../../components/user-selector';
 
 
 class CaseTeamSelector extends React.Component {
@@ -66,15 +65,6 @@ class CaseTeamSelector extends React.Component {
         <div style={{ width: '49%', display: 'inline-block', marginLeft: 5, height: '100%', verticalAlign: 'top' }}>
           <Subheader style={{ paddingLeft: 0, lineHeight: 1 }}>Select Members for Role 'Manager'</Subheader>
           <Paper style={{ height: 350 }}>
-            <div style={{ height: 130 }}>
-              <Paper style={{ height: 130, overflowY: 'auto' }}>
-                <UserList
-                  maxPeopleInList={3}
-                  people={samplePeople}
-                  maxLength={100}
-                />
-              </Paper>
-            </div>
             <UserSelector users={samplePeople} />
           </Paper>
         </div>
@@ -83,7 +73,7 @@ class CaseTeamSelector extends React.Component {
   }
 }
 
-CaseTeamSelector.displayName = 'Select Case Team';
+CaseTeamSelector.displayName = 'CaseTeamSelector';
 
 CaseTeamSelector.propTypes = {
   roles: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
