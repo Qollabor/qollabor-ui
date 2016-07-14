@@ -154,9 +154,9 @@ export function* fetchCaseTeam(action) {
 
     yield put({ type: 'CASE:TEAM:FETCH' });
 
-    // FIXME : For now, we are showing all users.
+    const userIds = action.caseTeam.map((person) => person.user).join(',');
     const response = yield registry.get('request')
-      .get(`${config.baseApiUrl}users`, null, {
+      .get(`${config.baseApiUrl}users?ids=${userIds}`, null, {
         headers: {
           [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
         }
