@@ -14,26 +14,30 @@ class UserSelector extends React.Component {
   }
 
   handleFilterChange(e, filterValue) {
-    if (this.props.onFilterChange) {
-      this.props.onFilterChange(filterValue);
+    if (this.props.setFilter) {
+      this.props.setFilter(filterValue);
     }
   }
 
-  handleUserSelectChange(uniqueId, selected) {
+  handleUserSelectChange(user, selected) {
     if (this.props.onUserSelectChange) {
-      this.props.onUserSelectChange(uniqueId, selected);
+      this.props.onUserSelectChange(user, selected);
     }
   }
 
   render() {
     const { users } = this.props;
     const hintText = this.props.filterHintText || 'Search to select Users';
-
     return (
       <div style={{ height: 350 }}>
         <Paper>
           <div style={{ height: 30 }}>
-            <TextFilter hintText={hintText} onFilterChange={this.handleFilterChange.bind(this)}/>
+            <TextFilter
+              {...this.props}
+              hintText={hintText}
+              onFilterChange={this.handleFilterChange.bind(this)}
+              activeFilter={this.props.filterString}
+            />
           </div>
           <div style={{ height: 288, overflowY: 'auto', display: 'inline-block', width: '100%' }}>
             <UserList people={users} canSelectUsers={true} onUserSelectChange={this.handleUserSelectChange.bind(this)}/>

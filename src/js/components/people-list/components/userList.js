@@ -49,7 +49,7 @@ class UserList extends React.Component {
                   canSelectUsers &&
                     <Checkbox
                       style={{ right: 16, left: '' }}
-                      checked={selected} onCheck={this.handleUserSelectChange.bind(this, uniqueId)}
+                      checked={selected} onCheck={this.handleUserSelectChange.bind(this, person)}
                     />
                 }
               />

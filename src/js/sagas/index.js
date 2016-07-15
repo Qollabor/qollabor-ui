@@ -7,7 +7,8 @@ import { fetchTasks, viewTasks, executeTaskAction } from '../features/tasks';
 
 import { fetchTaskDetails, viewTask, transitionToState, saveTaskDetails } from '../features/task';
 import { fetchCase, fetchCaseTeam, fetchDiscretionaryItems, planDiscretionaryItem } from '../features/case';
-import { resetAndfetchCaseModels, fetchCaseModelDetails, startCaseModel } from '../features/case-models';
+import { resetAndfetchCaseModels, fetchCaseModelDetails,
+  startCaseModel, resetAndfetchUsersList } from '../features/case-models';
 
 const sagas = [
   // Login
@@ -41,7 +42,10 @@ const sagas = [
   // case model
   [takeEvery, 'CASEMODEL:LIST:INIT', resetAndfetchCaseModels],
   [takeEvery, 'CASEMODEL:DETAIL:INIT', fetchCaseModelDetails],
-  [takeEvery, 'CASEMODEL:START', startCaseModel]
+  [takeEvery, 'CASEMODEL:START', startCaseModel],
+  // user selector
+  [takeEvery, 'USERS_SELECTOR:LIST:INIT', resetAndfetchUsersList],
+  [takeEvery, 'USERS_SELECTOR:LIST:FILTER', resetAndfetchUsersList]
 ];
 
 function* rootSaga() {

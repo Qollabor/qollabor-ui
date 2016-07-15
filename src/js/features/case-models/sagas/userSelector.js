@@ -1,17 +1,16 @@
 import registry from 'app-registry';
-import { takeEvery } from 'redux-saga';
 import { put } from 'redux-saga/effects';
 
 const NO_OF_RESULTS = 10;
 
 
-export function* resetAndfetchUsers() {
+export function* resetAndfetchUsersList() {
   yield put({ type: 'USERS_SELECTOR:LIST:REQUEST:INIT' });
-  yield fetchUsers();
+  yield fetchUsersList();
 }
 
 
-export function* fetchUsers() {
+export function* fetchUsersList() {
   const store = registry.get('store');
   const config = registry.get('config');
   const dataKey = '_2';
@@ -33,7 +32,7 @@ export function* fetchUsers() {
 }
 
 const getURLWithParams = (store, config) => {
-  const { filterString } = store.getState().users.toJS();
+  const filterString = store.getState().casemodel.userSelector.get('filterString');
   const sortKey = 'name';
   const sortDesc = 'ASC';
   let url = `${config.baseApiUrl}users?numberOfResults=${NO_OF_RESULTS}`;
@@ -44,12 +43,7 @@ const getURLWithParams = (store, config) => {
 };
 
 const sagas = [
-  function*() {
-    yield takeEvery('USERS_SELECTOR:LIST:INIT', resetAndfetchUsers);
-  },
-  function*() {
-    yield takeEvery('USERS_SELECTOR:LIST:FILTER', resetAndfetchUsers);
-  }
+
 ];
 
 export default sagas;

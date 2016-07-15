@@ -2,7 +2,7 @@ import UserSelectorComponent from './userSelector';
 
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => (state.casemodel.searchList);
+const mapStateToProps = (state) => (state.casemodel.userSelector.toJS());
 
 const mapDispatchToProps = (dispatch) => ({
   initUsers: () => {
