@@ -9,7 +9,7 @@ import CaseTeamSelector from '../caseTeamSelector';
 
 const roles = ['Manager', 'Reviewer', 'Approver'];
 
-storiesOf('Case Team Selector', module).addDecorator((story) => (
+storiesOf('CaseModels/CaseTeamSelector', module).addDecorator((story) => (
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme()}>{story()}</MuiThemeProvider>
   </Provider>

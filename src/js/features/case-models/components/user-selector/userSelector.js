@@ -7,9 +7,21 @@ import TextFilter from '../../../../components/text-filter';
 
 class UserSelector extends React.Component {
 
-  componentWillMount () {
+  componentWillMount() {
     if (this.props.initUsers) {
       this.props.initUsers();
+    }
+  }
+
+  handleFilterChange(e, filterValue) {
+    if (this.props.onFilterChange) {
+      this.props.onFilterChange(filterValue);
+    }
+  }
+
+  handleUserSelectChange(uniqueId, selected) {
+    if (this.props.onUserSelectChange) {
+      this.props.onUserSelectChange(uniqueId, selected);
     }
   }
 
@@ -21,10 +33,10 @@ class UserSelector extends React.Component {
       <div style={{ height: 350 }}>
         <Paper>
           <div style={{ height: 30 }}>
-            <TextFilter hintText={hintText}/>
+            <TextFilter hintText={hintText} onFilterChange={this.handleFilterChange.bind(this)}/>
           </div>
           <div style={{ height: 288, overflowY: 'auto', display: 'inline-block', width: '100%' }}>
-            <UserList people={users} />
+            <UserList people={users} canSelectUsers={true} onUserSelectChange={this.handleUserSelectChange.bind(this)}/>
           </div>
         </Paper>
       </div>
