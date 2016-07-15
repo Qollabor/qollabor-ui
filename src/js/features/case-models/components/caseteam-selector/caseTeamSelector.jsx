@@ -2,13 +2,32 @@ import React from 'react';
 import { Paper, Subheader } from 'material-ui';
 
 import AvatarList from '../../../../components/people-list/components/avatarList';
-import UserSelector from '../../components/user-selector';
+import { UserSelector } from '../../components/user-selector';
 
 
 class CaseTeamSelector extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      caseTeam: props.roles.reduce((obj, role) => {
+        obj[role] = {};
+        return obj;
+      }, {})
+    };
+  }
+
+  handleOnChange(role, users) {
+    const caseTeam = this.state.caseTeam;
+    caseTeam[role] = users;
+    this.setState({
+      caseTeam
+    });
+  }
+
   render() {
     const roles = this.props.roles;
-    const users = this.props.users;
 
     const samplePeople = [
       {
@@ -53,9 +72,8 @@ class CaseTeamSelector extends React.Component {
                   <Subheader style={{ paddingLeft: 0 }}>{role}</Subheader>
                   <AvatarList
                     maxPeopleInList={3}
-                    people={samplePeople}
+                    people={samplePeople/* this.state.caseTeam[role]*/}
                     maxLength={100}
-                    users={users}
                   />
                 </div>
               ))}
@@ -65,7 +83,7 @@ class CaseTeamSelector extends React.Component {
         <div style={{ width: '49%', display: 'inline-block', marginLeft: 5, height: '100%', verticalAlign: 'top' }}>
           <Subheader style={{ paddingLeft: 0, lineHeight: 1 }}>Select Members for Role 'Manager'</Subheader>
           <Paper style={{ height: 350 }}>
-            <UserSelector users={samplePeople} />
+            <UserSelector users={samplePeople} onChange={this.handleOnChange.bind(this)} />
           </Paper>
         </div>
       </div>
