@@ -1,0 +1,7 @@
+{   
+	"editadminuser":{
+		"uniqueId":"admin",
+		"name":"Admin",
+		"roles":["ADMIN"]
+	}
+}
