@@ -70,7 +70,10 @@ class CaseTeamSelector extends React.Component {
           onRequestClose={this.requestRequestClose.bind(this)}
           bodyStyle={{ paddingTop: '10px', paddingBottom: '30px' }}
         >
-          <UserSelector onUserSelectChange={this.handleUserSelectChange.bind(this)} />
+          <UserSelector
+            onUserSelectChange={this.handleUserSelectChange.bind(this)}
+            selectedUsers={roleObj[this.state.selectedRole]}
+          />
         </Popover>
       </div>
     );
