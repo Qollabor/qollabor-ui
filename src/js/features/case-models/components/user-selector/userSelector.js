@@ -25,8 +25,21 @@ class UserSelector extends React.Component {
     }
   }
 
+  markSelectedUsers(users, selectedUsers) {
+    if (selectedUsers && users) {
+      users.forEach((user) => {
+        const userId = user.uniqueId;
+        user.selected = selectedUsers.find((selectedUser) =>
+          selectedUser.uniqueId === userId
+        );
+      });
+    }
+  }
+
   render() {
-    const { users } = this.props;
+    const { users, selectedUsers } = this.props;
+    this.markSelectedUsers(users, selectedUsers);
+
     const hintText = this.props.filterHintText || 'Search to select Users';
     return (
       <div style={{ height: 350 }}>
