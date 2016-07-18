@@ -40,6 +40,26 @@ export function* fetchCaseModelDetails() {
   }
 }
 
+// Reverse the case team items to array of {user: '', roles: []}
+function getCaseTeam(caseTeamItems) {
+  let caseTeamMembers = [];
+  caseTeamItems.map((caseTeamItem, role) => {
+    caseTeamItem.forEach(caseTeam => {
+      const caseTeamIndex = caseTeamMembers.findIndex((elmt) => elmt.user === caseTeam.uniqueId);
+      if (caseTeamIndex !== -1) {
+        const caseTeamRoles = caseTeamMembers[caseTeamIndex].roles;
+        caseTeamRoles.push(role);
+        caseTeamMembers.splice(caseTeamIndex, 1, { user: caseTeam.uniqueId, roles: caseTeamRoles });
+      } else {
+        caseTeamMembers = caseTeamMembers.concat({ user: caseTeam.uniqueId, roles: [role] });
+      }
+    });
+    return null;
+  });
+
+  return caseTeamMembers;
+}
+
 export function* startCaseModel() {
   const store = registry.get('store');
   const config = registry.get('config');
@@ -49,11 +69,15 @@ export function* startCaseModel() {
     const headers = helpers.addHeadersByName(['cafienneAuth']);
 
     const caseModelDetails = store.getState().casemodel.details;
+    const caseTeamItems = store.getState().casemodel.caseTeam.get('roles');
 
     const requestPayload = {
       definition: caseModelDetails.get('definition'),
       name: caseModelDetails.get('data').name,
-      inputs: caseModelDetails.get('caseData')
+      inputs: caseModelDetails.get('caseData'),
+      caseTeam: {
+        members: getCaseTeam(caseTeamItems)
+      }
     };
 
     const response = yield registry.get('request')

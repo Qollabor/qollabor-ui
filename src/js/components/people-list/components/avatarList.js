@@ -67,7 +67,7 @@ AvatarList.propTypes = {
   maxPeopleInList: React.PropTypes.number.isRequired,
   maxLength: React.PropTypes.number,
   avatarSize: React.PropTypes.number,
-  onClick: React.PropTypes.func.isRequired,
+  onClick: React.PropTypes.func,
   onShowMoreAction: React.PropTypes.func.isRequired
 };
 

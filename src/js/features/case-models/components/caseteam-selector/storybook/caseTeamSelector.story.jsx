@@ -7,7 +7,10 @@ import { Provider } from 'react-redux';
 import { store } from '../../../../../store.js';
 import CaseTeamSelector from '../caseTeamSelector';
 
-const roles = ['Manager', 'Reviewer', 'Approver'];
+const roles = { Manager: [{ name: 'Thijs Petter', uniqueId: 'thijsp' }],
+                Reviewer: [{ name: 'Martijn van der Plaat', uniqueId: 'martijnvdp' }],
+                Approver: [{ name: 'Danny Kruitbosch', uniqueId: 'dannyk' }]
+              };
 
 storiesOf('CaseModels/CaseTeamSelector', module).addDecorator((story) => (
   <Provider store={store}>
@@ -15,6 +18,10 @@ storiesOf('CaseModels/CaseTeamSelector', module).addDecorator((story) => (
   </Provider>
   ))
   .add('With Empty data', () =>
+    (<div className="center-component">
+      <CaseTeamSelector roles={[]}/>
+    </div>))
+  .add('With data', () =>
     (<div className="center-component">
       <CaseTeamSelector roles={roles}/>
     </div>));
