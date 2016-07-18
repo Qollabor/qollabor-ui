@@ -19,17 +19,42 @@ caseTeam reducer sample =>
 */
 
 const defaultState = Immutable.fromJS({
-  roles: []
+  roles: Immutable.Map(),
+  user: null,
+  isSelected: null
 });
+
+
+const getCaseTeam = (roles, selectedRole, selectedUser, selected) => {
+  const users = roles.get(selectedRole);
+  const index = users.findIndex((item) => item.uniqueId === selectedUser.uniqueId);
+  if (!selected) {
+    users.splice(index, 1);
+  } else if (selected && index === -1) {
+    users.push(selectedUser);
+  }
+
+  return Immutable.Map(roles.set(selectedRole, users));
+};
 
 export const reducers = (state = defaultState, action) => {
   switch (action.type) {
-    case 'CASETEAM_SELECTOR:INIT':
-      return state.set('roles', Immutable.List());
-    case 'CASETEAM_SELECTOR:SETROLES':
-      return state.set('roles', Immutable.List(action.roles));
-    case 'CASETEAM_SELECTOR:SETUSERSFORROLE':
-      return state.get('roles').get(action.role).set('users', Immutable.List(action.roles));
+    case 'CASETEAM_SELECTOR:INIT': {
+      return state.set('roles', Immutable.Map());
+    }
+    case 'CASETEAM_SELECTOR:SETROLES': {
+      let initRoles = Immutable.Map();
+      action.roles.forEach(role => {
+        initRoles = initRoles.set(role, []);
+      });
+      return state.set('roles', initRoles);
+    }
+    case 'CASETEAM_SELECTOR:SETUSERSFORROLE': {
+      return state
+        .set('roles', getCaseTeam(state.get('roles'), action.role, action.user, action.selected))
+        .set('selectedUser', action.user)
+        .set('isSelected', action.selected);
+    }
     default:
       return state;
   }
