@@ -61,7 +61,7 @@ class UserList extends React.Component {
 }
 
 UserList.propTypes = {
-  people: React.PropTypes.array.isRequired,
+  people: React.PropTypes.array,
   canSelectUsers: React.PropTypes.boolean
 };
 

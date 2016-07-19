@@ -85,7 +85,7 @@ class CaseTeamSelector extends React.Component {
 CaseTeamSelector.displayName = 'CaseTeamSelector';
 
 CaseTeamSelector.propTypes = {
-  roles: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+  roles: React.PropTypes.object.isRequired
 };
 
 export default CaseTeamSelector;
