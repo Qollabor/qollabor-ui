@@ -75,7 +75,7 @@ class Details extends React.Component {
             </div>
           </div> :
           <Paper style={{ padding: '5px', marginTop: '15px' }}>
-            <div style={{ width: '49%', display: 'inline-block', height: '100%', verticalAlign: 'top' }}>
+            <div style={{ width: '75%', display: 'inline-block', height: '100%', verticalAlign: 'top' }}>
               {caseSchema && <CaseModelSchemaForm
                 buttonList={buttonList}
                 schema={caseSchema}
@@ -89,9 +89,11 @@ class Details extends React.Component {
             </div>
             {data.roles &&
               <div
-                style={{ width: '49%', display: 'inline-block',
-                marginLeft: 5, height: '100%', verticalAlign: 'top' }}
+                style={{ width: '22%', display: 'inline-block',
+                margin: 5, paddingLeft: 10, verticalAlign: 'top',
+                borderLeft: '1px solid lightgray' }}
               >
+                <subHeader>Case Team</subHeader>
                 <CaseTeamSelector teamRoles={data.roles}/>
               </div>
             }
