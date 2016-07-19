@@ -30,12 +30,6 @@ storiesOf('CaseModels/Detail', module)
       </div>
     );
   })
-  .add('Loading', () =>
-    (<div className="center-component">
-      <Details
-        isFetching={true}
-      />
-    </div>))
   .add('With data', () =>
     (<div className="center-component">
       <Details

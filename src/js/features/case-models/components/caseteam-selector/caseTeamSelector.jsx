@@ -17,6 +17,8 @@ class CaseTeamSelector extends React.Component {
 
   componentWillMount() {
     if (this.props.initCaseTeam) {
+      // Add empty role for assigning users without roles
+      this.props.teamRoles.unshift('');
       this.props.initCaseTeam(this.props.teamRoles);
     }
   }
@@ -50,8 +52,8 @@ class CaseTeamSelector extends React.Component {
       <div>
         <div style={{ height: 350 }}>
           {roles.map((role) => (
-            <div style={{ height: 100, marginLeft: 15 }}>
-              <Subheader style={{ paddingLeft: 0 }}>{role}</Subheader>
+            <div style={{ height: 80, marginLeft: 15 }}>
+              <Subheader style={{ height: 20, paddingLeft: 0, lineHeight: 1 }}>{role}</Subheader>
               <AvatarList
                 maxPeopleInList={10}
                 people={roleObj[role]}
@@ -83,7 +85,7 @@ class CaseTeamSelector extends React.Component {
 CaseTeamSelector.displayName = 'CaseTeamSelector';
 
 CaseTeamSelector.propTypes = {
-  roles: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
+  roles: React.PropTypes.object.isRequired
 };
 
 export default CaseTeamSelector;

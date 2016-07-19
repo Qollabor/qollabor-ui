@@ -94,7 +94,7 @@ class Details extends React.Component {
                 borderLeft: '1px solid lightgray' }}
               >
                 <subHeader>Case Team</subHeader>
-                {data.roles && <CaseTeamSelector teamRoles={data.roles}/>}
+                <CaseTeamSelector teamRoles={data.roles}/>
               </div>
             }
           </Paper>

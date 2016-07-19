@@ -43,18 +43,20 @@ export function* fetchCaseModelDetails() {
 // Reverse the case team items to array of {user: '', roles: []}
 function getCaseTeam(caseTeamItems) {
   let caseTeamMembers = [];
-  caseTeamItems.map((caseTeamItem, role) => {
+  caseTeamItems.forEach((caseTeamItem, role) => {
     caseTeamItem.forEach(caseTeam => {
       const caseTeamIndex = caseTeamMembers.findIndex((elmt) => elmt.user === caseTeam.uniqueId);
+      // If user exist, get the role and add it to caseTeamMembers map.
       if (caseTeamIndex !== -1) {
         const caseTeamRoles = caseTeamMembers[caseTeamIndex].roles;
         caseTeamRoles.push(role);
         caseTeamMembers.splice(caseTeamIndex, 1, { user: caseTeam.uniqueId, roles: caseTeamRoles });
       } else {
-        caseTeamMembers = caseTeamMembers.concat({ user: caseTeam.uniqueId, roles: [role] });
+        // if role is empty, set empty array
+        const caseTeamRoles = (role === '') ? [] : [role];
+        caseTeamMembers = caseTeamMembers.concat({ user: caseTeam.uniqueId, roles: caseTeamRoles });
       }
     });
-    return null;
   });
 
   return caseTeamMembers;

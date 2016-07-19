@@ -23,7 +23,7 @@ const getCaseModelDetail = (responseData) => {
   if (caseModelItem && caseModelItem.attributes) {
     if (caseModelItem.children) {
       const caseRoles = caseModelItem.children.find((elmt) => elmt.name === 'caseRoles');
-      if (caseRoles.children) {
+      if (caseRoles && caseRoles.children) {
         caseModelItem.attributes.roles = caseRoles.children.reduce((arr, role) => arr.concat(role.attributes.name), []);
       }
     }
@@ -56,6 +56,7 @@ export const reducers = (state = defaultState, action) => {
     case 'CASEMODEL:DETAIL:FETCH':
       return state.set('isFetching', true)
                   .set('error', defaultState.get('error'))
+                  .set('data', defaultState.get('data'))
                   .set('actionError', defaultState.get('actionError'));
     case 'CASEMODEL:DETAIL:FETCH:SUCCESS':
       return state.set('isFetching', false)
