@@ -33,7 +33,7 @@ export class CaseModels extends React.Component {
     };
 
     return (
-      <Paper style={{ margin: 20 }}>
+      <Paper style={{ margin: 2 }}>
         {isFetching && items.length === 0 &&
           <div className="loader-box"></div>}
         <div style={toolBarStyles}>

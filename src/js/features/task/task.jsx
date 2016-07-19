@@ -5,8 +5,6 @@ import Paper from 'material-ui/Paper';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Details } from './components/details';
 
-import { ActiveItems } from './components/active-items';
-import { CompletedItems } from './components/completed-items';
 import { DiscretionaryItems } from './components/discretionary-items';
 
 import { CaseInformation, CaseAttachments, CaseTeam } from '../case';
@@ -34,23 +32,11 @@ export class Task extends React.Component {
     const drawerWidth = theme.drawer.width;
 
     const divContainerStyle = {
-      marginLeft: this.props.showDrawer ? `${drawerWidth + 10}px` : '10px',
-      marginRight: `${drawerWidth + 10}px`,
-      transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms'
+      marginRight: `${drawerWidth + 10}px`
     };
 
     return (
       <div style={{ height: '100%' }}>
-        <Drawer
-          open={this.props.showDrawer}
-          docked={true}
-          containerStyle={styles.leftNav}
-        >
-          <ActiveItems taskId={this.props.taskId}/>
-          <DiscretionaryItems taskId={this.props.taskId} emptyListMessage="No items"/>
-          <CompletedItems taskId={this.props.taskId}/>
-
-        </Drawer>
         <div style={divContainerStyle}>
           <Paper style={{ padding: '10px' }}>
             <div style={{ margin: 15 }}>
@@ -67,6 +53,8 @@ export class Task extends React.Component {
           <CaseTeam caseId={this.props.caseId} title="Case team"/>
 
           <CaseInformation caseId={this.props.caseId} title="Case information"/>
+
+          <DiscretionaryItems taskId={this.props.taskId} emptyListMessage="No items"/>
 
           <CaseAttachments caseId={this.props.caseId}/>
         </Drawer>

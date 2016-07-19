@@ -6,6 +6,9 @@ import styles from './styles';
 class TasksFilter extends React.Component {
 
   handleChangeTasksFilter(tasksFilterName) {
+    if (this.props.onBeforeChangeTasksFilter) {
+      this.props.onBeforeChangeTasksFilter(tasksFilterName);
+    }
     if (this.props.onChangeTasksFilter) {
       this.props.onChangeTasksFilter(tasksFilterName);
     }
@@ -49,6 +52,7 @@ class TasksFilter extends React.Component {
 
 TasksFilter.propTypes = {
   onChangeTasksFilter: React.PropTypes.func,
+  onBeforeChangeTasksFilter: React.PropTypes.func,
   tasksFilterTypes: React.PropTypes.array,
   currentTasksFilter: React.PropTypes.string
 };
