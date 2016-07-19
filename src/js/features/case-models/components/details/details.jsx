@@ -92,7 +92,7 @@ class Details extends React.Component {
                 style={{ width: '49%', display: 'inline-block',
                 marginLeft: 5, height: '100%', verticalAlign: 'top' }}
               >
-                {data.roles && <CaseTeamSelector teamRoles={data.roles}/>}
+                <CaseTeamSelector teamRoles={data.roles}/>
               </div>
             }
           </Paper>
