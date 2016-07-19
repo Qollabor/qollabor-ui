@@ -6,7 +6,8 @@ function mapStateToProps(state) {
     menuItemCategory: state.app.get('menuItemCategory'),
     showCaseUsers: state.app.get('showCaseUsers'),
     headerMenu: state.app.get('headerMenu'),
-    caseTeam: state.case.case.get('item').caseTeam
+    caseTeam: state.case.case.get('item').caseTeam,
+    showDrawer: state.app.get('showDrawer')
   };
 }
 

@@ -16,5 +16,8 @@ export default {
     float: 'left',
     position: 'relative',
     zIndex: 0
+  },
+  leftNav: {
+    marginTop: barHeight
   }
 };
