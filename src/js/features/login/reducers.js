@@ -34,7 +34,8 @@ export const reducers = (state = defaultState, action) => {
         .set('isLoggingIn', false)
         .set('errors', Immutable.Map({
           username: action.username,
-          password: action.password
+          password: action.password,
+          login: action.login
         }));
 
     case 'LOGIN:LOGIN_REDIRECT_SET':

@@ -1,6 +1,7 @@
 import 'whatwg-fetch';
 import registry from 'app-registry';
 
+import { store } from '../store';
 import queryString from 'query-string';
 
 const defaultGetHeaders = {
@@ -80,6 +81,7 @@ function getMethod(url, query, options) {
       })
       .catch(err => {
         registry.get('logger').error(err);
+        verifyAuthAndRedirect(err);
         reject(err);
       });
   });
@@ -105,6 +107,7 @@ function postMethod(url, data, options) {
       })
       .catch(err => {
         registry.get('logger').error(err);
+        verifyAuthAndRedirect(err);
         reject(err);
       });
   });
@@ -130,6 +133,7 @@ function putMethod(url, data, options) {
       })
       .catch(err => {
         registry.get('logger').error(err);
+        verifyAuthAndRedirect(err);
         reject(err);
       });
   });
@@ -154,10 +158,23 @@ function deleteMethod(url, options) {
       })
       .catch(err => {
         registry.get('logger').error(err);
+        verifyAuthAndRedirect(err);
         reject(err);
       });
   });
 }
+
+// Verify authentication and redirect to login accordingly.
+function verifyAuthAndRedirect(response) {
+  const newLocation = store.getState().routing.locationBeforeTransitions;
+  if (response.message === 'Failed to fetch' && newLocation.pathname !== '/login') {
+    const config = registry.get('config');
+    registry.get('storage').removeItem(config.login.token.storage.key);
+    registry.get('storage').removeItem(config.login.user.storage.key);
+    store.dispatch({ type: 'LOGIN:TOKEN_REFRESH:FAIL' });
+  }
+}
+
 
 export default {
   get: getMethod,

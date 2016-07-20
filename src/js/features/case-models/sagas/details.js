@@ -85,10 +85,18 @@ export function* startCaseModel() {
     const response = yield registry.get('request')
       .post(`${config.cases.url}`, requestPayload, headers);
 
-    const caseInstanceId = response.body.caseInstanceId;
-    const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
-
-    yield fetchCaseDetail(caseInstanceId, caseLastModified);
+    switch (response.status) {
+      case 200:
+      case 201: {
+        const caseInstanceId = response.body.caseInstanceId;
+        const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+        yield fetchCaseDetail(caseInstanceId, caseLastModified);
+        break;
+      }
+      default:
+        yield put({ type: 'CASEMODEL:START:FAIL', error: response.body });
+        break;
+    }
   } catch (err) {
     registry.get('logger').error(err);
     yield put({ type: 'CASEMODEL:START:FAIL', error: err.message });

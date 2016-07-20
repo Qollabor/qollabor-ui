@@ -54,23 +54,32 @@ export function* transitionToState(action) {
     const response = yield registry.get('request')
       .post(`${config.tasks.url}/${action.taskId}/${transition}`, taskData, headers);
 
-    const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+    switch (response.status) {
+      case 200:
+      case 202: {
+        const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+        yield put(notifySuccess('The transition has been accepted'));
+        yield put({
+          type: 'TASK:TRANSITION:SUCCESS',
+          taskId: action.taskId,
+          caseLastModified
+        });
 
-    yield put(notifySuccess('The transition has been accepted'));
-    yield put({
-      type: 'TASK:TRANSITION:SUCCESS',
-      taskId: action.taskId,
-      caseLastModified
-    });
-
-    // Redirect to tasks UI, if task is completed.
-    if (transition === 'complete' || transition === 'terminate') {
-      const store = registry.get('store');
-      store.dispatch(pushRouter('#/'));
-    } else {
-      // FIXME - Removed case last modified for now, need to be added later
-      yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId });
-      yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId });
+        // Redirect to tasks UI, if task is completed.
+        if (transition === 'complete' || transition === 'terminate') {
+          const store = registry.get('store');
+          store.dispatch(pushRouter('#/'));
+        } else {
+          // FIXME - Removed case last modified for now, need to be added later
+          yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId });
+          yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId });
+        }
+        break;
+      }
+      default:
+        notifyDanger('Unable to apply transition');
+        yield put({ type: 'TASK:TRANSITION:FAIL', error: response.body });
+        break;
     }
   } catch (err) {
     registry.get('logger').error(err);

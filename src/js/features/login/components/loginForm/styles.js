@@ -8,7 +8,7 @@ const styles = {
     width: formWidth
   },
   container: {
-    height: '220px',
+    height: '250px',
     width: formWidth,
     margin: '20px',
     padding: '20px',
@@ -25,6 +25,13 @@ const styles = {
   progress: {
     display: 'inline-block',
     position: 'relative'
+  },
+  errorFieldWrapper: {
+    position: 'relative',
+    bottom: '2px',
+    fontSize: '12px',
+    lineHeight: '12px',
+    color: 'red'
   }
 };
 
