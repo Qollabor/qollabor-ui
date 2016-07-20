@@ -95,11 +95,20 @@ export function* executeTaskAction(action) {
     const response = yield registry.get('request')
       .put(`${config.tasks.url}/${action.taskId}/${action.taskAction}`, null, headers);
 
-    const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
-
-    yield put(notifySuccess('The action has been accepted'));
-    yield put({ type: 'TASK:ITEM:EXECUTE_ACTION:SUCCESS' });
-    yield fetchTask(action.taskId, caseLastModified);
+    switch (response.status) {
+      case 200:
+      case 202: {
+        const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+        yield put(notifySuccess('The action has been accepted'));
+        yield put({ type: 'TASK:ITEM:EXECUTE_ACTION:SUCCESS' });
+        yield fetchTask(action.taskId, caseLastModified);
+        break;
+      }
+      default:
+        notifyDanger('Unable to execute action');
+        yield put({ type: 'TASK:ITEM:EXECUTE_ACTION:FAIL', error: response.body });
+        break;
+    }
   } catch (err) {
     registry.get('logger').error(err);
     notifyDanger('Unable to execute action');

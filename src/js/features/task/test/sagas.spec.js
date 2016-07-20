@@ -226,7 +226,8 @@ describe('feature/task/sagas', () => {
         const response = {
           headers: {
             get: () => ({})
-          }
+          },
+          status: 202
         };
 
         expect(generator.next(response).value)
@@ -247,7 +248,8 @@ describe('feature/task/sagas', () => {
           generator.next({
             headers: {
               get: () => (caseLastModified)
-            }
+            },
+            status: 202
           });
 
           expect(generator.next().value)
