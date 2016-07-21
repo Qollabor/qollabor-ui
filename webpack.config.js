@@ -29,10 +29,6 @@ module.exports = {
         loaders: ['style', 'raw']
       },
       {
-        test: /\.schema$/,
-        loader: 'json'
-      },
-      {
         test: /\.(png|ico|gif)?$/,
         loader: 'file'
       }

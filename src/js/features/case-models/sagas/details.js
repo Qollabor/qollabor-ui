@@ -22,15 +22,18 @@ export function* fetchCaseModelDetails() {
     const response = yield registry.get('request').get(`${config.casemodeldetail.url}/${name}`, null, reqOptions);
     const jsonObj = parse(response.body.content).root.children;
 
-    let caseModelSchema;
-    try {
-      const caseModelItem = jsonObj.find((elmt) => elmt.name === 'case');
-      const caseName = caseModelItem ? caseModelItem.attributes.name.toLowerCase() : '';
-      // eslint-disable-next-line
-      caseModelSchema = require(`../../../schemas/${caseName}.schema`);
-    } catch (err) {
-      // eslint-disable-next-line
-      caseModelSchema = require('../../../schemas/default.schema');
+    // Get case model input schema from casemodel definition -> case -> extensionElements
+    let caseModelSchema = null;
+    const caseModelItem = jsonObj.find((elmt) => elmt.name === 'case');
+    if (caseModelItem && caseModelItem.children) {
+      const extensionElements = caseModelItem.children.find((elmt) => elmt.name === 'extensionElements');
+      if (extensionElements && extensionElements.children) {
+        // Parse case model schema xml as json
+        const caseModelSchemaContent = extensionElements.children.find((elmt) =>
+            elmt.name.endsWith('start-case-model'));
+        caseModelSchema = caseModelSchemaContent ?
+          JSON.parse(caseModelSchemaContent.content.replace(/&quot;/g, '"')) : null;
+      }
     }
 
     yield put({ type: 'CASEMODEL:DETAIL:FETCH:SUCCESS', data: jsonObj, caseModelSchema });
