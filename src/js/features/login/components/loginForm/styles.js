@@ -25,6 +25,13 @@ const styles = {
   progress: {
     display: 'inline-block',
     position: 'relative'
+  },
+  errorFieldWrapper: {
+    position: 'relative',
+    bottom: '2px',
+    fontSize: '12px',
+    lineHeight: '12px',
+    color: 'red'
   }
 };
 

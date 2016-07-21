@@ -118,15 +118,9 @@ export class LoginForm extends React.Component {
                   onChange={this.handleChange.bind(this, 'password')}
                 />
               </div>
-              {loginProps.errorText &&
-                <div
-                  style={{ position: 'relative', bottom: '2px', fontSize: '12px',
-                  lineHeight: '12px', color: 'red' }}
-                >
-                  {loginProps.errorText}
-                </div>
-              }
-
+              {loginProps.errorText && <div style={styles.errorFieldWrapper}>
+                {loginProps.errorText}
+              </div>}
               <RaisedButton
                 label="Cancel"
                 type="button"
