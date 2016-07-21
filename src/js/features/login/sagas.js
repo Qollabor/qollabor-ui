@@ -63,11 +63,11 @@ export function* loginFlow(action) {
         store.dispatch(replaceRouter(registry.get('config').login.redirectUrl.defaultSuccess, {}));
       }
     } else {
-      yield put({ type: 'LOGIN:DO_LOGIN:FAIL', username: response.body.content });
+      yield put({ type: 'LOGIN:DO_LOGIN:FAIL', login: response.body.content });
     }
   } catch (err) {
     registry.get('logger').error(err);
-    yield put({ type: 'LOGIN:DO_LOGIN:FAIL', error: err });
+    yield put({ type: 'LOGIN:DO_LOGIN:FAIL', login: 'Authentication failure: A network error has occurred.' });
   }
 }
 

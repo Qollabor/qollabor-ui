@@ -8,7 +8,7 @@ const styles = {
     width: formWidth
   },
   container: {
-    height: '220px',
+    height: '250px',
     width: formWidth,
     margin: '20px',
     padding: '20px',

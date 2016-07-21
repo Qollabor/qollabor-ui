@@ -12,7 +12,8 @@ export class LoginForm extends React.Component {
       password: '',
       changed: {
         username: false,
-        password: false
+        password: false,
+        login: false
       }
     };
   }
@@ -27,6 +28,10 @@ export class LoginForm extends React.Component {
     }
     if (errors.password && errors.password.length > 0) {
       newState.changed.password = false;
+    }
+
+    if (errors.login && errors.login.length > 0) {
+      newState.changed.login = false;
     }
     this.setState(newState);
   }
@@ -71,6 +76,10 @@ export class LoginForm extends React.Component {
       errorText: !this.state.changed.password ? errors.password : ''
     };
 
+    const loginProps = {
+      errorText: !this.state.changed.login ? errors.login : ''
+    };
+
     const progressIndicator =
       this.props.isLoggingIn ?
         <RefreshIndicator
@@ -109,6 +118,15 @@ export class LoginForm extends React.Component {
                   onChange={this.handleChange.bind(this, 'password')}
                 />
               </div>
+              {loginProps.errorText &&
+                <div
+                  style={{ position: 'relative', bottom: '2px', fontSize: '12px',
+                  lineHeight: '12px', color: 'red' }}
+                >
+                  {loginProps.errorText}
+                </div>
+              }
+
               <RaisedButton
                 label="Cancel"
                 type="button"
