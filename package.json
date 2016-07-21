@@ -53,6 +53,7 @@
     "cookie-parser": "^1.4.1",
     "cors": "^2.7.1",
     "counterpart": "^0.17.2",
+    "cross-env": "^2.0.0",
     "damals": "^0.9.4",
     "del": "^2.2.0",
     "enzyme": "^2.2.0",
@@ -84,13 +85,13 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/gulp/bin/gulp.js mocha",
-    "test-watch": "NODE_ENV=test ./node_modules/gulp/bin/gulp.js watchTest",
-    "serve": "NODE_ENV=development ./node_modules/gulp/bin/gulp.js serve",
-    "serve-mock": "NODE_ENV=mock ./node_modules/gulp/bin/gulp.js serve",
-    "serve-mock-api": "NODE_ENV=development node tasks/common/server/bin/www",
+    "test": "cross-env NODE_ENV=test ./node_modules/gulp/bin/gulp.js mocha",
+    "test-watch": "cross-env NODE_ENV=test ./node_modules/gulp/bin/gulp.js watchTest",
+    "serve": "cross-env NODE_ENV=development ./node_modules/gulp/bin/gulp.js serve",
+    "serve-mock": "cross-env NODE_ENV=mock ./node_modules/gulp/bin/gulp.js serve",
+    "serve-mock-api": "cross-env NODE_ENV=development node tasks/common/server/bin/www",
     "storybook": "start-storybook -p 9001",
-    "build-production": "NODE_ENV=production gulp build"
+    "build-production": "cross-env NODE_ENV=production gulp build"
   },
   "engines": {
     "node": ">=5.0.0"
