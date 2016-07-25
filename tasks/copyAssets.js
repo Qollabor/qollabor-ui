@@ -14,6 +14,6 @@ module.exports = (gulp, config) => {
 
   function copyAssetsTask() {
     gulp.src(['assets/**'])
-      .pipe(gulp.dest(config.folders.build));
+      .pipe(gulp.dest(`${config.folders.build}/assets`));
   }
 };
