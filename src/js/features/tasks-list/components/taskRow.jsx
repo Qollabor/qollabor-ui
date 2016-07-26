@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { FontIcon } from 'material-ui';
-import ActionChooser from '../../../components/action-chooser';
+import ActionChooser from './actionChooser';
 import registry from 'app-registry';
-import { ActionAssignmentReturned, /* ActionAssignmentInd, */ ActionAssignmentReturn } from 'material-ui/svg-icons';
+import { ActionAssignmentReturned, ActionAssignmentInd, ActionAssignmentReturn } from 'material-ui/svg-icons';
 
 import styles from './../styles';
 
@@ -13,21 +13,21 @@ const actionItems = [
     primaryText: 'Claim',
     leftIcon: <ActionAssignmentReturned/>
   },
-  /* {
+  {
     action: 'assign',
     primaryText: 'Assign',
     leftIcon: <ActionAssignmentInd/>
-  },*/
+  },
   {
     action: 'revoke',
     primaryText: 'Revoke',
     leftIcon: <ActionAssignmentReturn/>
-  }/* ,
+  },
   {
     action: 'delegate',
     primaryText: 'Delegate',
     leftIcon: <ActionAssignmentInd/>
-  }*/
+  }
 ];
 
 class TaskRow extends React.Component {
@@ -41,12 +41,12 @@ class TaskRow extends React.Component {
     }
   }
 
-  handleTaskActions(e, index, action) {
+  handleTaskActions(action, user) {
     const taskId = this.props.rowData.id;
-    this.props.executeTaskAction(taskId, action);
+    this.props.executeTaskAction(taskId, action, user);
   }
 
-  isActionDisabled(e, index, taskAction) {
+  isActionDisabled(taskAction) {
     const store = registry.get('store');
     const loggedInUserId = store.getState().user.getIn(['loggedUser', 'username']);
 

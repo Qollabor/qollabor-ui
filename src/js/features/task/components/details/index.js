@@ -21,8 +21,8 @@ function mapDispatchToProps(dispatch) {
     transitionToState: (taskId, caseId, taskData, transition) => {
       dispatch({ type: 'TASK:REQUEST_TRANSITION', taskId, caseId, taskData, transition });
     },
-    executeTaskAction: (taskId, taskAction) => {
-      dispatch({ type: 'TASK:ITEM:REQUEST_EXECUTE_ACTION', taskId, taskAction });
+    executeTaskAction: (taskId, taskAction, assignee) => {
+      dispatch({ type: 'TASK:ITEM:REQUEST_EXECUTE_ACTION', taskId, taskAction, assignee });
     }
   };
 }

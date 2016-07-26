@@ -9,6 +9,7 @@ import { reducers as caseReducers } from '../features/case';
 import { reducers as caseModelReducers } from '../features/case-models';
 import { reducers as schemaForm } from '../components/schema-form/reducers';
 import { reducer as formReducer } from 'redux-form';
+import { reducers as userSelector } from '../components/user-selector/reducers';
 
 export default {
   app: appReducer,
@@ -20,5 +21,6 @@ export default {
   case: caseReducers,
   casemodel: caseModelReducers,
   schemaForm,
-  form: formReducer
+  form: formReducer,
+  userSelector
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Subheader, Popover } from 'material-ui';
 import AvatarList from '../../../../components/people-list/components/avatarList';
-import { UserSelector } from '../../components/user-selector';
+import UserSelector from '../../../../components/user-selector';
 
 class CaseTeamSelector extends React.Component {
 
