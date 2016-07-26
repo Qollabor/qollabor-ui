@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Paper } from 'material-ui';
 
-import UserList from '../../../../components/people-list/components/userList';
-import TextFilter from '../../../../components/text-filter';
+import UserList from '../people-list/components/userList';
+import TextFilter from '../text-filter';
 
 class UserSelector extends React.Component {
 

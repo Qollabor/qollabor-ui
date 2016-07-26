@@ -1,11 +1,15 @@
+import React from 'react';
+import { ActionAssignmentInd } from 'material-ui/svg-icons';
+
 export const getAvailableTransitions = (task) => {
   switch (task.planState) {
     case 'Suspended':
       return [
         {
           action: 'resume',
-          label: 'resume',
-          backgroundColor: 'olive'
+          primaryText: 'Resume',
+          leftIcon: <ActionAssignmentInd/>,
+          transition: true
         }
       ];
 
@@ -13,13 +17,15 @@ export const getAvailableTransitions = (task) => {
       return [
         {
           action: 'suspend',
-          label: 'suspend',
-          backgroundColor: 'orange'
+          primaryText: 'Suspend',
+          leftIcon: <ActionAssignmentInd/>,
+          transition: true
         },
         {
           action: 'terminate',
-          label: 'terminate',
-          backgroundColor: 'red'
+          primaryText: 'Terminate',
+          leftIcon: <ActionAssignmentInd/>,
+          transition: true
         }
       ];
 

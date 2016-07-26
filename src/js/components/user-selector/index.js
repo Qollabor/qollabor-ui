@@ -1,8 +1,7 @@
-import UserSelectorComponent from './userSelector';
-
+import UserSelector from './userSelector';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => (state.casemodel.userSelector.toJS());
+const mapStateToProps = (state) => (state.userSelector.toJS());
 
 const mapDispatchToProps = (dispatch) => ({
   initUsers: () => {
@@ -16,5 +15,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export const UserSelector = connect(mapStateToProps, mapDispatchToProps)(UserSelectorComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(UserSelector);
 

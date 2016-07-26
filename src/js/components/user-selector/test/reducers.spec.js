@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import Immutable from 'immutable';
-import { reducers } from '../userSelector';
+import { reducers } from '../reducers';
 
 const defaultState = Immutable.fromJS({
   isFetching: false,

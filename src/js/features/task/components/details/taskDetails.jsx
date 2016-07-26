@@ -4,8 +4,6 @@ import TaskInfo from '../info';
 import { TaskBreadcrumb } from '../breadcrumb';
 import TaskModelSchemaForm from '../schema-form';
 import { ActionButtons } from '../../components/action-buttons';
-import { TransitionButtons } from '../../components/transition-buttons';
-
 
 export class TaskDetails extends React.Component {
 
@@ -46,20 +44,13 @@ export class TaskDetails extends React.Component {
     const buttonList = [<div>
       <span>
         <RaisedButton
-          label="COMPLETE" backgroundColor={'olive'} labelColor="white" disabled={disableForm || isSuspended}
-          type="submit" style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'complete')}
+          label="COMPLETE" primary={true} type="submit" disabled={disableForm || isSuspended}
+          style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'complete')}
         />
         <RaisedButton
-          label="SAVE" primary={true} type="submit" disabled={disableForm || isSuspended}
+          label="SAVE" type="submit" disabled={disableForm || isSuspended}
           style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'save')}
         />
-        <RaisedButton
-          label="RESET" primary={false} secondary={true}
-          style={buttonStyle} disabled={disableForm || isSuspended}
-        />
-      </span>
-      <span style={{ position: 'absolute', right: 30 }}>
-        <TransitionButtons taskId={this.props.taskId} caseId={this.props.caseId} disabled={disableForm}/>
       </span>
     </div>];
 
@@ -68,7 +59,7 @@ export class TaskDetails extends React.Component {
       <div>
         <TaskBreadcrumb />
         <span style={{ float: 'right' }}>
-          <ActionButtons taskId={this.props.taskId} caseId={this.props.caseId} disabled={isSuspended}/>
+          <ActionButtons taskId={this.props.taskId} caseId={this.props.caseId} disabled={isSuspended} />
         </span>
         <TaskInfo
           taskDetails={taskDetails}

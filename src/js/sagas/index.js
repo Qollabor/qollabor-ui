@@ -8,7 +8,8 @@ import { fetchTasks, viewTasks, executeTaskAction } from '../features/tasks';
 import { fetchTaskDetails, viewTask, transitionToState, saveTaskDetails } from '../features/task';
 import { fetchCase, fetchCaseTeam, fetchDiscretionaryItems, planDiscretionaryItem } from '../features/case';
 import { resetAndfetchCaseModels, fetchCaseModelDetails,
-  startCaseModel, resetAndfetchUsersList } from '../features/case-models';
+  startCaseModel } from '../features/case-models';
+import { resetAndfetchUsersList } from '../components/user-selector/sagas';
 
 const sagas = [
   // Login

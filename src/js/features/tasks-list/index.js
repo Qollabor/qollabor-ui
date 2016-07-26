@@ -23,8 +23,8 @@ function mapDispatchToProps(dispatch) {
     onColumnVisibilityToggle: (column) => {
       dispatch({ type: 'TASKS:COLUMNS:TOGGLE_VISIBILITY', columnName: column.key });
     },
-    executeTaskAction: (taskId, taskAction) => {
-      dispatch({ type: 'TASK:ITEM:REQUEST_EXECUTE_ACTION', taskId, taskAction });
+    executeTaskAction: (taskId, taskAction, assignee) => {
+      dispatch({ type: 'TASK:ITEM:REQUEST_EXECUTE_ACTION', taskId, taskAction, assignee });
     }
   };
 }

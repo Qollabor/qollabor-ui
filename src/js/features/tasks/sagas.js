@@ -88,12 +88,16 @@ export function* executeTaskAction(action) {
 
   yield put({ type: 'TASK:ITEM:EXECUTE_ACTION', taskId: action.taskId, taskAction: action.taskAction });
 
+  const userData = {
+    assignee: action.assignee ? action.assignee.uniqueId : ''
+  };
+
   try {
     // TODO check if the caseLastModified should be put for the post
     const headers = helpers.addHeadersByName(['cafienneAuth']);
 
     const response = yield registry.get('request')
-      .put(`${config.tasks.url}/${action.taskId}/${action.taskAction}`, null, headers);
+      .put(`${config.tasks.url}/${action.taskId}/${action.taskAction}`, userData, headers);
 
     switch (response.status) {
       case 200:
