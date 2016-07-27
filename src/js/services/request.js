@@ -2,6 +2,7 @@ import 'whatwg-fetch';
 import registry from 'app-registry';
 
 import { store } from '../store';
+import { notifyDanger } from '../features/notifier';
 import queryString from 'query-string';
 
 const defaultGetHeaders = {
@@ -164,15 +165,22 @@ function deleteMethod(url, options) {
   });
 }
 
+/* FIXME: Since we are getting an error for every request failure,
+  we are disabling the 'redirect to login' action for now,
+  Need to catch the authentication/network error in in a better way.
+*/
 // Verify authentication and redirect to login accordingly.
-function verifyAuthAndRedirect(response) {
-  const newLocation = store.getState().routing.locationBeforeTransitions;
-  if (response.message === 'Failed to fetch' && newLocation.pathname !== '/login') {
-    const config = registry.get('config');
-    registry.get('storage').removeItem(config.login.token.storage.key);
-    registry.get('storage').removeItem(config.login.user.storage.key);
-    store.dispatch({ type: 'LOGIN:TOKEN_REFRESH:FAIL' });
-  }
+function verifyAuthAndRedirect(/* response */) {
+  store.dispatch(notifyDanger('Request failed, please try logging in again'));
+  /*
+    const newLocation = store.getState().routing.locationBeforeTransitions;
+    if (response.message === 'Failed to fetch' && newLocation.pathname !== '/login') {
+      const config = registry.get('config');
+      registry.get('storage').removeItem(config.login.token.storage.key);
+      registry.get('storage').removeItem(config.login.user.storage.key);
+      store.dispatch({ type: 'LOGIN:TOKEN_REFRESH:FAIL' });
+    }
+  */
 }
 
 
