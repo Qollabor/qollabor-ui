@@ -6,7 +6,6 @@ export default class UploadDialog extends React.Component {
 
   render() {
     let bodyDialog = null;
-    console.log(this.props.bodyType);
     if (this.props.bodyType !== 'fileNotSupported') {
       bodyDialog = (
         <div>

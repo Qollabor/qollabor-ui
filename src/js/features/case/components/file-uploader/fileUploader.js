@@ -34,7 +34,10 @@ export default class FileUpload extends React.Component {
     this.FileAPI.event.off(this.refs.fileInput, 'change', this.handleFileChange.bind(this));
   }
 
-  async handleFileChange(event) {
+/* eslint-disable no-alert, no-console */
+async handleFileChange(event) {
+/* eslint-enable no-alert, no-console */
+
     const allowedFiles = !!this.state.allowedFileTypes ? await filterAllowedFiles(event, this.state.allowedFileTypes) : event;
     const uploadFiles = await filterUploadFiles(allowedFiles);
     const imageThumbnails = await getThumbnails(uploadFiles);
