@@ -7,7 +7,8 @@ export default {
   title: {
     height: barHeight,
     marginLeft: '10px',
-    marginTop: -4
+    marginTop: -4,
+    width: '160px'
   },
   menuIcon: {
     marginTop: '-1px'

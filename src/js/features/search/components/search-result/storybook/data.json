@@ -1,0 +1,86 @@
+[
+  {
+    "docType": "case",
+    "score": 1.0131874084472656,
+    "document": {
+      "id": "Motor-1469423547505",
+      "definition": "Motor Insurance Claim Request",
+      "rootCaseId": "Motor-1469423547505",
+      "planitems": [
+        {
+          "isRequired": false,
+          "isRepeating": false,
+          "caseInstanceId": "Motor-1469423547505",
+          "name": "MotorInsurance",
+          "id": "907a7514_c02d_41c0_bda8_af1d1bf8ead6",
+          "lastModified": "2016-07-25T05:12:30.317321992Z",
+          "currentState": "Completed",
+          "type": "CasePlan",
+          "user": "admin",
+          "historyState": "Null",
+          "transition": "Create",
+          "dueDate": "2016-07-24T05:12:30.317321992Z",
+          "stageId": null
+        }
+      ],
+      "file": {},
+      "team": []
+    }
+  },
+  {
+    "docType": "case",
+    "score": 1.0131874084472656,
+    "document": {
+      "id": "Peer-1469423547505",
+      "definition": "Peer Review Request",
+      "rootCaseId": "Peer-1469423547505",
+      "planitems": [
+        {
+          "isRequired": false,
+          "isRepeating": false,
+          "caseInstanceId": "Peer-1469423547505",
+          "name": "PeerReviewRequest",
+          "id": "907a7514_c02d_41c0_bda8_af1d1bf8ead6",
+          "lastModified": "2016-07-25T05:12:30.317321992Z",
+          "currentState": "Active",
+          "type": "CasePlan",
+          "user": "admin",
+          "historyState": "Null",
+          "transition": "Create",
+          "dueDate": "2016-07-22T05:12:30.317321992Z",
+          "stageId": null
+        }
+      ],
+      "file": {},
+      "team": []
+    }
+  },
+  {
+    "docType": "case",
+    "score": 1.0131874084472656,
+    "document": {
+      "id": "Travel-1469423547505",
+      "definition": "Travel Request",
+      "rootCaseId": "Travel-1469423547505",
+      "planitems": [
+        {
+          "isRequired": false,
+          "isRepeating": false,
+          "caseInstanceId": "Travel-1469423547505",
+          "name": "TravelRequest",
+          "id": "907a7514_c02d_41c0_bda8_af1d1bf8ead6",
+          "lastModified": "2016-07-25T05:12:30.317321992Z",
+          "currentState": "Active",
+          "type": "CasePlan",
+          "user": "admin",
+          "historyState": "Null",
+          "transition": "Create",
+          "dueDate": "2016-07-27T05:12:30.317321992Z",
+          "stageId": null
+        }
+      ],
+      "file": {},
+      "team": []
+    }
+  }
+]

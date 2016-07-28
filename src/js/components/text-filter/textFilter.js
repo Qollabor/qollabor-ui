@@ -1,9 +1,17 @@
 import React from 'react';
-import { TextField, IconButton, FontIcon } from 'material-ui';
+import { TextField } from 'material-ui';
+import { ActionSearch } from 'material-ui/svg-icons';
 
 const style = {
   fontSize: '12px',
-  margin: 5
+  margin: 5,
+  textIndent: '20px'
+};
+
+const searchIconStyle = {
+  position: 'absolute',
+  top: '15px',
+  left: '2px'
 };
 
 class TextFilter extends React.Component {
@@ -42,26 +50,16 @@ class TextFilter extends React.Component {
   }
 
   render() {
-    const { activeFilter } = this.props;
     const hintText = this.props.hintText || 'Filter';
-
     return (
-      <div style={{ width: '300px', float: 'left' }}>
+      <div style={{ position: 'relative', width: '300px' }} >
+        <ActionSearch style={searchIconStyle}/>
         <TextField
-          type="text" hintText={hintText}
+          type="search" hintText={hintText}
           style={style} value={this.state.filterText}
           onKeyUp={this.handleFilterKeyUp.bind(this)} onKeyDown={this.handleFilterKeyDown.bind(this)}
           onChange={this.handleFilterChange.bind(this)}
         />
-        {activeFilter ?
-          <IconButton
-            secondary={true}
-            style={{ width: 10, height: 10, top: 5, padding: 0 }}
-            onClick={this.handleClearFilter.bind(this)}
-          >
-            <FontIcon className="material-icons" color="gray" style={{ fontSize: 21 }}>clear</FontIcon>
-          </IconButton>
-        : null}
       </div>
     );
   }

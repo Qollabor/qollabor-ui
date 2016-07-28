@@ -1,14 +1,13 @@
 import React from 'react';
-import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator } from 'material-ui/Toolbar';
 import { IconButton, Divider, MenuItem, Drawer } from 'material-ui';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import StartCaseIcon from 'material-ui/svg-icons/av/play-arrow';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import registry from 'app-registry';
 import styles from './styles';
-
 import { TasksFilter } from '../tasks-filter';
-
+import CafienneSearch from '../search/components/searchbox';
 
 export class Header extends React.Component {
   handleLeftNavToggle() {
@@ -60,11 +59,13 @@ export class Header extends React.Component {
               />
             </IconButton>
           </ToolbarGroup>
-          <ToolbarGroup style={{ flexGrow: '4' }} firstChild={false} lastChild={false} float="left">
+          <ToolbarGroup style={{ flexGrow: '4', justifyContent: 'flex-start' }} firstChild={false} lastChild={false}>
             <ToolbarTitle
               style={Object.assign({}, styles.title, { color: theme.appBar.textColor })}
               text="Cafienne"
             />
+            <ToolbarSeparator />
+            <CafienneSearch />
           </ToolbarGroup>
           <ToolbarGroup firstChild={false} lastChild={true} float="right">
             <div style={{ display: 'inline-block' }}><AppBarUserMenu /></div>

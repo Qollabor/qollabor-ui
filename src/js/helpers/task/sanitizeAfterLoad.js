@@ -45,10 +45,12 @@ const calculateStyle = (status) => {
 
 export const sanitizeAfterLoad = (task) => {
   const status = calcTaskStatus(task);
+
   task.dueDate = (task.dueDate === null) ? {} : {
     title: moment(task.dueDate, moment.ISO_8601).format('ddd, MMMM Do YYYY HH:MM'),
     value: getTimeRemaining(task.dueDate).rem
   };
+
   task.createdOn = {
     title: moment(task.createdOn, moment.ISO_8601).format('ddd, MMMM Do YYYY HH:MM'),
     value: timeAgo(moment.utc(task.createdOn).toDate())
