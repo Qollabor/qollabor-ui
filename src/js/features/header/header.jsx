@@ -1,10 +1,10 @@
 import React from 'react';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import { IconButton, Divider, MenuItem, Drawer } from 'material-ui';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import StartCaseIcon from 'material-ui/svg-icons/av/play-arrow';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
+import registry from 'app-registry';
 import styles from './styles';
 
 import { TasksFilter } from '../tasks-filter';
@@ -25,13 +25,8 @@ export class Header extends React.Component {
   }
 
   render() {
-    const theme = getMuiTheme();
+    const theme = registry.get('theme');
     const drawerWidth = theme.drawer.width;
-
-    const themeColorStyles = {
-      backgroundColor: theme.appBar.color,
-      color: theme.appBar.textColor
-    };
 
     return (
       <div>
@@ -51,7 +46,7 @@ export class Header extends React.Component {
           />
         </Drawer>
         <Toolbar
-          style={Object.assign({}, styles.appBar, themeColorStyles)}
+          style={Object.assign({}, styles.appBar)}
         >
           <ToolbarGroup firstChild={true} lastChild={false} float="left">
             <IconButton
@@ -66,7 +61,7 @@ export class Header extends React.Component {
           </ToolbarGroup>
           <ToolbarGroup style={{ flexGrow: '4' }} firstChild={false} lastChild={false} float="left">
             <ToolbarTitle
-              style={Object.assign({}, styles.title, themeColorStyles)}
+              style={Object.assign({}, styles.title, { color: theme.appBar.textColor })}
               text="Cafienne"
             />
           </ToolbarGroup>

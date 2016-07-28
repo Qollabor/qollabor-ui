@@ -2,7 +2,8 @@ import React from 'react';
 import Drawer from 'material-ui/Drawer';
 import Paper from 'material-ui/Paper';
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import registry from 'app-registry';
+
 import { Details } from './components/details';
 
 import { DiscretionaryItems } from './components/discretionary-items';
@@ -28,11 +29,11 @@ export class Task extends React.Component {
   }
 
   render() {
-    const theme = getMuiTheme();
-    const drawerWidth = theme.drawer.width;
+    const theme = registry.get('theme');
+    const drawerWidth = (theme.rightDrawer && theme.rightDrawer.width) || theme.drawer.width;
 
     const divContainerStyle = {
-      marginRight: `${drawerWidth + 10}px`
+      marginRight: `${drawerWidth + 5}px`
     };
 
     return (

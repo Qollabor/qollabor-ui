@@ -1,11 +1,11 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import registry from 'app-registry';
 
 class NoHeaderLayout extends React.Component {
   render() {
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <MuiThemeProvider muiTheme={registry.get('theme')}>
         <div>
           {this.props.children}
         </div>

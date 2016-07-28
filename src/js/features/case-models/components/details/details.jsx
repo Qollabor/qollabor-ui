@@ -1,5 +1,5 @@
 import React from 'react';
-import { RaisedButton, Paper } from 'material-ui';
+import { RaisedButton, FlatButton, Paper } from 'material-ui';
 import MessageDiv from '../message-div';
 import CaseModelSchemaForm from '../schema-form';
 import CaseTeamSelector from '../caseteam-selector';
@@ -40,7 +40,7 @@ class Details extends React.Component {
 
   render() {
     const buttonList = [<RaisedButton label="START CASE" primary={true} type="submit"/>,
-      <RaisedButton label="RESET" primary={false} secondary={true}/>];
+      <FlatButton label="RESET" primary={false} secondary={true}/>];
 
     const { data } = this.props;
     const caseModelSchema = this.props.caseModelSchema ? this.props.caseModelSchema : {};
@@ -69,7 +69,7 @@ class Details extends React.Component {
             /></div>
             <div style={styles.saveButton}>
               <RaisedButton
-                secondary={true} label="CREATE ANOTHER" labelStyle={styles.buttonLabel}
+                primary={true} label="CREATE ANOTHER" labelStyle={styles.buttonLabel}
                 onClick={this.props.resetDetails}
               />
             </div>

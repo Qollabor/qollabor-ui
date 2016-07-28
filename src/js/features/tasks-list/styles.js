@@ -2,8 +2,7 @@
  * Created by andreasoldino on 5/4/16.
  */
 
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-const theme = getMuiTheme();
+import theme from '../../themes';
 
 export default {
   table: {
@@ -11,7 +10,8 @@ export default {
     width: '100%',
     borderCollapse: 'collapse',
     backgroundColor: theme.table.backgroundColor,
-    tableLayout: 'fixed'
+    tableLayout: 'fixed',
+    fontFamily: theme.fontFamily
   },
   tableHeader: {
     borderBottom: '1px solid',

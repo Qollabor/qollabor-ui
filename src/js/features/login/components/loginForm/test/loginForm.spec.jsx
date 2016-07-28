@@ -4,7 +4,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import LoginForm from '../loginForm.jsx';
-import { TextField, RaisedButton, RefreshIndicator } from 'material-ui';
+import { TextField, RaisedButton, FlatButton, RefreshIndicator } from 'material-ui';
 
 describe('features/login', () => {
   describe('<LoginForm />', () => {
@@ -13,7 +13,7 @@ describe('features/login', () => {
       onCancel: () => {}
     };
 
-    describe('When redered with default props', () => {
+    describe('When rendered with default props', () => {
       let result;
 
       before(() => {
@@ -24,8 +24,8 @@ describe('features/login', () => {
         expect(result.find(TextField).length)
           .to.be.equal(2);
       });
-      it('should have the right amount of buttons', () => {
-        expect(result.find(RaisedButton).length)
+      it('should have the right buttons', () => {
+        expect(result.find(RaisedButton).length + result.find(FlatButton).length)
           .to.be.equal(2);
       });
       it('should have the text and the buttons enabled', () => {

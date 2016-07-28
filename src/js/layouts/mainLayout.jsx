@@ -4,8 +4,8 @@ import { Header } from '../features/header';
 import { AuthVerify } from '../features/login';
 import { Notifier } from '../features/notifier';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { connect } from 'react-redux';
+import registry from 'app-registry';
 
 function mapStateToProps(state) {
   return {
@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 
 class MainLayout extends React.Component {
   render() {
-    const theme = getMuiTheme();
+    const theme = registry.get('theme');
     const drawerWidth = theme.drawer.width;
     const divContainerStyle = {
       marginLeft: this.props.showDrawer ? `${drawerWidth + 5}px` : '5px',
@@ -23,7 +23,7 @@ class MainLayout extends React.Component {
       marginTop: '2px'
     };
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme()}>
+      <MuiThemeProvider muiTheme={theme}>
         <div>
           <AuthVerify>
             <Header />
