@@ -20,7 +20,7 @@ function mapCaseStateToProps(state) {
 function mapAttachmentsStateToProps(state) {
   return {
     isFetching: state.case.attachments.get('isFetching'),
-    attachments: state.case.attachments.get('items').toJS(),
+    attachments: state.case.fileUploader.get('items').toJS(),
     error: state.case.attachments.get('error').toJS()
   };
 }

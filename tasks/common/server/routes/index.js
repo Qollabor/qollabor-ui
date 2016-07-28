@@ -1,6 +1,7 @@
 'use strict';
 const constant = require('./const');
 const cors = require('cors');
+const moment = require('moment');
 
 const cacheControlMiddleware = (req, res, next) => {
   res.append('Cache-Control', 'no-cache');
@@ -17,17 +18,23 @@ const accessTokenMiddleware = (req, res, next) => {
 
 module.exports = (app) => {
   const corsOptions = {
-    origin: '*',
-    exposedHeaders: 'accept, Origin, content-type, Authorization, X-AUTH-CAFIENNE, Case-Last-Modified',
-    allowedHeaders: 'accept, Origin, content-type, Authorization, X-AUTH-CAFIENNE, Case-Last-Modified',
-    credentials: 'true',
+    origin: 'http://localhost:8080',
     methods: 'GET, POST, OPTIONS',
-    maxAge: '200'
+    maxAge: '200',
+    credentials: true
   };
-  app.options('*', cors(corsOptions));
+
+  app.options('/uploadImage', cors(corsOptions), (req, res) => {
+    res.header('Access-Control-Allow-Credentials', true);
+  });
   app.use(cors(corsOptions));
   app.use('/identity', cacheControlMiddleware, require('./identity'));
   app.use('/tasks', cacheControlMiddleware, accessTokenMiddleware, require('./tasks'));
   app.use('/cases', cacheControlMiddleware, accessTokenMiddleware, require('./cases'));
+  app.use('/uploadImage', cors(corsOptions), (req, res) => {
+    res.header('Access-Control-Allow-Credentials', true);
+    res.header('Case-Last-Modified', moment()).status(200).json({
+      msg: 'ontvangen, dank u'
+    });
+  });
 };
-

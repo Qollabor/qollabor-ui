@@ -1,4 +1,7 @@
 import React from 'react';
+import { FileUploader } from '../features/case/components';
+import { CaseAttachments } from '../features/case';
+
 class InfoPage extends React.Component {
   render() {
     return (
@@ -12,6 +15,10 @@ class InfoPage extends React.Component {
           fugiat
           nulla pariatur.
         </p>
+        <FileUploader
+          caseId="345894325"
+        />
+        <CaseAttachments />
       </div>
     );
   }

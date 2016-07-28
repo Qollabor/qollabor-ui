@@ -6,6 +6,7 @@ import { reducers as completedTasks } from './completedTasks';
 import { reducers as activeTasks } from './activeTasks';
 import { reducers as discretionaryItems } from './discretionaryItems';
 import { reducers as caseTeam } from './caseTeam';
+import { reducers as fileUploader } from './fileUploader';
 
 export const reducers = combineReducers({
   case: caseReducer,
@@ -13,5 +14,6 @@ export const reducers = combineReducers({
   completedTasks,
   activeTasks,
   discretionaryItems,
-  caseTeam
+  caseTeam,
+  fileUploader
 });

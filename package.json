@@ -5,6 +5,7 @@
     "babel-polyfill": "^6.7.4",
     "cafienne-ui-elements": "github:cafienne/cafienne-ui-elements",
     "deeper": "^2.1.0",
+    "fileapi": "^2.0.21",
     "history": "^2.1.0",
     "immutable": "^3.8.1",
     "material-ui": "0.15.1",
