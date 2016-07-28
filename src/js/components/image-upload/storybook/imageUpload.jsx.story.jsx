@@ -11,7 +11,7 @@ const user = {
   userName: 'dannyk',
   fullName: 'Danny Kruitbosch',
   avatarUrl: 'https://lh6.googleusercontent.com/-wmA9kgZUUwo/AAAAAAAAAAI/AAAAAAAAABU/nPYkBB_N5x4/photo.jpg?sz=328',
-  actionUrl: '#/profile/dannyk'
+  uniqueId: 'dannyk'
 };
 
 

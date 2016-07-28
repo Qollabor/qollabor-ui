@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import { AppBarUserMenu as AppBarUserMenuComponent } from './appBarUserMenu.jsx';
 
-function mapStateToProps() {
-  return {};
-}
+const mapStateToProps = (state) => state.user.toJS();
 
 function mapDispatchToProps(dispatch) {
   return {
+    init: () => {
+      dispatch({ type: 'USER:PROFILE:INIT' });
+    },
     onLogout: () => {
       dispatch({ type: 'USER:DO_LOGOUT' });
     }

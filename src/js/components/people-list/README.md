@@ -12,32 +12,32 @@ const samplePeopleList = [
     userName: 'dannyk',
     fullName: 'Danny Kruitbosch',
     avatarUrl: 'https://lh6.googleusercontent.com/-wmA9kgZUUwo/AAAAAAAAAAI/AAAAAAAAABU/nPYkBB_N5x4/photo.jpg?sz=328',
-    actionUrl: '#/profile/dannyk'
+    uniqueId: 'dannyk'
   },
   {
     userName: 'martijnvdp',
     fullName: 'Martijn van der Plaat',
     avatarUrl: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/' +
     'AAEAAQAAAAAAAAOQAAAAJDg1NTc2OWUxLTY3YzAtNGQ0OS05NTUzLThmOWE2ODkzYTk4NQ.jpg',
-    actionUrl: '#/profile/martijnvdp'
+    uniqueId: 'martijnvdp'
   },
   {
     userName: 'thijsp',
     fullName: 'Thijs Petter',
     avatarUrl: 'https://media.licdn.com/mpr/mpr/shrinknp_200_200/p/2/005/03d/138/19f60a2.jpg',
-    actionUrl: '#/profile/thijsp'
+    uniqueId: 'thijsp'
   },
   {
     userName: 'hansvb',
     fullName: 'Hans van de laatste bommel',
     avatarUrl: '',
-    actionUrl: '#/profile/hansvb'
+    uniqueId: 'hansvb'
   },
   {
     userName: 'davidef',
     fullName: 'Davide Fiorello',
     avatarUrl: 'https://pbs.twimg.com/profile_images/1465505001/test.jpg',
-    actionUrl: '#/profile/davidef'
+    uniqueId: 'davidef'
   },
   {
     userName: 'emptykid',
@@ -72,4 +72,4 @@ const samplePeopleList = [
 |userName          |string     |YES       |"martijnvdp" |Username behind the avatar
 |fullName            |string     | YES   |"Martijn van der Plaat" |The fullname of the user behind the avatar
 |avatarUrl | string| NO | "http://url/avatar.jpg" | location of the avatar image
-|actionUrl | string| NO | "#/profile/martijnvdp" | url when clicking on the avatar
+|uniqueId | string| NO | "martijnvdp" | uniqueId passed when clicking on the avatar
