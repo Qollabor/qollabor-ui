@@ -54,23 +54,23 @@ describe('features/task/taskInfo', () => {
       />);
 
     it('should display of task information', () => {
-      expect(taskInfoWidget.find(TaskInfoItem)).to.have.length(3);
+      expect(taskInfoWidget.find(TaskInfoItem)).to.have.length(4);
     });
 
     it('should set prop itemLabel: Assignee of <TaskInfoItem /> correctly', () => {
-      expect(taskInfoWidget.find(TaskInfoItem).at(0).prop('itemLabel')).to.equal('Assignee');
+      expect(taskInfoWidget.find(TaskInfoItem).at(0).prop('itemLabel')).to.equal('Received at');
     });
 
     it('should set prop itemLabel: Owner of <TaskInfoItem /> correctly', () => {
-      expect(taskInfoWidget.find(TaskInfoItem).at(1).prop('itemLabel')).to.equal('Owner');
+      expect(taskInfoWidget.find(TaskInfoItem).at(1).prop('itemLabel')).to.equal('Complete by');
     });
 
     it('should set prop itemValue: Assignee of <TaskInfoItem /> correctly', () => {
-      expect(taskInfoWidget.find(TaskInfoItem).at(0).prop('itemValue')).to.equal('admin');
+      expect(taskInfoWidget.find(TaskInfoItem).at(2).prop('itemValue')).to.equal('admin');
     });
 
     it('should set prop itemValue: Owner of <TaskInfoItem /> correctly', () => {
-      expect(taskInfoWidget.find(TaskInfoItem).at(1).prop('itemValue')).to.equal('admin');
+      expect(taskInfoWidget.find(TaskInfoItem).at(3).prop('itemValue')).to.equal('admin');
     });
   });
 });

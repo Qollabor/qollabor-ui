@@ -1,24 +1,12 @@
 import React from 'react';
 
-import { RaisedButton } from 'material-ui';
 import ActionChooser from '../action-chooser';
-import { store } from '../../../../store.js';
 import { ActionAssignmentInd } from 'material-ui/svg-icons';
-
-const buttonStyle = {
-  margin: '3px'
-};
 
 const actionItems = [
   {
     action: 'assign',
     primaryText: 'Assign',
-    leftIcon: <ActionAssignmentInd/>,
-    transition: false
-  },
-  {
-    action: 'delegate',
-    primaryText: 'Delegate',
     leftIcon: <ActionAssignmentInd/>,
     transition: false
   }
@@ -41,42 +29,41 @@ export class ActionButtons extends React.Component {
     this.props.onActionClick(taskId, action, user);
   }
 
-  isActionDisabled(taskActionItem) {
-    const taskAction = taskActionItem.action;
-    const loggedInUserId = store.getState().user.getIn(['loggedUser', 'username']);
+  isActionDisabled(actionItem) {
+    const taskAction = actionItem.action;
+    const { taskState, planState } = this.props.taskDetails;
 
-    const { assignee, taskState } = this.props.taskDetails;
-    if ((taskState === 'Unassigned') && taskAction === 'assign') {
-      return false;
-    } else if (taskState === 'Assigned' && assignee === loggedInUserId
-        && (taskAction === 'delegate' || (taskActionItem.transition === true && !this.props.buttonsDisabled))) {
-      return false;
+    switch (taskState) {
+      case 'Assigned' : {
+        switch (planState) {
+          case 'Suspended' : {
+            if (taskAction === 'resume') return false;
+            break;
+          }
+          default : {
+            if (actionItem.transition === true && !this.props.buttonsDisabled) return false;
+            break;
+          }
+        }
+        break;
+      }
+      case 'Unassigned' : {
+        if (taskAction === 'assign') return false;
+        break;
+      }
+      default : return true;
     }
+
     return true;
   }
 
   render() {
     const items = actionItems.concat(this.props.availableTransitions ? this.props.availableTransitions : []);
     const content = (
-      <div>
-        <div>
-          {this.props.availableActions.map((taskAction) => (
-            <RaisedButton
-              style={buttonStyle}
-              backgroundColor={taskAction.backgroundColor}
-              labelColor="white"
-              key={taskAction.action}
-              label={taskAction.label}
-              disabled={taskAction.disabled || this.props.disabled}
-              onTouchTap={this.handleButtonClick.bind(this, taskAction.action)}
-            />
-          ))}
-          <ActionChooser
-            actionItems={items} onActionHandler={this.onActionHandler.bind(this)}
-            isDisabled={this.isActionDisabled.bind(this)}
-          />
-        </div>
-      </div>
+      <ActionChooser
+        actionItems={items} onActionHandler={this.onActionHandler.bind(this)}
+        isDisabled={this.isActionDisabled.bind(this)}
+      />
     );
 
     return content;

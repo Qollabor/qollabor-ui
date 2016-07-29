@@ -25,6 +25,15 @@ class UserSelector extends React.Component {
     }
   }
 
+  filterUser(users, filteredUserId) {
+    if (filteredUserId && users) {
+      const index = users.findIndex((user) =>
+        user.uniqueId === filteredUserId
+      );
+      users.splice(index, 1);
+    }
+  }
+
   markSelectedUsers(users, selectedUsers) {
     if (selectedUsers && users) {
       users.forEach((user) => {
@@ -37,7 +46,8 @@ class UserSelector extends React.Component {
   }
 
   render() {
-    const { users, selectedUsers } = this.props;
+    const { users, selectedUsers, filteredUser } = this.props;
+    this.filterUser(users, filteredUser);
     this.markSelectedUsers(users, selectedUsers);
 
     const hintText = this.props.filterHintText || 'Search to select Users';

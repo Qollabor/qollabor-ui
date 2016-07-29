@@ -39,8 +39,8 @@ export class Task extends React.Component {
     return (
       <div style={{ height: '100%' }}>
         <div style={divContainerStyle}>
-          <Paper style={{ padding: '10px' }}>
-            <div style={{ margin: 15 }}>
+          <Paper style={{ padding: '8px' }}>
+            <div style={{ margin: 12 }}>
               <Details taskId={this.props.taskId} caseId={this.props.caseId}/>
             </div>
           </Paper>

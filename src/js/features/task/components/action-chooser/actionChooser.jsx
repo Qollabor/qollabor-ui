@@ -70,6 +70,7 @@ export class ActionChooser extends React.Component {
           iconButtonElement={<IconButton
             onClick={this.handleClick.bind(this)}
             onTouchTap={this.handleTouchTap.bind(this)}
+            style={{ height: 21, padding: 0 }}
           ><NavigationMoreVert /></IconButton>}
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'left', vertical: 'top' }}

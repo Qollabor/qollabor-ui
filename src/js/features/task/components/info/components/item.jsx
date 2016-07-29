@@ -8,13 +8,15 @@ class TaskInfoItem extends React.Component {
       return false;
     }
 
+    const containerStyle = Object.assign({}, styles.item.container, this.props.style);
+
     return (
-      <div style={styles.item.container}>
-        <span style={styles.item.label}>{this.props.itemLabel}</span>:
-        <span style={styles.item.value}>
+      <span style={containerStyle}>
+        <span style={styles.item.label}>{this.props.itemLabel}</span>
+        <span style={styles.item.value} title={this.props.toolTip}>
           {this.props.itemValue}
         </span>
-      </div>
+      </span>
     );
   }
 }
