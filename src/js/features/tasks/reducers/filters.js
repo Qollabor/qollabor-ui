@@ -15,30 +15,9 @@ const defaultState = Immutable.fromJS({
       filter: ['myTasks']
     },
     {
-      id: 'dueDate',
-      icon: 'query_builder',
-      label: 'Due Today',
-      color: '#F3974F',
-      filter: ['due']
-    },
-    {
-      id: 'completed',
-      icon: 'done_all',
-      label: 'Completed',
-      color: '#82B75A',
-      filter: ['completed']
-    },
-    {
-      id: 'terminated',
-      icon: 'clear',
-      label: 'Terminated',
-      color: '#919191',
-      filter: ['terminated']
-    },
-    {
       id: 'groupTasks',
-      icon: 'group',
-      label: 'Group Tasks',
+      icon: 'assignment_ind',
+      label: 'Unclaimed Tasks',
       color: '#ACCFEB',
       filter: ['unassigned']
     }

@@ -43,6 +43,7 @@ export class Header extends React.Component {
           <MenuItem
             primaryText="Start Case" leftIcon={<StartCaseIcon color="green" />}
             onTouchTap={this.handleMenuItemChange.bind(this, 'casemodels')}
+            style={{ fontSize: 14 }}
           />
         </Drawer>
         <Toolbar

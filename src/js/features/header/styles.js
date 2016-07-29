@@ -18,6 +18,7 @@ export default {
     zIndex: 0
   },
   leftNav: {
-    marginTop: barHeight
+    marginTop: barHeight,
+    fontSize: 14
   }
 };
