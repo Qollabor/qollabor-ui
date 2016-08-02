@@ -3,11 +3,13 @@ import { storiesOf, action } from '@kadira/storybook';
 import { Paper } from 'material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import theme from '../../themes';
 
 const schemaNCIA = require('./data/ncia.json');
 const tdyRequestSchema = require('./data/tdyRequest.schema.json');
+const tabsSchema = require('./data/tabs.schema.json');
 
-const paperStyle = { padding: '5px', width: '700px' };
+const paperStyle = { padding: '5px', width: '700px', fontSize: 14 };
 
 import { Form } from './form';
 
@@ -138,7 +140,7 @@ const formData = {
 };
 
 storiesOf('SchemaForm', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme(theme)}>{getStory()}</MuiThemeProvider>)
   .add('Sample 1', () => (
     <div className="center-component">
       <Paper style={paperStyle}>
@@ -197,7 +199,20 @@ storiesOf('SchemaForm', module)
         <Form
           schema={tdyRequestSchema.schema}
           uiSchema={tdyRequestSchema.uiSchema}
-          formData={formData}
+          formData={tdyRequestSchema.formData}
+          onSubmit={action('onSubmit')}
+          onError={action('onError')}
+        />
+      </Paper>
+    </div>
+  ))
+  .add('TDY Tabbed Schema form', () => (
+    <div className="center-component">
+      <Paper style={paperStyle}>
+        <Form
+          schema={tabsSchema.schema}
+          uiSchema={tabsSchema.uiSchema}
+
           onSubmit={action('onSubmit')}
           onError={action('onError')}
         />

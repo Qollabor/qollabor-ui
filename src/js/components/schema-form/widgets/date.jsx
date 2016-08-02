@@ -3,6 +3,7 @@ import { DatePicker } from 'material-ui';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import moment from 'moment';
+import styles from '../styles';
 
 export class DateWidget extends React.Component {
   formatDate(date) {
@@ -54,6 +55,9 @@ export class DateWidget extends React.Component {
           name={this.props.name}
           value={date}
           floatingLabelText={title}
+          floatingLabelFixed={true}
+          floatingLabelFocusStyle={styles.floatingLabel}
+          textFieldStyle={styles.field}
           onChange={this.handleOnChange.bind(this)}
           formatDate={this.formatDate}
           disabled={this.props.disabled}

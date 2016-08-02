@@ -37,6 +37,7 @@ const defaultState = Immutable.fromJS({
   name: undefined,
   showFeedbackForm: false,
   case: undefined,
+  caseData: undefined,
   error: {
     message: '',
     isError: false
@@ -55,6 +56,7 @@ export const reducers = (state = defaultState, action) => {
       return state.set('isFetching', true)
                   .set('error', defaultState.get('error'))
                   .set('data', defaultState.get('data'))
+                  .set('caseData', defaultState.get('caseData'))
                   .set('actionError', defaultState.get('actionError'));
     case 'CASEMODEL:DETAIL:FETCH:SUCCESS':
       return state.set('isFetching', false)
@@ -65,7 +67,8 @@ export const reducers = (state = defaultState, action) => {
                   .set('error', Immutable.Map({ message: action.error, isError: true }));
     case 'CASEMODEL:DETAIL:RESET':
       return state.set('showFeedbackForm', defaultState.get('showFeedbackForm'))
-                  .set('case', defaultState.get('case'));
+                  .set('case', defaultState.get('case'))
+                  .set('caseData', defaultState.get('caseData'));
     case 'CASEMODEL:START':
       return state.set('isFetching', true)
                   .set('actionError', defaultState.get('actionError'))

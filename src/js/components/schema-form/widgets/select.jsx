@@ -2,6 +2,7 @@ import React from 'react';
 import { SelectField, MenuItem } from 'material-ui';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
+import styles from '../styles';
 
 export class SelectWidget extends React.Component {
   handleOnChange(event, index, newValue) {
@@ -42,18 +43,22 @@ export class SelectWidget extends React.Component {
     }
 
     const title = this.props.schema.title + (this.props.required ? ' *' : '');
+    const options = this.props.options;
     return (
       <div>
         {helpWidget}
         <SelectField
           name={this.props.name}
           floatingLabelText={title}
+          floatingLabelFixed={true}
+          style={styles.field}
+          floatingLabelFocusStyle={styles.floatingLabel}
           value={this.props.formData}
           disabled={this.props.disabled}
           onChange={this.handleOnChange.bind(this)}
           {...errors}
         >
-          {this.props.schema.enum.map(item => <MenuItem key={item} value={item} primaryText={item}/>)}
+          {options.map(item => <MenuItem key={item.value} value={item.value} primaryText={item.label}/>)}
         </SelectField>
       </div>
     );
