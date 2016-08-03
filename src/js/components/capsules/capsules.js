@@ -8,7 +8,7 @@ const defaultBadgeStyle = {
 };
 
 const Capsule = ({ children, backgroundColor }) => {
-  const display = children ? 'inline' : 'none';
+  const display = (children || children === 0) ? 'inline' : 'none';
   let badgeStyle = Object.assign({}, defaultBadgeStyle, {
     backgroundColor,
     display

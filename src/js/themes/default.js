@@ -20,7 +20,7 @@ export default {
     borderColor: 'lightgray'
   },
   drawer: {
-    width: 200
+    width: 240
   },
   rightDrawer: {
     width: 300
