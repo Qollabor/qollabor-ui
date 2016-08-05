@@ -11,7 +11,7 @@ import { resetAndfetchCaseModels, fetchCaseModelDetails,
   startCaseModel } from '../features/case-models';
 import { resetAndfetchUsersList } from '../components/user-selector/sagas';
 import { resetAndSearch, search } from '../features/search';
-
+import { resetAndFetch } from '../features/case-list';
 
 const sagas = [
   // Login
@@ -52,7 +52,10 @@ const sagas = [
   [takeEvery, 'USERS_SELECTOR:LIST:FILTER', resetAndfetchUsersList],
   // search selector
   [takeEvery, 'SEARCH:LIST:INIT', resetAndSearch],
-  [takeEvery, 'SEARCH:LIST:NEXT:FETCH', search]
+  [takeEvery, 'SEARCH:LIST:NEXT:FETCH', search],
+  // case list
+  [takeEvery, 'CASE:LIST:INIT', resetAndFetch]
+
 ];
 
 function* rootSaga() {

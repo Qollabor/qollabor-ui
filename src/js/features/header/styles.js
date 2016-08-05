@@ -8,7 +8,7 @@ export default {
     height: barHeight,
     marginLeft: '10px',
     marginTop: -4,
-    width: '160px'
+    width: '162px'
   },
   menuIcon: {
     marginTop: '-1px'

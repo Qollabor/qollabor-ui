@@ -1,0 +1,36 @@
+{
+  "isFetching": false,
+  "items": [
+    {
+      "roles": [
+        "PersonalAssistant"
+      ],
+      "name": "Sarath",
+      "avatarLastModified": "1470287658",
+      "email": "sarath@gmail.com",
+      "uniqueId": "sarath"
+    },
+    {
+      "roles": [
+        "Approver"
+      ],
+      "name": "Sharbel",
+      "avatarLastModified": "1470287688",
+      "email": "csharbel@gmail.com",
+      "uniqueId": "sharbel"
+    },
+    {
+      "roles": [
+        "Requestor"
+      ],
+      "name": "Bean",
+      "avatarLastModified": "1470287578",
+      "email": "bean@gmail.com",
+      "uniqueId": "bean"
+    }
+  ],
+  "error": {
+    "isError": false,
+    "message": ""
+  }
+}

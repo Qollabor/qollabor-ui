@@ -13,7 +13,8 @@ class CaseItem extends React.Component {
     return registry.get('helpers').getLocalDateTime(date);
   }
   openCaseDetailPage () {
-    // TODO
+    const caseId = this.props.item.id;
+    this.context.router.push(`/cases/${caseId}`);
   }
 
   render () {
@@ -43,4 +44,7 @@ class CaseItem extends React.Component {
       />);
   }
 }
+CaseItem.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
 export default CaseItem;

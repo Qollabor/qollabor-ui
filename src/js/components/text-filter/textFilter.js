@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField } from 'material-ui';
 import { ActionSearch } from 'material-ui/svg-icons';
+import { white } from 'material-ui/styles/colors';
 
 const style = {
   fontSize: '12px',
@@ -12,6 +13,10 @@ const searchIconStyle = {
   position: 'absolute',
   top: '15px',
   left: '2px'
+};
+
+const searchTextStyle = {
+  color: 'white'
 };
 
 class TextFilter extends React.Component {
@@ -53,10 +58,12 @@ class TextFilter extends React.Component {
     const hintText = this.props.hintText || 'Filter';
     return (
       <div style={{ position: 'relative', width: '300px' }} >
-        <ActionSearch style={searchIconStyle}/>
+        <ActionSearch style={searchIconStyle} color={white}/>
         <TextField
           type="search" hintText={hintText}
           style={style} value={this.state.filterText}
+          hintStyle={Object.assign(searchTextStyle, this.props.hintStyle)}
+          inputStyle={Object.assign(searchTextStyle, this.props.inputStyle)}
           onKeyUp={this.handleFilterKeyUp.bind(this)} onKeyDown={this.handleFilterKeyDown.bind(this)}
           onChange={this.handleFilterChange.bind(this)}
         />

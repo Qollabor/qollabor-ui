@@ -29,12 +29,15 @@ Capsule.defaultProps = {
 };
 
 const statusColorMappings = {
-  Completed: 'lightgray',
-  Active: 'lightgreen',
-  Terminated: 'red',
-  Suspended: '#FFCC44',
-  Failed: '#FF5522',
-  Closed: 'gray'
+  Completed: '#bdbdbd',
+  Active: '#4caf50',
+  Terminated: '#FF5522',
+  Suspended: '#ffb74d',
+  Failed: '#f44336',
+  Closed: '#9e9e9e',
+  Available: '#90caf9',
+  Enabled: '#ab47bc',
+  Disabled: '#ce93d8'
 };
 
 

@@ -1,0 +1,337 @@
+{
+  "isFetching": false,
+  "item": {
+    "id": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+    "definition": "tdyrequest",
+    "rootCaseId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+    "planitems": [
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "TDY Request",
+        "id": "2da46b25_d986_43b8_ba49_070c224d0e53",
+        "lastModified": "2016-08-03T06:21:19.693606753Z",
+        "currentState": "Active",
+        "type": "CasePlan",
+        "user": "bean",
+        "historyState": "Null",
+        "transition": "Create",
+        "stageId": null
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "View TDY request",
+        "id": "9f451b19_13a4_4a16_8162_b8e9f8382ae1",
+        "lastModified": "2016-08-03T06:21:19.697725014Z",
+        "currentState": "Active",
+        "type": "HumanTask",
+        "user": "bean",
+        "historyState": "Available",
+        "transition": "Start",
+        "stageId": "2da46b25_d986_43b8_ba49_070c224d0e53"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Collect Approval and Purchase Order",
+        "id": "c1881b53_113e_4a6c_b48e_9c7115201031",
+        "lastModified": "2016-08-03T06:23:08.085875221Z",
+        "currentState": "Completed",
+        "type": "Stage",
+        "user": "sarath",
+        "historyState": "Active",
+        "transition": "Complete",
+        "stageId": "2da46b25_d986_43b8_ba49_070c224d0e53"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Submitted",
+        "id": "f03a8f3b_222f_4826_80c8_3b12ce920769",
+        "lastModified": "2016-08-03T06:21:19.839241118Z",
+        "currentState": "Completed",
+        "type": "Milestone",
+        "user": "bean",
+        "historyState": "Available",
+        "transition": "Occur",
+        "stageId": "2da46b25_d986_43b8_ba49_070c224d0e53"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Approved",
+        "id": "b90e0909_fb65_46b9_bdb0_2ea53f8dc28a",
+        "lastModified": "2016-08-03T06:23:08.086564804Z",
+        "currentState": "Completed",
+        "type": "Milestone",
+        "user": "sarath",
+        "historyState": "Available",
+        "transition": "Occur",
+        "stageId": "2da46b25_d986_43b8_ba49_070c224d0e53"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Disapproved",
+        "id": "7c30b9ad_5926_4270_bb58_13f64831378a",
+        "lastModified": "2016-08-03T06:21:19.840406091Z",
+        "currentState": "Available",
+        "type": "Milestone",
+        "user": "bean",
+        "historyState": "Null",
+        "transition": "Create",
+        "stageId": "2da46b25_d986_43b8_ba49_070c224d0e53"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Travel preparation",
+        "id": "f154048d_6d52_493f_93f6_221645623bf5",
+        "lastModified": "2016-08-03T06:23:08.102876132Z",
+        "currentState": "Completed",
+        "type": "Stage",
+        "user": "sarath",
+        "historyState": "Active",
+        "transition": "Complete",
+        "stageId": "2da46b25_d986_43b8_ba49_070c224d0e53"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Send approval to requestor",
+        "id": "8aaaac04_a6d3_4661_bc4f_22f33ee37aac",
+        "lastModified": "2016-08-03T06:23:08.093668804Z",
+        "currentState": "Completed",
+        "type": "ProcessTask",
+        "user": "sarath",
+        "historyState": "Active",
+        "transition": "Complete",
+        "stageId": "2da46b25_d986_43b8_ba49_070c224d0e53"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Cancel TDY request",
+        "id": "c5eff36c_7107_4540_af3f_b284d007f79b",
+        "lastModified": "2016-08-03T06:21:19.881330318Z",
+        "currentState": "Available",
+        "type": "UserEvent",
+        "user": "bean",
+        "historyState": "Null",
+        "transition": "Create",
+        "stageId": "2da46b25_d986_43b8_ba49_070c224d0e53"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Check prerequisites",
+        "id": "6ac2ef47_ff3f_4555_bb0d_37062e33d780",
+        "lastModified": "2016-08-03T06:21:20.095609266Z",
+        "currentState": "Completed",
+        "type": "Stage",
+        "user": "bean",
+        "historyState": "Active",
+        "transition": "Complete",
+        "stageId": "2da46b25_d986_43b8_ba49_070c224d0e53"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Check travel requirements",
+        "id": "923a24ed_87e3_426c_ba49_f1187f6c751f",
+        "lastModified": "2016-08-03T06:21:20.095704799Z",
+        "currentState": "Terminated",
+        "type": "ProcessTask",
+        "user": "bean",
+        "historyState": "Failed",
+        "transition": "Exit",
+        "stageId": "6ac2ef47_ff3f_4555_bb0d_37062e33d780"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Approve TDY request",
+        "id": "688ba7d3_1985_42f6_9098_d94e7c45a86e",
+        "lastModified": "2016-08-03T06:22:36.896263661Z",
+        "currentState": "Completed",
+        "type": "HumanTask",
+        "user": "sharbel",
+        "historyState": "Active",
+        "transition": "Complete",
+        "stageId": "c1881b53_113e_4a6c_b48e_9c7115201031"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Create TDY purchase order",
+        "id": "9be4f45b_b845_4ecb_b5b4_6cab9f919c42",
+        "lastModified": "2016-08-03T06:23:08.085592108Z",
+        "currentState": "Completed",
+        "type": "HumanTask",
+        "user": "sarath",
+        "historyState": "Active",
+        "transition": "Complete",
+        "stageId": "c1881b53_113e_4a6c_b48e_9c7115201031"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Allocate funds in ERP",
+        "id": "9d4a1e3f_b770_4dd9_ad3e_9eb2803fc6b2",
+        "lastModified": "2016-08-03T06:23:08.085960161Z",
+        "currentState": "Terminated",
+        "type": "ProcessTask",
+        "user": "sarath",
+        "historyState": "Available",
+        "transition": "Exit",
+        "stageId": "c1881b53_113e_4a6c_b48e_9c7115201031"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Send notification to Approver",
+        "id": "02b8831f_e426_4e20_9cc2_48e9a93ce557",
+        "lastModified": "2016-08-03T06:21:20.678972675Z",
+        "currentState": "Completed",
+        "type": "ProcessTask",
+        "user": "bean",
+        "historyState": "Active",
+        "transition": "Complete",
+        "stageId": "c1881b53_113e_4a6c_b48e_9c7115201031"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Arrange Visa and ESTA",
+        "id": "c14a28a8_30e6_4e4b_b188_b02b6fa80588",
+        "lastModified": "2016-08-03T06:21:20.680216840Z",
+        "currentState": "Available",
+        "type": "HumanTask",
+        "user": "bean",
+        "historyState": "Null",
+        "transition": "Create",
+        "stageId": "6ac2ef47_ff3f_4555_bb0d_37062e33d780"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "Email travel office",
+        "id": "4fd21df3_7b15_4d47_9710_c74805a591ae",
+        "lastModified": "2016-08-03T06:23:08.102785603Z",
+        "currentState": "Completed",
+        "type": "ProcessTask",
+        "user": "sarath",
+        "historyState": "Active",
+        "transition": "Complete",
+        "stageId": "f154048d_6d52_493f_93f6_221645623bf5"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "generatepurchaseorder",
+        "id": "48bec82f_90da_468d_98f9_676e6b560398",
+        "lastModified": "2016-08-03T06:23:08.105391520Z",
+        "currentState": "Failed",
+        "type": "ProcessTask",
+        "user": "sarath",
+        "historyState": "Active",
+        "transition": "Fault",
+        "stageId": "f154048d_6d52_493f_93f6_221645623bf5"
+      },
+      {
+        "isRequired": false,
+        "isRepeating": false,
+        "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+        "name": "emailpurchaseorder",
+        "id": "2e1b6775_9b3f_431e_80d9_2fa4b84652b6",
+        "lastModified": "2016-08-03T06:23:08.106172821Z",
+        "currentState": "Available",
+        "type": "ProcessTask",
+        "user": "sarath",
+        "historyState": "Null",
+        "transition": "Create",
+        "stageId": "f154048d_6d52_493f_93f6_221645623bf5"
+      }
+    ],
+    "file": {
+      "TDYRequest": {
+        "Traveller": [
+          {
+            "Email": "bean@ncia.com",
+            "Nationality": "BE",
+            "Name": "Bean"
+          }
+        ],
+        "Destination": [
+          {
+            "Country": "BE",
+            "City": "Brussels"
+          }
+        ],
+        "Meeting": {
+          "DurationIncLeave": 4
+        },
+        "Transport": {
+          "ModeOfTransport": "Shuttle"
+        },
+        "Project": {
+          "Assistant": "Sarath"
+        },
+        "ReturnDate": "2016-08-06",
+        "PassNo": "NLHG01",
+        "DeparturePoint": "Hagues",
+        "Purpose": "TDY",
+        "DepartureDate": "2016-08-03",
+        "Requestor": "Bean",
+        "ReturnPoint": "Hagues"
+      },
+      "Approval": {
+        "Status": "approved",
+        "ApprovedBy": "Sharbel"
+      }
+    },
+    "team": [
+      {
+        "roles": [
+          "Approver"
+        ],
+        "user": "sharbel"
+      },
+      {
+        "roles": [
+          "PersonalAssistant"
+        ],
+        "user": "sarath"
+      },
+      {
+        "roles": [
+          "Requestor"
+        ],
+        "user": "bean"
+      }
+    ]
+  },
+  "error": {
+    "isError": false,
+    "message": ""
+  }
+}

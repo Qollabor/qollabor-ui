@@ -18,7 +18,8 @@ class ItemTextField extends React.Component {
         floatingLabelFixed={true}
         underlineShow={false}
         floatingLabelStyle={labelStyle}
-        inputStyle={cursorStyle}
+        inputStyle={Object.assign(cursorStyle, this.props.inputStyle)}
+        style={Object.assign({}, this.props.style)}
       />
     </span>);
   }

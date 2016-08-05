@@ -1,13 +1,15 @@
 import { addHeadersByName } from './addHeadersByName';
 import task from './task';
 import casemodel from './casemodel';
-import { getQueryStrings } from './queryParameters';
-import { getLocalDateTime } from './dateUtil';
+import { getQueryStrings, getParameterValuesFromHash } from './queryParameters';
+import { getLocalDateTime, getTimeAgo } from './dateUtil';
 
 export default {
   addHeadersByName,
   task,
   casemodel,
   getQueryStrings,
-  getLocalDateTime
+  getLocalDateTime,
+  getTimeAgo,
+  getParameterValuesFromHash
 };

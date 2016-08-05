@@ -1,0 +1,84 @@
+[
+   {
+     "planitems": [
+       {
+         "isRequired": false,
+         "isRepeating": false,
+         "caseInstanceId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+         "name": "TDY Request",
+         "id": "2da46b25_d986_43b8_ba49_070c224d0e53",
+         "lastModified": "2016-08-03T06:21:19.693606753Z",
+         "currentState": "Active",
+         "type": "CasePlan",
+         "user": "bean",
+         "historyState": "Null",
+         "transition": "Create",
+         "stageId": null
+       }
+     ],
+     "definition": "tdyrequest",
+     "rootCaseId": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+     "id": "e99eacbd_943d_40ce_9c04_a22ab4ef6b27",
+     "team": [
+       {
+         "roles": [
+           "Approver"
+         ],
+         "user": "sharbel"
+       },
+       {
+         "roles": [
+           "PersonalAssistant"
+         ],
+         "user": "sarath"
+       },
+       {
+         "roles": [
+           "Requestor"
+         ],
+         "user": "bean"
+       }
+     ]
+   },
+   {
+     "planitems": [
+       {
+         "isRequired": false,
+         "isRepeating": false,
+         "caseInstanceId": "0a0d1078_0e94_450d_ab6d_88bec4f6f27e",
+         "name": "TDY Request",
+         "id": "4d432fbc_66db_463d_bc5f_5929bd776dfd",
+         "lastModified": "2016-08-03T07:13:40.388877049Z",
+         "currentState": "Active",
+         "type": "CasePlan",
+         "user": "bean",
+         "historyState": "Null",
+         "transition": "Create",
+         "stageId": null
+       }
+     ],
+     "definition": "tdyrequest",
+     "rootCaseId": "0a0d1078_0e94_450d_ab6d_88bec4f6f27e",
+     "id": "0a0d1078_0e94_450d_ab6d_88bec4f6f27e",
+     "team": [
+       {
+         "roles": [
+           "Approver"
+         ],
+         "user": "sharbel"
+       },
+       {
+         "roles": [
+           "Requestor"
+         ],
+         "user": "bean"
+       },
+       {
+         "roles": [
+           "PersonalAssistant"
+         ],
+         "user": "deepak"
+       }
+     ]
+   }
+ ]

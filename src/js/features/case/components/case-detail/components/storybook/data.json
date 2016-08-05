@@ -1,0 +1,282 @@
+{
+  "id": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+  "definition": "tdyrequest",
+  "rootCaseId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+  "lastModified": "2016-07-28T13:14:12.608846040Z",
+  "status": "Active",
+  "user": "bean",
+  "name": "TDY Request",
+  "planitems": [
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "TDY Request",
+      "id": "241111c8_3c6b_45ae_8021_1e34e6f4ed59",
+      "lastModified": "2016-07-28T13:14:12.608846040Z",
+      "currentState": "Active",
+      "type": "CasePlan",
+      "user": "bean",
+      "historyState": "Null",
+      "transition": "Create",
+      "stageId": null
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Manage TDY request",
+      "id": "41825f19_85f7_4b38_ad5a_a7ba139e47e3",
+      "lastModified": "2016-07-28T13:14:12.612827710Z",
+      "currentState": "Active",
+      "type": "HumanTask",
+      "user": "bean",
+      "historyState": "Available",
+      "transition": "Start",
+      "stageId": "241111c8_3c6b_45ae_8021_1e34e6f4ed59"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Collect Approval and Purchase Order",
+      "id": "015cc78c_7250_4b16_beb2_22614fb9ec19",
+      "lastModified": "2016-07-28T13:14:12.760735842Z",
+      "currentState": "Active",
+      "type": "Stage",
+      "user": "bean",
+      "historyState": "Available",
+      "transition": "Start",
+      "stageId": "241111c8_3c6b_45ae_8021_1e34e6f4ed59"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Submitted",
+      "id": "b08de6fc_c5a6_4f68_b954_7e40382c83f5",
+      "lastModified": "2016-07-28T13:14:12.723050772Z",
+      "currentState": "Completed",
+      "type": "Milestone",
+      "user": "bean",
+      "historyState": "Available",
+      "transition": "Occur",
+      "stageId": "241111c8_3c6b_45ae_8021_1e34e6f4ed59"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Approved",
+      "id": "1f8dd0f0_92ed_4f24_a968_53cb29ee3298",
+      "lastModified": "2016-07-28T13:14:12.723658534Z",
+      "currentState": "Available",
+      "type": "Milestone",
+      "user": "bean",
+      "historyState": "Null",
+      "transition": "Create",
+      "stageId": "241111c8_3c6b_45ae_8021_1e34e6f4ed59"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Disapproved",
+      "id": "32e960de_14f0_4bc2_bcc8_a5693e3c39a6",
+      "lastModified": "2016-07-28T13:14:12.724157412Z",
+      "currentState": "Available",
+      "type": "Milestone",
+      "user": "bean",
+      "historyState": "Null",
+      "transition": "Create",
+      "stageId": "241111c8_3c6b_45ae_8021_1e34e6f4ed59"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Travel preparation",
+      "id": "c3f9ee7a_9bb5_428a_888b_23330f48e0a0",
+      "lastModified": "2016-07-28T13:14:12.724871613Z",
+      "currentState": "Available",
+      "type": "Stage",
+      "user": "bean",
+      "historyState": "Null",
+      "transition": "Create",
+      "stageId": "241111c8_3c6b_45ae_8021_1e34e6f4ed59"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Email requestor",
+      "id": "a1b9834c_3280_4062_b738_aa1cf314a501",
+      "lastModified": "2016-07-28T13:14:12.725857148Z",
+      "currentState": "Available",
+      "type": "ProcessTask",
+      "user": "bean",
+      "historyState": "Null",
+      "transition": "Create",
+      "stageId": "241111c8_3c6b_45ae_8021_1e34e6f4ed59"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Cancel TDY request",
+      "id": "7961e371_2b27_40e9_af68_dd26a5436b8a",
+      "lastModified": "2016-07-28T13:14:12.727915799Z",
+      "currentState": "Available",
+      "type": "UserEvent",
+      "user": "bean",
+      "historyState": "Null",
+      "transition": "Create",
+      "stageId": "241111c8_3c6b_45ae_8021_1e34e6f4ed59"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Check prerequisites",
+      "id": "0390a253_6e9c_48ab_83e7_6ba48485df0a",
+      "lastModified": "2016-07-28T13:14:12.760069692Z",
+      "currentState": "Completed",
+      "type": "Stage",
+      "user": "bean",
+      "historyState": "Active",
+      "transition": "Complete",
+      "stageId": "241111c8_3c6b_45ae_8021_1e34e6f4ed59"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Check travel requirements",
+      "id": "23b7ce2b_1bf0_41f7_a512_fc4aef2c45d4",
+      "lastModified": "2016-07-28T13:14:12.760196385Z",
+      "currentState": "Terminated",
+      "type": "ProcessTask",
+      "user": "bean",
+      "historyState": "Failed",
+      "transition": "Exit",
+      "stageId": "0390a253_6e9c_48ab_83e7_6ba48485df0a"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Approve TDY request",
+      "id": "a42da98d_9c67_4974_9fd4_3f18769b8ec0",
+      "lastModified": "2016-07-28T13:14:12.761286124Z",
+      "currentState": "Active",
+      "type": "HumanTask",
+      "user": "bean",
+      "historyState": "Available",
+      "transition": "Start",
+      "stageId": "015cc78c_7250_4b16_beb2_22614fb9ec19"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "Create TDY purchase order",
+      "id": "4659a444_f36a_43af_b616_b8613877f5d9",
+      "lastModified": "2016-07-28T13:14:12.772161092Z",
+      "currentState": "Available",
+      "type": "HumanTask",
+      "user": "bean",
+      "historyState": "Null",
+      "transition": "Create",
+      "stageId": "015cc78c_7250_4b16_beb2_22614fb9ec19"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "checkapprover",
+      "id": "abe52e68_a1d0_4f21_98b5_03e0a698d692",
+      "lastModified": "2016-07-28T13:14:12.776447202Z",
+      "currentState": "Failed",
+      "type": "ProcessTask",
+      "user": "bean",
+      "historyState": "Active",
+      "transition": "Fault",
+      "stageId": "0390a253_6e9c_48ab_83e7_6ba48485df0a"
+    },
+    {
+      "isRequired": false,
+      "isRepeating": false,
+      "caseInstanceId": "a41dadd5_b38f_4262_a788_85bbe4266eb2",
+      "name": "ManuallySetApprover",
+      "id": "3aa9e0a1_3ad4_4901_b145_bbf1aafd494b",
+      "lastModified": "2016-07-28T13:14:12.777268540Z",
+      "currentState": "Available",
+      "type": "HumanTask",
+      "user": "bean",
+      "historyState": "Null",
+      "transition": "Create",
+      "stageId": "0390a253_6e9c_48ab_83e7_6ba48485df0a"
+    }
+  ],
+  "file": {
+    "Meeting": {
+      "StartDate": "2016-07-28",
+      "DurationIncLeave": 2,
+      "EndTime": "18:43:56",
+      "StartTime": "18:43:47",
+      "EndDate": "2016-07-30"
+    },
+    "Transport": {
+      "ModeOfTransport": "Shuttle"
+    },
+    "Project": {
+      "Assistant": "Sarath"
+    },
+    "TDYRequest": {
+      "ReturnDate": "2016-07-31",
+      "Destination": [
+        {
+          "Country": "Belgium",
+          "City": "Brussels"
+        }
+      ],
+      "Project": {
+        "Assistant": "Sarath"
+      },
+      "PassNo": "NLHG01",
+      "Meeting": {
+        "StartDate": "2016-07-28",
+        "DurationIncLeave": 2,
+        "EndTime": "18:43:56",
+        "StartTime": "18:43:47",
+        "EndDate": "2016-07-30"
+      },
+      "DeparturePoint": "Hague",
+      "Purpose": "TDY",
+      "Justification": "Official",
+      "DepartureDate": "2016-07-28",
+      "Requestor": "Bean",
+      "Transport": {
+        "ModeOfTransport": "Shuttle"
+      },
+      "ReturnPoint": "Hague"
+    }
+  },
+  "team": [
+    {
+      "roles": [
+        "Requestor"
+      ],
+      "user": "bean"
+    }
+  ],
+  "discretionaryItems": [
+    {
+      "name": "ManuallySetApprover",
+      "id": "cm_csgxw_215",
+      "type": "HumanTask",
+      "parent": "TDY Request",
+      "parentType": "casePlanModel"
+    }
+  ]
+}

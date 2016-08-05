@@ -1,5 +1,5 @@
 import React from 'react';
-import { Toolbar, ToolbarGroup, ToolbarTitle, ToolbarSeparator } from 'material-ui/Toolbar';
+import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import { IconButton, Divider, MenuItem, Drawer } from 'material-ui';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import StartCaseIcon from 'material-ui/svg-icons/av/play-arrow';
@@ -8,6 +8,8 @@ import registry from 'app-registry';
 import styles from './styles';
 import { TasksFilter } from '../tasks-filter';
 import CafienneSearch from '../search/components/searchbox';
+import { ActionAssignmentInd } from 'material-ui/svg-icons';
+import { blue500 } from 'material-ui/styles/colors';
 
 export class Header extends React.Component {
   handleLeftNavToggle() {
@@ -44,6 +46,11 @@ export class Header extends React.Component {
             onTouchTap={this.handleMenuItemChange.bind(this, 'casemodels')}
             style={{ fontSize: 14 }}
           />
+          <MenuItem
+            primaryText="My Cases" leftIcon={<ActionAssignmentInd color={blue500} />}
+            onTouchTap={this.handleMenuItemChange.bind(this, 'cases')}
+            style={{ fontSize: 14 }}
+          />
         </Drawer>
         <Toolbar
           style={Object.assign({}, styles.appBar)}
@@ -64,7 +71,6 @@ export class Header extends React.Component {
               style={Object.assign({}, styles.title, { color: theme.appBar.textColor })}
               text="Cafienne"
             />
-            <ToolbarSeparator />
             <CafienneSearch />
           </ToolbarGroup>
           <ToolbarGroup firstChild={false} lastChild={true} float="right">

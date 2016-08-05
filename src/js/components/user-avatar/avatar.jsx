@@ -17,20 +17,26 @@ export class UserAvatar extends React.Component {
   }
 
   componentWillMount() {
-    const lastModified = this.props.user.avatarLastModified;
-    if (lastModified && this.props.user.uniqueId) {
-      fetchAvatar(this.props.user.uniqueId, lastModified).then(response => {
-        this.setState({
-          avatar: response.body.avatar
-        });
-      });
-    }
+    this.fetchAvatarDetails(this.props.user.uniqueId, this.props.user.avatarLastModified);
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.user.uniqueId === nextProps.user.uniqueId && nextProps.avatar) {
       this.setState({
         avatar: nextProps.avatar
+      });
+    }
+    if (this.props.user.uniqueId !== nextProps.user.uniqueId) {
+      this.fetchAvatarDetails(nextProps.user.uniqueId, nextProps.user.avatarLastModified);
+    }
+  }
+
+  fetchAvatarDetails(uniqueId, lastModified) {
+    if (lastModified && uniqueId) {
+      fetchAvatar(uniqueId, lastModified).then(response => {
+        this.setState({
+          avatar: response.body.avatar
+        });
       });
     }
   }
