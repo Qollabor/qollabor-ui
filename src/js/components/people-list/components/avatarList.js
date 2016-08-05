@@ -5,9 +5,9 @@ import styles from '../styles';
 
 class AvatarList extends React.Component {
 
-  handleOnClickAvatarAction(actionUrl) {
+  handleOnClickAvatarAction(userId) {
     if (this.props.onClick) {
-      this.props.onClick(actionUrl);
+      this.props.onClick(userId);
     }
   }
 

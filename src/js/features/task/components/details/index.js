@@ -6,7 +6,8 @@ function mapStateToProps(state) {
   return {
     taskDetails: state.task.get('taskDetails').toJS(),
     isFetching: state.task.get('isFetching'),
-    error: state.task.get('error').toJS()
+    error: state.task.get('error').toJS(),
+    loggedInUserId: state.user.get('loggedUser').get('username')
   };
 }
 

@@ -5,9 +5,9 @@ import { calcInitials } from '../helpers/calcInitials';
 
 class UserList extends React.Component {
 
-  handleOnClick(actionUrl) {
+  handleOnClick(userId) {
     if (this.props.onClick) {
-      this.props.onClick(actionUrl);
+      this.props.onClick(userId);
     }
   }
 
@@ -24,7 +24,7 @@ class UserList extends React.Component {
       <List>
         {this.props.people && this.props.people.length > 0 ?
           this.props.people.map((person) => {
-            const { avatarUrl, name, actionUrl, uniqueId, selected } = person;
+            const { avatarUrl, name, uniqueId, selected } = person;
             const avatarSrc = {};
             let initial = null;
             if (avatarUrl && avatarUrl.length) {
@@ -34,9 +34,7 @@ class UserList extends React.Component {
             }
 
             const actions = {};
-            if (actionUrl && actionUrl.length > 0) {
-              actions.onClick = this.handleOnClick.bind(this, actionUrl);
-            }
+            actions.onClick = this.handleOnClick.bind(this, uniqueId);
 
             return (
               <ListItem

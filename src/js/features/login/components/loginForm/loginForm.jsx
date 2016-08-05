@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Paper, TextField, RaisedButton, RefreshIndicator } from 'material-ui';
+import { Paper, TextField, RaisedButton, FlatButton, RefreshIndicator } from 'material-ui';
 
 import styles from './styles';
 
@@ -121,7 +121,7 @@ export class LoginForm extends React.Component {
               {loginProps.errorText && <div style={styles.errorFieldWrapper}>
                 {loginProps.errorText}
               </div>}
-              <RaisedButton
+              <FlatButton
                 label="Cancel"
                 type="button"
                 secondary={true}

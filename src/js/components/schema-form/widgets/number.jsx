@@ -2,6 +2,7 @@ import React from 'react';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import { TextField } from 'material-ui';
+import styles from '../styles';
 
 export class NumberWidget extends React.Component {
   handleOnChange(event) {
@@ -48,7 +49,10 @@ export class NumberWidget extends React.Component {
           type="number"
           step="any"
           floatingLabelText={title}
+          floatingLabelFixed={true}
           value={this.props.formData}
+          style={styles.field}
+          floatingLabelFocusStyle={styles.floatingLabel}
           onChange={this.handleOnChange.bind(this)}
           disabled={this.props.disabled}
           {...errors}

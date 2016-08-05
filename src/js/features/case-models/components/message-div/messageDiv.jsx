@@ -3,7 +3,7 @@ import React from 'react';
 class MessageDiv extends React.Component {
   render() {
     return (
-      <div style={{ position: 'relative', margin: 'auto', width: 200, fontFamily: 'verdana', fontSize: '13px' }}>
+      <div style={{ position: 'relative', margin: 'auto', width: 200 }}>
         {this.props.message}
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { TextField, RaisedButton } from 'material-ui';
+import { TextField, RaisedButton, FlatButton } from 'material-ui';
 import { ImageUpload } from '../../../../components/image-upload';
 
 const validate = values => {
@@ -97,7 +97,7 @@ class UserProfile extends React.Component {
             primary={true} disabled={pristine || submitting} label="Save" labelStyle={styles.buttonLabel}
             type="submit" onClick={handleSubmit((userData) => onSave(userData))}
           />
-          <RaisedButton
+          <FlatButton
             secondary={true} style={styles.buttonMargin}
             label="Cancel" labelStyle={styles.buttonLabel} onClick={onCancel}
           />

@@ -1,11 +1,10 @@
 import React from 'react';
-import { RaisedButton } from 'material-ui';
+import { RaisedButton, FlatButton } from 'material-ui';
 import TaskInfo from '../info';
 import { TaskBreadcrumb } from '../breadcrumb';
 import TaskModelSchemaForm from '../schema-form';
 import { ActionButtons } from '../../components/action-buttons';
-import { TransitionButtons } from '../../components/transition-buttons';
-
+import { StatusCapsule } from '../../../../components/capsules';
 
 export class TaskDetails extends React.Component {
 
@@ -46,34 +45,32 @@ export class TaskDetails extends React.Component {
     const buttonList = [<div>
       <span>
         <RaisedButton
-          label="COMPLETE" backgroundColor={'olive'} labelColor="white" disabled={disableForm || isSuspended}
-          type="submit" style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'complete')}
+          label="COMPLETE" primary={true} type="submit" disabled={disableForm || isSuspended}
+          style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'complete')}
         />
-        <RaisedButton
-          label="SAVE" primary={true} type="submit" disabled={disableForm || isSuspended}
+        <FlatButton
+          label="SAVE FOR LATER" type="submit" disabled={disableForm || isSuspended}
           style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'save')}
         />
-        <RaisedButton
-          label="RESET" primary={false} secondary={true}
-          style={buttonStyle} disabled={disableForm || isSuspended}
-        />
-      </span>
-      <span style={{ position: 'absolute', right: 30 }}>
-        <TransitionButtons taskId={this.props.taskId} caseId={this.props.caseId} disabled={disableForm}/>
       </span>
     </div>];
 
 
     return (
       <div>
+        <div style={{ float: 'right' }}>
+          <ActionButtons taskId={this.props.taskId} caseId={this.props.caseId} disabled={isSuspended} />
+        </div>
+        <div style={{ float: 'right' }}>
+          <StatusCapsule status={taskDetails.taskState}>{taskDetails.taskState}</StatusCapsule>
+        </div>
         <TaskBreadcrumb />
-        <span style={{ float: 'right' }}>
-          <ActionButtons taskId={this.props.taskId} caseId={this.props.caseId} disabled={isSuspended}/>
-        </span>
         <TaskInfo
           taskDetails={taskDetails}
           isFetching={this.props.isFetching}
           error={this.props.error}
+          loggedInUserId={this.props.loggedInUserId}
+          executeTaskAction={this.props.executeTaskAction}
         />
         <TaskModelSchemaForm
           schema={taskSchema}
@@ -82,6 +79,8 @@ export class TaskDetails extends React.Component {
           buttonList={buttonList}
           disabled={disableForm || isSuspended}
           onSubmit={this.handleOnSubmit.bind(this)}
+          taskDetails={taskDetails}
+          executeTaskAction={this.props.executeTaskAction}
         />
       </div>
     );

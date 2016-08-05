@@ -1,12 +1,12 @@
 import React from 'react';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { IconButton, Popover, Menu, MenuItem } from 'material-ui';
+import { Popover, Menu, MenuItem, IconButton } from 'material-ui';
 import { ActionAccountCircle, ActionPowerSettingsNew, ActionLockOpen, ActionFace } from 'material-ui/svg-icons';
 import { PopoverAnimationVertical } from 'material-ui/Popover';
 import { PasswordChanger } from '../password-changer';
 import { UserProfileDialog } from '../../../user';
-
+import Avatar from '../../../../components/user-avatar';
 
 import styles from './styles';
 
@@ -21,7 +21,13 @@ export class AppBarUserMenu extends React.Component {
     };
   }
 
-  handleTouchTap(event) {
+  componentWillMount() {
+    if (this.props.init) {
+      this.props.init();
+    }
+  }
+
+  handleTouchTap(userId, event) {
     this.setState({
       open: true,
       anchorEl: event.currentTarget
@@ -68,16 +74,23 @@ export class AppBarUserMenu extends React.Component {
 
   render() {
     const theme = getMuiTheme();
+    const { profile } = this.props;
+    const avatarSize = this.props.avatarSize || 35;
+
     return (
       <div>
-        <IconButton
+        {profile ? <div style={{ padding: '5px' }}><Avatar
+          key={profile.name}
+          user={profile}
+          size={avatarSize}
           onClick={this.handleTouchTap.bind(this)}
-          onTouchTap={this.handleTouchTap.bind(this)}
+        /></div> : <IconButton
+          onClick={this.handleTouchTap.bind(this, null)}
         >
           <ActionAccountCircle
             color={theme.appBar.textColor}
           />
-        </IconButton>
+        </IconButton>}
         <Popover
           open={this.state.open}
           anchorEl={this.state.anchorEl}

@@ -10,11 +10,11 @@ describe('feature/taskinfo/item', () => {
 
   describe('<TaskInfoItem /> with correct props', () => {
     it('should display item label', () => {
-      expect(taskInfoItem.find('div').contains('My name')).to.equal(true);
+      expect(taskInfoItem.find('span').contains('My name')).to.equal(true);
     });
 
     it('should display item value', () => {
-      expect(taskInfoItem.find('div').contains('Martijn')).to.equal(true);
+      expect(taskInfoItem.find('span').contains('Martijn')).to.equal(true);
     });
   });
 

@@ -7,6 +7,7 @@ export class CaseModelSchemaForm extends React.Component {
       <Form
         buttonList={this.props.buttonList}
         schema={this.props.schema}
+        formData={this.props.formData}
         uiSchema={this.props.uiSchema}
         onSubmit={this.props.onSubmit}
       />

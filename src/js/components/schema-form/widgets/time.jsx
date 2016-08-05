@@ -3,6 +3,7 @@ import { TimePicker } from 'material-ui';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import moment from 'moment';
+import styles from '../styles';
 
 export class TimeWidget extends React.Component {
   formatTime(date) {
@@ -54,6 +55,9 @@ export class TimeWidget extends React.Component {
           defaultTime={time}
           format="24hr"
           floatingLabelText={title}
+          floatingLabelFixed={true}
+          textFieldStyle={styles.field}
+          floatingLabelFocusStyle={styles.floatingLabel}
           disabled={this.props.disabled}
           onChange={this.handleOnChange.bind(this)}
           {...errors}

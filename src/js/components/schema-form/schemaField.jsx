@@ -18,6 +18,7 @@ export const CustomSchemaField = function (props) {
   if (props.uiSchema && props.uiSchema['ui:disabled'] === true) {
     disabled = { disabled: true };
   }
+
   switch (props.schema.type) {
     case 'string':
       return <StringWidget {...props} {...readonly} {...disabled}/>;

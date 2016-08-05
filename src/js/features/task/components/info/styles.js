@@ -1,8 +1,8 @@
 export default {
   item: {
     container: { marginTop: '5px' },
-    label: {},
-    value: { fontStyle: 'italic', marginLeft: 15 }
+    label: { fontSize: 14 },
+    value: { fontSize: 14, fontWeight: 500, marginLeft: 5 }
   },
   taskInfoGroup: {
     paddingTop: '5px',

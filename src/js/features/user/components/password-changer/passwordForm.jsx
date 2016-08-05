@@ -1,6 +1,6 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { TextField, RaisedButton } from 'material-ui';
+import { TextField, RaisedButton, FlatButton } from 'material-ui';
 import validator from 'validator';
 import styles from './styles';
 import zxcvbn from 'zxcvbn';
@@ -123,7 +123,7 @@ class PasswordForm extends React.Component {
             primary={true} disabled={pristine || submitting} label="Save" labelStyle={styles.buttonLabel}
             type="submit" onClick={handleSubmit((userData) => onSave(userData))}
           />
-          <RaisedButton
+          <FlatButton
             secondary={true} style={styles.buttonMargin} label="Cancel"
             labelStyle={styles.buttonLabel} onTouchTap={this.props.onCancel}
           />

@@ -17,11 +17,15 @@ import storage from './services/storage';
 import logger from './services/logger';
 import helpers from './helpers';
 
+import theme from './themes';
+
 registry.register('request', request);
 registry.register('storage', storage);
 registry.register('logger', logger);
 registry.register('store', store);
 registry.register('helpers', helpers);
+
+registry.register('theme', theme);
 
 /* eslint-disable no-undef */
 if (typeof appConfig !== 'undefined') {

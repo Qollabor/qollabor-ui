@@ -9,6 +9,7 @@ describe('features/case-models/details', () => {
     definition: undefined,
     name: undefined,
     case: undefined,
+    caseData: undefined,
     showFeedbackForm: false,
     error: {
       message: '',

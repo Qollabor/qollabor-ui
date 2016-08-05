@@ -1,6 +1,7 @@
 import React from 'react';
 import { Checkbox } from 'material-ui';
 import { HelpWidget } from './help';
+import styles from '../styles';
 
 export class BooleanWidget extends React.Component {
   handleOnCheck(event) {
@@ -40,6 +41,7 @@ export class BooleanWidget extends React.Component {
         <Checkbox
           name={this.props.name}
           label={title}
+          style={styles.field}
           onCheck={this.handleOnCheck.bind(this)}
           checked={this.props.formData}
           {...errors}

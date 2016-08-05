@@ -1,11 +1,19 @@
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-const theme = getMuiTheme();
+import theme from '../../themes';
 
 const baseTheme = {
   fontFamily: theme.baseTheme.fontFamily,
   color: theme.baseTheme.palette.textColor
 };
+
+const defaultFieldStyle = Object.assign({}, baseTheme, {
+  fontSize: 14
+});
+
+const defaultLabelStyle = Object.assign({}, baseTheme, {
+  fontSize: 14,
+  color: 'gray',
+  transform: 'perspective(1px) scale(0.85) translate3d(0px, -25px, 0px)'
+});
 
 export default {
   section: {
@@ -19,7 +27,8 @@ export default {
   title: Object.assign({}, baseTheme, {
     color: theme.baseTheme.palette.primary1Color
   }),
-  label: Object.assign({}, {}, baseTheme),
+  field: defaultFieldStyle,
+  floatingLabel: defaultLabelStyle,
   error: Object.assign({}, baseTheme, {
     color: theme.textField.errorColor,
     fontSize: '12px'
@@ -31,25 +40,24 @@ export default {
     margin: '10px auto'
   },
   readOnly: {
-    container: {
-      fontSize: '16px',
+    container: Object.assign({}, defaultFieldStyle, {
       lineHeight: '24px',
       width: '100%',
       height: '50px',
       display: 'inline-block',
       position: 'relative',
       backgroundColor: 'transparent'
-    },
-    label: {
+    }),
+    label: Object.assign({}, defaultLabelStyle, {
       position: 'absolute',
       lineHeight: '22px',
       top: '18px',
       zIndex: 1,
       cursor: 'text',
-      transform: 'perspective(1px) scale(0.75) translate3d(0px, -28px, 0px)',
+      transform: 'perspective(1px) scale(0.85) translate3d(0px, -28px, 0px)',
       transformOrigin: 'left top 0px',
       color: 'rgba(0, 0, 0, 0.498039)'
-    },
+    }),
     content: {
       padding: '0px',
       position: 'relative',

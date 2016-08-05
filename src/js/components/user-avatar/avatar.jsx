@@ -35,8 +35,8 @@ export class UserAvatar extends React.Component {
     }
   }
 
-  handleOnClick(actionUrl) {
-    this.props.onClick(actionUrl);
+  handleOnClick(userId, event) {
+    this.props.onClick(userId, event);
   }
 
   render() {
@@ -46,9 +46,7 @@ export class UserAvatar extends React.Component {
 
     const actions = {};
     const style = { marginRight: `${padding}px`, cursor: 'pointer' };
-    if (person.actionUrl && person.actionUrl.length > 0) {
-      actions.onClick = this.handleOnClick.bind(this, person.actionUrl);
-    }
+    actions.onClick = this.handleOnClick.bind(this, person.uniqueId);
 
     const avatarSrc = {};
     let initial = null;

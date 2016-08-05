@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { FontIcon } from 'material-ui';
-import ActionChooser from './actionChooser';
+import ActionChooser from '../../task/components/action-chooser';
 import registry from 'app-registry';
 import { ActionAssignmentReturned, ActionAssignmentInd, ActionAssignmentReturn } from 'material-ui/svg-icons';
 
@@ -41,12 +41,13 @@ class TaskRow extends React.Component {
     }
   }
 
-  handleTaskActions(action, user) {
+  handleTaskActions(actionItem, user) {
     const taskId = this.props.rowData.id;
-    this.props.executeTaskAction(taskId, action, user);
+    this.props.executeTaskAction(taskId, actionItem.action, user);
   }
 
-  isActionDisabled(taskAction) {
+  isActionDisabled(taskActionItem) {
+    const taskAction = taskActionItem.action;
     const store = registry.get('store');
     const loggedInUserId = store.getState().user.getIn(['loggedUser', 'username']);
 

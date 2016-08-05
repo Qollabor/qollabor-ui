@@ -1,88 +1,69 @@
 import React from 'react';
 
-import { RaisedButton, Popover } from 'material-ui';
-import UserSelector from '../../../../components/user-selector';
+import ActionChooser from '../action-chooser';
+import { ActionAssignmentInd } from 'material-ui/svg-icons';
 
-const buttonStyle = {
-  margin: '3px'
-};
+const actionItems = [
+  {
+    action: 'assign',
+    primaryText: 'Assign',
+    leftIcon: <ActionAssignmentInd/>,
+    transition: false
+  }
+];
 
 export class ActionButtons extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      open: false,
-      anchorEl: null,
-      selectedAction: null
-    };
-  }
-
-  handleRequestOpen(action, event) {
-    this.setState({
-      open: true,
-      anchorEl: event.currentTarget,
-      selectedAction: action
-    });
-  }
-
-  requestRequestClose() {
-    this.setState({
-      open: false,
-      anchorEl: null,
-      selectedAction: null
-    });
-  }
-
-  handleButtonClick(action, event) {
+  onActionHandler(actionItem, user) {
     const taskId = this.props.taskId;
-    if (action === 'assign' || action === 'delegate') {
-      this.handleRequestOpen(action, event);
-    } else if (this.props.onButtonClick) {
-      this.props.onButtonClick(taskId, action);
+    if (actionItem.transition === true) {
+      const caseId = this.props.caseId;
+      this.props.onTransitionClick(taskId, caseId, actionItem.action);
+    } else {
+      this.props.onActionClick(taskId, actionItem.action, user);
     }
   }
 
-  handleUserSelectChange(user, selected) {
+  handleButtonClick(action, user) {
     const taskId = this.props.taskId;
-    const selectedAction = this.state.selectedAction;
-    if (selected) {
-      this.props.onButtonClick(taskId, selectedAction, user);
-      this.requestRequestClose();
+    this.props.onActionClick(taskId, action, user);
+  }
+
+  isActionDisabled(actionItem) {
+    const taskAction = actionItem.action;
+    const { taskState, planState } = this.props.taskDetails;
+
+    switch (taskState) {
+      case 'Assigned' : {
+        switch (planState) {
+          case 'Suspended' : {
+            if (taskAction === 'resume') return false;
+            break;
+          }
+          default : {
+            if (actionItem.transition === true && !this.props.buttonsDisabled) return false;
+            break;
+          }
+        }
+        break;
+      }
+      case 'Unassigned' : {
+        if (taskAction === 'assign') return false;
+        break;
+      }
+      default : return true;
     }
+
+    return true;
   }
 
   render() {
+    const items = actionItems.concat(this.props.availableTransitions ? this.props.availableTransitions : []);
     const content = (
-      <div>
-        <div>
-            {this.props.availableActions.map((taskAction) => (
-              <RaisedButton
-                style={buttonStyle}
-                backgroundColor={taskAction.backgroundColor}
-                labelColor="white"
-                key={taskAction.action}
-                label={taskAction.label}
-                disabled={taskAction.disabled || this.props.disabled}
-                onTouchTap={this.handleButtonClick.bind(this, taskAction.action)}
-              />
-            ))}
-        </div>
-
-        <Popover
-          open={this.state.open}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-          targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-          onRequestClose={this.requestRequestClose.bind(this)}
-          bodyStyle={{ paddingTop: '10px', paddingBottom: '30px' }}
-        >
-          <UserSelector
-            onUserSelectChange={this.handleUserSelectChange.bind(this)}
-          />
-        </Popover>
-      </div>
+      <ActionChooser
+        actionItems={items} onActionHandler={this.onActionHandler.bind(this)}
+        isDisabled={this.isActionDisabled.bind(this)}
+      />
     );
 
     return content;
@@ -92,7 +73,8 @@ export class ActionButtons extends React.Component {
 ActionButtons.propTypes = {
   availableActions: React.PropTypes.array.isRequired,
   taskId: React.PropTypes.string.isRequired,
-  onButtonClick: React.PropTypes.func
+  onActionClick: React.PropTypes.func,
+  onTransitionClick: React.PropTypes.func
 };
 
 export default ActionButtons;

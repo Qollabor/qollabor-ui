@@ -1,9 +1,10 @@
 import React from 'react';
-import { RaisedButton, Paper } from 'material-ui';
+import { RaisedButton, FlatButton, Paper } from 'material-ui';
 import MessageDiv from '../message-div';
 import CaseModelSchemaForm from '../schema-form';
 import CaseTeamSelector from '../caseteam-selector';
 import { JsonObjectViewer } from 'cafienne-ui-elements';
+import { shouldRender } from 'react-jsonschema-form/lib/utils';
 
 const styles = {
   saveButton: {
@@ -32,6 +33,10 @@ class Details extends React.Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return shouldRender(this, nextProps, nextState);
+  }
+
   handleOnSubmit(caseData) {
     if (this.props.startCaseModel) {
       this.props.startCaseModel(caseData.formData);
@@ -40,7 +45,7 @@ class Details extends React.Component {
 
   render() {
     const buttonList = [<RaisedButton label="START CASE" primary={true} type="submit"/>,
-      <RaisedButton label="RESET" primary={false} secondary={true}/>];
+      <FlatButton label="RESET" primary={false} secondary={true}/>];
 
     const { data } = this.props;
     const caseModelSchema = this.props.caseModelSchema ? this.props.caseModelSchema : {};
@@ -55,10 +60,8 @@ class Details extends React.Component {
     } else {
       detailBody = (<div>
         <div style={styles.headerMargin}>
-          <h3>{data.name}</h3>
           <div><b>{data.description}</b></div>
         </div>
-
         {this.props.showFeedbackForm ?
           <div>
             <div style={styles.headerMargin}>The case was successfully created.<JsonObjectViewer
@@ -69,7 +72,7 @@ class Details extends React.Component {
             /></div>
             <div style={styles.saveButton}>
               <RaisedButton
-                secondary={true} label="CREATE ANOTHER" labelStyle={styles.buttonLabel}
+                primary={true} label="CREATE ANOTHER" labelStyle={styles.buttonLabel}
                 onClick={this.props.resetDetails}
               />
             </div>
@@ -79,6 +82,7 @@ class Details extends React.Component {
               {caseSchema && <CaseModelSchemaForm
                 buttonList={buttonList}
                 schema={caseSchema}
+                formData={this.props.caseData}
                 uiSchema={caseUISchema}
                 onSubmit={this.handleOnSubmit.bind(this)}
               />}

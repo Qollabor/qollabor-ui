@@ -5,6 +5,8 @@ import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import { TimeWidget } from './time';
 import { SelectWidget } from './select';
+import { optionsList } from 'react-jsonschema-form/lib/utils';
+import styles from '../styles';
 
 export class StringWidget extends React.Component {
   handleOnChange(event) {
@@ -25,7 +27,8 @@ export class StringWidget extends React.Component {
     }
 
     if (this.props.schema.enum) {
-      return <SelectWidget {...this.props}/>;
+      const enumOptions = optionsList(this.props.schema);
+      return <SelectWidget options={enumOptions} {...this.props}/>;
     }
 
     const errors = {};
@@ -51,17 +54,23 @@ export class StringWidget extends React.Component {
         />
       );
     }
-    const multilineProps = {};
+    const style = Object.assign({}, styles.field, { width: '100%' });
+    const floatingLabelFocusStyle = Object.assign({}, styles.floatingLabel, {
+      transform: 'perspective(1px) scale(0.85) translate3d(0px, -24px, 0px)',
+      top: 18
+    });
+    const textProps = {
+      style,
+      floatingLabelFocusStyle
+    };
+
     if (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'textarea') {
-      multilineProps.multiLine = true;
-      multilineProps.rows = this.props.uiSchema['ui:rows'] || 4;
+      textProps.multiLine = true;
+      textProps.rows = this.props.uiSchema['ui:rows'] || 4;
     } else {
       if (this.props.schema.title) {
-        multilineProps.style = { height: '50px', width: '100%' };
-        multilineProps.floatingLabelStyle = { top: '18px' };
-        multilineProps.inputStyle = { height: '30px', top: '-2px' };
-      } else {
-        multilineProps.style = { width: '100%' };
+        textProps.style.height = '50px';
+        textProps.inputStyle = { height: '30px', top: '-2px' };
       }
     }
 
@@ -78,11 +87,13 @@ export class StringWidget extends React.Component {
         <TextField
           name={this.props.name}
           floatingLabelText={title}
+          floatingLabelFixed={true}
+          textareaStyle={{ marginTop: 16, marginBottom: 16 }}
           value={this.props.formData}
           onChange={this.handleOnChange.bind(this)}
           disabled={this.props.disabled}
           {...errors}
-          {...multilineProps}
+          {...textProps}
         />
       </div>
     );
