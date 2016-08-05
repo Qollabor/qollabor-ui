@@ -7,7 +7,6 @@ export class CaseAttachments extends React.Component {
       <TitledListBox
         title="Documents"
         items={this.props.attachments.map(item => {
-          item.icon = 'description';
           item.color = 'olive';
           return item;
         })}

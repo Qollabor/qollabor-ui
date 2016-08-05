@@ -1,8 +1,6 @@
 import Promise from 'bluebird';
 import FileAPI from 'fileapi';
 
-const IMAGE_TYPES = /^image\/(jpe?g|png|gif|jf?if|tiff?)$/i;
-
 export const THUMBNAIL_WIDTH = 100;
 export const THUMBNAIL_HEIGHT = 100;
 
@@ -11,7 +9,7 @@ export const FILE_UPLOAD_START = 'FILE_UPLOAD_START';
 export const FILE_UPLOAD_COMPLETE = 'FILE_UPLOAD_COMPLETE';
 export const FILE_UPLOAD_PROGRESS = 'FILE_UPLOAD_PROGRESS';
 
-export function getThumbnails(imageFiles) {
+export function getThumbnail(imageFiles) {
   return Promise.all(
     imageFiles.map(getImageThumbnail)
   );
@@ -61,10 +59,6 @@ export function uploadStart(dispatch, url, file, data) {
   };
 }
 
-function isImage(file) {
-  return IMAGE_TYPES.test(file.type);
-}
-
 export function fileProgress(event, file, fileType) {
   if (event.loaded === 0) event.loaded = 1;
 
@@ -93,18 +87,10 @@ export function fileComplete(error, xhr, file, options, data) {
   };
 }
 
-export function filterAllowedFiles(payload, allowedFileTypes) {
+export function filterAllowedFile(payload, allowedFileTypes) {
   const allowedFilter = new RegExp(`${allowedFileTypes.join('|')}$`, 'i');
-
   return new Promise(resolve => {
     if (payload instanceof Event) FileAPI.getFiles(payload, file => allowedFilter.test(file.type), resolve);
     else FileAPI.filterFiles(payload, file => allowedFilter.test(file.type), resolve);
-  });
-}
-
-export function filterUploadFiles(payload) {
-  return new Promise(resolve => {
-    if (payload instanceof Event) FileAPI.getFiles(payload, isImage, resolve);
-    else FileAPI.filterFiles(payload, isImage, resolve);
   });
 }

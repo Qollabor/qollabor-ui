@@ -8,7 +8,7 @@ import { Details } from './components/details';
 import { DiscretionaryItems } from './components/discretionary-items';
 
 import { CaseInformation, CaseAttachments, CaseTeam } from '../case';
-
+import { FileUploader } from '../case/components/file-uploader';
 import styles from './styles';
 
 export class Task extends React.Component {
@@ -56,7 +56,10 @@ export class Task extends React.Component {
 
           <DiscretionaryItems taskId={this.props.taskId} emptyListMessage="No items"/>
 
-          <CaseAttachments caseId={this.props.caseId}/>
+          <FileUploader
+            caseId={this.props.caseId}
+          />
+          <CaseAttachments />
         </Drawer>
       </div>
     );
