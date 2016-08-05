@@ -21,6 +21,7 @@ class AvatarList extends React.Component {
     const avatarSize = this.props.avatarSize || 30;
     const maxLength = this.props.maxLength || 200;
     const paddingBetweenAvatar = 1;
+    const parentDivStyle = (this.props.disabled) ? styles.disabled : null;
 
     let maxPeopleInList = this.props.maxPeopleInList;
     if (Math.floor(maxLength / (avatarSize + paddingBetweenAvatar)) + 1) {
@@ -34,6 +35,7 @@ class AvatarList extends React.Component {
       const person = people[index];
       avatarList.push(
         <Avatar
+          chipView={this.props.chipView}
           key={person.name}
           user={person}
           size={avatarSize}
@@ -55,7 +57,7 @@ class AvatarList extends React.Component {
     );
 
     return (
-      <div>
+      <div style={parentDivStyle}>
         {avatarList}
       </div>
     );

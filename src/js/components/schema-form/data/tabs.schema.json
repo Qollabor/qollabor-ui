@@ -12,7 +12,6 @@
       },
       "TravelRequest": {
         "type": "object",
-        "showAsTab": true,
         "required": [
             "Requestor"
         ],

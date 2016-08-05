@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import { FontIcon } from 'material-ui';
+import registry from 'app-registry';
 
 let prog = 0;
 export class HelpWidget extends React.Component {
@@ -19,4 +20,15 @@ export class HelpWidget extends React.Component {
       </a>
     );
   }
+}
+
+export function fetchUserDetails(userIds) {
+  const config = registry.get('config');
+  const store = registry.get('store');
+  return registry.get('request')
+  .get(`${config.baseApiUrl}users?ids=${userIds}`, null, {
+    headers: {
+      [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
+    }
+  });
 }

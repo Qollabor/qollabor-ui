@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar } from 'material-ui';
+import { Avatar, Chip } from 'material-ui';
 import { fetchAvatar } from './helpers';
 import { calcInitials } from '../people-list/helpers/calcInitials';
 
@@ -43,6 +43,7 @@ export class UserAvatar extends React.Component {
     const padding = this.props.padding || 0;
     const avatarSize = this.props.size || 100;
     const person = this.props.user;
+    const isChipView = this.props.chipView || false;
 
     const actions = {};
     const style = { marginRight: `${padding}px`, cursor: 'pointer' };
@@ -58,16 +59,30 @@ export class UserAvatar extends React.Component {
       initial = calcInitials(person.name);
     }
 
+    // If chip view is enabled, return avatar chip view, else return avatar simple view.
     return (
       <div style={{ float: 'left' }} title={`${person.name} (${person.uniqueId})`}>
-        <Avatar
-          style={style}
-          {...actions}
-          {...avatarSrc}
-          size={avatarSize}
-        >
-        {initial}
-        </Avatar>
+        {isChipView ?
+          <Chip key={person.name}>
+            <Avatar
+              style={style}
+              {...actions}
+              {...avatarSrc}
+              size={avatarSize}
+            >
+            {initial}
+            </Avatar>
+            {person.name}
+          </Chip> :
+          <Avatar
+            style={style}
+            {...actions}
+            {...avatarSrc}
+            size={avatarSize}
+          >
+            {initial}
+          </Avatar>
+        }
       </div>
     );
   }
@@ -76,7 +91,8 @@ export class UserAvatar extends React.Component {
 UserAvatar.displayName = 'UserAvatar';
 
 UserAvatar.propTypes = {
-  user: React.PropTypes.object.isRequired
+  user: React.PropTypes.object.isRequired,
+  chipView: React.PropTypes.boolean
 };
 
 export default UserAvatar;

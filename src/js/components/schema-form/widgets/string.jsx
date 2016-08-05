@@ -5,6 +5,8 @@ import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import { TimeWidget } from './time';
 import { SelectWidget } from './select';
+import { UserSelectorWidget } from './userselector';
+import { RadioWidget } from './radio';
 import { optionsList } from 'react-jsonschema-form/lib/utils';
 import styles from '../styles';
 
@@ -17,6 +19,23 @@ export class StringWidget extends React.Component {
   render() {
     if (this.props.schema.format === 'date') {
       return <DateWidget {...this.props}/>;
+    }
+
+    if (this.props.schema.format === 'user-selector' ||
+      (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'user-selector')) {
+      return <UserSelectorWidget {...this.props}/>;
+    }
+
+    if (this.props.schema.format === 'radio' ||
+      (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'radio')) {
+      if (this.props.uiSchema.options) {
+        const options = this.props.uiSchema.options;
+        return (<RadioWidget
+          options={options}
+          defaultSelected={this.props.uiSchema.defaultSelected}
+          {...this.props}
+        />);
+      }
     }
 
     if (

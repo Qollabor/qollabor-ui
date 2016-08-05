@@ -33,6 +33,10 @@ export default {
     color: theme.textField.errorColor,
     fontSize: '12px'
   }),
+  radioButton: {
+    width: 'auto',
+    padding: '5px'
+  },
   refreshContainer: {
     position: 'relative',
     height: '50px',

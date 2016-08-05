@@ -23,6 +23,7 @@ const schema = {
     done: { type: 'boolean', title: 'Done?', default: false },
     integer: { type: 'integer', title: 'age' },
     number: { type: 'number', title: 'Some number' },
+    radio: { type: 'string', title: 'Some status' },
     destination: {
       type: 'array',
       minItems: 1,
@@ -80,7 +81,15 @@ const uiSchema = {
       'ui:help': 'This is an bar help'
     }
   },
-  list: { 'ui:help': 'This is a list' }
+  list: { 'ui:help': 'This is a list' },
+  radio: {
+    'ui:widget': 'radio',
+    options: {
+      Approved: 'approved',
+      Rejected: 'disapproved'
+    },
+    defaultSelected: 'approved'
+  }
 };
 
 const uiSchemaReadonly = {

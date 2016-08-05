@@ -327,14 +327,16 @@
     "TDYRequest": {
       "Purpose": {"ui:widget": "textarea"},
       "Justification": {"ui:widget": "textarea"},
-      "Transport" : {
-        "POMVMake": {"ui:widget": "textarea"}
+      "Requestor": {"ui:widget": "user-selector", "multiSelect" : false},
+      "PointOfContact": {"ui:widget": "user-selector", "multiSelect" : false},
+      "Project" : {
+        "Manager": {"ui:widget": "user-selector", "multiSelect" : false},
+        "Assistant": {"ui:widget": "user-selector", "multiSelect" : false}
       }
     }
   },
   "formData": {
     "TDYRequest": {
-      "Requestor": "Thijs Petter",
       "PassNo": "1232111",
       "DepartureDate": "2016-08-02",
       "ReturnDate": "2016-08-02",
@@ -358,7 +360,6 @@
         "POMVLicense": "1221"
       },
       "Project": {
-        "Assistant": "PP"
       }
     }
   }

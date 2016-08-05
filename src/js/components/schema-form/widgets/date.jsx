@@ -5,13 +5,52 @@ import { HelpWidget } from './help';
 import moment from 'moment';
 import styles from '../styles';
 
+let activeDateElmt = null;
+let datePickerDialog = null;
 export class DateWidget extends React.Component {
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+  }
+
+  handleKeyDown(event) {
+    if (event.keyCode === 9 && datePickerDialog) {
+      datePickerDialog.dismiss();
+    }
+  }
+
   formatDate(date) {
     return moment(date).format('YYYY-MM-DD');
   }
 
+  /*
+    Material UI datepicker does not allow tabbing, also does not
+    return the focus back to the controller after date selection.
+    Hence we are manually handling both the features.
+    Focus is set to the controller after a date selection
+    or when the date controller is dismissed.
+    Similary we are opening the date controller on focus of the
+    controller, so that date controller is active while tabbing.
+  */
   handleOnChange(event, newDate) {
     this.props.onChange(moment(newDate).format('YYYY-MM-DD'));
+    activeDateElmt.focus();
+  }
+
+  handleOnFocus(event) {
+    activeDateElmt = event.target;
+    datePickerDialog = this.refs.dp.refs.dialogWindow;
+
+    if (datePickerDialog.state.open === false) {
+      this.refs.dp.openDialog();
+    }
+  }
+
+  handleOnDismiss() {
+    activeDateElmt.focus();
   }
 
   render() {
@@ -52,13 +91,18 @@ export class DateWidget extends React.Component {
       <div>
         {helpWidget}
         <DatePicker
+          ref="dp"
           name={this.props.name}
           value={date}
+          container={'inline'}
+          autoOk={true}
           floatingLabelText={title}
           floatingLabelFixed={true}
           floatingLabelFocusStyle={styles.floatingLabel}
           textFieldStyle={styles.field}
           onChange={this.handleOnChange.bind(this)}
+          onFocus={this.handleOnFocus.bind(this)}
+          onDismiss={this.handleOnDismiss.bind(this)}
           formatDate={this.formatDate}
           disabled={this.props.disabled}
           help={help}
