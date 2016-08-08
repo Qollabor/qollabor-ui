@@ -26,6 +26,7 @@ export class FieldItem extends React.Component {
       removable,
       required,
       readonly,
+      error,
       registry,
       onDropIndexClick,
       onChangeForIndex
@@ -56,6 +57,7 @@ export class FieldItem extends React.Component {
       required={required}
       disabled={disabled}
       readonly={readonly}
+      error={error}
     />);
 
     return (

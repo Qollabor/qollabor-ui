@@ -7,6 +7,7 @@ import { FieldItem } from './fieldItem';
 import { HelpWidget } from '../help';
 
 import styles from './styles';
+import formStyles from '../../styles';
 
 import {
   getDefaultFormState,
@@ -97,6 +98,16 @@ export class NormalArray extends Component {
       readonly
     } = this.props;
 
+    const errors = this.props.error || {};
+    /* eslint-disable no-underscore-dangle */
+    if (this.props.errorSchema && this.props.errorSchema.__errors) {
+      errors.errorText = this.props.errorSchema.__errors.join(', ');
+    }
+    /* eslint-enable no-underscore-dangle */
+
+    errors.errorText = this.props.error && this.props.error.message;
+
+
     const title = (schema.title || name) + (this.props.required ? ' *' : '');
     const { items } = this.state;
     const { definitions, fields } = this.props.registry;
@@ -114,6 +125,9 @@ export class NormalArray extends Component {
         <div style={{ zIndex: 100, marginTop: '2px' }}><HelpWidget help={help}/></div>;
     }
 
+    const errorStyle = Object.assign({}, formStyles.errorLabel,
+      { borderTop: '1px solid red', width: '80%', textAlign: 'right', marginTop: 12 });
+
     let addButton = false;
     if (!this.props.readonly) {
       addButton = (
@@ -129,9 +143,10 @@ export class NormalArray extends Component {
         </div>
       );
     }
+
     return (
       <Paper
-        zDepth={2}
+        zDepth={1}
         style={styles.fixedArrayContainer}
       >
         <div style={styles.header}>
@@ -141,6 +156,10 @@ export class NormalArray extends Component {
               title={title}
             />
           </div>
+          {
+          errors.errorText &&
+            <label style={errorStyle}>{errors.errorText}</label>
+          }
           {addButton}
           {helpWidget}
         </div>
@@ -163,11 +182,13 @@ export class NormalArray extends Component {
                 itemIdSchema={itemIdSchema}
                 itemErrorSchema={itemErrorSchema}
                 itemData={items[index]}
+                error={errors[index]}
                 itemUiSchema={uiSchema.items}
                 disabled={this.props.disabled}
                 readonly={this.props.readonly}
                 required={this.isItemRequired(itemsSchema)}
                 registry={this.props.registry}
+                hideTitle={true}
                 onDropIndexClick={this.handleDropIndexClick(index)}
                 onChangeForIndex={this.handleChangeForIndex(index)}
               />);

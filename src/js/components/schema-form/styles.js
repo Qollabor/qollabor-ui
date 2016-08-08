@@ -9,6 +9,13 @@ const defaultFieldStyle = Object.assign({}, baseTheme, {
   fontSize: 14
 });
 
+const defaultErrorLabelStyle = Object.assign({}, baseTheme, {
+  fontSize: 11,
+  float: 'right',
+  color: theme.textField.errorColor,
+  transform: 'translate3d(0px, -5px, 0px)'
+});
+
 const defaultLabelStyle = Object.assign({}, baseTheme, {
   fontSize: 14,
   color: 'gray',
@@ -29,6 +36,7 @@ export default {
   }),
   field: defaultFieldStyle,
   floatingLabel: defaultLabelStyle,
+  errorLabel: defaultErrorLabelStyle,
   error: Object.assign({}, baseTheme, {
     color: theme.textField.errorColor,
     fontSize: '12px'

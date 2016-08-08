@@ -56,6 +56,7 @@ export class StringWidget extends React.Component {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
     /* eslint-enable no-underscore-dangle */
+    errors.errorText = this.props.error && this.props.error.message;
 
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
@@ -78,14 +79,19 @@ export class StringWidget extends React.Component {
       transform: 'perspective(1px) scale(0.85) translate3d(0px, -24px, 0px)',
       top: 18
     });
-    const textProps = {
+
+
+    const textProps = Object.assign({}, {
       style,
-      floatingLabelFocusStyle
-    };
+      floatingLabelFocusStyle,
+      errorStyle: styles.errorLabel
+    });
 
     if (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'textarea') {
       textProps.multiLine = true;
       textProps.rows = this.props.uiSchema['ui:rows'] || 4;
+      textProps.errorStyle = Object.assign({}, textProps.errorStyle,
+        { transform: 'translate3d(0px, -24px, 0px)' });
     } else {
       if (this.props.schema.title) {
         textProps.style.height = '50px';

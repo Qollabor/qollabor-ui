@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import deeper from 'deeper';
 
+import { StepperWidget } from './stepper';
+
 import {
   getDefaultFormState,
   orderProperties,
@@ -47,7 +49,8 @@ export class ObjectField extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return shouldRender(this, nextProps, nextState);
+    return shouldRender(this, nextProps, nextState) ||
+     (nextProps.error.length !== this.props.error.length);
   }
 
   onPropertyChange(name) {
@@ -58,7 +61,8 @@ export class ObjectField extends Component {
 
   getStateFromProps(props) {
     const { schema, formData, registry } = props;
-    return getDefaultFormState(schema, formData, registry.definitions) || {};
+    const error = props.error || {};
+    return getDefaultFormState(schema, formData, registry.definitions, error) || {};
   }
 
   asyncSetState(state, options = { validate: false }) {
@@ -84,10 +88,13 @@ export class ObjectField extends Component {
       readonly
     } = this.props;
 
+
     const { definitions, fields } = this.props.registry;
     const { SchemaField, TitleField, DescriptionField } = fields;
     const schema = retrieveSchema(this.props.schema, definitions);
     const title = (schema.title || name) + (required ? ' *' : '');
+    const error = this.props.error || {};
+
     let orderedProperties;
     try {
       const properties = Object.keys(schema.properties);
@@ -105,8 +112,8 @@ export class ObjectField extends Component {
     }
 
     let help = null;
-    if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
-      help = this.props.uiSchema['ui:help'];
+    if (uiSchema && uiSchema['ui:help']) {
+      help = uiSchema['ui:help'];
     }
     let helpWidget = null;
     if (help) {
@@ -114,7 +121,12 @@ export class ObjectField extends Component {
         <div style={{ zIndex: 100, marginTop: '2px' }}><HelpWidget help={help}/></div>;
     }
 
-    const titleElement = title ?
+    if (uiSchema && uiSchema['ui:widget'] === 'stepper') {
+      return <StepperWidget {...this.props}/>;
+    }
+
+    const showTitle = (this.props.hideTitle !== true);
+    const titleElement = showTitle && title ?
       <TitleField
         id={`${idSchema.id}__title`}
         title={title}
@@ -146,6 +158,7 @@ export class ObjectField extends Component {
               schema={schema.properties[propertyName]}
               uiSchema={uiSchema[propertyName]}
               errorSchema={errorSchema[propertyName]}
+              error={error[propertyName]}
               idSchema={idSchema[propertyName]}
               formData={this.state[propertyName]}
               onChange={this.onPropertyChange(propertyName)}

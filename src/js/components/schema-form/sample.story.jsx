@@ -7,7 +7,8 @@ import theme from '../../themes';
 
 const schemaNCIA = require('./data/ncia.json');
 const tdyRequestSchema = require('./data/tdyRequest.schema.json');
-const tabsSchema = require('./data/tabs.schema.json');
+const stepperSchema = require('./data/stepper.schema.json');
+
 
 const paperStyle = { padding: '5px', width: '700px', fontSize: 14 };
 
@@ -16,7 +17,7 @@ import { Form } from './form';
 const schema = {
   title: 'Todo',
   type: 'object',
-  required: ['title'],
+  required: ['title', 'multilineTitle', 'integer', 'number'],
   properties: {
     title: { type: 'string', title: 'Title', default: 'A new task', minLength: 3 },
     multilineTitle: { type: 'string', title: 'Multiline', default: 'A new multiline title' },
@@ -163,6 +164,18 @@ storiesOf('SchemaForm', module)
       </Paper>
     </div>
   ))
+  .add('Sample 1 Empty', () => (
+    <div className="center-component">
+      <Paper style={paperStyle}>
+        <Form
+          schema={schema}
+          uiSchema={uiSchema}
+          onSubmit={action('onSubmit')}
+          onError={action('onError')}
+        />
+      </Paper>
+    </div>
+  ))
   .add('Sample ReadOnly', () => (
     <div className="center-component">
       <Paper style={paperStyle}>
@@ -215,15 +228,53 @@ storiesOf('SchemaForm', module)
       </Paper>
     </div>
   ))
-  .add('TDY Tabbed Schema form', () => (
+  .add('TDY Schema form Empty', () => (
     <div className="center-component">
       <Paper style={paperStyle}>
         <Form
-          schema={tabsSchema.schema}
-          uiSchema={tabsSchema.uiSchema}
-
+          schema={tdyRequestSchema.schema}
+          uiSchema={tdyRequestSchema.uiSchema}
           onSubmit={action('onSubmit')}
           onError={action('onError')}
+        />
+      </Paper>
+    </div>
+  ))
+  .add('TDY Stepper Schema form', () => (
+    <div className="center-component">
+      <Paper style={paperStyle}>
+        <Form
+          schema={stepperSchema.schema}
+          uiSchema={stepperSchema.uiSchema}
+          formData={stepperSchema.formData}
+          onSubmit={action('onSubmit')}
+          onError={action('onError')}
+        />
+      </Paper>
+    </div>
+  ))
+  .add('TDY Stepper Schema form Empty', () => (
+    <div className="center-component">
+      <Paper style={paperStyle}>
+        <Form
+          schema={stepperSchema.schema}
+          uiSchema={stepperSchema.uiSchema}
+          onSubmit={action('onSubmit')}
+          onError={action('onError')}
+        />
+      </Paper>
+    </div>
+  ))
+  .add('TDY Readonly Stepper Schema form', () => (
+    <div className="center-component">
+      <Paper style={paperStyle}>
+        <Form
+          schema={stepperSchema.schema}
+          uiSchema={stepperSchema.uiSchema}
+          formData={stepperSchema.formData}
+          onSubmit={action('onSubmit')}
+          onError={action('onError')}
+          disabled={true}
         />
       </Paper>
     </div>

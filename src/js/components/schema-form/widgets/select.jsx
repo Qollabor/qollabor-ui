@@ -17,6 +17,8 @@ export class SelectWidget extends React.Component {
     }
     /* eslint-enable no-underscore-dangle */
 
+    errors.errorText = this.props.error && this.props.error.message;
+
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
       help = this.props.uiSchema['ui:help'];
@@ -53,6 +55,7 @@ export class SelectWidget extends React.Component {
           floatingLabelFixed={true}
           style={styles.field}
           floatingLabelFocusStyle={styles.floatingLabel}
+          errorStyle={styles.errorLabel}
           value={this.props.formData}
           disabled={this.props.disabled}
           onChange={this.handleOnChange.bind(this)}

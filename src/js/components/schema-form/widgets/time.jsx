@@ -23,6 +23,8 @@ export class TimeWidget extends React.Component {
     }
     /* eslint-enable no-underscore-dangle */
 
+    errors.errorText = this.props.error && this.props.error.message;
+
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
       help = this.props.uiSchema['ui:help'];
@@ -46,6 +48,7 @@ export class TimeWidget extends React.Component {
     }
 
     const title = this.props.schema.title + (this.props.required ? ' *' : '');
+    const errorStyle = Object.assign({}, styles.errorLabel, { transform: 'translate3d(0px, -24px, 0px)' });
 
     return (
       <div>
@@ -57,6 +60,7 @@ export class TimeWidget extends React.Component {
           floatingLabelText={title}
           floatingLabelFixed={true}
           textFieldStyle={styles.field}
+          errorStyle={errorStyle}
           floatingLabelFocusStyle={styles.floatingLabel}
           disabled={this.props.disabled}
           onChange={this.handleOnChange.bind(this)}

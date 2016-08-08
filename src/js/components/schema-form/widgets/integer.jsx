@@ -16,13 +16,15 @@ export class IntegerWidget extends React.Component {
     if (this.props.errorSchema && this.props.errorSchema.__errors) {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
+    /* eslint-enable no-underscore-dangle */
+
+    errors.errorText = this.props.error && this.props.error.message;
 
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
       help = this.props.uiSchema['ui:help'];
     }
 
-    /* eslint-enable no-underscore-dangle */
     if (this.props.readonly) {
       return (
         <ReadOnlyWidget
@@ -50,6 +52,7 @@ export class IntegerWidget extends React.Component {
           floatingLabelText={title}
           floatingLabelFixed={true}
           floatingLabelFocusStyle={styles.floatingLabel}
+          errorStyle={styles.errorLabel}
           style={styles.field}
           value={this.props.formData}
           onChange={this.handleOnChange.bind(this)}

@@ -16,6 +16,7 @@ export class BooleanWidget extends React.Component {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
     /* eslint-enable no-underscore-dangle */
+    errors.errorText = this.props.error && this.props.error.message;
 
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
@@ -42,6 +43,7 @@ export class BooleanWidget extends React.Component {
           name={this.props.name}
           label={title}
           style={styles.field}
+          errorStyle={styles.errorLabel}
           onCheck={this.handleOnCheck.bind(this)}
           checked={this.props.formData}
           {...errors}

@@ -16,13 +16,15 @@ export class NumberWidget extends React.Component {
     if (this.props.errorSchema && this.props.errorSchema.__errors) {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
+     /* eslint-enable no-underscore-dangle */
+
+    errors.errorText = this.props.error && this.props.error.message;
 
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
       help = this.props.uiSchema['ui:help'];
     }
 
-    /* eslint-enable no-underscore-dangle */
     if (this.props.readonly) {
       return (
         <ReadOnlyWidget
@@ -52,6 +54,7 @@ export class NumberWidget extends React.Component {
           floatingLabelFixed={true}
           value={this.props.formData}
           style={styles.field}
+          errorStyle={styles.errorLabel}
           floatingLabelFocusStyle={styles.floatingLabel}
           onChange={this.handleOnChange.bind(this)}
           disabled={this.props.disabled}

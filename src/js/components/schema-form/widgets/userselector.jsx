@@ -106,6 +106,8 @@ export class UserSelectorWidget extends React.Component {
     }
     /* eslint-enable no-underscore-dangle */
 
+    errors.errorText = this.props.error && this.props.error.message;
+
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
       help = this.props.uiSchema['ui:help'];
@@ -128,7 +130,9 @@ export class UserSelectorWidget extends React.Component {
         <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}><HelpWidget help={help}/></div>;
     }
 
-    const floatingLabelStyle = Object.assign({}, styles.floatingLabel, { lineHeight: '30px' });
+    const errorStyle = Object.assign({}, styles.errorLabel,
+      { width: '100%', textAlign: 'right', position: 'relative', bottom: 42 });
+    const floatingLabelStyle = Object.assign({}, styles.floatingLabel, { lineHeight: '30px', fontSize: 12 });
     const title = this.props.schema.title + (this.props.required ? ' *' : '');
     const selectedUsers = this.state.selectedUsers ? [].concat(this.state.selectedUsers) : [];
     return (
@@ -147,6 +151,12 @@ export class UserSelectorWidget extends React.Component {
               disabled={this.props.disabled}
               onShowMoreAction={this.handleRequestOpen.bind(this)}
             />
+            {
+              errors.errorText &&
+                <div style={{ borderBottom: '1px solid red', position: 'relative', top: 35 }}>
+                  <label style={errorStyle}>{errors.errorText}</label>
+                </div>
+            }
           </div>
           <Popover
             open={this.state.open}

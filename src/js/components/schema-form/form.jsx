@@ -5,6 +5,7 @@ import { RaisedButton } from 'material-ui';
 
 import { CustomSchemaField } from './schemaField';
 import { CustomTitleField } from './titleField';
+import { validate } from './validator';
 
 const fields = {
   SchemaField: CustomSchemaField,
@@ -12,6 +13,12 @@ const fields = {
 };
 
 export class Form extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { error: {} };
+  }
+
   handleOnChange(value) {
     if (this.props.onChange) {
       this.props.onChange(value);
@@ -19,6 +26,17 @@ export class Form extends React.Component {
   }
 
   handleOnSubmit(value) {
+    const errors = validate(value.schema,
+                        value.schema.definitions,
+                        value.formData);
+
+    this.setState({ error: errors.normalizedErrors });
+    if (errors.normalizedErrors.length > 0) {
+      value.errors = errors;
+      this.handleOnError(value);
+      return;
+    }
+
     if (this.props.onSubmit) {
       this.props.onSubmit(value);
     }
@@ -44,6 +62,9 @@ export class Form extends React.Component {
       uiSchema = Object.assign(uiSchema, { 'ui:disabled': true });
     }
 
+    // Some hack to get errors passed through the SchemaForm
+    uiSchema.error = this.state.error || {};
+
     const buttonWrapper = <div className="form-buttons">{buttonList}</div>;
     return (
       <div className="cafienne-form">
@@ -55,6 +76,7 @@ export class Form extends React.Component {
           onChange={this.handleOnChange.bind(this)}
           onSubmit={this.handleOnSubmit.bind(this)}
           onError={this.handleOnError.bind(this)}
+          noValidate={true}
         >{buttonWrapper}</JsonSchemaForm>
       </div>
     );

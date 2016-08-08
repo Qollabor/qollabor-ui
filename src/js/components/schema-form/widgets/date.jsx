@@ -36,7 +36,7 @@ export class DateWidget extends React.Component {
     controller, so that date controller is active while tabbing.
   */
   handleOnChange(event, newDate) {
-    this.props.onChange(moment(newDate).format('YYYY-MM-DD'));
+    this.props.onChange(this.formatDate(newDate));
     activeDateElmt.focus();
   }
 
@@ -54,7 +54,17 @@ export class DateWidget extends React.Component {
   }
 
   render() {
-    const date = this.props.formData ? moment(this.props.formData, 'YYYY-MM-DD').toDate() : null;
+    const dateValue = this.props.formData || this.props.schema.defaultValue;
+    let date = null;
+    if (dateValue === '$today') {
+      date = moment().toDate();
+    } else {
+      date = dateValue ? moment(dateValue, 'YYYY-MM-DD').toDate() : null;
+    }
+
+    if (date !== null) {
+      this.props.onChange(this.formatDate(date));
+    }
 
     const errors = {};
     /* eslint-disable no-underscore-dangle */
@@ -62,6 +72,7 @@ export class DateWidget extends React.Component {
       errors.errorText = this.props.errorSchema.__errors.join(', ');
     }
     /* eslint-enable no-underscore-dangle */
+    errors.errorText = this.props.error && this.props.error.message;
 
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
@@ -86,6 +97,7 @@ export class DateWidget extends React.Component {
     }
 
     const title = this.props.schema.title + (this.props.required ? ' *' : '');
+    const errorStyle = Object.assign({}, styles.errorLabel, { transform: 'translate3d(0px, -24px, 0px)' });
 
     return (
       <div>
@@ -100,6 +112,7 @@ export class DateWidget extends React.Component {
           floatingLabelFixed={true}
           floatingLabelFocusStyle={styles.floatingLabel}
           textFieldStyle={styles.field}
+          errorStyle={errorStyle}
           onChange={this.handleOnChange.bind(this)}
           onFocus={this.handleOnFocus.bind(this)}
           onDismiss={this.handleOnDismiss.bind(this)}
