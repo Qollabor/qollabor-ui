@@ -13,7 +13,7 @@ class CaseHeader extends React.Component {
     return registry.get('helpers').getLocalDateTime(date);
   }
   render () {
-    const { name, status, lastModified, user, file, team, userDetails, caseTeamUsers } = this.props;
+    const { name, status, lastModified, user, file, team, userDetails, caseTeamUsers, planItems } = this.props;
     return (
       <Card style={{ margin: '10px' }}>
         <CardHeader
@@ -26,7 +26,7 @@ class CaseHeader extends React.Component {
         <CardMedia style={{ height: '100px', marginLeft: '16px' }}>
           <CaseHeaderDetails
             status={status} lastModified={lastModified}
-            user={user} team={team} userDetails={userDetails} caseTeamUsers={caseTeamUsers}
+            user={user} team={team} userDetails={userDetails} caseTeamUsers={caseTeamUsers} planItems={planItems}
           />
         </CardMedia>
         {file &&

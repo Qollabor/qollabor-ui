@@ -39,6 +39,7 @@ class CaseDocument extends React.Component {
           file={caseDoc.file}
           userDetails={userDetails}
           caseTeamUsers={caseTeamUsers}
+          planItems={caseDoc.planitems}
         />}
         {caseDoc && caseDoc.planitems && <CasePlanItems items={caseDoc.planitems} />}
       </div>
