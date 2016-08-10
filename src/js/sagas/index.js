@@ -3,7 +3,7 @@ import { takeEvery } from 'redux-saga';
 import { loginFlow, refreshFlow, tokenRefreshFlow } from '../features/login';
 import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow,
          tokenNotValidFlow, changePassword, updateAvatar, fetchProfile, updateProfile } from '../features/user';
-import { fetchTasks, viewTasks, executeTaskAction } from '../features/tasks';
+import { fetchTasks, viewTasks, executeTaskAction, fetchTasksStats } from '../features/tasks';
 
 import { fetchTaskDetails, viewTask, transitionToState, saveTaskDetails } from '../features/task';
 import { fetchCase, fetchCaseTeam, fetchDiscretionaryItems, planDiscretionaryItem } from '../features/case';
@@ -30,6 +30,7 @@ const sagas = [
   [takeEvery, 'TASKS:FILTERS:CHANGE', fetchTasks],
   [takeEvery, 'TASKS:LIST:TASK_ROW_CLICKED', viewTasks],
   [takeEvery, 'TASK:ITEM:REQUEST_EXECUTE_ACTION', executeTaskAction],
+  [takeEvery, 'TASK:STATS:REQUEST_INIT', fetchTasksStats],
   // task
   [takeEvery, 'TASK:REQUEST_INIT', fetchTaskDetails],
   [takeEvery, 'TASK:TASKLIST:VIEW_TASK', viewTask],

@@ -86,6 +86,7 @@ export function* executeTaskAction(action) {
   const config = registry.get('config');
   const helpers = registry.get('helpers');
 
+
   yield put({ type: 'TASK:ITEM:EXECUTE_ACTION', taskId: action.taskId, taskAction: action.taskAction });
 
   const userData = {
@@ -106,6 +107,15 @@ export function* executeTaskAction(action) {
         yield put(notifySuccess('The action has been accepted'));
         yield put({ type: 'TASK:ITEM:EXECUTE_ACTION:SUCCESS' });
         yield fetchTask(action.taskId, caseLastModified);
+
+        /* Since we are reading task stats from elastic search,
+         * Stats count will be updated only after 1 sec.
+        */
+        setTimeout(() => {
+          const store = registry.get('store');
+          store.dispatch({ type: 'TASK:STATS:REQUEST_INIT' });
+        }, 1000);
+
         break;
       }
       default:
@@ -117,6 +127,23 @@ export function* executeTaskAction(action) {
     registry.get('logger').error(err);
     notifyDanger('Unable to execute action');
     yield put({ type: 'TASK:ITEM:EXECUTE_ACTION:FAIL', error: err.message });
+  }
+}
+
+export function* fetchTasksStats() {
+  const config = registry.get('config');
+  const helpers = registry.get('helpers');
+
+  yield put({ type: 'TASKS:STATS:FETCH' });
+
+  try {
+    const headers = helpers.addHeadersByName(['cafienneAuth']);
+    const response = yield registry.get('request')
+      .get(`${config.tasks.url}/user/count`, null, headers);
+    yield put({ type: 'TASKS:STATS:FETCH:SUCCESS', stats: response.body.count });
+  } catch (err) {
+    registry.get('logger').error(err);
+    yield put({ type: 'TASKS:STATS:FETCH:FAIL', error: err.message });
   }
 }
 
