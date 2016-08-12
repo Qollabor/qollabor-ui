@@ -22,6 +22,7 @@ export class UserSelectorWidget extends React.Component {
 
   componentWillMount() {
     const selectedUser = this.getDefaultUser(this.props.formData);
+    this.props.onChange(selectedUser);
     if (selectedUser) {
       const userIds = [].concat(selectedUser);
       fetchUserDetails(userIds).then(response => {

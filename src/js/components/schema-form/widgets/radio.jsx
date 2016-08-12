@@ -5,6 +5,11 @@ import { HelpWidget } from './help';
 import styles from '../styles';
 
 export class RadioWidget extends React.Component {
+  componentDidMount() {
+    const defaultSelected = this.props.formData ? this.props.formData : this.props.defaultSelected;
+    this.props.onChange(defaultSelected);
+  }
+
   handleOnChange(event, value) {
     this.props.onChange(value);
   }

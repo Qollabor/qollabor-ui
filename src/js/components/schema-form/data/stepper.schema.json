@@ -43,7 +43,7 @@
           "TravelDetails":{
             "title": "Destination/ Dates",
             "type": "object",
-            "required": ["Destination", "DepartureDate", "ReturnDate"],
+            "required": ["Destination", "DepartureDate", "ReturnDate", "DeparturePoint", "ReturnPoint", "Purpose"],
             "properties": {
               "Destination": {
                 "type": "array",
@@ -336,10 +336,20 @@
   "uiSchema": {
     "TDYRequest": {
       "ui:widget": "stepper",
+      "TravelDetails" : {
+        "Purpose": {"ui:widget": "textarea"},
+        "Justification": {"ui:widget": "textarea"}
+      },
       "Transport" : {
         "POMVMake": {"ui:widget": "textarea"}
       },
-      "TravellerDetails":{
+      "TravellerDetails" : {
+        "Requestor_selector": {"ui:widget": "user-selector", "multiSelect" : false},
+        "PointOfContact_selector": {"ui:widget": "user-selector", "multiSelect" : false}
+      },
+      "Project" : {
+        "Manager_selector": {"ui:widget": "user-selector", "multiSelect" : false},
+        "Assistant_selector": {"ui:widget": "user-selector", "multiSelect" : false}
       }
     }
   },
