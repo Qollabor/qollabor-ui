@@ -1,5 +1,6 @@
 import React from 'react';
 import { StatusCapsule } from '../../../../components/capsules/capsules';
+import styles from '../../styles';
 
 class TaskStats extends React.Component {
 
@@ -10,8 +11,9 @@ class TaskStats extends React.Component {
   }
 
   render () {
+    const bounceStyle = this.props.bounce ? styles.bounce : null;
     return (
-      <div>
+      <div style={bounceStyle}>
         <StatusCapsule status={'Unassigned'}>{this.props.taskStats}</StatusCapsule>
       </div>
     );

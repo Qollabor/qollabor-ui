@@ -113,7 +113,7 @@ export function* executeTaskAction(action) {
         */
         setTimeout(() => {
           const store = registry.get('store');
-          store.dispatch({ type: 'TASK:STATS:REQUEST_INIT' });
+          store.dispatch({ type: 'TASK:STATS:REQUEST_INIT', bounce: true });
         }, 1000);
 
         break;
@@ -130,7 +130,7 @@ export function* executeTaskAction(action) {
   }
 }
 
-export function* fetchTasksStats() {
+export function* fetchTasksStats(action) {
   const config = registry.get('config');
   const helpers = registry.get('helpers');
 
@@ -140,7 +140,7 @@ export function* fetchTasksStats() {
     const headers = helpers.addHeadersByName(['cafienneAuth']);
     const response = yield registry.get('request')
       .get(`${config.tasks.url}/user/count`, null, headers);
-    yield put({ type: 'TASKS:STATS:FETCH:SUCCESS', stats: response.body.count });
+    yield put({ type: 'TASKS:STATS:FETCH:SUCCESS', stats: response.body.count, bounce: action.bounce });
   } catch (err) {
     registry.get('logger').error(err);
     yield put({ type: 'TASKS:STATS:FETCH:FAIL', error: err.message });
