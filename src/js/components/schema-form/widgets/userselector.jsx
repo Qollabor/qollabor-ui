@@ -22,7 +22,6 @@ export class UserSelectorWidget extends React.Component {
 
   componentWillMount() {
     const selectedUser = this.getDefaultUser(this.props.formData);
-    this.props.onChange(selectedUser);
     if (selectedUser) {
       const userIds = [].concat(selectedUser);
       fetchUserDetails(userIds).then(response => {
@@ -100,6 +99,12 @@ export class UserSelectorWidget extends React.Component {
   }
 
   render() {
+    const selectedUser = this.getDefaultUser(this.props.formData);
+    if (selectedUser) {
+      const userIds = (this.props.uiSchema.multiSelect) ? [].concat(selectedUser) : selectedUser;
+      this.props.onChange(userIds);
+    }
+
     const errors = {};
     /* eslint-disable no-underscore-dangle */
     if (this.props.errorSchema && this.props.errorSchema.__errors) {
