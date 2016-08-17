@@ -92,9 +92,7 @@ export class StepperWidget extends Component {
     return true;
   }
 
-  handlePrev(currentStepName) {
-    if (! this.validateAndSetErrors(currentStepName)) return;
-
+  handlePrev() {
     const { stepIndex } = this.state;
     if (stepIndex > 0) {
       this.setState({
