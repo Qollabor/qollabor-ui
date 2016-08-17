@@ -43,7 +43,7 @@ class Details extends React.Component {
   }
 
   openDetailPage() {
-    const caseId = this.props.caseData.id;
+    const caseId = this.props.case.id;
     this.context.router.push(`/cases/${caseId}`);
   }
 
