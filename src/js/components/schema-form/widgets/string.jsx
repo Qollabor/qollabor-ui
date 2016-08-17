@@ -1,6 +1,7 @@
 import React from 'react';
 import { TextField } from 'material-ui';
 import { DateWidget } from './date';
+import { DateTimeWidget } from './datetime';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import { TimeWidget } from './time';
@@ -36,6 +37,12 @@ export class StringWidget extends React.Component {
           {...this.props}
         />);
       }
+    }
+
+    if (this.props.schema.format === 'date-time' ||
+      (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'date-time')
+    ) {
+      return <DateTimeWidget {...this.props}/>;
     }
 
     if (
