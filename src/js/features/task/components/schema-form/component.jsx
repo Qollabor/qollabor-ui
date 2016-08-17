@@ -12,12 +12,13 @@ export class TaskModelSchemaForm extends React.Component {
     super(props);
 
     this.state = {
-      open: false
+      open: false,
+      remindUser: true
     };
   }
 
   handleOpen() {
-    if (this.props.taskDetails.owner === null) {
+    if (this.state.remindUser && this.props.taskDetails.owner === null) {
       this.setState({
         open: true
       });
@@ -26,7 +27,8 @@ export class TaskModelSchemaForm extends React.Component {
 
   handleClose() {
     this.setState({
-      open: false
+      open: false,
+      remindUser: false
     });
   }
 

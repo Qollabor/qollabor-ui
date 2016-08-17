@@ -73,6 +73,12 @@ export class TaskInfo extends React.Component {
       receivedBefore = `Received before ${moment(moment().diff(receivedAtInLocalTime)).format('h[h]:m[m]')}`;
     }
 
+    const loggedInUserId = this.props.loggedInUserId;
+    const assignee = (this.props.taskDetails.assignee === loggedInUserId) ?
+                        'you' : this.props.taskDetails.assignee;
+    const owner = (this.props.taskDetails.owner === loggedInUserId) ?
+                        'you' : this.props.taskDetails.owner;
+
     let content;
     if (Object.keys(this.props.taskDetails).length > 0) {
       content = (
@@ -102,8 +108,8 @@ export class TaskInfo extends React.Component {
                 <span>the task to continue</span>
               </div>
             }
-            <TaskInfoItem itemLabel={'Assigned to'} itemValue={this.props.taskDetails.assignee} />
-            {(this.props.taskDetails.owner && this.props.taskDetails.owner === this.props.loggedInUserId) &&
+            <TaskInfoItem itemLabel={'Assigned to'} itemValue={assignee} />
+            {(this.props.taskDetails.owner && this.props.taskDetails.owner === loggedInUserId) &&
               <FlatButton
                 primary={true}
                 key="revoke"
@@ -112,8 +118,8 @@ export class TaskInfo extends React.Component {
               />
             }
             <br/>
-            <TaskInfoItem itemLabel={'Owned by'} itemValue={this.props.taskDetails.owner} />
-            {(this.props.taskDetails.owner && this.props.taskDetails.owner === this.props.loggedInUserId) &&
+            <TaskInfoItem itemLabel={'Owned by'} itemValue={owner} />
+            {(this.props.taskDetails.owner && this.props.taskDetails.owner === loggedInUserId) &&
               <FlatButton
                 primary={true}
                 key="delegate"
