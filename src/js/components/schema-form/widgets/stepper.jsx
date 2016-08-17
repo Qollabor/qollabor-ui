@@ -192,7 +192,7 @@ export class StepperWidget extends Component {
                     readonly={readonly}
                     hideTitle={true}
                   />
-                  {(! disabled) && this.renderStepActions(index, propertyName)}
+                  {(! (disabled || readonly)) && this.renderStepActions(index, propertyName)}
                 </StepContent>
               </Step>
             );
