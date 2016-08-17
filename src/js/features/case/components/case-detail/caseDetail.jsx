@@ -1,6 +1,6 @@
 import React from 'react';
 import CaseDocument from './components/case-document/caseDocument';
-import CaseDiscretionaryItems from './components//discretionary-items/caseDiscretionaryItems';
+import CaseDiscretionaryItems from './components/discretionary-items/caseDiscretionaryItems';
 
 class CaseDetail extends React.Component {
   componentWillMount () {
@@ -13,7 +13,7 @@ class CaseDetail extends React.Component {
     return (
       <div>
         {<CaseDocument document={caseDocument} team={caseTeam} />}
-        {discretionaryItems.items.length !== 0 && <CaseDiscretionaryItems items={discretionaryItems} />}
+        {discretionaryItems.items.length !== 0 && <CaseDiscretionaryItems items={discretionaryItems.items} />}
       </div>
     );
   }

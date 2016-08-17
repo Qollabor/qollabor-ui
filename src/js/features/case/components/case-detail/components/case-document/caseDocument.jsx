@@ -1,6 +1,7 @@
 import React from 'react';
 import CaseHeader from './caseHeader';
 import CasePlanItems from './casePlanItems';
+import CaseFileCardViewer from '../case-file-viewer/caseFileCardViewer';
 
 class CaseDocument extends React.Component {
 
@@ -41,6 +42,7 @@ class CaseDocument extends React.Component {
           caseTeamUsers={caseTeamUsers}
           planItems={caseDoc.planitems}
         />}
+        {caseDoc && <CaseFileCardViewer file={caseDoc.file} />}
         {caseDoc && caseDoc.planitems && <CasePlanItems items={caseDoc.planitems} />}
       </div>
     );

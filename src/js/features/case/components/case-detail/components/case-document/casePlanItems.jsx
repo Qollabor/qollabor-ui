@@ -27,7 +27,7 @@ class CasePlanItems extends React.Component {
     return (
       <Card style={{ margin: '10px' }}>
         <CardHeader
-          title="Plan Items"
+          title="Planned Items"
           actAsExpander={true}
           showExpandableButton={true}
           initiallyExpanded={false}

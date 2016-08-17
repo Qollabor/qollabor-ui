@@ -5,14 +5,19 @@ import { white } from 'material-ui/styles/colors';
 
 const style = {
   fontSize: '12px',
-  margin: 5,
+  marginLeft: 5,
+  marginTop: 5,
   textIndent: '20px'
 };
 
 const searchIconStyle = {
   position: 'absolute',
-  top: '15px',
+  top: '13px',
   left: '2px'
+};
+
+const underlineStyle = {
+  bottom: '12px'
 };
 
 const searchTextStyle = {
@@ -62,6 +67,7 @@ class TextFilter extends React.Component {
         <TextField
           type="search" hintText={hintText}
           style={style} value={this.state.filterText}
+          underlineStyle={underlineStyle}
           hintStyle={Object.assign(searchTextStyle, this.props.hintStyle)}
           inputStyle={Object.assign(searchTextStyle, this.props.inputStyle)}
           onKeyUp={this.handleFilterKeyUp.bind(this)} onKeyDown={this.handleFilterKeyDown.bind(this)}

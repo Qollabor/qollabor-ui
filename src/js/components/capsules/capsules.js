@@ -30,13 +30,13 @@ const statusColorMappings = {
   Assigned: 'lightgreen',
   Delegated: '#FFCC44',
   Unassigned: 'gray',
-  Completed: '#bdbdbd',
-  Active: '#4caf50',
+  Completed: '#4caf50',
+  Active: '#2196F3',
   Terminated: '#FF5522',
   Suspended: '#ffb74d',
   Failed: '#f44336',
   Closed: '#9e9e9e',
-  Available: '#90caf9',
+  Available: '#bdbdbd',
   Enabled: '#ab47bc',
   Disabled: '#ce93d8'
 };

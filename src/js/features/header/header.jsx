@@ -10,6 +10,13 @@ import CafienneSearch from '../search/components/searchbox';
 import { ActionAssignmentInd } from 'material-ui/svg-icons';
 import { blue500 } from 'material-ui/styles/colors';
 
+const headerStyle = {
+  position: 'fixed',
+  width: '100%',
+  zIndex: '300',
+  top: 0
+};
+
 export class Header extends React.Component {
   handleLeftNavToggle() {
     if (this.props.onLeftNavToggle) {
@@ -29,7 +36,7 @@ export class Header extends React.Component {
     const drawerWidth = theme.drawer.width;
 
     return (
-      <div>
+      <div style={headerStyle}>
         <Drawer
           open={this.props.showDrawer}
           containerStyle={styles.leftNav}

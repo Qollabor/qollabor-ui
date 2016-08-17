@@ -1,9 +1,13 @@
 import React from 'react';
-import { TitledBox, JsonObjectViewer } from 'cafienne-ui-elements';
-
+import { TitledBox } from 'cafienne-ui-elements';
+import { RaisedButton } from 'material-ui';
 import styles from '../styles';
 
 class CaseInformationComponent extends React.Component {
+  openDetailPage() {
+    const caseId = this.props.case.id;
+    this.context.router.push(`/cases/${caseId}`);
+  }
   render() {
     return (
       <div>
@@ -16,12 +20,10 @@ class CaseInformationComponent extends React.Component {
           </div>
         </section>
 
-        <JsonObjectViewer
-          buttonTitle="Open case"
-          buttonIsPrimary={true}
-          buttonStyle={{ float: 'right' }}
-          modalTitle="Case details"
-          object={this.props.case}
+        <RaisedButton
+          label="Open case"
+          primary={true}
+          onClick={this.openDetailPage.bind(this)}
         />
       </div>
     );
@@ -30,6 +32,10 @@ class CaseInformationComponent extends React.Component {
 
 CaseInformationComponent.propTypes = {
   case: React.PropTypes.object
+};
+
+CaseInformationComponent.contextTypes = {
+  router: React.PropTypes.object.isRequired
 };
 
 export const CaseInformation = TitledBox(CaseInformationComponent);

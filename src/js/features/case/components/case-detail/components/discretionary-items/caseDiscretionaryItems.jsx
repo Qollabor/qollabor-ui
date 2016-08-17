@@ -27,7 +27,7 @@ class CaseDiscretionaryItems extends React.Component {
     return (
       <Card style={{ margin: '10px' }}>
         <CardHeader
-          title="Discretionary Items"
+          title="Available to plan"
           actAsExpander={true}
           showExpandableButton={true}
           initiallyExpanded={false}

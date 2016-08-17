@@ -16,10 +16,10 @@ export default {
     borderColor: 'lightgray'
   },
   drawer: {
-    width: 240
+    width: 200
   },
   rightDrawer: {
-    width: 300
+    width: 250
   },
   appBar: {
     height: 47

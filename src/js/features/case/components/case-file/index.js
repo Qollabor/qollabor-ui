@@ -1,5 +1,6 @@
 import CaseFile from './caseFile';
+import CaseFileViewer from './caseFileViewer';
 
 import './jsonPretty.css';
 
-export default CaseFile;
+export { CaseFile, CaseFileViewer };

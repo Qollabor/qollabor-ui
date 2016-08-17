@@ -1,6 +1,6 @@
 import React from 'react';
 import { AvFiberManualRecord } from 'material-ui/svg-icons';
-import { green500, grey500 } from 'material-ui/styles/colors';
+import { green500, blue500 } from 'material-ui/styles/colors';
 
 
 const svgIconStyle = {
@@ -14,7 +14,7 @@ const svgIconStyle = {
 export default class ProgressPopover extends React.Component {
 
   getIconColor(status) {
-    return status === 'Completed' ? green500 : grey500;
+    return status === 'Completed' ? green500 : blue500;
   }
 
   render() {

@@ -35,6 +35,18 @@ class PlanItem extends React.Component {
     return registry.get('helpers').getTimeAgo(date);
   }
 
+  openTaskDetailPage () {
+    const type = this.props.item.type;
+    if (type === 'HumanTask') {
+      const status = this.props.item.currentState;
+      const taskId = this.props.item.id;
+      const caseId = this.props.item.caseInstanceId;
+      if (status === 'Active' || status === 'Completed') {
+        this.context.router.push(`/tasks/${taskId}?caseId=${caseId}`);
+      }
+    }
+  }
+
   render () {
     const item = this.props.item;
     return (
@@ -52,6 +64,7 @@ class PlanItem extends React.Component {
             </StatusCapsule>
           </div>
         }
+        onTouchTap={this.openTaskDetailPage.bind(this)}
       />);
   }
 }
