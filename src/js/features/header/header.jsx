@@ -1,7 +1,6 @@
 import React from 'react';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import { IconButton, Divider, MenuItem, Drawer } from 'material-ui';
-import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import StartCaseIcon from 'material-ui/svg-icons/av/play-arrow';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import registry from 'app-registry';
@@ -61,14 +60,19 @@ export class Header extends React.Component {
               iconStyle={styles.menuIcon}
               onClick={this.handleLeftNavToggle.bind(this)}
             >
-              <MenuIcon
-                color={theme.appBar.textColor}
+              <img
+                src="/assets/icons/logo.png"
+                style={{ height: 30, width: 30 }}
+                alt="logo"
               />
             </IconButton>
           </ToolbarGroup>
           <ToolbarGroup style={{ flexGrow: '4', justifyContent: 'flex-start' }} firstChild={false} lastChild={false}>
             <ToolbarTitle
-              style={Object.assign({}, styles.title, { color: theme.appBar.textColor })}
+              style={Object.assign({}, styles.title, {
+                color: theme.appBar.textColor,
+                fontFamily: theme.fontFamily
+              })}
               text="Cafienne"
             />
             <CafienneSearch />

@@ -11,7 +11,9 @@ export default {
     width: '162px'
   },
   menuIcon: {
-    marginTop: '-1px'
+    marginTop: '-6px',
+    height: 35,
+    width: 35
   },
   menu: {
     float: 'left',
