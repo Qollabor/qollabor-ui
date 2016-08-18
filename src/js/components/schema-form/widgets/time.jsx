@@ -57,6 +57,7 @@ export class TimeWidget extends React.Component {
           name={this.props.name}
           defaultTime={time}
           format="24hr"
+          autoOk={true}
           floatingLabelText={title}
           floatingLabelFixed={true}
           textFieldStyle={styles.field}
