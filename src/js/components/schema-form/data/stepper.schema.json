@@ -179,10 +179,6 @@
                   "Country"
               ],
               "properties": {
-                  "City": {
-                      "title": "City",
-                      "type": "string"
-                  },
                   "Country": {
                       "title": "Country",
                       "type": "string",
@@ -246,6 +242,10 @@
                         "UK",
                         "US"
                       ]
+                  },
+                  "City": {
+                      "title": "City",
+                      "type": "string"
                   }
               }
           },
@@ -363,7 +363,7 @@
         "POMVLicense": {"ui:help": "License/ Registration number of your vehicle"}
       },
       "TravellerDetails" : {
-        "Requestor": {"ui:widgets": "user-selector", "multiSelect" : false},
+        "Requestor": {"ui:widgets": "user-selector", "multiSelect" : false, "role" : "Requestor"},
         "PointOfContact": {
           "ui:widgets": "user-selector",
           "ui:help": "Person other than you who can be contacted for any queries on this travel",
@@ -385,8 +385,8 @@
         "IMIS-activity-code": {
           "ui:help": "Nato Project Activity Code"
         },
-        "Manager": {"ui:widgets": "user-selector", "multiSelect" : false},
-        "Assistant": {"ui:widgets": "user-selector", "multiSelect" : false}
+        "Manager": {"ui:widgets": "user-selector", "multiSelect" : false, "role" : "Approver"},
+        "Assistant": {"ui:widgets": "user-selector", "multiSelect" : false, "role" : "PersonalAssistant"}
       }
     }
   }

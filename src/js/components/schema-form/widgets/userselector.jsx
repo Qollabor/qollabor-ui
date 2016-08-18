@@ -37,6 +37,11 @@ export class UserSelectorWidget extends React.Component {
           selectedUsers = response.body;
         }
 
+        // On change of user-selector, add the corresponding user to caseteam.
+        const store = registry.get('store');
+        store.dispatch({ type: 'CASETEAM_SELECTOR:SETUSERSFORROLE', role: this.props.uiSchema.role,
+            user: selectedUsers[0], selected: true, multiSelect: this.props.uiSchema.multiSelect });
+
         this.setState({
           selectedUsers
         });
@@ -81,6 +86,12 @@ export class UserSelectorWidget extends React.Component {
     }
 
     this.props.onChange(selectedUserIds);
+
+    // On change of user-selector, add the corresponding user to caseteam.
+    const store = registry.get('store');
+    store.dispatch({ type: 'CASETEAM_SELECTOR:SETUSERSFORROLE', role: this.props.uiSchema.role,
+        user: selectedUsers[0], selected: true, multiSelect: this.props.uiSchema.multiSelect });
+
     this.setState({ selectedUsers });
   }
 

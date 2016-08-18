@@ -29,7 +29,7 @@ export default {
   },
   legend: Object.assign({}, baseTheme, {
     lineHeight: '2em',
-    color: 'grey'
+    color: 'black'
   }),
   title: Object.assign({}, baseTheme, {
     color: theme.baseTheme.palette.primary1Color

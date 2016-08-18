@@ -25,8 +25,12 @@ const defaultState = Immutable.fromJS({
 });
 
 
-const getCaseTeam = (roles, selectedRole, selectedUser, selected) => {
-  const users = roles.get(selectedRole);
+const getCaseTeam = (roles, selectedRole, selectedUser, selected, multiSelect) => {
+  // If selectedRole is not available in the roles list, return.
+  if (!roles.get(selectedRole)) {
+    return roles;
+  }
+  const users = (multiSelect === false) ? [] : roles.get(selectedRole);
   const index = users.findIndex((item) => item.uniqueId === selectedUser.uniqueId);
   if (!selected) {
     users.splice(index, 1);
@@ -51,7 +55,7 @@ export const reducers = (state = defaultState, action) => {
     }
     case 'CASETEAM_SELECTOR:SETUSERSFORROLE': {
       return state
-        .set('roles', getCaseTeam(state.get('roles'), action.role, action.user, action.selected))
+        .set('roles', getCaseTeam(state.get('roles'), action.role, action.user, action.selected, action.multiSelect))
         .set('selectedUser', action.user)
         .set('isSelected', action.selected);
     }
