@@ -62,7 +62,7 @@ class UserSelector extends React.Component {
               activeFilter={this.props.filterString}
             />
           </div>
-          <div style={{ height: 288, overflowY: 'auto', display: 'inline-block', width: '100%' }}>
+          <div style={{ height: 306, paddingTop: 10, overflowY: 'auto', display: 'inline-block', width: '100%' }}>
             <UserList people={users} canSelectUsers={true} onUserSelectChange={this.handleUserSelectChange.bind(this)}/>
           </div>
         </Paper>

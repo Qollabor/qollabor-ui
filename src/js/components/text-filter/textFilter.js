@@ -20,10 +20,6 @@ const underlineStyle = {
   bottom: '12px'
 };
 
-const searchTextStyle = {
-  color: 'white'
-};
-
 class TextFilter extends React.Component {
 
   constructor(props) {
@@ -45,6 +41,10 @@ class TextFilter extends React.Component {
     this.setState({
       filterText: e.target.value
     });
+
+    if (e.target.value === '') {
+      this.props.onFilterChange(e, '');
+    }
   }
 
   handleFilterKeyDown(e) {
@@ -55,7 +55,7 @@ class TextFilter extends React.Component {
 
   handleFilterKeyUp(e) {
     if (e.target.value === '') {
-      this.handleClearFilter(e);
+      this.props.onFilterChange(e, '');
     }
   }
 
@@ -68,8 +68,8 @@ class TextFilter extends React.Component {
           type="search" hintText={hintText}
           style={style} value={this.state.filterText}
           underlineStyle={underlineStyle}
-          hintStyle={Object.assign(searchTextStyle, this.props.hintStyle)}
-          inputStyle={Object.assign(searchTextStyle, this.props.inputStyle)}
+          hintStyle={this.props.hintStyle}
+          inputStyle={this.props.inputStyle}
           onKeyUp={this.handleFilterKeyUp.bind(this)} onKeyDown={this.handleFilterKeyDown.bind(this)}
           onChange={this.handleFilterChange.bind(this)}
         />
