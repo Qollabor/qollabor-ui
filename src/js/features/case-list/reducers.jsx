@@ -85,6 +85,11 @@ const getCaseInstances = (responseItems) => {
     casePlanItem.parentCaseId = caseInstance.parentCaseId;
     casePlanItem.team = caseInstance.team;
     casePlanItem.id = caseInstance.id;
+    const planItems = caseInstance.planitems.sort((item1, item2) =>
+    new Date(item1.lastModified) - new Date(item2.lastModified));
+    const lastModifiedPlanItem = planItems[planItems.length - 1];
+    casePlanItem.lastModifiedBy = lastModifiedPlanItem.user;
+    casePlanItem.lastModified = lastModifiedPlanItem.lastModified;
     return arr.concat(casePlanItem);
   }, []);
 

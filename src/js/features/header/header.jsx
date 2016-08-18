@@ -34,7 +34,7 @@ export class Header extends React.Component {
   render() {
     const theme = registry.get('theme');
     const drawerWidth = theme.drawer.width;
-
+    const cafienneTitleWidth = drawerWidth - 70;
     return (
       <div style={headerStyle}>
         <Drawer
@@ -78,7 +78,8 @@ export class Header extends React.Component {
             <ToolbarTitle
               style={Object.assign({}, styles.title, {
                 color: theme.appBar.textColor,
-                fontFamily: theme.fontFamily
+                fontFamily: theme.fontFamily,
+                width: cafienneTitleWidth
               })}
               text="Cafienne"
             />

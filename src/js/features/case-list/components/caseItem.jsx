@@ -21,7 +21,8 @@ class CaseItem extends React.Component {
         secondaryText={
           <CaseHeaderDetails
             status={item.status} lastModified={item.lastModified}
-            user={item.user} team={team} userDetails={userDetails} caseTeamUsers={caseTeamUsers}
+            user={item.user} team={team} userDetails={userDetails}
+            lastModifiedBy={item.lastModifiedBy} caseTeamUsers={caseTeamUsers}
           />
         }
       />

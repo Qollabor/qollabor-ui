@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 import ProgressItem from './components/progressItem';
 import { ProgressLine } from './components/progressLine';
 import moment from 'moment';
+import registry from 'app-registry';
 
 const progressContainer = {
   display: 'flex',
@@ -16,7 +17,7 @@ export default class CaseProgressViewer extends React.Component {
 
   getMileStonesAndStages(planItems) {
     return planItems.filter(item => ((item.type === 'Stage' || item.type === 'Milestone')
-    && item.historyState !== 'Null')).sort((item1, item2) => {
+    && item.historyState !== 'Null' & item.transition !== 'ParentTerminate')).sort((item1, item2) => {
       const moment1 = moment(item1.lastModified);
       const moment2 = moment(item2.lastModified);
       return moment1.isSame(moment2) ? this.getMilliseconds(item1.lastModified) -
@@ -29,8 +30,7 @@ export default class CaseProgressViewer extends React.Component {
   }
 
   getMilliseconds(lastModified) {
-    const matchArray = lastModified.match(new RegExp('\\.[0-9]*Z'));
-    return parseInt(matchArray[0].substring(1, matchArray[0].length - 1), 10);
+    return registry.get('helpers').getMilliseconds(lastModified);
   }
 
   render() {

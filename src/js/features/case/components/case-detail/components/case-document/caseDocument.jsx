@@ -1,7 +1,6 @@
 import React from 'react';
 import CaseHeader from './caseHeader';
 import CasePlanItems from './casePlanItems';
-import CaseFileCardViewer from '../case-file-viewer/caseFileCardViewer';
 
 class CaseDocument extends React.Component {
 
@@ -13,6 +12,9 @@ class CaseDocument extends React.Component {
       caseDocument.status = casePlanItem.currentState;
       caseDocument.lastModified = casePlanItem.lastModified;
       caseDocument.planitems = this.getPlanItems(caseDocument.planitems);
+      const lastModifiedPlanItem = caseDocument.planitems[caseDocument.planitems.length - 1];
+      caseDocument.lastModifiedBy = lastModifiedPlanItem.user;
+      caseDocument.lastModified = lastModifiedPlanItem.lastModified;
       return caseDocument;
     }
     return null;
@@ -21,7 +23,7 @@ class CaseDocument extends React.Component {
   getPlanItems(planItems) {
     // sort plan items
     const planItemsSorted = planItems.sort((item1, item2) =>
-    new Date(item2.lastModified) - new Date(item1.lastModified));
+    new Date(item1.lastModified) - new Date(item2.lastModified));
     return planItemsSorted;
   }
 
@@ -34,15 +36,16 @@ class CaseDocument extends React.Component {
           definition={caseDoc.definition}
           status={caseDoc.status}
           lastModified={caseDoc.lastModified}
+          lastModifiedBy={caseDoc.lastModifiedBy}
           user={caseDoc.user}
           team={caseDoc.team}
           name={caseDoc.name}
           file={caseDoc.file}
           userDetails={userDetails}
+          lastModifiedByUserDetails={userDetails}
           caseTeamUsers={caseTeamUsers}
           planItems={caseDoc.planitems}
         />}
-        {caseDoc && <CaseFileCardViewer file={caseDoc.file} />}
         {caseDoc && caseDoc.planitems && <CasePlanItems items={caseDoc.planitems} />}
       </div>
     );

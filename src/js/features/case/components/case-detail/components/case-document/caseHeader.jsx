@@ -12,7 +12,8 @@ class CaseHeader extends React.Component {
     return registry.get('helpers').getLocalDateTime(date);
   }
   render () {
-    const { name, status, lastModified, user, team, userDetails, caseTeamUsers, planItems } = this.props;
+    const { name, status, lastModified, lastModifiedBy,
+      user, team, userDetails, lastModifiedByUserDetails, caseTeamUsers, planItems } = this.props;
     return (
       <Card style={{ margin: '10px' }}>
         <CardHeader
@@ -24,8 +25,10 @@ class CaseHeader extends React.Component {
         />
         <CardMedia style={{ height: '130px', marginLeft: '16px' }}>
           <CaseHeaderDetails
-            status={status} lastModified={lastModified}
-            user={user} team={team} userDetails={userDetails} caseTeamUsers={caseTeamUsers} planItems={planItems}
+            status={status} lastModified={lastModified} lastModifiedBy={lastModifiedBy}
+            user={user} team={team} userDetails={userDetails}
+            lastModifiedByUserDetails={lastModifiedByUserDetails}
+            caseTeamUsers={caseTeamUsers} planItems={planItems}
           />
         </CardMedia>
       </Card>
