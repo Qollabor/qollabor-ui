@@ -6,7 +6,8 @@ const mapDispatchToProps = (dispatch) => ({
   initCaseDocument: () => {
     const getParameterValuesFromHash = registry.get('helpers').getParameterValuesFromHash;
     const params = getParameterValuesFromHash('/cases/:id');
-    dispatch({ type: 'CASE:REQUEST_INIT', caseId: params.id });
+    const caseLastModified = registry.get('helpers').getQueryStrings(window.location.hash).caseLastModified;
+    dispatch({ type: 'CASE:REQUEST_INIT', caseId: params.id, caseLastModified });
   }
 });
 

@@ -43,8 +43,9 @@ class Details extends React.Component {
   }
 
   openDetailPage() {
-    const caseId = this.props.case.id;
-    this.context.router.push(`/cases/${caseId}`);
+    const caseId = this.props.caseId;
+    const caseLastModified = this.props.caseLastModified;
+    this.context.router.push(`/cases/${caseId}?caseLastModified=${caseLastModified}`);
   }
 
   render() {

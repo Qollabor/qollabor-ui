@@ -27,7 +27,8 @@ const mapStateToProps = (state) => ({
   error: state.casemodel.details.get('error').toJS(),
   actionError: state.casemodel.details.get('actionError').toJS(),
   showFeedbackForm: state.casemodel.details.get('showFeedbackForm'),
-  case: state.casemodel.details.get('case')
+  caseId: state.casemodel.details.get('caseId'),
+  caseLastModified: state.casemodel.details.get('caseLastModified')
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
