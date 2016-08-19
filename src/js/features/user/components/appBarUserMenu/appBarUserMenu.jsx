@@ -99,21 +99,14 @@ export class AppBarUserMenu extends React.Component {
           onRequestClose={this.handleRequestClose.bind(this)}
           animation={PopoverAnimationVertical}
         >
-          <div style={{ margin: '10px 10px 10px 38px', height: 190, width: 150 }}>
+          <div style={{ margin: '10px 10px 10px 28px', height: 170, width: 150, alignContent: 'center' }}>
             {profile &&
               <div>
                 <Avatar
                   key={profile.name}
                   user={profile}
-                  size={150}
+                  size={170}
                 />
-                <div style={{ paddingLeft: 20, paddingTop: 160, fontSize: 13, width: '80%' }}>
-                  <label>{profile.name}</label>
-                  <br/>
-                  <label style={{ fontWeight: 'bolder' }}>{profile.roles.join(', ')}</label>
-                  <br/>
-                  <label>{profile.email}</label>
-                </div>
               </div>
             }
           </div>
