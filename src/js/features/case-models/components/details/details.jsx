@@ -111,7 +111,7 @@ class Details extends React.Component {
     }
 
     return (
-      <Paper style={{ padding: 30, paddingTop: 15, margin: 20 }}>
+      <Paper style={{ padding: 30, paddingTop: 10, margin: '65px 15px 15px 15px' }}>
         {detailBody}
       </Paper>
     );
