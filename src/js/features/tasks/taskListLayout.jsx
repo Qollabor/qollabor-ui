@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { TaskList } from '../tasks-list';
+import { TaskList } from '../tasks/components/list';
 
 export class TaskListLayout extends React.Component {
   render() {

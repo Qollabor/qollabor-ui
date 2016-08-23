@@ -2,7 +2,7 @@ import React from 'react';
 
 import { IconButton, IconMenu, MenuItem, Popover } from 'material-ui';
 import { NavigationMoreVert } from 'material-ui/svg-icons';
-import UserSelector from '../../../components/user-selector';
+import UserSelector from '../../../../../components/user-selector';
 
 export class ActionChooser extends React.Component {
   constructor(props) {

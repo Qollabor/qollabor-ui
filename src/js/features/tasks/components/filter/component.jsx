@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontIcon, MenuItem } from 'material-ui';
-import TaskStats from '../tasks/components/stats';
+import TaskStats from '../stats';
 import styles from './styles';
 
 class TasksFilter extends React.Component {

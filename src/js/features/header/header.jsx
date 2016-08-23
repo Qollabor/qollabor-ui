@@ -5,7 +5,7 @@ import StartCaseIcon from 'material-ui/svg-icons/av/play-arrow';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import registry from 'app-registry';
 import styles from './styles';
-import { TasksFilter } from '../tasks-filter';
+import { TasksFilter } from '../tasks/components/filter';
 import CafienneSearch from '../search/components/searchbox';
 import { ActionAssignmentInd } from 'material-ui/svg-icons';
 import { blue500 } from 'material-ui/styles/colors';
