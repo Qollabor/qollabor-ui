@@ -96,11 +96,12 @@ describe('features/case/sagas', () => {
         generator.next();
         generator.next();
 
-        expect(requestSpy.calledWith(`${fakeURL}/${caseId}/discretionaryitems/plan`, { planItemId }, {
-          headers: {
-            [fakeTokenPropertyName]: fakeToken
-          }
-        })).to.be.true;
+        expect(requestSpy.calledWith(`${fakeURL}/${caseId}/discretionaryitems/plan`, { name: planItemName, planItemId },
+          {
+            headers: {
+              [fakeTokenPropertyName]: fakeToken
+            }
+          })).to.be.true;
       });
 
       it('should notify success message', () => {

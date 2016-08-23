@@ -97,7 +97,7 @@ export function* fetchDiscretionaryItems(action) {
       discretionaryItems = response.body;
     }
 
-    yield put({ type: 'CASE:DISCRETIONARY_ITEMS:FETCH:SUCCESS', discretionaryItems });
+    yield put({ type: 'CASE:DISCRETIONARY_ITEMS:FETCH:SUCCESS', discretionaryItems, caseInstanceId: action.caseId });
   } catch (err) {
     yield put({ type: 'CASE:DISCRETIONARY_ITEMS:FETCH:FAIL', error: err.message });
   }
@@ -120,6 +120,7 @@ export function* planDiscretionaryItem(action) {
 
     const response = yield registry.get('request')
       .post(`${config.cases.url}/${action.caseId}/discretionaryitems/plan`, {
+        name: action.planItemName,
         planItemId: action.planItemId
       }, {
         headers: {

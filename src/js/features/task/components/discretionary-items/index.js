@@ -15,7 +15,8 @@ function mapStateToProps(state) {
             .dispatch({
               type: 'CASE:DISCRETIONARY_ITEMS:REQUEST_PLAN',
               planItemId: item.id,
-              caseId: item.caseInstanceId
+              planItemName: item.name,
+              caseId: state.case.discretionaryItems.get('caseInstanceId')
             })
         })
       ),
