@@ -48,10 +48,10 @@ class CaseHeaderDetails extends React.Component {
   }
 }
 CaseHeaderDetails.propTypes = {
-  status: React.PropTypes.string.isRequired,
+  status: React.PropTypes.string,
   lastModified: React.PropTypes.string.isRequired,
   user: React.PropTypes.string.isRequired,
-  team: React.PropTypes.object.isRequired
+  team: React.PropTypes.array.isRequired
 };
 
 export default CaseHeaderDetails;

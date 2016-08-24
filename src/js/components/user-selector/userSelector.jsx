@@ -38,9 +38,9 @@ class UserSelector extends React.Component {
     if (selectedUsers && users) {
       users.forEach((user) => {
         const userId = user.uniqueId;
-        user.selected = selectedUsers.find((selectedUser) =>
+        user.selected = (selectedUsers.findIndex((selectedUser) =>
           selectedUser.uniqueId === userId
-        );
+        ) !== -1);
       });
     }
   }

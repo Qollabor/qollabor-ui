@@ -61,7 +61,7 @@ export class Header extends React.Component {
         <Toolbar
           style={Object.assign({}, styles.appBar)}
         >
-          <ToolbarGroup firstChild={true} lastChild={false} float="left">
+          <ToolbarGroup style={{ float: 'left' }} firstChild={true} lastChild={false} >
             <IconButton
               tooltip="Open menu"
               iconStyle={styles.menuIcon}
@@ -85,7 +85,7 @@ export class Header extends React.Component {
             />
             <CafienneSearch />
           </ToolbarGroup>
-          <ToolbarGroup firstChild={false} lastChild={true} float="right">
+          <ToolbarGroup style={{ float: 'right' }} firstChild={false} lastChild={true}>
             <div style={{ display: 'inline-block' }}><AppBarUserMenu /></div>
           </ToolbarGroup>
         </Toolbar>

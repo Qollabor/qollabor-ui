@@ -10,12 +10,11 @@ class CaseFileCardViewer extends React.Component {
   render () {
     const { file } = this.props;
     return (
-      <Card style={{ margin: '10px' }}>
+      <Card style={{ margin: '10px' }} initiallyExpanded={false}>
         <CardHeader
           title="Case Information"
           actAsExpander={true}
           showExpandableButton={true}
-          initiallyExpanded={false}
           style={headerStyle}
         />
         <CardText expandable={true} style={{ overflow: 'auto' }}>

@@ -18,7 +18,7 @@ const Capsule = ({ children, statusStyle }) => {
 };
 
 Capsule.propTypes = {
-  children: React.PropTypes.string,
+  children: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   backgroundColor: React.PropTypes.string
 };
 
@@ -53,7 +53,7 @@ const StatusCapsule = ({ status, children, statusStyle }) => {
 
 StatusCapsule.propTypes = {
   status: React.PropTypes.string,
-  children: React.PropTypes.string,
+  children: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   statusStyle: React.PropTypes.object
 };
 

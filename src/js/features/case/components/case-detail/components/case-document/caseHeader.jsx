@@ -15,12 +15,11 @@ class CaseHeader extends React.Component {
     const { name, status, lastModified, lastModifiedBy,
       user, team, userDetails, lastModifiedByUserDetails, caseTeamUsers, planItems } = this.props;
     return (
-      <Card style={{ margin: '10px' }}>
+      <Card style={{ margin: '10px' }} initiallyExpanded={true}>
         <CardHeader
           title={name}
           actAsExpander={false}
           showExpandableButton={false}
-          initiallyExpanded={true}
           style={headerStyle}
         />
         <CardMedia style={{ height: '130px', marginLeft: '16px' }}>
@@ -41,7 +40,7 @@ CaseHeader.propTypes = {
   lastModified: React.PropTypes.string.isRequired,
   user: React.PropTypes.string.isRequired,
   file: React.PropTypes.object.isRequired,
-  team: React.PropTypes.object.isRequired
+  team: React.PropTypes.array.isRequired
 };
 
 export default CaseHeader;

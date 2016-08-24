@@ -8,7 +8,7 @@ class CaseTeamComponent extends React.Component {
   render() {
     return (
       <div style={style}>
-        <PeopleList maxPeopleInList={4} people={this.props.caseTeam} />
+        <PeopleList maxPeopleInList={4} people={this.props.caseTeam ? this.props.caseTeam : []} />
       </div>
     );
   }

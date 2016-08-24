@@ -25,12 +25,11 @@ class CasePlanItems extends React.Component {
     const { items } = this.props;
     const numPlanItems = items.length;
     return (
-      <Card style={{ margin: '10px' }}>
+      <Card style={{ margin: '10px' }} initiallyExpanded={false}>
         <CardHeader
           title="Planned Items"
           actAsExpander={true}
           showExpandableButton={true}
-          initiallyExpanded={false}
           style={headerStyle}
           children={<Badge
             badgeContent={numPlanItems} primary={true} badgeStyle={badgeStyle} style={badgePositionStyle}

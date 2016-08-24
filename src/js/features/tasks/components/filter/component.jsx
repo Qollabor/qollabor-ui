@@ -39,9 +39,9 @@ class TasksFilter extends React.Component {
                   </FontIcon>
                 </span>
               }
-              rightIcon={tasksFilterType.id === 'myTasks' && <span style={{ marginTop: 0 }}>
+              rightIcon={tasksFilterType.id === 'myTasks' ? <span style={{ marginTop: 0 }}>
                 <TaskStats type={tasksFilterType.id}/>
-              </span>
+              </span> : null
               }
               disabled={this.props.isFetchingTasksList}
             />

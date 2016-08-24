@@ -49,7 +49,7 @@ export class CaseUser extends React.Component {
     return (
       <div style={divStyle}>
         <label style={labelStyle}>{this.props.label}</label>
-        {userDetails && <div>{<UserAvatar user={userDetails} size="40" chipView={true}/>}</div>}
+        {userDetails && <div>{<UserAvatar user={userDetails} size={40} chipView={true}/>}</div>}
       </div>
 
     );
