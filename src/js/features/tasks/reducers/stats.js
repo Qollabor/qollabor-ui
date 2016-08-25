@@ -2,7 +2,7 @@ import Immutable from 'immutable';
 
 const defaultState = Immutable.fromJS({
   isFetching: false,
-  stats: undefined,
+  stats: {},
   error: {
     message: '',
     isError: false

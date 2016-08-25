@@ -140,7 +140,7 @@ export function* fetchTasksStats(action) {
     const headers = helpers.addHeadersByName(['cafienneAuth']);
     const response = yield registry.get('request')
       .get(`${config.tasks.url}/user/count`, null, headers);
-    yield put({ type: 'TASKS:STATS:FETCH:SUCCESS', stats: response.body.count, bounce: action.bounce });
+    yield put({ type: 'TASKS:STATS:FETCH:SUCCESS', stats: response.body, bounce: action.bounce });
   } catch (err) {
     registry.get('logger').error(err);
     yield put({ type: 'TASKS:STATS:FETCH:FAIL', error: err.message });

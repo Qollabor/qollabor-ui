@@ -1,6 +1,7 @@
 import React from 'react';
-import { StatusCapsule } from '../../../../components/capsules/capsules';
+import { Badge } from 'material-ui';
 import styles from '../../styles';
+import theme from '../../../../themes';
 
 class TaskStats extends React.Component {
 
@@ -12,9 +13,15 @@ class TaskStats extends React.Component {
 
   render () {
     const bounceStyle = this.props.bounce ? styles.bounce : null;
+    const taskCount = this.props.taskStats.get(this.props.type);
     return (
       <div style={bounceStyle}>
-        <StatusCapsule status={'Unassigned'}>{this.props.taskStats}</StatusCapsule>
+        <Badge
+          style={styles.badgeStyle}
+          badgeStyle={theme.taskStats}
+          badgeContent={taskCount}
+          primary={true}
+        />
       </div>
     );
   }
