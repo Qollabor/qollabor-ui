@@ -171,7 +171,7 @@ export class StepperWidget extends Component {
           orderedProperties.map((propertyName, index) => {
             const subSchema = retrieveSchema(schema.properties[propertyName], registry.definitions);
             return (
-              <Step>
+              <Step key={propertyName}>
                 <StepLabel
                   onTouchTap={this.updateCurrentStep.bind(this, index, propertyName)}
                 >{subSchema.title || propertyName}</StepLabel>

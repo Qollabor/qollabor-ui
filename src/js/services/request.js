@@ -31,6 +31,7 @@ function checkStatus(response) {
     return response;
   } else {
     const error = new Error(response.statusText);
+    error.message = response.body;
     error.response = response;
     throw error;
   }
