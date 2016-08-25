@@ -31,7 +31,7 @@ export class SubmitTaskDetails extends React.Component {
       const currentUser = registry.get('store').getState().user.getIn(['loggedUser', 'username']);
       taskData = atob(this.props.data);
       taskData = taskData.replace('${currentUser}', currentUser);
-      taskData = taskData.replace('${currentTime}', moment.utc().format('YYYY-MM-DDTHH:mm:ssZ'));
+      taskData = taskData.replace('${currentTime}', moment.utc().format());
       taskData = JSON.parse(taskData);
       successMessage = atob(this.props.message);
       this.props.transitionToState(this.props.taskId, this.props.caseId, taskData, 'complete');
