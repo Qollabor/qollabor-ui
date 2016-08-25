@@ -13,7 +13,7 @@ class CaseDetail extends React.Component {
     return (
       <div>
         {<CaseDocument document={caseDocument} team={caseTeam} />}
-        {discretionaryItems.items.length !== 0 && <CaseDiscretionaryItems items={discretionaryItems.items} />}
+        {discretionaryItems.length !== 0 && <CaseDiscretionaryItems items={discretionaryItems} />}
       </div>
     );
   }

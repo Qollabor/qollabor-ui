@@ -14,7 +14,20 @@ const mapDispatchToProps = (dispatch) => ({
 function mapStateToProps(state) {
   return {
     caseDocument: state.case.case.toJS(),
-    discretionaryItems: state.case.discretionaryItems.toJS(),
+    discretionaryItems: state.case.discretionaryItems.get('items').toJS()
+      .map(
+        (item) => Object.assign({}, item, {
+          color: '#388AC3',
+          icon: 'playlist_add',
+          action: () => registry.get('store')
+            .dispatch({
+              type: 'CASE:DISCRETIONARY_ITEMS:REQUEST_PLAN',
+              planItemId: item.id,
+              planItemName: item.name,
+              caseId: state.case.discretionaryItems.get('caseInstanceId')
+            })
+        })
+      ),
     caseTeam: state.case.caseTeam.toJS()
   };
 }
