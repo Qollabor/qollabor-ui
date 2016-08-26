@@ -22,8 +22,9 @@ function mapStateToProps(state) {
           action: () => registry.get('store')
             .dispatch({
               type: 'CASE:DISCRETIONARY_ITEMS:REQUEST_PLAN',
-              planItemId: item.id,
+              definitionId: item.id,
               planItemName: item.name,
+              parentId : item.parentId,
               caseId: state.case.discretionaryItems.get('caseInstanceId')
             })
         })

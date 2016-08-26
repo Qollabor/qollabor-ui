@@ -104,10 +104,10 @@ export function* fetchDiscretionaryItems(action) {
 }
 
 export function* planDiscretionaryItem(action) {
-  if (!action || !action.planItemId) {
+  if (!action || !action.planItemName || !action.caseId || !action.definitionId || !action.parentId) {
     yield put({
       type: 'CASE:DISCRETIONARY_ITEMS:PLAN:FAIL',
-      error: 'Must specify a plan item id for the discretionary item to plan'
+      error: 'Must specify a plan item name, case id, definition id and parent id for the discretionary item to plan'
     });
     return;
   }
@@ -121,6 +121,8 @@ export function* planDiscretionaryItem(action) {
     const response = yield registry.get('request')
       .post(`${config.cases.url}/${action.caseId}/discretionaryitems/plan`, {
         name: action.planItemName,
+        definitionId: action.definitionId,
+        parentId : action.parentId,
         planItemId: action.planItemId
       }, {
         headers: {
