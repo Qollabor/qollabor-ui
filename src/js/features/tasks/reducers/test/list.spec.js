@@ -7,6 +7,8 @@ import { reducers } from '../list';
 const defaultState = Immutable.Map({
   isFetching: false,
   items: Immutable.fromJS([]),
+  sortKey: 'dueDate',
+  sortDesc: 'DESC',
   error: Immutable.Map({
     message: '',
     isError: false
