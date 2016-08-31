@@ -2,11 +2,6 @@ import Immutable from 'immutable';
 
 const defaultState = Immutable.fromJS([
   {
-    label: 'Assignee',
-    key: 'assignee',
-    visible: true
-  },
-  {
     label: 'Task name',
     key: 'taskName',
     visible: true
@@ -29,7 +24,7 @@ const defaultState = Immutable.fromJS([
   {
     label: 'Creation date',
     key: 'createdOn',
-    visible: false
+    visible: true
   }
 ]);
 

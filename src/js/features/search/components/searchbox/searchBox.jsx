@@ -30,6 +30,7 @@ class SearchBox extends React.Component {
         hintText="Search"
         hintStyle={{ color: 'white' }}
         inputStyle={{ color: 'white' }}
+        searchIconStyle={{ color: 'white' }}
         onFilterChange={this.handleFilterChange.bind(this)}
         activeFilter={searchText}
       />); }

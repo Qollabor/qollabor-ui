@@ -1,7 +1,7 @@
-import moment from 'moment';
+// import moment from 'moment';
 import { calcTaskStatus } from './calcTaskStatus';
-import timeAgo from 'damals';
-import { getTimeRemaining } from './getTimeRemaining';
+// import timeAgo from 'damals';
+// import { getTimeRemaining } from './getTimeRemaining';
 
 const translateStatus = (status) => {
   switch (status) {
@@ -46,7 +46,7 @@ const calculateStyle = (status) => {
 export const sanitizeAfterLoad = (task) => {
   const status = calcTaskStatus(task);
 
-  task.dueDate = (task.dueDate === null) ? {} : {
+  /* task.dueDate = (task.dueDate === null) ? {} : {
     title: moment(task.dueDate, moment.ISO_8601).format('ddd, MMMM Do YYYY HH:MM'),
     value: getTimeRemaining(task.dueDate).rem
   };
@@ -54,7 +54,7 @@ export const sanitizeAfterLoad = (task) => {
   task.createdOn = {
     title: moment(task.createdOn, moment.ISO_8601).format('ddd, MMMM Do YYYY HH:MM'),
     value: timeAgo(moment.utc(task.createdOn).toDate())
-  };
+  }; */
   task.viewInternalData = {
     status,
     icon: translateStatus(status),

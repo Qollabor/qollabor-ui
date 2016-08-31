@@ -73,6 +73,7 @@
     "gulp-sass": "^2.3.1",
     "gulp-util": "^3.0.7",
     "guppy-pre-commit": "^0.3.0",
+    "ignore-styles": "^5.0.1",
     "json-loader": "^0.5.4",
     "moment": "^2.13.0",
     "morgan": "^1.7.0",
@@ -88,7 +89,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test ./node_modules/gulp/bin/gulp.js mocha",
+    "test": "cross-env NODE_ENV=test ./node_modules/gulp/bin/gulp.js mocha --require ignore-styles",
     "test-watch": "cross-env NODE_ENV=test ./node_modules/gulp/bin/gulp.js watchTest",
     "serve": "cross-env NODE_ENV=development ./node_modules/gulp/bin/gulp.js serve",
     "serve-mock": "cross-env NODE_ENV=mock ./node_modules/gulp/bin/gulp.js serve",

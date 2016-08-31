@@ -54,8 +54,8 @@ const sagas = [
   [takeEvery, 'SEARCH:LIST:INIT', resetAndSearch],
   [takeEvery, 'SEARCH:LIST:NEXT:FETCH', search],
   // case list
-  [takeEvery, 'CASE:LIST:INIT', resetAndFetch]
-
+  [takeEvery, 'CASE:LIST:INIT', resetAndFetch],
+  [takeEvery, 'CASE:LIST:FILTER_BY_TEXT', resetAndFetch]
 ];
 
 function* rootSaga() {
