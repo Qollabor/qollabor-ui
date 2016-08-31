@@ -3,6 +3,8 @@ import Immutable from 'immutable';
 const defaultState = Immutable.fromJS({
   isFetching: false,
   items: [],
+  sortKey: 'dueDate',
+  sortDesc: 'DESC',
   error: {
     message: '',
     isError: false

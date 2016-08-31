@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { TaskList as TaskListComponent } from './tasks';
+import { TaskList as TaskListComponent } from './components/tasks';
 
 function mapStateToProps(state) {
   return {

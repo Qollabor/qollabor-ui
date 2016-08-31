@@ -1,5 +1,6 @@
 import React from 'react';
 import { ResponsiveTableWrapper, DataCell, DateCell, sortData, SortHeaderCell, Column } from 'cafienne-ui-elements';
+import { ActionChooserCell } from './cells';
 import { Paper } from 'material-ui';
 import registry from 'app-registry';
 import { ActionAssignmentReturned, ActionAssignmentInd, ActionAssignmentReturn } from 'material-ui/svg-icons';
@@ -51,12 +52,14 @@ export class TaskList extends React.Component {
     }
   }
 
-  handleTaskActions(e, index, action, user) {
+  handleTaskActions(actionItem, user, index) {
+    const action = actionItem.action;
     const taskId = this.props.items[index].id;
     this.props.executeTaskAction(taskId, action, user);
   }
 
-  isActionDisabled(e, index, taskAction) {
+  isActionDisabled(actionItem, index) {
+    const taskAction = actionItem.action;
     const store = registry.get('store');
     const loggedInUserId = store.getState().user.getIn(['loggedUser', 'username']);
 
@@ -89,16 +92,12 @@ export class TaskList extends React.Component {
             <div style={{ position: 'absolute', top: 150, margin: 'auto', left: 400 }}>No items found ...</div>}
 
           <ResponsiveTableWrapper
-            rowHeight={55}
+            rowHeight={45}
             headerHeight={50}
             containerWidth={tableWidth + 30}
             containerHeight={tableHeight - 60}
             showColumnChooser={true}
-            showActionSelector={true}
             showStatusIcon={true}
-            actionItems={actionItems}
-            isDisabled={this.isActionDisabled.bind(this)}
-            onActionHandler={this.handleTaskActions.bind(this)}
             rowsCount={items.length} onRowClick={this.handleRowClick.bind(this)}
             onScrollEnd={this.handleScrollEnd.bind(this)}
             {...this.props}
@@ -134,8 +133,16 @@ export class TaskList extends React.Component {
             <Column
               columnKey="createdOn"
               header={<SortHeaderCell {...this.props}>Creation date </SortHeaderCell>}
-              cell={<DateCell items={items} type="timeAgo"/>}
+              cell={<DateCell items={items} type="timeAgo" dateFormat="YYYY-MM-DD hh:mm:ss"/>}
               flexGrow={1}
+              width={50}
+            />
+            <Column
+              cell={<ActionChooserCell
+                actionItems={actionItems}
+                isDisabled={this.isActionDisabled.bind(this)}
+                onActionHandler={this.handleTaskActions.bind(this)}
+              />}
               width={50}
             />
           </ResponsiveTableWrapper>
