@@ -69,14 +69,17 @@ describe('features/case/sagas', () => {
           .to.be.eql(
           put({
             type: 'CASE:DISCRETIONARY_ITEMS:PLAN:FAIL',
-            error: 'Must specify a plan item id for the discretionary item to plan'
+            error: 'Must specify a plan item name, ' +
+            'case id, definition id and parent id for the discretionary item to plan'
           }));
       });
     });
 
-    describe('when is invoked with a caseId, planItemId and planItemName', () => {
+    describe('when is invoked with a caseId, definitionId, parentId, planItemId and planItemName', () => {
       const planItemId = 'id';
+      const definitionId = 'definition';
       const planItemName = 'name';
+      const parentId = 'parent';
       const fakeResponse = {
         headers: {
           get: () => 42
@@ -84,7 +87,7 @@ describe('features/case/sagas', () => {
       };
 
       beforeEach(() => {
-        generator = planDiscretionaryItem({ caseId, planItemId, planItemName });
+        generator = planDiscretionaryItem({ caseId, planItemId, planItemName, definitionId, parentId });
       });
 
       it('should signal CASE:DISCRECTIONARY_ITEMS:FETCH after it is invoked', () => {
@@ -96,7 +99,8 @@ describe('features/case/sagas', () => {
         generator.next();
         generator.next();
 
-        expect(requestSpy.calledWith(`${fakeURL}/${caseId}/discretionaryitems/plan`, { name: planItemName, planItemId },
+        expect(requestSpy.calledWith(`${fakeURL}/${caseId}/discretionaryitems/plan`,
+          { name: planItemName, planItemId, definitionId, parentId },
           {
             headers: {
               [fakeTokenPropertyName]: fakeToken
@@ -131,10 +135,12 @@ describe('features/case/sagas', () => {
 
     describe('when there is an error', () => {
       const planItemId = 'id';
+      const definitionId = 'definition';
       const planItemName = 'name';
+      const parentId = 'parent';
 
       beforeEach(() => {
-        generator = planDiscretionaryItem({ caseId, planItemId, planItemName });
+        generator = planDiscretionaryItem({ caseId, planItemId, definitionId, parentId, planItemName });
       });
 
       it('should signal CASE:DISCRETIONARY_ITEMS:PLAN:FAIL', () => {

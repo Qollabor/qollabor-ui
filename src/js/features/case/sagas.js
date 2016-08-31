@@ -122,7 +122,7 @@ export function* planDiscretionaryItem(action) {
       .post(`${config.cases.url}/${action.caseId}/discretionaryitems/plan`, {
         name: action.planItemName,
         definitionId: action.definitionId,
-        parentId : action.parentId,
+        parentId: action.parentId,
         planItemId: action.planItemId
       }, {
         headers: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import TextFilter from '../text-filter';
+import TextFilter from '../../../../components/text-filter';
 import { List as DefinitionList, ListItem } from 'material-ui';
 import registry from 'app-registry';
 import MessageDiv from '../message-div';

@@ -1,4 +1,7 @@
 import Immutable from 'immutable';
+import toggleColumns from '../../helpers/columnutils';
+import moment from 'moment';
+
 /*
 search list reducer sample =>
 
@@ -68,10 +71,50 @@ search list reducer sample =>
 
 */
 
+const defaultColumns = Immutable.fromJS([
+  {
+    label: 'ID',
+    key: 'caseInstanceId',
+    visible: false
+  },
+  {
+    label: 'Name',
+    key: 'definition',
+    visible: true
+  },
+  {
+    label: 'Status',
+    key: 'currentState',
+    visible: true
+  },
+  {
+    label: 'Milestone',
+    key: 'currentMileStone',
+    visible: true
+  },
+  {
+    label: 'Parent',
+    key: 'parentCaseId',
+    visible: false
+  },
+  {
+    label: 'Modified By',
+    key: 'lastModifiedBy',
+    visible: true
+  },
+  {
+    label: 'Modified At',
+    key: 'lastModified',
+    visible: true
+  }
+]);
+
 const defaultCaseListState = Immutable.fromJS({
   isFetching: false,
   position: 0,
   items: [],
+  filterText: '',
+  columns: defaultColumns,
   error: {
     message: '',
     isError: false
@@ -85,11 +128,27 @@ const getCaseInstances = (responseItems) => {
     casePlanItem.parentCaseId = caseInstance.parentCaseId;
     casePlanItem.team = caseInstance.team;
     casePlanItem.id = caseInstance.id;
+
+    // Get Last Modified PlanItem
     const planItems = caseInstance.planitems.sort((item1, item2) =>
-    new Date(item1.lastModified) - new Date(item2.lastModified));
+      new Date(item1.lastModified) - new Date(item2.lastModified)
+    );
     const lastModifiedPlanItem = planItems[planItems.length - 1];
     casePlanItem.lastModifiedBy = lastModifiedPlanItem.user;
     casePlanItem.lastModified = lastModifiedPlanItem.lastModified;
+
+    // Get Last Updated MileStone Item
+    const mileStoneItems = caseInstance.planitems.filter(item =>
+    (item.type === 'Milestone' && item.historyState !== 'Null'
+      && item.transition !== 'ParentTerminate')).sort((item1, item2) => {
+        const moment1 = moment(item1.lastModified);
+        const moment2 = moment(item2.lastModified);
+        return moment1.isSame(moment2) ? this.getMilliseconds(item1.lastModified) -
+        this.getMilliseconds(item2.lastModified) : moment2.isBefore(moment1);
+      });
+    const lastModifiedMileStoneItem = mileStoneItems[mileStoneItems.length - 1];
+    casePlanItem.currentMileStone = lastModifiedMileStoneItem.name;
+
     return arr.concat(casePlanItem);
   }, []);
 
@@ -98,6 +157,13 @@ const getCaseInstances = (responseItems) => {
 
 export const reducers = (state = defaultCaseListState, action) => {
   switch (action.type) {
+    case 'CASE:LIST:FILTER_BY_TEXT':
+      return state
+        .set('filterText', action.filterText);
+    case 'CASE:LIST:SORT':
+      return state
+        .set('sortKey', action.sortKey)
+        .set('sortDesc', (action.sortKey === state.get('sortKey')) ? !state.get('sortDesc') : false);
     case 'CASE:LIST:REQUEST:INIT':
       return state.set('items', Immutable.List())
             .set('position', 0);
@@ -110,6 +176,10 @@ export const reducers = (state = defaultCaseListState, action) => {
     case 'CASE:LIST:FETCH:FAIL':
       return state.set('isFetching', false)
                   .set('error', Immutable.Map({ message: action.error, isError: true }));
+    case 'CASE:LIST:TOGGLE_COLUMN': {
+      return state
+        .set('columns', toggleColumns(state.get('columns'), action));
+    }
     default:
       return state;
   }

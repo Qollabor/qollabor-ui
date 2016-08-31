@@ -30,8 +30,9 @@ export function* fetchCases() {
 }
 
 const getURLWithParams = (store, config) => {
-  const { sortKey, sortDesc, position } = store.getState().caseList.toJS();
+  const { filterText, sortKey, sortDesc, position } = store.getState().caseList.toJS();
   let url = `${config.baseApiUrl}cases/user?numberOfResults=${NO_OF_RESULTS}`;
+  url = filterText ? `${url}&filterText=${filterText}` : url;
   url = sortKey ? `${url}&sortBy=${sortKey}` : url;
   url = sortKey ? `${url}&sortOrder=${sortDesc ? 'DESC' : 'ASC'}` : url;
   url = `${url}&offset=${position}`;
