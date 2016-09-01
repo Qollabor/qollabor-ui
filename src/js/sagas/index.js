@@ -30,6 +30,7 @@ const sagas = [
   // tasks
   [takeEvery, 'TASKS:LIST:REQUEST_INIT', fetchTasks],
   [takeEvery, 'TASKS:FILTERS:CHANGE', fetchTasks],
+  [takeEvery, 'TASKS:LIST:SORT', fetchTasks],
   [takeEvery, 'TASKS:LIST:TASK_ROW_CLICKED', viewTasks],
   [takeEvery, 'TASK:ITEM:REQUEST_EXECUTE_ACTION', executeTaskAction],
   [takeEvery, 'TASK:STATS:REQUEST_INIT', fetchTasksStats],

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ResponsiveTableWrapper, DataCell, DateCell, sortData, SortHeaderCell, Column } from 'cafienne-ui-elements';
+import { ResponsiveTableWrapper, DataCell, DateCell, SortHeaderCell, Column } from 'cafienne-ui-elements';
 import { ActionChooserCell } from './cells';
 import { Paper } from 'material-ui';
 import registry from 'app-registry';
@@ -75,8 +75,7 @@ export class TaskList extends React.Component {
   }
 
   render () {
-    const { isFetching } = this.props;
-    const items = sortData(this.props.items, this.props.sortKey, this.props.sortDesc);
+    const { items, isFetching } = this.props;
     const theme = registry.get('theme');
 
     // Resize table width with app drawer resize

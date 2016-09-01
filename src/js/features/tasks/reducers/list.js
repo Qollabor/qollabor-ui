@@ -4,7 +4,7 @@ const defaultState = Immutable.fromJS({
   isFetching: false,
   items: [],
   sortKey: 'dueDate',
-  sortDesc: 'DESC',
+  sortDesc: true,
   error: {
     message: '',
     isError: false

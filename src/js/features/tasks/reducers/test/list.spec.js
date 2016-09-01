@@ -8,7 +8,7 @@ const defaultState = Immutable.Map({
   isFetching: false,
   items: Immutable.fromJS([]),
   sortKey: 'dueDate',
-  sortDesc: 'DESC',
+  sortDesc: true,
   error: Immutable.Map({
     message: '',
     isError: false

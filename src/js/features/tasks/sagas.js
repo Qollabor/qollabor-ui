@@ -19,6 +19,12 @@ export function* fetchTasks(action) {
     const filters = registry.get('helpers').task.generateRequestFilters(
       store.getState().tasks.filters.getIn(['currentTasksFilter', 'filter']), filterParams);
 
+    const sortParams = {
+      sortBy: store.getState().tasks.list.get('sortKey'),
+      sortOrder: store.getState().tasks.list.get('sortDesc') === true ? 'DESC' : 'ASC'
+    };
+    Object.assign(filters, sortParams);
+
     const reqOptions = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
       { caseLastModified: action.caseLastModified });
     Object.assign(reqOptions.headers, { timeZone: action.timeZone });
