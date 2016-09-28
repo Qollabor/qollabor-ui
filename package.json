@@ -3,7 +3,7 @@
   "dependencies": {
     "app-registry": "1.0.1",
     "babel-polyfill": "6.13.0",
-    "cafienne-ui-elements": "github:cafienne/cafienne-ui-elements",
+    "cafienne-ui-elements": "https://github.com/cafienne/cafienne-ui-elements",
     "deeper": "2.1.0",
     "history": "2.1.0",
     "immutable": "3.8.1",
