@@ -63,13 +63,13 @@ export class TaskInfo extends React.Component {
     const { dueDate, createdOn } = this.props.taskDetails;
     if (dueDate) {
       const dueDateInLocalTime = moment.utc(dueDate);
-      completeBy = dueDateInLocalTime.format('DD-MM-YYYY HH:SS');
+      completeBy = dueDateInLocalTime.format('DD-MM-YYYY HH:mm');
       timeRemaining = `Complete in ${moment(moment().diff(dueDateInLocalTime)).format('h[h]:m[m]')}`;
     }
 
     if (createdOn) {
       const receivedAtInLocalTime = moment.utc(createdOn);
-      receivedAt = receivedAtInLocalTime.format('DD-MM-YYYY HH:SS');
+      receivedAt = receivedAtInLocalTime.format('DD-MM-YYYY HH:mm');
       receivedBefore = `Received before ${moment(moment().diff(receivedAtInLocalTime)).format('h[h]:m[m]')}`;
     }
 
