@@ -1,38 +1,40 @@
 /* material icons start */
 
 @font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Material Icons'), local('MaterialIcons-Regular'), url('/assets/fonts/material-icons/regular.woff2');
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url('/assets/fonts/material-icons/regular.woff2');
 }
 
 .material-icons {
-  font-family: 'Material Icons';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-  -webkit-font-feature-settings: 'liga';
-  -webkit-font-smoothing: antialiased;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
 }
+
 
 /* material icons end */
 
 @import 'js/**/*.scss';
-
 body {
-  background-color: #E0F7FA;
-  margin: 0px;
+    background-color: #f2f2f2;
+    margin: 0px;
 }
 
+
 /* bounce css */
+
 @-webkit-keyframes bounceIn {
     0% {
         opacity: 0;
@@ -49,6 +51,7 @@ body {
         -webkit-transform: scale(1)
     }
 }
+
 @-moz-keyframes bounceIn {
     0% {
         opacity: 0;
@@ -65,6 +68,7 @@ body {
         -moz-transform: scale(1)
     }
 }
+
 @-o-keyframes bounceIn {
     0% {
         opacity: 0;
@@ -81,6 +85,7 @@ body {
         -o-transform: scale(1)
     }
 }
+
 @keyframes bounceIn {
     0% {
         opacity: 0;
@@ -97,4 +102,3 @@ body {
         transform: scale(1)
     }
 }
-
