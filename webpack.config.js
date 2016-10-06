@@ -1,6 +1,10 @@
 'use strict';
 const config = require('config');
 const webpack = require('webpack');
+
+// Set NODE_ENV from process.env; defaults to development
+const NODE_ENV = process.env.NODE_ENV ? process.env.NODE_ENV.toLowerCase() : 'development';
+
 module.exports = {
   entry: [
     './src/js/app.jsx'
@@ -40,6 +44,9 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       ENV: config.webpack,
+      'process.env': {
+        NODE_ENV: JSON.stringify(NODE_ENV)
+      },
       appConfig: JSON.stringify(config.clientConfig)
     }),
     new webpack.optimize.UglifyJsPlugin(config.uglify)
