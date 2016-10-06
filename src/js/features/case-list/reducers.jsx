@@ -146,8 +146,11 @@ const getCaseInstances = (responseItems) => {
         return moment1.isSame(moment2) ? this.getMilliseconds(item1.lastModified) -
         this.getMilliseconds(item2.lastModified) : moment2.isBefore(moment1);
       });
-    const lastModifiedMileStoneItem = mileStoneItems[mileStoneItems.length - 1];
-    casePlanItem.currentMileStone = lastModifiedMileStoneItem.name;
+
+    if (mileStoneItems.length > 0) {
+      const lastModifiedMileStoneItem = mileStoneItems[mileStoneItems.length - 1];
+      casePlanItem.currentMileStone = lastModifiedMileStoneItem.name;
+    }
 
     return arr.concat(casePlanItem);
   }, []);
