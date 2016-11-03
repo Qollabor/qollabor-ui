@@ -132,7 +132,7 @@ export class TaskList extends React.Component {
             <Column
               columnKey="createdOn"
               header={<SortHeaderCell {...this.props}>Creation date </SortHeaderCell>}
-              cell={<DateCell items={items} type="timeAgo" dateFormat="YYYY-MM-DD hh:mm:ss"/>}
+              cell={<DateCell items={items} type="timeAgo" dateFormat="YYYY-MM-DD HH:mm:ss"/>}
               flexGrow={1}
               width={50}
             />
