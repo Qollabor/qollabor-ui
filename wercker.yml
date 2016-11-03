@@ -1,0 +1,25 @@
+box: node:6.9.1
+build:
+    steps:
+        - add-to-known_hosts:
+            hostname: github.com
+            fingerprint: 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48
+        - script:
+          name: npm install
+          code: |
+            npm install -g gulp
+            npm install
+        - script:
+          name: system information
+          code: |
+            echo "node version $(node --version) running"
+            echo "npm version $(npm --version) running"
+            echo "gulp version $(gulp --version) running"
+        - script:
+          name: test
+          code: |
+            npm test
+        - script:
+          name: build
+          code: |
+            npm run build-production
