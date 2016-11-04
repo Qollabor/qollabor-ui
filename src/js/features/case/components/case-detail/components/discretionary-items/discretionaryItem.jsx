@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListItem } from 'material-ui';
+import { ListItem, FontIcon } from 'material-ui';
 import { CMMNIcon } from '../../../../../../components/cmmn-icons';
 
 const cmmnIconStyle = {
@@ -19,14 +19,32 @@ const PlanItemIcon = ({ type }) => <CMMNIcon
 />;
 
 class DiscretionaryItem extends React.Component {
+
+  handleOnClick() {
+    if (this.props.item.action) {
+      this.props.item.action();
+    }
+  }
+
   render () {
     const item = this.props.item;
     return (
       <ListItem
         key={item.id}
         leftIcon={<PlanItemIcon type={item.type} />}
+        rightIcon={
+          <FontIcon
+            title={'Add to Plan'}
+            style={{ cursor: 'pointer' }}
+            color="#388AC3" hoverColor="#E24949" className="material-icons"
+            onClick={this.handleOnClick.bind(this)}
+          >
+            playlist_add
+          </FontIcon>
+        }
         primaryText={item.name}
         secondaryText={item.parent}
+        disabled={true}
       />);
   }
 }

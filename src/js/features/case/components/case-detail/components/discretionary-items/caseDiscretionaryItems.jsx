@@ -25,12 +25,11 @@ class CaseDiscretionaryItems extends React.Component {
     const { items } = this.props;
     const numOfItems = items && items.length;
     return (
-      <Card style={{ margin: '10px' }}>
+      <Card style={{ margin: '10px' }} initiallyExpanded={false}>
         <CardHeader
-          title="Discretionary Items"
+          title="Available to Plan"
           actAsExpander={true}
           showExpandableButton={true}
-          initiallyExpanded={false}
           style={headerStyle}
           children={numOfItems && <Badge
             badgeContent={numOfItems} primary={true} badgeStyle={badgeStyle} style={badgePositionStyle}

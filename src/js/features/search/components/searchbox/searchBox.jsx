@@ -28,6 +28,9 @@ class SearchBox extends React.Component {
       <TextFilter
         {...this.props}
         hintText="Search"
+        hintStyle={{ color: 'white' }}
+        inputStyle={{ color: 'white' }}
+        searchIconStyle={{ color: 'white' }}
         onFilterChange={this.handleFilterChange.bind(this)}
         activeFilter={searchText}
       />); }

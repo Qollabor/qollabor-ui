@@ -8,24 +8,6 @@ import styles from '../styles';
 let activeDateElmt = null;
 let datePickerDialog = null;
 export class DateWidget extends React.Component {
-  componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown);
-  }
-
-  handleKeyDown(event) {
-    if (event.keyCode === 9 && datePickerDialog) {
-      datePickerDialog.dismiss();
-    }
-  }
-
-  formatDate(date) {
-    return moment(date).format('YYYY-MM-DD');
-  }
-
   /*
     Material UI datepicker does not allow tabbing, also does not
     return the focus back to the controller after date selection.
@@ -51,6 +33,10 @@ export class DateWidget extends React.Component {
 
   handleOnDismiss() {
     activeDateElmt.focus();
+  }
+
+  formatDate(date) {
+    return moment(date).format('YYYY-MM-DD');
   }
 
   render() {
@@ -98,7 +84,7 @@ export class DateWidget extends React.Component {
 
     const title = this.props.schema.title + (this.props.required ? ' *' : '');
     const errorStyle = Object.assign({}, styles.errorLabel, { transform: 'translate3d(0px, -24px, 0px)' });
-
+    const locale = navigator.languages ? navigator.languages[0] : (navigator.language || navigator.userLanguage);
     return (
       <div>
         {helpWidget}
@@ -106,6 +92,7 @@ export class DateWidget extends React.Component {
           ref="dp"
           name={this.props.name}
           value={date}
+          locale={locale}
           container={'inline'}
           autoOk={true}
           floatingLabelText={title}
@@ -116,7 +103,6 @@ export class DateWidget extends React.Component {
           onChange={this.handleOnChange.bind(this)}
           onFocus={this.handleOnFocus.bind(this)}
           onDismiss={this.handleOnDismiss.bind(this)}
-          formatDate={this.formatDate}
           disabled={this.props.disabled}
           help={help}
           {...errors}

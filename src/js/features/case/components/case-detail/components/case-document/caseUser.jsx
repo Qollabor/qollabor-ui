@@ -13,13 +13,14 @@ const divStyle = {
   padding: '14px 14px 14px 0px'
 };
 
-export class CaseStartedBy extends React.Component {
+export class CaseUser extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
       userDetails: this.props.userDetails,
-      userId: this.props.userId
+      userId: this.props.userId,
+      label: ''
     };
   }
 
@@ -47,14 +48,14 @@ export class CaseStartedBy extends React.Component {
     const { userDetails } = this.state;
     return (
       <div style={divStyle}>
-        <label style={labelStyle}>Started By</label>
-        {userDetails && <div>{<UserAvatar user={userDetails} size="40" />}</div>}
+        <label style={labelStyle}>{this.props.label}</label>
+        {userDetails && <div>{<UserAvatar user={userDetails} size={40} chipView={true}/>}</div>}
       </div>
 
     );
   }
 }
 
-CaseStartedBy.propTypes = {
+CaseUser.propTypes = {
   userId: React.PropTypes.string.isRequired
 };

@@ -14,7 +14,7 @@
               }
           },
           "TravellerDetails":{
-            "title": "Traveller Details",
+            "title": "Requestor / Traveller Details",
             "type": "object",
             "required": ["Requestor", "RequestDate", "Traveller"],
             "properties": {
@@ -26,7 +26,8 @@
               },
               "Requestor": {
                   "title": "Requestor",
-                  "type": "string"
+                  "type": "string",
+                  "default": "$CURRENT_USER"
               },
               "PointOfContact": {
                   "title": "Point of contact",
@@ -36,19 +37,20 @@
                   "type": "array",
                   "minItems": 1,
                   "items": {"$ref": "#/definitions/Traveller"},
-                  "defaultValue": []
+                  "default": [{"Nationality": "NL"}]
               }
             }
           },
           "TravelDetails":{
-            "title": "Destination/ Dates",
+            "title": "Destination and Dates",
             "type": "object",
-            "required": ["Destination", "DepartureDate", "ReturnDate", "DeparturePoint", "ReturnPoint", "Purpose"],
+            "required": ["Destination", "DepartureDate", "Purpose", "ReturnDate", "DeparturePoint", "ReturnPoint"],
             "properties": {
               "Destination": {
                 "type": "array",
                 "minItems": 1,
-                "items": {"$ref": "#/definitions/Destination"}
+                "items": {"$ref": "#/definitions/Destination"},
+                "default": [{"Country" : "NL"}]
               },
               "DepartureDate": {
                 "title": "Departure date",
@@ -177,10 +179,6 @@
                   "Country"
               ],
               "properties": {
-                  "City": {
-                      "title": "City",
-                      "type": "string"
-                  },
                   "Country": {
                       "title": "Country",
                       "type": "string",
@@ -244,6 +242,10 @@
                         "UK",
                         "US"
                       ]
+                  },
+                  "City": {
+                      "title": "City",
+                      "type": "string"
                   }
               }
           },
@@ -337,60 +339,54 @@
     "TDYRequest": {
       "ui:widget": "stepper",
       "TravelDetails" : {
-        "Purpose": {"ui:widget": "textarea"},
-        "Justification": {"ui:widget": "textarea"}
+        "Destination": {
+          "ui:help": "Destinations of travel. Click on the '+' to add more",
+          "items":{
+            "ui:order":["Country", "City"]
+          }
+        },
+        "Purpose": {
+          "ui:widget": "textarea",
+          "ui:help": "Short brief on the primary purpose for the travel"
+        },
+        "Justification": {
+          "ui:widget": "textarea",
+          "ui:help": "Any additional points you would like to add to the purpose"
+        },
+        "Comments": {
+          "ui:widget": "textarea",
+          "ui:help": "Any message or comment you would like to provide to the Approver"
+        }
       },
       "Transport" : {
-        "POMVMake": {"ui:widget": "textarea"}
+        "POMVMake": {"ui:help": "Manufacturer and make of your personal vehicle"},
+        "POMVLicense": {"ui:help": "License/ Registration number of your vehicle"}
       },
       "TravellerDetails" : {
-        "Requestor_selector": {"ui:widget": "user-selector", "multiSelect" : false},
-        "PointOfContact_selector": {"ui:widget": "user-selector", "multiSelect" : false}
+        "Requestor": {"ui:widgets": "user-selector", "multiSelect" : false, "role" : "Requestor"},
+        "PointOfContact": {
+          "ui:widgets": "user-selector",
+          "ui:help": "Person other than you who can be contacted for any queries on this travel",
+          "multiSelect" : false
+        },
+        "Traveller":{
+          "ui:help": "Details of person(s) travelling. Click on the '+' to add more",
+          "items":{
+            "PassNo":{
+              "ui:help": "NATO Pass Number"
+            }
+          }
+        }
       },
       "Project" : {
-        "Manager_selector": {"ui:widget": "user-selector", "multiSelect" : false},
-        "Assistant_selector": {"ui:widget": "user-selector", "multiSelect" : false}
-      }
-    }
-  },
-  "formData": {
-    "TDYRequest":{
-      "TravellerDetails":{
-         "RequestDate":"2016-08-11",
-         "Requestor":"Sharbel",
-         "PointOfContact":"Dommy",
-         "Traveller":[
-            {
-               "Name":"Birdie",
-               "Email":"birdie@cafienne.com",
-               "Nationality":"NL",
-               "PassNo":"NL23213HG12"
-            }
-         ]
-      },
-      "TravelDetails":{
-         "Destination":[
-            {
-               "City":"Amsterdam",
-               "Country":"NL"
-            }
-         ],
-         "DepartureDate":"2016-08-12",
-         "ReturnDate":"2016-08-19",
-         "DeparturePoint":"Amersfoot",
-         "ReturnPoint":"Amersfoot",
-         "Purpose":"",
-         "Justification":""
-      },
-      "Meeting":{
-         "EndDate":"2016-08-23",
-         "EndTime":"11:33:42"
-      },
-      "Transport":{
-         "ModeOfTransport":"Shuttle"
-      },
-      "Project":{
-         "Assistant":"Lolo"
+        "IMIS-code": {
+          "ui:help": "Nato Project Code"
+        },
+        "IMIS-activity-code": {
+          "ui:help": "Nato Project Activity Code"
+        },
+        "Manager": {"ui:widgets": "user-selector", "multiSelect" : false, "role" : "Approver"},
+        "Assistant": {"ui:widgets": "user-selector", "multiSelect" : false, "role" : "PersonalAssistant"}
       }
     }
   }

@@ -20,6 +20,7 @@ const defaultState = Immutable.fromJS(
 
     transition: {
       onGoing: false,
+      success: false,
       error: {
         message: '',
         isError: false

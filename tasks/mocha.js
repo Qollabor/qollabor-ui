@@ -1,6 +1,7 @@
 'use strict';
 
 const path = require('path');
+const ignoreStyles = require('ignore-styles');
 /**
  * Run the unit test
  */
@@ -37,7 +38,8 @@ module.exports = (gulp) => {
         mocha({
           reporter: 'spec',
           compilers: {
-            js: babel
+            js: babel,
+            css: ignoreStyles
           }
         })
       )

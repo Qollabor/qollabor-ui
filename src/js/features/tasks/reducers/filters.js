@@ -12,14 +12,16 @@ const defaultState = Immutable.fromJS({
       icon: 'view_list',
       label: 'My Tasks',
       color: '#388AC3',
-      filter: ['myTasks']
+      filter: ['myTasks'],
+      type: 'claimed'
     },
     {
       id: 'groupTasks',
       icon: 'assignment_ind',
       label: 'Unclaimed Tasks',
       color: '#ACCFEB',
-      filter: ['unassigned']
+      filter: ['unassigned'],
+      type: 'unclaimed'
     }
   ]
 });

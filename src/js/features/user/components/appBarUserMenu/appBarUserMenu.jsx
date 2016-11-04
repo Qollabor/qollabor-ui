@@ -1,7 +1,7 @@
 import React from 'react';
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { Popover, Menu, MenuItem, IconButton } from 'material-ui';
+import { Popover, Menu, MenuItem, IconButton, Divider } from 'material-ui';
 import { ActionAccountCircle, ActionPowerSettingsNew, ActionLockOpen, ActionFace } from 'material-ui/svg-icons';
 import { PopoverAnimationVertical } from 'material-ui/Popover';
 import { PasswordChanger } from '../password-changer';
@@ -99,6 +99,18 @@ export class AppBarUserMenu extends React.Component {
           onRequestClose={this.handleRequestClose.bind(this)}
           animation={PopoverAnimationVertical}
         >
+          <div style={{ margin: '10px 10px 10px 28px', height: 170, width: 150, alignContent: 'center' }}>
+            {profile &&
+              <div>
+                <Avatar
+                  key={profile.name}
+                  user={profile}
+                  size={170}
+                />
+              </div>
+            }
+          </div>
+          <Divider />
           <Menu style={styles.menu}>
             <MenuItem
               primaryText="Logout"

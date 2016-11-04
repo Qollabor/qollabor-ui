@@ -43,6 +43,10 @@ describe('features/tasks/sagas', () => {
                   label: 'My Tasks',
                   filter: ['myTasks']
                 }
+              }),
+              list: Immutable.fromJS({
+                sortKey: 'dueDate',
+                sortDesc: true
               })
             }
           };
@@ -82,12 +86,13 @@ describe('features/tasks/sagas', () => {
         generator.next();
         generator.next();
 
-        expect(requestSpy.calledWith(fakeURL, { assignee: 'admin', planState: 'Active' }, {
-          headers: {
-            [fakeTokenPropertyName]: fakeToken,
-            timeZone: '42'
-          }
-        })).to.be.true;
+        expect(requestSpy.calledWith(fakeURL, { assignee: 'admin', planState: 'Active',
+          sortBy: 'dueDate', sortOrder: 'DESC' }, {
+            headers: {
+              [fakeTokenPropertyName]: fakeToken,
+              timeZone: '42'
+            }
+          })).to.be.true;
       });
     });
 

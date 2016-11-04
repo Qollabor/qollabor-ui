@@ -51,6 +51,7 @@ export function* transitionToState(action) {
 
     const taskData = action.taskData || null;
     const transition = action.transition;
+    const redirectToTasks = action.redirectToTasks !== false;
     const response = yield registry.get('request')
       .post(`${config.tasks.url}/${action.taskId}/${transition}`, taskData, headers);
 
@@ -68,7 +69,9 @@ export function* transitionToState(action) {
         // Redirect to tasks UI, if task is completed.
         if (transition === 'complete' || transition === 'terminate') {
           const store = registry.get('store');
-          store.dispatch(pushRouter('#/'));
+          if (redirectToTasks) {
+            store.dispatch(pushRouter('#/'));
+          }
         } else {
           // FIXME - Removed case last modified for now, need to be added later
           yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId });

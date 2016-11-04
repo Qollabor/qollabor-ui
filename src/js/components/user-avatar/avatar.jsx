@@ -98,7 +98,7 @@ UserAvatar.displayName = 'UserAvatar';
 
 UserAvatar.propTypes = {
   user: React.PropTypes.object.isRequired,
-  chipView: React.PropTypes.boolean
+  chipView: React.PropTypes.bool
 };
 
 export default UserAvatar;

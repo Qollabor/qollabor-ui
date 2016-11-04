@@ -3,6 +3,8 @@ import Immutable from 'immutable';
 const defaultState = Immutable.fromJS({
   isFetching: false,
   items: [],
+  sortKey: 'dueDate',
+  sortDesc: true,
   error: {
     message: '',
     isError: false
@@ -24,6 +26,10 @@ const getUpdatedTaskInstance = (items, updatedItem) => {
 
 export const reducers = (state = defaultState, action) => {
   switch (action.type) {
+    case 'TASKS:LIST:SORT':
+      return state
+        .set('sortKey', action.sortKey)
+        .set('sortDesc', (action.sortKey === state.get('sortKey')) ? !state.get('sortDesc') : false);
     case 'TASKS:LIST:FETCH':
       return state
         .set('isFetching', true)

@@ -22,7 +22,6 @@ export class UserSelectorWidget extends React.Component {
 
   componentWillMount() {
     const selectedUser = this.getDefaultUser(this.props.formData);
-    this.props.onChange(selectedUser);
     if (selectedUser) {
       const userIds = [].concat(selectedUser);
       fetchUserDetails(userIds).then(response => {
@@ -37,6 +36,11 @@ export class UserSelectorWidget extends React.Component {
         } else if (response.body) {
           selectedUsers = response.body;
         }
+
+        // On change of user-selector, add the corresponding user to caseteam.
+        const store = registry.get('store');
+        store.dispatch({ type: 'CASETEAM_SELECTOR:SETUSERSFORROLE', role: this.props.uiSchema.role,
+            user: selectedUsers[0], selected: true, multiSelect: this.props.uiSchema.multiSelect });
 
         this.setState({
           selectedUsers
@@ -82,7 +86,18 @@ export class UserSelectorWidget extends React.Component {
     }
 
     this.props.onChange(selectedUserIds);
+
+    // On change of user-selector, add the corresponding user to caseteam.
+    const store = registry.get('store');
+    store.dispatch({ type: 'CASETEAM_SELECTOR:SETUSERSFORROLE', role: this.props.uiSchema.role,
+        user: selectedUsers[0], selected, multiSelect: this.props.uiSchema.multiSelect });
+
     this.setState({ selectedUsers });
+
+    // Close User Selector on selecting a user if multiple is set to false
+    if (!this.props.uiSchema.multiSelect && selected) {
+      this.requestRequestClose();
+    }
   }
 
   handleRequestOpen(event) {
@@ -100,6 +115,12 @@ export class UserSelectorWidget extends React.Component {
   }
 
   render() {
+    const selectedUser = this.getDefaultUser(this.props.formData);
+    if (selectedUser) {
+      const userIds = (this.props.uiSchema.multiSelect) ? [].concat(selectedUser) : selectedUser;
+      this.props.onChange(userIds);
+    }
+
     const errors = {};
     /* eslint-disable no-underscore-dangle */
     if (this.props.errorSchema && this.props.errorSchema.__errors) {

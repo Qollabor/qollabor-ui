@@ -274,6 +274,20 @@ storiesOf('SchemaForm', module)
           formData={stepperSchema.formData}
           onSubmit={action('onSubmit')}
           onError={action('onError')}
+          readonly={true}
+        />
+      </Paper>
+    </div>
+  ))
+  .add('TDY disabled Stepper Schema form', () => (
+    <div className="center-component">
+      <Paper style={paperStyle}>
+        <Form
+          schema={stepperSchema.schema}
+          uiSchema={stepperSchema.uiSchema}
+          formData={stepperSchema.formData}
+          onSubmit={action('onSubmit')}
+          onError={action('onError')}
           disabled={true}
         />
       </Paper>

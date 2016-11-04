@@ -3,7 +3,6 @@ import { RaisedButton, FlatButton, Paper } from 'material-ui';
 import MessageDiv from '../message-div';
 import CaseModelSchemaForm from '../schema-form';
 import CaseTeamSelector from '../caseteam-selector';
-import { JsonObjectViewer } from 'cafienne-ui-elements';
 import { shouldRender } from 'react-jsonschema-form/lib/utils';
 
 const styles = {
@@ -43,6 +42,12 @@ class Details extends React.Component {
     }
   }
 
+  openDetailPage() {
+    const caseId = this.props.caseId;
+    const caseLastModified = this.props.caseLastModified;
+    this.context.router.push(`/cases/${caseId}?caseLastModified=${caseLastModified}`);
+  }
+
   render() {
     const buttonList = [<RaisedButton label="START CASE" primary={true} type="submit"/>,
       <FlatButton label="RESET" primary={false} secondary={true}/>];
@@ -64,11 +69,10 @@ class Details extends React.Component {
         </div>
         {this.props.showFeedbackForm ?
           <div>
-            <div style={styles.headerMargin}>The case was successfully created.<JsonObjectViewer
-              buttonTitle="Open case"
-              buttonIsPrimary={true}
-              modalTitle="Case details"
-              object={this.props.case}
+            <div style={styles.headerMargin}>The case was successfully created.<RaisedButton
+              label="Open case"
+              primary={true}
+              onClick={this.openDetailPage.bind(this)}
             /></div>
             <div style={styles.saveButton}>
               <RaisedButton
@@ -107,7 +111,7 @@ class Details extends React.Component {
     }
 
     return (
-      <Paper style={{ padding: 30, paddingTop: 15, margin: 20 }}>
+      <Paper style={{ padding: 30, paddingTop: 10, margin: '65px 15px 15px 15px' }}>
         {detailBody}
       </Paper>
     );
@@ -119,6 +123,10 @@ Details.propTypes = {
   isFetching: React.PropTypes.bool.isRequired,
   definition: React.PropTypes.string,
   error: React.PropTypes.object
+};
+
+Details.contextTypes = {
+  router: React.PropTypes.object.isRequired
 };
 
 export default Details;

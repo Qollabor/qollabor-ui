@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatButton, Dialog } from 'material-ui';
-import JSONPretty from 'react-json-pretty';
+import CaseFileViewer from './caseFileViewer';
 
 export default class CaseFile extends React.Component {
   constructor(props) {
@@ -36,9 +36,7 @@ export default class CaseFile extends React.Component {
           open={this.state.open}
           autoScrollBodyContent={true}
         >
-          <div>
-            {<JSONPretty id="json-pretty" json={this.props.file} />}
-          </div>
+          <CaseFileViewer file={this.props.file}/>
         </Dialog>
       </div>
     );

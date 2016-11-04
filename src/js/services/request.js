@@ -2,7 +2,6 @@ import 'whatwg-fetch';
 import registry from 'app-registry';
 
 import { store } from '../store';
-import { notifyDanger } from '../features/notifier';
 import queryString from 'query-string';
 
 const defaultGetHeaders = {
@@ -24,6 +23,20 @@ const defaultDeleteHeaders = {
   Accept: 'application/json',
   'Content-Type': 'application/json'
 };
+
+
+function checkStatus(response) {
+  /* eslint-disable no-else-return*/
+  if (response.status >= 200 && response.status < 300) {
+    return response;
+  } else {
+    const error = new Error(response.statusText);
+    error.message = response.body;
+    error.response = response;
+    throw error;
+  }
+  /* eslint-enable no-else-return*/
+}
 
 function transformResponse(fetchResponse) {
   return new Promise(resolve => {
@@ -77,13 +90,13 @@ function getMethod(url, query, options) {
       }
     )
       .then(transformResponse)
+      .then(checkStatus)
       .then(response => {
         resolve(response);
       })
       .catch(err => {
         registry.get('logger').error(err);
-        verifyAuthAndRedirect(err);
-        reject(err);
+        verifyAuthAndRedirect(err, reject);
       });
   });
 }
@@ -103,13 +116,13 @@ function postMethod(url, data, options) {
       }
     )
       .then(transformResponse)
+      .then(checkStatus)
       .then(response => {
         resolve(response);
       })
       .catch(err => {
         registry.get('logger').error(err);
-        verifyAuthAndRedirect(err);
-        reject(err);
+        verifyAuthAndRedirect(err, reject);
       });
   });
 }
@@ -129,13 +142,13 @@ function putMethod(url, data, options) {
       }
     )
       .then(transformResponse)
+      .then(checkStatus)
       .then(response => {
         resolve(response);
       })
       .catch(err => {
         registry.get('logger').error(err);
-        verifyAuthAndRedirect(err);
-        reject(err);
+        verifyAuthAndRedirect(err, reject);
       });
   });
 }
@@ -154,33 +167,31 @@ function deleteMethod(url, options) {
       }
     )
       .then(transformResponse)
+      .then(checkStatus)
       .then(response => {
         resolve(response);
       })
       .catch(err => {
         registry.get('logger').error(err);
-        verifyAuthAndRedirect(err);
-        reject(err);
+        verifyAuthAndRedirect(err, reject);
       });
   });
 }
 
-/* FIXME: Since we are getting an error for every request failure,
-  we are disabling the 'redirect to login' action for now,
-  Need to catch the authentication/network error in in a better way.
-*/
-// Verify authentication and redirect to login accordingly.
-function verifyAuthAndRedirect(/* response */) {
-  store.dispatch(notifyDanger('Request failed, please try logging in again'));
-  /*
-    const newLocation = store.getState().routing.locationBeforeTransitions;
-    if (response.message === 'Failed to fetch' && newLocation.pathname !== '/login') {
-      const config = registry.get('config');
-      registry.get('storage').removeItem(config.login.token.storage.key);
-      registry.get('storage').removeItem(config.login.user.storage.key);
-      store.dispatch({ type: 'LOGIN:TOKEN_REFRESH:FAIL' });
-    }
-  */
+/**
+ * Method which Verifies authentication and redirect the user to login accordingly.
+ */
+function verifyAuthAndRedirect(error, reject) {
+  // Checks for Unauthorized Exception and redirect to login.
+  const newLocation = store.getState().routing.locationBeforeTransitions;
+  if (newLocation.pathname !== '/login' && error && error.response && error.response.status === 401) {
+    const config = registry.get('config');
+    registry.get('storage').removeItem(config.login.token.storage.key);
+    registry.get('storage').removeItem(config.login.user.storage.key);
+    store.dispatch({ type: 'LOGIN:TOKEN_REFRESH:FAIL' });
+  } else {
+    reject(error);
+  }
 }
 
 

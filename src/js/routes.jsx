@@ -13,6 +13,7 @@ import CaseModelDetailPage from './pages/caseModelDetail';
 import SearchResultsPage from './pages/searchResultsPage';
 import CaseDetailPage from './pages/caseDetailPage';
 import CaseListPage from './pages/caseListPage';
+import SubmitTaskConfirmationPage from './pages/completeTaskPage';
 
 function getValuesFromRoutes(routes, attribute) {
   for (let i = routes.length - 1; i >= 0; i--) {
@@ -68,6 +69,7 @@ export default (
         <Route path="/cases" component={CaseListPage} {...hooks} />
         <Route path="/cases/:id" component={CaseDetailPage} {...hooks} />
         <Route path="/search" component={SearchResultsPage} {...hooks} />
+        <Route path="/tasks/:taskId/:action" component={SubmitTaskConfirmationPage} {...hooks} />
       </Route>
     </Route>
   </Route>

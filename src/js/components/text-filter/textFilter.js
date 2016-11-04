@@ -1,22 +1,22 @@
 import React from 'react';
 import { TextField } from 'material-ui';
 import { ActionSearch } from 'material-ui/svg-icons';
-import { white } from 'material-ui/styles/colors';
 
 const style = {
   fontSize: '12px',
-  margin: 5,
+  marginLeft: 5,
+  marginTop: 5,
   textIndent: '20px'
 };
 
-const searchIconStyle = {
+const iconStyle = {
   position: 'absolute',
-  top: '15px',
+  top: '13px',
   left: '2px'
 };
 
-const searchTextStyle = {
-  color: 'white'
+const underlineStyle = {
+  bottom: '12px'
 };
 
 class TextFilter extends React.Component {
@@ -40,6 +40,10 @@ class TextFilter extends React.Component {
     this.setState({
       filterText: e.target.value
     });
+
+    if (e.target.value === '') {
+      this.props.onFilterChange(e, '');
+    }
   }
 
   handleFilterKeyDown(e) {
@@ -50,7 +54,7 @@ class TextFilter extends React.Component {
 
   handleFilterKeyUp(e) {
     if (e.target.value === '') {
-      this.handleClearFilter(e);
+      this.props.onFilterChange(e, '');
     }
   }
 
@@ -58,12 +62,13 @@ class TextFilter extends React.Component {
     const hintText = this.props.hintText || 'Filter';
     return (
       <div style={{ position: 'relative', width: '300px' }} >
-        <ActionSearch style={searchIconStyle} color={white}/>
+        <ActionSearch style={Object.assign({}, iconStyle, this.props.searchIconStyle)}/>
         <TextField
           type="search" hintText={hintText}
           style={style} value={this.state.filterText}
-          hintStyle={Object.assign(searchTextStyle, this.props.hintStyle)}
-          inputStyle={Object.assign(searchTextStyle, this.props.inputStyle)}
+          underlineStyle={underlineStyle}
+          hintStyle={this.props.hintStyle}
+          inputStyle={this.props.inputStyle}
           onKeyUp={this.handleFilterKeyUp.bind(this)} onKeyDown={this.handleFilterKeyDown.bind(this)}
           onChange={this.handleFilterChange.bind(this)}
         />

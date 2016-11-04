@@ -10,7 +10,7 @@ export const generateRequestFilters = (filters, args) =>
       case 'terminated':
         return { planState: 'Terminated' };
       case 'unassigned':
-        return { taskState: 'Unassigned' };
+        return { taskState: 'Unassigned', planState: 'Active' };
       default:
         throw new Error(`Unsupported filter ${filter}`);
     }

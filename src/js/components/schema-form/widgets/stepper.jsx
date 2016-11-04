@@ -92,9 +92,7 @@ export class StepperWidget extends Component {
     return true;
   }
 
-  handlePrev(currentStepName) {
-    if (! this.validateAndSetErrors(currentStepName)) return;
-
+  handlePrev() {
     const { stepIndex } = this.state;
     if (stepIndex > 0) {
       this.setState({
@@ -173,7 +171,7 @@ export class StepperWidget extends Component {
           orderedProperties.map((propertyName, index) => {
             const subSchema = retrieveSchema(schema.properties[propertyName], registry.definitions);
             return (
-              <Step>
+              <Step key={propertyName}>
                 <StepLabel
                   onTouchTap={this.updateCurrentStep.bind(this, index, propertyName)}
                 >{subSchema.title || propertyName}</StepLabel>
@@ -194,7 +192,7 @@ export class StepperWidget extends Component {
                     readonly={readonly}
                     hideTitle={true}
                   />
-                  {(! disabled) && this.renderStepActions(index, propertyName)}
+                  {(! (disabled || readonly)) && this.renderStepActions(index, propertyName)}
                 </StepContent>
               </Step>
             );

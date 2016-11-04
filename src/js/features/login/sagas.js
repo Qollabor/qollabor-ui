@@ -67,7 +67,9 @@ export function* loginFlow(action) {
     }
   } catch (err) {
     registry.get('logger').error(err);
-    yield put({ type: 'LOGIN:DO_LOGIN:FAIL', login: 'Authentication failure: A network error has occurred.' });
+    const errorMsg = (err.response && err.response.body) ? err.response.body
+      : 'Authentication failure: A network error has occurred.';
+    yield put({ type: 'LOGIN:DO_LOGIN:FAIL', login: errorMsg });
   }
 }
 

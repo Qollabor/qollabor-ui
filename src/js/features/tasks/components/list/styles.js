@@ -2,7 +2,7 @@
  * Created by andreasoldino on 5/4/16.
  */
 
-import theme from '../../themes';
+import theme from '../../../../themes';
 
 export default {
   table: {

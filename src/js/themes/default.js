@@ -19,9 +19,13 @@ export default {
     width: 240
   },
   rightDrawer: {
-    width: 300
+    width: 250
   },
   appBar: {
     height: 47
+  },
+  taskStats: {
+    backgroundColor: headerColor,
+    color: 'white'
   }
 };

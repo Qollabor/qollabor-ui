@@ -21,7 +21,8 @@ class CaseItem extends React.Component {
         secondaryText={
           <CaseHeaderDetails
             status={item.status} lastModified={item.lastModified}
-            user={item.user} team={team} userDetails={userDetails} caseTeamUsers={caseTeamUsers}
+            user={item.user} team={team} userDetails={userDetails}
+            lastModifiedBy={item.lastModifiedBy} caseTeamUsers={caseTeamUsers}
           />
         }
       />
@@ -30,7 +31,10 @@ class CaseItem extends React.Component {
 }
 
 CaseItem.propTypes = {
-  document: React.PropTypes.object.isRequired
+  item: React.PropTypes.object.isRequired,
+  team: React.PropTypes.array.isRequired,
+  userDetails: React.PropTypes.object,
+  caseTeamUsers: React.PropTypes.object
 };
 CaseItem.contextTypes = {
   router: React.PropTypes.object.isRequired

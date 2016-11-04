@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import fakeData from './data.json';
-import TaskList from './../components/taskList';
+import TaskList from './../components/tasks';
 
 const columns = [
   {

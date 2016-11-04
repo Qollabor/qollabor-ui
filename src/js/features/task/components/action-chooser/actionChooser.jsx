@@ -51,14 +51,14 @@ export class ActionChooser extends React.Component {
     if (action === 'assign' || action === 'delegate') {
       this.handleRequestOpen(actionItem, event);
     } else if (this.props.onActionHandler) {
-      this.props.onActionHandler(actionItem);
+      this.props.onActionHandler(actionItem, null, this.props.rowIndex);
     }
   }
 
   handleUserSelectChange(user, selected) {
-    const action = this.state.selectedAction;
+    const actionItem = this.state.selectedAction;
     if (selected) {
-      this.props.onActionHandler(action, user);
+      this.props.onActionHandler(actionItem, user, this.props.rowIndex);
       this.requestRequestClose();
     }
   }
@@ -70,7 +70,7 @@ export class ActionChooser extends React.Component {
           iconButtonElement={<IconButton
             onClick={this.handleClick.bind(this)}
             onTouchTap={this.handleTouchTap.bind(this)}
-            style={{ height: 21, padding: 0 }}
+            style={this.props.iconStyle}
           ><NavigationMoreVert /></IconButton>}
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'left', vertical: 'top' }}
@@ -78,7 +78,7 @@ export class ActionChooser extends React.Component {
           {this.state.open ?
             this.props.actionItems.map(function(actionitem) {
               let disabled = this.props.isDisabled ?
-                this.props.isDisabled(actionitem) : false;
+                this.props.isDisabled(actionitem, this.props.rowIndex) : false;
               let menuItemClass = (disabled === true) ? 'menuItemDisabled' : '';
               return (
                 <MenuItem
@@ -111,6 +111,7 @@ ActionChooser.displayName = 'ActionChooser';
 
 ActionChooser.propTypes = {
   isVerifyAuth: React.PropTypes.bool,
+  iconStyle: React.PropTypes.string.isRequired,
   onActionHandler: React.PropTypes.func.isRequired
 };
 

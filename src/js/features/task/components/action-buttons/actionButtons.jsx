@@ -61,6 +61,7 @@ export class ActionButtons extends React.Component {
     const items = actionItems.concat(this.props.availableTransitions ? this.props.availableTransitions : []);
     const content = (
       <ActionChooser
+        iconStyle={{ height: 21, padding: 0 }}
         actionItems={items} onActionHandler={this.onActionHandler.bind(this)}
         isDisabled={this.isActionDisabled.bind(this)}
       />

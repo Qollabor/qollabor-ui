@@ -10,12 +10,14 @@ function mapStateToProps(state) {
       .map(
         (item) => Object.assign({}, item, {
           color: '#388AC3',
-          icon: 'view_list',
+          icon: 'playlist_add',
           action: () => registry.get('store')
             .dispatch({
               type: 'CASE:DISCRETIONARY_ITEMS:REQUEST_PLAN',
-              planItemId: item.id,
-              caseId: item.caseInstanceId
+              definitionId: item.id,
+              planItemName: item.name,
+              parentId: item.parentId,
+              caseId: state.case.discretionaryItems.get('caseInstanceId')
             })
         })
       ),

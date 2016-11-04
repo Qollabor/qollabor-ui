@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontIcon, MenuItem } from 'material-ui';
-import TaskStats from '../tasks/components/stats';
+import TaskStats from '../stats';
 import styles from './styles';
 
 class TasksFilter extends React.Component {
@@ -39,10 +39,9 @@ class TasksFilter extends React.Component {
                   </FontIcon>
                 </span>
               }
-              rightIcon={tasksFilterType.id === 'myTasks' && <span style={{ marginTop: 0 }}>
-                <TaskStats type={tasksFilterType.id}/>
-              </span>
-              }
+              rightIcon={<span style={{ marginTop: 0 }}>
+                <TaskStats type={tasksFilterType.type}/>
+              </span>}
               disabled={this.props.isFetchingTasksList}
             />
           </div>

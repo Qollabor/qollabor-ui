@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, CardHeader, CardMedia, CardActions } from 'material-ui';
+import { Card, CardHeader, CardMedia } from 'material-ui';
 import registry from 'app-registry';
-import CaseFile from '../../../case-file';
 import CaseHeaderDetails from './caseHeaderDetails';
 
 const headerStyle = {
@@ -13,27 +12,24 @@ class CaseHeader extends React.Component {
     return registry.get('helpers').getLocalDateTime(date);
   }
   render () {
-    const { name, status, lastModified, user, file, team, userDetails, caseTeamUsers, planItems } = this.props;
+    const { name, status, lastModified, lastModifiedBy,
+      user, team, userDetails, lastModifiedByUserDetails, caseTeamUsers, planItems } = this.props;
     return (
-      <Card style={{ margin: '10px' }}>
+      <Card style={{ margin: '10px' }} initiallyExpanded={true}>
         <CardHeader
           title={name}
           actAsExpander={false}
           showExpandableButton={false}
-          initiallyExpanded={true}
           style={headerStyle}
         />
-        <CardMedia style={{ height: '100px', marginLeft: '16px' }}>
+        <CardMedia style={{ height: '130px', marginLeft: '16px' }}>
           <CaseHeaderDetails
-            status={status} lastModified={lastModified}
-            user={user} team={team} userDetails={userDetails} caseTeamUsers={caseTeamUsers} planItems={planItems}
+            status={status} lastModified={lastModified} lastModifiedBy={lastModifiedBy}
+            user={user} team={team} userDetails={userDetails}
+            lastModifiedByUserDetails={lastModifiedByUserDetails}
+            caseTeamUsers={caseTeamUsers} planItems={planItems}
           />
         </CardMedia>
-        {file &&
-          <CardActions>
-            <CaseFile file={file} />
-          </CardActions>
-        }
       </Card>
     );
   }
@@ -44,7 +40,7 @@ CaseHeader.propTypes = {
   lastModified: React.PropTypes.string.isRequired,
   user: React.PropTypes.string.isRequired,
   file: React.PropTypes.object.isRequired,
-  team: React.PropTypes.object.isRequired
+  team: React.PropTypes.array.isRequired
 };
 
 export default CaseHeader;

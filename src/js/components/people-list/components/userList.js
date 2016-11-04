@@ -60,7 +60,7 @@ class UserList extends React.Component {
 
 UserList.propTypes = {
   people: React.PropTypes.array,
-  canSelectUsers: React.PropTypes.boolean
+  canSelectUsers: React.PropTypes.bool
 };
 
 export default UserList;

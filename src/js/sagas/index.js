@@ -30,6 +30,7 @@ const sagas = [
   // tasks
   [takeEvery, 'TASKS:LIST:REQUEST_INIT', fetchTasks],
   [takeEvery, 'TASKS:FILTERS:CHANGE', fetchTasks],
+  [takeEvery, 'TASKS:LIST:SORT', fetchTasks],
   [takeEvery, 'TASKS:LIST:TASK_ROW_CLICKED', viewTasks],
   [takeEvery, 'TASK:ITEM:REQUEST_EXECUTE_ACTION', executeTaskAction],
   [takeEvery, 'TASK:STATS:REQUEST_INIT', fetchTasksStats],
@@ -54,8 +55,8 @@ const sagas = [
   [takeEvery, 'SEARCH:LIST:INIT', resetAndSearch],
   [takeEvery, 'SEARCH:LIST:NEXT:FETCH', search],
   // case list
-  [takeEvery, 'CASE:LIST:INIT', resetAndFetch]
-
+  [takeEvery, 'CASE:LIST:INIT', resetAndFetch],
+  [takeEvery, 'CASE:LIST:FILTER_BY_TEXT', resetAndFetch]
 ];
 
 function* rootSaga() {

@@ -10,6 +10,7 @@ const defaultState = Immutable.fromJS(
 
     transition: {
       onGoing: false,
+      success: false,
       error: {
         message: '',
         isError: false
@@ -50,16 +51,19 @@ export const reducers = (state = defaultState, action) => {
     case 'TASK:TRANSITION':
       return state
         .setIn(['transition', 'onGoing'], true)
+        .setIn(['transition', 'success'], false)
         .setIn(['transition', 'error'], defaultState.getIn(['transition', 'error']));
 
     case 'TASK:TRANSITION:SUCCESS':
       return state
         .setIn(['transition', 'onGoing'], false)
+        .setIn(['transition', 'success'], true)
         .setIn(['transition', 'error'], defaultState.getIn(['transition', 'error']));
 
     case 'TASK:TRANSITION:FAIL':
       return state
         .setIn(['transition', 'onGoing'], false)
+        .setIn(['transition', 'success'], false)
         .setIn(['transition', 'error'], Immutable.Map({
           message: action.error,
           isError: true

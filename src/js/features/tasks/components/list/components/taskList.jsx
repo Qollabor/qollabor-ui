@@ -35,8 +35,8 @@ export class TaskList extends React.Component {
     } else if (this.props.error && this.props.error.isError) {
       tableBody = <MessageRow colSpan={this.props.columns.length + 2} message={this.props.error.message} />;
     } else {
-      tableBody = (this.props.tasks && this.props.tasks.length > 0) ?
-        this.props.tasks.map((item) =>
+      tableBody = (this.props.items && this.props.items.length > 0) ?
+        this.props.items.map((item) =>
           <TaskListRow
             key={item.id}
             rowData={item}
@@ -77,7 +77,7 @@ TaskList.displayName = 'TaskList';
 
 TaskList.propTypes = {
   columns: React.PropTypes.array.isRequired,
-  tasks: React.PropTypes.array,
+  items: React.PropTypes.array,
   onRowClick: React.PropTypes.func,
   bodyHeight: React.PropTypes.number,
   isFetching: React.PropTypes.bool.isRequired,

@@ -91,9 +91,9 @@ export function* startCaseModel() {
     switch (response.status) {
       case 200:
       case 201: {
-        const caseInstanceId = response.body.caseInstanceId;
+        const caseId = response.body.caseInstanceId;
         const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
-        yield fetchCaseDetail(caseInstanceId, caseLastModified);
+        yield put({ type: 'CASEMODEL:START:SUCCESS', caseId, caseLastModified });
         break;
       }
       default:
@@ -105,36 +105,3 @@ export function* startCaseModel() {
     yield put({ type: 'CASEMODEL:START:FAIL', error: err.message });
   }
 }
-
-function* fetchCaseDetail(caseInstanceId, caseLastModified) {
-  try {
-    const config = registry.get('config');
-    const helpers = registry.get('helpers');
-    const dataKey = '_2';
-
-    const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'], {
-      caseLastModified
-    });
-
-    const response = yield registry.get('request')
-      .get(`${config.cases.url}/${caseInstanceId}`, null, headers);
-
-    let theCase = {};
-
-    if (config.cases.version === 1) {
-      if (response.body[dataKey]) {
-        theCase = response.body[dataKey];
-      }
-    } else if (response.body) {
-      const sanitizeAfterLoad = registry.get('helpers').task.sanitizeAfterLoad;
-      response.body.planitems = response.body.planitems.map(sanitizeAfterLoad);
-      theCase = response.body;
-    }
-
-    yield put({ type: 'CASEMODEL:START:SUCCESS', case: theCase });
-  } catch (err) {
-    registry.get('logger').error(err);
-    yield put({ type: 'CASEMODEL:START:FAIL', error: err.message });
-  }
-}
-

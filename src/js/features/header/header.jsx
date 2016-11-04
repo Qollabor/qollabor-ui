@@ -1,15 +1,21 @@
 import React from 'react';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import { IconButton, Divider, MenuItem, Drawer } from 'material-ui';
-import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import StartCaseIcon from 'material-ui/svg-icons/av/play-arrow';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import registry from 'app-registry';
 import styles from './styles';
-import { TasksFilter } from '../tasks-filter';
+import { TasksFilter } from '../tasks/components/filter';
 import CafienneSearch from '../search/components/searchbox';
 import { ActionAssignmentInd } from 'material-ui/svg-icons';
 import { blue500 } from 'material-ui/styles/colors';
+
+const headerStyle = {
+  position: 'fixed',
+  width: '100%',
+  zIndex: '300',
+  top: 0
+};
 
 export class Header extends React.Component {
   handleLeftNavToggle() {
@@ -28,9 +34,9 @@ export class Header extends React.Component {
   render() {
     const theme = registry.get('theme');
     const drawerWidth = theme.drawer.width;
-
+    const cafienneTitleWidth = drawerWidth - 70;
     return (
-      <div>
+      <div style={headerStyle}>
         <Drawer
           open={this.props.showDrawer}
           containerStyle={styles.leftNav}
@@ -55,25 +61,31 @@ export class Header extends React.Component {
         <Toolbar
           style={Object.assign({}, styles.appBar)}
         >
-          <ToolbarGroup firstChild={true} lastChild={false} float="left">
+          <ToolbarGroup style={{ float: 'left' }} firstChild={true} lastChild={false} >
             <IconButton
               tooltip="Open menu"
               iconStyle={styles.menuIcon}
               onClick={this.handleLeftNavToggle.bind(this)}
             >
-              <MenuIcon
-                color={theme.appBar.textColor}
+              <img
+                src="/assets/icons/logo.png"
+                style={{ height: 30, width: 30 }}
+                alt="logo"
               />
             </IconButton>
           </ToolbarGroup>
           <ToolbarGroup style={{ flexGrow: '4', justifyContent: 'flex-start' }} firstChild={false} lastChild={false}>
             <ToolbarTitle
-              style={Object.assign({}, styles.title, { color: theme.appBar.textColor })}
+              style={Object.assign({}, styles.title, {
+                color: theme.appBar.textColor,
+                fontFamily: theme.fontFamily,
+                width: cafienneTitleWidth
+              })}
               text="Cafienne"
             />
             <CafienneSearch />
           </ToolbarGroup>
-          <ToolbarGroup firstChild={false} lastChild={true} float="right">
+          <ToolbarGroup style={{ float: 'right' }} firstChild={false} lastChild={true}>
             <div style={{ display: 'inline-block' }}><AppBarUserMenu /></div>
           </ToolbarGroup>
         </Toolbar>
