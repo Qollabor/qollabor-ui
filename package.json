@@ -83,7 +83,7 @@
     "morgan": "^1.7.0",
     "node-sass": "^3.6.0",
     "raw-loader": "^0.5.1",
-    "react-addons-test-utils": "^15.2.1",
+    "react-addons-test-utils": "15.3.0",
     "react-transform-hmr": "^1.0.4",
     "sinon": "^1.17.4",
     "strip-loader": "^0.1.2",
