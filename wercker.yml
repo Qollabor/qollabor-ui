@@ -24,4 +24,4 @@ build:
         - script:
           name: build
           code: |
-            CAFIENNE_API_URL=$API_URL npm run build-production
+            npm run build-production
