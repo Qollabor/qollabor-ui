@@ -2,7 +2,7 @@
 
 const path = require('path');
 
-const baseApiUrl = 'http://localhost:18082/';
+const baseApiUrl = 'http://spronq-demo.spronq.com:18082/';
 
 module.exports = {
   folders: {
