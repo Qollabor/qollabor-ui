@@ -6,6 +6,8 @@ const baseApiUrl = process.env.CAFIENNE_API_URL
   ? process.env.CAFIENNE_API_URL
   : 'http://localhost:18082/';
 
+console.log('Set baseApiUrl to', baseApiUrl);
+
 module.exports = {
   folders: {
     build: path.join(__dirname, '../dist')
