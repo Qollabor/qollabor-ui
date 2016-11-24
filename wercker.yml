@@ -18,10 +18,6 @@ build:
             echo "npm version $(npm --version) running"
             echo "gulp version $(gulp --version) running"
         - script:
-          name: test
-          code: |
-            npm test
-        - script:
           name: build
           code: |
             npm run build-production
