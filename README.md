@@ -9,8 +9,8 @@ The UI is built using:
  * redux-saga: https://github.com/yelouafi/redux-saga
  * react-router: https://github.com/reactjs/react-router
  * immutable: https://facebook.github.io/immutable-js
- 
- 
+
+
 ## Development/Local running
 
 To start developing this UI you there are some prerequisites:
@@ -60,9 +60,9 @@ npm test
 
 ##### Folder/file structure
 
-The test should be added directly beside the file in a folder called 
-`test` and with an extension in the format `filename.spec.js` 
-or `filename.spec.jsx`  
+The test should be added directly beside the file in a folder called
+`test` and with an extension in the format `filename.spec.js`
+or `filename.spec.jsx`
 
 ```
 .
@@ -75,9 +75,9 @@ or `filename.spec.jsx`
 ├── ...
 └── ...
 ```
- 
+
 ### Development server
-The development server is created using `webpack-dev-server` with 
+The development server is created using `webpack-dev-server` with
 the react hot reloader.
 
 to run the server:
@@ -100,9 +100,9 @@ and connect the client running with:
 ```
 npm run serve-mock
 ```
- 
+
 ### Storybook
-To develop component in an isolated environemnt the system use 
+To develop component in an isolated environemnt the system use
 Storybook
 https://github.com/kadirahq/react-storybook
 
@@ -111,13 +111,21 @@ to run the storybook platform:
 npm run storybook
 ```
 
- 
-### Build production bundle 
+
+### Build production bundle
 To build the pruduction bundle run:
- 
+
 ```
 npm run build-production
 ```
+
+To set Cafienne API endpoint url, set `CAFIENNE_API_URL` or do the following:
+
+```
+CAFIENNE_API_URL=http://0.0.0.0/ npm run build-production
+```
+
+Yes, that trailing slash is there for a reason.
 
 ## Folder/File structures
 
@@ -132,12 +140,12 @@ npm run build-production
 ├── dist                  // The dist folder
 ├── src                   // The source folder
 │   └── js                // The app javascript folder
-│   │ └── ... 
+│   │ └── ...
 │   ├─- index.html
 │   └── styles.scss
 ├── tasks                 // The gulp tasks folder, https://github.com/sytac/gulp-commonjs-tasks
 ├── tests                 // The common test folder, integration test should be put here
-│   └── helpers     
+│   └── helpers
 ├── gulpfile.js
 ├── package.json
 ├── ...
@@ -163,10 +171,10 @@ src/js/
 │   │       └── sample.spec.jsx
 │   └── user
 │       ├── components            // If the feature has a complex structure create a component folder
-│       ├── index.js              // The entry point of the feature, should export the part of the feature 
+│       ├── index.js              // The entry point of the feature, should export the part of the feature
 │       ├── reducers.js
 │       └── sagas.js
-├── layouts                       // The folder containing the layouts 
+├── layouts                       // The folder containing the layouts
 │   └── mainLayout.jsx
 ├── pages                         // The App Pages realated to the router
 │   ├── credits.jsx
@@ -189,7 +197,7 @@ src/js/
 
 ### Logger
 To log use the logger service provided instead of calling directly.
-Calling the console log directly from the code is forbidden by a rule in eslint. 
+Calling the console log directly from the code is forbidden by a rule in eslint.
 Is possible to use it in the development process but all the `console.log` should be removed before the commit.
 
 The logger is initialized in the `app.jsx` and registered in the registry.
@@ -205,11 +213,11 @@ registry.register('logger', logger);
 The log levels are the following:
 
  * emerg: 0
- * alert: 1 
- * crit: 2 
+ * alert: 1
+ * crit: 2
  * error: 3
  * warning: 4
- * notice: 5 
+ * notice: 5
  * info: 6 // The default value
  * debug: 7
 
@@ -248,5 +256,3 @@ dispatch(notifySuccess('And the winner is?', 5000));
 dispatch(notifyWarning('Attention please!'));
 dispatch(notifyDanger('Something went wrong.'));
 ```
-
-

@@ -2,7 +2,11 @@
 
 const path = require('path');
 
-const baseApiUrl = 'http://localhost:18082/';
+const baseApiUrl = process.env.CAFIENNE_API_URL
+  ? process.env.CAFIENNE_API_URL
+  : 'http://localhost:18082/';
+
+console.log('Set baseApiUrl to', baseApiUrl);
 
 module.exports = {
   folders: {
@@ -39,7 +43,7 @@ module.exports = {
         storage: {
           key: 'auth-cafienne'
         },
-        expire: 1000 * 60 * 59// in milliseconds, 59 minutes
+        expire: 1000 * 60 * 59 // in milliseconds, 59 minutes
       },
       user: {
         storage: {
@@ -75,6 +79,6 @@ module.exports = {
       url: `${baseApiUrl}repository/load`,
       version: 1
     },
-    baseApiUrl:baseApiUrl
+    baseApiUrl
   }
 };
