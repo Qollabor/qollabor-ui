@@ -48,12 +48,14 @@ describe('components/titled-list-box', () => {
 
     it('should send a warning if items is not set', () => {
       expect(() => shallow.bind(<TitledListBoxComponent title="Some title" labelField="name"/>))
-        .to.Throw('Warning: Failed prop type: Required prop `items` was not specified in `TitledListBoxComponent`');
+        .to
+        .Throw('Warning: Failed prop type: Required prop `items` was not specified in `TitledListBoxComponent`');
     });
 
     it('should send a warning id labelField is not set', () => {
       expect(() => shallow.bind(<TitledListBoxComponent title="Some title" items={[]}/>))
-        .to.Throw('Warning: Failed prop type: Required prop `labelField` was not specified in `TitledListBoxComponent`');
+        .to
+        .Throw('Warning: Failed prop type: Required prop `labelField` was not specified in `TitledListBoxComponent`');
     });
   });
 
