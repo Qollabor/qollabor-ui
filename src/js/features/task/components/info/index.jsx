@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles';
 import moment from 'moment';
 import { FlatButton, Popover } from 'material-ui';
-import { TitledBox } from 'cafienne-ui-elements';
+import { TitledBox } from '../../../../cafienne-ui-elements';
 import TaskInfoItem from './components/item';
 import UserSelector from '../../../../components/user-selector';
 

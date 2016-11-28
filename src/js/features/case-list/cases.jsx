@@ -1,5 +1,12 @@
 import React from 'react';
-import { ResponsiveTableWrapper, DataCell, DateCell, sortData, SortHeaderCell, Column } from 'cafienne-ui-elements';
+import {
+  ResponsiveTableWrapper,
+  DataCell,
+  DateCell,
+  sortData,
+  SortHeaderCell,
+  Column
+} from '../../cafienne-ui-elements';
 import TextFilter from '../../components/text-filter';
 import { Paper } from 'material-ui';
 import registry from 'app-registry';

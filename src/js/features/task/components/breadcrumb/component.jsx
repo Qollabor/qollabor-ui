@@ -1,5 +1,5 @@
 import React from 'react';
-import { Breadcrumb } from 'cafienne-ui-elements';
+import { Breadcrumb } from '../../../../cafienne-ui-elements';
 
 export class TaskBreadcrumbComponent extends React.Component {
   render() {

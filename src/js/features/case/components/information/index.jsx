@@ -1,5 +1,5 @@
 import React from 'react';
-import { TitledBox } from 'cafienne-ui-elements';
+import { TitledBox } from '../../../../cafienne-ui-elements';
 import { RaisedButton } from 'material-ui';
 import styles from '../styles';
 

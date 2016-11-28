@@ -3,7 +3,6 @@
   "dependencies": {
     "app-registry": "1.0.1",
     "babel-polyfill": "6.13.0",
-    "cafienne-ui-elements": "ssh://git@github.com:cafienne/cafienne-ui-elements.git",
     "deeper": "2.1.0",
     "history": "2.1.0",
     "immutable": "3.8.1",
@@ -12,7 +11,7 @@
     "material-ui": "0.15.4",
     "moment": "2.14.1",
     "query-string": "4.2.3",
-    "radium": "0.17.1",
+    "radium": "0.18.0",
     "react": "15.3.1",
     "react-dom": "15.3.1",
     "react-immutable-proptypes": "2.1.0",

@@ -1,9 +1,19 @@
 import React from 'react';
-import { ResponsiveTableWrapper, DataCell, DateCell, SortHeaderCell, Column } from 'cafienne-ui-elements';
+import {
+  ResponsiveTableWrapper,
+  DataCell,
+  DateCell,
+  SortHeaderCell,
+  Column
+} from '../../../../../cafienne-ui-elements';
 import { ActionChooserCell } from './cells';
 import { Paper } from 'material-ui';
 import registry from 'app-registry';
-import { ActionAssignmentReturned, ActionAssignmentInd, ActionAssignmentReturn } from 'material-ui/svg-icons';
+import {
+  ActionAssignmentReturned,
+  ActionAssignmentInd,
+  ActionAssignmentReturn
+} from 'material-ui/svg-icons';
 
 const actionItems = [
   {

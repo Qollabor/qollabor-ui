@@ -1,6 +1,6 @@
 import React from 'react';
 import PeopleList from '../../../../components/people-list';
-import { TitledBox } from 'cafienne-ui-elements';
+import { TitledBox } from '../../../../cafienne-ui-elements';
 
 const style = { height: '30px' };
 
