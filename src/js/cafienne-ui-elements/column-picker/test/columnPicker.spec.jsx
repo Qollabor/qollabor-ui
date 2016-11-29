@@ -33,7 +33,7 @@ describe('features/taskList/columnPicker', () => {
     let result;
 
     beforeEach(() => {
-      result = shallow(<ColumnPicker columns={columns}/>);
+      result = shallow(<ColumnPicker columns={columns} />);
     });
 
     it('should render', () => {
@@ -99,7 +99,7 @@ describe('features/taskList/columnPicker', () => {
     let result;
 
     beforeEach(() => {
-      result = shallow(<ColumnPicker columns={columns}/>);
+      result = shallow(<ColumnPicker columns={columns} />);
     });
 
     it('should set the internal state to open after a click on the cog button', () => {

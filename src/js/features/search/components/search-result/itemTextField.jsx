@@ -9,7 +9,7 @@ const labelStyle = {
   fontWeight: 'bold'
 };
 class ItemTextField extends React.Component {
-  render () {
+  render() {
     return (<span>
       <TextField
         disabled={false}

@@ -39,7 +39,7 @@ export class SelectWidget extends React.Component {
     if (help) {
       helpWidget = (
         <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}>
-          <HelpWidget help={help}/>
+          <HelpWidget help={help} />
         </div>
       );
     }
@@ -61,7 +61,7 @@ export class SelectWidget extends React.Component {
           onChange={this.handleOnChange.bind(this)}
           {...errors}
         >
-          {options.map(item => <MenuItem key={item.value} value={item.value} primaryText={item.label}/>)}
+          {options.map(item => <MenuItem key={item.value} value={item.value} primaryText={item.label} />)}
         </SelectField>
       </div>
     );

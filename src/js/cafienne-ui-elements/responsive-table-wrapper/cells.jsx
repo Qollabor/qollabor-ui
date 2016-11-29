@@ -70,7 +70,7 @@ DateCell.propTypes = {
 
 // CheckBox cell
 const CheckBoxCell = ({ items, rowIndex, columnKey, ...props }) =>
-  (<Cell {...props}><input type="checkbox" checked={items[rowIndex][columnKey]} disabled="disabled"/></Cell>);
+  (<Cell {...props}><input type="checkbox" checked={items[rowIndex][columnKey]} disabled="disabled" /></Cell>);
 
 CheckBoxCell.propTypes = {
   items: React.PropTypes.array,
@@ -107,4 +107,3 @@ StatusCell.propTypes = {
 };
 
 export { SortHeaderCell, DataCell, DateCell, CheckBoxCell, ActionChooserCell, StatusCell };
-

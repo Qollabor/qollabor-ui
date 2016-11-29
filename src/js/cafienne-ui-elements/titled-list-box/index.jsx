@@ -11,12 +11,13 @@ export class TitledListBoxComponent extends React.Component {
     if (this.props.items && this.props.items.length) {
       return (
         <div>
-          {this.props.items.map((taskListItem, index) => {
-            if (taskListItem.url) {
-              return <LinkRow key={index} item={taskListItem} labelField={this.props.labelField}/>;
-            }
-            return <ActionRow key={index} item={taskListItem} labelField={this.props.labelField}/>;
-          })}
+          {this.props.items.map((taskListItem, index) => (
+            taskListItem.url ?
+            (<LinkRow key={index} item={taskListItem} labelField={this.props.labelField} />)
+              :
+            (<ActionRow key={index} item={taskListItem} labelField={this.props.labelField} />)
+          )
+          )}
         </div>
       );
     }

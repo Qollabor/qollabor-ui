@@ -29,7 +29,7 @@ export class BooleanWidget extends React.Component {
         <div
           style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}
         >
-          <HelpWidget help={help}/>
+          <HelpWidget help={help} />
         </div>
       );
     }

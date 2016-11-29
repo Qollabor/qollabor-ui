@@ -88,7 +88,7 @@ storiesOf('JsonObjectViewer', module)
     return (
       <div className="center-component">
         <Paper style={paperStyle}>
-          <JsonPrinter object={json}/>
+          <JsonPrinter object={json} />
         </Paper>
       </div>
     );
@@ -96,7 +96,7 @@ storiesOf('JsonObjectViewer', module)
   .add('View with long json', () => (
     <div className="center-component">
       <Paper style={paperStyle}>
-        <JsonPrinter object={longJson}/>
+        <JsonPrinter object={longJson} />
       </Paper>
     </div>)
   );

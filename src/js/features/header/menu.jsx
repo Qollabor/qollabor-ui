@@ -45,7 +45,7 @@ export class MenuComponent extends React.Component {
           onClick={this.handleTouchTap.bind(this)}
           onTouchTap={this.handleTouchTap.bind(this)}
         >
-          <MoreVertIcon color="white"/>
+          <MoreVertIcon color="white" />
         </IconButton>
         <Popover
           open={this.state.open}

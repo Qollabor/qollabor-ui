@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Run the watch on the assets (html, css, images)
  */

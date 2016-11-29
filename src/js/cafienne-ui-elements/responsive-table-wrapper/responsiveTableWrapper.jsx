@@ -74,19 +74,21 @@ class ResponsiveTableWrapper extends React.Component {
     const columns = this.props.columns ? this.props.columns : [];
 
     return (<div>
-        {this.state.showColumnChooser && <ColumnPicker
+      {this.state.showColumnChooser &&
+        <ColumnPicker
           style={{ position: 'absolute', left: this.state.tableWidth - 24, top: '5px', zIndex: 1000 }}
           columns={columns} onMenuItemClicked={this.props.onColumnVisibilityToggle}
         />
-        }
+      }
       <Table
         width={this.state.tableWidth}
         height={this.state.tableHeight} {...this.props}
       >
-        {this.state.showStatusIcon && <Column
-          cell={<StatusCell {...this.props}/>}
-          width={30}
-        />}
+        {this.state.showStatusIcon &&
+          <Column
+            cell={<StatusCell {...this.props} />}
+            width={30}
+          />}
 
         {this.props.children
           .map((columnDefinition) => {
@@ -96,21 +98,23 @@ class ResponsiveTableWrapper extends React.Component {
 
             // Do not render the column if hidden via column picker.
             if (!isColumnHidden) {
-              return (<Column
-                key={columnDefinition.props.columnKey}
-                columnKey={columnDefinition.props.columnKey}
-                header={columnDefinition.props.header}
-                cell={columnDefinition.props.cell}
-                flexGrow={columnDefinition.props.flexGrow}
-                width={columnDefinition.props.width}
-              />);
+              return (
+                <Column
+                  key={columnDefinition.props.columnKey}
+                  columnKey={columnDefinition.props.columnKey}
+                  header={columnDefinition.props.header}
+                  cell={columnDefinition.props.cell}
+                  flexGrow={columnDefinition.props.flexGrow}
+                  width={columnDefinition.props.width}
+                />);
             }
             return '';
           }
           )}
 
-          {this.state.showActionSelector && <Column
-            cell={<ActionChooserCell {...this.props}/>}
+        {this.state.showActionSelector &&
+          <Column
+            cell={<ActionChooserCell {...this.props} />}
             width={50}
           />
           }
@@ -130,4 +134,3 @@ ResponsiveTableWrapper.defaultProps = {
 };
 
 export default Dimensions()(ResponsiveTableWrapper);
-

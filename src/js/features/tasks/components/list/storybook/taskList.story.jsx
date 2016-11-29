@@ -87,6 +87,6 @@ storiesOf('Tasks/List', module)
   })
   .add('Is fetching something', () =>
     <div className="center-component">
-      <TaskList columns={columns} isFetching={true}/>
+      <TaskList columns={columns} isFetching={true} />
     </div>
   );

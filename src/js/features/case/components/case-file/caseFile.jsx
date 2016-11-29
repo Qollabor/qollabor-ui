@@ -36,7 +36,7 @@ export default class CaseFile extends React.Component {
           open={this.state.open}
           autoScrollBodyContent={true}
         >
-          <CaseFileViewer file={this.props.file}/>
+          <CaseFileViewer file={this.props.file} />
         </Dialog>
       </div>
     );

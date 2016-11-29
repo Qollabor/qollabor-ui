@@ -26,7 +26,7 @@ export class JsonPrinter extends React.Component {
         });
 
     return (
-      <pre style={styles.pre} dangerouslySetInnerHTML={{ __html: content }}/>
+      <pre style={styles.pre} dangerouslySetInnerHTML={{ __html: content }} />
     );
   }
 }

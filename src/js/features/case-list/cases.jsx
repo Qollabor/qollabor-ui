@@ -69,49 +69,49 @@ class CaseList extends React.Component {
             <Column
               columnKey="caseInstanceId"
               header={<SortHeaderCell {...this.props}> ID </SortHeaderCell>}
-              cell={<DataCell items={items}/>}
+              cell={<DataCell items={items} />}
               flexGrow={2}
               width={250}
             />
             <Column
               columnKey="definition"
               header={<SortHeaderCell {...this.props}> Name </SortHeaderCell>}
-              cell={<DataCell items={items}/>}
+              cell={<DataCell items={items} />}
               flexGrow={1}
               width={50}
             />
             <Column
               columnKey="currentState"
               header={<SortHeaderCell {...this.props}> Status </SortHeaderCell>}
-              cell={<DataCell items={items}/>}
+              cell={<DataCell items={items} />}
               flexGrow={1}
               width={50}
             />
             <Column
               columnKey="currentMileStone"
               header={<SortHeaderCell {...this.props}> Milestone </SortHeaderCell>}
-              cell={<DataCell items={items}/>}
+              cell={<DataCell items={items} />}
               flexGrow={1}
               width={70}
             />
             <Column
               columnKey="parentCaseId"
               header={<SortHeaderCell {...this.props}> Parent </SortHeaderCell>}
-              cell={<DataCell items={items}/>}
+              cell={<DataCell items={items} />}
               flexGrow={1}
               width={80}
             />
             <Column
               columnKey="lastModifiedBy"
               header={<SortHeaderCell {...this.props}> Modified By </SortHeaderCell>}
-              cell={<DataCell items={items}/>}
+              cell={<DataCell items={items} />}
               flexGrow={1}
               width={50}
             />
             <Column
               columnKey="lastModified"
               header={<SortHeaderCell {...this.props}> Modified At </SortHeaderCell>}
-              cell={<DateCell items={items}/>}
+              cell={<DateCell items={items} />}
               flexGrow={1}
               width={100}
             />

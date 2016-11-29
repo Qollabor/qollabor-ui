@@ -42,18 +42,18 @@ describe('components/titled-list-box', () => {
     afterEach(() => console.error.restore());
 
     it('should send a warning if title is not set', () => {
-      expect(() => shallow.bind(<TitledListBoxComponent items={[]} labelField="name"/>))
+      expect(() => shallow.bind(<TitledListBoxComponent items={[]} labelField="name" />))
         .to.Throw('Warning: Failed prop type: Required prop `title` was not specified in `TitledListBoxComponent`');
     });
 
     it('should send a warning if items is not set', () => {
-      expect(() => shallow.bind(<TitledListBoxComponent title="Some title" labelField="name"/>))
+      expect(() => shallow.bind(<TitledListBoxComponent title="Some title" labelField="name" />))
         .to
         .Throw('Warning: Failed prop type: Required prop `items` was not specified in `TitledListBoxComponent`');
     });
 
     it('should send a warning id labelField is not set', () => {
-      expect(() => shallow.bind(<TitledListBoxComponent title="Some title" items={[]}/>))
+      expect(() => shallow.bind(<TitledListBoxComponent title="Some title" items={[]} />))
         .to
         .Throw('Warning: Failed prop type: Required prop `labelField` was not specified in `TitledListBoxComponent`');
     });

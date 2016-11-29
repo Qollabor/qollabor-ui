@@ -20,9 +20,9 @@ storiesOf('CaseModels/CaseTeamSelector', module).addDecorator((story) => (
   ))
   .add('With Empty data', () =>
     (<div className="center-component">
-      <CaseTeamSelector roles={[]}/>
+      <CaseTeamSelector roles={[]} />
     </div>))
   .add('With data', () =>
     (<div className="center-component">
-      <CaseTeamSelector roles={roles}/>
+      <CaseTeamSelector roles={roles} />
     </div>));

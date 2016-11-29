@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Copy the html files in the dist folder
  */

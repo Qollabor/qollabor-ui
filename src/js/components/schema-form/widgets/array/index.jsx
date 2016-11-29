@@ -22,15 +22,15 @@ export class ArrayField extends React.Component {
     const { schema, uiSchema } = this.props;
 
     if (isFilesArray(schema, uiSchema)) {
-      return <FilesArray {...this.props}/>;
+      return <FilesArray {...this.props} />;
     }
     if (isFixedItems(schema)) {
-      return <FixedArray {...this.props}/>;
+      return <FixedArray {...this.props} />;
     }
     if (isMultiSelect(schema)) {
-      return <MultiSelectArray {...this.props}/>;
+      return <MultiSelectArray {...this.props} />;
     }
-    return <NormalArray {...this.props}/>;
+    return <NormalArray {...this.props} />;
   }
 }
 

@@ -1,4 +1,3 @@
-'use strict';
 /**
  * Run the tests after a source file is changed
  */
@@ -9,7 +8,7 @@ module.exports = (gulp) => {
     }
   };
 
-  function watchClient() {
+  function watchClient () {
     gulp
       .watch(['src/**/*.js', 'src/**/*.jsx'], ['mocha'])
       .on('error', error => {

@@ -32,7 +32,7 @@ describe('features/taskList/header', () => {
     let headers;
 
     beforeEach(() => {
-      result = shallow(<TaskListHeader columns={columns}/>);
+      result = shallow(<TaskListHeader columns={columns} />);
       headers = result.find('th');
     });
 
@@ -80,7 +80,7 @@ describe('features/taskList/header', () => {
     let headers;
 
     beforeEach(() => {
-      result = shallow(<TaskListHeader columns={columns}/>);
+      result = shallow(<TaskListHeader columns={columns} />);
       headers = result.find('th');
     });
 

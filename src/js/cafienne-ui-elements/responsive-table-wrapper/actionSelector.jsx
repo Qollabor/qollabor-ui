@@ -31,7 +31,7 @@ export class ActionSelector extends React.Component {
         targetOrigin={{ horizontal: 'left', vertical: 'top' }}
       >
         {this.state.open ?
-          this.props.actionItems.map(function(actionitem) {
+          this.props.actionItems.map(function (actionitem) {
             const disabled = this.props.isDisabled ?
             this.props.isDisabled(this, this.props.rowIndex, actionitem.action) : false;
             const menuItemClass = (disabled === true) ? 'menuItemDisabled' : '';

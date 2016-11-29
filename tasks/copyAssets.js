@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Copy the asset files in the dist folder
  */

@@ -82,7 +82,7 @@ describe('features/taskList', () => {
     let result;
 
     beforeEach(() => {
-      result = shallow(<TaskList columns={columns} isFetching={true}/>);
+      result = shallow(<TaskList columns={columns} isFetching={true} />);
     });
 
     it('should render and show the fetching row component', () => {
@@ -118,7 +118,7 @@ describe('features/taskList', () => {
     let result;
 
     beforeEach(() => {
-      result = shallow(<TaskList columns={columns} isFetching={false} error={error}/>);
+      result = shallow(<TaskList columns={columns} isFetching={false} error={error} />);
     });
 
     it('should render and not show any task row component', () => {

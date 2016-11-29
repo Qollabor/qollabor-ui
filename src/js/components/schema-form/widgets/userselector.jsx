@@ -158,7 +158,17 @@ export class UserSelectorWidget extends React.Component {
     let helpWidget = false;
     if (help) {
       helpWidget =
-        <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}><HelpWidget help={help}/></div>;
+        (
+        <div
+          style={{
+            zIndex: 100,
+            float: 'right',
+            top: '20px',
+            position: 'relative'
+          }}
+        ><HelpWidget help={help} />
+        </div>
+        );
     }
 
     const errorStyle = Object.assign({}, styles.errorLabel,

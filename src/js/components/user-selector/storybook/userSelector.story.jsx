@@ -16,7 +16,7 @@ storiesOf('CaseModels/UsersSelector', module).addDecorator((story) => (
   ))
   .add('With Empty data', () =>
     (<div className="center-component">
-      <UserSelector/>
+      <UserSelector />
     </div>))
   .add('With Users', () =>
   (<div className="center-component">

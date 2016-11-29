@@ -22,7 +22,7 @@ export class JsonObjectViewer extends React.Component {
 
   render() {
     const actions = [
-      <FlatButton label="Close" onTouchTap={this.handleClose.bind(this)}/>
+      <FlatButton label="Close" onTouchTap={this.handleClose.bind(this)} />
     ];
 
     return (
@@ -34,7 +34,7 @@ export class JsonObjectViewer extends React.Component {
           onTouchTap={this.handleOpen.bind(this)}
         />
 
-        <div style={{ clear: 'both' }}/>
+        <div style={{ clear: 'both' }} />
 
         <Dialog
           title={this.props.modalTitle}
@@ -45,7 +45,7 @@ export class JsonObjectViewer extends React.Component {
           bodyStyle={{ paddingTop: '10px', paddingBottom: '10px' }}
         >
           <div style={{ maxHeight: '280px', overflow: 'auto', outline: '1px solid #ccc' }}>
-            <JsonPrinter object={this.props.object}/>
+            <JsonPrinter object={this.props.object} />
           </div>
         </Dialog>
       </div>

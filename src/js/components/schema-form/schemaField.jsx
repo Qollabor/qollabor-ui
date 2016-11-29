@@ -34,18 +34,18 @@ export const CustomSchemaField = function (props) {
   // have a custome one. Also string type extensions are in the String Widget
   switch (schema.type) {
     case 'string':
-      return <StringWidget {...props} {...readonly} {...disabled} {...schemaProps}/>;
+      return <StringWidget {...props} {...readonly} {...disabled} {...schemaProps} />;
     case 'integer':
-      return <IntegerWidget {...props} {...readonly} {...disabled} {...schemaProps}/>;
+      return <IntegerWidget {...props} {...readonly} {...disabled} {...schemaProps} />;
     case 'number':
-      return <NumberWidget {...props} {...readonly} {...disabled} {...schemaProps}/>;
+      return <NumberWidget {...props} {...readonly} {...disabled} {...schemaProps} />;
     case 'boolean':
-      return <BooleanWidget {...props} {...readonly} {...disabled} {...schemaProps}/>;
+      return <BooleanWidget {...props} {...readonly} {...disabled} {...schemaProps} />;
     case 'array':
-      return <ArrayField {...props} {...readonly} {...disabled} {...schemaProps}/>;
+      return <ArrayField {...props} {...readonly} {...disabled} {...schemaProps} />;
     case 'object':
-      return <ObjectField {...props} {...readonly} {...disabled} {...schemaProps}/>;
+      return <ObjectField {...props} {...readonly} {...disabled} {...schemaProps} />;
     default:
-      return <SchemaField {...props} {...readonly} {...disabled} {...schemaProps}/>;
+      return <SchemaField {...props} {...readonly} {...disabled} {...schemaProps} />;
   }
 };

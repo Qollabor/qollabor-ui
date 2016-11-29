@@ -5,7 +5,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 let currentTasksFilterId;
-const onChangeTasksFilter = function() {};
+const onChangeTasksFilter = function () {};
 
 const types = [
   {

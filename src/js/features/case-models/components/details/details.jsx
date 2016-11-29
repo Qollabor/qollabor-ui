@@ -49,8 +49,8 @@ class Details extends React.Component {
   }
 
   render() {
-    const buttonList = [<RaisedButton label="START CASE" primary={true} type="submit"/>,
-      <FlatButton label="RESET" primary={false} secondary={true}/>];
+    const buttonList = [<RaisedButton label="START CASE" primary={true} type="submit" />,
+      <FlatButton label="RESET" primary={false} secondary={true} />];
 
     const { data } = this.props;
     const caseModelSchema = this.props.caseModelSchema ? this.props.caseModelSchema : {};
@@ -111,7 +111,7 @@ class Details extends React.Component {
                 }}
               >
                 <subHeader>Case Team</subHeader>
-                <CaseTeamSelector teamRoles={data.roles}/>
+                <CaseTeamSelector teamRoles={data.roles} />
               </div>
             }
           </Paper>

@@ -89,7 +89,7 @@ export class TaskInfo extends React.Component {
               itemValue={receivedAt}
               toolTip={receivedBefore}
             />
-            <br/>
+            <br />
             <TaskInfoItem
               itemLabel={'Complete by'}
               itemValue={completeBy}
@@ -117,7 +117,7 @@ export class TaskInfo extends React.Component {
                 onTouchTap={this.handleTaskActionClick.bind(this, 'revoke')}
               />
             }
-            <br/>
+            <br />
             <TaskInfoItem itemLabel={'Owned by'} itemValue={owner} />
             {(this.props.taskDetails.owner && this.props.taskDetails.owner === loggedInUserId) &&
               <FlatButton

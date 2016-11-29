@@ -19,12 +19,12 @@ export class StringWidget extends React.Component {
 
   render() {
     if (this.props.schema.format === 'date') {
-      return <DateWidget {...this.props}/>;
+      return <DateWidget {...this.props} />;
     }
 
     if (this.props.schema.format === 'user-selector' ||
       (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'user-selector')) {
-      return <UserSelectorWidget {...this.props}/>;
+      return <UserSelectorWidget {...this.props} />;
     }
 
     if (this.props.schema.format === 'radio' ||
@@ -42,19 +42,19 @@ export class StringWidget extends React.Component {
     if (this.props.schema.format === 'date-time' ||
       (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'date-time')
     ) {
-      return <DateTimeWidget {...this.props}/>;
+      return <DateTimeWidget {...this.props} />;
     }
 
     if (
       this.props.schema.format === 'time' ||
       (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'time')
     ) {
-      return <TimeWidget {...this.props}/>;
+      return <TimeWidget {...this.props} />;
     }
 
     if (this.props.schema.enum) {
       const enumOptions = optionsList(this.props.schema);
-      return <SelectWidget options={enumOptions} {...this.props}/>;
+      return <SelectWidget options={enumOptions} {...this.props} />;
     }
 
     const errors = {};
@@ -109,7 +109,11 @@ export class StringWidget extends React.Component {
     let helpWidget = false;
     if (help) {
       helpWidget =
-        <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}><HelpWidget help={help}/></div>;
+        (
+        <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}>
+          <HelpWidget help={help} />
+        </div>
+        );
     }
 
     const title = this.props.schema.title + (this.props.required ? ' *' : '');
