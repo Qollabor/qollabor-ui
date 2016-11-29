@@ -19,22 +19,22 @@ const actionItems = [
   {
     action: 'claim',
     primaryText: 'Claim',
-    leftIcon: <ActionAssignmentReturned/>
+    leftIcon: <ActionAssignmentReturned />
   },
   {
     action: 'assign',
     primaryText: 'Assign',
-    leftIcon: <ActionAssignmentInd/>
+    leftIcon: <ActionAssignmentInd />
   },
   {
     action: 'revoke',
     primaryText: 'Revoke',
-    leftIcon: <ActionAssignmentReturn/>
+    leftIcon: <ActionAssignmentReturn />
   },
   {
     action: 'delegate',
     primaryText: 'Delegate',
-    leftIcon: <ActionAssignmentInd/>
+    leftIcon: <ActionAssignmentInd />
   }
 ];
 
@@ -56,7 +56,7 @@ export class TaskList extends React.Component {
     }
   }
 
-  handleScrollEnd () {
+  handleScrollEnd() {
     if (this.props.getNextSetOftasks) {
       this.props.getNextSetOftasks();
     }
@@ -84,7 +84,7 @@ export class TaskList extends React.Component {
     return true;
   }
 
-  render () {
+  render() {
     const { items, isFetching } = this.props;
     const theme = registry.get('theme');
 
@@ -114,35 +114,35 @@ export class TaskList extends React.Component {
             <Column
               columnKey="taskName"
               header={<SortHeaderCell {...this.props}> Task name </SortHeaderCell>}
-              cell={<DataCell items={items}/>}
+              cell={<DataCell items={items} />}
               flexGrow={1}
               width={50}
             />
             <Column
               columnKey="caseDefinition"
               header={<SortHeaderCell {...this.props}> Case </SortHeaderCell>}
-              cell={<DataCell items={items}/>}
+              cell={<DataCell items={items} />}
               flexGrow={1}
               width={50}
             />
             <Column
               columnKey="caseInstanceId"
               header={<SortHeaderCell {...this.props}> Case ID </SortHeaderCell>}
-              cell={<DataCell items={items}/>}
+              cell={<DataCell items={items} />}
               flexGrow={1}
               width={120}
             />
             <Column
               columnKey="dueDate"
               header={<SortHeaderCell {...this.props}> Time Remaining </SortHeaderCell>}
-              cell={<DateCell items={items} type="timeRem"/>}
+              cell={<DateCell items={items} type="timeRem" />}
               flexGrow={1}
               width={40}
             />
             <Column
               columnKey="createdOn"
               header={<SortHeaderCell {...this.props}>Creation date </SortHeaderCell>}
-              cell={<DateCell items={items} type="timeAgo" dateFormat="YYYY-MM-DD HH:mm:ss"/>}
+              cell={<DateCell items={items} type="timeAgo" dateFormat="YYYY-MM-DD HH:mm:ss" />}
               flexGrow={1}
               width={50}
             />

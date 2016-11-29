@@ -11,22 +11,22 @@ const actionItems = [
   {
     action: 'claim',
     primaryText: 'Claim',
-    leftIcon: <ActionAssignmentReturned/>
+    leftIcon: <ActionAssignmentReturned />
   },
   {
     action: 'assign',
     primaryText: 'Assign',
-    leftIcon: <ActionAssignmentInd/>
+    leftIcon: <ActionAssignmentInd />
   },
   {
     action: 'revoke',
     primaryText: 'Revoke',
-    leftIcon: <ActionAssignmentReturn/>
+    leftIcon: <ActionAssignmentReturn />
   },
   {
     action: 'delegate',
     primaryText: 'Delegate',
-    leftIcon: <ActionAssignmentInd/>
+    leftIcon: <ActionAssignmentInd />
   }
 ];
 

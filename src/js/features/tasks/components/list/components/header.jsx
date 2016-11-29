@@ -30,7 +30,7 @@ export class TaskListHeader extends React.Component {
           )}
 
         <th key="action" style={actionColumnStyle}>
-          <ColumnPicker columns={this.props.columns} onMenuItemClicked={this.props.onColumnVisibilityToggle}/>
+          <ColumnPicker columns={this.props.columns} onMenuItemClicked={this.props.onColumnVisibilityToggle} />
         </th>
       </tr>
     );
