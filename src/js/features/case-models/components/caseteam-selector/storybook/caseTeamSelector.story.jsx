@@ -7,10 +7,11 @@ import { Provider } from 'react-redux';
 import { store } from '../../../../../store.js';
 import CaseTeamSelector from '../caseTeamSelector';
 
-const roles = { Manager: [{ name: 'Thijs Petter', uniqueId: 'thijsp' }],
-                Reviewer: [{ name: 'Martijn van der Plaat', uniqueId: 'martijnvdp' }],
-                Approver: [{ name: 'Danny Kruitbosch', uniqueId: 'dannyk' }]
-              };
+const roles = {
+  Manager: [{ name: 'Thijs Petter', uniqueId: 'thijsp' }],
+  Reviewer: [{ name: 'Martijn van der Plaat', uniqueId: 'martijnvdp' }],
+  Approver: [{ name: 'Danny Kruitbosch', uniqueId: 'dannyk' }]
+};
 
 storiesOf('CaseModels/CaseTeamSelector', module).addDecorator((story) => (
   <Provider store={store}>

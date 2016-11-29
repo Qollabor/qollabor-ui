@@ -184,3 +184,6 @@ crashlytics-build.properties
 .idea/
 *.iml
 /.metadata
+
+coverage
+

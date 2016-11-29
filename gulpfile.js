@@ -3,7 +3,6 @@
 const config = require('config');
 
 const gulp = require('gulp');
-const guppy = require('git-guppy')(gulp);
 const taskLoader = require('gulp-commonjs-tasks/task-loader');
 
 // load tasks

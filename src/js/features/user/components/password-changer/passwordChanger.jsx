@@ -36,7 +36,7 @@ export class PasswordChanger extends React.Component {
   render() {
     return (
       <Dialog
-        title={"Change Password"}
+        title={'Change Password"'}
         modal={false}
         open={this.props.open}
         contentStyle={customContentStyle}

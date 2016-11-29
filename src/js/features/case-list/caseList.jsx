@@ -33,7 +33,7 @@ class CaseList extends React.Component {
 
   render () {
     const { items, isFetching, userDetails, caseTeamUsers } = this.props;
-    let caseItems = this.props.items.map(item => <CaseItem
+    const caseItems = this.props.items.map(item => <CaseItem
       item={item} team={item.team}
       userDetails={userDetails} caseTeamUsers={caseTeamUsers}
     />);

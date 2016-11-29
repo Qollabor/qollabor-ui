@@ -4,7 +4,7 @@ import { List } from 'material-ui';
 
 class DiscretionaryItems extends React.Component {
   render () {
-    let items = this.props.items.map(item =>
+    const items = this.props.items.map(item =>
       <DiscretionaryItem item={item} />);
     return <List>{items}</List>;
   }

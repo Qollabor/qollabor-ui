@@ -24,6 +24,7 @@ class SearchBox extends React.Component {
 
   render() {
     const { searchText } = this.props;
+
     return (
       <TextFilter
         {...this.props}
@@ -33,8 +34,10 @@ class SearchBox extends React.Component {
         searchIconStyle={{ color: 'white' }}
         onFilterChange={this.handleFilterChange.bind(this)}
         activeFilter={searchText}
-      />); }
+      />
+    );
   }
+}
 
 SearchBox.contextTypes = {
   router: React.PropTypes.object.isRequired

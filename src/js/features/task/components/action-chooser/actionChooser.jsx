@@ -67,19 +67,22 @@ export class ActionChooser extends React.Component {
     return (
       <span>
         <IconMenu
-          iconButtonElement={<IconButton
-            onClick={this.handleClick.bind(this)}
-            onTouchTap={this.handleTouchTap.bind(this)}
-            style={this.props.iconStyle}
-          ><NavigationMoreVert /></IconButton>}
+          iconButtonElement={
+            <IconButton
+              onClick={this.handleClick.bind(this)}
+              onTouchTap={this.handleTouchTap.bind(this)}
+              style={this.props.iconStyle}
+            >
+              <NavigationMoreVert />
+            </IconButton>}
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'left', vertical: 'top' }}
         >
           {this.state.open ?
             this.props.actionItems.map(function(actionitem) {
-              let disabled = this.props.isDisabled ?
-                this.props.isDisabled(actionitem, this.props.rowIndex) : false;
-              let menuItemClass = (disabled === true) ? 'menuItemDisabled' : '';
+              const disabled = this.props.isDisabled ?
+              this.props.isDisabled(actionitem, this.props.rowIndex) : false;
+              const menuItemClass = (disabled === true) ? 'menuItemDisabled' : '';
               return (
                 <MenuItem
                   className={menuItemClass} key={actionitem.action} disabled={disabled}

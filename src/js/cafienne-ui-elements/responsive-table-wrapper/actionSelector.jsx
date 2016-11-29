@@ -32,9 +32,9 @@ export class ActionSelector extends React.Component {
       >
         {this.state.open ?
           this.props.actionItems.map(function(actionitem) {
-            let disabled = this.props.isDisabled ?
-              this.props.isDisabled(this, this.props.rowIndex, actionitem.action) : false;
-            let menuItemClass = (disabled === true) ? 'menuItemDisabled' : '';
+            const disabled = this.props.isDisabled ?
+            this.props.isDisabled(this, this.props.rowIndex, actionitem.action) : false;
+            const menuItemClass = (disabled === true) ? 'menuItemDisabled' : '';
             return (
               <MenuItem
                 className={menuItemClass} disabled={disabled} primaryText={actionitem.primaryText}

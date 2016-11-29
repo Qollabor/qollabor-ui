@@ -69,11 +69,12 @@ class Details extends React.Component {
         </div>
         {this.props.showFeedbackForm ?
           <div>
-            <div style={styles.headerMargin}>The case was successfully created.<RaisedButton
-              label="Open case"
-              primary={true}
-              onClick={this.openDetailPage.bind(this)}
-            /></div>
+            <div style={styles.headerMargin}>The case was successfully created.
+              <RaisedButton
+                label="Open case"
+                primary={true}
+                onClick={this.openDetailPage.bind(this)}
+              /></div>
             <div style={styles.saveButton}>
               <RaisedButton
                 primary={true} label="CREATE ANOTHER" labelStyle={styles.buttonLabel}
@@ -83,23 +84,31 @@ class Details extends React.Component {
           </div> :
           <Paper style={{ padding: '5px', marginTop: '15px' }}>
             <div style={{ width: '75%', display: 'inline-block', height: '100%', verticalAlign: 'top' }}>
-              {caseSchema && <CaseModelSchemaForm
-                buttonList={buttonList}
-                schema={caseSchema}
-                formData={this.props.caseData}
-                uiSchema={caseUISchema}
-                onSubmit={this.handleOnSubmit.bind(this)}
-              />}
+              {caseSchema &&
+                <CaseModelSchemaForm
+                  buttonList={buttonList}
+                  schema={caseSchema}
+                  formData={this.props.caseData}
+                  uiSchema={caseUISchema}
+                  onSubmit={this.handleOnSubmit.bind(this)}
+                />
+              }
               {this.props.actionError && this.props.actionError.message !== ''
-              && <div style={Object.assign(styles.errorMessage, styles.headerMargin)}>
-              Error: {this.props.actionError.message}</div>
+                && <div style={Object.assign(styles.errorMessage, styles.headerMargin)}>
+                  Error: {this.props.actionError.message}</div>
               }
             </div>
             {data.roles &&
               <div
-                style={{ width: '22%', display: 'inline-block',
-                margin: 5, height: '100%', paddingLeft: 10, verticalAlign: 'top',
-                borderLeft: '1px solid lightgray' }}
+                style={{
+                  width: '22%',
+                  display: 'inline-block',
+                  margin: 5,
+                  height: '100%',
+                  paddingLeft: 10,
+                  verticalAlign: 'top',
+                  borderLeft: '1px solid lightgray'
+                }}
               >
                 <subHeader>Case Team</subHeader>
                 <CaseTeamSelector teamRoles={data.roles}/>
