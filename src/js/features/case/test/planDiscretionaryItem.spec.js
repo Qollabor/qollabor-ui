@@ -60,7 +60,7 @@ describe('features/case/sagas', () => {
     });
 
     describe('when is invoked without caseId', () => {
-      before(() => {
+      beforeEach(() => {
         generator = planDiscretionaryItem();
       });
 

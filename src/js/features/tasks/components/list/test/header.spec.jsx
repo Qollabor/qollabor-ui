@@ -31,7 +31,7 @@ describe('features/taskList/header', () => {
     let result;
     let headers;
 
-    before(() => {
+    beforeEach(() => {
       result = shallow(<TaskListHeader columns={columns}/>);
       headers = result.find('th');
     });
@@ -79,7 +79,7 @@ describe('features/taskList/header', () => {
     let result;
     let headers;
 
-    before(() => {
+    beforeEach(() => {
       result = shallow(<TaskListHeader columns={columns}/>);
       headers = result.find('th');
     });

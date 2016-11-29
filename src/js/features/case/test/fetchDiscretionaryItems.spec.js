@@ -58,7 +58,7 @@ describe('features/case/sagas', () => {
     });
 
     describe('when is invoked without caseId', () => {
-      before(() => {
+      beforeEach(() => {
         generator = fetchDiscretionaryItems();
       });
 
@@ -95,7 +95,7 @@ describe('features/case/sagas', () => {
     });
 
     describe('when there is an error', () => {
-      before(() => {
+      beforeEach(() => {
         generator = fetchDiscretionaryItems({ caseId });
       });
 

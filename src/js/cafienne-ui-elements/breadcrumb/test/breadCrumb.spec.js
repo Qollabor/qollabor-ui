@@ -22,13 +22,13 @@ describe('components/breadcrumb', () => {
 
   const breadCrumbItemsEmpty = [];
 
-  before(() => {
+  beforeEach(() => {
     sinon.stub(console, 'error', (warning) => {
       throw new Error(warning);
     });
   });
   /* eslint-disable no-console */
-  after(() => console.error.restore());
+  afterEach(() => console.error.restore());
 
   describe.skip('Load breadcrump without props', () => {
     it('shouldnt load the breadcrump', () => {

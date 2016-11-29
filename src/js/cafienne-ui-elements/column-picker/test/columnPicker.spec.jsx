@@ -32,7 +32,7 @@ describe('features/taskList/columnPicker', () => {
 
     let result;
 
-    before(() => {
+    beforeEach(() => {
       result = shallow(<ColumnPicker columns={columns}/>);
     });
 
@@ -98,7 +98,7 @@ describe('features/taskList/columnPicker', () => {
 
     let result;
 
-    before(() => {
+    beforeEach(() => {
       result = shallow(<ColumnPicker columns={columns}/>);
     });
 

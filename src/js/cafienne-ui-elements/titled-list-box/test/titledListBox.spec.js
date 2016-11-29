@@ -33,13 +33,13 @@ describe('components/titled-list-box', () => {
   ];
 
   describe('When called without props', () => {
-    before(() => {
+    beforeEach(() => {
       sinon.stub(console, 'error', (warning) => {
         throw new Error(warning);
       });
     });
     /* eslint-disable no-console */
-    after(() => console.error.restore());
+    afterEach(() => console.error.restore());
 
     it('should send a warning if title is not set', () => {
       expect(() => shallow.bind(<TitledListBoxComponent items={[]} labelField="name"/>))
@@ -62,7 +62,7 @@ describe('components/titled-list-box', () => {
   describe('When called with a list of action items', () => {
     let titledListBoxWidget;
     let items;
-    before(() => {
+    beforeEach(() => {
       items = titleArray.map(item => {
         item.action = sinon.spy();
         return item;
@@ -83,7 +83,7 @@ describe('components/titled-list-box', () => {
   describe('When called with a list of url item', () => {
     let titledListBoxWidget;
     let items;
-    before(() => {
+    beforeEach(() => {
       items = titleArray.map(item => {
         item.url = 'someurl';
         return item;
@@ -104,7 +104,7 @@ describe('components/titled-list-box', () => {
   describe('When called with a empty list of items', () => {
     let titledListBoxWidget;
     let items;
-    before(() => {
+    beforeEach(() => {
       items = [];
       titledListBoxWidget = shallow(
         <TitledListBoxComponent

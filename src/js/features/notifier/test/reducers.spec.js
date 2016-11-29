@@ -71,7 +71,7 @@ describe('features/notifier/reducers', () => {
 
   describe('When more notifies are added', () => {
     let result;
-    before(() => {
+    beforeEach(() => {
       result = reducers(defaultState, {
         type: 'NOTIFIER:NOTIFY',
         message: 'some message 1',
@@ -109,7 +109,7 @@ describe('features/notifier/reducers', () => {
 
   describe('When more notifies are removed', () => {
     let result;
-    before(() => {
+    beforeEach(() => {
       result = reducers(defaultState, {
         type: 'NOTIFIER:NOTIFY',
         message: 'some message 1',

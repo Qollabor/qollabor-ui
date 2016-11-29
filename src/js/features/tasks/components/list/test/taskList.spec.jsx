@@ -34,7 +34,7 @@ describe('features/taskList', () => {
     let result;
     let header;
 
-    before(() => {
+    beforeEach(() => {
       result = shallow(<TaskList columns={columns} onColumnVisibilityToggle={callback} />);
       header = result.find(TaskListHeader);
     });
@@ -81,7 +81,7 @@ describe('features/taskList', () => {
 
     let result;
 
-    before(() => {
+    beforeEach(() => {
       result = shallow(<TaskList columns={columns} isFetching={true}/>);
     });
 
@@ -117,7 +117,7 @@ describe('features/taskList', () => {
 
     let result;
 
-    before(() => {
+    beforeEach(() => {
       result = shallow(<TaskList columns={columns} isFetching={false} error={error}/>);
     });
 

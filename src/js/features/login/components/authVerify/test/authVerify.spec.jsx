@@ -11,7 +11,7 @@ describe('features/login', () => {
     describe('When rendered with default props', () => {
       let result;
 
-      before(() => {
+      beforeEach(() => {
         result = shallow(<AuthVerify>SOME CONTENT</AuthVerify>);
       });
 
@@ -23,7 +23,7 @@ describe('features/login', () => {
     describe('When rendered with isVerifyAuth == true', () => {
       let result;
 
-      before(() => {
+      beforeEach(() => {
         result = shallow(<AuthVerify isVerifyAuth={true}>SOME CONTENT</AuthVerify>);
       });
 
