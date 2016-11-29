@@ -18,6 +18,10 @@ build:
             echo "npm version $(npm --version) running"
             echo "gulp version $(gulp --version) running"
         - script:
+          name: eslint
+          code: |
+            npm run eslint
+        - script:
           name: test
           code: |
             npm test
@@ -25,7 +29,7 @@ build:
           name: build
           code: |
             npm run build-production
-            
+
 deploy:
   box:
     id: nginx:alpine
