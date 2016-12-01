@@ -1,4 +1,4 @@
-box: node:6.9.1
+box: node:6.9.1-wheezy
 build:
     steps:
         - add-ssh-key:
