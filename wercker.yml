@@ -1,4 +1,4 @@
-box: node:6.9.1-wheezy
+box: node:6.9.1
 build:
     steps:
         - add-ssh-key:
@@ -30,11 +30,10 @@ build:
           code: |
             npm run build-production
     after-steps:
-        - iansmith9876/pretty-slack-notify:
-            team: spronq
-            token: $SLACK_API_TOKEN
-            channel: cafienne
-            username: Wercker
+        - install-packages:
+            packages: ruby
+        - wantedly/pretty-slack-notify:
+            webhook_url: https://hooks.slack.com/services/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
 deploy:
   box:
     id: nginx:alpine
