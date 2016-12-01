@@ -29,7 +29,12 @@ build:
           name: build
           code: |
             npm run build-production
-
+    after-steps:
+        - iansmith9876/pretty-slack-notify:
+            team: spronq
+            token: $SLACK_API_TOKEN
+            channel: cafienne
+            username: Wercker
 deploy:
   box:
     id: nginx:alpine
