@@ -34,7 +34,7 @@ describe('features/taskList', () => {
     let result;
     let header;
 
-    before(() => {
+    beforeEach(() => {
       result = shallow(<TaskList columns={columns} onColumnVisibilityToggle={callback} />);
       header = result.find(TaskListHeader);
     });
@@ -81,8 +81,8 @@ describe('features/taskList', () => {
 
     let result;
 
-    before(() => {
-      result = shallow(<TaskList columns={columns} isFetching={true}/>);
+    beforeEach(() => {
+      result = shallow(<TaskList columns={columns} isFetching={true} />);
     });
 
     it('should render and show the fetching row component', () => {
@@ -117,8 +117,8 @@ describe('features/taskList', () => {
 
     let result;
 
-    before(() => {
-      result = shallow(<TaskList columns={columns} isFetching={false} error={error}/>);
+    beforeEach(() => {
+      result = shallow(<TaskList columns={columns} isFetching={false} error={error} />);
     });
 
     it('should render and not show any task row component', () => {

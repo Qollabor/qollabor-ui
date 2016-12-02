@@ -15,7 +15,7 @@ class CaseItem extends React.Component {
       <ListItem
         key={this.props.item.id}
         primaryText={item.name}
-        leftIcon={<ActionAssignment color={blue500} style={{ top: '23px' }}/>}
+        leftIcon={<ActionAssignment color={blue500} style={{ top: '23px' }} />}
         onTouchTap={this.openCaseDetailPage.bind(this)}
         style={{ padding: '0px' }}
         secondaryText={

@@ -14,6 +14,6 @@ storiesOf('Case Table UI', module).addDecorator((story) => (
   ))
   .add('display case header details ', () =>
     (<div className="center-component">
-      <CaseList items={fakeData} userDetails={{}} caseTeamUsers={{}}/>
+      <CaseList items={fakeData} userDetails={{}} caseTeamUsers={{}} />
     </div>)
 );

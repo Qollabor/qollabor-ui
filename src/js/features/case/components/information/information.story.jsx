@@ -20,7 +20,7 @@ storiesOf('Case/Information', module)
   .add('loading', () => (
     <div className="center-component">
       <Paper style={paperStyle}>
-        <CaseInformation {...baseProps} caseId="should go there" isFetching={true}/>
+        <CaseInformation {...baseProps} caseId="should go there" isFetching={true} />
       </Paper>
     </div>
   ))
@@ -59,7 +59,7 @@ storiesOf('Case/Information', module)
     return (
       <div className="center-component">
         <Paper style={paperStyle}>
-          <CaseInformation title="Case information" error={error}/>
+          <CaseInformation title="Case information" error={error} />
         </Paper>
       </div>
     );

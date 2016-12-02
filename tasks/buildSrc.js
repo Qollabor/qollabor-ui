@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Build and bundle the javascript app
  */

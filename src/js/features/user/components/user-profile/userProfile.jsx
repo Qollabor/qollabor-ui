@@ -49,7 +49,7 @@ class UserProfile extends React.Component {
           <Field
             name="uniqueId" component={uniqueId =>
               <span style={{ float: 'right', textAlign: 'center' }} userId={uniqueId}>
-                {initialValues && <ImageUpload user={initialValues} onUploadHandler={onAvatarUpdate}/>}
+                {initialValues && <ImageUpload user={initialValues} onUploadHandler={onAvatarUpdate} />}
               </span>
           }
           />
@@ -113,4 +113,3 @@ UserProfile = reduxForm({
 })(UserProfile);
 
 export default UserProfile;
-

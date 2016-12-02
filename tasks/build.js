@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Build the complete application in the dist folder
  */

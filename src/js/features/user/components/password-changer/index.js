@@ -12,10 +12,12 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: 'USER:CHANGE_PASSWORD:INIT' });
   },
   changePassword: (passwordData) => {
-    dispatch({ type: 'USER:CHANGE_PASSWORD', oldPassword: passwordData.oldPassword,
-    newPassword: passwordData.newPassword });
+    dispatch({
+      type: 'USER:CHANGE_PASSWORD',
+      oldPassword: passwordData.oldPassword,
+      newPassword: passwordData.newPassword
+    });
   }
 });
 
 export const PasswordChanger = connect(mapStateToProps, mapDispatchToProps)(PasswordChangerComponent);
-

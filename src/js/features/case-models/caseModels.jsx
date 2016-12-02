@@ -46,7 +46,7 @@ export class CaseModels extends React.Component {
             <FontIcon className="material-icons" color="gray">refresh</FontIcon>
           </IconButton>
         </div>
-        <CaseModelList onTouchTap={this.handleCaseModelSelect.bind(this)}/>
+        <CaseModelList onTouchTap={this.handleCaseModelSelect.bind(this)} />
       </Paper>
     );
   }

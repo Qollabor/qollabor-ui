@@ -9,7 +9,7 @@ describe('services/helpers/addHeadersByName', () => {
     const fakeTokenPropertyName = 'famousQuote';
     const fakeToken = 'winter is coming';
 
-    before(() => {
+    beforeEach(() => {
       registry.reset();
 
       const fakeStore = {
@@ -46,7 +46,7 @@ describe('services/helpers/addHeadersByName', () => {
   describe('addAuthHeader', () => {
     const fakeHeaderName = 'something';
 
-    before(() => {
+    beforeEach(() => {
       registry.reset();
 
       registry.register('config', {
@@ -72,7 +72,7 @@ describe('services/helpers/addHeadersByName', () => {
     const fakeTokenPropertyName = 'famousQuote';
     const fakeToken = 'winter is coming';
 
-    before(() => {
+    beforeEach(() => {
       registry.reset();
 
       const fakeStore = {

@@ -40,7 +40,7 @@ export default class ProgressItem extends React.Component {
 
   render() {
     const { status, name, items } = this.props;
-    let planItems = items.map(item =>
+    const planItems = items.map(item =>
       <PlanItem item={item} />);
     return (
       <div data-status={status}>

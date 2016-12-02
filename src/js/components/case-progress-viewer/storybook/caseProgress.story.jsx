@@ -16,14 +16,14 @@ storiesOf('Case Progress Viewer', module).addDecorator((story) => (
   ))
   .add('Case Prgress for Request Submitted ', () =>
     (<div className="center-component">
-      <CaseProgressViewer items={submittedItems}/>
+      <CaseProgressViewer items={submittedItems} />
     </div>)
 ).add('Request Approved', () =>
   (<div className="center-component">
-    <CaseProgressViewer items={approvedItems}/>
+    <CaseProgressViewer items={approvedItems} />
   </div>)
 ).add('PO Created ', () =>
   (<div className="center-component">
-    <CaseProgressViewer items={pocreatedItems}/>
+    <CaseProgressViewer items={pocreatedItems} />
   </div>)
 );

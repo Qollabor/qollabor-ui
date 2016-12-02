@@ -87,7 +87,11 @@ export class DateTimeWidget extends React.Component {
     let helpWidget = false;
     if (help) {
       helpWidget =
-        <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}><HelpWidget help={help}/></div>;
+        (
+        <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}>
+          <HelpWidget help={help} />
+        </div>
+        );
     }
 
     const title = this.props.schema.title + (this.props.required ? ' *' : '');

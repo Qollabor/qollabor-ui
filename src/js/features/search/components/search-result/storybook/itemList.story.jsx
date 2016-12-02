@@ -9,6 +9,6 @@ storiesOf('SearchResultView', module)
   .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('list of items returned on searching Request ', () =>
     (<div className="center-component">
-      <ItemList items={fakeData}/>
+      <ItemList items={fakeData} />
     </div>)
   );

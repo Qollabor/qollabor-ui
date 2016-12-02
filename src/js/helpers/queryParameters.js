@@ -31,7 +31,7 @@ export const getQueryStrings = (hashURL) => {
   hashURL = hashURL || location.hash;
   const hash = hashURL.substring(hashURL.indexOf('?') + 1);
   const keyValues = hash.split('&');
-  const decode = function(s) {
+  const decode = function (s) {
     return decodeURIComponent(s.replace(/\+/g, ' '));
   };
 

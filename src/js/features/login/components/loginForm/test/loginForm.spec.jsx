@@ -16,7 +16,7 @@ describe('features/login', () => {
     describe('When rendered with default props', () => {
       let result;
 
-      before(() => {
+      beforeEach(() => {
         result = shallow(<LoginForm {...loginCallback} />);
       });
 
@@ -54,7 +54,7 @@ describe('features/login', () => {
     describe('When redered with default props', () => {
       let result;
 
-      before(() => {
+      beforeEach(() => {
         result = shallow(<LoginForm {...loginCallback} isLoggingIn={true} />);
       });
       it('should have the text and the buttons disabled', () => {
@@ -75,7 +75,7 @@ describe('features/login', () => {
 
     describe('When rendered with errors', () => {
       let result;
-      before(() => {
+      beforeEach(() => {
         result = shallow(
           <LoginForm
             {...loginCallback}

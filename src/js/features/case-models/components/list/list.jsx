@@ -17,7 +17,9 @@ class List extends React.Component {
 
   render () {
     const helpers = registry.get('helpers');
-    let { filterString, items } = this.props;
+    const { filterString } = this.props;
+    let { items } = this.props;
+    // TODO: bad reassignment, props are read only
     if (filterString) {
       items = helpers.casemodel.filterData(this.props.items, filterString);
     }

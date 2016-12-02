@@ -7,7 +7,7 @@ const defaultBadgeStyle = {
 };
 
 const CMMNIcon = ({ children, backgroundColor, itemName, className, showDescription, style }) => {
-  let badgeStyle = Object.assign({}, defaultBadgeStyle, style, {
+  const badgeStyle = Object.assign({}, defaultBadgeStyle, style, {
     backgroundColor
   });
   const cmmnItemMapping = getCMMNItemDetail(itemName);

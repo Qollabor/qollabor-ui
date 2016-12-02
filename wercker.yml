@@ -18,6 +18,10 @@ build:
             echo "npm version $(npm --version) running"
             echo "gulp version $(gulp --version) running"
         - script:
+          name: eslint
+          code: |
+            npm run eslint
+        - script:
           name: test
           code: |
             npm test
@@ -25,14 +29,18 @@ build:
           name: build
           code: |
             npm run build-production
-            
+    after-steps:
+        - install-packages:
+            packages: ruby
+        - wantedly/pretty-slack-notify:
+            webhook_url: https://hooks.slack.com/services/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
 deploy:
   box:
     id: nginx:alpine
     cmd: /bin/sh
   steps:
     - script:
-        name: mv static files
+        name: mv staticfiles
         code: |
           rm -rf /usr/share/nginx/html/*
           cp -Rp $WERCKER_SOURCE_DIR/dist/* /usr/share/nginx/html

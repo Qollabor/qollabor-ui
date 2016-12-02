@@ -1,4 +1,3 @@
-'use strict';
 const path = require('path');
 
 /**
@@ -11,7 +10,7 @@ module.exports = (gulp, config) => {
       seq: [
         'build',
         'watchAssets',
-        function () {
+        function serve() {
           const WebpackDevServer = require('webpack-dev-server');
           const gutil = require('gulp-util');
           const webpack = require('webpack');

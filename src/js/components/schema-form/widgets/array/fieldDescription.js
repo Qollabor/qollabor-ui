@@ -8,6 +8,6 @@ export class FieldDescription extends React.Component {
       return null;
     }
     const id = `${idSchema.id}__description`;
-    return <DescriptionField id={id} description={description}/>;
+    return <DescriptionField id={id} description={description} />;
   }
 }

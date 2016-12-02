@@ -1,5 +1,5 @@
 import React from 'react';
-import { TitledListBox } from 'cafienne-ui-elements';
+import { TitledListBox } from '../../../../cafienne-ui-elements';
 
 class ActiveItems extends React.Component {
   render() {

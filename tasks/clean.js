@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Clean the dist folder
  */

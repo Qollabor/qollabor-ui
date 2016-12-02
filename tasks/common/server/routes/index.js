@@ -1,4 +1,3 @@
-'use strict';
 const constant = require('./const');
 const cors = require('cors');
 
@@ -30,4 +29,3 @@ module.exports = (app) => {
   app.use('/tasks', cacheControlMiddleware, accessTokenMiddleware, require('./tasks'));
   app.use('/cases', cacheControlMiddleware, accessTokenMiddleware, require('./cases'));
 };
-

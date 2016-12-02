@@ -36,7 +36,7 @@ export class UserProfileDialog extends React.Component {
   render() {
     return (
       <Dialog
-        title={"Change Profile"}
+        title={'Change Profile'}
         modal={false}
         open={this.props.open}
         contentStyle={customContentStyle}

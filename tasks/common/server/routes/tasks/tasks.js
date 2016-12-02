@@ -1,5 +1,3 @@
-'use strict';
-
 const originalData = require('./data/tasks');
 const constant = require('./const');
 

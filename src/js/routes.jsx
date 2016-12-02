@@ -60,12 +60,12 @@ export default (
 
     <Route component={MainLayout}>
       <Route requireAuth={true}>
-        <Route path="/" component={TasksPage} {...hooks} headerMenu={headerMenuTask}/>
+        <Route path="/" component={TasksPage} {...hooks} headerMenu={headerMenuTask} />
         <Route path="/info" component={InfoPage} {...hooks} />
-        <Route path="/tasks" component={TasksPage} {...hooks} headerMenu={headerMenuTask}/>
-        <Route path="/tasks/:taskId" component={TaskPage} {...hooks} showCaseUsers={true} headerMenu={headerMenuTask}/>
-        <Route path="/casemodels" component={CaseModelsPage} {...hooks} headerMenu={headerMenuCasemodels}/>
-        <Route path="/casemodels/:id" component={CaseModelDetailPage} {...hooks} headerMenu={headerMenuCasemodels}/>
+        <Route path="/tasks" component={TasksPage} {...hooks} headerMenu={headerMenuTask} />
+        <Route path="/tasks/:taskId" component={TaskPage} {...hooks} showCaseUsers={true} headerMenu={headerMenuTask} />
+        <Route path="/casemodels" component={CaseModelsPage} {...hooks} headerMenu={headerMenuCasemodels} />
+        <Route path="/casemodels/:id" component={CaseModelDetailPage} {...hooks} headerMenu={headerMenuCasemodels} />
         <Route path="/cases" component={CaseListPage} {...hooks} />
         <Route path="/cases/:id" component={CaseDetailPage} {...hooks} />
         <Route path="/search" component={SearchResultsPage} {...hooks} />

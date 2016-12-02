@@ -64,18 +64,18 @@ storiesOf('PeopleList', module)
     const empty = [];
     return (
       <div className="center-component">
-        <PeopleList maxPeopleInList={4} people={empty} onClick={action('Click on avatar')}/>
+        <PeopleList maxPeopleInList={4} people={empty} onClick={action('Click on avatar')} />
       </div>);
   })
   .add('Show list with people avatars with', () => (
     <div className="center-component">
-      <UserList people={samplePeople}/>
+      <UserList people={samplePeople} />
     </div>
   ))
   .add('When no list is provided show nothing', () => {
     const empty = [];
     return (
       <div className="center-component">
-        <UserList people={empty}/>
+        <UserList people={empty} />
       </div>);
   });

@@ -50,8 +50,8 @@ export class Form extends React.Component {
 
   render() {
     const buttonList = this.props.buttonList ? this.props.buttonList : [
-      <RaisedButton key="submit" label="Submit" primary={true} type="submit"/>,
-      <RaisedButton key="reset" label="Reset" primary={false} secondary={true}/>];
+      <RaisedButton key="submit" label="Submit" primary={true} type="submit" />,
+      <RaisedButton key="reset" label="Reset" primary={false} secondary={true} />];
 
     let uiSchema = Object.assign({}, this.props.uiSchema);
     if (this.props.readonly) {

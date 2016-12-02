@@ -41,7 +41,7 @@ export class Task extends React.Component {
         <div style={divContainerStyle}>
           <Paper style={{ padding: '8px' }}>
             <div style={{ margin: 12 }}>
-              <Details taskId={this.props.taskId} caseId={this.props.caseId}/>
+              <Details taskId={this.props.taskId} caseId={this.props.caseId} />
             </div>
           </Paper>
         </div>
@@ -51,13 +51,13 @@ export class Task extends React.Component {
           containerStyle={styles.leftNav}
           openSecondary={true}
         >
-          <CaseTeam caseId={this.props.caseId} title="Case team"/>
+          <CaseTeam caseId={this.props.caseId} title="Case team" />
 
-          <CaseInformation caseId={this.props.caseId} title="Case information"/>
+          <CaseInformation caseId={this.props.caseId} title="Case information" />
 
-          <DiscretionaryItems taskId={this.props.taskId} emptyListMessage="No items"/>
+          <DiscretionaryItems taskId={this.props.taskId} emptyListMessage="No items" />
 
-          <CaseAttachments caseId={this.props.caseId}/>
+          <CaseAttachments caseId={this.props.caseId} />
         </Drawer>
       </div>
     );

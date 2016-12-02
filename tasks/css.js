@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * Bundle and copy the css/scss files in the dist folder
  */

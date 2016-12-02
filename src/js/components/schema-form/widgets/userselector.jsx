@@ -39,8 +39,13 @@ export class UserSelectorWidget extends React.Component {
 
         // On change of user-selector, add the corresponding user to caseteam.
         const store = registry.get('store');
-        store.dispatch({ type: 'CASETEAM_SELECTOR:SETUSERSFORROLE', role: this.props.uiSchema.role,
-            user: selectedUsers[0], selected: true, multiSelect: this.props.uiSchema.multiSelect });
+        store.dispatch({
+          type: 'CASETEAM_SELECTOR:SETUSERSFORROLE',
+          role: this.props.uiSchema.role,
+          user: selectedUsers[0],
+          selected: true,
+          multiSelect: this.props.uiSchema.multiSelect
+        });
 
         this.setState({
           selectedUsers
@@ -89,8 +94,12 @@ export class UserSelectorWidget extends React.Component {
 
     // On change of user-selector, add the corresponding user to caseteam.
     const store = registry.get('store');
-    store.dispatch({ type: 'CASETEAM_SELECTOR:SETUSERSFORROLE', role: this.props.uiSchema.role,
-        user: selectedUsers[0], selected, multiSelect: this.props.uiSchema.multiSelect });
+    store.dispatch({
+      type: 'CASETEAM_SELECTOR:SETUSERSFORROLE',
+      role: this.props.uiSchema.role,
+      selected,
+      multiSelect: this.props.uiSchema.multiSelect
+    });
 
     this.setState({ selectedUsers });
 
@@ -149,7 +158,17 @@ export class UserSelectorWidget extends React.Component {
     let helpWidget = false;
     if (help) {
       helpWidget =
-        <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}><HelpWidget help={help}/></div>;
+        (
+        <div
+          style={{
+            zIndex: 100,
+            float: 'right',
+            top: '20px',
+            position: 'relative'
+          }}
+        ><HelpWidget help={help} />
+        </div>
+        );
     }
 
     const errorStyle = Object.assign({}, styles.errorLabel,

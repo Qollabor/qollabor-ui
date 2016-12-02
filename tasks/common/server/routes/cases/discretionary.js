@@ -1,5 +1,3 @@
-'use strict';
-
 const originalData = require('./data/discretionary');
 
 let currentData = originalData.map(item => Object.assign({}, item));

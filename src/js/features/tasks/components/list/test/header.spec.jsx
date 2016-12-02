@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { FontIcon } from 'material-ui';
 
-import { ColumnPicker } from 'cafienne-ui-elements';
+import { ColumnPicker } from '../../../../../cafienne-ui-elements';
 import { TaskListHeader } from '../components/header';
 
 describe('features/taskList/header', () => {
@@ -31,8 +31,8 @@ describe('features/taskList/header', () => {
     let result;
     let headers;
 
-    before(() => {
-      result = shallow(<TaskListHeader columns={columns}/>);
+    beforeEach(() => {
+      result = shallow(<TaskListHeader columns={columns} />);
       headers = result.find('th');
     });
 
@@ -79,8 +79,8 @@ describe('features/taskList/header', () => {
     let result;
     let headers;
 
-    before(() => {
-      result = shallow(<TaskListHeader columns={columns}/>);
+    beforeEach(() => {
+      result = shallow(<TaskListHeader columns={columns} />);
       headers = result.find('th');
     });
 

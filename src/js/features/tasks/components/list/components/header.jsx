@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ColumnPicker } from 'cafienne-ui-elements';
+import { ColumnPicker } from '../../../../../cafienne-ui-elements';
 
 import styles from './../styles';
 
@@ -30,7 +30,7 @@ export class TaskListHeader extends React.Component {
           )}
 
         <th key="action" style={actionColumnStyle}>
-          <ColumnPicker columns={this.props.columns} onMenuItemClicked={this.props.onColumnVisibilityToggle}/>
+          <ColumnPicker columns={this.props.columns} onMenuItemClicked={this.props.onColumnVisibilityToggle} />
         </th>
       </tr>
     );

@@ -25,7 +25,7 @@ export class ReadOnlyWidget extends React.Component {
 
     let help = false;
     if (this.props.help) {
-      help = <HelpWidget help={this.props.help}/>;
+      help = <HelpWidget help={this.props.help} />;
     }
 
     return (

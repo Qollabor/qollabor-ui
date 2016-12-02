@@ -62,7 +62,7 @@ class TextFilter extends React.Component {
     const hintText = this.props.hintText || 'Filter';
     return (
       <div style={{ position: 'relative', width: '300px' }} >
-        <ActionSearch style={Object.assign({}, iconStyle, this.props.searchIconStyle)}/>
+        <ActionSearch style={Object.assign({}, iconStyle, this.props.searchIconStyle)} />
         <TextField
           type="search" hintText={hintText}
           style={style} value={this.state.filterText}

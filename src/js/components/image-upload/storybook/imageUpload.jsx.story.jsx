@@ -22,6 +22,6 @@ storiesOf('User/ImageUpload', module).addDecorator((story) => (
   ))
   .add('Should show the image uploader', () => (
     <div className="center-component">
-      <ImageUpload user={user} onUpload={action('onUpload')}/>
+      <ImageUpload user={user} onUpload={action('onUpload')} />
     </div>
   ));

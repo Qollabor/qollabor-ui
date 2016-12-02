@@ -118,11 +118,11 @@ export class ObjectField extends Component {
     let helpWidget = null;
     if (help) {
       helpWidget =
-        <div style={{ zIndex: 100, marginTop: '2px' }}><HelpWidget help={help}/></div>;
+        <div style={{ zIndex: 100, marginTop: '2px' }}><HelpWidget help={help} /></div>;
     }
 
     if (uiSchema && uiSchema['ui:widget'] === 'stepper') {
-      return <StepperWidget {...this.props}/>;
+      return <StepperWidget {...this.props} />;
     }
 
     const showTitle = (this.props.hideTitle !== true);

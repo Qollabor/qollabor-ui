@@ -122,7 +122,7 @@ export class NormalArray extends Component {
     let helpWidget = false;
     if (help) {
       helpWidget =
-        <div style={{ zIndex: 100, marginTop: '2px' }}><HelpWidget help={help}/></div>;
+        <div style={{ zIndex: 100, marginTop: '2px' }}><HelpWidget help={help} /></div>;
     }
 
     const errorStyle = Object.assign({}, formStyles.errorLabel,

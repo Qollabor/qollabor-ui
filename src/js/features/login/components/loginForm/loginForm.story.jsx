@@ -19,7 +19,7 @@ storiesOf('Login/Form', module)
   ))
   .add('The login form centered in the page', () => (
     <div>
-      <LoginForm {...loginCallback} alignCenter={true}/>
+      <LoginForm {...loginCallback} alignCenter={true} />
     </div>
   ))
   .add('The login form with username error message ', () => (

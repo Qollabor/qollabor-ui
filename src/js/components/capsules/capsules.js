@@ -10,7 +10,7 @@ const defaultBadgeStyle = {
 const Capsule = ({ children, statusStyle }) => {
   const display = (children || children === 0) ? 'inline' : 'none';
   const capsuleStyle = Object.assign({ display }, statusStyle);
-  let badgeStyle = Object.assign({}, defaultBadgeStyle, capsuleStyle);
+  const badgeStyle = Object.assign({}, defaultBadgeStyle, capsuleStyle);
   return (
     <label style={badgeStyle}>
       {children}
@@ -44,7 +44,7 @@ const statusColorMappings = {
 
 const StatusCapsule = ({ status, children, statusStyle }) => {
   const backgroundColor = statusColorMappings[status] || 'blue';
-  let style = Object.assign({ backgroundColor }, statusStyle);
+  const style = Object.assign({ backgroundColor }, statusStyle);
   return (
     <Capsule statusStyle={style}>
       {children}

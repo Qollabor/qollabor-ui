@@ -16,7 +16,7 @@ export class ImageUpload extends React.Component {
     const sourceImage = new Image();
     const self = this;
 
-    sourceImage.onload = function() {
+    sourceImage.onload = function () {
       // Create a canvas with the desired dimensions
       const canvas = document.createElement('canvas');
       canvas.width = width;
@@ -56,7 +56,7 @@ export class ImageUpload extends React.Component {
     return (
       <div className="previewComponent">
         <div>
-          <UserAvatar user={user} avatar={dataUrl}/>
+          <UserAvatar user={user} avatar={dataUrl} />
         </div>
         <label htmlFor="userFile"><u style={{ cursor: 'pointer', fontSize: '13px' }}>Change</u></label>
         <label htmlFor="submitButton" style={{ marginLeft: '20px', display: (showSaveBtn === true) ? '' : 'none' }}>

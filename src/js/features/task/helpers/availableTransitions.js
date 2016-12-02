@@ -8,7 +8,7 @@ export const getAvailableTransitions = (task) => {
         {
           action: 'resume',
           primaryText: 'Resume',
-          leftIcon: <ActionAssignmentInd/>,
+          leftIcon: <ActionAssignmentInd />,
           transition: true
         }
       ];
@@ -18,13 +18,13 @@ export const getAvailableTransitions = (task) => {
         {
           action: 'suspend',
           primaryText: 'Suspend',
-          leftIcon: <ActionAssignmentInd/>,
+          leftIcon: <ActionAssignmentInd />,
           transition: true
         },
         {
           action: 'terminate',
           primaryText: 'Terminate',
-          leftIcon: <ActionAssignmentInd/>,
+          leftIcon: <ActionAssignmentInd />,
           transition: true
         }
       ];

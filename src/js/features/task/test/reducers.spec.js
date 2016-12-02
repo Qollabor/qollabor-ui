@@ -48,7 +48,7 @@ describe('features/task/reducers', () => {
     describe('When the fetch start action is issued', () => {
       let state;
 
-      before(() => {
+      beforeEach(() => {
         state = reducers(defaultState, { type: 'TASK:FETCH' }).toJS();
       });
 
@@ -75,7 +75,7 @@ describe('features/task/reducers', () => {
           lastModified: '2016-04-17T19:50:25.598438667Z'
         };
 
-        before(() => {
+        beforeEach(() => {
           state = reducers(defaultState, { type: 'TASK:FETCH:SUCCESS', taskDetails }).toJS();
         });
 
@@ -101,7 +101,7 @@ describe('features/task/reducers', () => {
         const error = 'Something bad happened';
         let state;
 
-        before(() => {
+        beforeEach(() => {
           state = reducers(defaultState, { type: 'TASK:FETCH:FAIL', error }).toJS();
         });
 

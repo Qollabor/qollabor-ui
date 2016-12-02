@@ -8,34 +8,39 @@
   "env": {
     "browser": true,
     "node": true,
-    "mocha": true,
+    "jest": true,
     "phantomjs": true,
     "es6": true
   },
   "rules": {
     "no-use-before-define": 0,
-    "no-param-reassign": 0,
+    "no-param-reassign": 1,
+    "no-useless-escape": 1,
     "no-console": 2,
     "new-cap": 0,
     "func-names": 0,
-    "space-before-function-paren": 0,
+    "space-before-function-paren": ["error", {
+        "anonymous": "always",
+        "named": "ignore",
+        "asyncArrow": "ignore"
+    }],
     "comma-dangle": [
       2,
       "never"
     ],
-    "strict": 0,
+    "strict": 1,
     "max-len": [
       1,
       120
     ],
-    "react/prop-types": 0,
+    "react/prop-types": 1,
     "react/jsx-boolean-value": [
       1,
       "always"
     ],
-    "react/no-multi-comp": 0,
-    "react/jsx-no-bind": 0,
-    "react/jsx-space-before-closing": 0,
+    "react/no-multi-comp": 1,
+    "react/jsx-no-bind": 1,
+    "react/jsx-space-before-closing": 1,
     "react/prefer-stateless-function": 0
   }
 }

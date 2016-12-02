@@ -7,7 +7,7 @@ const actionItems = [
   {
     action: 'assign',
     primaryText: 'Assign',
-    leftIcon: <ActionAssignmentInd/>,
+    leftIcon: <ActionAssignmentInd />,
     transition: false
   }
 ];

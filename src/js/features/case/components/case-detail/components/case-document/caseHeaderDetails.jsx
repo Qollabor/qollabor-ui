@@ -28,11 +28,11 @@ class CaseHeaderDetails extends React.Component {
             />
           </div>
           <div style={{ marginLeft: '5px', width: '180px' }}>
-            <CaseUser userId={lastModifiedBy} userDetails={lastModifiedByUserDetails} label="Last Modified By"/>
+            <CaseUser userId={lastModifiedBy} userDetails={lastModifiedByUserDetails} label="Last Modified By" />
           </div>
-          <div style={{ padding: '0px 20px 20px 0px' }}><CaseTeamViewer
-            caseTeam={team} caseTeamUsers={caseTeamUsers}
-          /></div>
+          <div style={{ padding: '0px 20px 20px 0px' }}>
+            <CaseTeamViewer caseTeam={team} caseTeamUsers={caseTeamUsers} />
+          </div>
           <div style={{ padding: '20px 20px 20px 0px' }}>
             <StatusCapsule
               status={status}
@@ -41,7 +41,7 @@ class CaseHeaderDetails extends React.Component {
           </div>
         </div>
         <div style={{ padding: '0px 20px 20px 0px' }}>
-          <CaseProgressViewer items={planItems}/>
+          <CaseProgressViewer items={planItems} />
         </div>
       </div>
     );
