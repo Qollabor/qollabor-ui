@@ -97,6 +97,7 @@ export class UserSelectorWidget extends React.Component {
     store.dispatch({
       type: 'CASETEAM_SELECTOR:SETUSERSFORROLE',
       role: this.props.uiSchema.role,
+      user: selectedUsers[0],
       selected,
       multiSelect: this.props.uiSchema.multiSelect
     });
