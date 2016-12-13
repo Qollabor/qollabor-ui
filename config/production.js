@@ -1,8 +1,9 @@
-'use strict';
+
 
 module.exports = {
   webpack: {
-    logDispatcher: false
+    logDispatcher: false,
+    reduxDevTools: false
   },
   uglify: {
     global: true,

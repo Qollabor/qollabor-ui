@@ -1,4 +1,4 @@
-'use strict';
+
 
 const path = require('path');
 
@@ -16,7 +16,8 @@ module.exports = {
     port: 8080
   },
   webpack: {
-    logDispatcher: true
+    logDispatcher: true,
+    reduxDevTools: true
   },
   uglify: {
     beautify: true,

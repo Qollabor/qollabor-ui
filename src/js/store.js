@@ -19,17 +19,22 @@ export const history = useRouterHistory(createHashHistory)({ queryKey: false });
 
 const middlewares = [];
 
-/* eslint-disable no-undef */
-if (ENV.logDispatcher) {
+if (ENV.logDispatcher) { // eslint-disable-line no-undef
   middlewares.push(logMiddleware());
 }
-/* eslint-enable no-undef */
+
 middlewares.push(sagaMiddleware);
 middlewares.push(routerMiddleware(history));
-export const store = compose(
+
+let composeEnhancers = compose;
+
+if (ENV.reduxDevTools) { // eslint-disable-line no-undef
+  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || composeEnhancers; // eslint-disable-line no-underscore-dangle
+}
+
+export const store = composeEnhancers(
   applyMiddleware.apply(null, middlewares)
 )(createStore)(reducer);
 
 sagaMiddleware.run(sagas);
 syncHistoryWithStore(history, store);
-
