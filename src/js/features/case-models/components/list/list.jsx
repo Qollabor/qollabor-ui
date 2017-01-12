@@ -39,7 +39,7 @@ class List extends React.Component {
                 <ListItem
                   key={item.name}
                   primaryText={item.name}
-                  secondaryText="Description"
+                  secondaryText="{item.description}"
                   innerDivStyle={{ fontSize: 15 }}
                   onTouchTap={this.props.onTouchTap && this.props.onTouchTap.bind(this, item.definitions)}
                 />
