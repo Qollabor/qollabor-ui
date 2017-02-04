@@ -6,16 +6,18 @@ import styles from '../styles';
 
 export class RadioWidget extends React.Component {
 
+  componentWillMount() {
+    const defaultSelected = this.props.formData ? this.props.formData : this.props.defaultSelected;
+    if (defaultSelected) {
+      this.props.onChange(defaultSelected);
+    }
+  }
+
   handleOnChange(event, value) {
     this.props.onChange(value);
   }
 
   render() {
-    const defaultSelected = this.props.formData ? this.props.formData : this.props.defaultSelected;
-    if (defaultSelected) {
-      this.props.onChange(defaultSelected);
-    }
-
     const errors = {};
     /* eslint-disable no-underscore-dangle */
     if (this.props.errorSchema && this.props.errorSchema.__errors) {
