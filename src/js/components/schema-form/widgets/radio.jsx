@@ -57,7 +57,7 @@ export class RadioWidget extends React.Component {
       <div>
         {helpWidget}
         <label style={floatingLabelStyle}>
-          {title}
+          {title !== undefined && title !== 'undefined' ? title : ''}
         </label>
         <RadioButtonGroup
           style={{ display: 'flex' }} name={this.props.name}
