@@ -121,6 +121,24 @@ const defaultCaseListState = Immutable.fromJS({
   }
 });
 
+const getMillis = (item) => {
+// Custom logic to avoid errors while fetching the case list (taken previously from Moment library)
+  try {
+    if (item.lastModified) {
+      const dotLocation = item.lastModified.indexOf('.');
+      if (dotLocation > 0) {
+        const substring = item.lastModified.substring(dotLocation + 1, item.lastModified.length - 1);
+        const millis = Number(substring);
+        return millis;
+      }
+    }
+  } catch (err) {
+  //  console.error(err);
+    return 0;
+  }
+  return 0;
+};
+
 const getCaseInstances = (responseItems) => {
   const cases = responseItems.reduce((arr, caseInstance) => {
     const casePlanItem = caseInstance.planitems.find((elmt) => elmt.type === 'CasePlan');
@@ -143,8 +161,7 @@ const getCaseInstances = (responseItems) => {
       && item.transition !== 'ParentTerminate')).sort((item1, item2) => {
         const moment1 = moment(item1.lastModified);
         const moment2 = moment(item2.lastModified);
-        return moment1.isSame(moment2) ? this.getMilliseconds(item1.lastModified) -
-        this.getMilliseconds(item2.lastModified) : moment2.isBefore(moment1);
+        return moment1.isSame(moment2) ? getMillis(item1) - getMillis(item2) : moment2.isBefore(moment1);
       });
 
     if (mileStoneItems.length > 0) {

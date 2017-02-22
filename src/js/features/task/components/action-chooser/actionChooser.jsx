@@ -114,7 +114,7 @@ ActionChooser.displayName = 'ActionChooser';
 
 ActionChooser.propTypes = {
   isVerifyAuth: React.PropTypes.bool,
-  iconStyle: React.PropTypes.string.isRequired,
+  iconStyle: React.PropTypes.object.isRequired,
   onActionHandler: React.PropTypes.func.isRequired
 };
 

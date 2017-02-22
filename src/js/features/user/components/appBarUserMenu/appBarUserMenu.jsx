@@ -79,7 +79,7 @@ export class AppBarUserMenu extends React.Component {
 
     return (
       <div>
-        {profile ? <div style={{ padding: '5px' }}><Avatar
+        {profile ? <div style={{ padding: '5px', 'font-family': 'Roboto, sans-serif' }}><Avatar
           key={profile.name}
           user={profile}
           size={avatarSize}

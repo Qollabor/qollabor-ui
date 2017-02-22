@@ -13,7 +13,7 @@ class TaskStats extends React.Component {
 
   render() {
     const bounceStyle = this.props.bounce ? styles.bounce : null;
-    const taskCount = this.props.taskStats.get(this.props.type);
+    const taskCount = this.props.taskStats.get(this.props.type) || 0;
     return (
       <div style={bounceStyle}>
         <Badge
