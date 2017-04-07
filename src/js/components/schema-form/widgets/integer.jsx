@@ -5,6 +5,11 @@ import { TextField } from 'material-ui';
 import styles from '../styles';
 
 export class IntegerWidget extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
   handleOnChange(event) {
     event.persist();
     this.props.onChange(Number(event.target.value));
@@ -59,7 +64,7 @@ export class IntegerWidget extends React.Component {
           errorStyle={styles.errorLabel}
           style={styles.field}
           value={this.props.formData}
-          onChange={this.handleOnChange.bind(this)}
+          onChange={this.handleOnChange}
           disabled={this.props.disabled}
           {...errors}
         />
@@ -67,3 +72,16 @@ export class IntegerWidget extends React.Component {
     );
   }
 }
+
+IntegerWidget.propTypes = {
+  disabled: React.PropTypes.bool,
+  error: React.PropTypes.object,
+  errorSchema: React.PropTypes.object,
+  formData: React.PropTypes.number,
+  name: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  readonly: React.PropTypes.bool,
+  required: React.PropTypes.bool,
+  schema: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
+};

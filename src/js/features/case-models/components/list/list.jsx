@@ -5,11 +5,17 @@ import registry from 'app-registry';
 import MessageDiv from '../message-div';
 
 class List extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleFilterStringChange = this.handleFilterStringChange.bind(this);
+  }
 
   handleFilterStringChange (event, filterValue) {
     try {
       event.preventDefault();
     } catch (e) {
+      // eslint-disable-next-line no-param-reassign
       event.returnValue = false;
     }
     this.props.filterData(filterValue);
@@ -53,7 +59,7 @@ class List extends React.Component {
         <div>
           <TextFilter
             {...this.props} activeFilter={filterString}
-            onFilterChange={this.handleFilterStringChange.bind(this)}
+            onFilterChange={this.handleFilterStringChange}
           />
           {listBody}
         </div>
@@ -63,13 +69,12 @@ class List extends React.Component {
 }
 
 List.propTypes = {
-  // actions
+  error: React.PropTypes.object,
   filterData: React.PropTypes.func,
-
-  // state items
   items: React.PropTypes.object.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
-  filterString: React.PropTypes.string
+  filterString: React.PropTypes.string,
+  onTouchTap: React.PropTypes.func
 };
 
 export default List;

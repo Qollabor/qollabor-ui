@@ -4,8 +4,8 @@ import { List } from 'material-ui';
 
 class PlanItems extends React.Component {
   render () {
-    const items = this.props.items.map(item =>
-      <PlanItem item={item} />);
+    const items = this.props.items.map((item, index) =>
+      <PlanItem key={index} item={item} />);
     return <List>{items}</List>;
   }
 }

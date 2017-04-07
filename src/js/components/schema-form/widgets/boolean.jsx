@@ -4,6 +4,11 @@ import { HelpWidget } from './help';
 import styles from '../styles';
 
 export class BooleanWidget extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnCheck = this.handleOnCheck.bind(this);
+  }
+
   handleOnCheck(event) {
     event.persist();
     this.props.onChange(event.target.checked);
@@ -43,12 +48,23 @@ export class BooleanWidget extends React.Component {
           name={this.props.name}
           label={title}
           style={styles.field}
-          errorStyle={styles.errorLabel}
-          onCheck={this.handleOnCheck.bind(this)}
+          onCheck={this.handleOnCheck}
           checked={this.props.formData}
-          {...errors}
           disabled={this.props.disabled || this.props.readonly}
         />
       </div>);
   }
 }
+
+BooleanWidget.propTypes = {
+  disabled: React.PropTypes.bool,
+  error: React.PropTypes.object,
+  errorSchema: React.PropTypes.object,
+  formData: React.PropTypes.bool,
+  name: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  readonly: React.PropTypes.bool,
+  required: React.PropTypes.bool,
+  schema: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
+};

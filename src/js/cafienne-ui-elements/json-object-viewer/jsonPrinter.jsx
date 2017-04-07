@@ -8,6 +8,7 @@ export class JsonPrinter extends React.Component {
 
     const prep = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     const content = prep
+      // eslint-disable-next-line no-useless-escape
       .replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
         (match) => {
           let cls = 'number';

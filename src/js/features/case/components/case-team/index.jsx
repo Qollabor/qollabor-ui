@@ -15,6 +15,7 @@ class CaseTeamComponent extends React.Component {
 }
 
 CaseTeamComponent.propTypes = {
+  caseTeam: React.PropTypes.array,
   people: React.PropTypes.array,
   isFetching: React.PropTypes.bool.isRequired,
   error: React.PropTypes.object.isRequired

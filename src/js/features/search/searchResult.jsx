@@ -49,7 +49,10 @@ class SearchResult extends React.Component {
 }
 
 SearchResult.propTypes = {
-  initSearchResult: React.PropTypes.func.isRequired
+  getNextSetOfItems: React.PropTypes.func,
+  initSearchResult: React.PropTypes.func.isRequired,
+  isFetching: React.PropTypes.bool,
+  items: React.PropTypes.array
 };
 
 export default SearchResult;

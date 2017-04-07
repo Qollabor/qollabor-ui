@@ -34,6 +34,7 @@ const normalizeErrors = (errors) => {
     normalizedError.length ++;
 
     propertyPaths.forEach((propPath) => {
+      // eslint-disable-next-line no-useless-escape
       const arrayCountCk = /[^\[]*[\[]([^\[\]]+)[\]]/.exec(propPath);
       const arrayCount = arrayCountCk && arrayCountCk[1];
       const path = propPath.split('[')[0];

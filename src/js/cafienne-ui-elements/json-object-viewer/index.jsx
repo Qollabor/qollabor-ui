@@ -10,6 +10,9 @@ export class JsonObjectViewer extends React.Component {
     this.state = {
       open: false
     };
+
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
   }
 
   handleOpen() {
@@ -22,7 +25,7 @@ export class JsonObjectViewer extends React.Component {
 
   render() {
     const actions = [
-      <FlatButton label="Close" onTouchTap={this.handleClose.bind(this)} />
+      <FlatButton label="Close" onTouchTap={this.handleClose} />
     ];
 
     return (
@@ -31,7 +34,7 @@ export class JsonObjectViewer extends React.Component {
           style={this.props.buttonStyle || {}}
           label={this.props.buttonTitle}
           primary={this.props.buttonIsPrimary || false}
-          onTouchTap={this.handleOpen.bind(this)}
+          onTouchTap={this.handleOpen}
         />
 
         <div style={{ clear: 'both' }} />
@@ -41,7 +44,7 @@ export class JsonObjectViewer extends React.Component {
           modal={true}
           open={this.state.open}
           actions={actions}
-          onRequestClose={this.handleClose.bind(this)}
+          onRequestClose={this.handleClose}
           bodyStyle={{ paddingTop: '10px', paddingBottom: '10px' }}
         >
           <div style={{ maxHeight: '280px', overflow: 'auto', outline: '1px solid #ccc' }}>

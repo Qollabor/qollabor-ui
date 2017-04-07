@@ -79,7 +79,7 @@ export class AppBarUserMenu extends React.Component {
 
     return (
       <div>
-        {profile ? <div style={{ padding: '5px', 'font-family': 'Roboto, sans-serif' }}><Avatar
+        {profile ? <div style={{ padding: '5px', fontFamily: 'Roboto, sans-serif' }}><Avatar
           key={profile.name}
           user={profile}
           size={avatarSize}
@@ -152,8 +152,11 @@ export class AppBarUserMenu extends React.Component {
 AppBarUserMenu.displayName = 'AppBarUserMenu';
 
 AppBarUserMenu.propTypes = {
+  avatarSize: React.PropTypes.number,
+  init: React.PropTypes.func,
   isVerifyAuth: React.PropTypes.bool,
-  onLogout: React.PropTypes.func.isRequired
+  onLogout: React.PropTypes.func.isRequired,
+  profile: React.PropTypes.object
 };
 
 export default AppBarUserMenu;

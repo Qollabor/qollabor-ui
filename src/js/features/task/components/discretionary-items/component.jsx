@@ -21,7 +21,9 @@ DiscretionaryItems.displayName = 'DiscretionaryItems';
 
 DiscretionaryItems.propTypes = {
   emptyListMessage: React.PropTypes.string,
-  discretionaryItems: React.PropTypes.array.isRequired
+  discretionaryItems: React.PropTypes.array.isRequired,
+  error: React.PropTypes.object,
+  isFetching: React.PropTypes.bool
 };
 
 export default DiscretionaryItems;

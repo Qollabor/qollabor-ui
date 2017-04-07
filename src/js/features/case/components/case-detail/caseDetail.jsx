@@ -20,6 +20,9 @@ class CaseDetail extends React.Component {
 }
 
 CaseDetail.propTypes = {
+  caseDocument: React.PropTypes.object,
+  caseTeam: React.PropTypes.object,
+  discretionaryItems: React.PropTypes.array,
   initCaseDocument: React.PropTypes.func.isRequired
 };
 

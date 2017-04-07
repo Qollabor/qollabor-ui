@@ -113,9 +113,12 @@ export class ActionChooser extends React.Component {
 ActionChooser.displayName = 'ActionChooser';
 
 ActionChooser.propTypes = {
+  actionItems: React.PropTypes.array,
+  isDisabled: React.PropTypes.func,
   isVerifyAuth: React.PropTypes.bool,
   iconStyle: React.PropTypes.object.isRequired,
-  onActionHandler: React.PropTypes.func.isRequired
+  onActionHandler: React.PropTypes.func.isRequired,
+  rowIndex: React.PropTypes.number
 };
 
 export default ActionChooser;

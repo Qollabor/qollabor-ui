@@ -39,6 +39,12 @@ class SearchBox extends React.Component {
   }
 }
 
+SearchBox.propTypes = {
+  setFilter: React.PropTypes.func,
+  initSearch: React.PropTypes.func,
+  searchText: React.PropTypes.string
+};
+
 SearchBox.contextTypes = {
   router: React.PropTypes.object.isRequired
 };

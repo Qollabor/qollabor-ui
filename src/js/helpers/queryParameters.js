@@ -5,30 +5,30 @@ Some utility functions to work with URL's
 
 
 export const updateQueryStringParameter = (uri, key, value) => {
-  key = encodeURIComponent(key);
-  value = encodeURIComponent(value);
+  const encodedKey = encodeURIComponent(key);
+  const encodedValue = encodeURIComponent(value);
   const re = new RegExp(`([?&])${key}=.*?(&|$)`, 'i');
   const separator = uri.indexOf('?') !== -1 ? '&' : '?';
   if (uri.match(re)) {
-    return uri.replace(re, `$1${key}=${value}$2`);
+    return uri.replace(re, `$1${encodedKey}=${encodedValue}$2`);
   }
 
   return `${uri}${separator}${key}=${value}`;
 };
 
 export const updateURLPathWithVariable = (uri, key, value) => {
-  key = encodeURIComponent(key);
-  value = encodeURIComponent(value);
-  const re = new RegExp(`[//\/]:${key}([//\/]?)`, 'i');
+  const encodedKey = encodeURIComponent(key);
+  const encodedValue = encodeURIComponent(value);
+  // eslint-disable-next-line no-useless-escape
+  const re = new RegExp(`[//\/]:${encodedKey}([//\/]?)`, 'i');
   if (uri.match(re)) {
-    return uri.replace(re, `/${value}$1`);
+    return uri.replace(re, `/${encodedValue}$1`);
   }
   return uri;
 };
 
-export const getQueryStrings = (hashURL) => {
+export const getQueryStrings = (hashURL = location.hash) => {
   const query = {};
-  hashURL = hashURL || location.hash;
   const hash = hashURL.substring(hashURL.indexOf('?') + 1);
   const keyValues = hash.split('&');
   const decode = function (s) {

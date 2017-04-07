@@ -44,7 +44,13 @@ class CaseItem extends React.Component {
       />);
   }
 }
+
+CaseItem.propTypes = {
+  item: React.PropTypes.object
+};
+
 CaseItem.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
+
 export default CaseItem;

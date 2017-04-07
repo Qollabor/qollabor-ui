@@ -11,11 +11,14 @@ const CMMNIcon = ({ children, backgroundColor, itemName, className, showDescript
     backgroundColor
   });
   const cmmnItemMapping = getCMMNItemDetail(itemName);
-  className = className ? `${className} ${cmmnItemMapping.iconClass}` : cmmnItemMapping.iconClass;
+  const classNameOrIconClass =
+    className ?
+    `${className} ${cmmnItemMapping.iconClass}`
+    : cmmnItemMapping.iconClass;
 
   return (
     <label style={badgeStyle} title={cmmnItemMapping.description}>
-      <span className={className}></span>
+      <span className={classNameOrIconClass}></span>
 			{showDescription && cmmnItemMapping.description}
 			{children}
     </label>
@@ -72,6 +75,15 @@ const getCMMNItemDetail = (itemName) => {
     };
   }
   return iconMapping;
+};
+
+CMMNIcon.propTypes = {
+  children: React.PropTypes.node,
+  itemName: React.PropTypes.string,
+  backgroundColor: React.PropTypes.string,
+  className: React.PropTypes.string,
+  showDescription: React.PropTypes.bool,
+  style: React.PropTypes.object
 };
 
 export { CMMNIcon };

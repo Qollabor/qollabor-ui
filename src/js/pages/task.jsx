@@ -11,4 +11,15 @@ class TaskPage extends React.Component {
   }
 }
 
+TaskPage.propTypes = {
+  params: React.PropTypes.shape({
+    taskId: React.PropTypes.string
+  }),
+  location: React.PropTypes.shape({
+    query: React.PropTypes.shape({
+      caseId: React.PropTypes.string
+    })
+  })
+};
+
 export default TaskPage;

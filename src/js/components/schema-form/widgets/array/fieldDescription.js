@@ -11,3 +11,9 @@ export class FieldDescription extends React.Component {
     return <DescriptionField id={id} description={description} />;
   }
 }
+
+FieldDescription.propTypes = {
+  DescriptionField: React.PropTypes.node,
+  idSchema: React.PropTypes.object,
+  description: React.PropTypes.string
+};

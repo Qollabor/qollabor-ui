@@ -184,6 +184,9 @@ ObjectField.defaultProps = {
 
 if (process.env.NODE_ENV !== 'production') {
   ObjectField.propTypes = {
+    error: PropTypes.object,
+    name: PropTypes.string,
+    hideTitle: PropTypes.bool,
     schema: PropTypes.object.isRequired,
     uiSchema: PropTypes.object,
     errorSchema: PropTypes.object,

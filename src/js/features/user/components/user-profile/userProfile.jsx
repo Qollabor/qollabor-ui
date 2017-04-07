@@ -112,4 +112,14 @@ UserProfile = reduxForm({
   validate
 })(UserProfile);
 
+UserProfile.propTypes = {
+  handleSubmit: React.PropTypes.func,
+  initialValues: React.PropTypes.object,
+  onAvatarUpdate: React.PropTypes.func,
+  onCancel: React.PropTypes.func,
+  onSave: React.PropTypes.func,
+  pristine: React.PropTypes.bool,
+  submitting: React.PropTypes.bool
+};
+
 export default UserProfile;

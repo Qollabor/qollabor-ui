@@ -15,6 +15,7 @@ export class MultiSelectArray extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.getStateFromProps(props);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -56,7 +57,7 @@ export class MultiSelectArray extends React.Component {
       <Widget
         id={idSchema && idSchema.id}
         multiple={true}
-        onChange={this.handleSelectChange.bind(this)}
+        onChange={this.handleSelectChange}
         options={optionsList(itemsSchema)}
         schema={schema}
         placeholder={title}
@@ -79,6 +80,7 @@ MultiSelectArray.defaultProps = {
 
 if (process.env.NODE_ENV !== 'production') {
   MultiSelectArray.propTypes = {
+    name: PropTypes.string,
     schema: PropTypes.object.isRequired,
     uiSchema: PropTypes.object,
     idSchema: PropTypes.object,

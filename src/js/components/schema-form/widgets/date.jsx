@@ -17,6 +17,13 @@ export class DateWidget extends React.Component {
     Similary we are opening the date controller on focus of the
     controller, so that date controller is active while tabbing.
   */
+  constructor(props) {
+    super(props);
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnFocus = this.handleOnFocus.bind(this);
+    this.handleOnDismiss = this.handleOnDismiss.bind(this);
+  }
+
   handleOnChange(event, newDate) {
     this.props.onChange(this.formatDate(newDate));
     activeDateElmt.focus();
@@ -104,14 +111,26 @@ export class DateWidget extends React.Component {
           floatingLabelFocusStyle={styles.floatingLabel}
           textFieldStyle={styles.field}
           errorStyle={errorStyle}
-          onChange={this.handleOnChange.bind(this)}
-          onFocus={this.handleOnFocus.bind(this)}
-          onDismiss={this.handleOnDismiss.bind(this)}
+          onChange={this.handleOnChange}
+          onFocus={this.handleOnFocus}
+          onDismiss={this.handleOnDismiss}
           disabled={this.props.disabled}
-          help={help}
           {...errors}
         />
       </div>
     );
   }
 }
+
+DateWidget.propTypes = {
+  disabled: React.PropTypes.bool,
+  error: React.PropTypes.object,
+  errorSchema: React.PropTypes.object,
+  formData: React.PropTypes.string,
+  name: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  readonly: React.PropTypes.bool,
+  required: React.PropTypes.bool,
+  schema: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
+};

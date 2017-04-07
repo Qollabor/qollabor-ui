@@ -12,6 +12,7 @@ export class FilesArray extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.getStateFromProps(props);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,7 +49,7 @@ export class FilesArray extends React.Component {
       <FileWidget
         id={idSchema && idSchema.id}
         multiple={true}
-        onChange={this.handleSelectChange.bind(this)}
+        onChange={this.handleSelectChange}
         schema={schema}
         title={title}
         value={items}
@@ -70,6 +71,7 @@ FilesArray.defaultProps = {
 
 if (process.env.NODE_ENV !== 'production') {
   FilesArray.propTypes = {
+    name: PropTypes.string,
     schema: PropTypes.object.isRequired,
     uiSchema: PropTypes.object,
     idSchema: PropTypes.object,

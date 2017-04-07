@@ -14,7 +14,7 @@ export function* fetchTasks(action) {
   try {
     const filterParams = {
       userId: store.getState().user.getIn(['loggedUser', 'username']),
-      today: moment().add('days', 1).format('YYYY-MM-DD')
+      today: moment().add(1, 'days').format('YYYY-MM-DD')
     };
     const filters = registry.get('helpers').task.generateRequestFilters(
       store.getState().tasks.filters.getIn(['currentTasksFilter', 'filter']), filterParams);

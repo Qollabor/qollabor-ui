@@ -21,6 +21,7 @@ export class FixedArray extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.getStateFromProps(props);
+    this.handleAddClick = this.handleAddClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -53,6 +54,7 @@ export class FixedArray extends React.Component {
     try {
       event.preventDefault();
     } catch (e) {
+      // eslint-disable-next-line no-param-reassign
       event.returnValue = false;
     }
     const { items } = this.state;
@@ -74,6 +76,7 @@ export class FixedArray extends React.Component {
       try {
         event.preventDefault();
       } catch (e) {
+        // eslint-disable-next-line no-param-reassign
         event.returnValue = false;
       }
       this.asyncSetState({
@@ -121,7 +124,7 @@ export class FixedArray extends React.Component {
         <IconButton
           tooltip={(uiSchema && uiSchema['ui:addLabel'] ? uiSchema['ui:addLabel'] : 'Add')}
           disabled={disabled || readonly}
-          onClick={this.handleAddClick.bind(this)}
+          onClick={this.handleAddClick}
           style={{ width: '25px', height: '25px', padding: '0px' }}
         >
           <FontIcon className="material-icons">add</FontIcon>
@@ -164,7 +167,7 @@ export class FixedArray extends React.Component {
                 itemUiSchema={itemUiSchema}
                 removable={additional}
                 disabled={this.props.disabled}
-                readOnly={this.props.readOnly}
+                readonly={this.props.readonly}
                 required={this.isItemRequired(itemSchema)}
                 registry={this.props.registry}
                 onDropIndexClick={this.handleDropIndexClick(index)}
@@ -188,6 +191,7 @@ FixedArray.defaultProps = {
 
 if (process.env.NODE_ENV !== 'production') {
   FixedArray.propTypes = {
+    name: PropTypes.string,
     schema: PropTypes.object.isRequired,
     uiSchema: PropTypes.object,
     idSchema: PropTypes.object,

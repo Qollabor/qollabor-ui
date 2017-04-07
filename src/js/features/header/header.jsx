@@ -94,6 +94,11 @@ export class Header extends React.Component {
   }
 }
 
+Header.propTypes = {
+  onLeftNavToggle: React.PropTypes.func,
+  showDrawer: React.PropTypes.bool
+};
+
 // Since this is not a <Route> component, we add History to the context
 Header.contextTypes = {
   router: React.PropTypes.object

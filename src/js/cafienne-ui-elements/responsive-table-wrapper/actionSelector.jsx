@@ -10,6 +10,8 @@ export class ActionSelector extends React.Component {
     this.state = {
       open: false
     };
+
+    this.handleTouchTap = this.handleTouchTap.bind(this);
   }
 
   handleTouchTap(event) {
@@ -26,7 +28,7 @@ export class ActionSelector extends React.Component {
   render() {
     return (
       <IconMenu
-        iconButtonElement={<IconButton onTouchTap={this.handleTouchTap.bind(this)}><NavigationMoreVert /></IconButton>}
+        iconButtonElement={<IconButton onTouchTap={this.handleTouchTap}><NavigationMoreVert /></IconButton>}
         anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
         targetOrigin={{ horizontal: 'left', vertical: 'top' }}
       >
@@ -51,8 +53,11 @@ export class ActionSelector extends React.Component {
 ActionSelector.displayName = 'ActionSelector';
 
 ActionSelector.propTypes = {
+  actionItems: React.PropTypes.object,
+  isDisabled: React.PropTypes.bool,
   isVerifyAuth: React.PropTypes.bool,
-  onActionHandler: React.PropTypes.func.isRequired
+  onActionHandler: React.PropTypes.func.isRequired,
+  rowIndex: React.PropTypes.number
 };
 
 export default ActionSelector;

@@ -16,6 +16,9 @@ export class LoginForm extends React.Component {
         login: false
       }
     };
+
+    this.handleOnLogIn = this.handleOnLogIn.bind(this);
+    this.handleOnCancel = this.handleOnCancel.bind(this);
   }
 
   componentWillReceiveProps(props) {
@@ -40,6 +43,7 @@ export class LoginForm extends React.Component {
     try {
       event.preventDefault();
     } catch (e) {
+      // eslint-disable-next-line no-param-reassign
       event.returnValue = false;
     }
     this.props.onLogin(this.state.username, this.state.password);
@@ -49,6 +53,7 @@ export class LoginForm extends React.Component {
     try {
       event.preventDefault();
     } catch (e) {
+      // eslint-disable-next-line no-param-reassign
       event.returnValue = false;
     }
     this.props.onCancel();
@@ -58,6 +63,7 @@ export class LoginForm extends React.Component {
     try {
       event.preventDefault();
     } catch (e) {
+      // eslint-disable-next-line no-param-reassign
       event.returnValue = false;
     }
     const newState = { [type]: event.target.value, changed: this.state.changed };
@@ -98,7 +104,7 @@ export class LoginForm extends React.Component {
       <div style={styles.alignContainer}>
         <div style={subContainerStyle}>
           <Paper style={styles.container}>
-            <form onSubmit={this.handleOnLogIn.bind(this)}>
+            <form onSubmit={this.handleOnLogIn}>
               <div style={styles.textFieldWrapper}>
                 <TextField
                   hintText="Username"
@@ -127,7 +133,7 @@ export class LoginForm extends React.Component {
                 secondary={true}
                 style={styles.button}
                 disabled={this.props.isLoggingIn}
-                onClick={this.handleOnCancel.bind(this)}
+                onClick={this.handleOnCancel}
               />
               <RaisedButton
                 label="Login"

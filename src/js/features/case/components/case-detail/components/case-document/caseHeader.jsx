@@ -35,12 +35,17 @@ class CaseHeader extends React.Component {
   }
 }
 CaseHeader.propTypes = {
+  caseTeamUsers: React.PropTypes.array,
   name: React.PropTypes.string.isRequired,
   status: React.PropTypes.string.isRequired,
   lastModified: React.PropTypes.string.isRequired,
+  lastModifiedBy: React.PropTypes.string,
+  lastModifiedByUserDetails: React.PropTypes.object,
+  planItems: React.PropTypes.array,
   user: React.PropTypes.string.isRequired,
   file: React.PropTypes.object.isRequired,
-  team: React.PropTypes.array.isRequired
+  team: React.PropTypes.array.isRequired,
+  userDetails: React.PropTypes.object
 };
 
 export default CaseHeader;

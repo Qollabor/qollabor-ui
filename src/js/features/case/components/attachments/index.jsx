@@ -6,11 +6,11 @@ export class CaseAttachments extends React.Component {
     return (
       <TitledListBox
         title="Documents"
-        items={this.props.attachments.map(item => {
-          item.icon = 'description';
-          item.color = 'olive';
-          return item;
-        })}
+        items={this.props.attachments.map(item => ({
+          ...item,
+          icon: 'description',
+          color: 'olive'
+        }))}
         isFetching={this.props.isFetching}
         error={this.props.error}
         labelField="title"

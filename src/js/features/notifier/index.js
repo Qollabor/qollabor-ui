@@ -5,7 +5,7 @@ import { Notifier as NotifierComponent } from './notifier';
 
 function mapStateToProps(state) {
   return {
-    notifications: state.notifier.get('notifications')
+    notifications: state.notifier.get('notifications').toArray()
   };
 }
 

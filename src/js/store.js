@@ -1,3 +1,4 @@
+
 import logMiddleware from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
@@ -29,7 +30,10 @@ middlewares.push(routerMiddleware(history));
 let composeEnhancers = compose;
 
 if (ENV.reduxDevTools) { // eslint-disable-line no-undef
-  composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || composeEnhancers; // eslint-disable-line no-underscore-dangle
+  composeEnhancers =
+    // eslint-disable-next-line no-underscore-dangle
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+    || composeEnhancers;
 }
 
 export const store = composeEnhancers(

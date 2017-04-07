@@ -8,6 +8,11 @@ const customContentStyle = {
 };
 
 export class PasswordChanger extends React.Component {
+  constructor(props) {
+    super(props);
+    this.requestClose = this.requestClose.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+  }
 
   componentWillMount() {
     if (this.props.init) {
@@ -40,11 +45,11 @@ export class PasswordChanger extends React.Component {
         modal={false}
         open={this.props.open}
         contentStyle={customContentStyle}
-        onRequestClose={this.requestClose.bind(this)}
+        onRequestClose={this.requestClose}
         bodyStyle={{ paddingTop: '10px', paddingBottom: '30px' }}
       >
         <PasswordForm
-          onSave={this.handleOnSubmit.bind(this)} onCancel={this.requestClose.bind(this)}
+          onSave={this.handleOnSubmit} onCancel={this.requestClose}
           saveError={this.props.error}
         />
       </Dialog>
@@ -53,6 +58,9 @@ export class PasswordChanger extends React.Component {
 }
 
 PasswordChanger.propTypes = {
+  changePassword: React.PropTypes.func,
+  error: React.PropTypes.object,
+  init: React.PropTypes.func,
   onRequestClose: React.PropTypes.func,
   open: React.PropTypes.bool
 };

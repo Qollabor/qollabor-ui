@@ -171,7 +171,11 @@ TaskList.propTypes = {
   isFetching: React.PropTypes.bool.isRequired,
   error: React.PropTypes.object,
   onMount: React.PropTypes.func,
-  onColumnVisibilityToggle: React.PropTypes.func.isRequired
+  onColumnVisibilityToggle: React.PropTypes.func.isRequired,
+  showDrawer: React.PropTypes.bool,
+  onTaskRowClick: React.PropTypes.func,
+  getNextSetOftasks: React.PropTypes.func,
+  executeTaskAction: React.PropTypes.func
 };
 
 TaskList.contextTypes = {

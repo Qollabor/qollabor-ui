@@ -19,7 +19,8 @@ const Capsule = ({ children, statusStyle }) => {
 
 Capsule.propTypes = {
   children: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  backgroundColor: React.PropTypes.string
+  backgroundColor: React.PropTypes.string,
+  statusStyle: React.PropTypes.object
 };
 
 Capsule.defaultProps = {

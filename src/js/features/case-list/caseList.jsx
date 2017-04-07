@@ -20,6 +20,11 @@ const scrollProps = {
 };
 
 class CaseList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onScrollEnd = this.onScrollEnd.bind(this);
+  }
   componentWillMount () {
     if (this.props.initCaseList) {
       this.props.initCaseList();
@@ -34,7 +39,7 @@ class CaseList extends React.Component {
   render () {
     const { items, isFetching, userDetails, caseTeamUsers } = this.props;
     const caseItems = this.props.items.map(item => <CaseItem
-      item={item} team={item.team}
+      item={item} team={item.team} key={item.id}
       userDetails={userDetails} caseTeamUsers={caseTeamUsers}
     />);
     return (<div style={searchResultStyle}>
@@ -44,7 +49,7 @@ class CaseList extends React.Component {
       <ReactIScroll
         iScroll={iScroll}
         options={scrollProps}
-        onScrollEnd={this.onScrollEnd.bind(this)}
+        onScrollEnd={this.onScrollEnd}
       >
         <List>{caseItems}</List>
       </ReactIScroll>
@@ -54,7 +59,12 @@ class CaseList extends React.Component {
 }
 
 CaseList.propTypes = {
-  initCaseList: React.PropTypes.func.isRequired
+  caseTeamUsers: React.PropTypes.array,
+  getNextSetOfItems: React.PropTypes.func,
+  initCaseList: React.PropTypes.func.isRequired,
+  items: React.PropTypes.array,
+  isFetching: React.PropTypes.bool,
+  userDetails: React.PropTypes.object
 };
 
 export default CaseList;

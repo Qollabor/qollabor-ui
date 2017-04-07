@@ -10,6 +10,8 @@ export class ColumnPicker extends React.Component {
     this.state = {
       open: false
     };
+    this.handleIconTouchTap = this.handleIconTouchTap.bind(this);
+    this.handleIconRequestClose = this.handleIconRequestClose.bind(this);
   }
 
   handleIconTouchTap(event) {
@@ -39,8 +41,8 @@ export class ColumnPicker extends React.Component {
     return (
       <div>
         <IconButton
-          // onClick={this.handleIconTouchTap.bind(this)}
-          onTouchTap={this.handleIconTouchTap.bind(this)}
+          // onClick={this.handleIconTouchTap}
+          onTouchTap={this.handleIconTouchTap}
         >
           <FontIcon className="material-icons">settings</FontIcon>
         </IconButton>
@@ -49,7 +51,7 @@ export class ColumnPicker extends React.Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-          onRequestClose={this.handleIconRequestClose.bind(this)}
+          onRequestClose={this.handleIconRequestClose}
           animation={PopoverAnimationVertical}
         >
           <Menu>

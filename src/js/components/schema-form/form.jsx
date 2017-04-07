@@ -1,7 +1,6 @@
 import React from 'react';
 
 import JsonSchemaForm from 'react-jsonschema-form';
-import { RaisedButton } from 'material-ui';
 
 import { CustomSchemaField } from './schemaField';
 import { CustomTitleField } from './titleField';
@@ -17,6 +16,10 @@ export class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = { error: {} };
+
+    this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnError = this.handleOnError.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
   handleOnChange(value) {
@@ -32,6 +35,7 @@ export class Form extends React.Component {
 
     this.setState({ error: errors.normalizedErrors });
     if (errors.normalizedErrors.length > 0) {
+      // eslint-disable-next-line no-param-reassign
       value.errors = errors;
       this.handleOnError(value);
       return;
@@ -49,10 +53,6 @@ export class Form extends React.Component {
   }
 
   render() {
-    const buttonList = this.props.buttonList ? this.props.buttonList : [
-      <RaisedButton key="submit" label="Submit" primary={true} type="submit" />,
-      <RaisedButton key="reset" label="Reset" primary={false} secondary={true} />];
-
     let uiSchema = Object.assign({}, this.props.uiSchema);
     if (this.props.readonly) {
       uiSchema = Object.assign(uiSchema, { 'ui:readonly': true });
@@ -65,7 +65,7 @@ export class Form extends React.Component {
     // Some hack to get errors passed through the SchemaForm
     uiSchema.error = this.state.error || {};
 
-    const buttonWrapper = <div className="form-buttons">{buttonList}</div>;
+    const buttonWrapper = <div className="form-buttons">{this.props.buttonList}</div>;
     return (
       <div className="cafienne-form">
         <JsonSchemaForm
@@ -73,12 +73,24 @@ export class Form extends React.Component {
           uiSchema={uiSchema}
           formData={this.props.formData}
           fields={fields}
-          onChange={this.handleOnChange.bind(this)}
-          onSubmit={this.handleOnSubmit.bind(this)}
-          onError={this.handleOnError.bind(this)}
+          onChange={this.handleOnChange}
+          onSubmit={this.handleOnSubmit}
+          onError={this.handleOnError}
           noValidate={true}
         >{buttonWrapper}</JsonSchemaForm>
       </div>
     );
   }
 }
+
+Form.propTypes = {
+  buttonList: React.PropTypes.node,
+  disabled: React.PropTypes.bool,
+  formData: React.PropTypes.object,
+  onChange: React.PropTypes.func,
+  onSubmit: React.PropTypes.func,
+  onError: React.PropTypes.func,
+  readonly: React.PropTypes.bool,
+  schema: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
+};

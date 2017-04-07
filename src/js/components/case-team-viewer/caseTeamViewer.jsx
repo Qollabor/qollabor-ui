@@ -51,5 +51,6 @@ export class CaseTeamViewer extends React.Component {
 }
 
 CaseTeamViewer.propTypes = {
-  caseTeam: React.PropTypes.array.isRequired
+  caseTeam: React.PropTypes.array.isRequired,
+  caseTeamUsers: React.PropTypes.object
 };

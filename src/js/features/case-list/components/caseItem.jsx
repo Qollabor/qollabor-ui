@@ -34,7 +34,7 @@ CaseItem.propTypes = {
   item: React.PropTypes.object.isRequired,
   team: React.PropTypes.array.isRequired,
   userDetails: React.PropTypes.object,
-  caseTeamUsers: React.PropTypes.object
+  caseTeamUsers: React.PropTypes.array
 };
 CaseItem.contextTypes = {
   router: React.PropTypes.object.isRequired

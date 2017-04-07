@@ -12,6 +12,11 @@ import { optionsList } from 'react-jsonschema-form/lib/utils';
 import styles from '../styles';
 
 export class StringWidget extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
   handleOnChange(event) {
     event.persist();
     this.props.onChange(event.target.value);
@@ -126,7 +131,7 @@ export class StringWidget extends React.Component {
           floatingLabelFixed={true}
           textareaStyle={{ marginTop: 16, marginBottom: 16 }}
           value={this.props.formData}
-          onChange={this.handleOnChange.bind(this)}
+          onChange={this.handleOnChange}
           disabled={this.props.disabled}
           {...errors}
           {...textProps}
@@ -135,3 +140,16 @@ export class StringWidget extends React.Component {
     );
   }
 }
+
+StringWidget.propTypes = {
+  disabled: React.PropTypes.bool,
+  error: React.PropTypes.object,
+  errorSchema: React.PropTypes.object,
+  formData: React.PropTypes.string,
+  name: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  readonly: React.PropTypes.bool,
+  required: React.PropTypes.bool,
+  schema: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
+};

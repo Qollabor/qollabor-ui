@@ -27,6 +27,7 @@ class PasswordForm extends React.Component {
       resultScore: '',
       resultStrength: ''
     };
+    this.handlePassword = this.handlePasswordChange.bind(this);
   }
 
   handlePasswordChange(event) {
@@ -66,7 +67,7 @@ class PasswordForm extends React.Component {
     const { handleSubmit, onSave, pristine, submitting } = this.props;
     const { resultScore, resultStrength } = this.state;
     return (
-      <form style={styles.formMargin} onChange={this.handlePasswordChange.bind(this)}>
+      <form style={styles.formMargin} onChange={this.handlePasswordChange}>
         <div>
           <div>
             <Field
@@ -139,9 +140,13 @@ PasswordForm = reduxForm({
 })(PasswordForm);
 
 PasswordForm.propTypes = {
+  handleSubmit: React.PropTypes.func,
+  onChange: React.PropTypes.func,
   onSave: React.PropTypes.func.isRequired,
-  onCancel: React.PropTypes.func.isRequired
+  onCancel: React.PropTypes.func.isRequired,
+  pristine: React.PropTypes.bool,
+  saveError: React.PropTypes.object,
+  submitting: React.PropTypes.bool
 };
 
 export default PasswordForm;
-

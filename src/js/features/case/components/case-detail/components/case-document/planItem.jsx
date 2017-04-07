@@ -26,6 +26,10 @@ const PlanItemIcon = ({ type }) => <CMMNIcon
 />;
 
 class PlanItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.openTaskDetailPage = this.openTaskDetailPage.bind(this);
+  }
 
   getLocalFormattedDate (date) {
     return registry.get('helpers').getLocalDateTime(date);
@@ -64,11 +68,21 @@ class PlanItem extends React.Component {
             </StatusCapsule>
           </div>
         }
-        onTouchTap={this.openTaskDetailPage.bind(this)}
+        onTouchTap={this.openTaskDetailPage}
       />);
   }
 }
+
+PlanItemIcon.propTypes = {
+  type: React.PropTypes.string
+};
+
+PlanItem.propTypes = {
+  item: React.PropTypes.object
+};
+
 PlanItem.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
+
 export default PlanItem;

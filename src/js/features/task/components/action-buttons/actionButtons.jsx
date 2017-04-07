@@ -73,7 +73,11 @@ export class ActionButtons extends React.Component {
 
 ActionButtons.propTypes = {
   availableActions: React.PropTypes.array.isRequired,
+  availableTransitions: React.PropTypes.array,
+  buttonsDisabled: React.PropTypes.bool,
+  caseId: React.PropTypes.string,
   taskId: React.PropTypes.string.isRequired,
+  taskDetails: React.PropTypes.object,
   onActionClick: React.PropTypes.func,
   onTransitionClick: React.PropTypes.func
 };

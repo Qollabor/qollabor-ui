@@ -58,6 +58,7 @@ TasksFilter.propTypes = {
   onChangeTasksFilter: React.PropTypes.func,
   onBeforeChangeTasksFilter: React.PropTypes.func,
   tasksFilterTypes: React.PropTypes.array,
+  isFetchingTasksList: React.PropTypes.bool,
   currentTasksFilter: React.PropTypes.string
 };
 

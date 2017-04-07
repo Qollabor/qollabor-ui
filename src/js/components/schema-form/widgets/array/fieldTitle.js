@@ -18,3 +18,8 @@ export class FieldTitle extends React.Component {
     );
   }
 }
+
+FieldTitle.propTypes = {
+  idSchema: React.PropTypes.object,
+  title: React.PropTypes.string
+};

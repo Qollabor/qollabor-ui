@@ -32,3 +32,8 @@ export function fetchUserDetails(userIds) {
     }
   });
 }
+
+
+HelpWidget.propTypes = {
+  help: React.PropTypes.string
+};

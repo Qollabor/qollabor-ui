@@ -55,10 +55,10 @@ export const sanitizeAfterLoad = (task) => {
     title: moment(task.createdOn, moment.ISO_8601).format('ddd, MMMM Do YYYY HH:MM'),
     value: timeAgo(moment.utc(task.createdOn).toDate())
   }; */
-  task.viewInternalData = {
-    status,
-    icon: translateStatus(status),
-    iconStyle: calculateStyle(status)
-  };
-  return task;
+  return { ...task,
+    viewInternalData: {
+      status,
+      icon: translateStatus(status),
+      iconStyle: calculateStyle(status)
+    } };
 };

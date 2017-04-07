@@ -10,10 +10,10 @@ import { getLocalDateTime, getLocalDateObj, getTimeRemaining, getElapsedTime } f
 // Stateless cell components for Table component
 
 // Header cell
-const SortHeaderCell = ({ children, columnKey, sortBy, sortKey, sortDesc, ...props }) => {
+const SortHeaderCell = ({ children, columnKey, sortBy, sortKey, sortDesc }) => {
   const clickFunc = () => sortBy && sortBy(columnKey);
   return (
-    <Cell {...props}>
+    <Cell>
       <a onClick={clickFunc}>
         {children} {renderers.renderSortArrow(sortKey, sortDesc, columnKey)}
       </a>
@@ -23,14 +23,16 @@ const SortHeaderCell = ({ children, columnKey, sortBy, sortKey, sortDesc, ...pro
 
 SortHeaderCell.propTypes = {
   sortBy: React.PropTypes.func.isRequired,
+  sortDesc: React.PropTypes.bool,
+  sortKey: React.PropTypes.string,
   columnKey: React.PropTypes.string,
   children: React.PropTypes.any
 };
 
 // Data cell
-const DataCell = ({ items, rowIndex, columnKey, mapper, ...props }) => {
+const DataCell = ({ items, rowIndex, columnKey, mapper }) => {
   const data = items[rowIndex][columnKey];
-  return (<Cell {...props} title={mapper && data}>
+  return (<Cell title={mapper && data}>
    {mapper ? mapper(data) : data}
   </Cell>);
 };
@@ -43,7 +45,7 @@ DataCell.propTypes = {
 };
 
 // Date cell
-const DateCell = ({ items, type, dateFormat, rowIndex, columnKey, ...props }) => {
+const DateCell = ({ items, type, dateFormat, rowIndex, columnKey }) => {
   const cellData = items[rowIndex][columnKey];
   const localDate = getLocalDateObj(cellData, dateFormat);
 
@@ -58,10 +60,11 @@ const DateCell = ({ items, type, dateFormat, rowIndex, columnKey, ...props }) =>
     title = getLocalDateTime(cellData, dateFormat);
   }
 
-  return <Cell {...props} title={title}>{value}</Cell>;
+  return <Cell title={title}>{value}</Cell>;
 };
 
 DateCell.propTypes = {
+  dateFormat: React.PropTypes.string,
   type: React.PropTypes.string,
   items: React.PropTypes.array,
   rowIndex: React.PropTypes.number,
@@ -69,8 +72,8 @@ DateCell.propTypes = {
 };
 
 // CheckBox cell
-const CheckBoxCell = ({ items, rowIndex, columnKey, ...props }) =>
-  (<Cell {...props}><input type="checkbox" checked={items[rowIndex][columnKey]} disabled="disabled" /></Cell>);
+const CheckBoxCell = ({ items, rowIndex, columnKey }) =>
+  (<Cell><input type="checkbox" checked={items[rowIndex][columnKey]} disabled="disabled" /></Cell>);
 
 CheckBoxCell.propTypes = {
   items: React.PropTypes.array,
@@ -79,19 +82,23 @@ CheckBoxCell.propTypes = {
 };
 
 // ActionChooser cell
-const ActionChooserCell = ({ rowIndex, ...props }) =>
+const ActionChooserCell = ({ rowIndex }) =>
   (<Cell onClick={cancelClick}>
-    <ActionSelector {...props} rowIndex={rowIndex} />
+    <ActionSelector rowIndex={rowIndex} />
   </Cell>);
+
+ActionChooserCell.propTypes = {
+  rowIndex: React.PropTypes.number
+};
 
 const cancelClick = (e) => {
   e.stopPropagation();
 };
 
 // Status cell
-const StatusCell = ({ items, rowIndex, ...props }) => {
+const StatusCell = ({ items, rowIndex }) => {
   const cellData = items[rowIndex];
-  return (<Cell {...props}>
+  return (<Cell>
     <FontIcon
       className="material-icons"
       style={cellData.viewInternalData.iconStyle}
@@ -102,8 +109,7 @@ const StatusCell = ({ items, rowIndex, ...props }) => {
 
 StatusCell.propTypes = {
   items: React.PropTypes.array,
-  rowIndex: React.PropTypes.number,
-  columnKey: React.PropTypes.string
+  rowIndex: React.PropTypes.number
 };
 
 export { SortHeaderCell, DataCell, DateCell, CheckBoxCell, ActionChooserCell, StatusCell };

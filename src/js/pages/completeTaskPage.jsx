@@ -18,4 +18,18 @@ class SubmitTaskConfirmationPage extends React.Component {
   }
 }
 
+SubmitTaskConfirmationPage.propTypes = {
+  params: React.PropTypes.shape({
+    taskId: React.PropTypes.string,
+    action: React.PropTypes.string
+  }),
+  location: React.PropTypes.shape({
+    query: React.PropTypes.shape({
+      caseId: React.PropTypes.string,
+      data: React.PropTypes.string,
+      message: React.PropTypes.string
+    })
+  })
+};
+
 export default SubmitTaskConfirmationPage;

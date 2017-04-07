@@ -42,18 +42,14 @@ export class TaskDetails extends React.Component {
       margin: '3px'
     };
 
-    const buttonList = [<div>
-      <span>
-        <RaisedButton
-          label="COMPLETE" primary={true} type="submit" disabled={disableForm || isSuspended}
-          style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'complete')}
-        />
-        <FlatButton
-          label="SAVE FOR LATER" type="submit" disabled={disableForm || isSuspended}
-          style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'save')}
-        />
-      </span>
-    </div>];
+    const buttonList = [<RaisedButton
+      label="COMPLETE" primary={true} key="complete" type="submit" disabled={disableForm || isSuspended}
+      style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'complete')}
+    />,
+      <FlatButton
+        label="SAVE FOR LATER" key="save" type="submit" disabled={disableForm || isSuspended}
+        style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'save')}
+      />];
 
 
     return (
@@ -88,9 +84,16 @@ export class TaskDetails extends React.Component {
 }
 
 TaskDetails.propTypes = {
+  caseId: React.PropTypes.string,
+  error: React.PropTypes.object,
+  executeTaskAction: React.PropTypes.func,
   taskId: React.PropTypes.string.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
-  taskDetails: React.PropTypes.object.isRequired
+  loggedInUserId: React.PropTypes.string,
+  onMount: React.PropTypes.func,
+  saveTaskDetails: React.PropTypes.func,
+  taskDetails: React.PropTypes.object.isRequired,
+  transitionToState: React.PropTypes.func
 };
 
 TaskDetails.displayName = 'TaskDetails';

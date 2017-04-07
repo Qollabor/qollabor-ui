@@ -73,17 +73,19 @@ function transformResponse(fetchResponse) {
  * Methods for wrapping the requests methods of the `fetch` module.
  */
 function getMethod(url, query, options) {
+  let getUrl = url;
+
   return new Promise((resolve, reject) => {
     let headers = Object.assign({}, defaultGetHeaders);
     if (options && options.headers) {
       headers = Object.assign(headers, options.headers);
     }
     if (query) {
-      url += `?${queryString.stringify(query)}`;
+      getUrl += `?${queryString.stringify(query)}`;
     }
 
     fetch(
-      url,
+      getUrl,
       {
         method: 'GET',
         headers

@@ -63,10 +63,7 @@ describe('components/titled-list-box', () => {
     let titledListBoxWidget;
     let items;
     beforeEach(() => {
-      items = titleArray.map(item => {
-        item.action = sinon.spy();
-        return item;
-      });
+      items = titleArray.map(item => ({ ...item, action: sinon.spy() }));
       titledListBoxWidget = shallow(
         <TitledListBoxComponent
           title={boxTitle}
@@ -84,10 +81,7 @@ describe('components/titled-list-box', () => {
     let titledListBoxWidget;
     let items;
     beforeEach(() => {
-      items = titleArray.map(item => {
-        item.url = 'someurl';
-        return item;
-      });
+      items = titleArray.map(item => ({ ...item, url: 'someurl' }));
       titledListBoxWidget = shallow(
         <TitledListBoxComponent
           title={boxTitle}

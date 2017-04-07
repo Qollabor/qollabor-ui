@@ -14,6 +14,9 @@ export class MenuComponent extends React.Component {
     this.state = {
       open: false
     };
+
+    this.handleTouchTap = this.handleTouchTap.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
   handleTouchTap(event) {
@@ -42,8 +45,8 @@ export class MenuComponent extends React.Component {
     return (
       <div>
         <IconButton
-          onClick={this.handleTouchTap.bind(this)}
-          onTouchTap={this.handleTouchTap.bind(this)}
+          onClick={this.handleTouchTap}
+          onTouchTap={this.handleTouchTap}
         >
           <MoreVertIcon color="white" />
         </IconButton>
@@ -52,7 +55,7 @@ export class MenuComponent extends React.Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-          onRequestClose={this.handleRequestClose.bind(this)}
+          onRequestClose={this.handleRequestClose}
           animation={PopoverAnimationVertical}
         >
           <MaterialMenu style={styles.menu}>
@@ -64,6 +67,11 @@ export class MenuComponent extends React.Component {
     );
   }
 }
+
+MenuComponent.propTypes = {
+  items: React.PropTypes.object,
+  onNavigate: React.PropTypes.func
+};
 
 function mapDispatchToProps(dispatch) {
   return {

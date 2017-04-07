@@ -10,6 +10,9 @@ export class ColumnPicker extends React.Component {
     this.state = {
       open: false
     };
+
+    this.handleIconTouchTap = this.handleIconTouchTap.bind(this);
+    this.handleIconRequestClose = this.handleIconRequestClose.bind(this);
   }
 
   handleIconTouchTap(event) {
@@ -40,7 +43,7 @@ export class ColumnPicker extends React.Component {
     return (
       <div style={this.props.style}>
         <IconButton
-          onTouchTap={this.handleIconTouchTap.bind(this)}
+          onTouchTap={this.handleIconTouchTap}
         >
           <FontIcon className="material-icons" color="black" hoverColor="gray">settings</FontIcon>
         </IconButton>
@@ -49,7 +52,7 @@ export class ColumnPicker extends React.Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-          onRequestClose={this.handleIconRequestClose.bind(this)}
+          onRequestClose={this.handleIconRequestClose}
           animation={PopoverAnimationFromTop}
         >
           <Menu>
@@ -83,7 +86,8 @@ export class ColumnPicker extends React.Component {
 ColumnPicker.displayName = 'ColumnPicker';
 ColumnPicker.propTypes = {
   columns: React.PropTypes.array.isRequired,
-  onMenuItemClicked: React.PropTypes.func.isRequired
+  onMenuItemClicked: React.PropTypes.func.isRequired,
+  style: React.PropTypes.object
 };
 
 export default ColumnPicker;

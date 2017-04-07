@@ -23,6 +23,7 @@ export class AuthVerify extends React.Component {
 AuthVerify.displayName = 'AuthVerify';
 
 AuthVerify.propTypes = {
+  children: React.PropTypes.node,
   isVerifyAuth: React.PropTypes.bool
 };
 

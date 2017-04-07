@@ -40,4 +40,8 @@ class PlanItem extends React.Component {
   }
 }
 
+PlanItem.propTypes = {
+  item: React.PropTypes.object
+};
+
 export default PlanItem;

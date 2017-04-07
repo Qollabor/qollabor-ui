@@ -29,7 +29,7 @@ class TaskItem extends React.Component {
         secondaryText={
           <ItemBody>
             <ItemTextField
-              value={task.assignee}
+              value={task.assignee || ''}
               name="Assignee"
             />
             <ItemTextField
@@ -44,6 +44,11 @@ class TaskItem extends React.Component {
       />);
   }
 }
+
+TaskItem.propTypes = {
+  item: React.PropTypes.object
+};
+
 TaskItem.contextTypes = {
   router: React.PropTypes.object.isRequired
 };

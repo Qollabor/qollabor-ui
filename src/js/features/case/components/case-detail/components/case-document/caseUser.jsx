@@ -57,5 +57,7 @@ export class CaseUser extends React.Component {
 }
 
 CaseUser.propTypes = {
+  label: React.PropTypes.string,
+  userDetails: React.PropTypes.object,
   userId: React.PropTypes.string.isRequired
 };

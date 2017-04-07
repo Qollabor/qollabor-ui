@@ -83,7 +83,8 @@ TaskList.propTypes = {
   isFetching: React.PropTypes.bool.isRequired,
   error: React.PropTypes.object,
   onMount: React.PropTypes.func,
-  onColumnVisibilityToggle: React.PropTypes.func.isRequired
+  onColumnVisibilityToggle: React.PropTypes.func.isRequired,
+  executeTaskAction: React.PropTypes.func
 };
 
 export default TaskList;

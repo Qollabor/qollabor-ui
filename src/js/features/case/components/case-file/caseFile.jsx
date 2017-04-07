@@ -8,6 +8,9 @@ export default class CaseFile extends React.Component {
     this.state = {
       open: false
     };
+
+    this.handleClose = this.handleClose.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
   }
 
   handleOpen() {
@@ -23,12 +26,12 @@ export default class CaseFile extends React.Component {
       <FlatButton
         label="Ok"
         primary={true}
-        onTouchTap={this.handleClose.bind(this)}
+        onTouchTap={this.handleClose}
       />
     ];
     return (
       <div>
-        <FlatButton label="Casefile" onTouchTap={this.handleOpen.bind(this)} />
+        <FlatButton label="Casefile" onTouchTap={this.handleOpen} />
         <Dialog
           title="Casefile"
           actions={actions}
@@ -42,3 +45,7 @@ export default class CaseFile extends React.Component {
     );
   }
 }
+
+CaseFile.propTypes = {
+  file: React.PropTypes.object
+};

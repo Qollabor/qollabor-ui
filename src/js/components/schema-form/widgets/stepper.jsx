@@ -221,6 +221,7 @@ if (process.env.NODE_ENV !== 'production') {
     idSchema: PropTypes.object,
     onChange: PropTypes.func.isRequired,
     formData: PropTypes.object,
+    name: PropTypes.string,
     required: PropTypes.bool,
     disabled: PropTypes.bool,
     readonly: PropTypes.bool,

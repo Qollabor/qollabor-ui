@@ -78,8 +78,14 @@ export class TaskModelSchemaForm extends React.Component {
 }
 
 TaskModelSchemaForm.propTypes = {
+  buttonList: React.PropTypes.array,
+  disabled: React.PropTypes.bool,
+  executeTaskAction: React.PropTypes.func,
+  formData: React.PropTypes.object,
   schema: React.PropTypes.object.isRequired,
-  onSubmit: React.PropTypes.func.isRequired
+  onSubmit: React.PropTypes.func.isRequired,
+  taskDetails: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
 };
 
 export default TaskModelSchemaForm;

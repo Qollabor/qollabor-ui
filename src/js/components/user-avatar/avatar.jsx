@@ -97,6 +97,9 @@ export class UserAvatar extends React.Component {
 UserAvatar.displayName = 'UserAvatar';
 
 UserAvatar.propTypes = {
+  onClick: React.PropTypes.func,
+  padding: React.PropTypes.number,
+  size: React.PropTypes.number,
   user: React.PropTypes.object.isRequired,
   chipView: React.PropTypes.bool
 };

@@ -14,4 +14,8 @@ class NoHeaderLayout extends React.Component {
   }
 }
 
+NoHeaderLayout.propTypes = {
+  children: React.PropTypes.node
+};
+
 export default NoHeaderLayout;

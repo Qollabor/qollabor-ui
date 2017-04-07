@@ -85,6 +85,7 @@ FieldItem.defaultProps = {
 
 if (process.env.NODE_ENV !== 'production') {
   FieldItem.propTypes = {
+    error: PropTypes.object,
     index: PropTypes.number.isRequired,
     itemSchema: PropTypes.object.isRequired,
     itemUiSchema: PropTypes.object,

@@ -3,6 +3,12 @@ import CaseModelList from './components/list';
 import { IconButton, FontIcon, Paper } from 'material-ui';
 
 export class CaseModels extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleRefreshClick = this.handleRefreshClick.bind(this);
+    this.handleCaseModelSelect = this.handleCaseModelSelect.bind(this);
+  }
+
   componentWillMount () {
     if (this.props.initCaseModels) {
       this.props.initCaseModels();
@@ -38,22 +44,23 @@ export class CaseModels extends React.Component {
           <div className="loader-box"></div>}
         <div style={toolBarStyles}>
           <IconButton
-            secondary={true}
             tooltip="Refresh"
-            onClick={this.handleRefreshClick.bind(this)}
+            onClick={this.handleRefreshClick}
             style={buttonStyles}
           >
             <FontIcon className="material-icons" color="gray">refresh</FontIcon>
           </IconButton>
         </div>
-        <CaseModelList onTouchTap={this.handleCaseModelSelect.bind(this)} />
+        <CaseModelList onTouchTap={this.handleCaseModelSelect} />
       </Paper>
     );
   }
 }
 
 CaseModels.propTypes = {
-  initCaseModels: React.PropTypes.func.isRequired
+  initCaseModels: React.PropTypes.func.isRequired,
+  isFetching: React.PropTypes.bool,
+  items: React.PropTypes.array
 };
 
 

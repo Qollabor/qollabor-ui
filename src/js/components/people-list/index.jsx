@@ -9,6 +9,10 @@ class PeopleList extends React.Component {
       showMoreEvent: null,
       showMoreOpen: false
     };
+
+    this.handleOnClickAvatarAction = this.handleOnClickAvatarAction.bind(this);
+    this.handleShowMoreAction = this.handleShowMoreAction.bind(this);
+    this.handleShowMoreClose = this.handleShowMoreClose.bind(this);
   }
 
   handleOnClickAvatarAction(userId) {
@@ -21,6 +25,7 @@ class PeopleList extends React.Component {
     try {
       event.preventDefault();
     } catch (e) {
+      // eslint-disable-next-line no-param-reassign
       event.returnValue = false;
     }
     this.setState({
@@ -47,17 +52,17 @@ class PeopleList extends React.Component {
           avatarSize={avatarSize}
           maxLength={this.props.maxLength}
           maxPeopleInList={maxPeopleInList}
-          onClick={this.handleOnClickAvatarAction.bind(this)}
-          onShowMoreAction={this.handleShowMoreAction.bind(this)}
+          onClick={this.handleOnClickAvatarAction}
+          onShowMoreAction={this.handleShowMoreAction}
         />
 
         <PeoplePopupList
           people={this.props.people}
-          onClick={this.handleOnClickAvatarAction.bind(this)}
+          onClick={this.handleOnClickAvatarAction}
           avatarSize={avatarSize}
           open={this.state.showMoreOpen}
           showMoreEvent={this.state.showMoreEvent}
-          onRequestClose={this.handleShowMoreClose.bind(this)}
+          onRequestClose={this.handleShowMoreClose}
         />
       </div>
     );
@@ -65,6 +70,7 @@ class PeopleList extends React.Component {
 }
 
 PeopleList.propTypes = {
+  onClick: React.PropTypes.func,
   people: React.PropTypes.array.isRequired,
   maxPeopleInList: React.PropTypes.number.isRequired,
   maxLength: React.PropTypes.number,

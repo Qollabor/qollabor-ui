@@ -57,3 +57,7 @@ export default class CaseProgressViewer extends React.Component {
     );
   }
 }
+
+CaseProgressViewer.propTypes = {
+  items: React.PropTypes.array
+};

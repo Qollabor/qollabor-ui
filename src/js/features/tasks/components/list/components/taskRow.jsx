@@ -117,7 +117,8 @@ TaskRow.displayName = 'TaskRow';
 TaskRow.propTypes = {
   columns: React.PropTypes.array.isRequired,
   rowData: React.PropTypes.object.isRequired,
-  onRowClick: React.PropTypes.func
+  onRowClick: React.PropTypes.func,
+  executeTaskAction: React.PropTypes.func
 };
 
 export default TaskRow;

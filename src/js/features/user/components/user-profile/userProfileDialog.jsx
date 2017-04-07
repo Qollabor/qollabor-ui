@@ -8,6 +8,13 @@ const customContentStyle = {
 };
 
 export class UserProfileDialog extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.requestClose = this.requestClose.bind(this);
+  }
+
 
   componentWillMount() {
     if (this.props.init) {
@@ -40,12 +47,12 @@ export class UserProfileDialog extends React.Component {
         modal={false}
         open={this.props.open}
         contentStyle={customContentStyle}
-        onRequestClose={this.requestClose.bind(this)}
+        onRequestClose={this.requestClose}
         bodyStyle={{ paddingTop: '10px', paddingBottom: '30px' }}
       >
         {this.props.profile &&
           <UserProfile
-            onSave={this.handleOnSubmit.bind(this)} onCancel={this.requestClose.bind(this)}
+            onSave={this.handleOnSubmit} onCancel={this.requestClose}
             onAvatarUpdate={this.props.updateAvatar} saveError={this.props.error} initialValues={this.props.profile}
           />
         }
@@ -55,8 +62,13 @@ export class UserProfileDialog extends React.Component {
 }
 
 UserProfileDialog.propTypes = {
+  error: React.PropTypes.object,
+  init: React.PropTypes.func,
   onRequestClose: React.PropTypes.func,
-  open: React.PropTypes.bool
+  open: React.PropTypes.bool,
+  profile: React.PropTypes.object,
+  saveData: React.PropTypes.func,
+  updateAvatar: React.PropTypes.func
 };
 
 export default UserProfileDialog;

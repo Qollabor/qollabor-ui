@@ -49,3 +49,11 @@ export const CustomSchemaField = function (props) {
       return <SchemaField {...props} {...readonly} {...disabled} {...schemaProps} />;
   }
 };
+
+
+CustomSchemaField.propTypes = {
+  error: React.PropTypes.object,
+  registry: React.PropTypes.object,
+  schema: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
+};

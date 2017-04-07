@@ -47,9 +47,14 @@ class CaseHeaderDetails extends React.Component {
     );
   }
 }
+
 CaseHeaderDetails.propTypes = {
+  caseTeamUsers: React.PropTypes.array,
   status: React.PropTypes.string,
   lastModified: React.PropTypes.string.isRequired,
+  lastModifiedBy: React.PropTypes.string,
+  lastModifiedByUserDetails: React.PropTypes.object,
+  planItems: React.PropTypes.array,
   user: React.PropTypes.string.isRequired,
   team: React.PropTypes.array.isRequired
 };

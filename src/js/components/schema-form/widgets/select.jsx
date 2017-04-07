@@ -67,3 +67,17 @@ export class SelectWidget extends React.Component {
     );
   }
 }
+
+SelectWidget.propTypes = {
+  disabled: React.PropTypes.bool,
+  error: React.PropTypes.object,
+  errorSchema: React.PropTypes.object,
+  formData: React.PropTypes.string,
+  name: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  options: React.PropTypes.array,
+  readonly: React.PropTypes.bool,
+  required: React.PropTypes.bool,
+  schema: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
+};

@@ -63,7 +63,11 @@ class UserSelector extends React.Component {
             />
           </div>
           <div style={{ height: 306, paddingTop: 10, overflowY: 'auto', display: 'inline-block', width: '100%' }}>
-            <UserList people={users} canSelectUsers={true} onUserSelectChange={this.handleUserSelectChange.bind(this)} />
+            <UserList
+              people={users}
+              canSelectUsers={true}
+              onUserSelectChange={this.handleUserSelectChange.bind(this)}
+            />
           </div>
         </Paper>
       </div>
@@ -73,7 +77,13 @@ class UserSelector extends React.Component {
 
 UserSelector.propTypes = {
   filterHintText: React.PropTypes.string,
-  filterUsers: React.PropTypes.arrayOf(React.PropTypes.string)
+  filterString: React.PropTypes.string,
+  filteredUser: React.PropTypes.string,
+  initUsers: React.PropTypes.func,
+  onUserSelectChange: React.PropTypes.func,
+  selectedUsers: React.PropTypes.array,
+  setFilter: React.PropTypes.func,
+  users: React.PropTypes.array
 };
 
 export default UserSelector;

@@ -4,6 +4,11 @@ import { RaisedButton } from 'material-ui';
 import styles from '../styles';
 
 class CaseInformationComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.openDetailPage = this.openDetailPage.bind(this);
+  }
+
   openDetailPage() {
     const caseId = this.props.case.id;
     this.context.router.push(`/cases/${caseId}`);
@@ -23,7 +28,7 @@ class CaseInformationComponent extends React.Component {
         <RaisedButton
           label="Open case"
           primary={true}
-          onClick={this.openDetailPage.bind(this)}
+          onClick={this.openDetailPage}
         />
       </div>
     );

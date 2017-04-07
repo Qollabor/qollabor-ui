@@ -123,7 +123,16 @@ class CaseList extends React.Component {
 }
 
 CaseList.propTypes = {
-  initCaseList: React.PropTypes.func.isRequired
+  caseId: React.PropTypes.string,
+  filterData: React.PropTypes.func,
+  filterText: React.PropTypes.string,
+  getNextSetOfItems: React.PropTypes.func,
+  initCaseList: React.PropTypes.func.isRequired,
+  isFetching: React.PropTypes.bool,
+  items: React.PropTypes.array,
+  showDrawer: React.PropTypes.bool,
+  sortKey: React.PropTypes.string,
+  sortDesc: React.PropTypes.string
 };
 
 CaseList.contextTypes = {

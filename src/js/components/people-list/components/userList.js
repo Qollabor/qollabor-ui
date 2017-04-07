@@ -60,7 +60,10 @@ class UserList extends React.Component {
 
 UserList.propTypes = {
   people: React.PropTypes.array,
-  canSelectUsers: React.PropTypes.bool
+  canSelectUsers: React.PropTypes.bool,
+  onClick: React.PropTypes.func,
+  onUserSelectChange: React.PropTypes.func,
+  avatarSize: React.PropTypes.number
 };
 
 export default UserList;

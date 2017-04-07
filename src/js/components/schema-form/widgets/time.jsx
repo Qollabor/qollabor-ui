@@ -6,6 +6,11 @@ import moment from 'moment';
 import styles from '../styles';
 
 export class TimeWidget extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
   formatTime(date) {
     return moment(date).format('HH:mm');
   }
@@ -68,10 +73,23 @@ export class TimeWidget extends React.Component {
           errorStyle={errorStyle}
           floatingLabelFocusStyle={styles.floatingLabel}
           disabled={this.props.disabled}
-          onChange={this.handleOnChange.bind(this)}
+          onChange={this.handleOnChange}
           {...errors}
         />
       </div>
     );
   }
 }
+
+TimeWidget.propTypes = {
+  disabled: React.PropTypes.bool,
+  error: React.PropTypes.object,
+  errorSchema: React.PropTypes.object,
+  formData: React.PropTypes.string,
+  name: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  readonly: React.PropTypes.bool,
+  required: React.PropTypes.bool,
+  schema: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
+};

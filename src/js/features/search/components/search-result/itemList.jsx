@@ -4,8 +4,8 @@ import { List } from 'material-ui';
 
 class ItemList extends React.Component {
   render() {
-    const items = this.props.items.map(item =>
-      <Item itemType={item.docType} score={item.score} item={item.document} />);
+    const items = this.props.items.map((item, index) =>
+      <Item key={index} itemType={item.docType} score={item.score} item={item.document} />);
     return <List>{items}</List>;
   }
 }

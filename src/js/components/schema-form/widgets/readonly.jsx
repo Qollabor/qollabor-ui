@@ -41,3 +41,11 @@ export class ReadOnlyWidget extends React.Component {
     );
   }
 }
+
+ReadOnlyWidget.propTypes = {
+  help: React.PropTypes.string,
+  multiline: React.PropTypes.bool,
+  name: React.PropTypes.string,
+  title: React.PropTypes.string,
+  value: React.PropTypes.string
+};

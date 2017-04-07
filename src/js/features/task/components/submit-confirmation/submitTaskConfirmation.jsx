@@ -74,8 +74,13 @@ export class SubmitTaskDetails extends React.Component {
 }
 
 SubmitTaskDetails.propTypes = {
+  data: React.PropTypes.string,
+  error: React.PropTypes.object,
   taskId: React.PropTypes.string.isRequired,
-  caseId: React.PropTypes.string.isRequired
+  caseId: React.PropTypes.string.isRequired,
+  isSuccess: React.PropTypes.bool,
+  message: React.PropTypes.string,
+  transitionToState: React.PropTypes.func
 };
 
 SubmitTaskDetails.contextTypes = {

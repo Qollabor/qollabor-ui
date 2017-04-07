@@ -7,15 +7,21 @@ class CaseDocument extends React.Component {
   getCaseDetailData(caseDocument) {
     if (caseDocument && caseDocument.planitems) {
       const casePlanItem = caseDocument.planitems.find((planItem) => planItem.type === 'CasePlan');
-      caseDocument.name = casePlanItem.name;
-      caseDocument.user = casePlanItem.user;
-      caseDocument.status = casePlanItem.currentState;
-      caseDocument.lastModified = casePlanItem.lastModified;
-      caseDocument.planitems = this.getPlanItems(caseDocument.planitems);
+
       const lastModifiedPlanItem = caseDocument.planitems[caseDocument.planitems.length - 1];
-      caseDocument.lastModifiedBy = lastModifiedPlanItem.user;
-      caseDocument.lastModified = lastModifiedPlanItem.lastModified;
-      return caseDocument;
+      const lastModified =
+        lastModifiedPlanItem.lastModified
+        ? lastModifiedPlanItem.lastModified
+        : caseDocument.lastModified;
+      return {
+        ...caseDocument,
+        name: casePlanItem.name,
+        user: casePlanItem.user,
+        status: casePlanItem.currentState,
+        planitems: this.getPlanItems(caseDocument.planitems),
+        lastModified,
+        lastModifiedBy: caseDocument.lastModifiedBy
+      };
     }
     return null;
   }
@@ -53,7 +59,9 @@ class CaseDocument extends React.Component {
 }
 
 CaseDocument.propTypes = {
-  document: React.PropTypes.object.isRequired
+  caseTeamUsers: React.PropTypes.array,
+  document: React.PropTypes.object.isRequired,
+  userDetails: React.PropTypes.object
 };
 
 export default CaseDocument;

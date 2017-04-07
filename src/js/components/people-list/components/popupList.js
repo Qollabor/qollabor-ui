@@ -3,6 +3,11 @@ import UserList from './userList';
 import { Popover } from 'material-ui';
 
 class PeoplePopupList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.requestClose = this.requestClose.bind(this);
+  }
 
   requestClose() {
     if (this.props.onRequestClose) {
@@ -19,7 +24,7 @@ class PeoplePopupList extends React.Component {
         anchorEl={this.props.showMoreEvent}
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
         targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-        onRequestClose={this.requestClose.bind(this)}
+        onRequestClose={this.requestClose}
       >
         <div>
           <UserList
@@ -34,7 +39,12 @@ class PeoplePopupList extends React.Component {
 }
 
 PeoplePopupList.propTypes = {
-  people: React.PropTypes.array.isRequired
+  people: React.PropTypes.array.isRequired,
+  onRequestClose: React.PropTypes.func,
+  avatarSize: React.PropTypes.number,
+  onClick: React.PropTypes.func,
+  showMoreEvent: React.PropTypes.object,
+  open: React.PropTypes.bool
 };
 
 export default PeoplePopupList;

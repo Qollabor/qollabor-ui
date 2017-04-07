@@ -39,4 +39,9 @@ class MainLayout extends React.Component {
   }
 }
 
+MainLayout.propTypes = {
+  showDrawer: React.PropTypes.bool,
+  children: React.PropTypes.node
+};
+
 export default connect(mapStateToProps, null)(MainLayout);

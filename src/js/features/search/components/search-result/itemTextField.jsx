@@ -24,9 +24,12 @@ class ItemTextField extends React.Component {
     </span>);
   }
 }
+
 ItemTextField.propTypes = {
+  inputStyle: React.PropTypes.object,
   value: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired
+  name: React.PropTypes.string.isRequired,
+  style: React.PropTypes.object
 };
 
 export default ItemTextField;

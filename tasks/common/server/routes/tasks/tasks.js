@@ -6,8 +6,7 @@ let currentData = originalData.map(task => Object.assign({}, task));
 const doComplete = (idTask) => {
   currentData = currentData.map(task => {
     if (task.id === idTask) {
-      task.planState = constant.PLAN_STATES_COMPLETED;
-      return task;
+      return Object.assign({}, task, { planState: constant.PLAN_STATES_COMPLETED });
     }
     return task;
   });
@@ -16,8 +15,7 @@ const doComplete = (idTask) => {
 const doTerminate = (idTask) => {
   currentData = currentData.map(task => {
     if (task.id === idTask) {
-      task.planState = constant.PLAN_STATES_TERMINATED;
-      return task;
+      return Object.assign({}, task, { planState: constant.PLAN_STATES_TERMINATED });
     }
     return task;
   });
@@ -26,8 +24,7 @@ const doTerminate = (idTask) => {
 const doSuspend = (idTask) => {
   currentData = currentData.map(task => {
     if (task.id === idTask) {
-      task.planState = constant.PLAN_STATES_SUSPENDED;
-      return task;
+      return Object.assign({}, task, { planState: constant.PLAN_STATES_SUSPENDED });
     }
     return task;
   });
@@ -36,8 +33,7 @@ const doSuspend = (idTask) => {
 const doResume = (idTask) => {
   currentData = currentData.map(task => {
     if (task.id === idTask) {
-      task.planState = constant.PLAN_STATES_ACTIVE;
-      return task;
+      return Object.assign({}, task, { planState: constant.PLAN_STATES_ACTIVE });
     }
     return task;
   });

@@ -124,8 +124,16 @@ class ResponsiveTableWrapper extends React.Component {
 }
 
 ResponsiveTableWrapper.propTypes = {
+  children: React.PropTypes.array,
+  columns: React.PropTypes.array,
+  containerHeight: React.PropTypes.number,
+  containerWidth: React.PropTypes.number,
+  onColumnVisibilityToggle: React.PropTypes.func,
   padding: React.PropTypes.object,
-  refreshRate: React.PropTypes.number
+  refreshRate: React.PropTypes.number,
+  showActionSelector: React.PropTypes.bool,
+  showColumnChooser: React.PropTypes.bool,
+  showStatusIcon: React.PropTypes.bool
 };
 
 ResponsiveTableWrapper.defaultProps = {

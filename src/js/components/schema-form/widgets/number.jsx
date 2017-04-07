@@ -5,6 +5,10 @@ import { TextField } from 'material-ui';
 import styles from '../styles';
 
 export class NumberWidget extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
   handleOnChange(event) {
     event.persist();
     this.props.onChange(Number(event.target.value));
@@ -60,7 +64,7 @@ export class NumberWidget extends React.Component {
           style={styles.field}
           errorStyle={styles.errorLabel}
           floatingLabelFocusStyle={styles.floatingLabel}
-          onChange={this.handleOnChange.bind(this)}
+          onChange={this.handleOnChange}
           disabled={this.props.disabled}
           {...errors}
         />
@@ -68,3 +72,16 @@ export class NumberWidget extends React.Component {
     );
   }
 }
+
+NumberWidget.propTypes = {
+  disabled: React.PropTypes.bool,
+  error: React.PropTypes.object,
+  errorSchema: React.PropTypes.object,
+  formData: React.PropTypes.number,
+  name: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  readonly: React.PropTypes.bool,
+  required: React.PropTypes.bool,
+  schema: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
+};

@@ -57,4 +57,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 
+SampleFormComponent.propTypes = {
+  formData: React.PropTypes.array,
+  onChange: React.PropTypes.func,
+  onError: React.PropTypes.func,
+  onSubmit: React.PropTypes.func
+};
+
 export const SampleForm = connect(mapStateToProps, mapDispatchToProps)(SampleFormComponent);

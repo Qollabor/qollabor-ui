@@ -27,4 +27,11 @@ class TaskStats extends React.Component {
   }
 }
 
+TaskStats.propTypes = {
+  bounce: React.PropTypes.bool,
+  type: React.PropTypes.string,
+  taskStats: React.PropTypes.object,
+  onMount: React.PropTypes.func
+};
+
 export default TaskStats;

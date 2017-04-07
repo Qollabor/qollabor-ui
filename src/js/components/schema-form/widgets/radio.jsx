@@ -5,6 +5,10 @@ import { HelpWidget } from './help';
 import styles from '../styles';
 
 export class RadioWidget extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
 
   componentWillMount() {
     const defaultSelected = this.props.formData ? this.props.formData : this.props.defaultSelected;
@@ -62,7 +66,7 @@ export class RadioWidget extends React.Component {
         <RadioButtonGroup
           style={{ display: 'flex' }} name={this.props.name}
           defaultSelected={this.props.formData ? this.props.formData : this.props.defaultSelected}
-          onChange={this.handleOnChange.bind(this)}
+          onChange={this.handleOnChange}
           {...errors}
         >
           {Object.keys(options).map((option) =>
@@ -77,3 +81,16 @@ export class RadioWidget extends React.Component {
     );
   }
 }
+
+RadioWidget.propTypes = {
+  errorSchema: React.PropTypes.object,
+  defaultSelected: React.PropTypes.string,
+  formData: React.PropTypes.string,
+  name: React.PropTypes.string,
+  onChange: React.PropTypes.func,
+  options: React.PropTypes.object,
+  readonly: React.PropTypes.bool,
+  required: React.PropTypes.bool,
+  schema: React.PropTypes.object,
+  uiSchema: React.PropTypes.object
+};

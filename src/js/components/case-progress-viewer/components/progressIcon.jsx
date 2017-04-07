@@ -21,3 +21,7 @@ export default class ProgressPopover extends React.Component {
     return <AvFiberManualRecord color={this.getIconColor(this.props.status)} style={svgIconStyle} />;
   }
 }
+
+ProgressPopover.propTypes = {
+  status: React.PropTypes.string
+};

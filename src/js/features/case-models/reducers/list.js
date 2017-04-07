@@ -40,8 +40,10 @@ const getCaseModels = (responseItems) => {
   // TODO:Get this fixed in the API?
   const casemodels = responseItems.reduce((arr, caseModel) => {
     const definition = caseModel.definitions;
-    caseModel.name = definition.substr(0, definition.lastIndexOf('.'));
-    return arr.concat(caseModel);
+    return arr.concat({
+      ...caseModel,
+      name: definition.substr(0, definition.lastIndexOf('.'))
+    });
   }, []);
 
   return Immutable.List(casemodels);
@@ -77,4 +79,3 @@ export const reducers = (state = defaultState, action) => {
       return state;
   }
 };
-

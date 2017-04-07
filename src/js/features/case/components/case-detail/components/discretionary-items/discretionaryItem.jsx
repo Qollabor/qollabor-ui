@@ -19,6 +19,10 @@ const PlanItemIcon = ({ type }) => <CMMNIcon
 />;
 
 class DiscretionaryItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnClick = this.handleOnClick.bind(this);
+  }
 
   handleOnClick() {
     if (this.props.item.action) {
@@ -37,7 +41,7 @@ class DiscretionaryItem extends React.Component {
             title={'Add to Plan'}
             style={{ cursor: 'pointer' }}
             color="#388AC3" hoverColor="#E24949" className="material-icons"
-            onClick={this.handleOnClick.bind(this)}
+            onClick={this.handleOnClick}
           >
             playlist_add
           </FontIcon>
@@ -48,7 +52,17 @@ class DiscretionaryItem extends React.Component {
       />);
   }
 }
+
+DiscretionaryItem.propTypes = {
+  item: React.PropTypes.object
+};
+
+PlanItemIcon.propTypes = {
+  type: React.PropTypes.string
+};
+
 DiscretionaryItem.contextTypes = {
   router: React.PropTypes.object.isRequired
 };
+
 export default DiscretionaryItem;

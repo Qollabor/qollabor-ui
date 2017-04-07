@@ -9,6 +9,7 @@ import registry from 'app-registry';
 
 import { fetchTasks } from '../sagas';
 import helpers from '../../../helpers';
+import { sanitizeAfterLoad } from '../../../helpers/task/sanitizeAfterLoad';
 
 describe('features/tasks/sagas', () => {
   describe('fetchTasks', () => {
@@ -99,7 +100,7 @@ describe('features/tasks/sagas', () => {
     describe('When the request is successful', () => {
       it('should signal TASKS:LIST:FETCH:SUCCESS', () => {
         const dataKey = 'tasks';
-        const fakeData = [{ a: 1, b: 2, c: 3 }];
+        const fakeData = [sanitizeAfterLoad({ a: 1, b: 2, c: 3 })];
 
         generator.next();
         generator.next();
@@ -110,7 +111,7 @@ describe('features/tasks/sagas', () => {
         });
 
         expect(response.value)
-          .to.be.eql(put({ type: 'TASKS:LIST:FETCH:SUCCESS', tasks: fakeData }));
+          .to.eql(put({ type: 'TASKS:LIST:FETCH:SUCCESS', tasks: fakeData }));
       });
     });
 
@@ -125,7 +126,7 @@ describe('features/tasks/sagas', () => {
         const response = generator.throw(fakeError);
 
         expect(response.value)
-          .to.be.eql(put({ type: 'TASKS:LIST:FETCH:FAIL', error: fakeError.message }));
+          .to.deep.equal(put({ type: 'TASKS:LIST:FETCH:FAIL', error: fakeError.message }));
         expect(loggerErrorSpy.calledOnce).to.be.true;
       });
     });

@@ -31,6 +31,10 @@ function getColors(level) {
 }
 
 export class Notifier extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleOnDismiss = this.handleOnDismiss.bind(this);
+  }
 
   removeNotification(id) {
     this.props.onDismiss(id);
@@ -48,23 +52,32 @@ export class Notifier extends React.Component {
 
     return (
       <NotificationStack
-        notifications={this.props.notifications.toArray().map(
+        notifications={this.props.notifications.map(
            item => {
-             item.onClick = this.removeNotification.bind(this, item.key);
              const colors = getColors(item.level);
-             item.barStyle = Object.assign({}, barStyle,
-               {
-                 backgroundColor: colors.backgroundColor,
-                 color: colors.color
-               });
-             item.actionStyle = Object.assign({},
-               {
-                 color: colors.actionColor
-               });
-             return item;
+
+             return {
+               ...item,
+               onClick: this.removeNotification.bind(this, item.key),
+               barStyle: Object.assign({}, barStyle,
+                 {
+                   backgroundColor: colors.backgroundColor,
+                   color: colors.color
+                 }),
+               actionStyle: Object.assign({},
+                 {
+                   color: colors.actionColor
+                 })
+             };
            }, this)}
-        onDismiss={this.handleOnDismiss.bind(this)}
+        onDismiss={this.handleOnDismiss}
       />
     );
   }
 }
+
+Notifier.propTypes = {
+  item: React.PropTypes.object,
+  notifications: React.PropTypes.array,
+  onDismiss: React.PropTypes.func
+};

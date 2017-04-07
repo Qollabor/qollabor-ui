@@ -13,6 +13,9 @@ class TextFilter extends React.Component {
     this.state = {
       filterText: props.activeFilter
     };
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleFilterKeyUp = this.handleFilterKeyUp.bind(this);
+    this.handleClearFilter = this.handleClearFilter.bind(this);
   }
 
   handleClearFilter(e) {
@@ -45,14 +48,14 @@ class TextFilter extends React.Component {
         <TextField
           type="text" hintText="Filter"
           style={style} value={this.state.filterText}
-          onKeyUp={this.handleFilterKeyUp.bind(this)}
-          onChange={this.handleFilterChange.bind(this)}
+          onKeyUp={this.handleFilterKeyUp}
+          onChange={this.handleFilterChange}
         />
         {activeFilter ?
           <IconButton
             secondary={true}
             style={{ width: 10, height: 10, top: 5, padding: 0 }}
-            onClick={this.handleClearFilter.bind(this)}
+            onClick={this.handleClearFilter}
           >
             <FontIcon className="material-icons" color="gray" style={{ fontSize: 21 }}>clear</FontIcon>
           </IconButton>
@@ -63,6 +66,7 @@ class TextFilter extends React.Component {
 }
 
 TextFilter.propTypes = {
+  activeFilter: React.PropTypes.string,
   onFilterChange: React.PropTypes.func.isRequired
 };
 

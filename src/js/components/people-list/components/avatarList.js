@@ -4,6 +4,12 @@ import Avatar from '../../user-avatar';
 import styles from '../styles';
 
 class AvatarList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleOnClickAvatarAction = this.handleOnClickAvatarAction.bind(this);
+    this.handleShowMoreAction = this.handleShowMoreAction.bind(this);
+  }
 
   handleOnClickAvatarAction(userId) {
     if (this.props.onClick) {
@@ -39,7 +45,7 @@ class AvatarList extends React.Component {
           key={person.name}
           user={person}
           size={avatarSize}
-          onClick={this.handleOnClickAvatarAction.bind(this)}
+          onClick={this.handleOnClickAvatarAction}
           padding={paddingBetweenAvatar}
         />
       );
@@ -47,7 +53,7 @@ class AvatarList extends React.Component {
 
     avatarList.push(
       <MaterialAvatar
-        onClick={this.handleShowMoreAction.bind(this)}
+        onClick={this.handleShowMoreAction}
         style={styles.showMore}
         key="avatarActionHandler"
         size={avatarSize}
@@ -65,6 +71,8 @@ class AvatarList extends React.Component {
 }
 
 AvatarList.propTypes = {
+  chipView: React.PropTypes.bool,
+  disabled: React.PropTypes.bool,
   people: React.PropTypes.array.isRequired,
   maxPeopleInList: React.PropTypes.number.isRequired,
   maxLength: React.PropTypes.number,

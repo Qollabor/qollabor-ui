@@ -4,7 +4,7 @@ import styles from '../styles';
 class TaskInfoItem extends React.Component {
 
   render() {
-    if (!this.props.itemValue || this.props.itemValue.lengh === 0) {
+    if (!this.props.itemValue || this.props.itemValue.length === 0) {
       return false;
     }
 
@@ -23,7 +23,9 @@ class TaskInfoItem extends React.Component {
 
 TaskInfoItem.propTypes = {
   itemLabel: React.PropTypes.string.isRequired,
-  itemValue: React.PropTypes.string.isRequired
+  itemValue: React.PropTypes.string,
+  style: React.PropTypes.object,
+  toolTip: React.PropTypes.string
 };
 
 TaskInfoItem.displayName = 'TaskInfoItem';

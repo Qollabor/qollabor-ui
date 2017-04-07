@@ -25,6 +25,11 @@ const styles = {
 };
 
 class Details extends React.Component {
+  constructor(props) {
+    super(props);
+    this.openDetailPage = this.openDetailPage.bind(this);
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+  }
 
   componentWillMount() {
     if (this.props.initDetails) {
@@ -49,8 +54,8 @@ class Details extends React.Component {
   }
 
   render() {
-    const buttonList = [<RaisedButton label="START CASE" primary={true} type="submit" />,
-      <FlatButton label="RESET" primary={false} secondary={true} />];
+    const buttonList = [<RaisedButton key="start" label="START CASE" primary={true} type="submit" />,
+      <FlatButton key="reset" label="RESET" primary={false} secondary={true} />];
 
     const { data } = this.props;
     const caseModelSchema = this.props.caseModelSchema ? this.props.caseModelSchema : {};
@@ -73,7 +78,7 @@ class Details extends React.Component {
               <RaisedButton
                 label="Open case"
                 primary={true}
-                onClick={this.openDetailPage.bind(this)}
+                onClick={this.openDetailPage}
               /></div>
             <div style={styles.saveButton}>
               <RaisedButton
@@ -90,7 +95,7 @@ class Details extends React.Component {
                   schema={caseSchema}
                   formData={this.props.caseData}
                   uiSchema={caseUISchema}
-                  onSubmit={this.handleOnSubmit.bind(this)}
+                  onSubmit={this.handleOnSubmit}
                 />
               }
               {this.props.actionError && this.props.actionError.message !== ''
@@ -128,10 +133,19 @@ class Details extends React.Component {
 }
 
 Details.propTypes = {
+  actionError: React.PropTypes.object,
+  caseData: React.PropTypes.object,
+  caseId: React.PropTypes.string,
+  caseLastModified: React.PropTypes.string,
+  caseModelSchema: React.PropTypes.object,
   data: React.PropTypes.object.isRequired,
-  isFetching: React.PropTypes.bool.isRequired,
   definition: React.PropTypes.string,
-  error: React.PropTypes.object
+  error: React.PropTypes.object,
+  initDetails: React.PropTypes.func,
+  isFetching: React.PropTypes.bool.isRequired,
+  resetDetails: React.PropTypes.func,
+  showFeedbackForm: React.PropTypes.bool,
+  startCaseModel: React.PropTypes.func
 };
 
 Details.contextTypes = {

@@ -16,7 +16,8 @@ const cancelClick = (e) => {
 ActionChooserCell.propTypes = {
   items: React.PropTypes.array,
   rowIndex: React.PropTypes.number,
-  columnKey: React.PropTypes.string
+  columnKey: React.PropTypes.string,
+  cancelClick: React.PropTypes.func
 };
 
 export { ActionChooserCell };

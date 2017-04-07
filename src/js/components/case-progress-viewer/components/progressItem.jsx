@@ -21,6 +21,9 @@ export default class ProgressItem extends React.Component {
     this.state = {
       open: false
     };
+
+    this.handleTouchTap = this.handleTouchTap.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
   handleTouchTap(event) {
@@ -44,7 +47,7 @@ export default class ProgressItem extends React.Component {
       <PlanItem item={item} />);
     return (
       <div data-status={status}>
-        <div onTouchTap={this.handleTouchTap.bind(this)} style={cursorStyle}>
+        <div onTouchTap={this.handleTouchTap} style={cursorStyle}>
           <ProgressIcon status={status} />
           <label style={labelStyle}>{name}</label>
         </div>
@@ -53,7 +56,7 @@ export default class ProgressItem extends React.Component {
           anchorEl={this.state.anchorEl}
           anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
           targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-          onRequestClose={this.handleRequestClose.bind(this)}
+          onRequestClose={this.handleRequestClose}
           animation={PopoverAnimationVertical}
         >
           <div style={{ width: '100%', height: '100%' }}>
@@ -64,3 +67,9 @@ export default class ProgressItem extends React.Component {
     );
   }
 }
+
+ProgressItem.propTypes = {
+  items: React.PropTypes.array,
+  name: React.PropTypes.string,
+  status: React.PropTypes.string
+};

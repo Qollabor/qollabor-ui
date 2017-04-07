@@ -52,7 +52,7 @@ class CaseTeamSelector extends React.Component {
       <div>
         <div style={{ height: 350 }}>
           {roles.map((role) => (
-            <div style={{ height: 80, marginLeft: 15 }}>
+            <div key={role} style={{ height: 80, marginLeft: 15 }}>
               <Subheader style={{ height: 20, paddingLeft: 0, lineHeight: 1 }}>{role}</Subheader>
               <AvatarList
                 maxPeopleInList={10}
@@ -85,7 +85,10 @@ class CaseTeamSelector extends React.Component {
 CaseTeamSelector.displayName = 'CaseTeamSelector';
 
 CaseTeamSelector.propTypes = {
-  roles: React.PropTypes.object.isRequired
+  initCaseTeam: React.PropTypes.func,
+  roles: React.PropTypes.object.isRequired,
+  setUsersForCaseTeamRoles: React.PropTypes.func,
+  teamRoles: React.PropTypes.array
 };
 
 export default CaseTeamSelector;

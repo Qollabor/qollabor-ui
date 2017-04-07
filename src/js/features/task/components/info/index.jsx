@@ -162,7 +162,9 @@ export class TaskInfo extends React.Component {
 TaskInfo.propTypes = {
   taskDetails: React.PropTypes.object.isRequired,
   isFetching: React.PropTypes.bool,
-  error: React.PropTypes.object
+  error: React.PropTypes.object,
+  loggedInUserId: React.PropTypes.string,
+  executeTaskAction: React.PropTypes.func
 };
 
 TaskInfo.displayName = 'TaskInfo';

@@ -26,6 +26,9 @@ class TextFilter extends React.Component {
     this.state = {
       filterText: props.activeFilter
     };
+    this.handleFilterChange = this.handleFilterChange.bind(this);
+    this.handleFilterKeyUp = this.handleFilterKeyUp.bind(this);
+    this.handleFilterKeyDown = this.handleFilterKeyDown.bind(this);
   }
 
   handleClearFilter(e) {
@@ -69,8 +72,8 @@ class TextFilter extends React.Component {
           underlineStyle={underlineStyle}
           hintStyle={this.props.hintStyle}
           inputStyle={this.props.inputStyle}
-          onKeyUp={this.handleFilterKeyUp.bind(this)} onKeyDown={this.handleFilterKeyDown.bind(this)}
-          onChange={this.handleFilterChange.bind(this)}
+          onKeyUp={this.handleFilterKeyUp} onKeyDown={this.handleFilterKeyDown}
+          onChange={this.handleFilterChange}
         />
       </div>
     );
@@ -78,8 +81,12 @@ class TextFilter extends React.Component {
 }
 
 TextFilter.propTypes = {
+  activeFilter: React.PropTypes.string,
+  hintStyle: React.PropTypes.object,
+  hintText: React.PropTypes.string,
+  inputStyle: React.PropTypes.object,
   onFilterChange: React.PropTypes.func.isRequired,
-  hintText: React.PropTypes.string
+  searchIconStyle: React.PropTypes.object
 };
 
 export default TextFilter;
