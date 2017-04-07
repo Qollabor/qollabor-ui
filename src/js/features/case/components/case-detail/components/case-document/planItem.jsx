@@ -48,6 +48,12 @@ class PlanItem extends React.Component {
       if (status === 'Active' || status === 'Completed') {
         this.context.router.push(`/tasks/${taskId}?caseId=${caseId}`);
       }
+    } else if (type === 'CaseTask') {
+      const status = this.props.item.currentState;
+      const caseId = this.props.item.id;
+      if (status === 'Active' || status === 'Completed') {
+        this.context.router.push(`/cases/${caseId}`);
+      }
     }
   }
 

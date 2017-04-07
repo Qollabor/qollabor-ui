@@ -1,4 +1,5 @@
 import { takeEvery } from 'redux-saga';
+import { LOCATION_CHANGE } from 'react-router-redux';
 
 import { loginFlow, refreshFlow, tokenRefreshFlow } from '../features/login';
 import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow,
@@ -12,6 +13,7 @@ import { resetAndfetchCaseModels, fetchCaseModelDetails,
 import { resetAndfetchUsersList } from '../components/user-selector/sagas';
 import { resetAndSearch, search } from '../features/search';
 import { resetAndFetch } from '../features/case-list';
+import { updateRoute } from './routing.js';
 
 const sagas = [
   // Login
@@ -56,7 +58,9 @@ const sagas = [
   [takeEvery, 'SEARCH:LIST:NEXT:FETCH', search],
   // case list
   [takeEvery, 'CASE:LIST:INIT', resetAndFetch],
-  [takeEvery, 'CASE:LIST:FILTER_BY_TEXT', resetAndFetch]
+  [takeEvery, 'CASE:LIST:FILTER_BY_TEXT', resetAndFetch],
+  // router
+  [takeEvery, LOCATION_CHANGE, updateRoute]
 ];
 
 function* rootSaga() {
