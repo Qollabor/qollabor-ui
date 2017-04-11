@@ -1,0 +1,257 @@
+exports[`features/task/taskDetails has correct default options 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "float": "right",
+      }
+    }>
+    <div />
+  </div>
+  <div
+    style={
+      Object {
+        "float": "right",
+      }
+    }>
+    <div />
+  </div>
+  <div />
+  <div>
+    <section
+      style={
+        Object {
+          "marginBottom": "10px",
+          "paddingLeft": "10px",
+        }
+      }>
+      <div
+        style={
+          Object {
+            "marginBottom": 15,
+            "marginTop": 15,
+            "width": "100%",
+          }
+        }>
+        <div
+          style={
+            Object {
+              "height": 60,
+            }
+          }>
+          <div
+            style={
+              Object {
+                "float": "right",
+              }
+            }>
+            <br />
+          </div>
+          <div
+            style={
+              Object {
+                "fontSize": 14,
+                "height": 10,
+              }
+            }>
+            <span
+              style={
+                Object {
+                  "lineHeight": "35px",
+                  "marginTop": 5,
+                }
+              }>
+              <span
+                style={
+                  Object {
+                    "fontSize": 14,
+                  }
+                }>
+                Assigned to
+              </span>
+              <span
+                style={
+                  Object {
+                    "fontSize": 14,
+                    "fontWeight": 500,
+                    "marginLeft": 5,
+                  }
+                }
+                title={undefined}>
+                wilbur
+              </span>
+            </span>
+            <br />
+            <span
+              style={
+                Object {
+                  "lineHeight": "35px",
+                  "marginTop": 5,
+                }
+              }>
+              <span
+                style={
+                  Object {
+                    "fontSize": 14,
+                  }
+                }>
+                Owned by
+              </span>
+              <span
+                style={
+                  Object {
+                    "fontSize": 14,
+                    "fontWeight": 500,
+                    "marginLeft": 5,
+                  }
+                }
+                title={undefined}>
+                admin
+              </span>
+            </span>
+            <div
+              style={
+                Object {
+                  "display": "none",
+                }
+              } />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div
+    formData={undefined} />
+</div>
+`;
+
+exports[`features/task/taskDetails implements raw output 1`] = `
+<div>
+  <div
+    style={
+      Object {
+        "float": "right",
+      }
+    }>
+    <div />
+  </div>
+  <div
+    style={
+      Object {
+        "float": "right",
+      }
+    }>
+    <div />
+  </div>
+  <div />
+  <div>
+    <section
+      style={
+        Object {
+          "marginBottom": "10px",
+          "paddingLeft": "10px",
+        }
+      }>
+      <div
+        style={
+          Object {
+            "marginBottom": 15,
+            "marginTop": 15,
+            "width": "100%",
+          }
+        }>
+        <div
+          style={
+            Object {
+              "height": 60,
+            }
+          }>
+          <div
+            style={
+              Object {
+                "float": "right",
+              }
+            }>
+            <br />
+          </div>
+          <div
+            style={
+              Object {
+                "fontSize": 14,
+                "height": 10,
+              }
+            }>
+            <span
+              style={
+                Object {
+                  "lineHeight": "35px",
+                  "marginTop": 5,
+                }
+              }>
+              <span
+                style={
+                  Object {
+                    "fontSize": 14,
+                  }
+                }>
+                Assigned to
+              </span>
+              <span
+                style={
+                  Object {
+                    "fontSize": 14,
+                    "fontWeight": 500,
+                    "marginLeft": 5,
+                  }
+                }
+                title={undefined}>
+                wilbur
+              </span>
+            </span>
+            <br />
+            <span
+              style={
+                Object {
+                  "lineHeight": "35px",
+                  "marginTop": 5,
+                }
+              }>
+              <span
+                style={
+                  Object {
+                    "fontSize": 14,
+                  }
+                }>
+                Owned by
+              </span>
+              <span
+                style={
+                  Object {
+                    "fontSize": 14,
+                    "fontWeight": 500,
+                    "marginLeft": 5,
+                  }
+                }
+                title={undefined}>
+                admin
+              </span>
+            </span>
+            <div
+              style={
+                Object {
+                  "display": "none",
+                }
+              } />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div
+    formData={
+      Object {
+        "raw": "output",
+      }
+    } />
+</div>
+`;
