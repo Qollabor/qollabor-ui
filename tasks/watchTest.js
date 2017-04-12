@@ -11,7 +11,7 @@ module.exports = (gulp) => {
   function watchClient () {
     gulp
       .watch(['src/**/*.js', 'src/**/*.jsx'], ['mocha'])
-      .on('error', error => {
+      .on('error', (error) => {
         /* eslint-disable no-console */
         console.error(error);
       });

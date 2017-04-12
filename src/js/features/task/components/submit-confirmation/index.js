@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import SubmitTaskConfirmationComponent from './submitTaskConfirmation.jsx';
+import SubmitTaskConfirmationComponent from './submitTaskConfirmation';
 
 function mapStateToProps(state) {
   return {

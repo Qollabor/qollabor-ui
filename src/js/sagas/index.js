@@ -13,7 +13,7 @@ import { resetAndfetchCaseModels, fetchCaseModelDetails,
 import { resetAndfetchUsersList } from '../components/user-selector/sagas';
 import { resetAndSearch, search } from '../features/search';
 import { resetAndFetch } from '../features/case-list';
-import { updateRoute } from './routing.js';
+import { updateRoute } from './routing';
 
 const sagas = [
   // Login
@@ -67,7 +67,7 @@ function* rootSaga() {
   yield [
     ...sagas
       .map(saga =>
-        function*() {
+        function* () {
           yield saga[0](saga[1], saga[2]);
         }
       )

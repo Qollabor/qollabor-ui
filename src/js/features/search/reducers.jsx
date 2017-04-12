@@ -82,7 +82,7 @@ const defaultSearchResultState = Immutable.fromJS({
   }
 });
 
-const getSearchResultData = (data) => Immutable.List(data);
+const getSearchResultData = data => Immutable.List(data);
 
 export const reducers = (state = defaultSearchResultState, action) => {
   switch (action.type) {

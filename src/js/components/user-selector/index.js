@@ -1,9 +1,9 @@
 import UserSelector from './userSelector';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => (state.userSelector.toJS());
+const mapStateToProps = state => (state.userSelector.toJS());
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   initUsers: () => {
     dispatch({ type: 'USERS_SELECTOR:LIST:INIT' });
   },

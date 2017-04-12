@@ -3,14 +3,14 @@ import { Field, reduxForm } from 'redux-form';
 import { TextField, RaisedButton, FlatButton } from 'material-ui';
 import { ImageUpload } from '../../../../components/image-upload';
 
-const validate = values => {
+const validate = (values) => {
   const errors = {};
   const requiredFields = ['name', 'email'];
-  requiredFields.forEach(field => {
-    if (field === 'name' && (! values[field])) {
+  requiredFields.forEach((field) => {
+    if (field === 'name' && (!values[field])) {
       errors[field] = 'Required';
     }
-    if (field === 'email' && (! values[field])) {
+    if (field === 'email' && (!values[field])) {
       errors[field] = 'Required';
     }
   });
@@ -95,7 +95,7 @@ class UserProfile extends React.Component {
         <div style={styles.saveButton}>
           <RaisedButton
             primary={true} disabled={pristine || submitting} label="Save" labelStyle={styles.buttonLabel}
-            type="submit" onClick={handleSubmit((userData) => onSave(userData))}
+            type="submit" onClick={handleSubmit(userData => onSave(userData))}
           />
           <FlatButton
             secondary={true} style={styles.buttonMargin}

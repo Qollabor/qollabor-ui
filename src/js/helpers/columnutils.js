@@ -1,7 +1,7 @@
-const visibleColumnCount = (columns) => columns.count((item) => item.get('visible'));
+const visibleColumnCount = columns => columns.count(item => item.get('visible'));
 
 const handleActions = (columns, action) => {
-  const index = columns.findIndex((item) => item.get('key') === action.columnName);
+  const index = columns.findIndex(item => item.get('key') === action.columnName);
 
   // Unluckily the ImmutableJS list implementation will accept negative numbers and update unwanted columns
   // if this is not check

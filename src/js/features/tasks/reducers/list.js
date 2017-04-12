@@ -19,7 +19,7 @@ const defaultState = Immutable.fromJS({
 });
 
 const getUpdatedTaskInstance = (items, updatedItem) => {
-  const updatedIndex = items.findIndex((item) => item.get('id') === updatedItem.id);
+  const updatedIndex = items.findIndex(item => item.get('id') === updatedItem.id);
   const updatedItems = items.set(updatedIndex, updatedItem);
   return Immutable.fromJS(updatedItems.toJS());
 };

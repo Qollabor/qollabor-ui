@@ -1,4 +1,4 @@
-import { ImageUpload as ImageUploadComponent } from './imageUpload.jsx';
+import { ImageUpload as ImageUploadComponent } from './imageUpload';
 
 export const ImageUpload = ImageUploadComponent;
 

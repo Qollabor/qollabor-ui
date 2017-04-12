@@ -50,9 +50,9 @@ export class TimeWidget extends React.Component {
     if (help) {
       helpWidget =
         (
-        <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}>
-          <HelpWidget help={help} />
-        </div>
+          <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}>
+            <HelpWidget help={help} />
+          </div>
         );
     }
 

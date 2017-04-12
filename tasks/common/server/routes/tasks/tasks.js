@@ -4,7 +4,7 @@ const constant = require('./const');
 let currentData = originalData.map(task => Object.assign({}, task));
 
 const doComplete = (idTask) => {
-  currentData = currentData.map(task => {
+  currentData = currentData.map((task) => {
     if (task.id === idTask) {
       return Object.assign({}, task, { planState: constant.PLAN_STATES_COMPLETED });
     }
@@ -13,7 +13,7 @@ const doComplete = (idTask) => {
 };
 
 const doTerminate = (idTask) => {
-  currentData = currentData.map(task => {
+  currentData = currentData.map((task) => {
     if (task.id === idTask) {
       return Object.assign({}, task, { planState: constant.PLAN_STATES_TERMINATED });
     }
@@ -22,7 +22,7 @@ const doTerminate = (idTask) => {
 };
 
 const doSuspend = (idTask) => {
-  currentData = currentData.map(task => {
+  currentData = currentData.map((task) => {
     if (task.id === idTask) {
       return Object.assign({}, task, { planState: constant.PLAN_STATES_SUSPENDED });
     }
@@ -31,7 +31,7 @@ const doSuspend = (idTask) => {
 };
 
 const doResume = (idTask) => {
-  currentData = currentData.map(task => {
+  currentData = currentData.map((task) => {
     if (task.id === idTask) {
       return Object.assign({}, task, { planState: constant.PLAN_STATES_ACTIVE });
     }
@@ -41,12 +41,12 @@ const doResume = (idTask) => {
 
 module.exports = {
   getTasks: () => currentData,
-  getTask: (id) => currentData.find(item => item.id === id),
+  getTask: id => currentData.find(item => item.id === id),
   doComplete,
   doTerminate,
   doSuspend,
   doResume,
-  addTask: (item) => currentData.push(item),
+  addTask: item => currentData.push(item),
   reset: () => {
     currentData = originalData.map(task => Object.assign({}, task));
   }

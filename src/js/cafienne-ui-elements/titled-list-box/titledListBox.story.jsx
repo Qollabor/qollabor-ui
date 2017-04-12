@@ -24,7 +24,7 @@ const sampleItemList = [
 ];
 
 storiesOf('components/titledListBox', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('with a list of items', () => {
     const title = 'Active tasks';
     return (

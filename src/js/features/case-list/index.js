@@ -1,7 +1,7 @@
 import CaseList from './caseList';
 import { connect } from 'react-redux';
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   initCaseList: () => {
     dispatch({ type: 'CASE:LIST:INIT' });
   },
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isFetching: state.caseList.get('isFetching'),
   definition: state.caseList.get('definition'),
   columns: state.caseList.get('columns').toJS(),

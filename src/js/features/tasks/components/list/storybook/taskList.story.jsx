@@ -30,7 +30,7 @@ const columns = [
 ];
 
 storiesOf('Tasks/List', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('With some item to display auto body height', () =>
     (<div className="center-component">
       <TaskList

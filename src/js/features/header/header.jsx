@@ -26,7 +26,7 @@ export class Header extends React.Component {
 
   handleMenuItemChange(url) {
     const { router } = this.context;
-    if (! router.isActive(url)) {
+    if (!router.isActive(url)) {
       router.push(url);
     }
   }

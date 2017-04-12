@@ -53,7 +53,7 @@ export class Notifier extends React.Component {
     return (
       <NotificationStack
         notifications={this.props.notifications.map(
-           item => {
+           (item) => {
              const colors = getColors(item.level);
 
              return {

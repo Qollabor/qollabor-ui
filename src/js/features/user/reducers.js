@@ -40,8 +40,8 @@ export const reducers = (state = defaultState, action) => {
     case 'USER:AVATAR:FETCH':
       return state.set('isFetching', true);
     case 'USER:AVATAR:FETCH:SUCCESS':
-      return state.set('isFetching', false).
-        set('avatar', action.avatar);
+      return state.set('isFetching', false)
+        .set('avatar', action.avatar);
 
     case 'USER:AVATAR:UPDATE':
       return state.set('avatar', action.avatar);
@@ -57,8 +57,8 @@ export const reducers = (state = defaultState, action) => {
     case 'USER:PROFILE:FETCH':
       return state.set('isFetching', true);
     case 'USER:PROFILE:FETCH:SUCCESS':
-      return state.set('isFetching', false).
-        set('profile', action.data);
+      return state.set('isFetching', false)
+        .set('profile', action.data);
     case 'USER:PROFILE:UPDATE':
       return state.set('data', action.data)
                   .set('profile', action.data);

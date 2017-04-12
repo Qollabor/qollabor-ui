@@ -28,12 +28,12 @@ const defaultState = Immutable.fromJS([
   }
 ]);
 
-const visibleColumnCount = (state) => state.count((item) => item.get('visible'));
+const visibleColumnCount = state => state.count(item => item.get('visible'));
 
 export const reducers = (state = defaultState, action) => {
   switch (action.type) {
     case 'TASKS:COLUMNS:TOGGLE_VISIBILITY': {
-      const index = state.findIndex((item) => item.get('key') === action.columnName);
+      const index = state.findIndex(item => item.get('key') === action.columnName);
 
       // Unluckily the ImmutableJS list implementation will accept negative numbers and update unwanted columns
       // if this is not check

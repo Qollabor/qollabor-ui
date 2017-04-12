@@ -3,11 +3,11 @@ import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Provider } from 'react-redux';
-import { store } from '../../../store.js';
+import { store } from '../../../store';
 import CaseList from '../caseList';
 import fakeData from './data.json';
 
-storiesOf('Case List UI', module).addDecorator((story) => (
+storiesOf('Case List UI', module).addDecorator(story => (
   <Provider store={store} config={{}}>
     <MuiThemeProvider muiTheme={getMuiTheme()}>{story()}</MuiThemeProvider>
   </Provider>

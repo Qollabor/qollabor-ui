@@ -1,11 +1,11 @@
 import CaseTeamSelector from './caseTeamSelector';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   roles: state.casemodel.caseTeam.get('roles').toJS()
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   initCaseTeam: (roles) => {
     dispatch({ type: 'CASETEAM_SELECTOR:SETROLES', roles });
   },

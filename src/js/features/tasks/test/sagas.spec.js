@@ -87,8 +87,10 @@ describe('features/tasks/sagas', () => {
         generator.next();
         generator.next();
 
-        expect(requestSpy.calledWith(fakeURL, { assignee: 'admin', planState: 'Active',
-          sortBy: 'dueDate', sortOrder: 'DESC' }, {
+        expect(requestSpy.calledWith(fakeURL, { assignee: 'admin',
+          planState: 'Active',
+          sortBy: 'dueDate',
+          sortOrder: 'DESC' }, {
             headers: {
               [fakeTokenPropertyName]: fakeToken,
               timeZone: '42'

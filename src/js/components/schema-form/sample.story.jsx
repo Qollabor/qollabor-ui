@@ -115,7 +115,8 @@ const uiSchemaReadonly = {
   },
   destination: {
     'ui:addLabel': 'Add new destination',
-    'ui:readonly': true, 'ui:help': 'This is an string array'
+    'ui:readonly': true,
+    'ui:help': 'This is an string array'
   },
   birth: {
     'ui:readonly': true,
@@ -150,7 +151,7 @@ const formData = {
 };
 
 storiesOf('SchemaForm', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme(theme)}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme(theme)}>{getStory()}</MuiThemeProvider>)
   .add('Sample 1', () => (
     <div className="center-component">
       <Paper style={paperStyle}>

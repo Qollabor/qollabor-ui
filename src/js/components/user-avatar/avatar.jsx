@@ -33,7 +33,7 @@ export class UserAvatar extends React.Component {
 
   fetchAvatarDetails(uniqueId, lastModified) {
     if (lastModified && uniqueId) {
-      fetchAvatar(uniqueId, lastModified).then(response => {
+      fetchAvatar(uniqueId, lastModified).then((response) => {
         this.setState({
           avatar: response.body.avatar
         });
@@ -76,7 +76,7 @@ export class UserAvatar extends React.Component {
               {...avatarSrc}
               size={avatarSize}
             >
-            {initial}
+              {initial}
             </Avatar>
             {person.name}
           </Chip> :

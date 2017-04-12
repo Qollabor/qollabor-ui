@@ -40,7 +40,7 @@ class List extends React.Component {
       listBody = <MessageDiv message="No Case Models found ..." />;
     } else {
       listBody = (<DefinitionList>
-            {items
+        {items
               .map(item =>
                 <ListItem
                   key={item.name}

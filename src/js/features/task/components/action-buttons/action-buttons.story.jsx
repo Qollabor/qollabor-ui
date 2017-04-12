@@ -5,12 +5,12 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import { Paper } from 'material-ui';
 import { Provider } from 'react-redux';
-import { store } from '../../../../store.js';
+import { store } from '../../../../store';
 import { ActionButtons } from './actionButtons';
 
 const paperStyle = { padding: '5px', width: '250px' };
 
-storiesOf('Task/Action', module).addDecorator((story) => (
+storiesOf('Task/Action', module).addDecorator(story => (
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme()}>{story()}</MuiThemeProvider>
   </Provider>

@@ -1,7 +1,7 @@
 import SearchResult from './searchResult';
 import { connect } from 'react-redux';
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   initSearchResult: () => {
     dispatch({ type: 'SEARCH:LIST:INIT' });
   },
@@ -10,7 +10,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const mapStateToProps = (state) => state.searchResult.toJS();
+const mapStateToProps = state => state.searchResult.toJS();
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchResult);
 export * from './sagas';

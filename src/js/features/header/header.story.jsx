@@ -8,9 +8,9 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Header } from './header';
 
 storiesOf('Header', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('With a sample category', () => {
-    const store = createStore((state) => state);
+    const store = createStore(state => state);
     return (
       <Provider store={store}>
         <Header store={store} menuItemCategory="SomeCategory" />
@@ -18,7 +18,7 @@ storiesOf('Header', module)
     );
   })
   .add('without a category', () => {
-    const store = createStore((state) => state);
+    const store = createStore(state => state);
     return (
       <Provider store={store}>
         <Header store={store} />

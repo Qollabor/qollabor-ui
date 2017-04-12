@@ -127,17 +127,17 @@ export class ObjectField extends Component {
 
     const showTitle = (this.props.hideTitle !== true);
     const titleElement = showTitle && title ?
-      <TitleField
+      (<TitleField
         id={`${idSchema.id}__title`}
         title={title}
         required={required}
-      /> : null;
+      />) : null;
 
     const descriptionElement = schema.description ?
-      <DescriptionField
+      (<DescriptionField
         id={`${idSchema.id}__description`}
         description={schema.description}
-      /> : null;
+      />) : null;
 
     return (
       <fieldset>

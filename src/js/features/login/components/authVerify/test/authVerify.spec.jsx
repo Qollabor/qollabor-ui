@@ -3,7 +3,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import AuthVerify from '../authVerify.jsx';
+import AuthVerify from '../authVerify';
 import { RefreshIndicator } from 'material-ui';
 
 describe('features/login', () => {

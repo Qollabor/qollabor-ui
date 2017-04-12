@@ -39,7 +39,7 @@ const samplePeople = [
 ];
 
 storiesOf('PeopleList', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('Show list with people avatars with 150 with limit', () => (
     <div className="center-component">
       <PeopleList

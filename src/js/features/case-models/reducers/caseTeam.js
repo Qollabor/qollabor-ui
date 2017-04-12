@@ -31,7 +31,7 @@ const getCaseTeam = (roles, selectedRole, selectedUser, selected, multiSelect) =
     return roles;
   }
   const users = (multiSelect === false) ? [] : roles.get(selectedRole);
-  const index = users.findIndex((item) => item.uniqueId === selectedUser.uniqueId);
+  const index = users.findIndex(item => item.uniqueId === selectedUser.uniqueId);
   if (!selected) {
     users.splice(index, 1);
   } else if (selected && index === -1) {
@@ -48,7 +48,7 @@ export const reducers = (state = defaultState, action) => {
     }
     case 'CASETEAM_SELECTOR:SETROLES': {
       let initRoles = Immutable.Map();
-      action.roles.forEach(role => {
+      action.roles.forEach((role) => {
         initRoles = initRoles.set(role, []);
       });
       return state.set('roles', initRoles);

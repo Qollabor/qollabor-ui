@@ -3,10 +3,10 @@ import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import AuthVerify from './authVerify.jsx';
+import AuthVerify from './authVerify';
 
 storiesOf('Login/AuthVerify', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('Should show the progress icon', () => (
     <div className="center-component">
       <AuthVerify isVerifyAuth={true}>

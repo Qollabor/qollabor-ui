@@ -3,10 +3,10 @@ import { storiesOf, action } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
-import { AppBarUserMenu } from './appBarUserMenu.jsx';
+import { AppBarUserMenu } from './appBarUserMenu';
 
 storiesOf('User/AppBarUserMenu', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('Should show the menu icon', () => (
     <div
       className="center-component"

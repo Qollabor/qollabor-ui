@@ -7,7 +7,7 @@ const removeItem = (idTask) => {
 };
 
 module.exports = {
-  getItem: (id) => currentData.find(item => item.id === id),
+  getItem: id => currentData.find(item => item.id === id),
   getDiscretionaryItems: () => currentData,
   removeItem,
   reset: () => {

@@ -1,7 +1,7 @@
 import CaseModels from './caseModels';
 import { connect } from 'react-redux';
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   initCaseModels: () => {
     dispatch({ type: 'CASEMODEL:LIST:INIT' });
   }

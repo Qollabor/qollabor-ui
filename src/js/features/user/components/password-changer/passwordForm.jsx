@@ -5,10 +5,10 @@ import validator from 'validator';
 import styles from './styles';
 import zxcvbn from 'zxcvbn';
 
-const validate = values => {
+const validate = (values) => {
   const errors = {};
   const requiredFields = ['oldPassword', 'newPassword', 'confirmPassword'];
-  requiredFields.forEach(field => {
+  requiredFields.forEach((field) => {
     if (!values[field]) {
       errors[field] = 'Required';
     }
@@ -95,7 +95,7 @@ class PasswordForm extends React.Component {
               }
             />
             <section>
-              <meter max="4" value={resultScore}></meter>
+              <meter max="4" value={resultScore} />
               <span style={styles.strengthLangStyle}>
                 {resultStrength}
               </span>
@@ -122,7 +122,7 @@ class PasswordForm extends React.Component {
         <div style={styles.saveButton}>
           <RaisedButton
             primary={true} disabled={pristine || submitting} label="Save" labelStyle={styles.buttonLabel}
-            type="submit" onClick={handleSubmit((userData) => onSave(userData))}
+            type="submit" onClick={handleSubmit(userData => onSave(userData))}
           />
           <FlatButton
             secondary={true} style={styles.buttonMargin} label="Cancel"

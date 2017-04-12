@@ -62,8 +62,8 @@ export class ImageUpload extends React.Component {
         <label htmlFor="submitButton" style={{ marginLeft: '20px', display: (showSaveBtn === true) ? '' : 'none' }}>
           <u style={{ cursor: 'pointer', fontSize: '13px' }}>Save</u></label>
         <div style={{ display: 'none' }}>
-          <input style={{ display: 'none' }} id="userFile" type="file" onChange={(e) => this.handleImageChange(e)} />
-          <button id="submitButton" onClick={(e) => this.handleSubmit(e)} />
+          <input style={{ display: 'none' }} id="userFile" type="file" onChange={e => this.handleImageChange(e)} />
+          <button id="submitButton" onClick={e => this.handleSubmit(e)} />
         </div>
       </div>
     );

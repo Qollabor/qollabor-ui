@@ -5,11 +5,11 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import caseData from './case-data.json';
 import caseTeam from './case-team.json';
 import { Provider } from 'react-redux';
-import { store } from '../../../../../../store.js';
+import { store } from '../../../../../../store';
 import CaseDocument from '../case-document/caseDocument';
 
 
-storiesOf('Case Detail UI', module).addDecorator((story) => (
+storiesOf('Case Detail UI', module).addDecorator(story => (
   <Provider store={store} config={{}}>
     <MuiThemeProvider muiTheme={getMuiTheme()}>{story()}</MuiThemeProvider>
   </Provider>

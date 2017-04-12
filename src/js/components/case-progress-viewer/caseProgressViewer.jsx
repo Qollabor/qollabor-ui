@@ -17,7 +17,7 @@ export default class CaseProgressViewer extends React.Component {
 
   getMileStonesAndStages(planItems) {
     return planItems.filter(item => ((item.type === 'Stage' || item.type === 'Milestone')
-    && item.historyState !== 'Null' & item.transition !== 'ParentTerminate')).sort((item1, item2) => {
+    && item.historyState !== 'Null' && item.transition !== 'ParentTerminate')).sort((item1, item2) => {
       const moment1 = moment(item1.lastModified);
       const moment2 = moment(item2.lastModified);
       return moment1.isSame(moment2) ? this.getMilliseconds(item1.lastModified) -
@@ -36,7 +36,7 @@ export default class CaseProgressViewer extends React.Component {
   render() {
     const items = Immutable.List(this.props.items);
     const mileStonesAndStages = this.getMileStonesAndStages(items);
-    let progressItems = Immutable.List(mileStonesAndStages.map(item => {
+    let progressItems = Immutable.List(mileStonesAndStages.map((item) => {
       let progressItem = <ProgressItem status={item.currentState} name={item.name} items={[item]} />;
       if (item.type === 'Stage') {
         const planItemsForStage = this.getPlanItemsForStage(items, item.id);

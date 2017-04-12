@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { AuthVerify as AuthVerifyComponent } from './authVerify.jsx';
+import { AuthVerify as AuthVerifyComponent } from './authVerify';
 
 function mapStateToProps(state) {
   return {

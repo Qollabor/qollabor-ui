@@ -17,13 +17,11 @@ export class TaskListHeader extends React.Component {
 
     return (
       <tr key="headerRow" style={styles.tableHeader}>
-        <th key="statusColumn" style={statusColumnStyle}>
-
-        </th>
+        <th key="statusColumn" style={statusColumnStyle} />
 
         {this.props.columns
-          .filter((columnDefinition) => columnDefinition.visible)
-          .map((columnDefinition) =>
+          .filter(columnDefinition => columnDefinition.visible)
+          .map(columnDefinition =>
             <th key={columnDefinition.key} style={styles.tableHeaderColumn}>
               {columnDefinition.label}
             </th>

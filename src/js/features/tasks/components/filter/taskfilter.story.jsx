@@ -46,7 +46,7 @@ const types = [
 ];
 
 storiesOf('Tasks/Filter', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('Default filter presentation', () => {
     currentTasksFilterId = 'myTasks';
     return (

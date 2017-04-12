@@ -36,7 +36,7 @@ export class CaseUser extends React.Component {
 
   fetchUserDetails(userId) {
     if (!this.props.userDetails) {
-      getUserDetails(userId).then(response => {
+      getUserDetails(userId).then((response) => {
         this.setState({
           userDetails: response.body
         });

@@ -37,7 +37,7 @@ if (ENV.reduxDevTools) { // eslint-disable-line no-undef
 }
 
 export const store = composeEnhancers(
-  applyMiddleware.apply(null, middlewares)
+  applyMiddleware(...middlewares)
 )(createStore)(reducer);
 
 sagaMiddleware.run(sagas);

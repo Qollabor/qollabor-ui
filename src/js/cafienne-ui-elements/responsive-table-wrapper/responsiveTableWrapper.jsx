@@ -1,9 +1,9 @@
 import React from 'react';
-import { debounce } from 'lodash';
+import debounce from 'lodash.debounce';
 import { Table, Column } from 'fixed-data-table';
 import Dimensions from 'react-dimensions';
 import { ColumnPicker } from './columnPicker';
-import { ActionChooserCell, StatusCell } from './cells.jsx';
+import { ActionChooserCell, StatusCell } from './cells';
 
 // Handles all <Table> to make it responsive
 class ResponsiveTableWrapper extends React.Component {
@@ -93,7 +93,7 @@ class ResponsiveTableWrapper extends React.Component {
         {this.props.children
           .map((columnDefinition) => {
             // Check if Column chooser exist or column is in visible state
-            const isColumnHidden = columns.find((elmt) =>
+            const isColumnHidden = columns.find(elmt =>
               (elmt.key === columnDefinition.props.columnKey && elmt.visible === false));
 
             // Do not render the column if hidden via column picker.
