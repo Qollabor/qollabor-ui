@@ -1,1 +1,1 @@
-export * from './capsules';
+export { StatusCapsule, Capsule } from './capsules';
