@@ -70,7 +70,7 @@
     "cross-env": "^2.0.0",
     "damals": "^0.9.4",
     "del": "^2.2.0",
-    "enzyme": "^2.2.0",
+    "enzyme": "^2.8.1",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",
