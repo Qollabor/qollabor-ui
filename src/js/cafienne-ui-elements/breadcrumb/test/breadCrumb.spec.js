@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import Breadcrumb from '../index';
 import React from 'react';
 import sinon from 'sinon';
+import Breadcrumb from '../index';
 
 describe('components/breadcrumb', () => {
   const breadCrumbItems = [

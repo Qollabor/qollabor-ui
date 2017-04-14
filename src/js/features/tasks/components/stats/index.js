@@ -1,5 +1,5 @@
-import TaskStats from './stats';
 import { connect } from 'react-redux';
+import TaskStats from './stats';
 
 function mapStateToProps(state) {
   return {

@@ -1,8 +1,8 @@
 import 'whatwg-fetch';
 import registry from 'app-registry';
+import queryString from 'query-string';
 
 import { store } from '../store';
-import queryString from 'query-string';
 
 const defaultGetHeaders = {
   Accept: 'application/json',

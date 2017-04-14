@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+
 const defaultState = Immutable.Map(
   {
     menuItemCategory: null,

@@ -1,8 +1,8 @@
 import React from 'react';
 import { DatePicker } from 'material-ui';
+import moment from 'moment';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
-import moment from 'moment';
 import styles from '../styles';
 
 let activeDateElmt = null;
@@ -131,6 +131,10 @@ DateWidget.propTypes = {
   onChange: React.PropTypes.func,
   readonly: React.PropTypes.bool,
   required: React.PropTypes.bool,
-  schema: React.PropTypes.object,
+  schema: React.PropTypes.shape({
+    format: React.PropTypes.string,
+    title: React.PropTypes.string,
+    type: React.PropTypes.string
+  }),
   uiSchema: React.PropTypes.object
 };

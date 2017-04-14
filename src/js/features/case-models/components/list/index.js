@@ -1,5 +1,5 @@
-import List from './list';
 import { connect } from 'react-redux';
+import List from './list';
 
 const mapDispatchToProps = dispatch => ({
   filterData: (filterString) => {

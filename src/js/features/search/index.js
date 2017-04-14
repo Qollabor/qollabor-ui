@@ -1,5 +1,5 @@
-import SearchResult from './searchResult';
 import { connect } from 'react-redux';
+import SearchResult from './searchResult';
 
 const mapDispatchToProps = dispatch => ({
   initSearchResult: () => {

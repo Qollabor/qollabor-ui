@@ -1,9 +1,9 @@
 import React from 'react';
 import { RaisedButton, FlatButton, Paper } from 'material-ui';
+import { shouldRender } from 'react-jsonschema-form/lib/utils';
 import MessageDiv from '../message-div';
 import CaseModelSchemaForm from '../schema-form';
 import CaseTeamSelector from '../caseteam-selector';
-import { shouldRender } from 'react-jsonschema-form/lib/utils';
 
 const styles = {
   saveButton: {

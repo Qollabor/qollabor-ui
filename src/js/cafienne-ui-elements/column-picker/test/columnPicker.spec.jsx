@@ -62,22 +62,30 @@ describe('features/taskList/columnPicker', () => {
     });
 
     it('should include the first column information as the first MenuItem', () => {
-      expect(result.find(Popover).find(Menu).find(MenuItem).at(0).prop('primaryText'))
+      expect(result.find(Popover).find(Menu).find(MenuItem)
+        .at(0)
+        .prop('primaryText'))
         .to.be.equal('Field 1');
     });
 
     it('should include the second column information as the second MenuItem', () => {
-      expect(result.find(Popover).find(Menu).find(MenuItem).at(1).prop('primaryText'))
+      expect(result.find(Popover).find(Menu).find(MenuItem)
+        .at(1)
+        .prop('primaryText'))
         .to.be.equal('Field 2');
     });
 
     it('should show a checked checkbox as the first MenuItem icon', () => {
-      expect(result.find(Popover).find(Menu).find(MenuItem).at(0).prop('leftIcon').props.children)
+      expect(result.find(Popover).find(Menu).find(MenuItem)
+        .at(0)
+        .prop('leftIcon').props.children)
         .to.be.equal('check_box');
     });
 
     it('should show a checked checkbox as the first MenuItem icon', () => {
-      expect(result.find(Popover).find(Menu).find(MenuItem).at(1).prop('leftIcon').props.children)
+      expect(result.find(Popover).find(Menu).find(MenuItem)
+        .at(1)
+        .prop('leftIcon').props.children)
         .to.be.equal('check_box_outline_blank');
     });
   });

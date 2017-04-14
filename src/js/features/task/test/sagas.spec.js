@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-expressions */
 import { expect } from 'chai';
 import sinon from 'sinon';
-import { fetchTaskDetails, transitionToState } from '../sagas';
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 import Immutable from 'immutable';
+import { fetchTaskDetails, transitionToState } from '../sagas';
 
 import helpers from '../../../helpers';
 

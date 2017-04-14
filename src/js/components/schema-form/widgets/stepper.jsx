@@ -8,8 +8,6 @@ import {
   setState
 } from 'react-jsonschema-form/lib/utils';
 
-import { validate } from '../validator';
-
 import {
   Step,
   Stepper,
@@ -18,6 +16,7 @@ import {
 } from 'material-ui/Stepper';
 
 import { FlatButton, RaisedButton } from 'material-ui';
+import { validate } from '../validator';
 
 export class StepperWidget extends Component {
 

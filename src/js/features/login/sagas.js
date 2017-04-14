@@ -1,7 +1,7 @@
 import registry from 'app-registry';
 import { put } from 'redux-saga/effects';
-import { store } from '../../store';
 import { replace as replaceRouter } from 'react-router-redux';
+import { store } from '../../store';
 
 function isPresent(value) {
   return value !== null && value !== undefined && value !== '';

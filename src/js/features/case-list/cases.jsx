@@ -1,4 +1,6 @@
 import React from 'react';
+import { Paper } from 'material-ui';
+import registry from 'app-registry';
 import {
   ResponsiveTableWrapper,
   DataCell,
@@ -8,10 +10,15 @@ import {
   Column
 } from '../../cafienne-ui-elements';
 import TextFilter from '../../components/text-filter';
-import { Paper } from 'material-ui';
-import registry from 'app-registry';
 
 class CaseList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleFilterStringChange = this.handleFilterStringChange.bind(this);
+    this.handleRowClick = this.handleRowClick.bind(this);
+    this.handleScrollEnd = this.handleScrollEnd.bind(this);
+  }
   componentWillMount () {
     if (this.props.initCaseList) {
       this.props.initCaseList();
@@ -50,7 +57,7 @@ class CaseList extends React.Component {
         <TextFilter
           searchIconStyle={{ color: 'gray' }}
           {...this.props} activeFilter={filterText}
-          onFilterChange={this.handleFilterStringChange.bind(this)}
+          onFilterChange={this.handleFilterStringChange}
         />
         <div style={{ marginLeft: '20px' }}>
           {!isFetching && items.length === 0 &&
@@ -62,8 +69,8 @@ class CaseList extends React.Component {
             headerHeight={40}
             containerWidth={tableWidth}
             containerHeight={tableHeight - 60}
-            rowsCount={items.length} onRowClick={this.handleRowClick.bind(this)}
-            onScrollEnd={this.handleScrollEnd.bind(this)}
+            rowsCount={items.length} onRowClick={this.handleRowClick}
+            onScrollEnd={this.handleScrollEnd}
             {...this.props}
           >
             <Column
@@ -129,7 +136,7 @@ CaseList.propTypes = {
   getNextSetOfItems: React.PropTypes.func,
   initCaseList: React.PropTypes.func.isRequired,
   isFetching: React.PropTypes.bool,
-  items: React.PropTypes.array,
+  items: React.PropTypes.arrayOf(React.PropTypes.object),
   showDrawer: React.PropTypes.bool,
   sortKey: React.PropTypes.string,
   sortDesc: React.PropTypes.string

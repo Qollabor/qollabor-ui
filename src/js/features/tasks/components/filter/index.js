@@ -1,6 +1,6 @@
-import component from './component';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import component from './component';
 
 function mapStateToProps(state) {
   return {

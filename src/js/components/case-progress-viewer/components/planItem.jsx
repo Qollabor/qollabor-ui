@@ -1,6 +1,6 @@
 import React from 'react';
-import { StatusCapsule } from '../../capsules';
 import registry from 'app-registry';
+import { StatusCapsule } from '../../capsules';
 
 const planItemLabelStyle = {
   fontSize: 'x-small',

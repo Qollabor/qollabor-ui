@@ -1,7 +1,7 @@
 import React from 'react';
+import { TextField } from 'material-ui';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
-import { TextField } from 'material-ui';
 import styles from '../styles';
 
 export class NumberWidget extends React.Component {

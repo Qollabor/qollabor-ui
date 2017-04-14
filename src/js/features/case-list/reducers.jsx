@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
-import toggleColumns from '../../helpers/columnutils';
 import moment from 'moment';
+import toggleColumns from '../../helpers/columnutils';
 
 /*
 search list reducer sample =>

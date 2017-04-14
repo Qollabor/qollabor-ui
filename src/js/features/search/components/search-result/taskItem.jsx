@@ -2,10 +2,10 @@ import React from 'react';
 import { ListItem } from 'material-ui';
 import { ActionList } from 'material-ui/svg-icons';
 import { blue500 } from 'material-ui/styles/colors';
+import registry from 'app-registry';
 import ItemBody from './itemBody';
 import ItemHeader from './itemHeader';
 import ItemTextField from './itemTextField';
-import registry from 'app-registry';
 
 class TaskItem extends React.Component {
 

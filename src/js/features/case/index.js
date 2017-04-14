@@ -1,13 +1,13 @@
-export { reducers } from './reducers';
-export * from './sagas';
-
 import { connect } from 'react-redux';
-
 import {
   CaseInformation as CaseInformationComponent,
   CaseAttachments as CaseAttachmentsComponent,
   CaseTeam as CaseTeamComponent
 } from './components';
+
+
+export { reducers } from './reducers';
+export * from './sagas';
 
 function mapCaseStateToProps(state) {
   return {

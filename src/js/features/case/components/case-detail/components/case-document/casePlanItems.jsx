@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardText, Badge } from 'material-ui';
-import PlanItems from './planItems';
 import registry from 'app-registry';
+import PlanItems from './planItems';
 
 const badgePositionStyle = {
   position: 'absolute',

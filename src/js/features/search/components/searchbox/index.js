@@ -1,6 +1,5 @@
-import SearchBoxComponent from './searchBox';
-
 import { connect } from 'react-redux';
+import SearchBoxComponent from './searchBox';
 
 const mapDispatchToProps = dispatch => ({
   initSearch: () => {

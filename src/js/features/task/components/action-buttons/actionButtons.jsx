@@ -1,7 +1,6 @@
 import React from 'react';
-
-import ActionChooser from '../action-chooser';
 import { ActionAssignmentInd } from 'material-ui/svg-icons';
+import ActionChooser from '../action-chooser';
 
 const actionItems = [
   {
