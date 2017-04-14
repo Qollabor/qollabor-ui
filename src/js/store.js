@@ -1,5 +1,4 @@
 
-import logMiddleware from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
@@ -19,10 +18,6 @@ const reducer = combineReducers(Object.assign({}, reducers, {
 export const history = useRouterHistory(createHashHistory)({ queryKey: false });
 
 const middlewares = [];
-
-if (ENV.logDispatcher) { // eslint-disable-line no-undef
-  middlewares.push(logMiddleware());
-}
 
 middlewares.push(sagaMiddleware);
 middlewares.push(routerMiddleware(history));
