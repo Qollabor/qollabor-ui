@@ -27,7 +27,7 @@ const sampleItemList = [
 ];
 
 storiesOf('Task/DiscretionaryItems', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('some items to show', () => {
     const title = 'Active tasks';
     return (

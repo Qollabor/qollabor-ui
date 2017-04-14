@@ -2,14 +2,14 @@ import React from 'react';
 import { storiesOf } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import { store } from '../../../store.js';
+import { store } from '../../../store';
 import CaseProgressViewer from '../';
 import { Provider } from 'react-redux';
 import submittedItems from './CaseSubmitted.json';
 import approvedItems from './CaseApproved.json';
 import pocreatedItems from './PurchaseOrderCreated.json';
 
-storiesOf('Case Progress Viewer', module).addDecorator((story) => (
+storiesOf('Case Progress Viewer', module).addDecorator(story => (
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme()}>{story()}</MuiThemeProvider>
   </Provider>

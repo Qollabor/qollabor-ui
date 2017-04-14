@@ -3,7 +3,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import LoginForm from '../loginForm.jsx';
+import LoginForm from '../loginForm';
 import { TextField, RaisedButton, FlatButton, RefreshIndicator } from 'material-ui';
 
 describe('features/login', () => {
@@ -29,17 +29,17 @@ describe('features/login', () => {
           .to.be.equal(2);
       });
       it('should have the text and the buttons enabled', () => {
-        result.find(RaisedButton).forEach(button => {
+        result.find(RaisedButton).forEach((button) => {
           expect(button.prop('disabled'))
             .to.be.false;
         });
-        result.find(TextField).forEach(button => {
+        result.find(TextField).forEach((button) => {
           expect(button.prop('disabled'))
             .to.be.false;
         });
       });
       it('should have the text field without errors', () => {
-        result.find(TextField).forEach(button => {
+        result.find(TextField).forEach((button) => {
           expect(button.prop('errorText'))
             .to.be.undefined;
         });
@@ -58,11 +58,11 @@ describe('features/login', () => {
         result = shallow(<LoginForm {...loginCallback} isLoggingIn={true} />);
       });
       it('should have the text and the buttons disabled', () => {
-        result.find(RaisedButton).forEach(button => {
+        result.find(RaisedButton).forEach((button) => {
           expect(button.prop('disabled'))
             .to.be.true;
         });
-        result.find(TextField).forEach(button => {
+        result.find(TextField).forEach((button) => {
           expect(button.prop('disabled'))
             .to.be.true;
         });

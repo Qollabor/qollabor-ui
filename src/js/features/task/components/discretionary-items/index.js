@@ -8,7 +8,7 @@ function mapStateToProps(state) {
     isFetching: state.case.discretionaryItems.get('isFetching'),
     discretionaryItems: state.case.discretionaryItems.get('items').toJS()
       .map(
-        (item) => Object.assign({}, item, {
+        item => Object.assign({}, item, {
           color: '#388AC3',
           icon: 'playlist_add',
           action: () => registry.get('store')

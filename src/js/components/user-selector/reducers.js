@@ -35,7 +35,7 @@ const defaultUsersState = Immutable.fromJS({
   }
 });
 
-const getFilteredUsers = (users) => Immutable.List(users);
+const getFilteredUsers = users => Immutable.List(users);
 
 export const reducers = (state = defaultUsersState, action) => {
   switch (action.type) {

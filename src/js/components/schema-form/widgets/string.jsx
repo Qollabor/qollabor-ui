@@ -104,20 +104,18 @@ export class StringWidget extends React.Component {
       textProps.rows = this.props.uiSchema['ui:rows'] || 4;
       textProps.errorStyle = Object.assign({}, textProps.errorStyle,
         { transform: 'translate3d(0px, -24px, 0px)' });
-    } else {
-      if (this.props.schema.title) {
-        textProps.style.height = '50px';
-        textProps.inputStyle = { height: '30px', top: '-2px' };
-      }
+    } else if (this.props.schema.title) {
+      textProps.style.height = '50px';
+      textProps.inputStyle = { height: '30px', top: '-2px' };
     }
 
     let helpWidget = false;
     if (help) {
       helpWidget =
         (
-        <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}>
-          <HelpWidget help={help} />
-        </div>
+          <div style={{ zIndex: 100, float: 'right', top: '20px', position: 'relative' }}>
+            <HelpWidget help={help} />
+          </div>
         );
     }
 

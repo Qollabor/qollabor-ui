@@ -19,10 +19,10 @@ case model details reducer sample =>
 
 // Get Case Model Detail
 const getCaseModelDetail = (responseData) => {
-  const caseModelItem = responseData.find((elmt) => elmt.name === 'case');
+  const caseModelItem = responseData.find(elmt => elmt.name === 'case');
   if (caseModelItem && caseModelItem.attributes) {
     if (caseModelItem.children) {
-      const caseRoles = caseModelItem.children.filter((elmt) => elmt.name === 'caseRoles');
+      const caseRoles = caseModelItem.children.filter(elmt => elmt.name === 'caseRoles');
       caseModelItem.attributes.roles = caseRoles.reduce((arr, role) => arr.concat(role.attributes.name), []);
     }
     return caseModelItem.attributes;

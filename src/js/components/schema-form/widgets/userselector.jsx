@@ -24,7 +24,7 @@ export class UserSelectorWidget extends React.Component {
     const selectedUser = this.getDefaultUser(this.props.formData);
     if (selectedUser) {
       const userIds = [].concat(selectedUser);
-      fetchUserDetails(userIds).then(response => {
+      fetchUserDetails(userIds).then((response) => {
         const config = registry.get('config');
         const dataKey = '_2';
 
@@ -69,7 +69,7 @@ export class UserSelectorWidget extends React.Component {
   // If multiSelect is enabled, return array of selected users else return selected user object.
   getSelectedUsers(user, selected) {
     const selectedUsers = (this.props.uiSchema.multiSelect) ? this.state.selectedUsers : [];
-    const index = selectedUsers.findIndex((item) => item.uniqueId === user.uniqueId);
+    const index = selectedUsers.findIndex(item => item.uniqueId === user.uniqueId);
     if (!selected) {
       selectedUsers.splice(index, 1);
     } else if (selected && index === -1) {
@@ -83,7 +83,7 @@ export class UserSelectorWidget extends React.Component {
 
     let selectedUserIds;
     if (selectedUsers.length > 0) {
-      selectedUserIds = selectedUsers.map((item) => item.uniqueId);
+      selectedUserIds = selectedUsers.map(item => item.uniqueId);
       // If multiSelect is not enable, return the array element.
       if (!this.props.uiSchema.multiSelect) {
         selectedUserIds = (selectedUserIds.length > 0) ? selectedUserIds[0] : '';
@@ -160,15 +160,15 @@ export class UserSelectorWidget extends React.Component {
     if (help) {
       helpWidget =
         (
-        <div
-          style={{
-            zIndex: 100,
-            float: 'right',
-            top: '20px',
-            position: 'relative'
-          }}
-        ><HelpWidget help={help} />
-        </div>
+          <div
+            style={{
+              zIndex: 100,
+              float: 'right',
+              top: '20px',
+              position: 'relative'
+            }}
+          ><HelpWidget help={help} />
+          </div>
         );
     }
 

@@ -5,10 +5,10 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import fakeData from './data.json';
 import { Provider } from 'react-redux';
-import { store } from '../../../../../store.js';
-import UserProfile from '../userProfile.jsx';
+import { store } from '../../../../../store';
+import UserProfile from '../userProfile';
 
-storiesOf('User/UserProfile', module).addDecorator((story) => (
+storiesOf('User/UserProfile', module).addDecorator(story => (
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme()}>{story()}</MuiThemeProvider>
   </Provider>

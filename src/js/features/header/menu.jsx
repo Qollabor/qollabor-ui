@@ -59,7 +59,7 @@ export class MenuComponent extends React.Component {
           animation={PopoverAnimationVertical}
         >
           <MaterialMenu style={styles.menu}>
-            {this.props.items.map((item) => (
+            {this.props.items.map(item => (
               <MenuItem key={item.name} onClick={this.handleItemClick.bind(this, item.url)}>{item.name}</MenuItem>))}
           </MaterialMenu>
         </Popover>

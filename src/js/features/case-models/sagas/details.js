@@ -24,12 +24,12 @@ export function* fetchCaseModelDetails() {
 
     // Get case model input schema from casemodel definition -> case -> extensionElements
     let caseModelSchema = null;
-    const caseModelItem = jsonObj.find((elmt) => elmt.name === 'case');
+    const caseModelItem = jsonObj.find(elmt => elmt.name === 'case');
     if (caseModelItem && caseModelItem.children) {
-      const extensionElements = caseModelItem.children.find((elmt) => elmt.name === 'extensionElements');
+      const extensionElements = caseModelItem.children.find(elmt => elmt.name === 'extensionElements');
       if (extensionElements && extensionElements.children) {
         // Parse case model schema xml as json
-        const caseModelSchemaContent = extensionElements.children.find((elmt) =>
+        const caseModelSchemaContent = extensionElements.children.find(elmt =>
             elmt.name.endsWith('start-case-model'));
         caseModelSchema = caseModelSchemaContent ?
           JSON.parse(caseModelSchemaContent.content.replace(/&quot;/g, '"')) : null;
@@ -47,8 +47,8 @@ export function* fetchCaseModelDetails() {
 function getCaseTeam(caseTeamItems) {
   let caseTeamMembers = [];
   caseTeamItems.forEach((caseTeamItem, role) => {
-    caseTeamItem.forEach(caseTeam => {
-      const caseTeamIndex = caseTeamMembers.findIndex((elmt) => elmt.user === caseTeam.uniqueId);
+    caseTeamItem.forEach((caseTeam) => {
+      const caseTeamIndex = caseTeamMembers.findIndex(elmt => elmt.user === caseTeam.uniqueId);
       // If user exist, get the role and add it to caseTeamMembers map.
       if (caseTeamIndex !== -1) {
         const caseTeamRoles = caseTeamMembers[caseTeamIndex].roles;

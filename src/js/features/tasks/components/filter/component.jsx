@@ -19,7 +19,7 @@ class TasksFilter extends React.Component {
     return (
       <div>
         {
-          this.props.tasksFilterTypes.map((tasksFilterType) =>
+          this.props.tasksFilterTypes.map(tasksFilterType =>
             <div key={tasksFilterType.id}>
               <MenuItem
                 style={

@@ -29,7 +29,7 @@ const columns = [
 ];
 
 storiesOf('Column Picker', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('Column Picker', () =>
     (<div className="center-component">
       <ColumnPicker columns={columns} onMenuItemClicked={action('toggle-column-visibility')} />

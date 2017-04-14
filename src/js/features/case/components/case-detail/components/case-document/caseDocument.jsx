@@ -6,7 +6,7 @@ class CaseDocument extends React.Component {
 
   getCaseDetailData(caseDocument) {
     if (caseDocument && caseDocument.planitems) {
-      const casePlanItem = caseDocument.planitems.find((planItem) => planItem.type === 'CasePlan');
+      const casePlanItem = caseDocument.planitems.find(planItem => planItem.type === 'CasePlan');
 
       const lastModifiedPlanItem = caseDocument.planitems[caseDocument.planitems.length - 1];
       const lastModified =

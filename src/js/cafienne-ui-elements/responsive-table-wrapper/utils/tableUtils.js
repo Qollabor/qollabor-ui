@@ -1,10 +1,10 @@
-const doesMatch = (str) => (key) => (String(key)).toLowerCase().indexOf(str) !== -1;
+const doesMatch = str => key => (String(key)).toLowerCase().indexOf(str) !== -1;
 
 
 const filterData = (items, filterString) => {
   const str = filterString && filterString.toLowerCase();
   return str !== ''
-    ? items.filter((r) => getValuesFromObject(r).some(doesMatch(str)))
+    ? items.filter(r => getValuesFromObject(r).some(doesMatch(str)))
     : items;
 };
 
@@ -22,7 +22,7 @@ const sortData = (items, sortKey, sortDesc) => {
 
 const getValuesFromObject = (data) => {
   const arr = [];
-  Object.keys(data).forEach(key => {
+  Object.keys(data).forEach((key) => {
     arr.push(data[key]);
   });
   return arr;

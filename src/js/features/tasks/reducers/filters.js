@@ -44,7 +44,7 @@ export const reducers = (state = defaultState, action) => {
     case 'TASKS:FILTERS:CHANGE':
       return state.set('currentTasksFilter',
         state.get('tasksFilterTypes')
-          .findEntry((item) => item.get('id') === action.tasksFilterName, null, noFilterFoundValue)
+          .findEntry(item => item.get('id') === action.tasksFilterName, null, noFilterFoundValue)
           .pop()
           .filter(keyIn('id', 'label', 'filter')));
 

@@ -88,13 +88,13 @@ export class LoginForm extends React.Component {
 
     const progressIndicator =
       this.props.isLoggingIn ?
-        <RefreshIndicator
+        (<RefreshIndicator
           size={30}
           left={5}
           top={5}
           status="loading"
           style={styles.progress}
-        />
+        />)
         : false;
 
     const subContainerStyle =

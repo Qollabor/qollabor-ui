@@ -19,7 +19,7 @@ class CaseItem extends React.Component {
 
   render () {
     const caseInstance = this.props.item;
-    const casePlanItem = caseInstance.planitems.find((elmt) => elmt.type === 'CasePlan');
+    const casePlanItem = caseInstance.planitems.find(elmt => elmt.type === 'CasePlan');
     return (
       <ListItem
         key={this.props.item.id}

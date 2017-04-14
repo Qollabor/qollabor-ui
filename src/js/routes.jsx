@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import { store } from './store';
 import { onEnterRouterHook as loginOnEnterHook, onChangeRouterHook as loginOnChangeHook } from './features/login';
 import MainLayout from './layouts/mainLayout';
-import NoHeaderLayout from './layouts/noHeaderLayout.jsx';
+import NoHeaderLayout from './layouts/noHeaderLayout';
 import InfoPage from './pages/info';
 import TasksPage from './pages/tasks';
 import TaskPage from './pages/task';

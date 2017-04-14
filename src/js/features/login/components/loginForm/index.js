@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { LoginForm as LoginFormComponent } from './loginForm.jsx';
+import { LoginForm as LoginFormComponent } from './loginForm';
 
 function mapStateToProps(state) {
   return {

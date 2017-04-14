@@ -33,7 +33,7 @@ class SearchResult extends React.Component {
   render() {
     const { items, isFetching } = this.props;
     return (<div style={searchResultStyle}>
-      {isFetching && items.length === 0 && <div className="loader-box"></div>}
+      {isFetching && items.length === 0 && <div className="loader-box" />}
       {!isFetching && items.length === 0 &&
         <div style={noItemsStyle}><ActionInfoOutline color={blue500} /> No items to display</div>}
       <ReactIScroll

@@ -2,7 +2,7 @@ import Details from './details';
 import { connect } from 'react-redux';
 import registry from 'app-registry';
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   initDetails: () => {
     const helpers = registry.get('helpers');
     const definition = helpers.casemodel.getParameterValuesFromHash('/casemodel/:definition').definition;
@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isFetching: state.casemodel.details.get('isFetching'),
   definition: state.casemodel.details.get('definition'),
   data: state.casemodel.details.get('data'),

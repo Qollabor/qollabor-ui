@@ -7,7 +7,15 @@ import { ActionButtons } from '../../components/action-buttons';
 import { StatusCapsule } from '../../../../components/capsules';
 
 export class TaskDetails extends React.Component {
+  constructor(props) {
+    super(props);
 
+    this.state = {
+      currentFormAction: ''
+    };
+
+    this.handleOnSubmit = this.handleOnSubmit.bind(this);
+  }
   componentDidMount() {
     if (this.props.onMount) {
       this.props.onMount(this.props.taskId);
@@ -15,15 +23,17 @@ export class TaskDetails extends React.Component {
   }
 
   handleOnSubmit(taskData) {
-    if (this.currentFormAction === 'complete' && this.props.transitionToState) {
-      this.props.transitionToState(this.props.taskId, this.props.caseId, taskData.formData, this.currentFormAction);
-    } else if (this.currentFormAction === 'save' && this.props.saveTaskDetails) {
+    if (this.state.currentFormAction === 'complete' && this.props.transitionToState) {
+      this.props.transitionToState(this.props.taskId, this.props.caseId, taskData.formData, this.state.currentFormAction);
+    } else if (this.state.currentFormAction === 'save' && this.props.saveTaskDetails) {
       this.props.saveTaskDetails(this.props.taskId, taskData.formData);
     }
   }
 
   handleButtonClick(formAction) {
-    this.currentFormAction = formAction;
+    this.setState({
+      currentFormAction: formAction
+    });
   }
 
   render() {
@@ -35,7 +45,9 @@ export class TaskDetails extends React.Component {
     const formData = (taskDetails.rawOutput && Object.keys(taskDetails.rawOutput).length !== 0)
       ? taskDetails.rawOutput : taskDetails.mappedInput;
     const isPlanItemDisabled = (taskDetails.planState === 'Completed') || (taskDetails.planState === 'Terminated');
-    const disableForm = (taskDetails.taskState === 'Unassigned') || isPlanItemDisabled;
+    const disableForm = (taskDetails.taskState === 'Unassigned') ||
+                        (this.props.loggedInUserId !== taskDetails.assignee) ||
+                        isPlanItemDisabled;
     const isSuspended = (taskDetails.planState === 'Suspended');
 
     const buttonStyle = {
@@ -74,7 +86,7 @@ export class TaskDetails extends React.Component {
           formData={formData}
           buttonList={buttonList}
           disabled={disableForm || isSuspended}
-          onSubmit={this.handleOnSubmit.bind(this)}
+          onSubmit={this.handleOnSubmit}
           taskDetails={taskDetails}
           executeTaskAction={this.props.executeTaskAction}
         />
@@ -89,7 +101,7 @@ TaskDetails.propTypes = {
   executeTaskAction: React.PropTypes.func,
   taskId: React.PropTypes.string.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
-  loggedInUserId: React.PropTypes.string,
+  loggedInUserId: React.PropTypes.string.isRequired,
   onMount: React.PropTypes.func,
   saveTaskDetails: React.PropTypes.func,
   taskDetails: React.PropTypes.object.isRequired,

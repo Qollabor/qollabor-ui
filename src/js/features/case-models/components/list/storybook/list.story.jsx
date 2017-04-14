@@ -10,7 +10,7 @@ import List from '../list';
 registry.register('helpers', helpers);
 
 storiesOf('CaseModels/List', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('With empty data', () =>
     (<div className="center-component">
       <List

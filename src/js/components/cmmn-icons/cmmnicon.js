@@ -18,9 +18,9 @@ const CMMNIcon = ({ children, backgroundColor, itemName, className, showDescript
 
   return (
     <label style={badgeStyle} title={cmmnItemMapping.description}>
-      <span className={classNameOrIconClass}></span>
-			{showDescription && cmmnItemMapping.description}
-			{children}
+      <span className={classNameOrIconClass} />
+      {showDescription && cmmnItemMapping.description}
+      {children}
     </label>
   );
 };

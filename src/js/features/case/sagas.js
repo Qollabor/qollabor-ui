@@ -12,14 +12,14 @@ const progressFunc = () => [
   put({ type: 'CASE:ATTACHMENTS:FETCH' })
 ];
 
-const errorFunc = (error) => [
+const errorFunc = error => [
   put({ type: 'CASE:ITEM:FETCH:FAIL', error }),
   put({ type: 'CASE:ACTIVE_TASKS:FETCH:FAIL', error }),
   put({ type: 'CASE:COMPLETED_TASKS:FETCH:FAIL', error }),
   put({ type: 'CASE:ATTACHMENTS:FETCH:FAIL', error })
 ];
 
-const successFunc = (theCase) => [
+const successFunc = theCase => [
   put({ type: 'CASE:ITEM:FETCH:SUCCESS', case: theCase }),
   put({ type: 'CASE:ACTIVE_TASKS:FETCH:SUCCESS', activeTasks: theCase.planitems.filter(activeTasksFilter) }),
   put({ type: 'CASE:COMPLETED_TASKS:FETCH:SUCCESS', completedTasks: theCase.planitems.filter(completedTasksFilter) }),
@@ -157,7 +157,7 @@ export function* fetchCaseTeam(action) {
 
     yield put({ type: 'CASE:TEAM:FETCH' });
 
-    const userIds = action.caseTeam.map((person) => person.user).join(',');
+    const userIds = action.caseTeam.map(person => person.user).join(',');
     const response = yield registry.get('request')
       .get(`${config.baseApiUrl}users?ids=${userIds}`, null, {
         headers: {

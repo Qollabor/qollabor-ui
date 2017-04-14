@@ -8,7 +8,7 @@ function mapStateToProps(state, props) {
     completedTasks: state.case.completedTasks.get('items')
       .filter(completedTask => completedTask.get('id') !== props.taskId)
       .map(
-        (completedTask) => Object.assign({}, completedTask.toJS(), {
+        completedTask => Object.assign({}, completedTask.toJS(), {
           color: completedTask.getIn(['viewInternalData', 'iconStyle', 'color']),
           icon: completedTask.getIn(['viewInternalData', 'icon']),
           url: `/#/tasks/${completedTask.get('id')}?caseId=${completedTask.get('caseInstanceId')}`

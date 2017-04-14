@@ -39,10 +39,10 @@ function checkStatus(response) {
 }
 
 function transformResponse(fetchResponse) {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     fetchResponse
       .text()
-      .then(result => {
+      .then((result) => {
         let body;
         try {
           body = JSON.parse(result);
@@ -93,10 +93,10 @@ function getMethod(url, query, options) {
     )
       .then(transformResponse)
       .then(checkStatus)
-      .then(response => {
+      .then((response) => {
         resolve(response);
       })
-      .catch(err => {
+      .catch((err) => {
         registry.get('logger').error(err);
         verifyAuthAndRedirect(err, reject);
       });
@@ -119,10 +119,10 @@ function postMethod(url, data, options) {
     )
       .then(transformResponse)
       .then(checkStatus)
-      .then(response => {
+      .then((response) => {
         resolve(response);
       })
-      .catch(err => {
+      .catch((err) => {
         registry.get('logger').error(err);
         verifyAuthAndRedirect(err, reject);
       });
@@ -145,10 +145,10 @@ function putMethod(url, data, options) {
     )
       .then(transformResponse)
       .then(checkStatus)
-      .then(response => {
+      .then((response) => {
         resolve(response);
       })
-      .catch(err => {
+      .catch((err) => {
         registry.get('logger').error(err);
         verifyAuthAndRedirect(err, reject);
       });
@@ -170,10 +170,10 @@ function deleteMethod(url, options) {
     )
       .then(transformResponse)
       .then(checkStatus)
-      .then(response => {
+      .then((response) => {
         resolve(response);
       })
-      .catch(err => {
+      .catch((err) => {
         registry.get('logger').error(err);
         verifyAuthAndRedirect(err, reject);
       });

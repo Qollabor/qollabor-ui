@@ -97,7 +97,7 @@ export class TaskInfo extends React.Component {
             />
           </div>
           <div style={{ fontSize: 14, height: 10 }}>
-            {(! this.props.taskDetails.owner) &&
+            {(!this.props.taskDetails.owner) &&
               <div>
                 <FlatButton
                   primary={true}

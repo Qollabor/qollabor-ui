@@ -16,7 +16,7 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const mapStateToProps = (state) => state.user.toJS();
+const mapStateToProps = state => state.user.toJS();
 
 
 export const UserProfileDialog = connect(mapStateToProps, mapDispatchToProps)(UserProfileDialogComponent);

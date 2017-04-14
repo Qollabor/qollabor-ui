@@ -69,7 +69,7 @@ export class RadioWidget extends React.Component {
           onChange={this.handleOnChange}
           {...errors}
         >
-          {Object.keys(options).map((option) =>
+          {Object.keys(options).map(option =>
             (<RadioButton
               value={options[option]}
               label={option}

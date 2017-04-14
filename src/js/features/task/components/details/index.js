@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import TaskDetailsComponent from './taskDetails.jsx';
+import TaskDetailsComponent from './taskDetails';
 
 function mapStateToProps(state) {
   return {

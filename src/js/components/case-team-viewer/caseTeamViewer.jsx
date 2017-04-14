@@ -31,7 +31,7 @@ export class CaseTeamViewer extends React.Component {
 
   fetchCaseTeamUserDetails(caseTeam) {
     if (!this.props.caseTeamUsers) {
-      fetchCaseTeam(caseTeam).then(response => {
+      fetchCaseTeam(caseTeam).then((response) => {
         const dataKey = '_2';
         this.setState({
           caseTeamUsers: response.body[dataKey]

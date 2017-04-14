@@ -36,7 +36,7 @@ export class TaskList extends React.Component {
       tableBody = <MessageRow colSpan={this.props.columns.length + 2} message={this.props.error.message} />;
     } else {
       tableBody = (this.props.items && this.props.items.length > 0) ?
-        this.props.items.map((item) =>
+        this.props.items.map(item =>
           <TaskListRow
             key={item.id}
             rowData={item}

@@ -5,7 +5,7 @@ const headerStyle = {
   fontWeight: 'bold',
   color: '#666'
 };
-const ItemHeader = (props) => <div style={headerStyle}>{props.title}</div>;
+const ItemHeader = props => <div style={headerStyle}>{props.title}</div>;
 ItemHeader.propTypes = {
   title: React.PropTypes.string.isRequired
 };

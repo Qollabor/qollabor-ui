@@ -7,7 +7,7 @@ const defaultBadgeStyle = {
   fontSize: 'none'
 };
 
-const Capsule = ({ children, statusStyle }) => {
+export const Capsule = ({ children, statusStyle }) => {
   const display = (children || children === 0) ? 'inline' : 'none';
   const capsuleStyle = Object.assign({ display }, statusStyle);
   const badgeStyle = Object.assign({}, defaultBadgeStyle, capsuleStyle);
@@ -43,7 +43,7 @@ const statusColorMappings = {
 };
 
 
-const StatusCapsule = ({ status, children, statusStyle }) => {
+export const StatusCapsule = ({ status, children, statusStyle }) => {
   const backgroundColor = statusColorMappings[status] || 'blue';
   const style = Object.assign({ backgroundColor }, statusStyle);
   return (
@@ -57,6 +57,3 @@ StatusCapsule.propTypes = {
   children: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
   statusStyle: React.PropTypes.object
 };
-
-
-export { Capsule, StatusCapsule };

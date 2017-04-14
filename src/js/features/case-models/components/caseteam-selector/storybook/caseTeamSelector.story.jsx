@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import { Provider } from 'react-redux';
-import { store } from '../../../../../store.js';
+import { store } from '../../../../../store';
 import CaseTeamSelector from '../caseTeamSelector';
 
 const roles = {
@@ -13,7 +13,7 @@ const roles = {
   Approver: [{ name: 'Danny Kruitbosch', uniqueId: 'dannyk' }]
 };
 
-storiesOf('CaseModels/CaseTeamSelector', module).addDecorator((story) => (
+storiesOf('CaseModels/CaseTeamSelector', module).addDecorator(story => (
   <Provider store={store}>
     <MuiThemeProvider muiTheme={getMuiTheme()}>{story()}</MuiThemeProvider>
   </Provider>

@@ -141,7 +141,7 @@ const getMillis = (item) => {
 
 const getCaseInstances = (responseItems) => {
   const cases = responseItems.reduce((arr, caseInstance) => {
-    const casePlanItem = caseInstance.planitems.find((elmt) => elmt.type === 'CasePlan');
+    const casePlanItem = caseInstance.planitems.find(elmt => elmt.type === 'CasePlan');
     casePlanItem.definition = caseInstance.definition;
     casePlanItem.parentCaseId = caseInstance.parentCaseId;
     casePlanItem.team = caseInstance.team;

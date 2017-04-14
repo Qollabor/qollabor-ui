@@ -26,7 +26,7 @@ const taskDetails = {
 const taskDetailsEmpty = {};
 
 storiesOf('Task/TaskInfo', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('TaskInfo with data', () => (
     <div style={{ width: '300px', marginLeft: '100px' }}>
       <TaskInfo

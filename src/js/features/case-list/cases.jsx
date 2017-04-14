@@ -53,7 +53,7 @@ class CaseList extends React.Component {
           onFilterChange={this.handleFilterStringChange.bind(this)}
         />
         <div style={{ marginLeft: '20px' }}>
-          {! isFetching && items.length === 0 &&
+          {!isFetching && items.length === 0 &&
             <div style={{ position: 'absolute', top: 150, margin: 'auto', left: 400 }}>No items found ...</div>}
 
           <ResponsiveTableWrapper

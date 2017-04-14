@@ -51,7 +51,7 @@ class CaseTeamSelector extends React.Component {
     return (
       <div>
         <div style={{ height: 350 }}>
-          {roles.map((role) => (
+          {roles.map(role => (
             <div key={role} style={{ height: 80, marginLeft: 15 }}>
               <Subheader style={{ height: 20, paddingLeft: 0, lineHeight: 1 }}>{role}</Subheader>
               <AvatarList

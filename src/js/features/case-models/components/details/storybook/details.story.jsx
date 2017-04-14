@@ -7,7 +7,7 @@ import fakeData from './data.json';
 import Details from '../details';
 
 storiesOf('CaseModels/Detail', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('With Empty data', () =>
     (<div className="center-component">
       <Details

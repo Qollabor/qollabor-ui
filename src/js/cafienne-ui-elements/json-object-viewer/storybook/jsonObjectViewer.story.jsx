@@ -50,7 +50,7 @@ const longJson = {
 };
 
 storiesOf('JsonObjectViewer', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('Button with short json', () => {
     const json = {
       definition: 'Social benefits application'

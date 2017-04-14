@@ -13,10 +13,28 @@
     "es6": true
   },
   "rules": {
+    "class-methods-use-this": 1,
+    "import/extensions": 1,
+    "import/first": 1,
+    "import/newline-after-import": 1,
+    "import/no-named-as-default": 1,
+    "import/prefer-default-export": 1,
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": ["**/*.story.jsx", "**/*.spec.jsx", "**/*.spec.js",
+      "**/tests/*.*", "**/tests/**/*.*", "**/tasks/**/*.js", "**/config/**/*.js", "gulpfile.js"]
+    }],
+    "jsx-a11y/label-has-for": 1,
+    "jsx-a11y/no-static-element-interactions": 1,
+    "newline-per-chained-call": 1,
+    "no-class-assign": 1,
     "no-use-before-define": 0,
     "no-param-reassign": 1,
+    "no-plusplus": 1,
+    "no-prototype-builtins": 1,
+    "no-template-curly-in-string": 1,
     "no-useless-escape": 1,
     "no-underscore-dangle": 1,
+    "no-unused-vars": 1,
     "no-console": 2,
     "new-cap": 0,
     "func-names": 0,
@@ -34,14 +52,22 @@
       1,
       120
     ],
+    "react/no-array-index-key": 1,
+    "react/no-children-prop": 1,
+    "react/no-string-refs": 1,
+    "react/jsx-filename-extension": 1,
+    "react/forbid-prop-types": 1,
     "react/prop-types": 1,
     "react/jsx-boolean-value": [
       1,
       "always"
     ],
     "react/no-multi-comp": 1,
+    "react/no-unused-prop-types": 1,
     "react/jsx-no-bind": 1,
     "react/jsx-space-before-closing": 1,
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "react/require-default-props": 1,
+    "require-yield": 1
   }
 }

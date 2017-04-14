@@ -11,4 +11,4 @@ const divStyle = {
   flex: '1 1 auto'
 };
 
-export const ProgressLine = () => <div style={divStyle}><span style={lineStyle}></span></div>;
+export const ProgressLine = () => <div style={divStyle}><span style={lineStyle} /></div>;

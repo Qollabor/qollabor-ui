@@ -41,7 +41,7 @@ export class CaseModels extends React.Component {
     return (
       <Paper style={{ margin: 2 }}>
         {isFetching && items.length === 0 &&
-          <div className="loader-box"></div>}
+          <div className="loader-box" />}
         <div style={toolBarStyles}>
           <IconButton
             tooltip="Refresh"

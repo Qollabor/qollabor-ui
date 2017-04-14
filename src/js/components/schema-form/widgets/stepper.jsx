@@ -48,11 +48,11 @@ export class StepperWidget extends Component {
   }
 
   getTotalStepCount(schema) {
-    return Object.keys(schema.properties).reduce((prev) => (prev + 1), 0);
+    return Object.keys(schema.properties).reduce(prev => (prev + 1), 0);
   }
 
   updateCurrentStep(stepIndex, currentStepName) {
-    if (! this.validateAndSetErrors(currentStepName)) return;
+    if (!this.validateAndSetErrors(currentStepName)) return;
 
     this.setState({
       stepIndex,
@@ -68,7 +68,7 @@ export class StepperWidget extends Component {
   }
 
   handleNext(currentStepName) {
-    if (! this.validateAndSetErrors(currentStepName)) return;
+    if (!this.validateAndSetErrors(currentStepName)) return;
 
     const { stepIndex } = this.state;
     this.setState({
@@ -192,7 +192,7 @@ export class StepperWidget extends Component {
                     readonly={readonly}
                     hideTitle={true}
                   />
-                  {(! (disabled || readonly)) && this.renderStepActions(index, propertyName)}
+                  {(!(disabled || readonly)) && this.renderStepActions(index, propertyName)}
                 </StepContent>
               </Step>
             );

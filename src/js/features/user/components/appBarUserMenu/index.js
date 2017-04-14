@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import { AppBarUserMenu as AppBarUserMenuComponent } from './appBarUserMenu.jsx';
+import { AppBarUserMenu as AppBarUserMenuComponent } from './appBarUserMenu';
 
-const mapStateToProps = (state) => state.user.toJS();
+const mapStateToProps = state => state.user.toJS();
 
 function mapDispatchToProps(dispatch) {
   return {

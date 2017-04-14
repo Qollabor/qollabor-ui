@@ -33,7 +33,7 @@ SortHeaderCell.propTypes = {
 const DataCell = ({ items, rowIndex, columnKey, mapper }) => {
   const data = items[rowIndex][columnKey];
   return (<Cell title={mapper && data}>
-   {mapper ? mapper(data) : data}
+    {mapper ? mapper(data) : data}
   </Cell>);
 };
 

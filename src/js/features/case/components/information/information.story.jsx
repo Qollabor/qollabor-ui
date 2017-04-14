@@ -16,7 +16,7 @@ const baseProps = {
 };
 
 storiesOf('Case/Information', module)
-  .addDecorator((getStory) => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
   .add('loading', () => (
     <div className="center-component">
       <Paper style={paperStyle}>

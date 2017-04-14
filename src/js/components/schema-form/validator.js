@@ -39,18 +39,18 @@ const normalizeErrors = (errors) => {
       const arrayCount = arrayCountCk && arrayCountCk[1];
       const path = propPath.split('[')[0];
 
-      if (! normalizedError[path]) {
-        normalizedError[path] = ((typeof(error.instance) === 'object') || arrayCount) ? {} : error;
+      if (!normalizedError[path]) {
+        normalizedError[path] = ((typeof (error.instance) === 'object') || arrayCount) ? {} : error;
       }
       normalizedError = normalizedError[path];
       if (arrayCount) {
-        if (! normalizedError[arrayCount]) {
-          normalizedError[arrayCount] = (typeof(error.instance) === 'object') ? {} : error;
+        if (!normalizedError[arrayCount]) {
+          normalizedError[arrayCount] = (typeof (error.instance) === 'object') ? {} : error;
         }
         normalizedError = normalizedError[arrayCount];
       }
     });
-    if (typeof(error.instance) === 'object') {
+    if (typeof (error.instance) === 'object') {
       normalizedError[error.argument] = error;
     }
   });

@@ -97,7 +97,7 @@ export class TaskList extends React.Component {
     return (
       <Paper style={{ position: 'absolute', bottom: 30, top: 50, width: tableWidth, height: tableHeight }}>
         <div style={{ marginLeft: '20px' }}>
-          {! isFetching && items.length === 0 &&
+          {!isFetching && items.length === 0 &&
             <div style={{ position: 'absolute', top: 150, margin: 'auto', left: 400 }}>No items found ...</div>}
 
           <ResponsiveTableWrapper
