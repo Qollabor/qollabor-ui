@@ -16,6 +16,7 @@ export class TaskDetails extends React.Component {
 
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
+
   componentDidMount() {
     if (this.props.onMount) {
       this.props.onMount(this.props.taskId);
@@ -50,21 +51,22 @@ export class TaskDetails extends React.Component {
     const formData = (taskDetails.rawOutput && Object.keys(taskDetails.rawOutput).length !== 0)
       ? taskDetails.rawOutput : taskDetails.mappedInput;
     const isPlanItemDisabled = (taskDetails.planState === 'Completed') || (taskDetails.planState === 'Terminated');
-    const disableForm = (taskDetails.taskState === 'Unassigned') ||
-                        (this.props.loggedInUserId !== taskDetails.assignee) ||
-                        isPlanItemDisabled;
+    const notAssignedToCurrentUser = (this.props.loggedInUserId !== taskDetails.assignee && taskDetails.assignee !== null);
     const isSuspended = (taskDetails.planState === 'Suspended');
-
+    const disableForm = (taskDetails.taskState === 'Unassigned') ||
+                        notAssignedToCurrentUser ||
+                        isSuspended ||
+                        isPlanItemDisabled;
     const buttonStyle = {
       margin: '3px'
     };
 
     const buttonList = [<RaisedButton
-      label="COMPLETE" primary={true} key="complete" type="submit" disabled={disableForm || isSuspended}
+      label="COMPLETE" primary={true} key="complete" type="submit" disabled={disableForm}
       style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'complete')}
     />,
       <FlatButton
-        label="SAVE FOR LATER" key="save" type="submit" disabled={disableForm || isSuspended}
+        label="SAVE FOR LATER" key="save" type="submit" disabled={disableForm}
         style={buttonStyle} onTouchTap={this.handleButtonClick.bind(this, 'save')}
       />];
 
@@ -72,7 +74,11 @@ export class TaskDetails extends React.Component {
     return (
       <div>
         <div style={{ float: 'right' }}>
-          <ActionButtons taskId={this.props.taskId} caseId={this.props.caseId} disabled={isSuspended} />
+          <ActionButtons
+            taskId={this.props.taskId}
+            caseId={this.props.caseId}
+            disabled={notAssignedToCurrentUser}
+          />
         </div>
         <div style={{ float: 'right' }}>
           <StatusCapsule status={status}>{status}</StatusCapsule>
@@ -90,7 +96,7 @@ export class TaskDetails extends React.Component {
           uiSchema={taskUISchema}
           formData={formData}
           buttonList={buttonList}
-          disabled={disableForm || isSuspended}
+          disabled={disableForm}
           onSubmit={this.handleOnSubmit}
           taskDetails={taskDetails}
           executeTaskAction={this.props.executeTaskAction}

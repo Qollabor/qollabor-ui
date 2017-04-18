@@ -1,13 +1,11 @@
 import { connect } from 'react-redux';
 
-import { getAvailableActions } from '../../helpers/availableActions';
 import { getAvailableTransitions } from '../../helpers/availableTransitions';
 import { ActionButtons as ActionButtonsComponent } from './actionButtons';
 
 function mapStateToProps(state) {
   return {
     buttonsDisabled: state.task.getIn(['transition', 'onGoing']),
-    availableActions: getAvailableActions(state.task.get('taskDetails').toJS()),
     availableTransitions: getAvailableTransitions(state.task.get('taskDetails').toJS()),
     taskDetails: state.task.get('taskDetails').toJS()
   };
