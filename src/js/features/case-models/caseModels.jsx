@@ -1,6 +1,6 @@
 import React from 'react';
-import CaseModelList from './components/list';
 import { IconButton, FontIcon, Paper } from 'material-ui';
+import CaseModelList from './components/list';
 
 export class CaseModels extends React.Component {
   constructor(props) {

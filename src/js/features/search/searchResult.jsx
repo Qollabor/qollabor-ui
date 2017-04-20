@@ -1,9 +1,9 @@
 import React from 'react';
-import SearchList from './components/search-result/itemList';
 import { ActionInfoOutline } from 'material-ui/svg-icons';
 import { blue500 } from 'material-ui/styles/colors';
 import ReactIScroll from 'react-iscroll';
 import iScroll from 'iscroll';
+import SearchList from './components/search-result/itemList';
 
 const noItemsStyle = {
   textAlign: 'center'

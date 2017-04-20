@@ -62,7 +62,7 @@ CaseList.propTypes = {
   caseTeamUsers: React.PropTypes.array,
   getNextSetOfItems: React.PropTypes.func,
   initCaseList: React.PropTypes.func.isRequired,
-  items: React.PropTypes.array,
+  items: React.PropTypes.arrayOf(React.PropTypes.object),
   isFetching: React.PropTypes.bool,
   userDetails: React.PropTypes.object
 };

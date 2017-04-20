@@ -1,10 +1,11 @@
 import React from 'react';
+import registry from 'app-registry';
 import { StatusCapsule } from '../../../../../../components/capsules';
 import ItemTextField from '../../../../../search/components/search-result/itemTextField';
-import registry from 'app-registry';
 import { CaseTeamViewer } from '../../../../../../components/case-team-viewer/caseTeamViewer';
 import { CaseUser } from './caseUser';
 import CaseProgressViewer from '../../../../../../components/case-progress-viewer';
+
 const flexContainer = {
   display: 'flex'
 };

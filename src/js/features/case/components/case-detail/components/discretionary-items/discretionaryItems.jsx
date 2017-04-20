@@ -1,6 +1,6 @@
 import React from 'react';
-import DiscretionaryItem from './discretionaryItem';
 import { List } from 'material-ui';
+import DiscretionaryItem from './discretionaryItem';
 
 class DiscretionaryItems extends React.Component {
   render () {

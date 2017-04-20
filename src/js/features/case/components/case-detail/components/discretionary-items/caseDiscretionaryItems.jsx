@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardHeader, CardText, Badge } from 'material-ui';
-import DiscretionaryItems from './discretionaryItems';
 import registry from 'app-registry';
+import DiscretionaryItems from './discretionaryItems';
 
 const badgePositionStyle = {
   position: 'absolute',

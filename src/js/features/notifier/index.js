@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-export { reducers } from './reducers';
-
 import { Notifier as NotifierComponent } from './notifier';
+
+export { reducers } from './reducers';
 
 function mapStateToProps(state) {
   return {

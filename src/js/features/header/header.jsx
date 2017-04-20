@@ -1,14 +1,14 @@
 import React from 'react';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import { IconButton, Divider, MenuItem, Drawer } from 'material-ui';
+import { ActionAssignmentInd } from 'material-ui/svg-icons';
+import { blue500 } from 'material-ui/styles/colors';
 import StartCaseIcon from 'material-ui/svg-icons/av/play-arrow';
-import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import registry from 'app-registry';
+import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import styles from './styles';
 import { TasksFilter } from '../tasks/components/filter';
 import CafienneSearch from '../search/components/searchbox';
-import { ActionAssignmentInd } from 'material-ui/svg-icons';
-import { blue500 } from 'material-ui/styles/colors';
 
 const headerStyle = {
   position: 'fixed',

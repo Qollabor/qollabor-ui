@@ -1,9 +1,9 @@
 import React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { storiesOf, action } from '@kadira/storybook';
 import PeopleList from './index';
 import UserList from './components/userList';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const samplePeople = [
   {

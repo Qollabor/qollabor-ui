@@ -8,10 +8,11 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 
+import registry from 'app-registry';
+
 import { store, history } from './store';
 import routes from './routes';
 
-import registry from 'app-registry';
 import request from './services/request';
 import storage from './services/storage';
 import logger from './services/logger';

@@ -1,6 +1,6 @@
-import CaseDetailComponent from './caseDetail';
 import { connect } from 'react-redux';
 import registry from 'app-registry';
+import CaseDetailComponent from './caseDetail';
 
 function mapStateToProps(state) {
   return {

@@ -1,8 +1,8 @@
 import React from 'react';
+import moment from 'moment';
 import { DatePicker, TimePicker } from 'material-ui';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
-import moment from 'moment';
 import styles from '../styles';
 
 export class DateTimeWidget extends React.Component {
@@ -143,7 +143,10 @@ export class DateTimeWidget extends React.Component {
 
 DateTimeWidget.propTypes = {
   disabled: React.PropTypes.bool,
-  error: React.PropTypes.object,
+  error: React.PropTypes.shape({
+    isError: React.PropTypes.bool,
+    message: React.PropTypes.string
+  }),
   errorSchema: React.PropTypes.object,
   formData: React.PropTypes.string,
   name: React.PropTypes.string,

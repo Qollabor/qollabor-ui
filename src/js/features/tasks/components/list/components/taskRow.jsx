@@ -1,10 +1,8 @@
 import React from 'react';
-
-import { FontIcon } from 'material-ui';
-import ActionChooser from '../../../../task/components/action-chooser';
 import registry from 'app-registry';
 import { ActionAssignmentReturned, ActionAssignmentInd, ActionAssignmentReturn } from 'material-ui/svg-icons';
-
+import { FontIcon } from 'material-ui';
+import ActionChooser from '../../../../task/components/action-chooser';
 import styles from './../styles';
 
 const actionItems = [

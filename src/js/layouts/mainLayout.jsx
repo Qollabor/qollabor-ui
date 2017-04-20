@@ -1,11 +1,10 @@
 import React from 'react';
-
-import { Header } from '../features/header';
-import { AuthVerify } from '../features/login';
-import { Notifier } from '../features/notifier';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { connect } from 'react-redux';
 import registry from 'app-registry';
+import { Header } from '../features/header';
+import { AuthVerify } from '../features/login';
+import { Notifier } from '../features/notifier';
 
 function mapStateToProps(state) {
   return {

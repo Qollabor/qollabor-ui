@@ -1,3 +1,4 @@
+import { reducer as formReducer } from 'redux-form';
 import appReducer from './app';
 
 import { reducers as user } from '../features/user';
@@ -8,7 +9,6 @@ import { reducers as notifier } from '../features/notifier';
 import { reducers as caseReducers } from '../features/case';
 import { reducers as caseModelReducers } from '../features/case-models';
 import { reducers as schemaForm } from '../components/schema-form/reducers';
-import { reducer as formReducer } from 'redux-form';
 import { reducers as userSelector } from '../components/user-selector/reducers';
 import { reducers as searchResult } from '../features/search';
 import { reducers as caseList } from '../features/case-list';

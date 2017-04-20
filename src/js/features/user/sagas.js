@@ -1,9 +1,9 @@
 import registry from 'app-registry';
 import { put } from 'redux-saga/effects';
-import { store } from '../../store';
 import { replace as replaceRouter } from 'react-router-redux';
-import { notifySuccess, notifyDanger } from '../notifier';
 import { initialize } from 'redux-form';
+import { store } from '../../store';
+import { notifySuccess, notifyDanger } from '../notifier';
 
 let refreshTokenTimeout;
 function refreshTokenCallback() {

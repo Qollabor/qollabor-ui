@@ -1,7 +1,7 @@
 import React from 'react';
-import TextFilter from '../../../../components/text-filter';
 import { List as DefinitionList, ListItem } from 'material-ui';
 import registry from 'app-registry';
+import TextFilter from '../../../../components/text-filter';
 import MessageDiv from '../message-div';
 
 class List extends React.Component {

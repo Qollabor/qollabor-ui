@@ -1,5 +1,5 @@
-import CaseTeamSelector from './caseTeamSelector';
 import { connect } from 'react-redux';
+import CaseTeamSelector from './caseTeamSelector';
 
 const mapStateToProps = state => ({
   roles: state.casemodel.caseTeam.get('roles').toJS()

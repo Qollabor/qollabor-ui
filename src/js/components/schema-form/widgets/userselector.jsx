@@ -1,15 +1,13 @@
 import React from 'react';
 import { Popover } from 'material-ui';
+import registry from 'app-registry';
 import AvatarList from '../../people-list/components/avatarList';
 import UserSelector from '../../user-selector';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget, fetchUserDetails } from './help';
 import styles from '../styles';
 
-import registry from 'app-registry';
-
 export class UserSelectorWidget extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -18,6 +16,10 @@ export class UserSelectorWidget extends React.Component {
       anchorEl: null,
       selectedUsers: []
     };
+
+    this.handleRequestOpen = this.handleRequestOpen.bind(this);
+    this.requestRequestClose = this.requestRequestClose.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
   }
 
   componentWillMount() {
@@ -191,7 +193,7 @@ export class UserSelectorWidget extends React.Component {
               people={selectedUsers}
               maxLength={300}
               disabled={this.props.disabled}
-              onShowMoreAction={this.handleRequestOpen.bind(this)}
+              onShowMoreAction={this.handleRequestOpen}
             />
             {
               errors.errorText &&
@@ -205,11 +207,11 @@ export class UserSelectorWidget extends React.Component {
             anchorEl={this.state.anchorEl}
             anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
             targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-            onRequestClose={this.requestRequestClose.bind(this)}
+            onRequestClose={this.requestRequestClose}
             bodyStyle={{ paddingTop: '10px', paddingBottom: '30px' }}
           >
             <UserSelector
-              onUserSelectChange={this.handleOnChange.bind(this)}
+              onUserSelectChange={this.handleOnChange}
               selectedUsers={selectedUsers}
             />
           </Popover>
@@ -221,13 +223,22 @@ export class UserSelectorWidget extends React.Component {
 
 UserSelectorWidget.propTypes = {
   disabled: React.PropTypes.bool,
-  error: React.PropTypes.object,
+  error: React.PropTypes.shape({
+    isError: React.PropTypes.bool,
+    message: React.PropTypes.string
+  }),
   errorSchema: React.PropTypes.object,
   formData: React.PropTypes.string,
   name: React.PropTypes.string,
   onChange: React.PropTypes.func,
   readonly: React.PropTypes.bool,
   required: React.PropTypes.bool,
-  schema: React.PropTypes.object,
-  uiSchema: React.PropTypes.object
+  schema: React.PropTypes.shape({
+    title: React.PropTypes.string,
+    type: React.PropTypes.string
+  }),
+  uiSchema: React.PropTypes.shape({
+    multiSelect: React.PropTypes.bool,
+    role: React.PropTypes.string
+  })
 };

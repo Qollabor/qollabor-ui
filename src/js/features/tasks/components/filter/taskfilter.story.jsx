@@ -1,8 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@kadira/storybook';
-import TasksFilter from './component';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import TasksFilter from './component';
 
 let currentTasksFilterId;
 const onChangeTasksFilter = function () {};

@@ -1,6 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import styles from './styles';
+
 export const Breadcrumb = Radium(class extends React.Component {
   render() {
     let breadCrumbItem;

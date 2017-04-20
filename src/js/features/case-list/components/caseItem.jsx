@@ -1,10 +1,16 @@
 import React from 'react';
-import CaseHeaderDetails from '../../case/components/case-detail/components/case-document/caseHeaderDetails';
 import { ActionAssignment } from 'material-ui/svg-icons';
 import { blue500 } from 'material-ui/styles/colors';
 import { ListItem } from 'material-ui';
+import CaseHeaderDetails from '../../case/components/case-detail/components/case-document/caseHeaderDetails';
 
 class CaseItem extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.openCaseDetailPage = this.openCaseDetailPage.bind(this);
+  }
+
   openCaseDetailPage () {
     const caseId = this.props.item.id;
     this.context.router.push(`/cases/${caseId}`);
@@ -16,7 +22,7 @@ class CaseItem extends React.Component {
         key={this.props.item.id}
         primaryText={item.name}
         leftIcon={<ActionAssignment color={blue500} style={{ top: '23px' }} />}
-        onTouchTap={this.openCaseDetailPage.bind(this)}
+        onTouchTap={this.openCaseDetailPage}
         style={{ padding: '0px' }}
         secondaryText={
           <CaseHeaderDetails

@@ -24,7 +24,12 @@ export class TaskDetails extends React.Component {
 
   handleOnSubmit(taskData) {
     if (this.state.currentFormAction === 'complete' && this.props.transitionToState) {
-      this.props.transitionToState(this.props.taskId, this.props.caseId, taskData.formData, this.state.currentFormAction);
+      this.props.transitionToState(
+        this.props.taskId,
+        this.props.caseId,
+        taskData.formData,
+        this.state.currentFormAction
+      );
     } else if (this.state.currentFormAction === 'save' && this.props.saveTaskDetails) {
       this.props.saveTaskDetails(this.props.taskId, taskData.formData);
     }
@@ -38,7 +43,7 @@ export class TaskDetails extends React.Component {
 
   render() {
     const taskDetails = this.props.taskDetails;
-
+    const status = (taskDetails.planState === 'Active' ? taskDetails.taskState : taskDetails.planState);
     const taskModel = taskDetails.taskModel || {};
     const taskSchema = taskModel.schema || {};
     const taskUISchema = taskModel.uiSchema || {};
@@ -70,7 +75,7 @@ export class TaskDetails extends React.Component {
           <ActionButtons taskId={this.props.taskId} caseId={this.props.caseId} disabled={isSuspended} />
         </div>
         <div style={{ float: 'right' }}>
-          <StatusCapsule status={taskDetails.taskState}>{taskDetails.taskState}</StatusCapsule>
+          <StatusCapsule status={status}>{status}</StatusCapsule>
         </div>
         <TaskBreadcrumb />
         <TaskInfo
@@ -97,14 +102,40 @@ export class TaskDetails extends React.Component {
 
 TaskDetails.propTypes = {
   caseId: React.PropTypes.string,
-  error: React.PropTypes.object,
+  error: React.PropTypes.shape({
+    isError: React.PropTypes.bool,
+    message: React.PropTypes.string
+  }),
   executeTaskAction: React.PropTypes.func,
   taskId: React.PropTypes.string.isRequired,
   isFetching: React.PropTypes.bool.isRequired,
   loggedInUserId: React.PropTypes.string.isRequired,
   onMount: React.PropTypes.func,
   saveTaskDetails: React.PropTypes.func,
-  taskDetails: React.PropTypes.object.isRequired,
+  taskDetails: React.PropTypes.shape({
+    assignee: React.PropTypes.string,
+    caseDefinition: React.PropTypes.string,
+    caseInstanceId: React.PropTypes.string,
+    createdBy: React.PropTypes.string,
+    createdOn: React.PropTypes.string,
+    dueDate: React.PropTypes.string,
+    id: React.PropTypes.string,
+    inputParams: React.PropTypes.object,
+    lastModified: React.PropTypes.string,
+    mappedInput: React.PropTypes.object,
+    modifiedBy: React.PropTypes.string,
+    owner: React.PropTypes.string,
+    parentCaseInstanceId: React.PropTypes.string,
+    planState: React.PropTypes.string,
+    rawOutput: React.PropTypes.object,
+    role: React.PropTypes.string,
+    rootCaseInstanceId: React.PropTypes.string,
+    taskModel: React.PropTypes.object,
+    taskName: React.PropTypes.string,
+    taskState: React.PropTypes.string,
+    taskinputdata: React.PropTypes.string,
+    taskoutputdata: React.PropTypes.string
+  }).isRequired,
   transitionToState: React.PropTypes.func
 };
 

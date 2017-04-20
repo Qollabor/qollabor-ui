@@ -1,4 +1,13 @@
 import React from 'react';
+import { Paper } from 'material-ui';
+import registry from 'app-registry';
+
+import {
+  ActionAssignmentReturned,
+  ActionAssignmentInd,
+  ActionAssignmentReturn
+} from 'material-ui/svg-icons';
+
 import {
   ResponsiveTableWrapper,
   DataCell,
@@ -6,14 +15,8 @@ import {
   SortHeaderCell,
   Column
 } from '../../../../../cafienne-ui-elements';
+
 import { ActionChooserCell } from './cells';
-import { Paper } from 'material-ui';
-import registry from 'app-registry';
-import {
-  ActionAssignmentReturned,
-  ActionAssignmentInd,
-  ActionAssignmentReturn
-} from 'material-ui/svg-icons';
 
 const actionItems = [
   {

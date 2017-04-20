@@ -1,7 +1,7 @@
-export * from './sagas';
-
-import { TaskListLayout } from './taskListLayout';
 import { connect } from 'react-redux';
+import { TaskListLayout } from './taskListLayout';
+
+export * from './sagas';
 
 function mapStateToProps(state) {
   return {

@@ -1,9 +1,9 @@
 import React from 'react';
 import Immutable from 'immutable';
-import ProgressItem from './components/progressItem';
-import { ProgressLine } from './components/progressLine';
 import moment from 'moment';
 import registry from 'app-registry';
+import ProgressItem from './components/progressItem';
+import { ProgressLine } from './components/progressLine';
 
 const progressContainer = {
   display: 'flex',
@@ -59,5 +59,5 @@ export default class CaseProgressViewer extends React.Component {
 }
 
 CaseProgressViewer.propTypes = {
-  items: React.PropTypes.array
+  items: React.PropTypes.arrayOf(React.PropTypes.object)
 };
