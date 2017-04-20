@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
 import TaskModelSchemaForm from '../../schema-form';
 import { StatusCapsule } from '../../../../../components/capsules';
+import { ActionButtons } from '../../action-buttons';
 
 import TaskDetails from '../taskDetails';
 
@@ -17,7 +17,7 @@ describe('features/task/taskDetails', () => {
   describe('<TaskDetails />', () => {
     it('should not render if props are not passed', () => {
       expect(shallow.bind(<TaskDetails />))
-        .to.Throw();
+        .toThrow();
     });
 
     it('should not render if taskDetails prop is not passed', () => {
@@ -28,7 +28,7 @@ describe('features/task/taskDetails', () => {
           isFetching={isFetching}
           loggedInUserId={loggedInUserId}
         />))
-        .to.Throw();
+        .toThrow();
     });
 
     it('should not render if caseId prop is not passed', () => {
@@ -39,7 +39,7 @@ describe('features/task/taskDetails', () => {
           isFetching={isFetching}
           loggedInUserId={loggedInUserId}
         />))
-        .to.Throw();
+        .toThrow();
     });
 
     it('should not render if taskId prop is not passed', () => {
@@ -50,7 +50,7 @@ describe('features/task/taskDetails', () => {
           isFetching={isFetching}
           loggedInUserId={loggedInUserId}
         />))
-        .to.Throw();
+        .toThrow();
     });
 
     it('should not render if isFetching prop is not passed', () => {
@@ -61,7 +61,7 @@ describe('features/task/taskDetails', () => {
           taskId={taskId}
           loggedInUserId={loggedInUserId}
         />))
-        .to.Throw();
+        .toThrow();
     });
 
     it('should not render if loggedInUserId prop is not passed', () => {
@@ -72,7 +72,7 @@ describe('features/task/taskDetails', () => {
           taskId={taskId}
           isFetching={isFetching}
         />))
-        .to.Throw();
+        .toThrow();
     });
 
     it('should set formData to taskDetails mappedInput if no rawOutput object', () => {
@@ -82,7 +82,7 @@ describe('features/task/taskDetails', () => {
           caseId={caseId}
           taskId={taskId}
           isFetching={isFetching}
-        />).find(TaskModelSchemaForm).prop('formData')).to.equal(taskDetails.mappedInput);
+        />).find(TaskModelSchemaForm).prop('formData')).toEqual(taskDetails.mappedInput);
     });
 
     it('should set formData to taskDetails to rawOutput if available', () => {
@@ -92,11 +92,11 @@ describe('features/task/taskDetails', () => {
           caseId={caseId}
           taskId={taskId}
           isFetching={isFetching}
-        />).find(TaskModelSchemaForm).prop('formData')).to.equal(taskDetailsRawOutput.rawOutput);
+        />).find(TaskModelSchemaForm).prop('formData')).toEqual(taskDetailsRawOutput.rawOutput);
     });
   });
 
-  describe('when task assignee is not the task owner', () => {
+  describe('when task assignee is not the current user', () => {
     const taskDetailsComponent = shallow(
       <TaskDetails
         taskDetails={taskDetails}
@@ -107,11 +107,15 @@ describe('features/task/taskDetails', () => {
       />);
 
     it('should set prop disabled of <TaskModelSchemaForm /> to true', () => {
-      expect(taskDetailsComponent.find(TaskModelSchemaForm).prop('disabled')).to.equal(true);
+      expect(taskDetailsComponent.find(TaskModelSchemaForm).prop('disabled')).toEqual(true);
+    });
+
+    it('should set prop disabled of <ActionButtons /> to true', () => {
+      expect(taskDetailsComponent.find(ActionButtons).prop('disabled')).toEqual(true);
     });
   });
 
-  describe('when task assignee is the task owner', () => {
+  describe('when task assignee is the current user', () => {
     const taskDetailsComponent = shallow(
       <TaskDetails
         taskDetails={taskDetails}
@@ -122,7 +126,11 @@ describe('features/task/taskDetails', () => {
       />);
 
     it('should set prop disabled of <TaskModelSchemaForm /> to false', () => {
-      expect(taskDetailsComponent.find(TaskModelSchemaForm).prop('disabled')).to.equal(false);
+      expect(taskDetailsComponent.find(TaskModelSchemaForm).prop('disabled')).toEqual(false);
+    });
+
+    it('should set prop disabled of <ActionButtons /> to false', () => {
+      expect(taskDetailsComponent.find(ActionButtons).prop('disabled')).toEqual(false);
     });
   });
 
@@ -137,11 +145,11 @@ describe('features/task/taskDetails', () => {
       />);
 
     it('should set prop status of <StatusCapsule /> to the taskState prop', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).to.equal('Assigned');
+      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).toEqual('Assigned');
     });
 
     it('should set children of <StatusCapsule /> to the taskState prop', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).props().children).to.equal('Assigned');
+      expect(taskDetailsComponent.find(StatusCapsule).props().children).toEqual('Assigned');
     });
   });
 
@@ -158,11 +166,11 @@ describe('features/task/taskDetails', () => {
       />);
 
     it('should set prop status of <StatusCapsule /> to Completed', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).to.equal('Completed');
+      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).toEqual('Completed');
     });
 
     it('should set children of <StatusCapsule /> to Completed', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).props().children).to.equal('Completed');
+      expect(taskDetailsComponent.find(StatusCapsule).props().children).toEqual('Completed');
     });
   });
 
@@ -178,11 +186,11 @@ describe('features/task/taskDetails', () => {
       />);
 
     it('should set prop status of <StatusCapsule /> to Available', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).to.equal('Available');
+      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).toEqual('Available');
     });
 
     it('should set children of <StatusCapsule /> to Available', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).props().children).to.equal('Available');
+      expect(taskDetailsComponent.find(StatusCapsule).props().children).toEqual('Available');
     });
   });
 
@@ -198,11 +206,11 @@ describe('features/task/taskDetails', () => {
       />);
 
     it('should set prop status of <StatusCapsule /> to Terminated', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).to.equal('Terminated');
+      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).toEqual('Terminated');
     });
 
     it('should set children of <StatusCapsule /> to Terminated', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).props().children).to.equal('Terminated');
+      expect(taskDetailsComponent.find(StatusCapsule).props().children).toEqual('Terminated');
     });
   });
 
@@ -218,11 +226,11 @@ describe('features/task/taskDetails', () => {
       />);
 
     it('should set prop status of <StatusCapsule /> to Suspended', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).to.equal('Suspended');
+      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).toEqual('Suspended');
     });
 
     it('should set children of <StatusCapsule /> to Suspended', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).props().children).to.equal('Suspended');
+      expect(taskDetailsComponent.find(StatusCapsule).props().children).toEqual('Suspended');
     });
   });
 
@@ -238,11 +246,11 @@ describe('features/task/taskDetails', () => {
       />);
 
     it('should set prop status of <StatusCapsule /> to Failed', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).to.equal('Failed');
+      expect(taskDetailsComponent.find(StatusCapsule).prop('status')).toEqual('Failed');
     });
 
     it('should set children of <StatusCapsule /> to Failed', () => {
-      expect(taskDetailsComponent.find(StatusCapsule).props().children).to.equal('Failed');
+      expect(taskDetailsComponent.find(StatusCapsule).props().children).toEqual('Failed');
     });
   });
 });

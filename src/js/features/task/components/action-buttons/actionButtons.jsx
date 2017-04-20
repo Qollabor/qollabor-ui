@@ -12,6 +12,12 @@ const actionItems = [
 ];
 
 export class ActionButtons extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.onActionHandler = this.onActionHandler.bind(this);
+    this.isActionDisabled = this.isActionDisabled.bind(this);
+  }
 
   onActionHandler(actionItem, user) {
     const taskId = this.props.taskId;
@@ -31,6 +37,8 @@ export class ActionButtons extends React.Component {
   isActionDisabled(actionItem) {
     const taskAction = actionItem.action;
     const { taskState, planState } = this.props.taskDetails;
+
+    if (this.props.disabled) return true;
 
     switch (taskState) {
       case 'Assigned' : {
@@ -61,8 +69,8 @@ export class ActionButtons extends React.Component {
     const content = (
       <ActionChooser
         iconStyle={{ height: 21, padding: 0 }}
-        actionItems={items} onActionHandler={this.onActionHandler.bind(this)}
-        isDisabled={this.isActionDisabled.bind(this)}
+        actionItems={items} onActionHandler={this.onActionHandler}
+        isDisabled={this.isActionDisabled}
       />
     );
 
@@ -71,12 +79,35 @@ export class ActionButtons extends React.Component {
 }
 
 ActionButtons.propTypes = {
-  availableActions: React.PropTypes.array.isRequired,
-  availableTransitions: React.PropTypes.array,
-  buttonsDisabled: React.PropTypes.bool,
-  caseId: React.PropTypes.string,
+  availableTransitions: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  disabled: React.PropTypes.bool.isRequired,
+  buttonsDisabled: React.PropTypes.bool.isRequired,
+  caseId: React.PropTypes.string.isRequired,
   taskId: React.PropTypes.string.isRequired,
-  taskDetails: React.PropTypes.object,
+  taskDetails: React.PropTypes.shape({
+    assignee: React.PropTypes.string,
+    caseDefinition: React.PropTypes.string,
+    caseInstanceId: React.PropTypes.string,
+    createdBy: React.PropTypes.string,
+    createdOn: React.PropTypes.string,
+    dueDate: React.PropTypes.string,
+    id: React.PropTypes.string,
+    inputParams: React.PropTypes.object,
+    lastModified: React.PropTypes.string,
+    mappedInput: React.PropTypes.object,
+    modifiedBy: React.PropTypes.string,
+    owner: React.PropTypes.string,
+    parentCaseInstanceId: React.PropTypes.string,
+    planState: React.PropTypes.string,
+    rawOutput: React.PropTypes.object,
+    role: React.PropTypes.string,
+    rootCaseInstanceId: React.PropTypes.string,
+    taskModel: React.PropTypes.object,
+    taskName: React.PropTypes.string,
+    taskState: React.PropTypes.string,
+    taskinputdata: React.PropTypes.string,
+    taskoutputdata: React.PropTypes.string
+  }).isRequired,
   onActionClick: React.PropTypes.func,
   onTransitionClick: React.PropTypes.func
 };
