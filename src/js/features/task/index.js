@@ -20,5 +20,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const Task = connect(mapStateToProps, mapDispatchToProps)(TaskComponent);
-export default Task;
+export default connect(mapStateToProps, mapDispatchToProps)(TaskComponent);
