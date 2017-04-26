@@ -1,5 +1,3 @@
-
-
 const path = require('path');
 
 const baseApiUrl = process.env.CAFIENNE_API_URL
@@ -15,10 +13,7 @@ module.exports = {
   server: {
     port: 8080
   },
-  webpack: {
-    logDispatcher: true,
-    reduxDevTools: true
-  },
+  webpack: {},
   uglify: {
     beautify: true,
     global: false,

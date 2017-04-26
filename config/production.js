@@ -1,10 +1,5 @@
-
-
 module.exports = {
-  webpack: {
-    logDispatcher: false,
-    reduxDevTools: false
-  },
+  webpack: {},
   uglify: {
     global: true,
     sourcemap: false,
