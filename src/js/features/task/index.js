@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import TaskComponent from './task';
 
 function mapStateToProps(state) {
-  return {
-    showDrawer: state.app.get('showDrawer')
-  };
+  return { showDrawer: state.app.get('showDrawer') };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -22,7 +20,5 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export { reducers } from './reducers';
-export * from './sagas';
-
-export const Task = connect(mapStateToProps, mapDispatchToProps)(TaskComponent);
+const Task = connect(mapStateToProps, mapDispatchToProps)(TaskComponent);
+export default Task;
