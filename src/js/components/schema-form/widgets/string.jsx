@@ -87,15 +87,15 @@ export class StringWidget extends React.Component {
       );
     }
     const style = Object.assign({}, styles.field, { width: '100%' });
-    const floatingLabelFocusStyle = Object.assign({}, styles.floatingLabel, {
+
+    const floatingLabelShrinkStyle = Object.assign({}, styles.floatingLabel, {
       transform: 'perspective(1px) scale(0.85) translate3d(0px, -24px, 0px)',
       top: 18
     });
 
-
     const textProps = Object.assign({}, {
       style,
-      floatingLabelFocusStyle,
+      floatingLabelShrinkStyle,
       errorStyle: styles.errorLabel
     });
 
@@ -126,7 +126,6 @@ export class StringWidget extends React.Component {
         <TextField
           name={this.props.name}
           floatingLabelText={title}
-          floatingLabelFixed={true}
           textareaStyle={{ marginTop: 16, marginBottom: 16 }}
           value={this.props.formData}
           onChange={this.handleOnChange}
