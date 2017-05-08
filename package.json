@@ -113,20 +113,6 @@
   "engines": {
     "node": ">=5.0.0"
   },
-  "eslintConfig": {
-    "extends": "airbnb",
-    "ecmaFeatures": {
-      "experimentalObjectRestSpread": true,
-      "generators": true
-    },
-    "env": {
-      "browser": true,
-      "node": true,
-      "jasmine": true,
-      "phantomjs": true,
-      "es6": true
-    }
-  },
   "jest": {
     "collectCoverage": true,
     "moduleNameMapper": {
