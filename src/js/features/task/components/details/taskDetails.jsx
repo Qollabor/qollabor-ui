@@ -10,10 +10,6 @@ export class TaskDetails extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      currentFormAction: ''
-    };
-
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
   }
 
@@ -24,22 +20,20 @@ export class TaskDetails extends React.Component {
   }
 
   handleOnSubmit(taskData) {
-    if (this.state.currentFormAction === 'complete' && this.props.transitionToState) {
+    if (this.currentFormAction === 'complete' && this.props.transitionToState) {
       this.props.transitionToState(
         this.props.taskId,
         this.props.caseId,
         taskData.formData,
-        this.state.currentFormAction
+        this.currentFormAction
       );
-    } else if (this.state.currentFormAction === 'save' && this.props.saveTaskDetails) {
+    } else if (this.currentFormAction === 'save' && this.props.saveTaskDetails) {
       this.props.saveTaskDetails(this.props.taskId, taskData.formData);
     }
   }
 
   handleButtonClick(formAction) {
-    this.setState({
-      currentFormAction: formAction
-    });
+    this.currentFormAction = formAction;
   }
 
   render() {
