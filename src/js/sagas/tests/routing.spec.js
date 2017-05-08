@@ -36,24 +36,76 @@ describe('changeRoute', () => {
       gen = updateRoute(action);
     });
 
+    it('should dispatch TASK:SET_REDIRECT', () => {
+      expect(gen.next().value)
+        .toEqual(put({ type: 'TASK:SET_REDIRECT', redirectToCase: true }));
+    });
+
     it('should dispatch CASE:REQUEST_INIT', () => {
+      gen.next();
       expect(gen.next().value)
         .toEqual(put({ type: 'CASE:REQUEST_INIT', caseId: 'blah123' }));
     });
   });
 
-  describe('When it is not a case', () => {
-    const otherAction = {
+  describe('When it is a task', () => {
+    const taskAction = {
       payload: {
         pathname: '/tasks/blah123'
       }
     };
 
     beforeEach(() => {
-      gen = updateRoute(otherAction);
+      gen = updateRoute(taskAction);
+    });
+
+    it('should not dispatch any action', () => {
+      expect(gen.next())
+          .toEqual({ done: true, value: undefined });
+    });
+  });
+
+  describe('When it is tasks', () => {
+    const tasksAction = {
+      payload: {
+        pathname: '/tasks'
+      }
+    };
+
+    beforeEach(() => {
+      gen = updateRoute(tasksAction);
+    });
+
+    it('should dispatch TASK:SET_REDIRECT', () => {
+      expect(gen.next().value)
+        .toEqual(put({ type: 'TASK:SET_REDIRECT', redirectToCase: false }));
     });
 
     it('should not dispatch CASE:REQUEST_INIT', () => {
+      gen.next();
+      expect(gen.next())
+        .toEqual({ done: true, value: undefined });
+    });
+  });
+
+  describe('When it is root path', () => {
+    const tasksAction = {
+      payload: {
+        pathname: '/'
+      }
+    };
+
+    beforeEach(() => {
+      gen = updateRoute(tasksAction);
+    });
+
+    it('should dispatch TASK:SET_REDIRECT', () => {
+      expect(gen.next().value)
+        .toEqual(put({ type: 'TASK:SET_REDIRECT', redirectToCase: false }));
+    });
+
+    it('should not dispatch CASE:REQUEST_INIT', () => {
+      gen.next();
       expect(gen.next())
         .toEqual({ done: true, value: undefined });
     });

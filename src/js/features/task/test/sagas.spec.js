@@ -94,7 +94,7 @@ describe('feature/task/sagas', () => {
       });
     });
 
-    describe('When the request is succesfull', () => {
+    describe('When the request is succesful', () => {
       it('should signal TASK:FETCH:SUCCESS', () => {
         generator.next();
         generator.next();

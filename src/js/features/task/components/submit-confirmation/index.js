@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     transitionToState: (taskId, caseId, taskData, transition) => {
-      dispatch({ type: 'TASK:REQUEST_TRANSITION', taskId, caseId, taskData, transition, redirectToTasks: false });
+      dispatch({ type: 'TASK:REQUEST_TRANSITION', taskId, caseId, taskData, transition });
     }
   };
 }

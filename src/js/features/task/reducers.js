@@ -1,7 +1,9 @@
 import Immutable from 'immutable';
+
 const defaultState = Immutable.fromJS(
   {
     isFetching: false,
+    redirectToCase: false,
     taskDetails: {},
     error: {
       message: '',
@@ -47,6 +49,10 @@ export const reducers = (state = defaultState, action) => {
           message: action.error,
           isError: true
         }));
+
+    case 'TASK:SET_REDIRECT':
+      return state
+        .set('redirectToCase', action.redirectToCase);
 
     case 'TASK:TRANSITION':
       return state

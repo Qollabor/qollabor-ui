@@ -5,6 +5,7 @@ import { reducers } from '../reducers';
 const defaultState = Immutable.fromJS(
   {
     isFetching: false,
+    redirectToCase: false,
     save: {
       error: {
         isError: false,
@@ -64,7 +65,7 @@ describe('features/task/reducers', () => {
     });
 
     describe('TASK:FETCH:SUCCESS', () => {
-      describe('When the fetch succes action is issued', () => {
+      describe('When the fetch success action is issued', () => {
         let state;
         const taskDetails = {
           caseDefinition: 'TravelRequest',
@@ -123,6 +124,21 @@ describe('features/task/reducers', () => {
 
         it('error should be set with the isError flag as true', () => {
           expect(state.error.isError)
+            .to.be.eql(true);
+        });
+      });
+    });
+
+    describe('TASK:SET_REDIRECT', () => {
+      describe('When the set_redirect action is issued', () => {
+        let state;
+
+        beforeEach(() => {
+          state = reducers(defaultState, { type: 'TASK:SET_REDIRECT', redirectToCase: true }).toJS();
+        });
+
+        it('redirectToCase should be true', () => {
+          expect(state.redirectToCase)
             .to.be.eql(true);
         });
       });

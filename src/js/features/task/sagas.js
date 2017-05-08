@@ -1,13 +1,12 @@
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 import { push as pushRouter } from 'react-router-redux';
+import { notifySuccess, notifyDanger } from '../notifier';
 
 export function* viewTask(action) {
   const store = registry.get('store');
   store.dispatch(pushRouter(`/tasks/${action.taskId}?caseId=${action.caseId}`));
 }
-
-import { notifySuccess, notifyDanger } from '../notifier';
 
 export function* fetchTaskDetails(action) {
   const dataKey = '_2';
@@ -48,10 +47,10 @@ export function* transitionToState(action) {
   try {
     // TODO check if the caseLastModified should be put for the post
     const headers = helpers.addHeadersByName(['cafienneAuth']);
+    const store = registry.get('store');
 
     const taskData = action.taskData || null;
     const transition = action.transition;
-    const redirectToTasks = action.redirectToTasks !== false;
     const response = yield registry.get('request')
       .post(`${config.tasks.url}/${action.taskId}/${transition}`, taskData, headers);
 
@@ -68,8 +67,12 @@ export function* transitionToState(action) {
 
         // Redirect to tasks UI, if task is completed.
         if (transition === 'complete' || transition === 'terminate') {
-          const store = registry.get('store');
-          if (redirectToTasks) {
+          const redirectToCase = store.getState().task.getIn(['redirectToCase']);
+
+          if (redirectToCase) {
+            const caseId = store.getState().case.case.get('item').id;
+            store.dispatch(pushRouter(`/cases/${caseId}`));
+          } else {
             store.dispatch(pushRouter('#/'));
           }
         } else {
