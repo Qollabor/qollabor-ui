@@ -1,4 +1,3 @@
-import { expect } from 'chai';
 import Immutable from 'immutable';
 import { reducers } from '../reducers';
 
@@ -20,14 +19,14 @@ describe('features/user/reducers', () => {
   describe('When the reducer starts', () => {
     it('should return the default state', () => {
       expect(reducers(undefined, {}).toJS())
-        .to.eql(defaultState.toJS());
+        .toEqual(defaultState.toJS());
     });
   });
 
   describe('A not existing action in the reducer', () => {
     it('should return the same state', () => {
       expect(reducers(defaultState, { type: 'USER:SET_LOGGED_USER:WRONG', user: 'wrongUser' }).toJS())
-        .to.eql(defaultState.toJS());
+        .toEqual(defaultState.toJS());
     });
   });
 
@@ -44,7 +43,7 @@ describe('features/user/reducers', () => {
         hidePasswordForm: false
       });
 
-      expect(actualState.toJSON()).to.eql(expectedState.toJSON());
+      expect(actualState.toJSON()).toEqual(expectedState.toJSON());
     });
   });
 
@@ -61,7 +60,7 @@ describe('features/user/reducers', () => {
         oldPassword: 'test',
         newPassword: 'test1'
       });
-      expect(actualState.toJSON()).to.eql(expectedState.toJSON());
+      expect(actualState.toJSON()).toEqual(expectedState.toJSON());
     });
   });
 
@@ -80,7 +79,7 @@ describe('features/user/reducers', () => {
         newPassword: 'test1',
         hidePasswordForm: true
       });
-      expect(actualState.toJSON()).to.eql(expectedState.toJSON());
+      expect(actualState.toJSON()).toEqual(expectedState.toJSON());
     });
   });
 
@@ -95,7 +94,7 @@ describe('features/user/reducers', () => {
         type: 'USER:CHANGE_PASSWORD:FAIL',
         error: 'Internal Server Error'
       });
-      expect(actualState.toJSON()).to.eql(expectedState.toJSON());
+      expect(actualState.toJSON()).toEqual(expectedState.toJSON());
     });
   });
 });
