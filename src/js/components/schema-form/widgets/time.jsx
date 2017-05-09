@@ -5,10 +5,15 @@ import { HelpWidget } from './help';
 import moment from 'moment';
 import styles from '../styles';
 
+let activeTimeElmt = null;
+let timePickerDialog = null;
+
 export class TimeWidget extends React.Component {
   constructor(props) {
     super(props);
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.handleOnFocus = this.handleOnFocus.bind(this);
+    this.handleOnDismiss = this.handleOnDismiss.bind(this);
   }
 
   formatTime(date) {
@@ -17,6 +22,19 @@ export class TimeWidget extends React.Component {
 
   handleOnChange(event, newDate) {
     this.props.onChange(moment(newDate).format('HH:mm:ss'));
+    activeTimeElmt.focus();
+  }
+
+  handleOnFocus(event) {
+    activeTimeElmt = event.target;
+    timePickerDialog = this.refs.tp.refs.dialogWindow;
+    if (timePickerDialog.state.open === false) {
+      this.refs.tp.openDialog();
+    }
+  }
+
+  handleOnDismiss() {
+    activeTimeElmt.focus();
   }
 
   render() {
@@ -63,16 +81,19 @@ export class TimeWidget extends React.Component {
       <div>
         {helpWidget}
         <TimePicker
+          ref="tp"
           name={this.props.name}
           defaultTime={time}
           format="24hr"
-          autoOk={true}
+          autoOk={false}
           floatingLabelText={title}
           floatingLabelFixed={true}
           textFieldStyle={styles.field}
           errorStyle={errorStyle}
           floatingLabelFocusStyle={styles.floatingLabel}
           disabled={this.props.disabled}
+          onFocus={this.handleOnFocus}
+          onDismiss={this.handleOnDismiss}
           onChange={this.handleOnChange}
           {...errors}
         />

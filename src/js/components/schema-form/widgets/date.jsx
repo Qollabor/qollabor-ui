@@ -7,6 +7,7 @@ import styles from '../styles';
 
 let activeDateElmt = null;
 let datePickerDialog = null;
+
 export class DateWidget extends React.Component {
   /*
     Material UI datepicker does not allow tabbing, also does not
@@ -32,7 +33,6 @@ export class DateWidget extends React.Component {
   handleOnFocus(event) {
     activeDateElmt = event.target;
     datePickerDialog = this.refs.dp.refs.dialogWindow;
-
     if (datePickerDialog.state.open === false) {
       this.refs.dp.openDialog();
     }
@@ -104,16 +104,16 @@ export class DateWidget extends React.Component {
           name={this.props.name}
           value={date}
           locale={locale}
-          container={'inline'}
-          autoOk={true}
+          container={'dialog'}
+          autoOk={false}
           floatingLabelText={title}
           floatingLabelFixed={true}
           floatingLabelFocusStyle={styles.floatingLabel}
           textFieldStyle={styles.field}
           errorStyle={errorStyle}
-          onChange={this.handleOnChange}
           onFocus={this.handleOnFocus}
           onDismiss={this.handleOnDismiss}
+          onChange={this.handleOnChange}
           disabled={this.props.disabled}
           {...errors}
         />
