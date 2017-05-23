@@ -29,6 +29,12 @@ module.exports = (gulp, config) => {
             progress: true,
             stats: {
               colors: true
+            },
+            proxy: {
+              '/api': {
+                target: `${config.server.proxy}`,
+                pathRewrite: { '^/api': '' }
+              }
             }
           }).listen(config.server.port, '0.0.0.0', (err) => {
             if (err) {

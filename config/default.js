@@ -4,16 +4,22 @@ const path = require('path');
 
 const baseApiUrl = process.env.CAFIENNE_API_URL
   ? process.env.CAFIENNE_API_URL
-  : 'http://localhost:18082/';
+  : '/api/';
+
+const apiProxyUrl = process.env.CAFIENNE_PROXY_URL
+  ? process.env.CAFIENNE_PROXY_URL
+  : 'http://localhost:18082/'
 
 console.log('Set baseApiUrl to', baseApiUrl);
+console.log('Set reverse proxy for API to', apiProxyUrl);
 
 module.exports = {
   folders: {
     build: path.join(__dirname, '../dist')
   },
   server: {
-    port: 8080
+    port: 8080,
+    proxy: apiProxyUrl
   },
   webpack: {
     logDispatcher: true,
