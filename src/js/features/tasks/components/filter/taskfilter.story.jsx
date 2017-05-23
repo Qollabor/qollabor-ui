@@ -1,11 +1,14 @@
 import React from 'react';
-import { storiesOf } from '@kadira/storybook';
+import { Provider } from 'react-redux';
+import { storiesOf, action } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import registry from 'app-registry';
 import TasksFilter from './component';
+import { store } from '../../../../store';
+import theme from '../../../../themes';
 
 let currentTasksFilterId;
-const onChangeTasksFilter = function () {};
 
 const types = [
   {
@@ -46,7 +49,11 @@ const types = [
 ];
 
 storiesOf('Tasks/Filter', module)
-  .addDecorator(getStory => <MuiThemeProvider muiTheme={getMuiTheme()}>{getStory()}</MuiThemeProvider>)
+  .addDecorator(getStory => (
+    <Provider store={store}>
+      <MuiThemeProvider muiTheme={getMuiTheme(theme)}>{getStory()}</MuiThemeProvider>
+    </Provider>
+  ))
   .add('Default filter presentation', () => {
     currentTasksFilterId = 'myTasks';
     return (
@@ -54,7 +61,7 @@ storiesOf('Tasks/Filter', module)
         <TasksFilter
           currentTasksFilter={currentTasksFilterId}
           tasksFilterTypes={types}
-          onChangeTasksFilter={onChangeTasksFilter}
+          onChangeTasksFilter={action('onChangeTasksFilter')}
         />
       </div>
     );
@@ -66,7 +73,7 @@ storiesOf('Tasks/Filter', module)
         <TasksFilter
           currentTasksFilter={currentTasksFilterId}
           tasksFilterTypes={types}
-          onChangeTasksFilter={onChangeTasksFilter}
+          onChangeTasksFilter={action('onChangeTasksFilter')}
         />
       </div>
     );
@@ -78,7 +85,7 @@ storiesOf('Tasks/Filter', module)
         <TasksFilter
           currentTasksFilter={currentTasksFilterId}
           tasksFilterTypes={types}
-          onChangeTasksFilter={onChangeTasksFilter}
+          onChangeTasksFilter={action('onChangeTasksFilter')}
         />
       </div>
     );
