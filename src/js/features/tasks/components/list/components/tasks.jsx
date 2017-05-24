@@ -42,6 +42,15 @@ const actionItems = [
 ];
 
 export class TaskList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleRowClick = this.handleRowClick.bind(this);
+    this.handleScrollEnd = this.handleScrollEnd.bind(this);
+    this.isActionDisabled = this.isActionDisabled.bind(this);
+    this.handleTaskActions = this.handleTaskActions.bind(this);
+  }
+
   componentDidMount() {
     if (this.props.onMount) {
       this.props.onMount();
@@ -88,7 +97,7 @@ export class TaskList extends React.Component {
   }
 
   render() {
-    const { items, isFetching } = this.props;
+    const { items, isFetching, error } = this.props;
     const theme = registry.get('theme');
 
     // Resize table width with app drawer resize
@@ -97,12 +106,17 @@ export class TaskList extends React.Component {
     const tableWidth = window.innerWidth - (drawerWidth - 5);
     const tableHeight = window.innerHeight - (theme.appBar.height + 8);
 
+    let message;
+    if (error && error.isError) {
+      message = <div style={{ position: 'absolute', top: 150, margin: 'auto', left: 400 }}>{error.message}</div>;
+    } else if (!isFetching && items.length === 0) {
+      message = <div style={{ position: 'absolute', top: 150, margin: 'auto', left: 400 }}>No items found ...</div>;
+    }
+
     return (
       <Paper style={{ position: 'absolute', bottom: 30, top: 50, width: tableWidth, height: tableHeight }}>
         <div style={{ marginLeft: '20px' }}>
-          {!isFetching && items.length === 0 &&
-            <div style={{ position: 'absolute', top: 150, margin: 'auto', left: 400 }}>No items found ...</div>}
-
+          {message}
           <ResponsiveTableWrapper
             rowHeight={45}
             headerHeight={50}
@@ -110,8 +124,8 @@ export class TaskList extends React.Component {
             containerHeight={tableHeight - 60}
             showColumnChooser={true}
             showStatusIcon={true}
-            rowsCount={items.length} onRowClick={this.handleRowClick.bind(this)}
-            onScrollEnd={this.handleScrollEnd.bind(this)}
+            rowsCount={items.length} onRowClick={this.handleRowClick}
+            onScrollEnd={this.handleScrollEnd}
             {...this.props}
           >
             <Column
@@ -152,8 +166,8 @@ export class TaskList extends React.Component {
             <Column
               cell={<ActionChooserCell
                 actionItems={actionItems}
-                isDisabled={this.isActionDisabled.bind(this)}
-                onActionHandler={this.handleTaskActions.bind(this)}
+                isDisabled={this.isActionDisabled}
+                onActionHandler={this.handleTaskActions}
               />}
               width={50}
             />
@@ -167,12 +181,15 @@ export class TaskList extends React.Component {
 TaskList.displayName = 'TaskList';
 
 TaskList.propTypes = {
-  columns: React.PropTypes.array.isRequired,
-  items: React.PropTypes.array,
+  columns: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  items: React.PropTypes.arrayOf(React.PropTypes.object),
+  error: React.PropTypes.shape({
+    message: React.PropTypes.string,
+    isError: React.PropTypes.bool
+  }),
   onRowClick: React.PropTypes.func,
   bodyHeight: React.PropTypes.number,
   isFetching: React.PropTypes.bool.isRequired,
-  error: React.PropTypes.object,
   onMount: React.PropTypes.func,
   onColumnVisibilityToggle: React.PropTypes.func.isRequired,
   showDrawer: React.PropTypes.bool,

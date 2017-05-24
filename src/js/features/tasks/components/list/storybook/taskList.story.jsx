@@ -37,7 +37,7 @@ storiesOf('Tasks/List', module)
         onMount={action('mount')}
         isFetching={false}
         columns={columns}
-        tasks={fakeData}
+        items={fakeData}
         onRowClick={action('row-click')}
         onColumnVisibilityToggle={action('toggle-column-visibility')}
       />
@@ -49,7 +49,7 @@ storiesOf('Tasks/List', module)
         onMount={action('mount')}
         isFetching={false}
         columns={columns}
-        tasks={fakeData}
+        items={fakeData}
         onRowClick={action('row-click')}
         onColumnVisibilityToggle={action('toggle-column-visibility')}
         bodyHeight={300}
@@ -64,12 +64,14 @@ storiesOf('Tasks/List', module)
         <TaskList
           isFetching={false}
           columns={columns}
-          tasks={data}
+          items={data}
         />
       </div>
     );
   })
   .add('Error state', () => {
+    const data = [];
+
     const error = {
       message: 'Something happened :(',
       isError: true
@@ -80,6 +82,7 @@ storiesOf('Tasks/List', module)
         <TaskList
           isFetching={false}
           columns={columns}
+          items={data}
           error={error}
         />
       </div>
@@ -87,6 +90,10 @@ storiesOf('Tasks/List', module)
   })
   .add('Is fetching something', () =>
     <div className="center-component">
-      <TaskList columns={columns} isFetching={true} />
+      <TaskList
+        items={[]}
+        isFetching={true}
+        columns={columns}
+      />
     </div>
   );

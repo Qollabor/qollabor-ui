@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { storiesOf, action } from '@kadira/storybook';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import registry from 'app-registry';
 import TasksFilter from './component';
 import { store } from '../../../../store';
 import theme from '../../../../themes';

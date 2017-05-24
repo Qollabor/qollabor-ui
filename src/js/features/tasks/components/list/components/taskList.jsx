@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import TaskListHeader from './header';
 import TaskListRow from './taskRow';
 import MessageRow from './messageRow';
@@ -47,7 +46,6 @@ export class TaskList extends React.Component {
         ) :
         <MessageRow colSpan={this.props.columns.length + 2} message="No items to show" />;
     }
-
 
     return (
       <div>
