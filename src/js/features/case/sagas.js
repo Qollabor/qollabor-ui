@@ -36,12 +36,14 @@ export function* fetchCase(action) {
   try {
     const config = registry.get('config');
     const helpers = registry.get('helpers');
+    const store = registry.get('store');
+    const caseLastModified = store.getState().app.get('caseLastModified');
     const dataKey = '_2';
 
     yield* progressFunc();
 
     const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'], {
-      caseLastModified: action.caseLastModified
+      caseLastModified
     });
 
     const response = yield registry.get('request')
@@ -75,18 +77,20 @@ export function* fetchDiscretionaryItems(action) {
   }
 
   try {
+    const helpers = registry.get('helpers');
     const config = registry.get('config');
     const store = registry.get('store');
+    const caseLastModified = store.getState().app.get('caseLastModified');
     const dataKey = 'discretionaryItems';
+
+    const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'], {
+      caseLastModified
+    });
 
     yield put({ type: 'CASE:DISCRETIONARY_ITEMS:FETCH' });
 
     const response = yield registry.get('request')
-      .get(`${config.cases.url}/${action.caseId}/discretionaryitems`, null, {
-        headers: {
-          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
-        }
-      });
+      .get(`${config.cases.url}/${action.caseId}/discretionaryitems`, null, headers);
 
     let discretionaryItems = [];
     if (config.cases.version === 1) {
@@ -131,10 +135,11 @@ export function* planDiscretionaryItem(action) {
       });
 
     const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+    yield put({ type: 'APP:CASE_LAST_MODIFIED:SET', caseLastModified });
 
     yield put(notifySuccess(`Discretionary item ['${action.planItemName}'] has been planned`));
     yield put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN:SUCCESS' });
-    yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId, caseLastModified });
+    yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId });
   } catch (err) {
     yield put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN:FAIL', error: err.message });
     yield put(notifyDanger(`Error while planning discretionary item ['${action.planItemName}']`));
@@ -156,7 +161,6 @@ export function* fetchCaseTeam(action) {
     const dataKey = '_2';
 
     yield put({ type: 'CASE:TEAM:FETCH' });
-
     const userIds = action.caseTeam.map(person => person.user).join(',');
     const response = yield registry.get('request')
       .get(`${config.baseApiUrl}users?ids=${userIds}`, null, {

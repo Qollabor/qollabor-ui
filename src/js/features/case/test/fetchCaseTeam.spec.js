@@ -5,18 +5,29 @@ import Immutable from 'immutable';
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 
-import { fetchDiscretionaryItems } from '../sagas';
+import { fetchCaseTeam } from '../sagas';
 
 import helpers from '../../../helpers';
 
 describe('features/case/sagas', () => {
-  describe('fetchDiscretionaryItems', () => {
+  describe('fetchCaseTeam', () => {
     const fakeURL = 'some/fake/url';
     const fakeTokenPropertyName = 'famousQuote';
     const fakeToken = 'winter is coming';
-    const caseId = 'x-files';
     const caseLastModifiedPropertyName = 'Case-Last-Modified';
     const caseLastModified = 42;
+    const user1 = 'wilbur';
+    const user2 = 'dasher';
+    const caseTeam = [
+      {
+        roles: [],
+        user: user1
+      },
+      {
+        roles: [],
+        user: user2
+      }
+    ];
 
     let requestSpy;
     let generator;
@@ -63,34 +74,34 @@ describe('features/case/sagas', () => {
 
     describe('when is invoked without caseId', () => {
       beforeEach(() => {
-        generator = fetchDiscretionaryItems();
+        generator = fetchCaseTeam();
       });
 
       it('should signal error', () => {
         expect(generator.next().value)
           .toEqual(
           put({
-            type: 'CASE:DISCRETIONARY_ITEMS:FETCH:FAIL',
-            error: 'Must specify a caseId for the discretionary items to fetch'
+            type: 'CASE:TEAM:FETCH:FAIL',
+            error: 'Must specify a caseTeam for the caseTeam items to fetch'
           }));
       });
     });
 
-    describe('when is invoked with a caseId', () => {
+    describe('when is invoked with a caseTeam', () => {
       beforeEach(() => {
-        generator = fetchDiscretionaryItems({ caseId });
+        generator = fetchCaseTeam({ caseTeam });
       });
 
-      it('should signal CASE:DISCRETIONARY_ITEMS:FETCH after it is invoked', () => {
+      it('should signal CASE:TEAM:FETCH after it is invoked', () => {
         expect(generator.next().value)
-          .toEqual(put({ type: 'CASE:DISCRETIONARY_ITEMS:FETCH' }));
+          .toEqual(put({ type: 'CASE:TEAM:FETCH' }));
       });
 
       it('should invoke request.get with the right parameters', () => {
         generator.next();
         generator.next();
 
-        expect(requestSpy.calledWith(`${fakeURL}/${caseId}/discretionaryitems`, null, {
+        expect(requestSpy.calledWith(`${fakeURL}users?ids=${user1},${user2}`, null, {
           headers: {
             [fakeTokenPropertyName]: fakeToken,
             [caseLastModifiedPropertyName]: caseLastModified
@@ -101,16 +112,16 @@ describe('features/case/sagas', () => {
 
     describe('when there is an error', () => {
       beforeEach(() => {
-        generator = fetchDiscretionaryItems({ caseId });
+        generator = fetchCaseTeam({ caseTeam });
       });
 
-      it('should signal CASE:DISCRETIONARY_ITEMS:FAIL', () => {
+      it('should signal CASE:TEAM:FAIL', () => {
         const message = 'Fake error message';
 
         generator.next();
 
         expect(generator.throw({ message }).value)
-          .toEqual(put({ type: 'CASE:DISCRETIONARY_ITEMS:FETCH:FAIL', error: message }));
+          .toEqual(put({ type: 'CASE:TEAM:FETCH:FAIL', error: message }));
       });
     });
   });

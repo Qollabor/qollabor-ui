@@ -2,6 +2,7 @@ import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 import { push as pushRouter } from 'react-router-redux';
 import moment from 'moment';
+import { notifySuccess, notifyDanger } from '../notifier';
 
 export function* fetchTasks(action) {
   const store = registry.get('store');
@@ -24,11 +25,10 @@ export function* fetchTasks(action) {
       sortOrder: store.getState().tasks.list.get('sortDesc') === true ? 'DESC' : 'ASC'
     };
     Object.assign(filters, sortParams);
-
+    const caseLastModified = store.getState().app.get('caseLastModified');
     const reqOptions = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
-      { caseLastModified: action.caseLastModified });
+      { caseLastModified });
     Object.assign(reqOptions.headers, { timeZone: action.timeZone });
-
     const response = yield registry.get('request')
       .get(config.tasks.url, filters, reqOptions);
 
@@ -55,21 +55,20 @@ export function* viewTasks(action) {
   store.dispatch(pushRouter(`/tasks/${action.id}?caseId=${action.caseId}`));
 }
 
-import { notifySuccess, notifyDanger } from '../notifier';
-
-export function* fetchTask(taskId, caseLastModified) {
+export function* fetchTask(action) {
   const dataKey = '_2';
   const config = registry.get('config');
   const helpers = registry.get('helpers');
+  const store = registry.get('store');
+  const caseLastModified = store.getState().app.get('caseLastModified');
 
   yield put({ type: 'TASK:FETCH' });
 
   try {
     const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
       { caseLastModified });
-
     const response = yield registry.get('request')
-      .get(`${config.tasks.url}/${taskId}`, null, headers);
+      .get(`${config.tasks.url}/${action.taskId}`, null, headers);
 
     let taskDetails = [];
 
@@ -100,7 +99,6 @@ export function* executeTaskAction(action) {
   };
 
   try {
-    // TODO check if the caseLastModified should be put for the post
     const headers = helpers.addHeadersByName(['cafienneAuth']);
 
     const response = yield registry.get('request')
@@ -110,9 +108,11 @@ export function* executeTaskAction(action) {
       case 200:
       case 202: {
         const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+        yield put({ type: 'APP:CASE_LAST_MODIFIED:SET', caseLastModified });
+
         yield put(notifySuccess('The action has been accepted'));
         yield put({ type: 'TASK:ITEM:EXECUTE_ACTION:SUCCESS' });
-        yield fetchTask(action.taskId, caseLastModified);
+        yield fetchTask({ taskId: action.taskId });
 
         /* Since we are reading task stats from elastic search,
          * Stats count will be updated only after 1 sec.
@@ -152,4 +152,3 @@ export function* fetchTasksStats(action) {
     yield put({ type: 'TASKS:STATS:FETCH:FAIL', error: err.message });
   }
 }
-

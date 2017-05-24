@@ -1,6 +1,4 @@
 /* eslint-disable no-unused-expressions */
-
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import Immutable from 'immutable';
@@ -14,6 +12,7 @@ describe('features/case/sagas', () => {
   describe('fetchCase', () => {
     const fakeURL = 'some/fake/url';
     const fakeTokenPropertyName = 'famousQuote';
+    const caseLastModifiedPropertyName = 'Case-Last-Modified';
     const fakeToken = 'winter is coming';
     const caseId = 'x-files';
     const caseLastModified = 42;
@@ -33,7 +32,13 @@ describe('features/case/sagas', () => {
                   token: fakeToken,
                   username: 'admin'
                 }
-              })
+              }),
+            app: Immutable.fromJS(
+              {
+                caseLastModified
+              }
+            )
+
           };
         }
       };
@@ -52,8 +57,7 @@ describe('features/case/sagas', () => {
         },
         cases: {
           url: fakeURL,
-          version: 2,
-          lastModifiedHttpHeader: 'caseLastModified'
+          version: 2
         }
       });
     });
@@ -65,16 +69,16 @@ describe('features/case/sagas', () => {
 
       it('should signal error', () => {
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ITEM:FETCH:FAIL', error: 'Must specify a caseId to fetch' }));
+          .toEqual(put({ type: 'CASE:ITEM:FETCH:FAIL', error: 'Must specify a caseId to fetch' }));
 
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ACTIVE_TASKS:FETCH:FAIL', error: 'Must specify a caseId to fetch' }));
+          .toEqual(put({ type: 'CASE:ACTIVE_TASKS:FETCH:FAIL', error: 'Must specify a caseId to fetch' }));
 
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:COMPLETED_TASKS:FETCH:FAIL', error: 'Must specify a caseId to fetch' }));
+          .toEqual(put({ type: 'CASE:COMPLETED_TASKS:FETCH:FAIL', error: 'Must specify a caseId to fetch' }));
 
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ATTACHMENTS:FETCH:FAIL', error: 'Must specify a caseId to fetch' }));
+          .toEqual(put({ type: 'CASE:ATTACHMENTS:FETCH:FAIL', error: 'Must specify a caseId to fetch' }));
       });
     });
 
@@ -85,50 +89,16 @@ describe('features/case/sagas', () => {
 
       it('should signal CASE:FETCH:* after it is invoked', () => {
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ITEM:FETCH' }));
+          .toEqual(put({ type: 'CASE:ITEM:FETCH' }));
 
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ACTIVE_TASKS:FETCH' }));
+          .toEqual(put({ type: 'CASE:ACTIVE_TASKS:FETCH' }));
 
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:COMPLETED_TASKS:FETCH' }));
+          .toEqual(put({ type: 'CASE:COMPLETED_TASKS:FETCH' }));
 
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ATTACHMENTS:FETCH' }));
-      });
-
-      it('should invoke request.get with the right parameters', () => {
-        generator.next();
-        generator.next();
-        generator.next();
-        generator.next();
-        generator.next();
-
-        expect(requestSpy.calledWith(`${fakeURL}/${caseId}`, null, {
-          headers: {
-            [fakeTokenPropertyName]: fakeToken
-          }
-        })).to.be.true;
-      });
-    });
-
-    describe('when is invoked with a caseId and with the caseLastModified parameter', () => {
-      beforeEach(() => {
-        generator = fetchCase({ caseId, caseLastModified });
-      });
-
-      it('should signal CASE:FETCH:* after it is invoked', () => {
-        expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ITEM:FETCH' }));
-
-        expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ACTIVE_TASKS:FETCH' }));
-
-        expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:COMPLETED_TASKS:FETCH' }));
-
-        expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ATTACHMENTS:FETCH' }));
+          .toEqual(put({ type: 'CASE:ATTACHMENTS:FETCH' }));
       });
 
       it('should invoke request.get with the right parameters', () => {
@@ -141,9 +111,9 @@ describe('features/case/sagas', () => {
         expect(requestSpy.calledWith(`${fakeURL}/${caseId}`, null, {
           headers: {
             [fakeTokenPropertyName]: fakeToken,
-            caseLastModified
+            [caseLastModifiedPropertyName]: caseLastModified
           }
-        })).to.be.true;
+        })).toBeTruthy;
       });
     });
 
@@ -162,16 +132,16 @@ describe('features/case/sagas', () => {
         generator.next();
 
         expect(generator.throw({ message }).value)
-          .to.be.eql(put({ type: 'CASE:ITEM:FETCH:FAIL', error: message }));
+          .toEqual(put({ type: 'CASE:ITEM:FETCH:FAIL', error: message }));
 
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ACTIVE_TASKS:FETCH:FAIL', error: message }));
+          .toEqual(put({ type: 'CASE:ACTIVE_TASKS:FETCH:FAIL', error: message }));
 
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:COMPLETED_TASKS:FETCH:FAIL', error: message }));
+          .toEqual(put({ type: 'CASE:COMPLETED_TASKS:FETCH:FAIL', error: message }));
 
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:ATTACHMENTS:FETCH:FAIL', error: message }));
+          .toEqual(put({ type: 'CASE:ATTACHMENTS:FETCH:FAIL', error: message }));
       });
     });
   });

@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-expressions */
 
-import { expect } from 'chai';
 import sinon from 'sinon';
 
 import Immutable from 'immutable';
@@ -66,7 +65,7 @@ describe('features/case/sagas', () => {
 
       it('should signal error', () => {
         expect(generator.next().value)
-          .to.be.eql(
+          .toEqual(
           put({
             type: 'CASE:DISCRETIONARY_ITEMS:PLAN:FAIL',
             error: 'Must specify a plan item name, ' +
@@ -80,9 +79,10 @@ describe('features/case/sagas', () => {
       const definitionId = 'definition';
       const planItemName = 'name';
       const parentId = 'parent';
+      const caseLastModified = 42;
       const fakeResponse = {
         headers: {
-          get: () => 42
+          get: () => caseLastModified
         }
       };
 
@@ -92,7 +92,7 @@ describe('features/case/sagas', () => {
 
       it('should signal CASE:DISCRECTIONARY_ITEMS:FETCH after it is invoked', () => {
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN' }));
+          .toEqual(put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN' }));
       });
 
       it('should invoke request.post with the right parameters', () => {
@@ -105,31 +105,41 @@ describe('features/case/sagas', () => {
             headers: {
               [fakeTokenPropertyName]: fakeToken
             }
-          })).to.be.true;
+          })).toBeTruthy;
+      });
+
+      it('should notify the APP:CASE_LAST_MODIFIED:SET', () => {
+        generator.next();
+        generator.next();
+        expect(generator.next(fakeResponse).value)
+          .toEqual(put({ type: 'APP:CASE_LAST_MODIFIED:SET', caseLastModified }));
       });
 
       it('should notify success message', () => {
         generator.next();
         generator.next();
-        expect(generator.next(fakeResponse).value)
-          .to.be.eql(put(notifySuccess(`Discretionary item ['${planItemName}'] has been planned`)));
+        generator.next(fakeResponse);
+        expect(generator.next().value)
+          .toEqual(put(notifySuccess(`Discretionary item ['${planItemName}'] has been planned`)));
       });
 
       it('should signal success', () => {
         generator.next();
         generator.next();
         generator.next(fakeResponse);
+        generator.next();
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN:SUCCESS' }));
+          .toEqual(put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN:SUCCESS' }));
       });
 
-      it('should request case init with Case-Last-Modified header', () => {
+      it('should request case init', () => {
         generator.next();
         generator.next();
         generator.next(fakeResponse);
         generator.next();
+        generator.next();
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'CASE:REQUEST_INIT', caseId, caseLastModified: 42 }));
+          .toEqual(put({ type: 'CASE:REQUEST_INIT', caseId }));
       });
     });
 
@@ -149,7 +159,7 @@ describe('features/case/sagas', () => {
         generator.next();
 
         expect(generator.throw({ message }).value)
-          .to.be.eql(put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN:FAIL', error: message }));
+          .toEqual(put({ type: 'CASE:DISCRETIONARY_ITEMS:PLAN:FAIL', error: message }));
       });
 
       it('should notify danger message', () => {
@@ -159,7 +169,7 @@ describe('features/case/sagas', () => {
 
         generator.throw({ message });
         expect(generator.next().value)
-          .to.be.eql(put(notifyDanger(`Error while planning discretionary item ['${planItemName}']`)));
+          .toEqual(put(notifyDanger(`Error while planning discretionary item ['${planItemName}']`)));
       });
     });
   });

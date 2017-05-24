@@ -12,13 +12,14 @@ export function* fetchTaskDetails(action) {
   const dataKey = '_2';
   const config = registry.get('config');
   const helpers = registry.get('helpers');
+  const store = registry.get('store');
+  const caseLastModified = store.getState().app.get('caseLastModified');
 
   yield put({ type: 'TASK:FETCH' });
 
   try {
     const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
-      { caseLastModified: action.caseLastModified });
-
+      { caseLastModified });
     const response = yield registry.get('request')
       .get(`${config.tasks.url}/${action.taskId}`, null, headers);
 
@@ -45,7 +46,6 @@ export function* transitionToState(action) {
   yield put({ type: 'TASK:TRANSITION', taskId: action.taskId });
 
   try {
-    // TODO check if the caseLastModified should be put for the post
     const headers = helpers.addHeadersByName(['cafienneAuth']);
     const store = registry.get('store');
 
@@ -61,9 +61,9 @@ export function* transitionToState(action) {
         yield put(notifySuccess('The transition has been accepted'));
         yield put({
           type: 'TASK:TRANSITION:SUCCESS',
-          taskId: action.taskId,
-          caseLastModified
+          taskId: action.taskId
         });
+        yield put({ type: 'APP:CASE_LAST_MODIFIED:SET', caseLastModified });
 
         // Redirect to tasks UI, if task is completed.
         if (transition === 'complete' || transition === 'terminate') {
@@ -76,7 +76,6 @@ export function* transitionToState(action) {
             store.dispatch(pushRouter('#/'));
           }
         } else {
-          // FIXME - Removed case last modified for now, need to be added later
           yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId });
           yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseId });
         }
@@ -107,16 +106,15 @@ export function* saveTaskDetails(action) {
       .put(`${config.tasks.url}/${action.taskId}`, action.taskData, headers);
 
     const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+    yield put({ type: 'APP:CASE_LAST_MODIFIED:SET', caseLastModified });
 
     yield put(notifySuccess('The task has been saved'));
     yield put({
       type: 'TASK:SAVE:SUCCESS',
-      taskId: action.taskId,
-      caseLastModified
+      taskId: action.taskId
     });
 
-    // FIXME - Removed case last modified for now, need to be added later
-    yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId, caseLastModified });
+    yield put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId });
   } catch (err) {
     registry.get('logger').error(err);
     notifyDanger('Unable to save task');

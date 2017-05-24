@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-expressions */
-import { expect } from 'chai';
 import sinon from 'sinon';
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 import Immutable from 'immutable';
-import { fetchTaskDetails, transitionToState } from '../sagas';
+import { fetchTaskDetails, transitionToState, saveTaskDetails } from '../sagas';
 
 import helpers from '../../../helpers';
 
@@ -16,6 +15,8 @@ describe('feature/task/sagas', () => {
     const fakeToken = 'winter is coming';
     const fakeURL = 'some/fake/url';
     const fakeTokenPropertyName = 'famousQuote';
+    const caseLastModifiedPropertyName = 'Case-Last-Modified';
+    const caseLastModified = 'blah';
     const action = {
       taskId: 'fakeId012345'
     };
@@ -31,6 +32,11 @@ describe('feature/task/sagas', () => {
                   token: fakeToken,
                   username: 'admin'
                 }
+              }
+            ),
+            app: Immutable.fromJS(
+              {
+                caseLastModified: 'wilbur-123'
               }
             )
           };
@@ -49,6 +55,10 @@ describe('feature/task/sagas', () => {
         tasks: {
           url: fakeURL,
           version: 1
+        },
+        cases: {
+          url: fakeURL,
+          version: 2
         }
       });
     });
@@ -74,7 +84,7 @@ describe('feature/task/sagas', () => {
     describe('When start fetchTaskDetails saga', () => {
       it('should signal TASK:FETCH after being invoked', () => {
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'TASK:FETCH' }));
+          .toEqual(put({ type: 'TASK:FETCH' }));
       });
     });
 
@@ -88,13 +98,14 @@ describe('feature/task/sagas', () => {
           null,
           {
             headers: {
-              [fakeTokenPropertyName]: fakeToken
+              [fakeTokenPropertyName]: fakeToken,
+              [caseLastModifiedPropertyName]: caseLastModified
             }
-          })).to.be.true;
+          })).toBeTruthy;
       });
     });
 
-    describe('When the request is succesful', () => {
+    describe('When the request is successful', () => {
       it('should signal TASK:FETCH:SUCCESS', () => {
         generator.next();
         generator.next();
@@ -109,7 +120,7 @@ describe('feature/task/sagas', () => {
         });
 
         expect(response.value)
-          .to.be.eql(put({ type: 'TASK:FETCH:SUCCESS', taskDetails: fakeData }));
+          .toEqual(put({ type: 'TASK:FETCH:SUCCESS', taskDetails: fakeData }));
       });
     });
 
@@ -124,9 +135,9 @@ describe('feature/task/sagas', () => {
         const response = generator.throw(fakeError);
 
         expect(response.value)
-          .to.be.eql(put({ type: 'TASK:FETCH:FAIL', error: fakeError.message }));
+          .toEqual(put({ type: 'TASK:FETCH:FAIL', error: fakeError.message }));
 
-        expect(loggerErrorSpy.calledOnce).to.be.true;
+        expect(loggerErrorSpy.calledOnce).toBeTruthy;
       });
     });
   });
@@ -200,7 +211,7 @@ describe('feature/task/sagas', () => {
     describe('When start transitionToState saga', () => {
       it('should signal TASK:TRANSITION after being invoked', () => {
         expect(generator.next().value)
-          .to.be.eql(put({ type: 'TASK:TRANSITION', taskId: action.taskId }));
+          .toEqual(put({ type: 'TASK:TRANSITION', taskId: action.taskId }));
       });
     });
 
@@ -216,7 +227,7 @@ describe('feature/task/sagas', () => {
             headers: {
               [fakeTokenPropertyName]: fakeToken
             }
-          })).to.be.true;
+          })).toBeTruthy;
       });
 
       it('should notify the acceptance', () => {
@@ -231,7 +242,7 @@ describe('feature/task/sagas', () => {
         };
 
         expect(generator.next(response).value)
-          .to.be.eql(put({
+          .toEqual(put({
             type: 'NOTIFIER:NOTIFY',
             dismissAfter: 3000,
             message: 'The transition has been accepted',
@@ -240,9 +251,9 @@ describe('feature/task/sagas', () => {
       });
 
       describe('When the request is successful', () => {
-        it('should notify the TASK:TRANSITION:SUCCESS', () => {
-          const caseLastModified = 42;
+        const caseLastModified = 42;
 
+        it('should notify the TASK:TRANSITION:SUCCESS', () => {
           generator.next();
           generator.next();
           generator.next({
@@ -253,7 +264,22 @@ describe('feature/task/sagas', () => {
           });
 
           expect(generator.next().value)
-            .to.be.eql(put({ type: 'TASK:TRANSITION:SUCCESS', taskId: action.taskId, caseLastModified }));
+            .toEqual(put({ type: 'TASK:TRANSITION:SUCCESS', taskId: action.taskId }));
+        });
+
+        it('should notify the APP:CASE_LAST_MODIFIED:SET', () => {
+          generator.next();
+          generator.next();
+          generator.next({
+            headers: {
+              get: () => (caseLastModified)
+            },
+            status: 202
+          });
+          generator.next();
+
+          expect(generator.next().value)
+            .toEqual(put({ type: 'APP:CASE_LAST_MODIFIED:SET', caseLastModified }));
         });
       });
 
@@ -265,8 +291,174 @@ describe('feature/task/sagas', () => {
           generator.next();
 
           expect(generator.throw({ message: error }).value)
-            .to.be.eql(put({ type: 'TASK:TRANSITION:FAIL', error }));
+            .toEqual(put({ type: 'TASK:TRANSITION:FAIL', error }));
         });
+      });
+    });
+  });
+
+  describe('saveTaskDetails', () => {
+    let generator;
+    let loggerErrorSpy;
+    let requestSpy;
+    const fakeToken = 'winter is coming';
+    const fakeURL = 'some/fake/url';
+    const fakeTokenPropertyName = 'famousQuote';
+    const caseLastModified = 'wilbur-123';
+    const action = {
+      taskId: 'fakeId012345',
+      taskData: { Response: { Message: 'blah' } }
+    };
+
+    beforeEach(() => {
+      registry.reset();
+      const fakeStore = {
+        getState () {
+          return {
+            user: Immutable.fromJS(
+              {
+                loggedUser: {
+                  token: fakeToken,
+                  username: 'admin'
+                }
+              }
+            )
+          };
+        }
+      };
+      registry.register('store', fakeStore);
+    });
+
+    beforeEach(() => {
+      registry.register('config', {
+        login: {
+          token: {
+            httpHeader: fakeTokenPropertyName
+          }
+        },
+        tasks: {
+          url: fakeURL,
+          version: 1
+        },
+        cases: {
+          lastModifiedHttpHeader: 'Case-Last-Modified'
+        }
+      });
+    });
+
+    beforeEach(() => {
+      registry.register('helpers', helpers);
+    });
+
+    beforeEach(() => {
+      loggerErrorSpy = sinon.spy();
+      registry.register('logger', { error: loggerErrorSpy });
+    });
+
+    beforeEach(() => {
+      requestSpy = sinon.spy();
+      registry.register('request', {
+        put: requestSpy
+      });
+
+      generator = saveTaskDetails(action);
+    });
+
+    describe('When start saveTaskDetails saga', () => {
+      it('should signal TASK:SAVE after being invoked', () => {
+        expect(generator.next().value)
+          .toEqual(put({ type: 'TASK:SAVE', taskId: action.taskId }));
+      });
+    });
+
+    describe('When saveTaskDetails saga is started', () => {
+      it('should do a task request with the correct taskId and the correct taskData', () => {
+        generator.next();
+        generator.next();
+
+        expect(requestSpy.calledWith(
+          `${fakeURL}/${action.taskId}`,
+          action.taskData,
+          {
+            headers: {
+              [fakeTokenPropertyName]: fakeToken
+            }
+          })).toBeTruthy;
+      });
+    });
+
+    describe('When the request is successful', () => {
+      it('should notify the APP:CASE_LAST_MODIFIED:SET', () => {
+        generator.next();
+        generator.next();
+
+        const response = {
+          headers: {
+            get: () => (caseLastModified)
+          }
+        };
+
+        expect(generator.next(response).value)
+          .toEqual(put({ type: 'APP:CASE_LAST_MODIFIED:SET', caseLastModified }));
+      });
+
+      it('should notify success', () => {
+        generator.next();
+        generator.next();
+        generator.next({
+          headers: {
+            get: () => (caseLastModified)
+          }
+        });
+
+        expect(generator.next().value)
+          .toEqual(put({
+            type: 'NOTIFIER:NOTIFY',
+            dismissAfter: 3000,
+            message: 'The task has been saved',
+            level: 'success'
+          }));
+      });
+
+      it('should notify the TASK:SAVE:SUCCESS', () => {
+        generator.next();
+        generator.next();
+        generator.next({
+          headers: {
+            get: () => (caseLastModified)
+          }
+        });
+        generator.next();
+
+        expect(generator.next().value)
+          .toEqual(put({ type: 'TASK:SAVE:SUCCESS', taskId: action.taskId }));
+      });
+
+      it('should notify the TASK:REQUEST_INIT', () => {
+        generator.next();
+        generator.next();
+        generator.next({
+          headers: {
+            get: () => (caseLastModified)
+          }
+        });
+        generator.next();
+        generator.next();
+
+        expect(generator.next().value)
+          .toEqual(put({ type: 'TASK:REQUEST_INIT', taskId: action.taskId }));
+      });
+    });
+
+    describe('When there is an error', () => {
+      it('should notify the TASK:SAVE:FAIL', () => {
+        const error = 'Error';
+
+        generator.next();
+        generator.next();
+
+        expect(generator.throw({ message: error }).value)
+          .toEqual(put({ type: 'TASK:SAVE:FAIL', error }));
       });
     });
   });

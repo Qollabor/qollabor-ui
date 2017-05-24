@@ -93,6 +93,7 @@ export function* startCaseModel() {
       case 201: {
         const caseId = response.body.caseInstanceId;
         const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+        yield put({ type: 'APP:CASE_LAST_MODIFIED:SET', caseLastModified });
         yield put({ type: 'CASEMODEL:START:SUCCESS', caseId, caseLastModified });
         break;
       }
