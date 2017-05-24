@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { MenuItem, Menu as MaterialMenu, IconButton, Popover } from 'material-ui';
@@ -69,8 +70,8 @@ export class MenuComponent extends React.Component {
 }
 
 MenuComponent.propTypes = {
-  items: React.PropTypes.object,
-  onNavigate: React.PropTypes.func
+  items: PropTypes.object,
+  onNavigate: PropTypes.func
 };
 
 function mapDispatchToProps(dispatch) {

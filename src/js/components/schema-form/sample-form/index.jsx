@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
 
@@ -58,10 +59,10 @@ function mapDispatchToProps(dispatch) {
 
 
 SampleFormComponent.propTypes = {
-  formData: React.PropTypes.array,
-  onChange: React.PropTypes.func,
-  onError: React.PropTypes.func,
-  onSubmit: React.PropTypes.func
+  formData: PropTypes.array,
+  onChange: PropTypes.func,
+  onError: PropTypes.func,
+  onSubmit: PropTypes.func
 };
 
 export const SampleForm = connect(mapStateToProps, mapDispatchToProps)(SampleFormComponent);

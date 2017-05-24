@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import registry from 'app-registry';
 
@@ -15,7 +16,7 @@ class NoHeaderLayout extends React.Component {
 }
 
 NoHeaderLayout.propTypes = {
-  children: React.PropTypes.node
+  children: PropTypes.node
 };
 
 export default NoHeaderLayout;

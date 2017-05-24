@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { TextField, RaisedButton, FlatButton } from 'material-ui';
 import validator from 'validator';
@@ -140,13 +141,13 @@ PasswordForm = reduxForm({
 })(PasswordForm);
 
 PasswordForm.propTypes = {
-  handleSubmit: React.PropTypes.func,
-  onChange: React.PropTypes.func,
-  onSave: React.PropTypes.func.isRequired,
-  onCancel: React.PropTypes.func.isRequired,
-  pristine: React.PropTypes.bool,
-  saveError: React.PropTypes.object,
-  submitting: React.PropTypes.bool
+  handleSubmit: PropTypes.func,
+  onChange: PropTypes.func,
+  onSave: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired,
+  pristine: PropTypes.bool,
+  saveError: PropTypes.object,
+  submitting: PropTypes.bool
 };
 
 export default PasswordForm;

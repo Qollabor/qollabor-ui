@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles';
 import { HelpWidget } from './help';
 
@@ -43,9 +44,9 @@ export class ReadOnlyWidget extends React.Component {
 }
 
 ReadOnlyWidget.propTypes = {
-  help: React.PropTypes.string,
-  multiline: React.PropTypes.bool,
-  name: React.PropTypes.string,
-  title: React.PropTypes.string,
-  value: React.PropTypes.string
+  help: PropTypes.string,
+  multiline: PropTypes.bool,
+  name: PropTypes.string,
+  title: PropTypes.string,
+  value: PropTypes.string
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CaseHeader from './caseHeader';
 import CasePlanItems from './casePlanItems';
 
@@ -59,9 +60,9 @@ class CaseDocument extends React.Component {
 }
 
 CaseDocument.propTypes = {
-  caseTeamUsers: React.PropTypes.array,
-  document: React.PropTypes.object.isRequired,
-  userDetails: React.PropTypes.object
+  caseTeamUsers: PropTypes.array,
+  document: PropTypes.object.isRequired,
+  userDetails: PropTypes.object
 };
 
 export default CaseDocument;

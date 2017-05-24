@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ListItem } from 'material-ui';
 import { ActionList } from 'material-ui/svg-icons';
 import { blue500 } from 'material-ui/styles/colors';
@@ -46,10 +47,10 @@ class TaskItem extends React.Component {
 }
 
 TaskItem.propTypes = {
-  item: React.PropTypes.object
+  item: PropTypes.object
 };
 
 TaskItem.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 export default TaskItem;

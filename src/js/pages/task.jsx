@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Task } from '../features/task';
 
 class TaskPage extends React.Component {
@@ -12,12 +13,12 @@ class TaskPage extends React.Component {
 }
 
 TaskPage.propTypes = {
-  params: React.PropTypes.shape({
-    taskId: React.PropTypes.string
+  params: PropTypes.shape({
+    taskId: PropTypes.string
   }),
-  location: React.PropTypes.shape({
-    query: React.PropTypes.shape({
-      caseId: React.PropTypes.string
+  location: PropTypes.shape({
+    query: PropTypes.shape({
+      caseId: PropTypes.string
     })
   })
 };

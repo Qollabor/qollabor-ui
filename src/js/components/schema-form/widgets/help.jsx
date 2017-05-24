@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactTooltip from 'react-tooltip';
 import { FontIcon } from 'material-ui';
 import registry from 'app-registry';
@@ -35,5 +36,5 @@ export function fetchUserDetails(userIds) {
 
 
 HelpWidget.propTypes = {
-  help: React.PropTypes.string
+  help: PropTypes.string
 };

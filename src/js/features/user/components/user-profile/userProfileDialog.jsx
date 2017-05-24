@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Dialog } from 'material-ui';
 import UserProfile from './userProfile';
 
@@ -62,13 +63,13 @@ export class UserProfileDialog extends React.Component {
 }
 
 UserProfileDialog.propTypes = {
-  error: React.PropTypes.object,
-  init: React.PropTypes.func,
-  onRequestClose: React.PropTypes.func,
-  open: React.PropTypes.bool,
-  profile: React.PropTypes.object,
-  saveData: React.PropTypes.func,
-  updateAvatar: React.PropTypes.func
+  error: PropTypes.object,
+  init: PropTypes.func,
+  onRequestClose: PropTypes.func,
+  open: PropTypes.bool,
+  profile: PropTypes.object,
+  saveData: PropTypes.func,
+  updateAvatar: PropTypes.func
 };
 
 export default UserProfileDialog;

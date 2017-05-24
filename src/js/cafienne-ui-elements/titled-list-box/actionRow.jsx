@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontIcon } from 'material-ui';
 
 import styles from './styles';
@@ -31,12 +32,12 @@ export class ActionRow extends React.Component {
 }
 
 ActionRow.propTypes = {
-  item: React.PropTypes.shape({
-    action: React.PropTypes.func,
-    icon: React.PropTypes.string,
-    color: React.PropTypes.string
+  item: PropTypes.shape({
+    action: PropTypes.func,
+    icon: PropTypes.string,
+    color: PropTypes.string
   }),
-  labelField: React.PropTypes.string.isRequired
+  labelField: PropTypes.string.isRequired
 };
 
 ActionRow.displayName = 'ActionRow';

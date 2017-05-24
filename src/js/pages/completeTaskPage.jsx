@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { SubmitTaskConfirmation } from '../features/task/components/submit-confirmation';
 
 class SubmitTaskConfirmationPage extends React.Component {
@@ -19,15 +20,15 @@ class SubmitTaskConfirmationPage extends React.Component {
 }
 
 SubmitTaskConfirmationPage.propTypes = {
-  params: React.PropTypes.shape({
-    taskId: React.PropTypes.string,
-    action: React.PropTypes.string
+  params: PropTypes.shape({
+    taskId: PropTypes.string,
+    action: PropTypes.string
   }),
-  location: React.PropTypes.shape({
-    query: React.PropTypes.shape({
-      caseId: React.PropTypes.string,
-      data: React.PropTypes.string,
-      message: React.PropTypes.string
+  location: PropTypes.shape({
+    query: PropTypes.shape({
+      caseId: PropTypes.string,
+      data: PropTypes.string,
+      message: PropTypes.string
     })
   })
 };

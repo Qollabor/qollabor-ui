@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { fetchCaseTeam } from './helpers';
 import { CaseTeam } from '../../features/case/components/case-team';
 import Immutable from 'immutable';
@@ -51,6 +52,6 @@ export class CaseTeamViewer extends React.Component {
 }
 
 CaseTeamViewer.propTypes = {
-  caseTeam: React.PropTypes.array.isRequired,
-  caseTeamUsers: React.PropTypes.object
+  caseTeam: PropTypes.array.isRequired,
+  caseTeamUsers: PropTypes.object
 };

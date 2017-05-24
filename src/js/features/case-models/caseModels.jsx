@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { IconButton, FontIcon, Paper } from 'material-ui';
 import CaseModelList from './components/list';
 
@@ -58,14 +59,14 @@ export class CaseModels extends React.Component {
 }
 
 CaseModels.propTypes = {
-  initCaseModels: React.PropTypes.func.isRequired,
-  isFetching: React.PropTypes.bool,
-  items: React.PropTypes.array
+  initCaseModels: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool,
+  items: PropTypes.array
 };
 
 
 CaseModels.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default CaseModels;

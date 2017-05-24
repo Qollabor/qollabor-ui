@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import styles from './../styles';
 
 class MessageRow extends React.Component {
@@ -26,8 +26,8 @@ class MessageRow extends React.Component {
 MessageRow.displayName = 'MessageRow';
 
 MessageRow.propTypes = {
-  message: React.PropTypes.string.isRequired,
-  colSpan: React.PropTypes.number.isRequired
+  message: PropTypes.string.isRequired,
+  colSpan: PropTypes.number.isRequired
 };
 
 export default MessageRow;

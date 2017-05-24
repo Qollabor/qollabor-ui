@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import SchemaField from 'react-jsonschema-form/lib/components/fields/SchemaField';
 
 import { BooleanWidget } from './widgets/boolean';
@@ -52,8 +52,8 @@ export const CustomSchemaField = function (props) {
 
 
 CustomSchemaField.propTypes = {
-  error: React.PropTypes.object,
-  registry: React.PropTypes.object,
-  schema: React.PropTypes.object,
-  uiSchema: React.PropTypes.object
+  error: PropTypes.object,
+  registry: PropTypes.object,
+  schema: PropTypes.object,
+  uiSchema: PropTypes.object
 };

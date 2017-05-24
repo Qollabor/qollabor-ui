@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class MessageDiv extends React.Component {
   render() {
@@ -13,7 +14,7 @@ class MessageDiv extends React.Component {
 MessageDiv.displayName = 'MessageDiv';
 
 MessageDiv.propTypes = {
-  message: React.PropTypes.string.isRequired
+  message: PropTypes.string.isRequired
 };
 
 export default MessageDiv;

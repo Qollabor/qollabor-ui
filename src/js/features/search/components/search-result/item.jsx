@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CaseItem from './caseItem';
 import TaskItem from './taskItem';
 
@@ -13,7 +14,7 @@ export const Item = (props) => {
   }
 };
 Item.propTypes = {
-  itemType: React.PropTypes.string.isRequired,
-  score: React.PropTypes.number,
-  item: React.PropTypes.object
+  itemType: PropTypes.string.isRequired,
+  score: PropTypes.number,
+  item: PropTypes.object
 };

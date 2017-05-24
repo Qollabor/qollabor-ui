@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import UserList from './userList';
 import { Popover } from 'material-ui';
@@ -39,12 +40,12 @@ class PeoplePopupList extends React.Component {
 }
 
 PeoplePopupList.propTypes = {
-  people: React.PropTypes.array.isRequired,
-  onRequestClose: React.PropTypes.func,
-  avatarSize: React.PropTypes.number,
-  onClick: React.PropTypes.func,
-  showMoreEvent: React.PropTypes.object,
-  open: React.PropTypes.bool
+  people: PropTypes.array.isRequired,
+  onRequestClose: PropTypes.func,
+  avatarSize: PropTypes.number,
+  onClick: PropTypes.func,
+  showMoreEvent: PropTypes.object,
+  open: PropTypes.bool
 };
 
 export default PeoplePopupList;

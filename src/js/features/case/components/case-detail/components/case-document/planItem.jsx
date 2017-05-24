@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ListItem } from 'material-ui';
 import registry from 'app-registry';
 import { CMMNIcon } from '../../../../../../components/cmmn-icons';
@@ -80,15 +81,15 @@ class PlanItem extends React.Component {
 }
 
 PlanItemIcon.propTypes = {
-  type: React.PropTypes.string
+  type: PropTypes.string
 };
 
 PlanItem.propTypes = {
-  item: React.PropTypes.object
+  item: PropTypes.object
 };
 
 PlanItem.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default PlanItem;

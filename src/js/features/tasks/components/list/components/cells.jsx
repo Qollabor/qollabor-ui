@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Cell } from 'fixed-data-table';
 import ActionChooser from '../../../../task/components/action-chooser';
 
@@ -14,10 +14,10 @@ const cancelClick = (e) => {
 };
 
 ActionChooserCell.propTypes = {
-  items: React.PropTypes.array,
-  rowIndex: React.PropTypes.number,
-  columnKey: React.PropTypes.string,
-  cancelClick: React.PropTypes.func
+  items: PropTypes.array,
+  rowIndex: PropTypes.number,
+  columnKey: PropTypes.string,
+  cancelClick: PropTypes.func
 };
 
 export { ActionChooserCell };

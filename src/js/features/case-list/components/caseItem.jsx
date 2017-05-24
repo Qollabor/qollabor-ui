@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ActionAssignment } from 'material-ui/svg-icons';
 import { blue500 } from 'material-ui/styles/colors';
 import { ListItem } from 'material-ui';
@@ -37,13 +38,13 @@ class CaseItem extends React.Component {
 }
 
 CaseItem.propTypes = {
-  item: React.PropTypes.object.isRequired,
-  team: React.PropTypes.array.isRequired,
-  userDetails: React.PropTypes.object,
-  caseTeamUsers: React.PropTypes.array
+  item: PropTypes.object.isRequired,
+  team: PropTypes.array.isRequired,
+  userDetails: PropTypes.object,
+  caseTeamUsers: PropTypes.array
 };
 CaseItem.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default CaseItem;

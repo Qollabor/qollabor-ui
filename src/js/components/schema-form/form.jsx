@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import JsonSchemaForm from 'react-jsonschema-form';
 
 import { CustomSchemaField } from './schemaField';
@@ -84,13 +84,13 @@ export class Form extends React.Component {
 }
 
 Form.propTypes = {
-  buttonList: React.PropTypes.node,
-  disabled: React.PropTypes.bool,
-  formData: React.PropTypes.object,
-  onChange: React.PropTypes.func,
-  onSubmit: React.PropTypes.func,
-  onError: React.PropTypes.func,
-  readonly: React.PropTypes.bool,
-  schema: React.PropTypes.object,
-  uiSchema: React.PropTypes.object
+  buttonList: PropTypes.node,
+  disabled: PropTypes.bool,
+  formData: PropTypes.object,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
+  onError: PropTypes.func,
+  readonly: PropTypes.bool,
+  schema: PropTypes.object,
+  uiSchema: PropTypes.object
 };

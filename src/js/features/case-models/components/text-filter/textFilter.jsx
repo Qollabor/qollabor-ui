@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TextField, IconButton, FontIcon } from 'material-ui';
 
 const style = {
@@ -66,8 +67,8 @@ class TextFilter extends React.Component {
 }
 
 TextFilter.propTypes = {
-  activeFilter: React.PropTypes.string,
-  onFilterChange: React.PropTypes.func.isRequired
+  activeFilter: PropTypes.string,
+  onFilterChange: PropTypes.func.isRequired
 };
 
 export default TextFilter;

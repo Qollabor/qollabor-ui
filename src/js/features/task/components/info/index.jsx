@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './styles';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { FlatButton, Popover } from 'material-ui';
+import styles from './styles';
 import { TitledBox } from '../../../../cafienne-ui-elements';
 import TaskInfoItem from './components/item';
 import UserSelector from '../../../../components/user-selector';
@@ -160,11 +161,11 @@ export class TaskInfo extends React.Component {
 }
 
 TaskInfo.propTypes = {
-  taskDetails: React.PropTypes.object.isRequired,
-  isFetching: React.PropTypes.bool,
-  error: React.PropTypes.object,
-  loggedInUserId: React.PropTypes.string,
-  executeTaskAction: React.PropTypes.func
+  taskDetails: PropTypes.object.isRequired,
+  isFetching: PropTypes.bool,
+  error: PropTypes.object,
+  loggedInUserId: PropTypes.string,
+  executeTaskAction: PropTypes.func
 };
 
 TaskInfo.displayName = 'TaskInfo';

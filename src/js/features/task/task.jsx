@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Drawer from 'material-ui/Drawer';
 import Paper from 'material-ui/Paper';
 
@@ -65,12 +66,12 @@ export class Task extends React.Component {
 }
 
 Task.propTypes = {
-  onMount: React.PropTypes.func,
-  onTaskChanged: React.PropTypes.func,
-  onCaseChanged: React.PropTypes.func,
-  taskId: React.PropTypes.string.isRequired,
-  caseId: React.PropTypes.string.isRequired,
-  showDrawer: React.PropTypes.bool
+  onMount: PropTypes.func,
+  onTaskChanged: PropTypes.func,
+  onCaseChanged: PropTypes.func,
+  taskId: PropTypes.string.isRequired,
+  caseId: PropTypes.string.isRequired,
+  showDrawer: PropTypes.bool
 };
 
 Task.displayName = 'Task';

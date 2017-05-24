@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Dialog } from 'material-ui';
 import PasswordForm from './passwordForm';
 
@@ -58,11 +59,11 @@ export class PasswordChanger extends React.Component {
 }
 
 PasswordChanger.propTypes = {
-  changePassword: React.PropTypes.func,
-  error: React.PropTypes.object,
-  init: React.PropTypes.func,
-  onRequestClose: React.PropTypes.func,
-  open: React.PropTypes.bool
+  changePassword: PropTypes.func,
+  error: PropTypes.object,
+  init: PropTypes.func,
+  onRequestClose: PropTypes.func,
+  open: PropTypes.bool
 };
 
 export default PasswordChanger;

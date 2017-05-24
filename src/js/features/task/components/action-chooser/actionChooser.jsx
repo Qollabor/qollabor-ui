@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { IconButton, IconMenu, MenuItem, Popover } from 'material-ui';
 import { NavigationMoreVert } from 'material-ui/svg-icons';
 import UserSelector from '../../../../components/user-selector';
@@ -113,12 +113,12 @@ export class ActionChooser extends React.Component {
 ActionChooser.displayName = 'ActionChooser';
 
 ActionChooser.propTypes = {
-  actionItems: React.PropTypes.array,
-  isDisabled: React.PropTypes.func,
-  isVerifyAuth: React.PropTypes.bool,
-  iconStyle: React.PropTypes.object.isRequired,
-  onActionHandler: React.PropTypes.func.isRequired,
-  rowIndex: React.PropTypes.number
+  actionItems: PropTypes.array,
+  isDisabled: PropTypes.func,
+  isVerifyAuth: PropTypes.bool,
+  iconStyle: PropTypes.object.isRequired,
+  onActionHandler: PropTypes.func.isRequired,
+  rowIndex: PropTypes.number
 };
 
 export default ActionChooser;

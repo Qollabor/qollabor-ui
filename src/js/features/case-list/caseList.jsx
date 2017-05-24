@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ActionInfoOutline } from 'material-ui/svg-icons';
 import { blue500 } from 'material-ui/styles/colors';
 import ReactIScroll from 'react-iscroll';
@@ -59,12 +60,12 @@ class CaseList extends React.Component {
 }
 
 CaseList.propTypes = {
-  caseTeamUsers: React.PropTypes.array,
-  getNextSetOfItems: React.PropTypes.func,
-  initCaseList: React.PropTypes.func.isRequired,
-  items: React.PropTypes.arrayOf(React.PropTypes.object),
-  isFetching: React.PropTypes.bool,
-  userDetails: React.PropTypes.object
+  caseTeamUsers: PropTypes.array,
+  getNextSetOfItems: PropTypes.func,
+  initCaseList: PropTypes.func.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object),
+  isFetching: PropTypes.bool,
+  userDetails: PropTypes.object
 };
 
 export default CaseList;

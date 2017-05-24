@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { connect } from 'react-redux';
 import registry from 'app-registry';
@@ -39,8 +40,8 @@ class MainLayout extends React.Component {
 }
 
 MainLayout.propTypes = {
-  showDrawer: React.PropTypes.bool,
-  children: React.PropTypes.node
+  showDrawer: PropTypes.bool,
+  children: PropTypes.node
 };
 
 export default connect(mapStateToProps, null)(MainLayout);

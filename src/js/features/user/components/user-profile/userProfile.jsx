@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
 import { TextField, RaisedButton, FlatButton } from 'material-ui';
 import { ImageUpload } from '../../../../components/image-upload';
@@ -113,13 +114,13 @@ UserProfile = reduxForm({
 })(UserProfile);
 
 UserProfile.propTypes = {
-  handleSubmit: React.PropTypes.func,
-  initialValues: React.PropTypes.object,
-  onAvatarUpdate: React.PropTypes.func,
-  onCancel: React.PropTypes.func,
-  onSave: React.PropTypes.func,
-  pristine: React.PropTypes.bool,
-  submitting: React.PropTypes.bool
+  handleSubmit: PropTypes.func,
+  initialValues: PropTypes.object,
+  onAvatarUpdate: PropTypes.func,
+  onCancel: PropTypes.func,
+  onSave: PropTypes.func,
+  pristine: PropTypes.bool,
+  submitting: PropTypes.bool
 };
 
 export default UserProfile;

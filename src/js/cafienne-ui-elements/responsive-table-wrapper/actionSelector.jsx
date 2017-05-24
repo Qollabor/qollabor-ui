@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { IconButton, IconMenu, MenuItem } from 'material-ui';
 import { NavigationMoreVert } from 'material-ui/svg-icons';
 
@@ -53,11 +53,11 @@ export class ActionSelector extends React.Component {
 ActionSelector.displayName = 'ActionSelector';
 
 ActionSelector.propTypes = {
-  actionItems: React.PropTypes.object,
-  isDisabled: React.PropTypes.bool,
-  isVerifyAuth: React.PropTypes.bool,
-  onActionHandler: React.PropTypes.func.isRequired,
-  rowIndex: React.PropTypes.number
+  actionItems: PropTypes.object,
+  isDisabled: PropTypes.bool,
+  isVerifyAuth: PropTypes.bool,
+  onActionHandler: PropTypes.func.isRequired,
+  rowIndex: PropTypes.number
 };
 
 export default ActionSelector;

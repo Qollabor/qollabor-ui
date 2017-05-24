@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import { IconButton, Divider, MenuItem, Drawer } from 'material-ui';
 import { ActionAssignmentInd } from 'material-ui/svg-icons';
@@ -95,13 +96,13 @@ export class Header extends React.Component {
 }
 
 Header.propTypes = {
-  onLeftNavToggle: React.PropTypes.func,
-  showDrawer: React.PropTypes.bool
+  onLeftNavToggle: PropTypes.func,
+  showDrawer: PropTypes.bool
 };
 
 // Since this is not a <Route> component, we add History to the context
 Header.contextTypes = {
-  router: React.PropTypes.object
+  router: PropTypes.object
 };
 
 Header.displayName = 'Header';

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Avatar as MaterialAvatar } from 'material-ui';
 import Avatar from '../../user-avatar';
@@ -71,14 +72,14 @@ class AvatarList extends React.Component {
 }
 
 AvatarList.propTypes = {
-  chipView: React.PropTypes.bool,
-  disabled: React.PropTypes.bool,
-  people: React.PropTypes.array.isRequired,
-  maxPeopleInList: React.PropTypes.number.isRequired,
-  maxLength: React.PropTypes.number,
-  avatarSize: React.PropTypes.number,
-  onClick: React.PropTypes.func,
-  onShowMoreAction: React.PropTypes.func.isRequired
+  chipView: PropTypes.bool,
+  disabled: PropTypes.bool,
+  people: PropTypes.array.isRequired,
+  maxPeopleInList: PropTypes.number.isRequired,
+  maxLength: PropTypes.number,
+  avatarSize: PropTypes.number,
+  onClick: PropTypes.func,
+  onShowMoreAction: PropTypes.func.isRequired
 };
 
 export default AvatarList;

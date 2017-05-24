@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import debounce from 'lodash.debounce';
 import { Table, Column } from 'fixed-data-table';
 import Dimensions from 'react-dimensions';
@@ -124,16 +125,16 @@ class ResponsiveTableWrapper extends React.Component {
 }
 
 ResponsiveTableWrapper.propTypes = {
-  children: React.PropTypes.array,
-  columns: React.PropTypes.array,
-  containerHeight: React.PropTypes.number,
-  containerWidth: React.PropTypes.number,
-  onColumnVisibilityToggle: React.PropTypes.func,
-  padding: React.PropTypes.object,
-  refreshRate: React.PropTypes.number,
-  showActionSelector: React.PropTypes.bool,
-  showColumnChooser: React.PropTypes.bool,
-  showStatusIcon: React.PropTypes.bool
+  children: PropTypes.array,
+  columns: PropTypes.array,
+  containerHeight: PropTypes.number,
+  containerWidth: PropTypes.number,
+  onColumnVisibilityToggle: PropTypes.func,
+  padding: PropTypes.object,
+  refreshRate: PropTypes.number,
+  showActionSelector: PropTypes.bool,
+  showColumnChooser: PropTypes.bool,
+  showStatusIcon: PropTypes.bool
 };
 
 ResponsiveTableWrapper.defaultProps = {

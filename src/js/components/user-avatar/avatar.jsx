@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Avatar, Chip } from 'material-ui';
 import { fetchAvatar } from './helpers';
 import { calcInitials } from '../people-list/helpers/calcInitials';
@@ -97,11 +98,11 @@ export class UserAvatar extends React.Component {
 UserAvatar.displayName = 'UserAvatar';
 
 UserAvatar.propTypes = {
-  onClick: React.PropTypes.func,
-  padding: React.PropTypes.number,
-  size: React.PropTypes.number,
-  user: React.PropTypes.object.isRequired,
-  chipView: React.PropTypes.bool
+  onClick: PropTypes.func,
+  padding: PropTypes.number,
+  size: PropTypes.number,
+  user: PropTypes.object.isRequired,
+  chipView: PropTypes.bool
 };
 
 export default UserAvatar;

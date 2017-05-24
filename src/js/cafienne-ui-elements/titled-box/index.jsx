@@ -1,11 +1,11 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import styles from './styles';
 
 export const propTypes = {
-  title: React.PropTypes.string,
-  isFetching: React.PropTypes.bool,
-  error: React.PropTypes.object
+  title: PropTypes.string,
+  isFetching: PropTypes.bool,
+  error: PropTypes.object
 };
 
 export const TitledBox = (WrappedComponent) => {

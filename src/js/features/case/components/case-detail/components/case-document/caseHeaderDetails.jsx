@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import registry from 'app-registry';
 import { StatusCapsule } from '../../../../../../components/capsules';
 import ItemTextField from '../../../../../search/components/search-result/itemTextField';
@@ -50,14 +51,14 @@ class CaseHeaderDetails extends React.Component {
 }
 
 CaseHeaderDetails.propTypes = {
-  caseTeamUsers: React.PropTypes.array,
-  status: React.PropTypes.string,
-  lastModified: React.PropTypes.string.isRequired,
-  lastModifiedBy: React.PropTypes.string,
-  lastModifiedByUserDetails: React.PropTypes.object,
-  planItems: React.PropTypes.array,
-  user: React.PropTypes.string.isRequired,
-  team: React.PropTypes.array.isRequired
+  caseTeamUsers: PropTypes.array,
+  status: PropTypes.string,
+  lastModified: PropTypes.string.isRequired,
+  lastModifiedBy: PropTypes.string,
+  lastModifiedByUserDetails: PropTypes.object,
+  planItems: PropTypes.array,
+  user: PropTypes.string.isRequired,
+  team: PropTypes.array.isRequired
 };
 
 export default CaseHeaderDetails;

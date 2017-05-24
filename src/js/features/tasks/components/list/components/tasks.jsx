@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Paper } from 'material-ui';
 import registry from 'app-registry';
 
@@ -181,25 +182,25 @@ export class TaskList extends React.Component {
 TaskList.displayName = 'TaskList';
 
 TaskList.propTypes = {
-  columns: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  items: React.PropTypes.arrayOf(React.PropTypes.object),
-  error: React.PropTypes.shape({
-    message: React.PropTypes.string,
-    isError: React.PropTypes.bool
+  columns: PropTypes.arrayOf(PropTypes.object).isRequired,
+  items: PropTypes.arrayOf(PropTypes.object),
+  error: PropTypes.shape({
+    message: PropTypes.string,
+    isError: PropTypes.bool
   }),
-  onRowClick: React.PropTypes.func,
-  bodyHeight: React.PropTypes.number,
-  isFetching: React.PropTypes.bool.isRequired,
-  onMount: React.PropTypes.func,
-  onColumnVisibilityToggle: React.PropTypes.func.isRequired,
-  showDrawer: React.PropTypes.bool,
-  onTaskRowClick: React.PropTypes.func,
-  getNextSetOftasks: React.PropTypes.func,
-  executeTaskAction: React.PropTypes.func
+  onRowClick: PropTypes.func,
+  bodyHeight: PropTypes.number,
+  isFetching: PropTypes.bool.isRequired,
+  onMount: PropTypes.func,
+  onColumnVisibilityToggle: PropTypes.func.isRequired,
+  showDrawer: PropTypes.bool,
+  onTaskRowClick: PropTypes.func,
+  getNextSetOftasks: PropTypes.func,
+  executeTaskAction: PropTypes.func
 };
 
 TaskList.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default TaskList;

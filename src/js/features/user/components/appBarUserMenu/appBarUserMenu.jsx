@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { Popover, Menu, MenuItem, IconButton, Divider } from 'material-ui';
 import { ActionAccountCircle, ActionPowerSettingsNew, ActionLockOpen, ActionFace } from 'material-ui/svg-icons';
@@ -152,11 +152,11 @@ export class AppBarUserMenu extends React.Component {
 AppBarUserMenu.displayName = 'AppBarUserMenu';
 
 AppBarUserMenu.propTypes = {
-  avatarSize: React.PropTypes.number,
-  init: React.PropTypes.func,
-  isVerifyAuth: React.PropTypes.bool,
-  onLogout: React.PropTypes.func.isRequired,
-  profile: React.PropTypes.object
+  avatarSize: PropTypes.number,
+  init: PropTypes.func,
+  isVerifyAuth: PropTypes.bool,
+  onLogout: PropTypes.func.isRequired,
+  profile: PropTypes.object
 };
 
 export default AppBarUserMenu;
