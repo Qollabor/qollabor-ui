@@ -14,7 +14,7 @@ class CaseHeader extends React.Component {
   }
   render () {
     const { name, status, lastModified, lastModifiedBy,
-      user, team, userDetails, lastModifiedByUserDetails, caseTeamUsers, planItems } = this.props;
+      user, team, userDetails, caseTeamUsers, planItems } = this.props;
     return (
       <Card style={{ margin: '10px' }} initiallyExpanded={true}>
         <CardHeader
@@ -27,7 +27,6 @@ class CaseHeader extends React.Component {
           <CaseHeaderDetails
             status={status} lastModified={lastModified} lastModifiedBy={lastModifiedBy}
             user={user} team={team} userDetails={userDetails}
-            lastModifiedByUserDetails={lastModifiedByUserDetails}
             caseTeamUsers={caseTeamUsers} planItems={planItems}
           />
         </CardMedia>
@@ -41,7 +40,6 @@ CaseHeader.propTypes = {
   status: PropTypes.string.isRequired,
   lastModified: PropTypes.string.isRequired,
   lastModifiedBy: PropTypes.string,
-  lastModifiedByUserDetails: PropTypes.object,
   planItems: PropTypes.array,
   user: PropTypes.string.isRequired,
   file: PropTypes.object.isRequired,

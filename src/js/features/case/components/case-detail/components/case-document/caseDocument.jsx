@@ -49,7 +49,6 @@ class CaseDocument extends React.Component {
           name={caseDoc.name}
           file={caseDoc.file}
           userDetails={userDetails}
-          lastModifiedByUserDetails={userDetails}
           caseTeamUsers={caseTeamUsers}
           planItems={caseDoc.planitems}
         />}

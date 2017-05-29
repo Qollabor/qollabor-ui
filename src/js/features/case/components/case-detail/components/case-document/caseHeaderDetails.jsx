@@ -17,7 +17,7 @@ class CaseHeaderDetails extends React.Component {
   }
   render () {
     const { status, lastModified, lastModifiedBy,
-      team, lastModifiedByUserDetails, caseTeamUsers, planItems } = this.props;
+      team, userDetails, caseTeamUsers, planItems } = this.props;
     return (
       <div>
         <div style={flexContainer}>
@@ -30,7 +30,7 @@ class CaseHeaderDetails extends React.Component {
             />
           </div>
           <div style={{ marginLeft: '5px', width: '180px' }}>
-            <CaseUser userId={lastModifiedBy} userDetails={lastModifiedByUserDetails} label="Last Modified By" />
+            <CaseUser userId={lastModifiedBy} userDetails={userDetails} label="Last Modified By" />
           </div>
           <div style={{ padding: '0px 20px 20px 0px' }}>
             <CaseTeamViewer caseTeam={team} caseTeamUsers={caseTeamUsers} />
@@ -55,8 +55,8 @@ CaseHeaderDetails.propTypes = {
   status: PropTypes.string,
   lastModified: PropTypes.string.isRequired,
   lastModifiedBy: PropTypes.string,
-  lastModifiedByUserDetails: PropTypes.object,
-  planItems: PropTypes.array,
+  userDetails: PropTypes.object,
+  planItems: PropTypes.arrayOf(PropTypes.object),
   user: PropTypes.string.isRequired,
   team: PropTypes.array.isRequired
 };
