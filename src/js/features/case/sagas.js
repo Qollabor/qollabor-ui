@@ -183,3 +183,35 @@ export function* fetchCaseTeam(action) {
     yield put({ type: 'CASE:TEAM:FETCH:FAIL', error: err.message });
   }
 }
+
+export function* raiseEvent(action) {
+  if (!action || !action.caseInstanceId || !action.planItemId || !action.planItemName) {
+    yield put({
+      type: 'CASE:PLAN_ITEM:RAISE_EVENT:FAIL',
+      error: 'Must specify a case instance id, plan item id, plan item name to raise event'
+    });
+    return;
+  }
+
+  try {
+    const config = registry.get('config');
+    const store = registry.get('store');
+
+    yield put({ type: 'CASE:PLAN_ITEM:RAISE_EVENT' });
+    const response = yield registry.get('request')
+      .post(`${config.cases.url}/${action.caseInstanceId}/planitems/${action.planItemId}/occur`, null, {
+        headers: {
+          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
+        }
+      });
+
+    const caseLastModified = response.headers.get(config.cases.lastModifiedHttpHeader);
+    yield put({ type: 'APP:CASE_LAST_MODIFIED:SET', caseLastModified });
+    yield put(notifySuccess(`Successfully raised the event ${action.planItemName}`));
+    yield put({ type: 'CASE:PLAN_ITEM:RAISE_EVENT:SUCCESS' });
+    yield put({ type: 'CASE:REQUEST_INIT', caseId: action.caseInstanceId });
+  } catch (err) {
+    yield put({ type: 'CASE:PLAN_ITEM:RAISE_EVENT:FAIL', error: err.message });
+    yield put(notifyDanger(err.message));
+  }
+}

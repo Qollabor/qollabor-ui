@@ -7,8 +7,7 @@ import registry from 'app-registry';
 import { Details } from './components/details';
 
 import { DiscretionaryItems } from './components/discretionary-items';
-
-import { CaseInformation, CaseAttachments, CaseTeam } from '../case';
+import { CaseInformation, CaseAttachments, CaseEvents, CaseTeam } from '../case';
 
 import styles from './styles';
 
@@ -54,6 +53,8 @@ export class Task extends React.Component {
           <CaseTeam caseId={this.props.caseId} title="Case team" />
 
           <CaseInformation caseId={this.props.caseId} title="Case information" />
+
+          <CaseEvents title="Available events" />
 
           <DiscretionaryItems taskId={this.props.taskId} emptyListMessage="No items" />
 

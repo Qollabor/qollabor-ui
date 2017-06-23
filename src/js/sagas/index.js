@@ -7,7 +7,7 @@ import { logoutFlow, setLoggedUserFlow, unsetLoggedUserFlow,
 import { fetchTasks, viewTasks, executeTaskAction, fetchTasksStats } from '../features/tasks';
 
 import { fetchTaskDetails, viewTask, transitionToState, saveTaskDetails } from '../features/task';
-import { fetchCase, fetchCaseTeam, fetchDiscretionaryItems, planDiscretionaryItem } from '../features/case';
+import { fetchCase, fetchCaseTeam, fetchDiscretionaryItems, planDiscretionaryItem, raiseEvent } from '../features/case';
 import { resetAndfetchCaseModels, fetchCaseModelDetails,
   startCaseModel } from '../features/case-models';
 import { resetAndfetchUsersList } from '../components/user-selector/sagas';
@@ -46,6 +46,7 @@ const sagas = [
   [takeEvery, 'CASE:REQUEST_INIT', fetchDiscretionaryItems],
   [takeEvery, 'CASE:TEAM:REQUEST_INIT', fetchCaseTeam],
   [takeEvery, 'CASE:DISCRETIONARY_ITEMS:REQUEST_PLAN', planDiscretionaryItem],
+  [takeEvery, 'CASE:PLAN_ITEM:REQUEST_RAISE_EVENT', raiseEvent],
   // case model
   [takeEvery, 'CASEMODEL:LIST:INIT', resetAndfetchCaseModels],
   [takeEvery, 'CASEMODEL:DETAIL:INIT', fetchCaseModelDetails],
