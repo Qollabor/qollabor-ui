@@ -1,18 +1,23 @@
+import theme from '../../themes';
+
 export default {
   separator: {
-    color: 'gray',
     fontWeight: 'bold',
     marginLeft: '5px',
-    marginRight: '5px'
+    marginRight: '5px',
+    color: theme.appBar.textColor,
+    fontFamily: theme.fontFamily
   },
   itemUrl: {
     textDecoration: 'none',
-    color: 'black',
+    color: theme.appBar.textColor,
+    fontFamily: theme.fontFamily,
     ':hover': {
       textDecoration: 'underline'
     }
   },
   itemNoUrl: {
-    color: 'black'
+    color: theme.appBar.textColor,
+    fontFamily: theme.fontFamily
   }
 };

@@ -99,7 +99,21 @@ describe('features/tasks/sagas', () => {
           .toEqual(put({ type: 'TASKS:LIST:FETCH' }));
       });
 
+      it('should signal APP:BREADCRUMB:SET', () => {
+        generator.next();
+
+        expect(generator.next().value)
+          .toEqual(put({ type: 'APP:BREADCRUMB:SET',
+            breadcrumbItem:
+            {
+              label: 'My Tasks',
+              url: '#/'
+            }
+          }));
+      });
+
       it('should invoke request.get with the right parameters', () => {
+        generator.next();
         generator.next();
         generator.next();
 
@@ -123,6 +137,7 @@ describe('features/tasks/sagas', () => {
 
         generator.next();
         generator.next();
+        generator.next();
         const response = generator.next({
           body: {
             [dataKey]: fakeData
@@ -140,6 +155,7 @@ describe('features/tasks/sagas', () => {
           message: 'Winter never left'
         };
 
+        generator.next();
         generator.next();
         generator.next();
         const response = generator.throw(fakeError);

@@ -4,23 +4,14 @@ import React from 'react';
 import sinon from 'sinon';
 import Breadcrumb from '../index';
 
-describe('components/breadcrumb', () => {
-  const breadCrumbItems = [
-    {
-      label: 'My tasks',
-      url: '#/tasks'
-    },
-    {
-      label: 'current task',
-      url: ''
-    },
-    {
-      label: 'last task',
-      url: '#/tasks/lasttask'
-    }
-  ];
 
-  const breadCrumbItemsEmpty = [];
+describe('components/breadcrumb', () => {
+  const item =
+    {
+      label: 'My Tasks',
+      url: '#/',
+      description: 'Receive Greeting'
+    };
 
   beforeEach(() => {
     sinon.stub(console, 'error', (warning) => {
@@ -30,44 +21,37 @@ describe('components/breadcrumb', () => {
   /* eslint-disable no-console */
   afterEach(() => console.error.restore());
 
-  describe.skip('Load breadcrump without props', () => {
-    it('shouldnt load the breadcrump', () => {
+  describe.skip('Load breadcrumb without props', () => {
+    it('should not load the breadcrumb', () => {
       expect(() => shallow.bind(<Breadcrumb />))
-        .to.Throw('Warning: Failed propType: Required prop `items` was not specified in `Breadcrumb`');
+        .to.Throw('Warning: Failed propType: Required prop `currentTask` was not specified in `Breadcrumb`');
     });
   });
 
-  describe('Load Breadcrumb with list of items', () => {
-    it('should show the correct breadcrum items', () => {
-      expect(shallow(<Breadcrumb items={breadCrumbItems} />).find('.breadcrumb-url-item')).to.have.length(2);
+  describe('Load Breadcrumb with current task', () => {
+    it('should show the correct breadcrumb current tasks', () => {
+      expect(shallow(<Breadcrumb item={item} />).find('.breadcrumb-url-item').at(0).text()
+    ).to.equal('My Tasks');
     });
-    it('should show the correct breadcrum no url items', () => {
-      expect(shallow(<Breadcrumb items={breadCrumbItems} />).find('.breadcrumb-no-url-item')).to.have.length(1);
+    it('should show the correct breadcrumb no url items', () => {
+      expect(shallow(<Breadcrumb item={item} />).find('.breadcrumb-no-url-item').at(0).text()
+    ).to.equal('Receive Greeting');
     });
   });
 
   describe('Load Breadcrumb with separator', () => {
     it('should show the default \'>\' separator', () => {
       expect(
-        shallow(<Breadcrumb items={breadCrumbItems} />)
+        shallow(<Breadcrumb item={item} />)
         .find('.breadcrumb-separator').at(0).text()
       ).to.equal('>');
     });
 
     it('should show the correct separator', () => {
       expect(
-        shallow(<Breadcrumb items={breadCrumbItems} separator={'|'} />)
+        shallow(<Breadcrumb item={item} separator={'|'} />)
         .find('.breadcrumb-separator').at(0).text()
       ).to.equal('|');
-    });
-  });
-
-  describe('Load Breadcrumb with no items', () => {
-    it('should show a message no items found', () => {
-      expect(
-        shallow(<Breadcrumb items={breadCrumbItemsEmpty} />)
-        .contains('No breadcrumbs')
-      ).to.equal(true);
     });
   });
 });

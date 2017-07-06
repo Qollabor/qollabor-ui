@@ -9,6 +9,10 @@ import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import styles from './styles';
 import { TasksFilter } from '../tasks/components/filter';
 import CafienneSearch from '../search/components/searchbox';
+import { TaskBreadcrumb } from '../task/components/breadcrumb';
+
+// TODO Need to clear activeTask from breadcrumb-separator if nav to main myTask or unclaimed
+// TODO also, need to have breadcrumbs for Start Task and My Cases (w/ CaseDescription if applicable)
 
 const headerStyle = {
   position: 'fixed',
@@ -74,7 +78,7 @@ export class Header extends React.Component {
               />
             </IconButton>
           </ToolbarGroup>
-          <ToolbarGroup style={{ flexGrow: '4', justifyContent: 'flex-start' }} firstChild={false} lastChild={false}>
+          <ToolbarGroup style={{ flexGrow: '4', justifyContent: 'space-between' }} firstChild={false} lastChild={false}>
             <ToolbarTitle
               style={Object.assign({}, styles.title, {
                 color: theme.appBar.textColor,
@@ -83,7 +87,12 @@ export class Header extends React.Component {
               })}
               text="Cafienne"
             />
-            <CafienneSearch />
+            <ToolbarGroup style={{ flexGrow: '4', justifyContent: 'space-between' }} firstChild={false} lastChild={false}>
+
+              <TaskBreadcrumb />
+
+              <CafienneSearch />
+            </ToolbarGroup>
           </ToolbarGroup>
           <ToolbarGroup style={{ float: 'right' }} firstChild={false} lastChild={true}>
             <div style={{ display: 'inline-block' }}><AppBarUserMenu /></div>

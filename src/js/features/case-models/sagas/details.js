@@ -37,6 +37,13 @@ export function* fetchCaseModelDetails() {
     }
 
     yield put({ type: 'CASEMODEL:DETAIL:FETCH:SUCCESS', data: jsonObj, caseModelSchema });
+
+    const description = store.getState().casemodel.details.get('data').description;
+
+    yield put({ type: 'APP:BREADCRUMB:SET',
+      breadcrumbItem:
+        { label: 'Start Case', url: '#/casemodels', description }
+    });
   } catch (err) {
     registry.get('logger').error(err);
     yield put({ type: 'CASEMODEL:DETAIL:FETCH:FAIL', error: err.message });

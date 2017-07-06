@@ -7,7 +7,11 @@ const defaultState = Immutable.Map(
     showDrawer: true,
     showCaseUsers: false,
     headerMenu: [],
-    caseLastModified: null
+    caseLastModified: null,
+    breadcrumbItem: {
+      label: 'My Tasks',
+      url: '#/'
+    }
   }
 );
 
@@ -42,6 +46,9 @@ export default (state = defaultState, action) => {
 
     case 'APP:CASE_LAST_MODIFIED:SET':
       return state.set('caseLastModified', action.caseLastModified);
+
+    case 'APP:BREADCRUMB:SET':
+      return state.set('breadcrumbItem', action.breadcrumbItem);
 
     default :
       return state;

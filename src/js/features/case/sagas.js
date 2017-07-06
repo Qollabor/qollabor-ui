@@ -62,6 +62,17 @@ export function* fetchCase(action) {
     }
 
     yield* successFunc(theCase);
+
+    // Because Case Actions are called after a Task Detail is loaded,
+    // we want to make sure we ONLY update the breadcrumb for a case,
+    // if we are actually navigating to a case and not already loaded a task.
+    const taskDescription = store.getState().task.get('taskDetails').get('taskName');
+    if (!taskDescription) {
+      yield put({ type: 'APP:BREADCRUMB:SET',
+        breadcrumbItem:
+          { label: 'My Cases', url: '#/cases', description: theCase.definition }
+      });
+    }
   } catch (err) {
     yield* errorFunc(err.message);
   }

@@ -12,6 +12,11 @@ export function* fetchCaseModels() {
 
   yield put({ type: 'CASEMODEL:LIST:FETCH' });
 
+  yield put({ type: 'APP:BREADCRUMB:SET',
+    breadcrumbItem:
+      { label: 'Start Case', url: '#/casemodels' }
+  });
+
   try {
     const headers = helpers.addHeadersByName(['cafienneAuth']);
     const response = yield registry.get('request')

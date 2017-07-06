@@ -50,6 +50,10 @@ export const reducers = (state = defaultState, action) => {
           isError: true
         }));
 
+    case 'TASK:DETAIL:RESET':
+      return state
+        .set('taskDetails', defaultState.get('taskDetails'));
+
     case 'TASK:SET_REDIRECT':
       return state
         .set('redirectToCase', action.redirectToCase);

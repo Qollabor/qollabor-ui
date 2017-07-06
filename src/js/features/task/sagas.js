@@ -32,7 +32,12 @@ export function* fetchTaskDetails(action) {
     } else {
       taskDetails = response.body;
     }
+
     yield put({ type: 'TASK:FETCH:SUCCESS', taskDetails });
+
+    const tasksFilter = store.getState().tasks.filters.get('currentTasksFilter').get('label');
+    const description = store.getState().task.get('taskDetails').get('taskName');
+    yield put({ type: 'APP:BREADCRUMB:SET', breadcrumbItem: { label: tasksFilter, url: '#/', description } });
   } catch (err) {
     registry.get('logger').error(err);
     yield put({ type: 'TASK:FETCH:FAIL', error: err.message });
