@@ -33,7 +33,7 @@ build:
         - install-packages:
             packages: ruby
         - wantedly/pretty-slack-notify:
-            webhook_url: https://hooks.slack.com/services/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
+            webhook_url: https://hooks.slack.com/services/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
 deploy:
   box:
     id: nginx:alpine
