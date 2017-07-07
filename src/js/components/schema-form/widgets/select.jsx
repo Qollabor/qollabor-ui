@@ -1,10 +1,15 @@
 import React from 'react';
 import { SelectField, MenuItem } from 'material-ui';
-import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import styles from '../styles';
 
 export class SelectWidget extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
   handleOnChange(event, index, newValue) {
     this.props.onChange(newValue);
   }
@@ -22,17 +27,6 @@ export class SelectWidget extends React.Component {
     let help = null;
     if (this.props.uiSchema && this.props.uiSchema['ui:help']) {
       help = this.props.uiSchema['ui:help'];
-    }
-
-    if (this.props.readonly) {
-      return (
-        <ReadOnlyWidget
-          title={this.props.schema.title}
-          name={this.props.name}
-          value={this.props.formData}
-          help={help}
-        />
-      );
     }
 
     let helpWidget = false;
@@ -53,11 +47,15 @@ export class SelectWidget extends React.Component {
           name={this.props.name}
           floatingLabelText={title}
           floatingLabelFixed={true}
-          style={styles.field}
           floatingLabelFocusStyle={styles.floatingLabel}
           errorStyle={styles.errorLabel}
           value={this.props.formData}
-          disabled={this.props.disabled}
+          disabled={this.props.disabled || this.props.readonly}
+          style={styles.field}
+          iconStyle={this.props.readonly && { cursor: 'text' }}
+          labelStyle={this.props.readonly && { cursor: 'text' }}
+          underlineDisabledStyle={this.props.readonly && { cursor: 'text' }}
+          underlineStyle={this.props.readonly && { cursor: 'text' }}
           onChange={this.handleOnChange.bind(this)}
           {...errors}
         >

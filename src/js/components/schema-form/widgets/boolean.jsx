@@ -47,10 +47,11 @@ export class BooleanWidget extends React.Component {
         <Checkbox
           name={this.props.name}
           label={title}
-          style={styles.field}
           onCheck={this.handleOnCheck}
           checked={this.props.formData}
           disabled={this.props.disabled || this.props.readonly}
+          style={this.props.readonly && { cursor: 'text' }}
+
         />
       </div>);
   }

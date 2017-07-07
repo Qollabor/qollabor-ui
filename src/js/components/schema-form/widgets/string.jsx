@@ -1,14 +1,13 @@
 import React from 'react';
 import { TextField } from 'material-ui';
+import { optionsList } from 'react-jsonschema-form/lib/utils';
 import { DateWidget } from './date';
 import { DateTimeWidget } from './datetime';
-import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import { TimeWidget } from './time';
 import { SelectWidget } from './select';
 import { UserSelectorWidget } from './userselector';
 import { RadioWidget } from './radio';
-import { optionsList } from 'react-jsonschema-form/lib/utils';
 import styles from '../styles';
 
 export class StringWidget extends React.Component {
@@ -75,38 +74,16 @@ export class StringWidget extends React.Component {
       help = this.props.uiSchema['ui:help'];
     }
 
-    if (this.props.readonly) {
-      return (
-        <ReadOnlyWidget
-          title={this.props.schema.title}
-          name={this.props.name}
-          value={this.props.formData}
-          multiline={this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'textarea'}
-          help={help}
-        />
-      );
-    }
     const style = Object.assign({}, styles.field, { width: '100%' });
-
-    const floatingLabelShrinkStyle = Object.assign({}, styles.floatingLabel, {
-      transform: 'perspective(1px) scale(0.85) translate3d(0px, -24px, 0px)',
-      top: 18
-    });
 
     const textProps = Object.assign({}, {
       style,
-      floatingLabelShrinkStyle,
       errorStyle: styles.errorLabel
     });
 
     if (this.props.uiSchema && this.props.uiSchema['ui:widget'] === 'textarea') {
       textProps.multiLine = true;
-      textProps.rows = this.props.uiSchema['ui:rows'] || 4;
-      textProps.errorStyle = Object.assign({}, textProps.errorStyle,
-        { transform: 'translate3d(0px, -24px, 0px)' });
-    } else if (this.props.schema.title) {
-      textProps.style.height = '50px';
-      textProps.inputStyle = { height: '30px', top: '-2px' };
+      textProps.rows = 2;
     }
 
     let helpWidget = false;
@@ -126,10 +103,11 @@ export class StringWidget extends React.Component {
         <TextField
           name={this.props.name}
           floatingLabelText={title}
-          textareaStyle={{ marginTop: 16, marginBottom: 16 }}
           value={this.props.formData}
           onChange={this.handleOnChange}
-          disabled={this.props.disabled}
+          disabled={this.props.disabled || this.props.readonly}
+          inputStyle={this.props.readonly && { cursor: 'text' }}
+          underlineStyle={this.props.readonly && { cursor: 'text' }}
           {...errors}
           {...textProps}
         />

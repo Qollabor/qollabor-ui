@@ -1,6 +1,5 @@
 import React from 'react';
 import { TextField } from 'material-ui';
-import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import styles from '../styles';
 
@@ -30,17 +29,6 @@ export class IntegerWidget extends React.Component {
       help = this.props.uiSchema['ui:help'];
     }
 
-    if (this.props.readonly) {
-      return (
-        <ReadOnlyWidget
-          title={this.props.schema.title}
-          name={this.props.name}
-          value={this.props.formData}
-          help={help}
-        />
-      );
-    }
-
     let helpWidget = false;
     if (help) {
       helpWidget =
@@ -65,7 +53,9 @@ export class IntegerWidget extends React.Component {
           style={styles.field}
           value={this.props.formData}
           onChange={this.handleOnChange}
-          disabled={this.props.disabled}
+          disabled={this.props.disabled || this.props.readonly}
+          inputStyle={this.props.readonly && { cursor: 'text' }}
+          underlineStyle={this.props.readonly && { cursor: 'text' }}
           {...errors}
         />
       </div>
