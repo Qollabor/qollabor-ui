@@ -1,18 +1,13 @@
 import React from 'react';
 import { TimePicker } from 'material-ui';
-import { HelpWidget } from './help';
 import moment from 'moment';
+import { HelpWidget } from './help';
 import styles from '../styles';
-
-let activeTimeElmt = null;
-let timePickerDialog = null;
 
 export class TimeWidget extends React.Component {
   constructor(props) {
     super(props);
     this.handleOnChange = this.handleOnChange.bind(this);
-    this.handleOnFocus = this.handleOnFocus.bind(this);
-    this.handleOnDismiss = this.handleOnDismiss.bind(this);
   }
 
   formatTime(date) {
@@ -21,20 +16,8 @@ export class TimeWidget extends React.Component {
 
   handleOnChange(event, newDate) {
     this.props.onChange(moment(newDate).format('HH:mm:ss'));
-    activeTimeElmt.focus();
   }
 
-  handleOnFocus(event) {
-    activeTimeElmt = event.target;
-    timePickerDialog = this.refs.tp.refs.dialogWindow;
-    if (timePickerDialog.state.open === false) {
-      this.refs.tp.openDialog();
-    }
-  }
-
-  handleOnDismiss() {
-    activeTimeElmt.focus();
-  }
 
   render() {
     const time = this.props.formData ? moment(this.props.formData, 'HH:mm:ss').toDate() : null;

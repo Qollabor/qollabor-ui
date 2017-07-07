@@ -4,41 +4,14 @@ import moment from 'moment';
 import { HelpWidget } from './help';
 import styles from '../styles';
 
-let activeDateElmt = null;
-let datePickerDialog = null;
-
 export class DateWidget extends React.Component {
-  /*
-    Material UI datepicker does not allow tabbing, also does not
-    return the focus back to the controller after date selection.
-    Hence we are manually handling both the features.
-    Focus is set to the controller after a date selection
-    or when the date controller is dismissed.
-    Similary we are opening the date controller on focus of the
-    controller, so that date controller is active while tabbing.
-  */
   constructor(props) {
     super(props);
     this.handleOnChange = this.handleOnChange.bind(this);
-    this.handleOnFocus = this.handleOnFocus.bind(this);
-    this.handleOnDismiss = this.handleOnDismiss.bind(this);
   }
 
   handleOnChange(event, newDate) {
     this.props.onChange(this.formatDate(newDate));
-    activeDateElmt.focus();
-  }
-
-  handleOnFocus(event) {
-    activeDateElmt = event.target;
-    datePickerDialog = this.refs.dp.refs.dialogWindow;
-    if (datePickerDialog.state.open === false) {
-      this.refs.dp.openDialog();
-    }
-  }
-
-  handleOnDismiss() {
-    activeDateElmt.focus();
   }
 
   formatDate(date) {
@@ -98,8 +71,6 @@ export class DateWidget extends React.Component {
           floatingLabelFixed={true}
           floatingLabelFocusStyle={styles.floatingLabel}
           errorStyle={errorStyle}
-          onFocus={this.handleOnFocus}
-          onDismiss={this.handleOnDismiss}
           onChange={this.handleOnChange}
           disabled={this.props.disabled || this.props.readonly}
           textFieldStyle={this.props.readonly && { cursor: 'text' }}
