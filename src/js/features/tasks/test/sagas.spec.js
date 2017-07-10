@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-expressions */
 import sinon from 'sinon';
-
 import Immutable from 'immutable';
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 
+import { notifyDanger } from '../../notifier';
 import { fetchTasks, fetchTask, executeTaskAction } from '../sagas';
 import helpers from '../../../helpers';
 import { sanitizeAfterLoad } from '../../../helpers/task/sanitizeAfterLoad';
@@ -280,6 +280,28 @@ describe('features/tasks/sagas', () => {
         expect(
           generator.next().value)
           .toEqual(put({ type: 'TASK:ITEM:EXECUTE_ACTION:SUCCESS' }));
+      });
+    });
+
+    describe('When the request fails', () => {
+      it('should notify danger message', () => {
+        const message = 'Fake error message';
+
+        generator.next();
+        generator.next();
+        expect(generator.throw({ message }).value)
+          .toEqual(put(notifyDanger(message)));
+      });
+
+      it('should signal TASK:ITEM:EXECUTE_ACTION:FAIL', () => {
+        const message = 'Fake error message';
+
+        generator.next();
+        generator.next();
+        generator.throw({ message });
+
+        expect(generator.next().value)
+          .toEqual(put({ type: 'TASK:ITEM:EXECUTE_ACTION:FAIL', error: message }));
       });
     });
   });
