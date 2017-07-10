@@ -13,8 +13,6 @@ function getFormErrors(username, password) {
 
   if (!isPresent(username)) {
     usernameError = 'Username may not be empty.';
-  } else if (username.length > 16) {
-    usernameError = 'Username may not be longer than 16 characters.';
   }
 
   if (!isPresent(password)) {
