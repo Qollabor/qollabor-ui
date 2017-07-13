@@ -126,13 +126,13 @@ export function* executeTaskAction(action) {
         break;
       }
       default:
-        notifyDanger('Unable to execute action');
+        yield put(notifyDanger('Unable to execute action'));
         yield put({ type: 'TASK:ITEM:EXECUTE_ACTION:FAIL', error: response.body });
         break;
     }
   } catch (err) {
     registry.get('logger').error(err);
-    notifyDanger('Unable to execute action');
+    yield put(notifyDanger(err.message));
     yield put({ type: 'TASK:ITEM:EXECUTE_ACTION:FAIL', error: err.message });
   }
 }
