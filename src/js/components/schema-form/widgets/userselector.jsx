@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Popover } from 'material-ui';
 import registry from 'app-registry';
 import AvatarList from '../../people-list/components/avatarList';
@@ -222,23 +223,23 @@ export class UserSelectorWidget extends React.Component {
 }
 
 UserSelectorWidget.propTypes = {
-  disabled: React.PropTypes.bool,
-  error: React.PropTypes.shape({
-    isError: React.PropTypes.bool,
-    message: React.PropTypes.string
+  disabled: PropTypes.bool,
+  error: PropTypes.shape({
+    isError: PropTypes.bool,
+    message: PropTypes.string
   }),
-  errorSchema: React.PropTypes.object,
-  formData: React.PropTypes.string,
-  name: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  readonly: React.PropTypes.bool,
-  required: React.PropTypes.bool,
-  schema: React.PropTypes.shape({
-    title: React.PropTypes.string,
-    type: React.PropTypes.string
+  errorSchema: PropTypes.object,
+  formData: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  readonly: PropTypes.bool,
+  required: PropTypes.bool,
+  schema: PropTypes.shape({
+    title: PropTypes.string,
+    type: PropTypes.string
   }),
-  uiSchema: React.PropTypes.shape({
-    multiSelect: React.PropTypes.bool,
-    role: React.PropTypes.string
+  uiSchema: PropTypes.shape({
+    multiSelect: PropTypes.bool,
+    role: PropTypes.string
   })
 };

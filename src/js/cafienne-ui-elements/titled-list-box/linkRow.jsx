@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontIcon } from 'material-ui';
 
 import styles from './styles';
@@ -22,12 +23,12 @@ export class LinkRow extends React.Component {
 }
 
 LinkRow.propTypes = {
-  item: React.PropTypes.shape({
-    url: React.PropTypes.string.isRequired,
-    icon: React.PropTypes.string,
-    color: React.PropTypes.string
+  item: PropTypes.shape({
+    url: PropTypes.string.isRequired,
+    icon: PropTypes.string,
+    color: PropTypes.string
   }),
-  labelField: React.PropTypes.string.isRequired
+  labelField: PropTypes.string.isRequired
 };
 
 LinkRow.displayName = 'LinkRow';

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import styles from './styles';
@@ -20,6 +21,6 @@ export class FieldTitle extends React.Component {
 }
 
 FieldTitle.propTypes = {
-  idSchema: React.PropTypes.object,
-  title: React.PropTypes.string
+  idSchema: PropTypes.object,
+  title: PropTypes.string
 };

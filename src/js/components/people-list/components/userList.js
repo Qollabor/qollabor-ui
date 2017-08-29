@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Avatar from '../../user-avatar';
 import { List, ListItem, Checkbox } from 'material-ui';
@@ -59,11 +60,11 @@ class UserList extends React.Component {
 }
 
 UserList.propTypes = {
-  people: React.PropTypes.array,
-  canSelectUsers: React.PropTypes.bool,
-  onClick: React.PropTypes.func,
-  onUserSelectChange: React.PropTypes.func,
-  avatarSize: React.PropTypes.number
+  people: PropTypes.array,
+  canSelectUsers: PropTypes.bool,
+  onClick: PropTypes.func,
+  onUserSelectChange: PropTypes.func,
+  avatarSize: PropTypes.number
 };
 
 export default UserList;

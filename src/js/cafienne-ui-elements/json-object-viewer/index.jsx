@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FlatButton, Dialog } from 'material-ui';
 
 import { JsonPrinter } from './jsonPrinter';
@@ -57,11 +58,11 @@ export class JsonObjectViewer extends React.Component {
 }
 
 JsonObjectViewer.propTypes = {
-  modalTitle: React.PropTypes.string.isRequired,
-  buttonTitle: React.PropTypes.string.isRequired,
-  buttonStyle: React.PropTypes.object,
-  buttonIsPrimary: React.PropTypes.boolean,
-  object: React.PropTypes.object.isRequired
+  modalTitle: PropTypes.string.isRequired,
+  buttonTitle: PropTypes.string.isRequired,
+  buttonStyle: PropTypes.object,
+  buttonIsPrimary: PropTypes.boolean,
+  object: PropTypes.object.isRequired
 };
 
 export default JsonObjectViewer;

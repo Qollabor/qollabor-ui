@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { List } from 'material-ui';
 import DiscretionaryItem from './discretionaryItem';
 
@@ -10,6 +11,6 @@ class DiscretionaryItems extends React.Component {
   }
 }
 DiscretionaryItems.propTypes = {
-  items: React.PropTypes.array.isRequired
+  items: PropTypes.array.isRequired
 };
 export default DiscretionaryItems;

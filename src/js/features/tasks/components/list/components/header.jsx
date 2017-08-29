@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { ColumnPicker } from '../../../../../cafienne-ui-elements';
 
 import styles from './../styles';
@@ -37,8 +37,8 @@ export class TaskListHeader extends React.Component {
 
 TaskListHeader.displayName = 'TaskListHeader';
 TaskListHeader.propTypes = {
-  columns: React.PropTypes.array.isRequired,
-  onColumnVisibilityToggle: React.PropTypes.func.isRequired
+  columns: PropTypes.array.isRequired,
+  onColumnVisibilityToggle: PropTypes.func.isRequired
 };
 
 export default TaskListHeader;

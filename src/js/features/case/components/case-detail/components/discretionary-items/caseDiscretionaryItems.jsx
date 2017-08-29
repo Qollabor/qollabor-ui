@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardText, Badge } from 'material-ui';
 import registry from 'app-registry';
 import DiscretionaryItems from './discretionaryItems';
@@ -43,7 +44,7 @@ class CaseDiscretionaryItems extends React.Component {
   }
 }
 CaseDiscretionaryItems.propTypes = {
-  items: React.PropTypes.array.isRequired
+  items: PropTypes.array.isRequired
 };
 
 export default CaseDiscretionaryItems;

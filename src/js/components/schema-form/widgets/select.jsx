@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { SelectField, MenuItem } from 'material-ui';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
@@ -69,15 +70,15 @@ export class SelectWidget extends React.Component {
 }
 
 SelectWidget.propTypes = {
-  disabled: React.PropTypes.bool,
-  error: React.PropTypes.object,
-  errorSchema: React.PropTypes.object,
-  formData: React.PropTypes.string,
-  name: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  options: React.PropTypes.array,
-  readonly: React.PropTypes.bool,
-  required: React.PropTypes.bool,
-  schema: React.PropTypes.object,
-  uiSchema: React.PropTypes.object
+  disabled: PropTypes.bool,
+  error: PropTypes.object,
+  errorSchema: PropTypes.object,
+  formData: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  options: PropTypes.array,
+  readonly: PropTypes.bool,
+  required: PropTypes.bool,
+  schema: PropTypes.object,
+  uiSchema: PropTypes.object
 };

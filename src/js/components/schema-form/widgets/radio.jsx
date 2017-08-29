@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { RadioButtonGroup, RadioButton } from 'material-ui';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
@@ -83,14 +84,14 @@ export class RadioWidget extends React.Component {
 }
 
 RadioWidget.propTypes = {
-  errorSchema: React.PropTypes.object,
-  defaultSelected: React.PropTypes.string,
-  formData: React.PropTypes.string,
-  name: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  options: React.PropTypes.object,
-  readonly: React.PropTypes.bool,
-  required: React.PropTypes.bool,
-  schema: React.PropTypes.object,
-  uiSchema: React.PropTypes.object
+  errorSchema: PropTypes.object,
+  defaultSelected: PropTypes.string,
+  formData: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  options: PropTypes.object,
+  readonly: PropTypes.bool,
+  required: PropTypes.bool,
+  schema: PropTypes.object,
+  uiSchema: PropTypes.object
 };

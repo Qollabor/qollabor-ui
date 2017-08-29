@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Popover, Menu, MenuItem, IconButton, FontIcon } from 'material-ui';
 import PopoverAnimationFromTop from 'material-ui/Popover/PopoverAnimationVertical';
 
@@ -85,9 +85,9 @@ export class ColumnPicker extends React.Component {
 
 ColumnPicker.displayName = 'ColumnPicker';
 ColumnPicker.propTypes = {
-  columns: React.PropTypes.array.isRequired,
-  onMenuItemClicked: React.PropTypes.func.isRequired,
-  style: React.PropTypes.object
+  columns: PropTypes.array.isRequired,
+  onMenuItemClicked: PropTypes.func.isRequired,
+  style: PropTypes.object
 };
 
 export default ColumnPicker;

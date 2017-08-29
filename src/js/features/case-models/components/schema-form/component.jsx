@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form } from '../../../../components/schema-form/form';
 
 export class CaseModelSchemaForm extends React.Component {
@@ -16,11 +17,11 @@ export class CaseModelSchemaForm extends React.Component {
 }
 
 CaseModelSchemaForm.propTypes = {
-  buttonList: React.PropTypes.array,
-  formData: React.PropTypes.object,
-  schema: React.PropTypes.object.isRequired,
-  onSubmit: React.PropTypes.func.isRequired,
-  uiSchema: React.PropTypes.object
+  buttonList: PropTypes.array,
+  formData: PropTypes.object,
+  schema: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  uiSchema: PropTypes.object
 };
 
 export default CaseModelSchemaForm;

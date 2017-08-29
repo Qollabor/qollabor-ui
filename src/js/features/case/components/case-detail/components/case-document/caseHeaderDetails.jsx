@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import registry from 'app-registry';
 import { StatusCapsule } from '../../../../../../components/capsules';
 import ItemTextField from '../../../../../search/components/search-result/itemTextField';
@@ -16,7 +17,7 @@ class CaseHeaderDetails extends React.Component {
   }
   render () {
     const { status, lastModified, lastModifiedBy,
-      team, lastModifiedByUserDetails, caseTeamUsers, planItems } = this.props;
+      team, userDetails, caseTeamUsers, planItems } = this.props;
     return (
       <div>
         <div style={flexContainer}>
@@ -29,7 +30,7 @@ class CaseHeaderDetails extends React.Component {
             />
           </div>
           <div style={{ marginLeft: '5px', width: '180px' }}>
-            <CaseUser userId={lastModifiedBy} userDetails={lastModifiedByUserDetails} label="Last Modified By" />
+            <CaseUser userId={lastModifiedBy} userDetails={userDetails} label="Last Modified By" />
           </div>
           <div style={{ padding: '0px 20px 20px 0px' }}>
             <CaseTeamViewer caseTeam={team} caseTeamUsers={caseTeamUsers} />
@@ -50,14 +51,14 @@ class CaseHeaderDetails extends React.Component {
 }
 
 CaseHeaderDetails.propTypes = {
-  caseTeamUsers: React.PropTypes.array,
-  status: React.PropTypes.string,
-  lastModified: React.PropTypes.string.isRequired,
-  lastModifiedBy: React.PropTypes.string,
-  lastModifiedByUserDetails: React.PropTypes.object,
-  planItems: React.PropTypes.array,
-  user: React.PropTypes.string.isRequired,
-  team: React.PropTypes.array.isRequired
+  caseTeamUsers: PropTypes.array,
+  status: PropTypes.string,
+  lastModified: PropTypes.string.isRequired,
+  lastModifiedBy: PropTypes.string,
+  userDetails: PropTypes.object,
+  planItems: PropTypes.arrayOf(PropTypes.object),
+  user: PropTypes.string.isRequired,
+  team: PropTypes.array.isRequired
 };
 
 export default CaseHeaderDetails;

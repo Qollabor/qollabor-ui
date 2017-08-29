@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Paper, TextField, RaisedButton, FlatButton, RefreshIndicator } from 'material-ui';
 
 import styles from './styles';
@@ -155,11 +155,11 @@ export class LoginForm extends React.Component {
 LoginForm.displayName = 'LoginForm';
 
 LoginForm.propTypes = {
-  alignCenter: React.PropTypes.bool,
-  errors: React.PropTypes.object,
-  isLoggingIn: React.PropTypes.bool,
-  onLogin: React.PropTypes.func.isRequired,
-  onCancel: React.PropTypes.func.isRequired
+  alignCenter: PropTypes.bool,
+  errors: PropTypes.object,
+  isLoggingIn: PropTypes.bool,
+  onLogin: PropTypes.func.isRequired,
+  onCancel: PropTypes.func.isRequired
 };
 
 export default LoginForm;

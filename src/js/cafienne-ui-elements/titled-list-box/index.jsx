@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { TitledBox } from '../titled-box';
 import { LinkRow } from './linkRow';
 import { ActionRow } from './actionRow';
@@ -26,10 +26,10 @@ export class TitledListBoxComponent extends React.Component {
 }
 
 TitledListBoxComponent.propTypes = {
-  emptyListMessage: React.PropTypes.string,
-  items: React.PropTypes.array.isRequired,
-  labelField: React.PropTypes.string.isRequired,
-  title: React.PropTypes.string.isRequired
+  emptyListMessage: PropTypes.string,
+  items: PropTypes.array.isRequired,
+  labelField: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export const TitledListBox = TitledBox(TitledListBoxComponent);

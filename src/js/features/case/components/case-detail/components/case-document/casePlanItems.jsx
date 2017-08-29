@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardText, Badge } from 'material-ui';
 import PlanItems from './planItems';
 
@@ -38,7 +39,7 @@ const CasePlanItems = ({ items }) => {
 };
 
 CasePlanItems.propTypes = {
-  items: React.PropTypes.array.isRequired
+  items: PropTypes.array.isRequired
 };
 
 export default CasePlanItems;

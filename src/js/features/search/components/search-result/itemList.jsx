@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { List } from 'material-ui';
 import { Item } from './item';
 
@@ -10,6 +11,6 @@ class ItemList extends React.Component {
   }
 }
 ItemList.propTypes = {
-  items: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+  items: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 export default ItemList;

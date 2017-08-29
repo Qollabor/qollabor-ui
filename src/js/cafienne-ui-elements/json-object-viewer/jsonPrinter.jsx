@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import styles from './styles';
 
 export class JsonPrinter extends React.Component {
@@ -33,7 +33,7 @@ export class JsonPrinter extends React.Component {
 }
 
 JsonPrinter.propTypes = {
-  object: React.PropTypes.object.isRequired
+  object: PropTypes.object.isRequired
 };
 
 export default JsonPrinter;

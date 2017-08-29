@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PlanItem from './planItem';
 import { List } from 'material-ui';
 
@@ -10,6 +11,6 @@ class PlanItems extends React.Component {
   }
 }
 PlanItems.propTypes = {
-  items: React.PropTypes.array.isRequired
+  items: PropTypes.array.isRequired
 };
 export default PlanItems;

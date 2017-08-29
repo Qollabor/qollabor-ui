@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TitledListBox } from '../../../../cafienne-ui-elements';
 
 export class CaseAttachments extends React.Component {
@@ -20,9 +21,9 @@ export class CaseAttachments extends React.Component {
 }
 
 CaseAttachments.propTypes = {
-  attachments: React.PropTypes.array,
-  isFetching: React.PropTypes.bool.isRequired,
-  error: React.PropTypes.object.isRequired
+  attachments: PropTypes.array,
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.object.isRequired
 };
 
 export default CaseAttachments;

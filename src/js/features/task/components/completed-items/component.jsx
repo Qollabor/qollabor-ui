@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TitledListBox } from '../../../../cafienne-ui-elements';
 
 class CompletedItems extends React.Component {
@@ -20,9 +21,9 @@ class CompletedItems extends React.Component {
 CompletedItems.displayName = 'CompletedItems';
 
 CompletedItems.propTypes = {
-  isFetching: React.PropTypes.bool.isRequired,
-  completedTasks: React.PropTypes.array.isRequired,
-  error: React.PropTypes.object
+  isFetching: PropTypes.bool.isRequired,
+  completedTasks: PropTypes.array.isRequired,
+  error: PropTypes.object
 };
 
 export default CompletedItems;

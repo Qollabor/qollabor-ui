@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { List as DefinitionList, ListItem } from 'material-ui';
 import registry from 'app-registry';
 import TextFilter from '../../../../components/text-filter';
@@ -69,12 +70,12 @@ class List extends React.Component {
 }
 
 List.propTypes = {
-  error: React.PropTypes.object,
-  filterData: React.PropTypes.func,
-  items: React.PropTypes.object.isRequired,
-  isFetching: React.PropTypes.bool.isRequired,
-  filterString: React.PropTypes.string,
-  onTouchTap: React.PropTypes.func
+  error: PropTypes.object,
+  filterData: PropTypes.func,
+  items: PropTypes.object.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  filterString: PropTypes.string,
+  onTouchTap: PropTypes.func
 };
 
 export default List;

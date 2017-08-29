@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import UserAvatar from '../user-avatar';
 
 export class ImageUpload extends React.Component {
@@ -73,8 +74,8 @@ export class ImageUpload extends React.Component {
 ImageUpload.displayName = 'ImageUpload';
 
 ImageUpload.propTypes = {
-  user: React.PropTypes.object.isRequired,
-  onUploadHandler: React.PropTypes.func.isRequired
+  user: PropTypes.object.isRequired,
+  onUploadHandler: PropTypes.func.isRequired
 };
 
 export default ImageUpload;

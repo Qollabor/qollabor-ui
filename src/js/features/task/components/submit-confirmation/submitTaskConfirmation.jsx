@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import registry from 'app-registry';
 import { RaisedButton, Paper, FontIcon } from 'material-ui';
@@ -74,17 +75,17 @@ export class SubmitTaskDetails extends React.Component {
 }
 
 SubmitTaskDetails.propTypes = {
-  data: React.PropTypes.string,
-  error: React.PropTypes.object,
-  taskId: React.PropTypes.string.isRequired,
-  caseId: React.PropTypes.string.isRequired,
-  isSuccess: React.PropTypes.bool,
-  message: React.PropTypes.string,
-  transitionToState: React.PropTypes.func
+  data: PropTypes.string,
+  error: PropTypes.object,
+  taskId: PropTypes.string.isRequired,
+  caseId: PropTypes.string.isRequired,
+  isSuccess: PropTypes.bool,
+  message: PropTypes.string,
+  transitionToState: PropTypes.func
 };
 
 SubmitTaskDetails.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default SubmitTaskDetails;

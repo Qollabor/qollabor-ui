@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const defaultBadgeStyle = {
@@ -18,9 +19,9 @@ export const Capsule = ({ children, statusStyle }) => {
 };
 
 Capsule.propTypes = {
-  children: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  backgroundColor: React.PropTypes.string,
-  statusStyle: React.PropTypes.object
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  backgroundColor: PropTypes.string,
+  statusStyle: PropTypes.object
 };
 
 Capsule.defaultProps = {
@@ -53,7 +54,7 @@ export const StatusCapsule = ({ status, children, statusStyle }) => {
 };
 
 StatusCapsule.propTypes = {
-  status: React.PropTypes.string,
-  children: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.number]),
-  statusStyle: React.PropTypes.object
+  status: PropTypes.string,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  statusStyle: PropTypes.object
 };

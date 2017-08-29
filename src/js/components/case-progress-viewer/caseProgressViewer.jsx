@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import moment from 'moment';
 import registry from 'app-registry';
@@ -59,5 +60,5 @@ export default class CaseProgressViewer extends React.Component {
 }
 
 CaseProgressViewer.propTypes = {
-  items: React.PropTypes.arrayOf(React.PropTypes.object)
+  items: PropTypes.arrayOf(PropTypes.object)
 };

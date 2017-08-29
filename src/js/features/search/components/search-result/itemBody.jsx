@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class ItemBody extends React.Component {
   render () {
@@ -7,7 +8,7 @@ class ItemBody extends React.Component {
 }
 
 ItemBody.propTypes = {
-  children: React.PropTypes.node
+  children: PropTypes.node
 };
 
 export default ItemBody;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Paper, FlatButton, RaisedButton, Dialog } from 'material-ui';
 import { Form } from '../../../../components/schema-form/form';
 
@@ -78,14 +79,14 @@ export class TaskModelSchemaForm extends React.Component {
 }
 
 TaskModelSchemaForm.propTypes = {
-  buttonList: React.PropTypes.array,
-  disabled: React.PropTypes.bool,
-  executeTaskAction: React.PropTypes.func,
-  formData: React.PropTypes.object,
-  schema: React.PropTypes.object.isRequired,
-  onSubmit: React.PropTypes.func.isRequired,
-  taskDetails: React.PropTypes.object,
-  uiSchema: React.PropTypes.object
+  buttonList: PropTypes.array,
+  disabled: PropTypes.bool,
+  executeTaskAction: PropTypes.func,
+  formData: PropTypes.object,
+  schema: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  taskDetails: PropTypes.object,
+  uiSchema: PropTypes.object
 };
 
 export default TaskModelSchemaForm;

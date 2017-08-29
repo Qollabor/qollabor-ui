@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { DatePicker } from 'material-ui';
 import moment from 'moment';
 import { ReadOnlyWidget } from './readonly';
@@ -123,18 +124,18 @@ export class DateWidget extends React.Component {
 }
 
 DateWidget.propTypes = {
-  disabled: React.PropTypes.bool,
-  error: React.PropTypes.object,
-  errorSchema: React.PropTypes.object,
-  formData: React.PropTypes.string,
-  name: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  readonly: React.PropTypes.bool,
-  required: React.PropTypes.bool,
-  schema: React.PropTypes.shape({
-    format: React.PropTypes.string,
-    title: React.PropTypes.string,
-    type: React.PropTypes.string
+  disabled: PropTypes.bool,
+  error: PropTypes.object,
+  errorSchema: PropTypes.object,
+  formData: PropTypes.string,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  readonly: PropTypes.bool,
+  required: PropTypes.bool,
+  schema: PropTypes.shape({
+    format: PropTypes.string,
+    title: PropTypes.string,
+    type: PropTypes.string
   }),
-  uiSchema: React.PropTypes.object
+  uiSchema: PropTypes.object
 };

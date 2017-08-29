@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 const defaultBadgeStyle = {
@@ -78,12 +79,12 @@ const getCMMNItemDetail = (itemName) => {
 };
 
 CMMNIcon.propTypes = {
-  children: React.PropTypes.node,
-  itemName: React.PropTypes.string,
-  backgroundColor: React.PropTypes.string,
-  className: React.PropTypes.string,
-  showDescription: React.PropTypes.bool,
-  style: React.PropTypes.object
+  children: PropTypes.node,
+  itemName: PropTypes.string,
+  backgroundColor: PropTypes.string,
+  className: PropTypes.string,
+  showDescription: PropTypes.bool,
+  style: PropTypes.object
 };
 
 export { CMMNIcon };

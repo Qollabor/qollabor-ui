@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TextField } from 'material-ui';
 import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
@@ -74,14 +75,14 @@ export class NumberWidget extends React.Component {
 }
 
 NumberWidget.propTypes = {
-  disabled: React.PropTypes.bool,
-  error: React.PropTypes.object,
-  errorSchema: React.PropTypes.object,
-  formData: React.PropTypes.number,
-  name: React.PropTypes.string,
-  onChange: React.PropTypes.func,
-  readonly: React.PropTypes.bool,
-  required: React.PropTypes.bool,
-  schema: React.PropTypes.object,
-  uiSchema: React.PropTypes.object
+  disabled: PropTypes.bool,
+  error: PropTypes.object,
+  errorSchema: PropTypes.object,
+  formData: PropTypes.number,
+  name: PropTypes.string,
+  onChange: PropTypes.func,
+  readonly: PropTypes.bool,
+  required: PropTypes.bool,
+  schema: PropTypes.object,
+  uiSchema: PropTypes.object
 };

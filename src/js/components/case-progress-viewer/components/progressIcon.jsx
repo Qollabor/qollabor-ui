@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { AvFiberManualRecord } from 'material-ui/svg-icons';
 import { green500, blue500 } from 'material-ui/styles/colors';
 
@@ -23,5 +24,5 @@ export default class ProgressPopover extends React.Component {
 }
 
 ProgressPopover.propTypes = {
-  status: React.PropTypes.string
+  status: PropTypes.string
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Subheader, Popover } from 'material-ui';
 import AvatarList from '../../../../components/people-list/components/avatarList';
 import UserSelector from '../../../../components/user-selector';
@@ -85,10 +86,10 @@ class CaseTeamSelector extends React.Component {
 CaseTeamSelector.displayName = 'CaseTeamSelector';
 
 CaseTeamSelector.propTypes = {
-  initCaseTeam: React.PropTypes.func,
-  roles: React.PropTypes.object.isRequired,
-  setUsersForCaseTeamRoles: React.PropTypes.func,
-  teamRoles: React.PropTypes.array
+  initCaseTeam: PropTypes.func,
+  roles: PropTypes.object.isRequired,
+  setUsersForCaseTeamRoles: PropTypes.func,
+  teamRoles: PropTypes.array
 };
 
 export default CaseTeamSelector;

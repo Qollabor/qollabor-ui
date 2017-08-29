@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardMedia } from 'material-ui';
 import registry from 'app-registry';
 import CaseHeaderDetails from './caseHeaderDetails';
@@ -13,7 +14,7 @@ class CaseHeader extends React.Component {
   }
   render () {
     const { name, status, lastModified, lastModifiedBy,
-      user, team, userDetails, lastModifiedByUserDetails, caseTeamUsers, planItems } = this.props;
+      user, team, userDetails, caseTeamUsers, planItems } = this.props;
     return (
       <Card style={{ margin: '10px' }} initiallyExpanded={true}>
         <CardHeader
@@ -26,7 +27,6 @@ class CaseHeader extends React.Component {
           <CaseHeaderDetails
             status={status} lastModified={lastModified} lastModifiedBy={lastModifiedBy}
             user={user} team={team} userDetails={userDetails}
-            lastModifiedByUserDetails={lastModifiedByUserDetails}
             caseTeamUsers={caseTeamUsers} planItems={planItems}
           />
         </CardMedia>
@@ -35,17 +35,16 @@ class CaseHeader extends React.Component {
   }
 }
 CaseHeader.propTypes = {
-  caseTeamUsers: React.PropTypes.array,
-  name: React.PropTypes.string.isRequired,
-  status: React.PropTypes.string.isRequired,
-  lastModified: React.PropTypes.string.isRequired,
-  lastModifiedBy: React.PropTypes.string,
-  lastModifiedByUserDetails: React.PropTypes.object,
-  planItems: React.PropTypes.array,
-  user: React.PropTypes.string.isRequired,
-  file: React.PropTypes.object.isRequired,
-  team: React.PropTypes.array.isRequired,
-  userDetails: React.PropTypes.object
+  caseTeamUsers: PropTypes.array,
+  name: PropTypes.string.isRequired,
+  status: PropTypes.string.isRequired,
+  lastModified: PropTypes.string.isRequired,
+  lastModifiedBy: PropTypes.string,
+  planItems: PropTypes.array,
+  user: PropTypes.string.isRequired,
+  file: PropTypes.object.isRequired,
+  team: PropTypes.array.isRequired,
+  userDetails: PropTypes.object
 };
 
 export default CaseHeader;

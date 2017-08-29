@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Paper } from 'material-ui';
 import registry from 'app-registry';
 import {
@@ -130,20 +131,20 @@ class CaseList extends React.Component {
 }
 
 CaseList.propTypes = {
-  caseId: React.PropTypes.string,
-  filterData: React.PropTypes.func,
-  filterText: React.PropTypes.string,
-  getNextSetOfItems: React.PropTypes.func,
-  initCaseList: React.PropTypes.func.isRequired,
-  isFetching: React.PropTypes.bool,
-  items: React.PropTypes.arrayOf(React.PropTypes.object),
-  showDrawer: React.PropTypes.bool,
-  sortKey: React.PropTypes.string,
-  sortDesc: React.PropTypes.string
+  caseId: PropTypes.string,
+  filterData: PropTypes.func,
+  filterText: PropTypes.string,
+  getNextSetOfItems: PropTypes.func,
+  initCaseList: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool,
+  items: PropTypes.arrayOf(PropTypes.object),
+  showDrawer: PropTypes.bool,
+  sortKey: PropTypes.string,
+  sortDesc: PropTypes.string
 };
 
 CaseList.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default CaseList;

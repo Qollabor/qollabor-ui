@@ -1,5 +1,6 @@
 import React from 'react';
 import { NotificationStack } from 'react-notification';
+import PropTypes from 'prop-types';
 
 function getColors(level) {
   switch (level) {
@@ -77,7 +78,7 @@ export class Notifier extends React.Component {
 }
 
 Notifier.propTypes = {
-  item: React.PropTypes.object,
-  notifications: React.PropTypes.array,
-  onDismiss: React.PropTypes.func
+  item: PropTypes.object,
+  notifications: PropTypes.array,
+  onDismiss: PropTypes.func
 };

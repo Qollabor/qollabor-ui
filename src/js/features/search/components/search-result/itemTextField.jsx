@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TextField } from 'material-ui';
 
 const cursorStyle = {
@@ -26,10 +27,10 @@ class ItemTextField extends React.Component {
 }
 
 ItemTextField.propTypes = {
-  inputStyle: React.PropTypes.object,
-  value: React.PropTypes.string.isRequired,
-  name: React.PropTypes.string.isRequired,
-  style: React.PropTypes.object
+  inputStyle: PropTypes.object,
+  value: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  style: PropTypes.object
 };
 
 export default ItemTextField;

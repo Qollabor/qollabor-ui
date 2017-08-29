@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles';
 
 class TaskInfoItem extends React.Component {
@@ -22,10 +23,10 @@ class TaskInfoItem extends React.Component {
 }
 
 TaskInfoItem.propTypes = {
-  itemLabel: React.PropTypes.string.isRequired,
-  itemValue: React.PropTypes.string,
-  style: React.PropTypes.object,
-  toolTip: React.PropTypes.string
+  itemLabel: PropTypes.string.isRequired,
+  itemValue: PropTypes.string,
+  style: PropTypes.object,
+  toolTip: PropTypes.string
 };
 
 TaskInfoItem.displayName = 'TaskInfoItem';
