@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { RaisedButton, FlatButton, Paper } from 'material-ui';
 import { shouldRender } from 'react-jsonschema-form/lib/utils';
 import MessageDiv from '../message-div';
@@ -133,23 +134,23 @@ class Details extends React.Component {
 }
 
 Details.propTypes = {
-  actionError: React.PropTypes.object,
-  caseData: React.PropTypes.object,
-  caseId: React.PropTypes.string,
-  caseLastModified: React.PropTypes.string,
-  caseModelSchema: React.PropTypes.object,
-  data: React.PropTypes.object.isRequired,
-  definition: React.PropTypes.string,
-  error: React.PropTypes.object,
-  initDetails: React.PropTypes.func,
-  isFetching: React.PropTypes.bool.isRequired,
-  resetDetails: React.PropTypes.func,
-  showFeedbackForm: React.PropTypes.bool,
-  startCaseModel: React.PropTypes.func
+  actionError: PropTypes.object,
+  caseData: PropTypes.object,
+  caseId: PropTypes.string,
+  caseLastModified: PropTypes.string,
+  caseModelSchema: PropTypes.object,
+  data: PropTypes.object.isRequired,
+  definition: PropTypes.string,
+  error: PropTypes.object,
+  initDetails: PropTypes.func,
+  isFetching: PropTypes.bool.isRequired,
+  resetDetails: PropTypes.func,
+  showFeedbackForm: PropTypes.bool,
+  startCaseModel: PropTypes.func
 };
 
 Details.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default Details;

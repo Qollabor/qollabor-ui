@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import TextFilter from '../../../../components/text-filter';
 
 class SearchBox extends React.Component {
@@ -40,13 +41,13 @@ class SearchBox extends React.Component {
 }
 
 SearchBox.propTypes = {
-  setFilter: React.PropTypes.func,
-  initSearch: React.PropTypes.func,
-  searchText: React.PropTypes.string
+  setFilter: PropTypes.func,
+  initSearch: PropTypes.func,
+  searchText: PropTypes.string
 };
 
 SearchBox.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default SearchBox;

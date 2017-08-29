@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Cell } from 'fixed-data-table';
 import renderers from './renderers';
 import { ActionSelector } from './actionSelector';
@@ -22,11 +23,11 @@ const SortHeaderCell = ({ children, columnKey, sortBy, sortKey, sortDesc }) => {
 };
 
 SortHeaderCell.propTypes = {
-  sortBy: React.PropTypes.func.isRequired,
-  sortDesc: React.PropTypes.bool,
-  sortKey: React.PropTypes.string,
-  columnKey: React.PropTypes.string,
-  children: React.PropTypes.any
+  sortBy: PropTypes.func.isRequired,
+  sortDesc: PropTypes.bool,
+  sortKey: PropTypes.string,
+  columnKey: PropTypes.string,
+  children: PropTypes.any
 };
 
 // Data cell
@@ -38,10 +39,10 @@ const DataCell = ({ items, rowIndex, columnKey, mapper }) => {
 };
 
 DataCell.propTypes = {
-  items: React.PropTypes.array,
-  rowIndex: React.PropTypes.number,
-  columnKey: React.PropTypes.string,
-  mapper: React.PropTypes.func
+  items: PropTypes.array,
+  rowIndex: PropTypes.number,
+  columnKey: PropTypes.string,
+  mapper: PropTypes.func
 };
 
 // Date cell
@@ -64,11 +65,11 @@ const DateCell = ({ items, type, dateFormat, rowIndex, columnKey }) => {
 };
 
 DateCell.propTypes = {
-  dateFormat: React.PropTypes.string,
-  type: React.PropTypes.string,
-  items: React.PropTypes.array,
-  rowIndex: React.PropTypes.number,
-  columnKey: React.PropTypes.string
+  dateFormat: PropTypes.string,
+  type: PropTypes.string,
+  items: PropTypes.array,
+  rowIndex: PropTypes.number,
+  columnKey: PropTypes.string
 };
 
 // CheckBox cell
@@ -76,9 +77,9 @@ const CheckBoxCell = ({ items, rowIndex, columnKey }) =>
   (<Cell><input type="checkbox" checked={items[rowIndex][columnKey]} disabled="disabled" /></Cell>);
 
 CheckBoxCell.propTypes = {
-  items: React.PropTypes.array,
-  rowIndex: React.PropTypes.number,
-  columnKey: React.PropTypes.string
+  items: PropTypes.array,
+  rowIndex: PropTypes.number,
+  columnKey: PropTypes.string
 };
 
 // ActionChooser cell
@@ -88,7 +89,7 @@ const ActionChooserCell = ({ rowIndex }) =>
   </Cell>);
 
 ActionChooserCell.propTypes = {
-  rowIndex: React.PropTypes.number
+  rowIndex: PropTypes.number
 };
 
 const cancelClick = (e) => {
@@ -108,8 +109,8 @@ const StatusCell = ({ items, rowIndex }) => {
 };
 
 StatusCell.propTypes = {
-  items: React.PropTypes.array,
-  rowIndex: React.PropTypes.number
+  items: PropTypes.array,
+  rowIndex: PropTypes.number
 };
 
 export { SortHeaderCell, DataCell, DateCell, CheckBoxCell, ActionChooserCell, StatusCell };

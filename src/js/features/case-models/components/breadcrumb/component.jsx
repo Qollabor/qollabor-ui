@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Breadcrumb } from '../../../../cafienne-ui-elements';
 
 export class CaseModelBreadcrumbComponent extends React.Component {
@@ -12,7 +13,7 @@ export class CaseModelBreadcrumbComponent extends React.Component {
 }
 
 CaseModelBreadcrumbComponent.propTypes = {
-  items: React.PropTypes.array.isRequired
+  items: PropTypes.array.isRequired
 };
 
 export default CaseModelBreadcrumbComponent;

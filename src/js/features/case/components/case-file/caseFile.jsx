@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FlatButton, Dialog } from 'material-ui';
 import CaseFileViewer from './caseFileViewer';
 
@@ -47,5 +48,5 @@ export default class CaseFile extends React.Component {
 }
 
 CaseFile.propTypes = {
-  file: React.PropTypes.object
+  file: PropTypes.object
 };

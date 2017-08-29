@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TitledListBox } from '../../../../cafienne-ui-elements';
 
 class ActiveItems extends React.Component {
@@ -19,9 +20,9 @@ class ActiveItems extends React.Component {
 ActiveItems.displayName = 'ActiveItems';
 
 ActiveItems.propTypes = {
-  isFetching: React.PropTypes.bool.isRequired,
-  activeTasks: React.PropTypes.array.isRequired,
-  error: React.PropTypes.object
+  isFetching: PropTypes.bool.isRequired,
+  activeTasks: PropTypes.array.isRequired,
+  error: PropTypes.object
 };
 
 export default ActiveItems;

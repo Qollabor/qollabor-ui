@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import registry from 'app-registry';
 import { StatusCapsule } from '../../capsules';
 
@@ -41,7 +42,7 @@ class PlanItem extends React.Component {
 }
 
 PlanItem.propTypes = {
-  item: React.PropTypes.object
+  item: PropTypes.object
 };
 
 export default PlanItem;

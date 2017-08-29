@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import registry from 'app-registry';
 import { ActionAssignmentReturned, ActionAssignmentInd, ActionAssignmentReturn } from 'material-ui/svg-icons';
 import { FontIcon } from 'material-ui';
@@ -113,10 +114,10 @@ class TaskRow extends React.Component {
 TaskRow.displayName = 'TaskRow';
 
 TaskRow.propTypes = {
-  columns: React.PropTypes.array.isRequired,
-  rowData: React.PropTypes.object.isRequired,
-  onRowClick: React.PropTypes.func,
-  executeTaskAction: React.PropTypes.func
+  columns: PropTypes.array.isRequired,
+  rowData: PropTypes.object.isRequired,
+  onRowClick: PropTypes.func,
+  executeTaskAction: PropTypes.func
 };
 
 export default TaskRow;

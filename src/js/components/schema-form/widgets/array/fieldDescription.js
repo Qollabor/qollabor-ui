@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export class FieldDescription extends React.Component {
@@ -13,7 +14,7 @@ export class FieldDescription extends React.Component {
 }
 
 FieldDescription.propTypes = {
-  DescriptionField: React.PropTypes.node,
-  idSchema: React.PropTypes.object,
-  description: React.PropTypes.string
+  DescriptionField: PropTypes.node,
+  idSchema: PropTypes.object,
+  description: PropTypes.string
 };

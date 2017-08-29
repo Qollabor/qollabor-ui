@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TitledListBox } from '../../../../cafienne-ui-elements';
 
 export class DiscretionaryItems extends React.Component {
@@ -20,10 +21,10 @@ export class DiscretionaryItems extends React.Component {
 DiscretionaryItems.displayName = 'DiscretionaryItems';
 
 DiscretionaryItems.propTypes = {
-  emptyListMessage: React.PropTypes.string,
-  discretionaryItems: React.PropTypes.array.isRequired,
-  error: React.PropTypes.object,
-  isFetching: React.PropTypes.bool
+  emptyListMessage: PropTypes.string,
+  discretionaryItems: PropTypes.array.isRequired,
+  error: PropTypes.object,
+  isFetching: PropTypes.bool
 };
 
 export default DiscretionaryItems;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import PeopleList from '../../../../components/people-list';
 import { TitledBox } from '../../../../cafienne-ui-elements';
 
@@ -15,10 +16,10 @@ class CaseTeamComponent extends React.Component {
 }
 
 CaseTeamComponent.propTypes = {
-  caseTeam: React.PropTypes.array,
-  people: React.PropTypes.array,
-  isFetching: React.PropTypes.bool.isRequired,
-  error: React.PropTypes.object.isRequired
+  caseTeam: PropTypes.array,
+  people: PropTypes.array,
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.object.isRequired
 };
 
 export const CaseTeam = TitledBox(CaseTeamComponent);

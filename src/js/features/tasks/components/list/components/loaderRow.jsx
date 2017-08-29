@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { RefreshIndicator } from 'material-ui';
 
 import styles from './../styles';
@@ -37,7 +37,7 @@ class LoaderRow extends React.Component {
 LoaderRow.displayName = 'LoaderRow';
 
 LoaderRow.propTypes = {
-  colSpan: React.PropTypes.number.isRequired
+  colSpan: PropTypes.number.isRequired
 };
 
 export default LoaderRow;

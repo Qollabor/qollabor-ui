@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Card, CardHeader, CardText } from 'material-ui';
 import { CaseFileViewer } from '../../../case-file';
 
@@ -25,7 +26,7 @@ class CaseFileCardViewer extends React.Component {
   }
 }
 CaseFileCardViewer.propTypes = {
-  file: React.PropTypes.object.isRequired
+  file: PropTypes.object.isRequired
 };
 
 export default CaseFileCardViewer;

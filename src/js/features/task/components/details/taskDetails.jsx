@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { RaisedButton, FlatButton } from 'material-ui';
 import TaskInfo from '../info';
 import { TaskBreadcrumb } from '../breadcrumb';
@@ -101,42 +102,42 @@ export class TaskDetails extends React.Component {
 }
 
 TaskDetails.propTypes = {
-  caseId: React.PropTypes.string,
-  error: React.PropTypes.shape({
-    isError: React.PropTypes.bool,
-    message: React.PropTypes.string
+  caseId: PropTypes.string,
+  error: PropTypes.shape({
+    isError: PropTypes.bool,
+    message: PropTypes.string
   }),
-  executeTaskAction: React.PropTypes.func,
-  taskId: React.PropTypes.string.isRequired,
-  isFetching: React.PropTypes.bool.isRequired,
-  loggedInUserId: React.PropTypes.string.isRequired,
-  onMount: React.PropTypes.func,
-  saveTaskDetails: React.PropTypes.func,
-  taskDetails: React.PropTypes.shape({
-    assignee: React.PropTypes.string,
-    caseDefinition: React.PropTypes.string,
-    caseInstanceId: React.PropTypes.string,
-    createdBy: React.PropTypes.string,
-    createdOn: React.PropTypes.string,
-    dueDate: React.PropTypes.string,
-    id: React.PropTypes.string,
-    inputParams: React.PropTypes.object,
-    lastModified: React.PropTypes.string,
-    mappedInput: React.PropTypes.object,
-    modifiedBy: React.PropTypes.string,
-    owner: React.PropTypes.string,
-    parentCaseInstanceId: React.PropTypes.string,
-    planState: React.PropTypes.string,
-    rawOutput: React.PropTypes.object,
-    role: React.PropTypes.string,
-    rootCaseInstanceId: React.PropTypes.string,
-    taskModel: React.PropTypes.object,
-    taskName: React.PropTypes.string,
-    taskState: React.PropTypes.string,
-    taskinputdata: React.PropTypes.string,
-    taskoutputdata: React.PropTypes.string
+  executeTaskAction: PropTypes.func,
+  taskId: PropTypes.string.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  loggedInUserId: PropTypes.string.isRequired,
+  onMount: PropTypes.func,
+  saveTaskDetails: PropTypes.func,
+  taskDetails: PropTypes.shape({
+    assignee: PropTypes.string,
+    caseDefinition: PropTypes.string,
+    caseInstanceId: PropTypes.string,
+    createdBy: PropTypes.string,
+    createdOn: PropTypes.string,
+    dueDate: PropTypes.string,
+    id: PropTypes.string,
+    inputParams: PropTypes.object,
+    lastModified: PropTypes.string,
+    mappedInput: PropTypes.object,
+    modifiedBy: PropTypes.string,
+    owner: PropTypes.string,
+    parentCaseInstanceId: PropTypes.string,
+    planState: PropTypes.string,
+    rawOutput: PropTypes.object,
+    role: PropTypes.string,
+    rootCaseInstanceId: PropTypes.string,
+    taskModel: PropTypes.object,
+    taskName: PropTypes.string,
+    taskState: PropTypes.string,
+    taskinputdata: PropTypes.string,
+    taskoutputdata: PropTypes.string
   }).isRequired,
-  transitionToState: React.PropTypes.func
+  transitionToState: PropTypes.func
 };
 
 TaskDetails.displayName = 'TaskDetails';

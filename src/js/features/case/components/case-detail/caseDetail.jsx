@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import CaseDocument from './components/case-document/caseDocument';
 import CaseDiscretionaryItems from './components/discretionary-items/caseDiscretionaryItems';
 
@@ -10,9 +11,9 @@ const CaseDetail = ({ caseDocument, discretionaryItems, caseTeam }) => (
 );
 
 CaseDetail.propTypes = {
-  caseDocument: React.PropTypes.object,
-  caseTeam: React.PropTypes.object,
-  discretionaryItems: React.PropTypes.array
+  caseDocument: PropTypes.object,
+  caseTeam: PropTypes.object,
+  discretionaryItems: PropTypes.array
 };
 
 export default CaseDetail;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Popover, PopoverAnimationVertical } from 'material-ui';
 import PlanItem from './planItem';
 import ProgressIcon from './progressIcon';
@@ -69,7 +70,7 @@ export default class ProgressItem extends React.Component {
 }
 
 ProgressItem.propTypes = {
-  items: React.PropTypes.array,
-  name: React.PropTypes.string,
-  status: React.PropTypes.string
+  items: PropTypes.array,
+  name: PropTypes.string,
+  status: PropTypes.string
 };

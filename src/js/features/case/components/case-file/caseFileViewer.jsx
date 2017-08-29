@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import JSONPretty from 'react-json-pretty';
 
 class CaseFileViewer extends React.Component {
@@ -12,7 +13,7 @@ class CaseFileViewer extends React.Component {
   }
 }
 CaseFileViewer.propTypes = {
-  file: React.PropTypes.object.isRequired
+  file: PropTypes.object.isRequired
 };
 
 export default CaseFileViewer;

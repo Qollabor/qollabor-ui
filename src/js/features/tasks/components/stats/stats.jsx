@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Badge } from 'material-ui';
 import styles from '../../styles';
 import theme from '../../../../themes';
@@ -28,10 +29,10 @@ class TaskStats extends React.Component {
 }
 
 TaskStats.propTypes = {
-  bounce: React.PropTypes.bool,
-  type: React.PropTypes.string,
-  taskStats: React.PropTypes.object,
-  onMount: React.PropTypes.func
+  bounce: PropTypes.bool,
+  type: PropTypes.string,
+  taskStats: PropTypes.object,
+  onMount: PropTypes.func
 };
 
 export default TaskStats;

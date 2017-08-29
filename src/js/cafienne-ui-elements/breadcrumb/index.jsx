@@ -1,6 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import styles from './styles';
+import PropTypes from 'prop-types';
 
 export const Breadcrumb = Radium(class extends React.Component {
   render() {
@@ -41,8 +42,8 @@ Breadcrumb.defaultProps = {
 };
 
 Breadcrumb.propTypes = {
-  items: React.PropTypes.array.isRequired,
-  separator: React.PropTypes.string
+  items: PropTypes.array.isRequired,
+  separator: PropTypes.string
 };
 
 export default Breadcrumb;

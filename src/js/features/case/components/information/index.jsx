@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TitledBox } from '../../../../cafienne-ui-elements';
 import { RaisedButton } from 'material-ui';
 import styles from '../styles';
@@ -36,11 +37,11 @@ class CaseInformationComponent extends React.Component {
 }
 
 CaseInformationComponent.propTypes = {
-  case: React.PropTypes.object
+  case: PropTypes.object
 };
 
 CaseInformationComponent.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export const CaseInformation = TitledBox(CaseInformationComponent);

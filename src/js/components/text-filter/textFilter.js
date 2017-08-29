@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { TextField } from 'material-ui';
 import { ActionSearch } from 'material-ui/svg-icons';
@@ -81,12 +82,12 @@ class TextFilter extends React.Component {
 }
 
 TextFilter.propTypes = {
-  activeFilter: React.PropTypes.string,
-  hintStyle: React.PropTypes.object,
-  hintText: React.PropTypes.string,
-  inputStyle: React.PropTypes.object,
-  onFilterChange: React.PropTypes.func.isRequired,
-  searchIconStyle: React.PropTypes.object
+  activeFilter: PropTypes.string,
+  hintStyle: PropTypes.object,
+  hintText: PropTypes.string,
+  inputStyle: PropTypes.object,
+  onFilterChange: PropTypes.func.isRequired,
+  searchIconStyle: PropTypes.object
 };
 
 export default TextFilter;

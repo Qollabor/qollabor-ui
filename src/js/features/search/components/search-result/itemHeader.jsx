@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const headerStyle = {
   fontSize: '15px',
@@ -7,6 +8,6 @@ const headerStyle = {
 };
 const ItemHeader = props => <div style={headerStyle}>{props.title}</div>;
 ItemHeader.propTypes = {
-  title: React.PropTypes.string.isRequired
+  title: PropTypes.string.isRequired
 };
 export default ItemHeader;

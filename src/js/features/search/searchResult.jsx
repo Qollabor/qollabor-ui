@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ActionInfoOutline } from 'material-ui/svg-icons';
 import { blue500 } from 'material-ui/styles/colors';
 import ReactIScroll from 'react-iscroll';
@@ -49,10 +50,10 @@ class SearchResult extends React.Component {
 }
 
 SearchResult.propTypes = {
-  getNextSetOfItems: React.PropTypes.func,
-  initSearchResult: React.PropTypes.func.isRequired,
-  isFetching: React.PropTypes.bool,
-  items: React.PropTypes.array
+  getNextSetOfItems: PropTypes.func,
+  initSearchResult: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool,
+  items: PropTypes.array
 };
 
 export default SearchResult;

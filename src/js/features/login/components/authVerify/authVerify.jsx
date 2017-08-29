@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { RefreshIndicator } from 'material-ui';
 import styles from './styles';
 
@@ -23,8 +23,8 @@ export class AuthVerify extends React.Component {
 AuthVerify.displayName = 'AuthVerify';
 
 AuthVerify.propTypes = {
-  children: React.PropTypes.node,
-  isVerifyAuth: React.PropTypes.bool
+  children: PropTypes.node,
+  isVerifyAuth: PropTypes.bool
 };
 
 export default AuthVerify;

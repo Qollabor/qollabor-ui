@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ListItem, FontIcon } from 'material-ui';
 import { CMMNIcon } from '../../../../../../components/cmmn-icons';
 
@@ -54,15 +55,15 @@ class DiscretionaryItem extends React.Component {
 }
 
 DiscretionaryItem.propTypes = {
-  item: React.PropTypes.object
+  item: PropTypes.object
 };
 
 PlanItemIcon.propTypes = {
-  type: React.PropTypes.string
+  type: PropTypes.string
 };
 
 DiscretionaryItem.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default DiscretionaryItem;

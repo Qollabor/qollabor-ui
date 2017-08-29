@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { StatusCapsule } from '../../../../components/capsules';
 import { ListItem } from 'material-ui';
 import { ActionAssignment } from 'material-ui/svg-icons';
@@ -46,11 +47,11 @@ class CaseItem extends React.Component {
 }
 
 CaseItem.propTypes = {
-  item: React.PropTypes.object
+  item: PropTypes.object
 };
 
 CaseItem.contextTypes = {
-  router: React.PropTypes.object.isRequired
+  router: PropTypes.object.isRequired
 };
 
 export default CaseItem;

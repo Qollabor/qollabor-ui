@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FontIcon, MenuItem } from 'material-ui';
 import TaskStats from '../stats';
 import styles from './styles';
@@ -55,11 +56,11 @@ class TasksFilter extends React.Component {
 }
 
 TasksFilter.propTypes = {
-  onChangeTasksFilter: React.PropTypes.func,
-  onBeforeChangeTasksFilter: React.PropTypes.func,
-  tasksFilterTypes: React.PropTypes.array,
-  isFetchingTasksList: React.PropTypes.bool,
-  currentTasksFilter: React.PropTypes.string
+  onChangeTasksFilter: PropTypes.func,
+  onBeforeChangeTasksFilter: PropTypes.func,
+  tasksFilterTypes: PropTypes.array,
+  isFetchingTasksList: PropTypes.bool,
+  currentTasksFilter: PropTypes.string
 };
 
 TasksFilter.displayName = 'TasksFilter';

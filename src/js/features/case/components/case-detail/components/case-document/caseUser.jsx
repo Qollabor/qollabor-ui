@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import UserAvatar from '../../../../../../components/user-avatar';
 import { getUserDetails } from './helpers';
 
@@ -57,7 +58,7 @@ export class CaseUser extends React.Component {
 }
 
 CaseUser.propTypes = {
-  label: React.PropTypes.string,
-  userDetails: React.PropTypes.object,
-  userId: React.PropTypes.string.isRequired
+  label: PropTypes.string,
+  userDetails: PropTypes.object,
+  userId: PropTypes.string.isRequired
 };

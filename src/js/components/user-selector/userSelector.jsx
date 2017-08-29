@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import { Paper } from 'material-ui';
 
 import UserList from '../people-list/components/userList';
@@ -76,14 +76,14 @@ class UserSelector extends React.Component {
 }
 
 UserSelector.propTypes = {
-  filterHintText: React.PropTypes.string,
-  filterString: React.PropTypes.string,
-  filteredUser: React.PropTypes.string,
-  initUsers: React.PropTypes.func,
-  onUserSelectChange: React.PropTypes.func,
-  selectedUsers: React.PropTypes.array,
-  setFilter: React.PropTypes.func,
-  users: React.PropTypes.array
+  filterHintText: PropTypes.string,
+  filterString: PropTypes.string,
+  filteredUser: PropTypes.string,
+  initUsers: PropTypes.func,
+  onUserSelectChange: PropTypes.func,
+  selectedUsers: PropTypes.array,
+  setFilter: PropTypes.func,
+  users: PropTypes.array
 };
 
 export default UserSelector;

@@ -1,6 +1,5 @@
 import React from 'react';
-
-
+import PropTypes from 'prop-types';
 import TaskListHeader from './header';
 import TaskListRow from './taskRow';
 import MessageRow from './messageRow';
@@ -48,7 +47,6 @@ export class TaskList extends React.Component {
         <MessageRow colSpan={this.props.columns.length + 2} message="No items to show" />;
     }
 
-
     return (
       <div>
         <div>
@@ -76,15 +74,15 @@ export class TaskList extends React.Component {
 TaskList.displayName = 'TaskList';
 
 TaskList.propTypes = {
-  columns: React.PropTypes.array.isRequired,
-  items: React.PropTypes.array,
-  onRowClick: React.PropTypes.func,
-  bodyHeight: React.PropTypes.number,
-  isFetching: React.PropTypes.bool.isRequired,
-  error: React.PropTypes.object,
-  onMount: React.PropTypes.func,
-  onColumnVisibilityToggle: React.PropTypes.func.isRequired,
-  executeTaskAction: React.PropTypes.func
+  columns: PropTypes.array.isRequired,
+  items: PropTypes.array,
+  onRowClick: PropTypes.func,
+  bodyHeight: PropTypes.number,
+  isFetching: PropTypes.bool.isRequired,
+  error: PropTypes.object,
+  onMount: PropTypes.func,
+  onColumnVisibilityToggle: PropTypes.func.isRequired,
+  executeTaskAction: PropTypes.func
 };
 
 export default TaskList;

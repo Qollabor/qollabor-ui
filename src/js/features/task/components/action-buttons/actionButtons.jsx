@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ActionAssignmentInd } from 'material-ui/svg-icons';
 import ActionChooser from '../action-chooser';
 
@@ -79,37 +80,37 @@ export class ActionButtons extends React.Component {
 }
 
 ActionButtons.propTypes = {
-  availableTransitions: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  disabled: React.PropTypes.bool.isRequired,
-  buttonsDisabled: React.PropTypes.bool.isRequired,
-  caseId: React.PropTypes.string.isRequired,
-  taskId: React.PropTypes.string.isRequired,
-  taskDetails: React.PropTypes.shape({
-    assignee: React.PropTypes.string,
-    caseDefinition: React.PropTypes.string,
-    caseInstanceId: React.PropTypes.string,
-    createdBy: React.PropTypes.string,
-    createdOn: React.PropTypes.string,
-    dueDate: React.PropTypes.string,
-    id: React.PropTypes.string,
-    inputParams: React.PropTypes.object,
-    lastModified: React.PropTypes.string,
-    mappedInput: React.PropTypes.object,
-    modifiedBy: React.PropTypes.string,
-    owner: React.PropTypes.string,
-    parentCaseInstanceId: React.PropTypes.string,
-    planState: React.PropTypes.string,
-    rawOutput: React.PropTypes.object,
-    role: React.PropTypes.string,
-    rootCaseInstanceId: React.PropTypes.string,
-    taskModel: React.PropTypes.object,
-    taskName: React.PropTypes.string,
-    taskState: React.PropTypes.string,
-    taskinputdata: React.PropTypes.string,
-    taskoutputdata: React.PropTypes.string
+  availableTransitions: PropTypes.arrayOf(PropTypes.object).isRequired,
+  disabled: PropTypes.bool.isRequired,
+  buttonsDisabled: PropTypes.bool.isRequired,
+  caseId: PropTypes.string.isRequired,
+  taskId: PropTypes.string.isRequired,
+  taskDetails: PropTypes.shape({
+    assignee: PropTypes.string,
+    caseDefinition: PropTypes.string,
+    caseInstanceId: PropTypes.string,
+    createdBy: PropTypes.string,
+    createdOn: PropTypes.string,
+    dueDate: PropTypes.string,
+    id: PropTypes.string,
+    inputParams: PropTypes.object,
+    lastModified: PropTypes.string,
+    mappedInput: PropTypes.object,
+    modifiedBy: PropTypes.string,
+    owner: PropTypes.string,
+    parentCaseInstanceId: PropTypes.string,
+    planState: PropTypes.string,
+    rawOutput: PropTypes.object,
+    role: PropTypes.string,
+    rootCaseInstanceId: PropTypes.string,
+    taskModel: PropTypes.object,
+    taskName: PropTypes.string,
+    taskState: PropTypes.string,
+    taskinputdata: PropTypes.string,
+    taskoutputdata: PropTypes.string
   }).isRequired,
-  onActionClick: React.PropTypes.func,
-  onTransitionClick: React.PropTypes.func
+  onActionClick: PropTypes.func,
+  onTransitionClick: PropTypes.func
 };
 
 export default ActionButtons;
