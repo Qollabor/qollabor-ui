@@ -22,7 +22,7 @@ export default {
     width: 250
   },
   appBar: {
-    height: 47
+    height: 64
   },
   taskStats: {
     backgroundColor: headerColor,

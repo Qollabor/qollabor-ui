@@ -98,8 +98,8 @@ export class TaskList extends React.Component {
     const tableHeight = window.innerHeight - (theme.appBar.height + 8);
 
     return (
-      <Paper style={{ position: 'absolute', bottom: 30, top: 50, width: tableWidth, height: tableHeight }}>
-        <div style={{ marginLeft: '20px' }}>
+      <Paper style={{ position: 'absolute', left: 2, top: 0, right: 0 }}>
+        <div style={{ marginLeft: '20px', position: 'relative', paddingTop: 10 }}>
           {!isFetching && items.length === 0 &&
             <div style={{ position: 'absolute', top: 150, margin: 'auto', left: 400 }}>No items found ...</div>}
 
@@ -107,7 +107,7 @@ export class TaskList extends React.Component {
             rowHeight={45}
             headerHeight={50}
             containerWidth={tableWidth + 30}
-            containerHeight={tableHeight - 60}
+            containerHeight={tableHeight - 10}
             showColumnChooser={true}
             showStatusIcon={true}
             rowsCount={items.length} onRowClick={this.handleRowClick.bind(this)}

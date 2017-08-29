@@ -1,4 +1,4 @@
-const barHeight = '47px';
+const barHeight = '63px';
 
 export default {
   appBar: {
@@ -7,7 +7,7 @@ export default {
   title: {
     height: barHeight,
     marginLeft: '10px',
-    marginTop: -4,
+    marginTop: '8px',
     width: '162px'
   },
   menuIcon: {

@@ -19,7 +19,8 @@ class MainLayout extends React.Component {
     const divContainerStyle = {
       marginLeft: this.props.showDrawer ? `${drawerWidth + 5}px` : '5px',
       transition: 'margin-left 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms',
-      marginTop: '47px'
+      marginTop: '63px',
+      position: 'relative'
     };
     return (
       <MuiThemeProvider muiTheme={theme}>
