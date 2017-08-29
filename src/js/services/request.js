@@ -26,7 +26,7 @@ const defaultDeleteHeaders = {
 
 
 function checkStatus(response) {
-  /* eslint-disable no-else-return*/
+  /* eslint-disable no-else-return */
   if (response.status >= 200 && response.status < 300) {
     return response;
   } else {
@@ -35,7 +35,7 @@ function checkStatus(response) {
     error.response = response;
     throw error;
   }
-  /* eslint-enable no-else-return*/
+  /* eslint-enable no-else-return */
 }
 
 function transformResponse(fetchResponse) {
