@@ -19,7 +19,7 @@ class CaseTeamSelector extends React.Component {
   componentWillMount() {
     if (this.props.initCaseTeam) {
       // Add empty role for assigning users without roles
-      this.props.teamRoles.unshift('');
+      this.props.teamRoles.unshift({ name: '', description: '' });
       this.props.initCaseTeam(this.props.teamRoles);
     }
   }
@@ -48,18 +48,18 @@ class CaseTeamSelector extends React.Component {
 
   render() {
     const roleObj = this.props.roles;
-    const roles = Object.keys(roleObj);
+    const roles = this.props.teamRoles;
     return (
       <div>
         <div style={{ height: 350 }}>
           {roles.map(role => (
-            <div key={role} style={{ height: 80, marginLeft: 15 }}>
-              <Subheader style={{ height: 20, paddingLeft: 0, lineHeight: 1 }}>{role}</Subheader>
+            <div key={role.name} style={{ height: 80, marginLeft: 15 }}>
+              <Subheader style={{ height: 20, paddingLeft: 0, lineHeight: 1 }}>{role.description}</Subheader>
               <AvatarList
                 maxPeopleInList={10}
-                people={roleObj[role]}
+                people={roleObj[role.name]}
                 maxLength={300}
-                onShowMoreAction={this.handleRequestOpen.bind(this, role)}
+                onShowMoreAction={this.handleRequestOpen.bind(this, role.name)}
               />
             </div>
           ))}

@@ -4,14 +4,16 @@ import { Breadcrumb } from '../../../../cafienne-ui-elements';
 
 export class TaskBreadcrumbComponent extends React.Component {
   render() {
-    return (
-      <Breadcrumb items={this.props.items} separator={'/'} />
-    );
+    return <Breadcrumb item={this.props.item} separator={'/'} />;
   }
 }
 
 TaskBreadcrumbComponent.propTypes = {
-  items: PropTypes.array.isRequired
+  item: React.PropTypes.shape({
+    label: React.PropTypes.string,
+    url: React.PropTypes.string,
+    description: React.PropTypes.string
+  })
 };
 
 export default TaskBreadcrumbComponent;

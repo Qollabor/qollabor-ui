@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { DatePicker, TimePicker } from 'material-ui';
-import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import styles from '../styles';
 
@@ -74,17 +73,6 @@ export class DateTimeWidget extends React.Component {
       help = this.props.uiSchema['ui:help'];
     }
 
-    if (this.props.readonly) {
-      return (
-        <ReadOnlyWidget
-          title={this.props.schema.title}
-          name={this.props.name}
-          value={this.getLocaleDateTime(dateTime)}
-          help={help}
-        />
-      );
-    }
-
     let helpWidget = false;
     if (help) {
       helpWidget =
@@ -112,10 +100,10 @@ export class DateTimeWidget extends React.Component {
           floatingLabelText={title}
           floatingLabelFixed={true}
           floatingLabelFocusStyle={styles.floatingLabel}
-          textFieldStyle={styles.field}
           errorStyle={errorStyle}
           onChange={this.handleOnChange.bind(this, true)}
-          disabled={this.props.disabled}
+          disabled={this.props.disabled || this.props.readonly}
+          textFieldStyle={this.props.readonly && { cursor: 'text' }}
           help={help}
           style={{ display: 'inline-block' }}
           {...errors}
@@ -129,10 +117,10 @@ export class DateTimeWidget extends React.Component {
           hintText={'Time'}
           floatingLabelText={' '}
           floatingLabelFixed={true}
-          textFieldStyle={styles.field}
           errorStyle={errorStyle}
           floatingLabelFocusStyle={styles.floatingLabel}
-          disabled={this.props.disabled}
+          disabled={this.props.disabled || this.props.readonly}
+          textFieldStyle={this.props.readonly && { cursor: 'text' }}
           onChange={this.handleOnChange.bind(this, false)}
           style={{ display: 'inline-block', paddingLeft: '10px' }}
           {...errors}

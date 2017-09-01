@@ -3,11 +3,7 @@ import PropTypes from 'prop-types';
 import { Paper } from 'material-ui';
 import registry from 'app-registry';
 
-import {
-  ActionAssignmentReturned,
-  ActionAssignmentInd,
-  ActionAssignmentReturn
-} from 'material-ui/svg-icons';
+import { ActionAssignmentReturned, ActionAssignmentInd, ActionAssignmentReturn } from 'material-ui/svg-icons';
 
 import {
   ResponsiveTableWrapper,
@@ -87,10 +83,13 @@ export class TaskList extends React.Component {
     const loggedInUserId = store.getState().user.getIn(['loggedUser', 'username']);
 
     const { assignee, taskState } = this.props.items[index];
-    if ((taskState === 'Unassigned') && (taskAction === 'claim' || taskAction === 'assign')) {
+    if (taskState === 'Unassigned' && (taskAction === 'claim' || taskAction === 'assign')) {
       return false;
-    } else if (taskState === 'Assigned' && assignee === loggedInUserId
-        && (taskAction === 'revoke' || taskAction === 'delegate')) {
+    } else if (
+      taskState === 'Assigned' &&
+      assignee === loggedInUserId &&
+      (taskAction === 'revoke' || taskAction === 'delegate')
+    ) {
       return false;
     }
 
@@ -102,14 +101,19 @@ export class TaskList extends React.Component {
     const theme = registry.get('theme');
 
     // Resize table width with app drawer resize
-    const drawerWidth = this.props.showDrawer ?
-      ((theme.rightDrawer && theme.rightDrawer.width) || theme.drawer.width) : 10;
+    const drawerWidth = this.props.showDrawer
+      ? (theme.rightDrawer && theme.rightDrawer.width) || theme.drawer.width
+      : 10;
     const tableWidth = window.innerWidth - (drawerWidth - 5);
     const tableHeight = window.innerHeight - (theme.appBar.height + 8);
 
     let message;
     if (error && error.isError) {
-      message = <div style={{ position: 'absolute', top: 150, margin: 'auto', left: 400 }}>{error.message}</div>;
+      message = (
+        <div style={{ position: 'absolute', top: 150, margin: 'auto', left: 400 }}>
+          {error.message}
+        </div>
+      );
     } else if (!isFetching && items.length === 0) {
       message = <div style={{ position: 'absolute', top: 150, margin: 'auto', left: 400 }}>No items found ...</div>;
     }
@@ -118,14 +122,16 @@ export class TaskList extends React.Component {
       <Paper style={{ position: 'absolute', bottom: 30, top: 50, width: tableWidth, height: tableHeight }}>
         <div style={{ marginLeft: '20px' }}>
           {message}
+
           <ResponsiveTableWrapper
             rowHeight={45}
             headerHeight={50}
             containerWidth={tableWidth + 30}
-            containerHeight={tableHeight - 60}
+            containerHeight={tableHeight - 10}
             showColumnChooser={true}
             showStatusIcon={true}
-            rowsCount={items.length} onRowClick={this.handleRowClick}
+            rowsCount={items.length}
+            onRowClick={this.handleRowClick}
             onScrollEnd={this.handleScrollEnd}
             {...this.props}
           >
@@ -165,11 +171,13 @@ export class TaskList extends React.Component {
               width={50}
             />
             <Column
-              cell={<ActionChooserCell
-                actionItems={actionItems}
-                isDisabled={this.isActionDisabled}
-                onActionHandler={this.handleTaskActions}
-              />}
+              cell={
+                <ActionChooserCell
+                  actionItems={actionItems}
+                  isDisabled={this.isActionDisabled}
+                  onActionHandler={this.handleTaskActions}
+                />
+              }
               width={50}
             />
           </ResponsiveTableWrapper>

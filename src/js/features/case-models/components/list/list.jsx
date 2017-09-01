@@ -57,13 +57,13 @@ class List extends React.Component {
 
     return (
       <div>
-        <div>
-          <TextFilter
-            {...this.props} activeFilter={filterString}
-            onFilterChange={this.handleFilterStringChange}
-          />
-          {listBody}
-        </div>
+
+        <TextFilter
+          {...this.props} activeFilter={filterString}
+          onFilterChange={this.handleFilterStringChange}
+        />
+        {listBody}
+
       </div>
     );
   }

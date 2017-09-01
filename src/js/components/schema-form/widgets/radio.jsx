@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { RadioButtonGroup, RadioButton } from 'material-ui';
-import { ReadOnlyWidget } from './readonly';
 import { HelpWidget } from './help';
 import styles from '../styles';
 
@@ -35,17 +34,6 @@ export class RadioWidget extends React.Component {
       help = this.props.uiSchema['ui:help'];
     }
 
-    if (this.props.readonly) {
-      return (
-        <ReadOnlyWidget
-          title={this.props.schema.title}
-          name={this.props.name}
-          value={this.props.formData}
-          help={help}
-        />
-      );
-    }
-
     let helpWidget = false;
     if (help) {
       helpWidget = (
@@ -75,6 +63,9 @@ export class RadioWidget extends React.Component {
               value={options[option]}
               label={option}
               style={styles.radioButton}
+              disabled={this.props.disabled || this.props.readonly}
+              inputStyle={this.props.readonly && { cursor: 'text' }}
+              underlineStyle={this.props.readonly && { cursor: 'text' }}
             />)
           )}
         </RadioButtonGroup>

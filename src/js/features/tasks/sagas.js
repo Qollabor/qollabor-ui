@@ -12,6 +12,9 @@ export function* fetchTasks(action) {
 
   yield put({ type: 'TASKS:LIST:FETCH' });
 
+  const tasksFilter = store.getState().tasks.filters.get('currentTasksFilter').get('label');
+  yield put({ type: 'APP:BREADCRUMB:SET', breadcrumbItem: { label: tasksFilter, url: '#/' } });
+
   try {
     const filterParams = {
       userId: store.getState().user.getIn(['loggedUser', 'username']),
@@ -19,7 +22,6 @@ export function* fetchTasks(action) {
     };
     const filters = registry.get('helpers').task.generateRequestFilters(
       store.getState().tasks.filters.getIn(['currentTasksFilter', 'filter']), filterParams);
-
     const sortParams = {
       sortBy: store.getState().tasks.list.get('sortKey'),
       sortOrder: store.getState().tasks.list.get('sortDesc') === true ? 'DESC' : 'ASC'
@@ -42,7 +44,6 @@ export function* fetchTasks(action) {
     } else if (response.body.tasks) {
       tasks = response.body.tasks.map(sanitizeAfterLoad);
     }
-
     yield put({ type: 'TASKS:LIST:FETCH:SUCCESS', tasks });
   } catch (err) {
     registry.get('logger').error(err);
