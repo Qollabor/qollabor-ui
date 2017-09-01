@@ -4,7 +4,6 @@ import { Popover } from 'material-ui';
 import registry from 'app-registry';
 import AvatarList from '../../people-list/components/avatarList';
 import UserSelector from '../../user-selector';
-import { ReadOnlyWidget } from './readonly';
 import { HelpWidget, fetchUserDetails } from './help';
 import styles from '../styles';
 
@@ -148,17 +147,6 @@ export class UserSelectorWidget extends React.Component {
       help = this.props.uiSchema['ui:help'];
     }
 
-    if (this.props.readonly) {
-      return (
-        <ReadOnlyWidget
-          title={this.props.schema.title}
-          name={this.props.name}
-          value={this.props.formData}
-          help={help}
-        />
-      );
-    }
-
     let helpWidget = false;
     if (help) {
       helpWidget =
@@ -193,7 +181,7 @@ export class UserSelectorWidget extends React.Component {
               maxPeopleInList={10}
               people={selectedUsers}
               maxLength={300}
-              disabled={this.props.disabled}
+              disabled={this.props.disabled || this.props.readonly}
               onShowMoreAction={this.handleRequestOpen}
             />
             {

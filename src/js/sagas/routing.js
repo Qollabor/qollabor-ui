@@ -9,6 +9,12 @@ export function* updateRoute(action) {
     yield put({ type: 'TASK:SET_REDIRECT', redirectToCase: false });
   }
 
+  // Clear out any task details if we are navigating to cases/case viewTask
+  // This ensures the correct breadcrumb will show up for a task and case.
+  if (pathname.startsWith('/cases')) {
+    yield put({ type: 'TASK:DETAIL:RESET' });
+  }
+
   if (pathname.startsWith('/cases/')) {
     const caseId = pathname.substring(pathname.lastIndexOf('/') + 1);
     yield put({ type: 'TASK:SET_REDIRECT', redirectToCase: true });

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { RaisedButton, FlatButton } from 'material-ui';
 import TaskInfo from '../info';
-import { TaskBreadcrumb } from '../breadcrumb';
 import TaskModelSchemaForm from '../schema-form';
 import { ActionButtons } from '../../components/action-buttons';
 import { StatusCapsule } from '../../../../components/capsules';
@@ -78,7 +77,6 @@ export class TaskDetails extends React.Component {
         <div style={{ float: 'right' }}>
           <StatusCapsule status={status}>{status}</StatusCapsule>
         </div>
-        <TaskBreadcrumb />
         <TaskInfo
           taskDetails={taskDetails}
           isFetching={this.props.isFetching}

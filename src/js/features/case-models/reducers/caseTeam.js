@@ -37,7 +37,6 @@ const getCaseTeam = (roles, selectedRole, selectedUser, selected, multiSelect) =
   } else if (selected && index === -1) {
     users.push(selectedUser);
   }
-
   return Immutable.Map(roles.set(selectedRole, users));
 };
 
@@ -49,7 +48,7 @@ export const reducers = (state = defaultState, action) => {
     case 'CASETEAM_SELECTOR:SETROLES': {
       let initRoles = Immutable.Map();
       action.roles.forEach((role) => {
-        initRoles = initRoles.set(role, []);
+        initRoles = initRoles.set(role.name, []);
       });
       return state.set('roles', initRoles);
     }
@@ -63,4 +62,3 @@ export const reducers = (state = defaultState, action) => {
       return state;
   }
 };
-

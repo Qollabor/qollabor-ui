@@ -9,7 +9,7 @@ const defaultState = Immutable.fromJS(
     isSelected: null
   });
 
-const caseItemRoles = ['ADMIN', 'Manager', 'Reviewer'];
+const caseItemRoles = [{ name: 'ADMIN', description: 'The administration' }, { name: 'Manager', description: 'Manager Person' }, { name: 'Reviewer', description: 'a reviewing person' }];
 
 describe('features/case-models/caseTeam', () => {
   describe('When the reducer starts', () => {
@@ -81,4 +81,3 @@ describe('features/case-models/caseTeam', () => {
     });
   });
 });
-

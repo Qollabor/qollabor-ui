@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Avatar from '../../user-avatar';
 import { List, ListItem, Checkbox } from 'material-ui';
+import Avatar from '../../user-avatar';
 import { calcInitials } from '../helpers/calcInitials';
 
 class UserList extends React.Component {
@@ -42,7 +42,7 @@ class UserList extends React.Component {
                 innerDivStyle={{ paddingTop: 4, paddingLeft: 15, fontSize: 13 }}
                 key={uniqueId}
                 {...actions}
-                primaryText={<div style={{ marginLeft: 50, paddingTop: 8 }}>{person.name} ({person.uniqueId})</div>}
+                primaryText={<div style={{ marginLeft: 50, paddingTop: 8 }}>{person.name}</div>}
                 leftAvatar={<Avatar user={person} size={avatarSize}>{initial}</Avatar>}
                 leftCheckbox={
                   canSelectUsers &&

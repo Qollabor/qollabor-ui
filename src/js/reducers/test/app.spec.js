@@ -9,7 +9,10 @@ describe('reducers/app', () => {
       isOnInit: false,
       showDrawer: true,
       showCaseUsers: false,
-      caseLastModified: null
+      caseLastModified: null,
+      breadcrumbItem: {
+        label: 'My Tasks',
+        url: '#/' }
     }
   );
 

@@ -23,7 +23,10 @@ const getCaseModelDetail = (responseData) => {
   if (caseModelItem && caseModelItem.attributes) {
     if (caseModelItem.children) {
       const caseRoles = caseModelItem.children.filter(elmt => elmt.name === 'caseRoles');
-      caseModelItem.attributes.roles = caseRoles.reduce((arr, role) => arr.concat(role.attributes.name), []);
+      caseModelItem.attributes.roles = {};
+      // make sure we have both name and descriptions in the roles object.
+      // so we can display the description in the views instead of the name.
+      caseModelItem.attributes.roles = caseRoles.reduce((arr, role) => arr.concat({ name: role.attributes.name, description: role.attributes.description }), []);
     }
     return caseModelItem.attributes;
   }
