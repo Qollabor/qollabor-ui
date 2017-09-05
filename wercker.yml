@@ -47,6 +47,11 @@ deploy:
           cp -Rp $WERCKER_SOURCE_DIR/docker/docker-entrypoint.sh /docker-entrypoint.sh
           cp -Rp $WERCKER_SOURCE_DIR/docker/nginx.default.template /etc/nginx/conf.d/default.template
           chmod 744 /docker-entrypoint.sh
+    - script:
+          name: remove pipeline/source
+          code: |
+            echo "Removing source directory" $WERCKER_SOURCE_DIR
+            rm -rf $WERCKER_SOURCE_DIR
     - internal/docker-push:
         tag: $DOCKER_HUB_TAG
         username: $DOCKER_HUB_USERNAME
