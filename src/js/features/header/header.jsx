@@ -79,14 +79,14 @@ export class Header extends React.Component {
               />
             </IconButton>
           </ToolbarGroup>
-          <ToolbarGroup style={{ flexGrow: '4', justifyContent: 'space-between' }} firstChild={false} lastChild={false}>
+          <ToolbarGroup style={{ flexGrow: '4', justifyContent: 'space-between', marginLeft: '10px' }} firstChild={false} lastChild={false}>
             <ToolbarTitle
               style={Object.assign({}, styles.title, {
                 color: theme.appBar.textColor,
                 fontFamily: theme.fontFamily,
-                width: cafienneTitleWidth
+                width: cafienneTitleWidth,
               })}
-              text="Cafienne"
+              text="Qollabor"
             />
             <ToolbarGroup style={{ flexGrow: '4', justifyContent: 'space-between' }} firstChild={false} lastChild={false}>
 

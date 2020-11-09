@@ -13,7 +13,7 @@ export default {
   menuIcon: {
     marginTop: '-6px',
     height: 35,
-    width: 35
+    width: 43
   },
   menu: {
     float: 'left',
