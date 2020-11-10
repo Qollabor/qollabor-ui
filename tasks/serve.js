@@ -24,6 +24,7 @@ module.exports = (gulp, config) => {
           // Start a webpack-dev-server
           new WebpackDevServer(webpack(myConfig), {
             hot: true,
+            clientLogLevel: 'debug',
             contentBase: path.join(__dirname, '../dist/'),
             filename: 'index.js',
             progress: true,
@@ -32,7 +33,8 @@ module.exports = (gulp, config) => {
             },
             proxy: {
               '/api': {
-                target: `${config.server.proxy}`,
+                changeOrigin: true,
+                target: 'http://api-cafienne.cycletoaccelerate.com',
                 pathRewrite: { '^/api': '' }
               }
             }
