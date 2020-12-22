@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 const defaultState = Immutable.Map(
   {
     isOnInit: false,
+    auth0Client: null,
     showDrawer: true,
     showCaseUsers: false,
     headerMenu: [],
@@ -18,6 +19,9 @@ export default (state = defaultState, action) => {
   switch (action.type) {
     case 'APP:INIT':
       return state.set('isOnInit', true);
+
+    case 'APP:INIT_AUTH0_CLIENT':
+      return state.set('auth0Client', action.auth0Client);
 
     case 'APP:INIT:SUCCESS':
       return state.set('isOnInit', false);

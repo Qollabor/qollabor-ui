@@ -34,7 +34,8 @@ module.exports = (gulp, config) => {
             proxy: {
               '/api': {
                 changeOrigin: true,
-                target: 'http://api-cafienne.cycletoaccelerate.com',
+                // target: 'http://api-cafienne.cycletoaccelerate.com',
+                target: 'http://localhost:2028',
                 pathRewrite: { '^/api': '' }
               }
             }

@@ -28,7 +28,13 @@ function getFormErrors(username, password) {
   return null;
 }
 
-export function* loginFlow(action) {
+export const loginFlow = async() => {
+  const auth0Client = store.getState().app.get('auth0Client');
+  console.log(auth0Client);
+  await auth0Client.loginWithRedirect();
+};
+
+export function* loginFlow1 (action) {
   const config = registry.get('config');
   const errors = getFormErrors(action.username, action.password);
   if (errors) {
@@ -47,13 +53,18 @@ export function* loginFlow(action) {
       });
     if (response.status === 204) {
       const userData = { username: action.username, token: response.headers.get(config.login.token.httpHeader) };
+      console.log(userData);
       registry.get('storage')
         .setItem(config.login.token.storage.key, response.headers.get(config.login.token.httpHeader));
+
+      console.log(`dikke${config.login.token.httpHeader}`);
       registry.get('storage')
         .setItem(config.login.user.storage.key, action.username);
       yield put({ type: 'LOGIN:DO_LOGIN:SUCCESS', user: userData });
 
       const redirectAfterLogin = store.getState().login.get('redirectAfterLogin');
+      console.log('redirechtAfterLogin');
+      console.log(redirectAfterLogin);
       if (redirectAfterLogin) {
         yield put({ type: 'LOGIN:LOGIN_REDIRECT_USE' });
         store.dispatch(replaceRouter(redirectAfterLogin));
@@ -73,6 +84,8 @@ export function* loginFlow(action) {
 
 export function* refreshFlow(action) {
   const config = registry.get('config');
+  console.log('in de refresh');
+  console.log(config);
   try {
     const redirectAfterLogin = store.getState().login.get('redirectAfterLogin');
     yield put({ type: 'LOGIN:LOGIN_REDIRECT_USE' });
@@ -108,6 +121,9 @@ export function* refreshFlow(action) {
 
 export function* tokenRefreshFlow(action) {
   const config = registry.get('config');
+
+  console.log('in de token refresh flow');
+  console.log(config);
   try {
     const response = yield registry.get('request')
       .get(config.login.refresh.url, null, {

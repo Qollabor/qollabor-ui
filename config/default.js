@@ -8,7 +8,7 @@ const baseApiUrl = process.env.CAFIENNE_API_URL
 
 const apiProxyUrl = process.env.CAFIENNE_PROXY_URL
   ? process.env.CAFIENNE_PROXY_URL
-  : 'http://localhost:18082/'
+  : 'http://localhost:18082/';
 
 console.log('Set baseApiUrl to', baseApiUrl);
 console.log('Set reverse proxy for API to', apiProxyUrl);
@@ -22,7 +22,7 @@ module.exports = {
     proxy: apiProxyUrl
   },
   webpack: {
-    logDispatcher: true,
+    logDispatcher: false,
     reduxDevTools: true
   },
   uglify: {
@@ -46,7 +46,8 @@ module.exports = {
         defaultCancel: '/'
       },
       token: {
-        httpHeader: 'X-AUTH-CAFIENNE',
+        // httpHeader: 'X-AUTH-CAFIENNE',
+        httpHeader: 'Authorization',
         storage: {
           key: 'auth-cafienne'
         },

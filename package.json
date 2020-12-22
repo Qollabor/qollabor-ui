@@ -1,6 +1,8 @@
 {
   "private": true,
   "dependencies": {
+    "@auth0/auth0-react": "^1.2.0",
+    "@auth0/auth0-spa-js": "^1.13.5",
     "app-registry": "1.0.1",
     "babel-polyfill": "6.13.0",
     "damals": "^0.9.4",
