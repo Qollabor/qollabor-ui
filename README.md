@@ -1,6 +1,9 @@
 # Cafienne-UI
 
-This is the Cafienne-UI which serves as a front-end for the Cafienne case file engine.
+This is the prototype Cafienne-UI which serves as a front-end for the Cafienne case file engine.
+
+Note: For authentication auth0 is used. This is not implemented the way it formally should.
+Because this UI is only for demo purposes we just made it work.
 
 The UI is built using:
 

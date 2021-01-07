@@ -4,6 +4,7 @@ import { replace as replaceRouter } from 'react-router-redux';
 import { initialize } from 'redux-form';
 import { store } from '../../store';
 import { notifySuccess, notifyDanger } from '../notifier';
+import { logout } from './../../helpers/auth0';
 
 let refreshTokenTimeout;
 function refreshTokenCallback() {
@@ -16,6 +17,10 @@ function refreshTokenCallback() {
 }
 
 export function* logoutFlow() {
+  // logout from auth0
+  logout();
+
+  // old flow
   const config = registry.get('config');
   registry.get('storage').removeItem(config.login.token.storage.key);
   registry.get('storage').removeItem(config.login.user.storage.key);
@@ -114,8 +119,6 @@ export function* updateAvatar(action) {
 export function* fetchProfile() {
   const config = registry.get('config');
   console.log('in de fetch profile');
-  console.log('config');
-  console.log(config);
 
   yield put({ type: 'USER:PROFILE:FETCH' });
 

@@ -72,37 +72,46 @@ export class LoginForm extends React.Component {
   }
 
   render() {
-    const errors = this.props.errors || {};
+    // const errors = this.props.errors || {};
 
-    const usernameProps = {
-      errorText: !this.state.changed.username ? errors.username : ''
-    };
+    // const usernameProps = {
+    //   errorText: !this.state.changed.username ? errors.username : ''
+    // };
 
-    const passwordProps = {
-      errorText: !this.state.changed.password ? errors.password : ''
-    };
+    // const passwordProps = {
+    //   errorText: !this.state.changed.password ? errors.password : ''
+    // };
 
-    const loginProps = {
-      errorText: !this.state.changed.login ? errors.login : ''
-    };
+    // const loginProps = {
+    //   errorText: !this.state.changed.login ? errors.login : ''
+    // };
 
-    const progressIndicator =
-      this.props.isLoggingIn ?
-        (<RefreshIndicator
-          size={30}
-          left={5}
-          top={5}
-          status="loading"
-          style={styles.progress}
-        />)
-        : false;
+    // const progressIndicator =
+    //   this.props.isLoggingIn ?
+    //     (<RefreshIndicator
+    //       size={30}
+    //       left={5}
+    //       top={5}
+    //       status="loading"
+    //       style={styles.progress}
+    //     />)
+    //     : false;
 
-    const subContainerStyle =
-      Object.assign({}, styles.alignSubContainer, { margin: this.props.alignCenter ? '0px auto' : '0px' });
+    // const subContainerStyle =
+    //   Object.assign({}, styles.alignSubContainer, { margin: this.props.alignCenter ? '0px auto' : '0px' });
 
     return (
       <div style={styles.alignContainer}>
-        <div style={subContainerStyle}>
+        <form onSubmit={this.handleOnLogIn}>
+          <RaisedButton
+            label="Login"
+            primary={true}
+            style={styles.button}
+            type="submit"
+            disabled={this.props.isLoggingIn}
+          />
+        </form>
+        {/* <div style={subContainerStyle}>
           <Paper style={styles.container}>
             <form onSubmit={this.handleOnLogIn}>
               <div style={styles.textFieldWrapper}>
@@ -145,9 +154,8 @@ export class LoginForm extends React.Component {
               {progressIndicator}
             </form>
           </Paper>
-        </div>
+        </div> */}
       </div>
-
     );
   }
 }

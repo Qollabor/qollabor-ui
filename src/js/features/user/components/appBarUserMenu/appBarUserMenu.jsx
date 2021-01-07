@@ -99,7 +99,7 @@ export class AppBarUserMenu extends React.Component {
           onRequestClose={this.handleRequestClose.bind(this)}
           animation={PopoverAnimationVertical}
         >
-          <div style={{ margin: '10px 10px 10px 28px', height: 170, width: 150, alignContent: 'center' }}>
+          {/* <div style={{ margin: '10px 10px 10px 28px', height: 170, width: 150, alignContent: 'center' }}>
             {profile &&
               <div>
                 <Avatar
@@ -109,7 +109,7 @@ export class AppBarUserMenu extends React.Component {
                 />
               </div>
             }
-          </div>
+          </div> */}
           <Divider />
           <Menu style={styles.menu}>
             <MenuItem
@@ -117,7 +117,8 @@ export class AppBarUserMenu extends React.Component {
               leftIcon={<ActionPowerSettingsNew />}
               onClick={this.handleLogout.bind(this)}
             />
-
+            {/*
+            // TODO: implement these functions with the auth0
             <MenuItem
               primaryText="Change Password"
               leftIcon={<ActionLockOpen />}
@@ -127,7 +128,7 @@ export class AppBarUserMenu extends React.Component {
               primaryText="Change Profile"
               leftIcon={<ActionFace />}
               onClick={this.handleChangeProfile.bind(this)}
-            />
+            /> */}
           </Menu>
         </Popover>
         <span>
