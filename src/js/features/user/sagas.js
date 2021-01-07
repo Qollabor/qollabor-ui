@@ -118,7 +118,6 @@ export function* updateAvatar(action) {
 
 export function* fetchProfile() {
   const config = registry.get('config');
-  console.log('in de fetch profile');
 
   yield put({ type: 'USER:PROFILE:FETCH' });
 

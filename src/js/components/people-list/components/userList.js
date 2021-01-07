@@ -12,9 +12,9 @@ class UserList extends React.Component {
     }
   }
 
-  handleUserSelectChange(uniqueId, event, isInputChecked) {
+  handleUserSelectChange(userId, event, isInputChecked) {
     if (this.props.onUserSelectChange) {
-      this.props.onUserSelectChange(uniqueId, isInputChecked);
+      this.props.onUserSelectChange(userId, isInputChecked);
     }
   }
 
@@ -25,7 +25,8 @@ class UserList extends React.Component {
       <List>
         {this.props.people && this.props.people.length > 0 ?
           this.props.people.map((person) => {
-            const { avatarUrl, name, uniqueId, selected } = person;
+            // const { avatarUrl, name, uniqueId, selected } = person;
+            const { avatarUrl, name, userId, selected } = person;
             const avatarSrc = {};
             let initial = null;
             if (avatarUrl && avatarUrl.length) {
@@ -35,12 +36,12 @@ class UserList extends React.Component {
             }
 
             const actions = {};
-            actions.onClick = this.handleOnClick.bind(this, uniqueId);
+            actions.onClick = this.handleOnClick.bind(this, userId);
 
             return (
               <ListItem
                 innerDivStyle={{ paddingTop: 4, paddingLeft: 15, fontSize: 13 }}
-                key={uniqueId}
+                key={userId}
                 {...actions}
                 primaryText={<div style={{ marginLeft: 50, paddingTop: 8 }}>{person.name}</div>}
                 leftAvatar={<Avatar user={person} size={avatarSize}>{initial}</Avatar>}

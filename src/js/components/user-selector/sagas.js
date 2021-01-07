@@ -24,7 +24,8 @@ export function* fetchUsersList() {
           [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
         }
       });
-    yield put({ type: 'USERS_SELECTOR:LIST:FETCH:SUCCESS', items: response.body[dataKey] });
+    // yield put({ type: 'USERS_SELECTOR:LIST:FETCH:SUCCESS', items: response.body[dataKey] });
+    yield put({ type: 'USERS_SELECTOR:LIST:FETCH:SUCCESS', items: response.body });
   } catch (err) {
     yield put({ type: 'USERS_SELECTOR:FETCH:FAIL', error: err.message });
   }
@@ -34,10 +35,12 @@ const getURLWithParams = (store, config) => {
   const filterString = store.getState().userSelector.get('filterString');
   const sortKey = 'name';
   const sortDesc = 'ASC';
-  let url = `${config.baseApiUrl}users?numberOfResults=${NO_OF_RESULTS}`;
-  url = filterString ? `${url}&filterString=${filterString}` : url;
-  url = sortKey ? `${url}&sortBy=${sortKey}` : url;
-  url = sortKey ? `${url}&sortOrder=${sortDesc ? 'DESC' : 'ASC'}` : url;
+  // let url = `${config.baseApiUrl}users?numberOfResults=${NO_OF_RESULTS}`;
+  // TODO: make tenant variable
+  const url = `${config.baseApiUrl}tenant/world/users`;
+ // url = filterString ? `${url}&filterString=${filterString}` : url;
+  // url = sortKey ? `${url}&sortBy=${sortKey}` : url;
+  // url = sortKey ? `${url}&sortOrder=${sortDesc ? 'DESC' : 'ASC'}` : url;
   return url;
 };
 
