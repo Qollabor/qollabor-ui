@@ -54,7 +54,7 @@ describe('features/case-models/caseTeam', () => {
           ADMIN: [
             {
               name: 'admin',
-              uniqueId: 'admin'
+              userId: 'admin'
             }
           ],
           Manager: [],
@@ -62,7 +62,7 @@ describe('features/case-models/caseTeam', () => {
         },
         selectedUser: {
           name: 'admin',
-          uniqueId: 'admin'
+          userId: 'admin'
         },
         isSelected: true
       }));
@@ -73,7 +73,7 @@ describe('features/case-models/caseTeam', () => {
         role: 'ADMIN',
         user: {
           name: 'admin',
-          uniqueId: 'admin'
+          userId: 'admin'
         },
         selected: true
       });

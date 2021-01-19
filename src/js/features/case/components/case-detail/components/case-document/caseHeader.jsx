@@ -9,6 +9,7 @@ const headerStyle = {
 };
 
 class CaseHeader extends React.Component {
+
   getLocalFormattedDate (date) {
     return registry.get('helpers').getLocalDateTime(date);
   }

@@ -15,7 +15,6 @@ export const TitledBox = (WrappedComponent) => {
       if (this.props.title) {
         legend = <legend style={styles.legend}>{this.props.title}</legend>;
       }
-
       let content;
       if (this.props.isFetching) {
         content = (

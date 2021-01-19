@@ -37,12 +37,13 @@ export function* fetchTasks(action) {
     let tasks = [];
 
     const sanitizeAfterLoad = registry.get('helpers').task.sanitizeAfterLoad;
+
     if (config.tasks.version === 1) {
       if (response.body[dataKey]) {
         tasks = response.body[dataKey].map(sanitizeAfterLoad);
       }
-    } else if (response.body.tasks) {
-      tasks = response.body.tasks.map(sanitizeAfterLoad);
+    } else if (response.body) {
+      tasks = response.body.map(sanitizeAfterLoad);
     }
     yield put({ type: 'TASKS:LIST:FETCH:SUCCESS', tasks });
   } catch (err) {
@@ -96,7 +97,8 @@ export function* executeTaskAction(action) {
   yield put({ type: 'TASK:ITEM:EXECUTE_ACTION', taskId: action.taskId, taskAction: action.taskAction });
 
   const userData = {
-    assignee: action.assignee ? action.assignee.uniqueId : ''
+    // assignee: action.assignee ? action.assignee.uniqueId : ''
+    assignee: action.assignee ? action.assignee.userId : ''
   };
 
   try {

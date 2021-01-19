@@ -28,7 +28,7 @@ class UserSelector extends React.Component {
   filterUser(users, filteredUserId) {
     if (filteredUserId && users) {
       const index = users.findIndex(user =>
-        user.uniqueId === filteredUserId
+        user.userId === filteredUserId
       );
       users.splice(index, 1);
     }
@@ -37,9 +37,9 @@ class UserSelector extends React.Component {
   markSelectedUsers(users, selectedUsers) {
     if (selectedUsers && users) {
       users.forEach((user) => {
-        const userId = user.uniqueId;
+        const userId = user.userId;
         user.selected = (selectedUsers.findIndex(selectedUser =>
-          selectedUser.uniqueId === userId
+          selectedUser.userId === userId
         ) !== -1);
       });
     }

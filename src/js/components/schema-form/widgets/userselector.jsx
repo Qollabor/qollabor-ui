@@ -71,7 +71,7 @@ export class UserSelectorWidget extends React.Component {
   // If multiSelect is enabled, return array of selected users else return selected user object.
   getSelectedUsers(user, selected) {
     const selectedUsers = (this.props.uiSchema.multiSelect) ? this.state.selectedUsers : [];
-    const index = selectedUsers.findIndex(item => item.uniqueId === user.uniqueId);
+    const index = selectedUsers.findIndex(item => item.userId === user.userId);
     if (!selected) {
       selectedUsers.splice(index, 1);
     } else if (selected && index === -1) {
@@ -85,7 +85,7 @@ export class UserSelectorWidget extends React.Component {
 
     let selectedUserIds;
     if (selectedUsers.length > 0) {
-      selectedUserIds = selectedUsers.map(item => item.uniqueId);
+      selectedUserIds = selectedUsers.map(item => item.userId);
       // If multiSelect is not enable, return the array element.
       if (!this.props.uiSchema.multiSelect) {
         selectedUserIds = (selectedUserIds.length > 0) ? selectedUserIds[0] : '';

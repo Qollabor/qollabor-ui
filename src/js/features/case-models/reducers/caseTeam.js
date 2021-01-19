@@ -7,7 +7,7 @@ caseTeam reducer sample =>
   roles : [{
     "role":"Admin",
     "users":[{
-        "uniqueId":"admin",
+        "userId":"admin",
         "name":"Admin",
         "roles":["Admin"]
         }, ...
@@ -31,7 +31,7 @@ const getCaseTeam = (roles, selectedRole, selectedUser, selected, multiSelect) =
     return roles;
   }
   const users = (multiSelect === false) ? [] : roles.get(selectedRole);
-  const index = users.findIndex(item => item.uniqueId === selectedUser.uniqueId);
+  const index = users.findIndex(item => item.userId === selectedUser.userId);
   if (!selected) {
     users.splice(index, 1);
   } else if (selected && index === -1) {

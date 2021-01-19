@@ -146,7 +146,7 @@ export function* updateProfile() {
 
   try {
     const response = yield request.put(`${config.baseApiUrl}user`, data, options);
-    data = { uniqueId: data.uniqueId, name: data.name, roles: data.roles };
+    data = { userId: data.userId, name: data.name, roles: data.roles };
 
     yield response;
 

@@ -67,11 +67,13 @@ module.exports = {
     },
     tasks: {
       url: `${baseApiUrl}tasks`,
-      version: 1
+      // version: 1
+      version: 2
     },
     cases: {
       url: `${baseApiUrl}cases`,
-      version: 1,
+      // version: 1,
+      version: 2,
       lastModifiedHttpHeader: 'Case-Last-Modified'
     },
     case: {

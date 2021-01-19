@@ -58,7 +58,7 @@ const test = {
         'PersonalAssistant',
         'deTozoControleur'
       ],
-      uniqueId: 'hank'
+      userId: 'hank'
     },
     avatar: null,
     isFetching: false
@@ -633,7 +633,7 @@ const test = {
           'PersonalAssistant',
           'deTozoControleur'
         ],
-        uniqueId: 'hank'
+        userId: 'hank'
       },
       initial: {
         name: 'suzy',
@@ -644,7 +644,7 @@ const test = {
           'PersonalAssistant',
           'deTozoControleur'
         ],
-        uniqueId: 'hank'
+        userId: 'hank'
       }
     }
   },

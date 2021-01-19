@@ -8,7 +8,7 @@
       "name": "Sarath",
       "avatarLastModified": "1470287658",
       "email": "sarath@gmail.com",
-      "uniqueId": "sarath"
+      "userId": "sarath"
     },
     {
       "roles": [
@@ -17,7 +17,7 @@
       "name": "Sharbel",
       "avatarLastModified": "1470287688",
       "email": "csharbel@gmail.com",
-      "uniqueId": "sharbel"
+      "userId": "sharbel"
     },
     {
       "roles": [
@@ -26,7 +26,7 @@
       "name": "Bean",
       "avatarLastModified": "1470287578",
       "email": "bean@gmail.com",
-      "uniqueId": "bean"
+      "userId": "bean"
     }
   ],
   "error": {

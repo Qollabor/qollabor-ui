@@ -11,30 +11,30 @@ export class UserAvatar extends React.Component {
 
     this.state = {
       avatar: this.props.user.avatar,
-      uniqueId: this.props.user.uniqueId,
+      userId: this.props.user.userId,
       userName: this.props.user.name,
       avatarLastModified: this.props.user.avatarLastModified
     };
   }
 
   componentWillMount() {
-    this.fetchAvatarDetails(this.props.user.uniqueId, this.props.user.avatarLastModified);
+    this.fetchAvatarDetails(this.props.user.userId, this.props.user.avatarLastModified);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.user.uniqueId === nextProps.user.uniqueId && nextProps.avatar) {
+    if (this.props.user.userId === nextProps.user.userId && nextProps.avatar) {
       this.setState({
         avatar: nextProps.avatar
       });
     }
-    if (this.props.user.uniqueId !== nextProps.user.uniqueId) {
-      this.fetchAvatarDetails(nextProps.user.uniqueId, nextProps.user.avatarLastModified);
+    if (this.props.user.userId !== nextProps.user.userId) {
+      this.fetchAvatarDetails(nextProps.user.userId, nextProps.user.avatarLastModified);
     }
   }
 
-  fetchAvatarDetails(uniqueId, lastModified) {
-    if (lastModified && uniqueId) {
-      fetchAvatar(uniqueId, lastModified).then((response) => {
+  fetchAvatarDetails(userId, lastModified) {
+    if (lastModified && userId) {
+      fetchAvatar(userId, lastModified).then((response) => {
         this.setState({
           avatar: response.body.avatar
         });
@@ -54,7 +54,7 @@ export class UserAvatar extends React.Component {
 
     const actions = {};
     const style = { marginRight: `${padding}px`, cursor: 'pointer' };
-    actions.onClick = this.handleOnClick.bind(this, person.uniqueId);
+    actions.onClick = this.handleOnClick.bind(this, person.userId);
 
     const avatarSrc = {};
     let initial = null;
@@ -68,7 +68,7 @@ export class UserAvatar extends React.Component {
 
     // If chip view is enabled, return avatar chip view, else return avatar simple view.
     return (
-      <div style={{ float: 'left' }} title={`${person.name} (${person.uniqueId})`}>
+      <div style={{ float: 'left' }} title={`${person.name} (${person.userId})`}>
         {isChipView ?
           <Chip key={person.name}>
             <Avatar

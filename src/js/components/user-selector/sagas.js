@@ -36,7 +36,7 @@ const getURLWithParams = (store, config) => {
   const sortKey = 'name';
   const sortDesc = 'ASC';
   // let url = `${config.baseApiUrl}users?numberOfResults=${NO_OF_RESULTS}`;
-  // TODO: make tenant variable
+  // TODO: make tenant variable!!!
   const url = `${config.baseApiUrl}tenant/world/users`;
  // url = filterString ? `${url}&filterString=${filterString}` : url;
   // url = sortKey ? `${url}&sortBy=${sortKey}` : url;

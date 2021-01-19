@@ -4,10 +4,9 @@ import { Cell } from 'fixed-data-table';
 import ActionChooser from '../../../../task/components/action-chooser';
 
 // ActionChooser cell
-const ActionChooserCell = ({ rowIndex, cancelClick, ...props }) =>
-  (<Cell onClick={cancelClick}>
-    <ActionChooser {...props} rowIndex={rowIndex} iconStyle={{ height: 30, padding: 0 }} />
-  </Cell>);
+const ActionChooserCell = ({ rowIndex, cancelClick, ...props }) => (<Cell onClick={cancelClick}>
+  <ActionChooser {...props} rowIndex={rowIndex} iconStyle={{ height: 30, padding: 0 }} />
+</Cell>);
 
 const cancelClick = (e) => {
   e.stopPropagation();

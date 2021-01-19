@@ -80,8 +80,8 @@ export class ActionChooser extends React.Component {
         >
           {this.state.open ?
             this.props.actionItems.map(function (actionitem) {
-              const disabled = this.props.isDisabled ?
-              this.props.isDisabled(actionitem) : false;
+              const disabled = this.props.isDisabled && this.props.rowIndex ?
+              this.props.isDisabled(actionitem, this.props.rowIndex) : false;
               const menuItemClass = (disabled === true) ? 'menuItemDisabled' : '';
               return (
                 <MenuItem

@@ -21,7 +21,7 @@ class CaseDocument extends React.Component {
         status: casePlanItem.currentState,
         planitems: this.getPlanItems(caseDocument.planitems),
         lastModified,
-        lastModifiedBy: caseDocument.lastModifiedBy
+        lastModifiedBy: caseDocument.modifiedBy
       };
     }
     return null;

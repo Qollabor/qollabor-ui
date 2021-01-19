@@ -32,6 +32,8 @@ export default async () => {
 
       const idTokenClaims = await auth0Client.getIdTokenClaims();
       const user = await auth0Client.getUser();
+      console.log('dit is de user');
+      console.log(user);
 
       /* eslint-disable no-underscore-dangle */
       const accessToken = idTokenClaims.__raw;
@@ -40,10 +42,10 @@ export default async () => {
         // Add to local storage
         registry.get('storage').setItem('token', accessToken);
         registry.get('storage').setItem('expDate', exp);
-        registry.get('storage').setItem('name', user.name);
+        registry.get('storage').setItem('sub', user.sub);
 
         // Add to store
-        const userData = { username: user.name, token: `Bearer ${accessToken}` };
+        const userData = { username: user.sub, token: `Bearer ${accessToken}` };
         store.dispatch({ type: 'LOGIN:DO_LOGIN:SUCCESS', user: userData });
 
         redirect();
@@ -62,5 +64,5 @@ export const logout = async() => {
   await auth0Client.logout();
   registry.get('storage').removeItem('token');
   registry.get('storage').removeItem('expDate');
-  registry.get('storage').removeItem('name');
+  registry.get('storage').removeItem('sub');
 };

@@ -8,9 +8,9 @@ import { store } from '../../../../../store';
 import CaseTeamSelector from '../caseTeamSelector';
 
 const roles = {
-  Manager: [{ name: 'Thijs Petter', uniqueId: 'thijsp' }],
-  Reviewer: [{ name: 'Martijn van der Plaat', uniqueId: 'martijnvdp' }],
-  Approver: [{ name: 'Danny Kruitbosch', uniqueId: 'dannyk' }]
+  Manager: [{ name: 'Thijs Petter', userId: 'thijsp' }],
+  Reviewer: [{ name: 'Martijn van der Plaat', userId: 'martijnvdp' }],
+  Approver: [{ name: 'Danny Kruitbosch', userId: 'dannyk' }]
 };
 
 storiesOf('CaseModels/CaseTeamSelector', module).addDecorator(story => (

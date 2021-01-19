@@ -4,16 +4,16 @@ import moment from 'moment';
 export function onEnterRouterHook(nextState, replace, store, requireAuth) {
   const storedToken = registry.get('storage').getItem('token');
   const storedExp = registry.get('storage').getItem('expDate');
-  const storedName = registry.get('storage').getItem('name');
+  const storedSub = registry.get('storage').getItem('sub');
   const tokenValid = storedExp ? moment.unix(parseInt(storedExp, 10)) > moment() : false;
 
-  if (storedToken && storedName && tokenValid) {
-    const userData = { username: storedName, token: `Bearer ${storedToken}` };
+  if (storedToken && storedSub && tokenValid) {
+    const userData = { username: storedSub, token: `Bearer ${storedToken}` };
     store.dispatch({ type: 'LOGIN:DO_LOGIN:SUCCESS', user: userData });
   } else {
     registry.get('storage').removeItem('token');
     registry.get('storage').removeItem('expDate');
-    registry.get('storage').removeItem('name');
+    registry.get('storage').removeItem('sub');
   }
 
   const loggedInUser = store.getState().user.get('loggedUser');

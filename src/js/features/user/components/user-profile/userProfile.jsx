@@ -48,8 +48,8 @@ class UserProfile extends React.Component {
       <form style={styles.formMargin}>
         <div>
           <Field
-            name="uniqueId" component={uniqueId =>
-              <span style={{ float: 'right', textAlign: 'center' }} userId={uniqueId}>
+            name="userId" component={userId =>
+              <span style={{ float: 'right', textAlign: 'center' }} userId={userId}>
                 {initialValues && <ImageUpload user={initialValues} onUploadHandler={onAvatarUpdate} />}
               </span>
           }
@@ -57,13 +57,13 @@ class UserProfile extends React.Component {
         </div>
         <div>
           <Field
-            name="uniqueId" component={uniqueId =>
+            name="userId" component={userId =>
               <TextField
                 hintText="ID"
                 floatingLabelText="ID"
                 readOnly={true}
-                errorText={uniqueId.touched && uniqueId.error}
-                {...uniqueId}
+                errorText={userId.touched && userId.error}
+                {...userId}
               />
           }
           />

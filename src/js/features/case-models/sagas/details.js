@@ -55,16 +55,16 @@ function getCaseTeam(caseTeamItems) {
   let caseTeamMembers = [];
   caseTeamItems.forEach((caseTeamItem, role) => {
     caseTeamItem.forEach((caseTeam) => {
-      const caseTeamIndex = caseTeamMembers.findIndex(elmt => elmt.user === caseTeam.uniqueId);
+      const caseTeamIndex = caseTeamMembers.findIndex(elmt => elmt.user === caseTeam.userId);
       // If user exist, get the role and add it to caseTeamMembers map.
       if (caseTeamIndex !== -1) {
         const caseTeamRoles = caseTeamMembers[caseTeamIndex].roles;
         caseTeamRoles.push(role);
-        caseTeamMembers.splice(caseTeamIndex, 1, { user: caseTeam.uniqueId, roles: caseTeamRoles });
+        caseTeamMembers.splice(caseTeamIndex, 1, { user: caseTeam.userId, roles: caseTeamRoles });
       } else {
         // if role is empty, set empty array
         const caseTeamRoles = (role === '') ? [] : [role];
-        caseTeamMembers = caseTeamMembers.concat({ user: caseTeam.uniqueId, roles: caseTeamRoles });
+        caseTeamMembers = caseTeamMembers.concat({ user: caseTeam.userId, roles: caseTeamRoles });
       }
     });
   });
@@ -85,7 +85,7 @@ export function* startCaseModel() {
 
     const requestPayload = {
       definition: caseModelDetails.get('definition'),
-      name: caseModelDetails.get('data').name,
+      // name: caseModelDetails.get('data').name, not needed with the new engine
       inputs: caseModelDetails.get('caseData'),
       caseTeam: {
         members: getCaseTeam(caseTeamItems)

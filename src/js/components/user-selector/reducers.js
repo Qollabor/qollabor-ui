@@ -7,14 +7,14 @@ users selector reducer sample =>
   filterString : ...,
   isFetching : true | false,
   users : [{
-          "uniqueId":"admin",
+          "userId":"admin",
           "name":"Admin",
           "roles":["Admin"]
           }, ...
     ]
   },
   filterUsers : [{
-          "uniqueId":"admin",
+          "userId":"admin",
           "name":"Admin",
           "roles":["Admin"]
           }, ...
