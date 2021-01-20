@@ -84,7 +84,7 @@ export class Header extends React.Component {
               style={Object.assign({}, styles.title, {
                 color: theme.appBar.textColor,
                 fontFamily: theme.fontFamily,
-                width: cafienneTitleWidth,
+                width: cafienneTitleWidth
               })}
               text="Qollabor"
             />

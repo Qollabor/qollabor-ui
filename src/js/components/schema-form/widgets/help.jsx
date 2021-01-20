@@ -26,8 +26,9 @@ export class HelpWidget extends React.Component {
 export function fetchUserDetails(userIds) {
   const config = registry.get('config');
   const store = registry.get('store');
+  // TODO: make tenant variable
   return registry.get('request')
-  .get(`${config.baseApiUrl}users?ids=${userIds}`, null, {
+  .get(`${config.baseApiUrl}tenant/world/users/${userIds}`, null, {
     headers: {
       [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
     }

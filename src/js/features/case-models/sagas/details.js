@@ -2,6 +2,8 @@ import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
 import parse from 'xml-parser';
 
+import parser from 'fast-xml-parser';
+
 const defaultXMLGetHeaders = {
   Accept: 'application/xml',
   'Content-Type': 'application/xml'
@@ -22,18 +24,31 @@ export function* fetchCaseModelDetails() {
     const response = yield registry.get('request').get(`${config.casemodeldetail.url}/${name}`, null, reqOptions);
     const jsonObj = parse(response.body.content).root.children;
 
+    // TODO: parse is not working well because case only has only 2 children parsed.
+    // A new parser is used, but structure is not totally the same. Investigate where
+    // jsonObj is used after it's put into the redux store. For now we only make caseModelScheme working.
+    const jsonObj1 = parser.parse(response.body.content);
+
     // Get case model input schema from casemodel definition -> case -> extensionElements
     let caseModelSchema = null;
-    const caseModelItem = jsonObj.find(elmt => elmt.name === 'case');
-    if (caseModelItem && caseModelItem.children) {
-      const extensionElements = caseModelItem.children.find(elmt => elmt.name === 'extensionElements');
-      if (extensionElements && extensionElements.children) {
-        // Parse case model schema xml as json
-        const caseModelSchemaContent = extensionElements.children.find(elmt =>
-            elmt.name.endsWith('start-case-model'));
-        caseModelSchema = caseModelSchemaContent ?
-          JSON.parse(caseModelSchemaContent.content.replace(/&quot;/g, '"')) : null;
-      }
+    // const caseModelItem = jsonObj.find(elmt => elmt.name === 'case');
+    // if (caseModelItem && caseModelItem.children) {
+    //   const extensionElements = caseModelItem.children.find(elmt => elmt.name === 'extensionElements');
+    //   if (extensionElements && extensionElements.children) {
+    //     // Parse case model schema xml as json
+    //     const caseModelSchemaContent = extensionElements.children.find(elmt =>
+    //         elmt.name.endsWith('start-case-model'));
+    //     caseModelSchema = caseModelSchemaContent ?
+    //       JSON.parse(caseModelSchemaContent.content.replace(/&quot;/g, '"')) : null;
+    //   }
+    // }
+    if (jsonObj1 && jsonObj1.definitions && jsonObj1.definitions.case && jsonObj1.definitions.case.extensionElements) {
+      const extensionElements = jsonObj1.definitions.case.extensionElements;
+      const rawScheme = extensionElements['cafienne:start-case-model'];
+      caseModelSchema = rawScheme ?
+          JSON.parse(rawScheme.replace(/&quot;/g, '"')) : null;
+    } else {
+      caseModelSchema = null;
     }
 
     yield put({ type: 'CASEMODEL:DETAIL:FETCH:SUCCESS', data: jsonObj, caseModelSchema });

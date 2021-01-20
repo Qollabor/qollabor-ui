@@ -42,8 +42,8 @@ export class TaskDetails extends React.Component {
     const taskModel = taskDetails.taskModel || {};
     const taskSchema = taskModel.schema || {};
     const taskUISchema = taskModel.uiSchema || {};
-    const formData = (taskDetails.rawOutput && Object.keys(taskDetails.rawOutput).length !== 0)
-      ? taskDetails.rawOutput : taskDetails.mappedInput;
+    const formData = (taskDetails.output && Object.keys(taskDetails.output).length !== 0)
+      ? taskDetails.output : taskDetails.input;
     const isPlanItemDisabled = (taskDetails.planState === 'Completed') || (taskDetails.planState === 'Terminated');
     const notAssignedToCurrentUser = (this.props.loggedInUserId !== taskDetails.assignee && taskDetails.assignee !== null);
     const isSuspended = (taskDetails.planState === 'Suspended');
