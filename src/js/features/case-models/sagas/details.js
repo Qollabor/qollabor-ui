@@ -1,8 +1,7 @@
 import { put } from 'redux-saga/effects';
 import registry from 'app-registry';
-import parse from 'xml-parser';
-
-import parser from 'fast-xml-parser';
+import parse from 'xml-parser'; // old
+import xml2js from 'xml2js'; // new
 
 const defaultXMLGetHeaders = {
   Accept: 'application/xml',
@@ -24,10 +23,10 @@ export function* fetchCaseModelDetails() {
     const response = yield registry.get('request').get(`${config.casemodeldetail.url}/${name}`, null, reqOptions);
     const jsonObj = parse(response.body.content).root.children;
 
-    // TODO: parse is not working well because case only has only 2 children parsed.
-    // A new parser is used, but structure is not totally the same. Investigate where
-    // jsonObj is used after it's put into the redux store. For now we only make caseModelScheme working.
-    const jsonObj1 = parser.parse(response.body.content);
+    const parser = new xml2js.Parser({ explicitArray: false, normalize: true });
+    const result = yield parser.parseStringPromise(response.body.content).then(data => data).catch((err) => {
+      // TODO: failed
+    });
 
     // Get case model input schema from casemodel definition -> case -> extensionElements
     let caseModelSchema = null;
@@ -42,15 +41,18 @@ export function* fetchCaseModelDetails() {
     //       JSON.parse(caseModelSchemaContent.content.replace(/&quot;/g, '"')) : null;
     //   }
     // }
-    if (jsonObj1 && jsonObj1.definitions && jsonObj1.definitions.case && jsonObj1.definitions.case.extensionElements) {
-      const extensionElements = jsonObj1.definitions.case.extensionElements;
-      const rawScheme = extensionElements['cafienne:start-case-model'];
-      caseModelSchema = rawScheme ?
-          JSON.parse(rawScheme.replace(/&quot;/g, '"')) : null;
+
+    if (result && result.definitions && result.definitions.case && result.definitions.case.extensionElements) {
+      const scm = result.definitions.case.extensionElements['cafienne:start-case-model'];
+      const rawSchema = scm[Object.keys(scm)[0]];
+      caseModelSchema = rawSchema ? JSON.parse(rawSchema.replace(/&quot;/g, '"')) : null;
     } else {
       caseModelSchema = null;
     }
 
+    // TODO: parse is not working well because case only has only 2 children parsed (there are 4).
+    // A new parser is used, but structure is not totally the same. Investigate where
+    // jsonObj is used after it's put into the redux store. For now we only make caseModelScheme working.
     yield put({ type: 'CASEMODEL:DETAIL:FETCH:SUCCESS', data: jsonObj, caseModelSchema });
 
     const description = store.getState().casemodel.details.get('data').description;

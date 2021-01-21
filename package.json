@@ -1,13 +1,11 @@
 {
   "private": true,
   "dependencies": {
-    "@auth0/auth0-react": "^1.2.0",
     "@auth0/auth0-spa-js": "^1.13.5",
     "app-registry": "1.0.1",
     "babel-polyfill": "6.13.0",
     "damals": "^0.9.4",
     "deeper": "2.1.0",
-    "fast-xml-parser": "^3.17.6",
     "fixed-data-table": "^0.6.0",
     "history": "2.1.0",
     "immutable": "3.8.1",
@@ -40,6 +38,7 @@
     "validator": "5.5.0",
     "whatwg-fetch": "1.0.0",
     "xml-parser": "1.2.1",
+    "xml2js": "^0.4.23",
     "zxcvbn": "4.3.0"
   },
   "devDependencies": {

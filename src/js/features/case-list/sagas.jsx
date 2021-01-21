@@ -24,8 +24,7 @@ export function* fetchCases() {
       });
 
     yield put({ type: 'APP:BREADCRUMB:SET', breadcrumbItem: { label: 'My Cases', url: '#/cases' } });
-
-    yield put({ type: 'CASE:LIST:FETCH:SUCCESS', items: response.body[dataKey] });
+    yield put({ type: 'CASE:LIST:FETCH:SUCCESS', items: response.body });
   } catch (err) {
     yield put({ type: 'CASE:LIST:FETCH:FAIL', error: err.message });
   }
