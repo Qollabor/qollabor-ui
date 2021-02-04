@@ -246,7 +246,7 @@ There are 4 types of notifies:
  * notifyDanger
  * notifyWarning
 
-The method take 2 params:
+The method takes 2 params:
  * message
  * dismissAfter (in milliseconds, default 3000)
 
