@@ -1,0 +1,68 @@
+version: 2.1
+jobs:
+  build:
+    working_directory: ~/cafienne-ui
+    machine:
+      image: node:6.9.1
+    resource_class: medium
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore NPM Package Cache
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+      n      - v1-dependencies-
+      - run:
+          name: Installing dependencies
+          command: |
+            npm install -g gulp
+            npm install
+      - save_cache:
+          name: Save NPM Package Cache
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run:
+          name: system information
+          command: |
+            echo "node version $(node --version) running"
+            echo "npm version $(npm --version) running"
+            echo "gulp version $(gulp --version) running"
+      - run:
+          name: eslint
+          command: |
+            npm run eslint
+      - run:
+          name: test
+          command: |
+            npm test
+      - run:
+          name: build
+          command: |
+            npm run build-production
+      - run:
+          name: Build docker image
+          command: |
+            docker build -t qollabor/cafienne-ui:latest .
+      - run:
+          name: Push docker image
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ];
+            then
+              echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+              docker push qollabor/cafienne-ui:latest
+            else
+              echo "Not pushing image to docker hub"
+            fi
+
+workflows:
+  version: 2
+  ci:
+    jobs:
+      - build
+#          filters:
+#            tags:
+#              only: /.*/
+#            branches:
+#              ignore: /.*/
