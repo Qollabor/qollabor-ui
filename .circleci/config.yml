@@ -64,5 +64,7 @@ workflows:
 #          filters:
 #            tags:
 #              only: /.*/
-#            branches:
+           branches:
+             only:
+               - cafienne-ui-ng
 #              ignore: /.*/
