@@ -49,9 +49,6 @@ export function* fetchCase(action) {
     const response = yield registry.get('request')
       .get(`${config.cases.url}/${action.caseId}`, null, headers);
 
-
-    console.log('in de saga');
-    console.log(response);
     let theCase = {};
 
     if (config.cases.version === 1) {
@@ -60,16 +57,11 @@ export function* fetchCase(action) {
       }
     } else if (response.body) {
       const sanitizeAfterLoad = registry.get('helpers').task.sanitizeAfterLoad;
-      console.log('sal');
-      console.log(sanitizeAfterLoad);
-      console.log('gelukt');
       response.body.planitems = response.body.planitems.map(sanitizeAfterLoad);
       theCase = response.body;
     }
-    console.log('kom ik nog hier');
-    console.log(theCase);
+
     yield* successFunc(theCase);
-    console.log('en hier dan ook?');
 
     // Because Case Actions are called after a Task Detail is loaded,
     // we want to make sure we ONLY update the breadcrumb for a case,
@@ -82,7 +74,6 @@ export function* fetchCase(action) {
       });
     }
   } catch (err) {
-    console.log('maar we komen wel in de error');
     yield* errorFunc(err.message);
   }
 }
@@ -118,7 +109,6 @@ export function* fetchDiscretionaryItems(action) {
       }
     } else if (response.body) {
       discretionaryItems = response.body.discretionaryItems;
-      console.log('in di');
     }
     yield put({ type: 'CASE:DISCRETIONARY_ITEMS:FETCH:SUCCESS', discretionaryItems, caseInstanceId: action.caseId });
   } catch (err) {
@@ -166,46 +156,36 @@ export function* planDiscretionaryItem(action) {
 }
 
 export function* fetchCaseTeam(action) {
-  // console.log('in fetchCaseTeam');
-  // if (!action || !action.caseTeam) {
-  //   yield put({
-  //     type: 'CASE:TEAM:FETCH:FAIL',
-  //     error: 'Must specify a caseTeam for the caseTeam items to fetch'
-  //   });
-  //   return;
-  // }
+  if (!action || !action.caseTeam) {
+    yield put({
+      type: 'CASE:TEAM:FETCH:FAIL',
+      error: 'Must specify a caseTeam for the caseTeam items to fetch'
+    });
+    return;
+  }
 
-  // try {
-  //   const config = registry.get('config');
-  //   const store = registry.get('store');
-  //   const dataKey = '_2';
-  //   console.log('1');
-  //   yield put({ type: 'CASE:TEAM:FETCH' });
-  //   console.log('2');
-  //   const userIds = action.caseTeam.map(person => person.user).join(',');
-  //   console.log('3');
-  //   console.log(action);
-  //   const response = yield registry.get('request')
-  //     .get(`${config.baseApiUrl}users?ids=${userIds}`, null, {
-  //       headers: {
-  //         [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
-  //       }
-  //     });
-  //   console.log('4');
-  //   console.log(response);
-  //   let caseteamItems = [];
-  //   if (config.cases.version === 1) {
-  //     if (response.body[dataKey]) {
-  //       caseteamItems = response.body[dataKey];
-  //     }
-  //   } else if (response.body) {
-  //     caseteamItems = response.body;
-  //   }
+  try {
+    const config = registry.get('config');
+    const store = registry.get('store');
 
-  //   yield put({ type: 'CASE:TEAM:FETCH:SUCCESS', caseTeam: caseteamItems });
-  // } catch (err) {
-  //   yield put({ type: 'CASE:TEAM:FETCH:FAIL', error: err.message });
-  // }
+    yield put({ type: 'CASE:TEAM:FETCH' });
+
+    const userIds = action.caseTeam.map(person => person.memberId);
+
+    // TODO: make tenant variable
+    const response = yield (userIds.map(userId => registry.get('request')
+      .get(`${config.baseApiUrl}tenant/world/users/${userId}`, null, {
+        headers: {
+          [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
+        }
+      })));
+
+    const caseteamItems = response.map(r => r.body);
+
+    yield put({ type: 'CASE:TEAM:FETCH:SUCCESS', caseTeam: caseteamItems });
+  } catch (err) {
+    yield put({ type: 'CASE:TEAM:FETCH:FAIL', error: err.message });
+  }
 }
 
 export function* raiseEvent(action) {

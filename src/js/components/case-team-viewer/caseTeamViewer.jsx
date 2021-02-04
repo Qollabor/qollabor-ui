@@ -30,13 +30,12 @@ export class CaseTeamViewer extends React.Component {
     }
   }
 
-  fetchCaseTeamUserDetails(caseTeam) {
+  async fetchCaseTeamUserDetails (caseTeam) {
     if (!this.props.caseTeamUsers) {
-      fetchCaseTeam(caseTeam).then((response) => {
-        const dataKey = '_2';
-        this.setState({
-          caseTeamUsers: response.body[dataKey]
-        });
+      const resolved = await Promise.all(fetchCaseTeam(caseTeam));
+      const users = resolved.map(r => r.body);
+      this.setState({
+        caseTeamUsers: users
       });
     }
   }

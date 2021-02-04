@@ -32,8 +32,6 @@ export default async () => {
 
       const idTokenClaims = await auth0Client.getIdTokenClaims();
       const user = await auth0Client.getUser();
-      console.log('dit is de user');
-      console.log(user);
 
       /* eslint-disable no-underscore-dangle */
       const accessToken = idTokenClaims.__raw;
