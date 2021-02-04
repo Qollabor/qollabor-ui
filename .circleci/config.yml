@@ -12,7 +12,7 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
             # fallback to using the latest cache if no exact match is found
-      n      - v1-dependencies-
+      #      - v1-dependencies-
       - run:
           name: Installing dependencies
           command: |
@@ -60,11 +60,11 @@ workflows:
   version: 2
   ci:
     jobs:
-      - build
-#          filters:
+      - build:
+          filters:
 #            tags:
-#              only: /.*/
-           branches:
-             only:
+#             only: /.*/
+            branches:
+              only:
                - cafienne-ui-ng
 #              ignore: /.*/
