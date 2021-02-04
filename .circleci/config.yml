@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/cafienne-ui
     machine:
-      image: node:10.9.0
+      image: circleci/node:10.9.0
     resource_class: medium
     steps:
       - checkout
