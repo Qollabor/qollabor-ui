@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/cafienne-ui
     machine:
-      image: node:6.17.1
+      image: circleci/node:6.17.1
     resource_class: medium
     steps:
       - checkout
@@ -11,8 +11,6 @@ jobs:
           name: Restore NPM Package Cache
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-      #      - v1-dependencies-
       - run:
           name: Installing dependencies
           command: |
@@ -42,16 +40,25 @@ jobs:
           command: |
             npm run build-production
       - run:
+          name: setup local or remote invokation
+          command: |
+            if [[ $CIRCLE_SHELL_ENV == *"localbuild"* ]]; then
+              echo "This is a local build. Enabling sudo for docker"
+              echo "export DOCKER_SUDO=sudo"  >> $BASH_ENV
+            else
+              echo "This is not a local build. No sudo for docker"
+            fi
+      - run:
           name: Build docker image
           command: |
-            docker build -t qollabor/cafienne-ui:latest .
+           eval `echo ${DOCKER_SUDO}` docker build -t qollabor/cafienne-ui:latest .
       - run:
           name: Push docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ];
             then
               echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-              docker push qollabor/cafienne-ui:latest
+               eval `echo ${DOCKER_SUDO}` docker push qollabor/cafienne-ui:latest
             else
               echo "Not pushing image to docker hub"
             fi
