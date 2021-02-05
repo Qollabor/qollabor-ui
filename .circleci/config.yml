@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/cafienne-ui
     machine:
-      image: node:6.9.1
+      image: node:6.17.1
     resource_class: medium
     steps:
       - checkout
@@ -29,10 +29,10 @@ jobs:
             echo "node version $(node --version) running"
             echo "npm version $(npm --version) running"
             echo "gulp version $(gulp --version) running"
-      - run:
-          name: eslint
-          command: |
-            npm run eslint
+#      - run:
+#          name: eslint
+#          command: |
+#            npm run eslint
       - run:
           name: test
           command: |
