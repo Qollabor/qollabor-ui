@@ -3,18 +3,23 @@ jobs:
   build:
     working_directory: ~/cafienne-ui
     docker:
-      - image: node:8.17.0
+      - image: circleci/node:8.17.0
     resource_class: medium
     steps:
       - checkout
+      - run:
+          name: Giving permissions
+          command: sudo chmod -R 777 /usr/local/lib/node_modules
       - restore_cache:
           name: Restore NPM Package Cache
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
       - run:
           name: Installing dependencies
           command: |
-            npm install -g gulp@3.9.1
+            sudo npm install -g gulp@3.9.1
             npm install
       - save_cache:
           name: Save NPM Package Cache
