@@ -53,6 +53,8 @@ jobs:
             else
               echo "This is not a local build. No sudo for docker"
             fi
+      - setup_remote_docker:
+          version: 19.03.13
       - run:
           name: Build docker image
           command: |
