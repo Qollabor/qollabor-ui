@@ -32,14 +32,14 @@ jobs:
             echo "node version $(node --version) running"
             echo "npm version $(npm --version) running"
             echo "gulp version $(gulp --version) running"
-#      - run:
-#          name: eslint
-#          command: |
-#            npm run eslint
       - run:
-          name: test
+          name: eslint
           command: |
-            npm test
+            npm run eslint
+#      - run:
+#          name: test
+#          command: |
+#            npm test
       - run:
           name: build
           command: |
@@ -62,7 +62,7 @@ jobs:
       - run:
           name: Push docker image
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ];
+            if [ "${CIRCLE_BRANCH}" == "master" ] || [ "${CIRCLE_BRANCH}" == "qollabor" ];
             then
               echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
                eval `echo ${DOCKER_SUDO}` docker push qollabor/cafienne-ui:latest
