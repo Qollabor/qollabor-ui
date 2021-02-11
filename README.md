@@ -18,9 +18,9 @@ The UI is built using:
 
 To start developing this UI you there are some prerequisites:
 
-* node.js ~ 5.4.1
-* npm ~ 3.3.12
-* gulp @3.9.0
+* node.js ~ 8.17.0
+* npm ~ 6.13.4
+* gulp @3.9.1
 
 They all need to be installed globally (i.e. with `npm install -g`)
 
