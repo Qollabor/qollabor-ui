@@ -140,37 +140,50 @@ const getMillis = (item) => {
 };
 
 const getCaseInstances = (responseItems) => {
-  const cases = responseItems.reduce((arr, caseInstance) => {
-    const casePlanItem = caseInstance.planitems.find(elmt => elmt.type === 'CasePlan');
-    casePlanItem.definition = caseInstance.definition;
-    casePlanItem.parentCaseId = caseInstance.parentCaseId;
-    casePlanItem.team = caseInstance.team;
-    casePlanItem.id = caseInstance.id;
+  // const cases = responseItems.reduce((arr, caseInstance) => {
+  //   const casePlanItem = caseInstance.planitems.find(elmt => elmt.type === 'CasePlan');
+  //   casePlanItem.definition = caseInstance.definition;
+  //   casePlanItem.parentCaseId = caseInstance.parentCaseId;
+  //   casePlanItem.team = caseInstance.team;
+  //   casePlanItem.id = caseInstance.id;
 
-    // Get Last Modified PlanItem
-    const planItems = caseInstance.planitems.sort((item1, item2) =>
-      new Date(item1.lastModified) - new Date(item2.lastModified)
-    );
-    const lastModifiedPlanItem = planItems[planItems.length - 1];
-    casePlanItem.lastModifiedBy = lastModifiedPlanItem.user;
-    casePlanItem.lastModified = lastModifiedPlanItem.lastModified;
+  //   // Get Last Modified PlanItem
+  //   const planItems = caseInstance.planitems.sort((item1, item2) =>
+  //     new Date(item1.lastModified) - new Date(item2.lastModified)
+  //   );
+  //   const lastModifiedPlanItem = planItems[planItems.length - 1];
+  //   casePlanItem.lastModifiedBy = lastModifiedPlanItem.user;
+  //   casePlanItem.lastModified = lastModifiedPlanItem.lastModified;
 
-    // Get Last Updated MileStone Item
-    const mileStoneItems = caseInstance.planitems.filter(item =>
-    (item.type === 'Milestone' && item.historyState !== 'Null'
-      && item.transition !== 'ParentTerminate')).sort((item1, item2) => {
-        const moment1 = moment(item1.lastModified);
-        const moment2 = moment(item2.lastModified);
-        return moment1.isSame(moment2) ? getMillis(item1) - getMillis(item2) : moment2.isBefore(moment1);
-      });
+  //   // Get Last Updated MileStone Item
+  //   const mileStoneItems = caseInstance.planitems.filter(item =>
+  //   (item.type === 'Milestone' && item.historyState !== 'Null'
+  //     && item.transition !== 'ParentTerminate')).sort((item1, item2) => {
+  //       const moment1 = moment(item1.lastModified);
+  //       const moment2 = moment(item2.lastModified);
+  //       return moment1.isSame(moment2) ? getMillis(item1) - getMillis(item2) : moment2.isBefore(moment1);
+  //     });
 
-    if (mileStoneItems.length > 0) {
-      const lastModifiedMileStoneItem = mileStoneItems[mileStoneItems.length - 1];
-      casePlanItem.currentMileStone = lastModifiedMileStoneItem.name;
-    }
+  //   if (mileStoneItems.length > 0) {
+  //     const lastModifiedMileStoneItem = mileStoneItems[mileStoneItems.length - 1];
+  //     casePlanItem.currentMileStone = lastModifiedMileStoneItem.name;
+  //   }
 
-    return arr.concat(casePlanItem);
-  }, []);
+  //   return arr.concat(casePlanItem);
+  // }, []);
+  const cases = responseItems.map((caseInstance) => {
+    const ci = {};
+    ci.definition = caseInstance.definition;
+    ci.parentCaseId = caseInstance.parentCaseId;
+    // TODO caseteam is empty. This needs a fix on engine side!
+    ci.team = caseInstance.team;
+    ci.id = caseInstance.id;
+    ci.lastModified = caseInstance.lastModified;
+    ci.lastModifiedBy = caseInstance.modifiedBy;
+    // TODO currentMileStone is not defined. This needs a fix on engine side!
+    ci.currentMileStone = 'todo';
+    return ci;
+  });
 
   return Immutable.List(cases);
 };
