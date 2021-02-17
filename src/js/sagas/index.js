@@ -26,7 +26,7 @@ const sagas = [
   [takeEvery, ['LOGIN:DO_LOGIN:FAIL', 'LOGIN:VERIFY:FAIL'], unsetLoggedUserFlow],
   [takeEvery, 'LOGIN:TOKEN_REFRESH:FAIL', tokenNotValidFlow],
   [takeEvery, 'USER:CHANGE_PASSWORD', changePassword],
-  // [takeEvery, 'USER:PROFILE:INIT', fetchProfile], // in the new engine this operation doesn't exist
+  [takeEvery, 'USER:PROFILE:INIT', fetchProfile],
   [takeEvery, 'USER:PROFILE:UPDATE', updateProfile],
   [takeEvery, 'USER:AVATAR:UPDATE', updateAvatar],
   // tasks

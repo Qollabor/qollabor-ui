@@ -46,7 +46,8 @@ class UserProfile extends React.Component {
     const { handleSubmit, onSave, pristine, onCancel, submitting, onAvatarUpdate, initialValues } = this.props;
     return (
       <form style={styles.formMargin}>
-        <div>
+        {/* TODO uploading avatar not (yet) supported in new API/engine */}
+        {/* <div>
           <Field
             name="userId" component={userId =>
               <span style={{ float: 'right', textAlign: 'center' }} userId={userId}>
@@ -54,7 +55,7 @@ class UserProfile extends React.Component {
               </span>
           }
           />
-        </div>
+        </div> */}
         <div>
           <Field
             name="userId" component={userId =>

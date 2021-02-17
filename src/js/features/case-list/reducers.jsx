@@ -175,12 +175,12 @@ const getCaseInstances = (responseItems) => {
     const ci = {};
     ci.definition = caseInstance.definition;
     ci.parentCaseId = caseInstance.parentCaseId;
-    // TODO caseteam is empty. This needs a fix on engine side!
+    // TODO caseteam is empty in new api. This needs a fix on engine side!
     ci.team = caseInstance.team;
     ci.id = caseInstance.id;
     ci.lastModified = caseInstance.lastModified;
     ci.lastModifiedBy = caseInstance.modifiedBy;
-    // TODO currentMileStone is not defined. This needs a fix on engine side!
+    // TODO currentMileStone is not defined in new api. This needs a fix on engine side!
     ci.currentMileStone = 'todo';
     return ci;
   });

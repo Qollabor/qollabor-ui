@@ -43,7 +43,9 @@ export class UserAvatar extends React.Component {
   }
 
   handleOnClick(userId, event) {
-    this.props.onClick(userId, event);
+    if (this.props.onClick) {
+      this.props.onClick(userId, event);
+    }
   }
 
   render() {

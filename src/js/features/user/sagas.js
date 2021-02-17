@@ -118,17 +118,18 @@ export function* updateAvatar(action) {
 
 export function* fetchProfile() {
   const config = registry.get('config');
+  const userIds = store.getState().user.getIn(['loggedUser', 'username']);
 
   yield put({ type: 'USER:PROFILE:FETCH' });
 
   try {
+    // TODO make tenant variable
     const response = yield registry.get('request')
-      .get(`${config.baseApiUrl}user`, null, {
+      .get(`${config.baseApiUrl}tenant/world/users/${userIds}`, null, {
         headers: {
           [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
         }
       });
-
     yield put(initialize('UserProfile', response.body));
     yield put({ type: 'USER:PROFILE:FETCH:SUCCESS', data: response.body });
   } catch (err) {
@@ -145,7 +146,11 @@ export function* updateProfile() {
   options.headers = { [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token']) };
 
   try {
-    const response = yield request.put(`${config.baseApiUrl}user`, data, options);
+    // TODO make tenant variable
+    // TODO update is not working 'You do not have the privileges to perform this action' thrown from engine
+    const response = yield request.put(`${config.baseApiUrl}tenant/world/users`, data, { headers: {
+      [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
+    } });
     data = { userId: data.userId, name: data.name, roles: data.roles };
 
     yield response;
