@@ -7,7 +7,8 @@ import { store } from './../../store';
 const authOptions = {
   domain: 'qollabor-dev.eu.auth0.com',
   client_id: 'dB6D4G0TT11vJAzNatGksL3hDGo4ymC6',
-  redirect_uri: 'http://localhost:8080'
+  redirect_uri: 'https://qollabor-ui.qollabor.com'
+  // redirect_uri: 'http://localhost:8080'
 };
 
 const redirect = () => {

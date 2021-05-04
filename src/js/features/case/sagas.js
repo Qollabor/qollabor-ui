@@ -133,10 +133,9 @@ export function* planDiscretionaryItem(action) {
 
     const response = yield registry.get('request')
       .post(`${config.cases.url}/${action.caseId}/discretionaryitems/plan`, {
-        name: action.planItemName,
         definitionId: action.definitionId,
-        parentId: action.parentId,
-        planItemId: action.planItemId
+        name: action.definitionId,
+        parentId: action.parentId
       }, {
         headers: {
           [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
