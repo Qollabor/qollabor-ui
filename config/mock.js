@@ -10,9 +10,9 @@ module.exports = {
         defaultCancel: '/'
       },
       token: {
-        httpHeader: 'x-auth-cafienne',
+        httpHeader: 'x-auth-qollabor',
         storage: {
-          key: 'auth-cafienne'
+          key: 'auth-qollabor'
         },
         expire: 1000 * 60 * 59// in milliseconds, 59 minutes
       },

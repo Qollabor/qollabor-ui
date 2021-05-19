@@ -11,7 +11,7 @@ import {
   DateCell,
   SortHeaderCell,
   Column
-} from '../../../../../cafienne-ui-elements';
+} from '../../../../../qollabor-ui-elements';
 
 import { ActionChooserCell } from './cells';
 

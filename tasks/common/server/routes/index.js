@@ -7,18 +7,18 @@ const cacheControlMiddleware = (req, res, next) => {
 };
 
 const accessTokenMiddleware = (req, res, next) => {
-  if (req.headers['x-auth-cafienne'] === constant.VALID_TOKEN_1) {
+  if (req.headers['x-auth-qollabor'] === constant.VALID_TOKEN_1) {
     next();
   } else {
-    res.status(401).send('X-AUTH-CAFIENNE contains invalid hash');
+    res.status(401).send('X-AUTH-QOLLABOR contains invalid hash');
   }
 };
 
 module.exports = (app) => {
   const corsOptions = {
     origin: '*',
-    exposedHeaders: 'accept, Origin, content-type, Authorization, X-AUTH-CAFIENNE, Case-Last-Modified',
-    allowedHeaders: 'accept, Origin, content-type, Authorization, X-AUTH-CAFIENNE, Case-Last-Modified',
+    exposedHeaders: 'accept, Origin, content-type, Authorization, X-AUTH-QOLLABOR, Case-Last-Modified',
+    allowedHeaders: 'accept, Origin, content-type, Authorization, X-AUTH-QOLLABOR, Case-Last-Modified',
     credentials: 'true',
     methods: 'GET, POST, OPTIONS',
     maxAge: '200'

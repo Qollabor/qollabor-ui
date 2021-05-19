@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TitledListBox } from '../../../../cafienne-ui-elements';
+import { TitledListBox } from '../../../../qollabor-ui-elements';
 
 export class CaseAttachments extends React.Component {
   render() {

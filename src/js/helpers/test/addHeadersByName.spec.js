@@ -110,7 +110,7 @@ describe('services/helpers/addHeadersByName', () => {
 
     describe('when invoked with several parameters', () => {
       it('auth alone', () => {
-        expect(addHeadersByName(['cafienneAuth']))
+        expect(addHeadersByName(['qollaborAuth']))
           .to.be.eql({ headers: { [fakeTokenPropertyName]: fakeToken } });
       });
 
@@ -125,7 +125,7 @@ describe('services/helpers/addHeadersByName', () => {
       });
 
       it('auth and caseLastModified', () => {
-        expect(addHeadersByName(['cafienneAuth', 'caseLastModified'], { caseLastModified: 42 }))
+        expect(addHeadersByName(['qollaborAuth', 'caseLastModified'], { caseLastModified: 42 }))
           .to.be.eql(
           {
             headers: {

@@ -18,7 +18,7 @@ export function* fetchTaskDetails(action) {
   yield put({ type: 'TASK:FETCH' });
 
   try {
-    const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
+    const headers = helpers.addHeadersByName(['qollaborAuth', 'caseLastModified'],
       { caseLastModified });
     const response = yield registry.get('request')
       .get(`${config.tasks.url}/${action.taskId}`, null, headers);
@@ -51,7 +51,7 @@ export function* transitionToState(action) {
   yield put({ type: 'TASK:TRANSITION', taskId: action.taskId });
 
   try {
-    const headers = helpers.addHeadersByName(['cafienneAuth']);
+    const headers = helpers.addHeadersByName(['qollaborAuth']);
     const store = registry.get('store');
 
     const taskData = action.taskData || null;
@@ -105,7 +105,7 @@ export function* saveTaskDetails(action) {
   yield put({ type: 'TASK:SAVE', taskId: action.taskId });
 
   try {
-    const headers = helpers.addHeadersByName(['cafienneAuth']);
+    const headers = helpers.addHeadersByName(['qollaborAuth']);
 
     const response = yield registry.get('request')
       .put(`${config.tasks.url}/${action.taskId}`, action.taskData, headers);

@@ -15,7 +15,7 @@ export function* fetchCaseModelDetails() {
   yield put({ type: 'CASEMODEL:DETAIL:FETCH' });
 
   try {
-    const reqOptions = helpers.addHeadersByName(['cafienneAuth']);
+    const reqOptions = helpers.addHeadersByName(['qollaborAuth']);
     Object.assign(reqOptions.headers, defaultXMLGetHeaders);
 
     const name = store.getState().casemodel.details.get('name');
@@ -78,7 +78,7 @@ export function* startCaseModel() {
   const helpers = registry.get('helpers');
 
   try {
-    const headers = helpers.addHeadersByName(['cafienneAuth']);
+    const headers = helpers.addHeadersByName(['qollaborAuth']);
 
     const caseModelDetails = store.getState().casemodel.details;
     const caseTeamItems = store.getState().casemodel.caseTeam.get('roles');

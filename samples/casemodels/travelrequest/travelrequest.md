@@ -1,8 +1,8 @@
 # Description Travel request model
 
 ## Intro
-This case model is used as an example to build the Cafienne UI.
-We don't use the case file in this model since the first version of the Cafienne UI doesn't support the case file.
+This case model is used as an example to build the Qollabor UI.
+We don't use the case file in this model since the first version of the Qollabor UI doesn't support the case file.
 
 ## Stage Request
 

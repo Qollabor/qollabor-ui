@@ -9,7 +9,7 @@ import {
   sortData,
   SortHeaderCell,
   Column
-} from '../../cafienne-ui-elements';
+} from '../../qollabor-ui-elements';
 import TextFilter from '../../components/text-filter';
 
 class CaseList extends React.Component {

@@ -18,7 +18,7 @@ export function* fetchCaseModels() {
   });
 
   try {
-    const headers = helpers.addHeadersByName(['cafienneAuth']);
+    const headers = helpers.addHeadersByName(['qollaborAuth']);
     const response = yield registry.get('request')
       .get(config.casemodels.url, null, headers);
 

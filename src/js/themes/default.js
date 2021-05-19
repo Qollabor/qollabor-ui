@@ -4,7 +4,7 @@ const secondaryColor = '#2E3191';
 const primaryColor = '#2B9299';
 
 /**
- *  Default theme for Cafienne. Only customizations from Material
+ *  Default theme for Qollabor. Only customizations from Material
  *  default should be specified here
  */
 export default {

@@ -9,7 +9,7 @@ import registry from 'app-registry';
 import { AppBarUserMenu } from '../user/components/appBarUserMenu';
 import styles from './styles';
 import { TasksFilter } from '../tasks/components/filter';
-import CafienneSearch from '../search/components/searchbox';
+import QollaborSearch from '../search/components/searchbox';
 import { TaskBreadcrumb } from '../task/components/breadcrumb';
 
 // TODO Need to clear activeTask from breadcrumb-separator if nav to main myTask or unclaimed
@@ -39,7 +39,7 @@ export class Header extends React.Component {
   render() {
     const theme = registry.get('theme');
     const drawerWidth = theme.drawer.width;
-    const cafienneTitleWidth = drawerWidth - 70;
+    const qollaborTitleWidth = drawerWidth - 70;
     return (
       <div style={headerStyle}>
         <Drawer
@@ -84,7 +84,7 @@ export class Header extends React.Component {
               style={Object.assign({}, styles.title, {
                 color: theme.appBar.textColor,
                 fontFamily: theme.fontFamily,
-                width: cafienneTitleWidth,
+                width: qollaborTitleWidth,
               })}
               text="Qollabor"
             />
@@ -92,7 +92,7 @@ export class Header extends React.Component {
 
               <TaskBreadcrumb />
 
-              <CafienneSearch />
+              <QollaborSearch />
             </ToolbarGroup>
           </ToolbarGroup>
           <ToolbarGroup style={{ float: 'right' }} firstChild={false} lastChild={true}>

@@ -1,7 +1,7 @@
 version: 2.1
 jobs:
   build:
-    working_directory: ~/cafienne-ui
+    working_directory: ~/qollabor-ui
     docker:
       - image: circleci/node:8.17.0
     resource_class: medium
@@ -58,14 +58,14 @@ jobs:
       - run:
           name: Build docker image
           command: |
-           eval `echo ${DOCKER_SUDO}` docker build -t qollabor/cafienne-ui:latest .
+           eval `echo ${DOCKER_SUDO}` docker build -t qollabor/qollabor-ui:latest .
       - run:
           name: Push docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ];
             then
               echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-               eval `echo ${DOCKER_SUDO}` docker push qollabor/cafienne-ui:latest
+               eval `echo ${DOCKER_SUDO}` docker push qollabor/qollabor-ui:latest
             else
               echo "Not pushing image to docker hub"
             fi
@@ -79,5 +79,5 @@ workflows:
 #            tags:
 #             only: /.*/
 #            branches:
-#             only: cafienne-ui-ng
+#             only: qollabor-ui-ng
 #             ignore: /.*/

@@ -4,11 +4,11 @@ export const addAuthHeader = () => {
   const config = registry.get('config');
   const store = registry.get('store');
 
-  const authCafienne = {
+  const authQollabor = {
     [config.login.token.httpHeader]: store.getState().user.getIn(['loggedUser', 'token'])
   };
 
-  return authCafienne;
+  return authQollabor;
 };
 
 export const addCaseLastModifiedHeader = (lastModifiedTime) => {
@@ -27,7 +27,7 @@ export const addCaseLastModifiedHeader = (lastModifiedTime) => {
 
 export const addHeadersByName = (names, args) => names.map((name) => {
   switch (name) {
-    case 'cafienneAuth':
+    case 'qollaborAuth':
       return addAuthHeader();
 
     case 'caseLastModified':

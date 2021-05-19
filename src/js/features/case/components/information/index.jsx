@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TitledBox } from '../../../../cafienne-ui-elements';
+import { TitledBox } from '../../../../qollabor-ui-elements';
 import { RaisedButton } from 'material-ui';
 import styles from '../styles';
 

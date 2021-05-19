@@ -67,7 +67,7 @@ export class Form extends React.Component {
 
     const buttonWrapper = <div className="form-buttons">{this.props.buttonList}</div>;
     return (
-      <div className="cafienne-form">
+      <div className="qollabor-form">
         <JsonSchemaForm
           schema={this.props.schema}
           uiSchema={uiSchema}
