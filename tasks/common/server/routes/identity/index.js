@@ -4,7 +4,7 @@ const constant = require('../const');
 const router = express.Router();
 router.post('/login', (req, res) => {
   if (req.body.username === 'admin' && req.body.password === 'admin') {
-    res.append('x-auth-cafienne', constant.VALID_TOKEN_1);
+    res.append('x-auth-qollabor', constant.VALID_TOKEN_1);
     res.status(204).send();
     return;
   }
@@ -14,8 +14,8 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/refresh', (req, res) => {
-  if (req.headers['x-auth-cafienne'] === constant.VALID_TOKEN_1) {
-    res.append('x-auth-cafienne', constant.VALID_TOKEN_1);
+  if (req.headers['x-auth-qollabor'] === constant.VALID_TOKEN_1) {
+    res.append('x-auth-qollabor', constant.VALID_TOKEN_1);
     res.status(204).send();
   } else {
     res.status(401).send();

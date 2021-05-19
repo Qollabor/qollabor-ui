@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Breadcrumb } from '../../../../cafienne-ui-elements';
+import { Breadcrumb } from '../../../../qollabor-ui-elements';
 
 export class TaskBreadcrumbComponent extends React.Component {
   render() {

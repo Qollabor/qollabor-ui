@@ -34,15 +34,15 @@ describe('features/user/sagas', () => {
               defaultCancel: '/'
             },
             token: {
-              httpHeader: 'X-AUTH-CAFIENNE',
+              httpHeader: 'X-AUTH-QOLLABOR',
               storage: {
-                key: 'auth-cafienne'
+                key: 'auth-qollabor'
               },
               expire: 1000 * 60 * 59// in milliseconds, 59 minutes
             },
             user: {
               storage: {
-                key: 'user-cafienne'
+                key: 'user-qollabor'
               }
             }
           }

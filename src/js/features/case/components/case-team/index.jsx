@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import PeopleList from '../../../../components/people-list';
-import { TitledBox } from '../../../../cafienne-ui-elements';
+import { TitledBox } from '../../../../qollabor-ui-elements';
 
 const style = { height: '30px' };
 

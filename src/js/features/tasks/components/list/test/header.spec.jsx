@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { FontIcon } from 'material-ui';
 
-import { ColumnPicker } from '../../../../../cafienne-ui-elements';
+import { ColumnPicker } from '../../../../../qollabor-ui-elements';
 import { TaskListHeader } from '../components/header';
 
 describe('features/taskList/header', () => {

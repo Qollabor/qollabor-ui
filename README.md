@@ -1,6 +1,6 @@
-# Cafienne-UI
+# Qollabor-UI
 
-This is the Cafienne-UI which serves as a front-end for the Cafienne case file engine.
+This is the Qollabor-UI which serves as a front-end for the Qollabor case file engine.
 
 The UI is built using:
 
@@ -24,11 +24,11 @@ They all need to be installed globally (i.e. with `npm install -g`)
 To develop/run the ui locally execute the following steps:
 
 1. Install the prereqs mentioned above.
-2. Check out the project from GitHub [cafienne-ui](https://github.com/cafienne/cafienne-ui.git)
+2. Check out the project from GitHub [qollabor-ui](https://github.com/qollabor/qollabor-ui.git)
 3. Run `npm install`
 4. To run the local server (in dev mode) run `npm run serve`
 
-> For now the UI expects that the cafienne engine is running on localhost:18082
+> For now the UI expects that the qollabor engine is running on localhost:18082
 
 
 ### Gulp tasks
@@ -119,10 +119,10 @@ To build the pruduction bundle run:
 npm run build-production
 ```
 
-To set Cafienne API endpoint url, set `CAFIENNE_API_URL` or do the following:
+To set Qollabor API endpoint url, set `QOLLABOR_API_URL` or do the following:
 
 ```
-CAFIENNE_API_URL=http://0.0.0.0/ npm run build-production
+QOLLABOR_API_URL=http://0.0.0.0/ npm run build-production
 ```
 
 Yes, that trailing slash is there for a reason.

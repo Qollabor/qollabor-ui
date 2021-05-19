@@ -3,7 +3,7 @@ import SearchBoxComponent from './searchBox';
 
 const mapDispatchToProps = dispatch => ({
   initSearch: () => {
-    dispatch({ type: 'CAFIENNE:SEARCH:INIT' });
+    dispatch({ type: 'QOLLABOR:SEARCH:INIT' });
   },
   setFilter: (searchText) => {
     dispatch({ type: 'SEARCH:LIST:INIT', searchText });

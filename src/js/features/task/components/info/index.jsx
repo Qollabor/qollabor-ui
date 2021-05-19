@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { FlatButton, Popover } from 'material-ui';
 import styles from './styles';
-import { TitledBox } from '../../../../cafienne-ui-elements';
+import { TitledBox } from '../../../../qollabor-ui-elements';
 import TaskInfoItem from './components/item';
 import UserSelector from '../../../../components/user-selector';
 

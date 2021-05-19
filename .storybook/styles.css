@@ -15,11 +15,11 @@ body {
   background-color: white;
 }
 
-.cafienne-form .panel.panel-danger.errors {
+.qollabor-form .panel.panel-danger.errors {
   display: none;
 }
 
-.cafienne-form fieldset {
+.qollabor-form fieldset {
   border: 0;
 }
 

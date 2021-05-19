@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ColumnPicker } from '../../../../../cafienne-ui-elements';
+import { ColumnPicker } from '../../../../../qollabor-ui-elements';
 
 import styles from './../styles';
 

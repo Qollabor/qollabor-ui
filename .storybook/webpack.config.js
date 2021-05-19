@@ -31,12 +31,12 @@ module.exports = {
       },
       {
         test: /\.js?$/,
-        include: /(src\/js|node_modules\/cafienne-ui-elements)/,
+        include: /(src\/js|node_modules\/qollabor-ui-elements)/,
         loader: 'babel'
       },
       {
         test: /\.jsx?$/,
-        include: /(src\/js|node_modules\/cafienne-ui-elements)/,
+        include: /(src\/js|node_modules\/qollabor-ui-elements)/,
         loader: 'babel'
       }
     ]

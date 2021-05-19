@@ -1,8 +1,8 @@
 log_format upstream_logging '[$time_local] $remote_addr - $remote_user - $server_name to: $upstream_addr: $request_uri upstream_response_time $upstream_response_time msec $msec request_time $request_time';
 
-upstream cafienne_api {
+upstream qollabor_api {
     keepalive   16;
-    server ${CAFIENNE_API_HOST}:${CAFIENNE_API_PORT};
+    server ${QOLLABOR_API_HOST}:${QOLLABOR_API_PORT};
 }
 
 server {
@@ -17,7 +17,7 @@ server {
         index  index.html index.htm;
     }
 
-    # proxy the Cafienne API to the proper backend
+    # proxy the Qollabor API to the proper backend
     location /api/ {
             
             #access_log /var/log/nginx/api_logging.log upstream_logging;
@@ -27,7 +27,7 @@ server {
             proxy_set_header   X-Real-IP $remote_addr;
             proxy_set_header   Host      $host;
             proxy_set_header   Connection "";
-            proxy_pass http://cafienne_api/;
+            proxy_pass http://qollabor_api/;
     }
 
     #error_page  404              /404.html;

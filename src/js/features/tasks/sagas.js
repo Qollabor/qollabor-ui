@@ -28,7 +28,7 @@ export function* fetchTasks(action) {
     };
     Object.assign(filters, sortParams);
     const caseLastModified = store.getState().app.get('caseLastModified');
-    const reqOptions = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
+    const reqOptions = helpers.addHeadersByName(['qollaborAuth', 'caseLastModified'],
       { caseLastModified });
     Object.assign(reqOptions.headers, { timeZone: action.timeZone });
     const response = yield registry.get('request')
@@ -66,7 +66,7 @@ export function* fetchTask(action) {
   yield put({ type: 'TASK:FETCH' });
 
   try {
-    const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'],
+    const headers = helpers.addHeadersByName(['qollaborAuth', 'caseLastModified'],
       { caseLastModified });
     const response = yield registry.get('request')
       .get(`${config.tasks.url}/${action.taskId}`, null, headers);
@@ -100,7 +100,7 @@ export function* executeTaskAction(action) {
   };
 
   try {
-    const headers = helpers.addHeadersByName(['cafienneAuth']);
+    const headers = helpers.addHeadersByName(['qollaborAuth']);
 
     const response = yield registry.get('request')
       .put(`${config.tasks.url}/${action.taskId}/${action.taskAction}`, userData, headers);
@@ -144,7 +144,7 @@ export function* fetchTasksStats(action) {
   yield put({ type: 'TASKS:STATS:FETCH' });
 
   try {
-    const headers = helpers.addHeadersByName(['cafienneAuth']);
+    const headers = helpers.addHeadersByName(['qollaborAuth']);
     const response = yield registry.get('request')
       .get(`${config.tasks.url}/user/count`, null, headers);
     yield put({ type: 'TASKS:STATS:FETCH:SUCCESS', stats: response.body, bounce: action.bounce });

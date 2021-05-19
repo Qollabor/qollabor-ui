@@ -42,7 +42,7 @@ export function* fetchCase(action) {
 
     yield* progressFunc();
 
-    const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'], {
+    const headers = helpers.addHeadersByName(['qollaborAuth', 'caseLastModified'], {
       caseLastModified
     });
 
@@ -94,7 +94,7 @@ export function* fetchDiscretionaryItems(action) {
     const caseLastModified = store.getState().app.get('caseLastModified');
     const dataKey = 'discretionaryItems';
 
-    const headers = helpers.addHeadersByName(['cafienneAuth', 'caseLastModified'], {
+    const headers = helpers.addHeadersByName(['qollaborAuth', 'caseLastModified'], {
       caseLastModified
     });
 

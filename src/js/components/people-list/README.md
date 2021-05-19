@@ -5,7 +5,7 @@ A People-list component
 ## Usage
 
 ```
-import { Peoplelist } from 'cafienne-ui-elements';
+import { Peoplelist } from 'qollabor-ui-elements';
 
 const samplePeopleList = [
   {

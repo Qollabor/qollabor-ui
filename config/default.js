@@ -2,12 +2,12 @@
 
 const path = require('path');
 
-const baseApiUrl = process.env.CAFIENNE_API_URL
-  ? process.env.CAFIENNE_API_URL
+const baseApiUrl = process.env.QOLLABOR_API_URL
+  ? process.env.QOLLABOR_API_URL
   : '/api/';
 
-const apiProxyUrl = process.env.CAFIENNE_PROXY_URL
-  ? process.env.CAFIENNE_PROXY_URL
+const apiProxyUrl = process.env.QOLLABOR_PROXY_URL
+  ? process.env.QOLLABOR_PROXY_URL
   : 'http://localhost:18082/'
 
 console.log('Set baseApiUrl to', baseApiUrl);
@@ -33,7 +33,7 @@ module.exports = {
     compress: false
   },
   mockServer: {
-    name: 'CafienneUi Mock',
+    name: 'QollaborUi Mock',
     port: 8081
   },
   clientConfig: {
@@ -46,15 +46,15 @@ module.exports = {
         defaultCancel: '/'
       },
       token: {
-        httpHeader: 'X-AUTH-CAFIENNE',
+        httpHeader: 'X-AUTH-QOLLABOR',
         storage: {
-          key: 'auth-cafienne'
+          key: 'auth-qollabor'
         },
         expire: 1000 * 60 * 59 // in milliseconds, 59 minutes
       },
       user: {
         storage: {
-          key: 'user-cafienne'
+          key: 'user-qollabor'
         }
       },
       login: {

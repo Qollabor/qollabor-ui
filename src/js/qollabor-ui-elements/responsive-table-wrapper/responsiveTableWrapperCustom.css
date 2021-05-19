@@ -1,0 +1,22 @@
+.fixedDataTableLayout_main{
+  margin: 10px 0px 0px 0px;
+}
+
+.public_fixedDataTableCell_main{
+	background-color : white!important;
+	background-image : none!important;
+}
+
+.public_fixedDataTable_header{
+	border-bottom:1px solid lightgray!important;
+}
+
+.fixedDataTableCellLayout_main {
+	border-bottom:1px solid #eee!important;
+}
+
+.public_fixedDataTable_header .public_fixedDataTableCell_main {
+	font-size:12px;
+	color:gray;
+	font-weight:normal;
+}
